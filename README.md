@@ -76,14 +76,14 @@ This course will use the programming language R; R is a free software environmen
 |  3    | Experimental design: the roles of replication, randomisation, and blocking  |1 |  N/A    | 2 | 
 |  4    | Pairwise and multiple comparison procedures   |2 |  1      | 3 |
 |  5    | Resampling procedures: randomisation, permutation, and bootstrapping  |2 |  N/A    | 4 |
-| Midterm break | | | |
+|  | Midterm break | | |
 |  6    | Multiple regression (GLMs)  |3 |  2      | 5 |
 |  7    | Mixed models; incorporating fixed and random effects  |3 |  N/A    | 6 |
 |  8    | Introduction to unsupervised learning techniques (e.g., clustering techniques, dimensionality reduction)  |4 |  3      | 7 |
 |  9    | Ordination (e.g., multidimensional scaling, correspondence analysis)   |4 |  N/A    | 8 |
 |  10   | Introduction to supervised learning techniques (e.g., linear discriminant analysis)  |5 |  4      | 9 |
 |  11   | Decision trees, k-nearest neighbour, naive Bayes  |5 |  N/A    | 10 |
-|  12   | Introduction to network analysis and construction graphs |N/A | 5     | Optional/Review |  
+|  12   | Introduction to network analysis and graphs |N/A | 5     | Optional/Review |  
 
 ### Learning Objectives
 
