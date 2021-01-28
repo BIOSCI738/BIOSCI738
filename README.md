@@ -1,6 +1,9 @@
-# BIOSCI738, semester 1, 2021.
+# Course materials for BIOSCI738 (semester 1, 2021)
 
-**This repository contains the course materials for BIOSCI738**
+### *blupages* [here](https://stats-uoa.github.io/BIOSCI738/)
+
+### Slides [here](https://biosci738.netlify.app/)
+
 
 ## Contact
 
