@@ -1,0 +1,55 @@
+---
+title: "BIOSCI738"
+subtitle: ""
+author: "Universty of Auckland"
+institute: "Find course [bluepages here](https://stats-uoa.github.io/BIOSCI738/)"
+date: ""
+output:
+  xaringan::moon_reader:
+   yolo: 
+     times: 1
+     img: figs/yolo_img.jpg
+   css: xaringan-themer.css
+   lib_dir: libs
+   nature:
+     highlightStyle: github
+     highlightLines: true
+     countIncrementalSlides: false
+     slideNumberFormat: |
+        <div class="progress-bar-container">
+          <div class="progress-bar" style="width: calc(%current% / %total% * 100%);">
+          </div>
+        </div>
+        
+---
+class: inverse
+
+# Assessment
+
+ + **Workshops** 5% Total (10 to complete, worth 0.5% each) Students must attend at least 7 out of the 10 workshops)
+ + **Assignments** 55% Total (5 to complete worth 10%) Each assignment will also contain a peer review aspect (worth 1%) students must complete the peer review coursework component of the assignments to be awarded their associated peer reviewed grade
+ + **Final Exam** 40% Total
+ + Throughout the course there will also be the options to complete additional assignments/tasks for extra credit (capped at 5% in total)
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+style_solarized_light()
+```
+
+<style type="text/css">
+.remark-slide-content {
+    font-size: 20px;
+    padding: 1em 4em 1em 4em;
+}
+</style>
+
+
+---
+class: inverse, center, middle
+
+## `R` and `RStudio` catchup
+### Week 1
+
