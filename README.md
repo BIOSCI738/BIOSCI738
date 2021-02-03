@@ -157,7 +157,6 @@ This course will use the programming language R; R is a free software environmen
 
 ## Datasets
 
-+ [DNA methylation markers](https://github.com/STATS-UOA/BIOSCI220/blob/master/data/DNA_forensic.csv)
++ [DNA methylation markers](https://github.com/STATS-UOA/BIOSCI220/blob/master/data/DNA_forensic.csv) [paper](https://www.sciencedirect.com/science/article/pii/S1872497316300461?casa_token=qPk_jTQ4H5EAAAAA:Tu4wBtVyHzRAsB_7k3uIXsTqcsVucoVi7AvN54Evrue-Bw8CmK6CHraK0mjS-G4O7XF50V_cAI0)
 + [Predator avoidance responses in lobsters](https://github.com/STATS-UOA/BIOSCI220/blob/master/data/lobster.csv)
-+ Invasive dicots and herbicide
-+ AstraZeneca vaccine trails
++ [Invasive dicots and herbicide](https://datadryad.org/stash/dataset/doi:10.5061/dryad.0cfxpnvzq) [paper](https://besjournals.onlinelibrary.wiley.com/doi/abs/10.1111/1365-2664.13691)
