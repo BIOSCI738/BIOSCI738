@@ -2,7 +2,9 @@
 
 ### *blupages* [here](https://stats-uoa.github.io/BIOSCI738/)
 
-### Slides [here](https://biosci738.netlify.app/)
+### Slides
+
+  + [module1](https://biosci738module1.netlify.app/)
 
 
 ## Contact

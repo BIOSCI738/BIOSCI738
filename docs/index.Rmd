@@ -4,6 +4,7 @@ author: "Charlotte Jones-Todd"
 date: "Semester 1, 2021"
 output: 
   bookdown::gitbook:
+    css: "src/my-style.css"
     toc_depth: 2
     download:
       - ["biosci738.pdf", "PDF"]
@@ -14,6 +15,7 @@ output:
       facebook: no
   
 ---
+
 
 # Preface {-}
 
@@ -55,10 +57,6 @@ Taught material will be delivered, each week, via 2 hour lectures. Each week the
 + Supervised learning: discriminant  analysis
 + Networks and graphs
 
+## Slides
 
-
-```{r slides, echo = FALSE}
-knitr::include_url("https://biosci738.netlify.app/")
-```		
-
-[Slides here](https://biosci738.netlify.app/)
+[Module 1 slides here](https://biosci738module1.netlify.app/)
