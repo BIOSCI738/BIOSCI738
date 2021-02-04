@@ -2,8 +2,8 @@
 title: "BIOSCI738"
 subtitle: "![](img/uoa.png){width=5%} Universty of Auckland"
 author: "Charlotte M. Jones-Todd"
-institute: "Find the [bluepages here](https://stats-uoa.github.io/BIOSCI738/)"
-date: ""
+institute: "[bluepages](https://stats-uoa.github.io/BIOSCI738/)"
+date: "Module 1: Exploratory Data Analysis and Communication"
 output:
   xaringan::moon_reader:
    css: xaringan-themer.css
@@ -83,6 +83,14 @@ class: inverse, center, middle
 
 # `R` and `RStudio`
 ## Week 1
+
+---
+# Learning objectives
+
++ Define the difference between `R` and `RStudio`
++ Explain what an `R` function is; describe what an argument to an `R` function is
++ Explain what an `R` package is; distinguish between the functions `install.packages()` and `library()`
++ Use the appropriate `R` function to read in a data file
 
 ---
 class:  center
