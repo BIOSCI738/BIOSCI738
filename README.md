@@ -1,5 +1,9 @@
 # Course materials for BIOSCI738 (semester 1, 2021)
 
+## Copyright
+
+All files are (C)Copyright by the University of Auckland unless explicitly stated otherwise. Distrubution without prior written permission is prohibited.
+
 ### *blupages* [here](https://stats-uoa.github.io/BIOSCI738/)
 
 ### Slides
