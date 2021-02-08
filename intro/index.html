@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>BIOSCI738</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Charlotte M. Jones-Todd" />
+    <link href="libs/countdown/countdown.css" rel="stylesheet" />
+    <script src="libs/countdown/countdown.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# BIOSCI738
+## <img src="img/uoa.png" style="width:5.0%" /> Universty of Auckland
+### Charlotte M. Jones-Todd
+### <a href="https://stats-uoa.github.io/BIOSCI738/">bluepages</a>
+### Introduction
+
+---
+
+class: inverse
+
+
+
+
+&lt;style type="text/css"&gt;
+.remark-slide-content {
+    font-size: 20px;
+    padding: 1em 4em 1em 4em;
+}
+&lt;/style&gt;
+
+# Shwmae
+
++ 🌵  Grew up in **Llanddewi Brefi**, mid Wales
++ 🎓  PhD (Stats) @ **University of St Andrews**, Scotland
++ 👩‍💻 Research interests **spatial point processes** and software develompent
++ **Outside of work**, I look after 🐴 &amp; 🐔 &amp; 🐶 and drink 🍷
+
+
+---
+class: center, middle
+
+# This course...
+
+## Your turn
+
+<div class="countdown" id="timer_6021c5d5" style="top:0;right:0;font-size:48px;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+### [PollEv.com/cjonestodd303](https://pollev.com/cjonestodd303)
+
+---
+class: center, middle
+
+# This course...
+
+
+### Goal: Develop skills for reproducible research
+
+---
+class: inverse, center
+
+# Contact Me
+
+### **email** [c.jonestodd@auckland.ac.nz](c.jonestodd@auckland.ac.nz)
+
+### **Office** 303-318
+
+---
+
+# Assessment
+
+ + **Workshops** 5% Total (10 to complete, worth 0.5% each) Students must attend at least 7 out of the 10 workshops)
+ + **Assignments** 55% Total (5 to complete worth 10%) Each assignment will also contain a peer review aspect (worth 1%) students must complete the peer review coursework component of the assignments to be awarded their associated peer reviewed grade
+ + **Final Exam** 40% Total
+ + Throughout the course there will also be the options to complete additional assignments/tasks for extra credit (capped at 5% in total)
+   + &lt;i class='fab fa-twitter'&gt;&lt;/i&gt;  Take over Twitter
+   + &lt;i class='fab fa-r-project'&gt;&lt;/i&gt; RUsers
+   + 🖊 Show and tell 
+   
+---
+
+#  Recommended texts
+
+STATISTICAL METHODS IN BIOLOGY: Design and Analysis of Experiment and Regression, by Welham , Gezan , Clark &amp; Mead, Published Oct 2014 
+  + e-copy available
+
+MODERN STATISTICS FOR MODERN BIOLOGY , Susan Holmes, Wolfgang Huber, 2018
+
+  + Website: http://web.stanford.edu/class/bios221/book/
+  + e-copy also available [http://web.stanford.edu/class/bios221/book/](http://web.stanford.edu/class/bios221/book/)
+
+---
+
+##  Timetable 
+
++ **Lectures:** Thursdays 2–4pm
++ **Workshops** Fridays 2–3pm
+
+| Week  | Overview  | Lecture | Workshop |
+|---    |---        |---      |---       |
+|  1    | R &amp; RStudio catch up  | 4th March *optional* | 5th March *optional* |
+|  2    | Data wrangling and visualisation  | 11th | 12th |
+|  3    | Experimental design: the roles of replication, randomisation, and blocking  | 18th | 19th|
+|  4    | Pairwise and multiple comparison procedures   | 25th | 26th |
+|  5    | Resampling procedures: randomisation, permutation, and bootstrapping  | 1st April | Good Friday |
+|  | Midterm break  5th--16th April | | |
+
+
+---
+
+##  Timetable cont.
+
+
+| Week  | Overview  | Lecture | Workshop |
+|---    |---        |---      |---       |
+|  6    | Multiple regression (GLMs)  | 22nd | 23rd |
+|  7    | Mixed models; incorporating fixed and random effects  | 29th | 30th |
+|  8    | Introduction to unsupervised learning techniques (e.g., clustering techniques, dimensionality reduction)  | 6th May | 7th May |
+|  9    | Ordination (e.g., multidimensional scaling, correspondence analysis)   | 13th | 14th |
+|  10   | Introduction to supervised learning techniques (e.g., linear discriminant analysis)  | 20th | 21st|
+|  11   | Decision trees, k-nearest neighbour, naive Bayes  | 27th | 28th |
+|  12   | Introduction to network analysis and graphs |3rd June | 4th June *review?* |
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"slideNumberFormat": "<div class=\"progress-bar-container\">\n  <div class=\"progress-bar\" style=\"width: calc(%current% / %total% * 100%);\">\n  </div>\n</div>\n"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
