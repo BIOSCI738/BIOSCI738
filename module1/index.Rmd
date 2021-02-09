@@ -1,6 +1,6 @@
 ---
 title: "BIOSCI738"
-subtitle: "![](img/uoa.png){width=5%} Universty of Auckland"
+subtitle: "![](../intro/img/uoa.png){width=5%} Universty of Auckland"
 author: "Charlotte M. Jones-Todd"
 institute: "[bluepages](https://stats-uoa.github.io/BIOSCI738/)"
 date: "Module 1: Exploratory Data Analysis and Communication"
@@ -19,12 +19,10 @@ output:
         </div>
         
 ---
-class: inverse
+class: inverse, center, middle
 
-```{r setup, include=FALSE}
-options(htmltools.dir.version = FALSE)
-```
 ```{r xaringan-themer, include=FALSE, warning=FALSE}
+options(htmltools.dir.version = FALSE,cache = TRUE, warning = FALSE, message = FALSE)
 library(xaringanthemer)
 style_solarized_light()
 ```
@@ -36,61 +34,20 @@ style_solarized_light()
 }
 </style>
 
-# Shwmae
 
-+ `r emo::ji("plant")`  Grew up in **Llanddewi Brefi**, mid Wales
-+ `r emo::ji("mortar_board")`  PhD (Stats) @ **University of St Andrews**, Scotland
-+ `r emo::ji("woman_technologist")` Research interests **spatial point processes** and software develompent
-+ **Outside of work**, I look after `r emo::ji("horse")` & `r emo::ji("chicken")` & `r emo::ji("dog")` and drink `r emo::ji("wine")`
-
-
----
-class: center, middle
-
-# This course...
-
-## Your turn
-
-`r countdown::countdown(minutes = 2, font_size = "48px", top = 0)`
-
-### [PollEv.com/cjonestodd303](https://pollev.com/cjonestodd303)
-
-
----
-class: inverse, center
-
-# Contact Me
-
-### **email** [c.jonestodd@auckland.ac.nz](c.jonestodd@auckland.ac.nz)
-
-### **Office** 303-318
-
----
-
-
-# Assessment
-
- + **Workshops** 5% Total (10 to complete, worth 0.5% each) Students must attend at least 7 out of the 10 workshops)
- + **Assignments** 55% Total (5 to complete worth 10%) Each assignment will also contain a peer review aspect (worth 1%) students must complete the peer review coursework component of the assignments to be awarded their associated peer reviewed grade
- + **Final Exam** 40% Total
- + Throughout the course there will also be the options to complete additional assignments/tasks for extra credit (capped at 5% in total)
-   + <i class='fab fa-twitter'></i>  Take over Twitter
-   + <i class='fab fa-r-project'></i> RUsers
-   + `r emo::ji("pen")` Show and tell 
-
----
-class: inverse, center, middle
 
 # `R` and `RStudio`
 ## Week 1
 
 ---
+class: inverse
+
 # Learning objectives
 
-+ Define the difference between `R` and `RStudio`
-+ Explain what an `R` function is; describe what an argument to an `R` function is
-+ Explain what an `R` package is; distinguish between the functions `install.packages()` and `library()`
-+ Use the appropriate `R` function to read in a data file
++ **Define** the difference between `R` and `RStudio`
++ **Explain** what an `R` function is; describe what an argument to an `R` function is
++ **Explain** what an `R` package is; distinguish between the functions `install.packages()` and `library()`
++ **Use** the appropriate `R` function to read in a data file
 
 ---
 class:  center
@@ -223,6 +180,14 @@ class: inverse
 
 <img src="https://raw.githubusercontent.com/martinctc/blog/master/images/RPROJECT_2000dpi.png" width="50%">
 
+---
+
+# Reproducible research
+
+### Keep all similar files for the same analysis in the same place 
+
+### **NEVER** change raw data
+
 
 ---
 
@@ -242,9 +207,22 @@ This
 + ...
 
 ---
+
+## R errors  `r emo::ji('scream')`
+
+```{r errors, echo = TRUE, error = TRUE}
+data <- read.csv("data_file_not_in_my_working_directory.csv")
+library(some_library_I_have_not_installed)
+some_function_I_spelled_worng(x = x)
+an_object_I_have_not_created
+```
+
+---
 ## Starting out with `tidyverse`
 
-![](https://raw.githubusercontent.com/allisonhorst/stats-illustrations/master/rstats-artwork/tidyverse_celestial.png)
+
+<img src="https://raw.githubusercontent.com/allisonhorst/stats-illustrations/master/rstats-artwork/tidyverse_celestial.png" width="50%">
+
 Artwork by [@allison_horst](https://github.com/allisonhorst/)
 
 ---
@@ -321,7 +299,6 @@ Say you would like to perform a hypothetical sequence of operations on a hypothe
 
 
 ---
-class: inverse 
 
 So to calculate the mean **Age** of each **Species** in the `paua` dataset we would use
 
@@ -356,3 +333,676 @@ You would read the sequence  above as:
 
 ![](https://raw.githubusercontent.com/allisonhorst/stats-illustrations/master/rstats-artwork/r_rollercoaster.png)
 Artwork by [@allison_horst](https://github.com/allisonhorst/)
+
+
+---
+class: inverse, center, middle
+
+# Data wrangling and visualisation
+## Week 2
+
+---
+class: inverse
+
+# Learning objectives
+
++ **Define** data sovereignty and **explain** this in relation to a researcher's obligation when collecting, displaying, and analysing data
++ **Create** and **communicate** informative data visualisations using `R`
++ **Discuss** and **critique** data visualisations
++ **Carry out**, and **interpret** the outputs of, basic exploratory data analysis using in-built R functions
++ **Communicate** statistical concepts and experimental outcomes clearly using language appropriate for both a **scientific** and **non-scientific** audience
+
+---
+class: middle
+
+### [''**Data sovereignty** is the idea that data are subject to the laws and governance structures within the nation it is collected''](https://en.wikipedia.org/wiki/Data_sovereignty)
+
+### Recearcher's obligations?
+
+`r countdown::countdown(minutes = 3, font_size = "48px", top = 0)`
+
+
+Resources: 
+
++ [Why data sovereignty matters](https://www.onenet.co.nz/our-resources/why-data-sovereignty-matters/)
++ [Indigenous Data Sovereignty and Policy](https://library.oapen.org/handle/20.500.12657/42782)
++ [Principles of Māori Data Sovereignty](https://cdn.auckland.ac.nz/assets/psych/about/our-research/documents/TMR%2BM%C4%81ori%2BData%2BSovereignty%2BPrinciples%2BOct%2B2018.pdf)
+
+
+---
+class: inverse
+
+## `ggplot2`
+
+`ggplot2` is an `R` package for producing statistical, or data, graphics; it has an underlying grammar based on the [Grammar of Graphics](https://www.amazon.com/Grammar-Graphics-Statistics-Computing/dp/0387245448)
+
+Every `ggplot2` plot has three key components:
+
+  + `data`,
+
+  + A set of `aes`thetic mappings between variables in the data and visual properties, and
+
+  + At least one layer which describes how to render each observation. Layers are usually created with a `geom` function.
+
+
+
+Resources:
+
++ [`ggplot2` cheatsheet](https://rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf)
++ [Elegant Graphics for Data Analysis](https://ggplot2-book.org/introduction.html)
+
+---
+
+### `ggplot2` layers
+
+<img src="https://www.ericchowkokyew.com/wp-content/uploads/2019/07/image-2.png" height="80%">
+
+
+---
+
+# Example
+
+```{r penguins}
+library(palmerpenguins) ## contains some nice penguin data
+library(ggplot2) ## for plotting
+penguins
+
+```
+
+---
+
+
+```{r flip, echo = FALSE}
+library(flipbookr)
+xaringanExtra::use_panelset()
+options(warn = -1)
+```
+
+
+```{r flippoint, echo = FALSE, include = FALSE,message=FALSE,warning=FALSE}
+ggplot(penguins,aes(x = body_mass_g, y = flipper_length_mm)) + ## data & aesthetics
+    geom_point() + ## geom
+  geom_smooth(method = 'lm', se = FALSE) ## statistics (linear regression line)
+```
+
+`r chunk_reveal("flippoint", title = "## Example: scatter plot")`
+
+---
+
+```{r flipbox2, echo = FALSE, include = FALSE,message=FALSE,warning=FALSE}
+ggplot(penguins,aes(x = species, y = flipper_length_mm)) + ## data & aesthetics
+    geom_boxplot()  + ## geom
+  ggtitle("Flipper length (mm) by species") +
+  ylab("Flipper length (mm)") +
+  xlab("Species") +
+  theme_dark() ## theme
+```
+
+`r chunk_reveal("flipbox2", title = "## Example: boxplot and theme")`
+
+---
+```{r flippoint2, echo = FALSE, include = FALSE,message=FALSE,warning=FALSE}
+ggplot(penguins,aes(x = body_mass_g, y = flipper_length_mm, color = species)) + ## data and aesthetics
+    geom_point() + ## geom
+  geom_smooth(method = 'lm', se = FALSE) ## statistic (linear regression line without intervals)
+```
+
+`r chunk_reveal("flippoint2", title = "## Example: scatter plot by species")`
+
+---
+class: inverse, center, middle
+
+## Live demo
+
+---
+class: inverse
+
+### The Good, the Bad, and the Ugly...
+
+.panelset[
+ .panel[.panel-name[Plot]
+```{r boxes, echo = FALSE,results='asis',fig.show='asis',warning = FALSE}
+box <- ggplot(penguins,aes(x = species, y = flipper_length_mm)) + ## data & aesthetics
+    geom_boxplot()  + ## geom
+  ggtitle("Flipper length (mm) by species") +
+  ylab("Flipper length (mm)") +
+  xlab("Species") +
+  theme_dark() ## theme
+jitter <- ggplot(penguins,aes(x = species, y = flipper_length_mm)) + ## data & aesthetics
+    geom_jitter()  + ## geom
+  ggtitle("Flipper length (mm) by species") +
+  ylab("Flipper length (mm)") +
+  xlab("Species") +
+  theme_dark() ## theme
+violin <- ggplot(penguins,aes(x = species, y = flipper_length_mm)) + ## data & aesthetics
+    geom_violin()  + ## geom
+  ggtitle("Flipper length (mm) by species") +
+  ylab("Flipper length (mm)") +
+  xlab("Species") +
+  theme_dark() ## theme
+
+require(gridExtra,quietly = TRUE) ## nice package to arrange ggplots
+grid.arrange(box, jitter, violin)
+```
+]
+.panel[.panel-name[Code]
+```{r boxesc, eval = FALSE}
+box <- ggplot(penguins,aes(x = species, y = flipper_length_mm)) + ## data & aesthetics
+    geom_boxplot()  + ## geom
+  ggtitle("Flipper length (mm) by species") +
+  ylab("Flipper length (mm)") +
+  xlab("Species") +
+  theme_dark() ## theme
+jitter <- ggplot(penguins,aes(x = species, y = flipper_length_mm)) + ## data & aesthetics
+    geom_jitter()  + ## geom
+  ggtitle("Flipper length (mm) by species") +
+  ylab("Flipper length (mm)") +
+  xlab("Species") +
+  theme_dark() ## theme
+violin <- ggplot(penguins,aes(x = species, y = flipper_length_mm)) + ## data & aesthetics
+    geom_violin()  + ## geom
+  ggtitle("Flipper length (mm) by species") +
+  ylab("Flipper length (mm)") +
+  xlab("Species") +
+  theme_dark() ## theme
+require(gridExtra) ## nice package to arrange ggplots
+grid.arrange(box, jitter, violin)
+```
+]
+]
+
+---
+class: inverse
+
+.panelset[
+ .panel[.panel-name[Plot 1]
+```{r simple, echo = FALSE,warning=FALSE,results='asis'}
+ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm)) +
+    geom_point() +
+    geom_smooth(method = "lm", col = "blue", se = FALSE)
+```
+]
+.panel[.panel-name[Plot 1 code]
+```{r simplec, eval = FALSE}
+ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm)) +
+    geom_point() +
+    geom_smooth(method = "lm", col = "blue", se = FALSE)
+```
+]
+.panel[.panel-name[Plot 2]
+```{r facet, echo = FALSE,warning=FALSE}
+ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm, 
+                         col = species)) +
+    geom_point(size = 2, alpha = 0.5) + 
+    geom_smooth(method = "lm", se = FALSE) +
+    facet_grid(~ sex) +
+    theme_bw() + 
+    labs(title = "Flipper Length and Body Mass, by Sex & Species",
+         subtitle = paste0(nrow(penguins), " of the Palmer Penguins"),
+         x = "Body Mass (g)", 
+         y = "Flipper Length (mm)")
+```
+]
+.panel[.panel-name[Plot 2 code]
+```{r facetc, eval = FALSE}
+ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm, 
+                         col = species)) +
+    geom_point(size = 2, alpha = 0.5) + 
+    geom_smooth(method = "lm", se = FALSE) +
+    facet_grid(~ sex) +
+    theme_bw() + 
+    labs(title = "Flipper Length and Body Mass, by Sex & Species",
+         subtitle = paste0(nrow(penguins), " of the Palmer Penguins"),
+         x = "Body Mass (g)", 
+         y = "Flipper Length (mm)")
+```
+]
+.panel[.panel-name[Plot 3]
+```{r facetna, echo = FALSE,warning=FALSE}
+penguins_nafree <- penguins %>% drop_na()
+ggplot(penguins_nafree, aes(x = body_mass_g, y = flipper_length_mm, 
+                         col = species)) +
+    geom_point(size = 2, alpha = 0.5) + 
+    geom_smooth(method = "lm", se = FALSE) +
+    facet_grid(~ sex) +
+    theme_bw() + 
+    labs(title = "Flipper Length and Body Mass, by Sex & Species",
+         subtitle = paste0(nrow(penguins_nafree), " of the Palmer Penguins"),
+         x = "Body Mass (g)", 
+         y = "Flipper Length (mm)")
+```
+]
+.panel[.panel-name[Plot 3 code]
+```{r facetnac, eval = FALSE}
+penguins_nafree <- penguins %>% drop_na()
+ggplot(penguins_nafree, aes(x = body_mass_g, y = flipper_length_mm, 
+                         col = species)) +
+    geom_point(size = 2, alpha = 0.5) + 
+    geom_smooth(method = "lm", se = FALSE) +
+    facet_grid(~ sex) +
+    theme_bw() + 
+    labs(title = "Flipper Length and Body Mass, by Sex & Species",
+         subtitle = paste0(nrow(penguins), " of the Palmer Penguins"),
+         x = "Body Mass (g)", 
+         y = "Flipper Length (mm)")
+```
+]
+]
+
+
+---
+class: center, middle
+
+## The Good, the Bad, and the Ugly...
+
+### Reflections.
+### Improvements? Additions?
+### What do these plots suggest?
+
+`r countdown::countdown(minutes = 3, font_size = "48px", top = 0)`
+
+---
+class: inverse, center, middle
+
+# Experimental Design
+## Week 2
+
+---
+class: inverse
+## Learning Objectives
+
+
+   + **Identify** the following experimental units
+      + experimental unit
+      + observational units
+   + **List** and **describe** the three main principals of experimental design
+       + Randomization
+       + Replication
+       + Blocking
+   + **Discuss** the advantages and disadvantages of different designs
+   + **Critique** experimental designs
+   
+---
+
+# The language of design
+
+.pull-left[![](img/cox.png)
+[Gertrude Mary Cox](https://en.wikipedia.org/wiki/Gertrude_Mary_Cox)]
+
+.pull-right[![](img/cochran.png)
+
+[William Gemmell Cochran](https://en.wikipedia.org/wiki/William_Gemmell_Cochran)]
+
+[Cochran, William G.; Cox, Gertrude M. (1950). Experimental Designs. New York: Wiley.](https://www.wiley.com/en-us/Experimental+Designs%2C+2nd+Edition-p-9780471545675)
+
+---
+### Fisher... 
+
+
+.pull-left[![](https://upload.wikimedia.org/wikipedia/commons/a/aa/Youngronaldfisher2.JPG)
+
+*a genius who almost single-handedly created the foundations for modern statistical science*]
+
+--
+
+.pull-right[
+### You should also know
+
+[![](img/fisher.png)](https://www.newstatesman.com/international/science-tech/2020/07/ra-fisher-and-science-hatred)
+
+[RA Fisher and the science of hatred](https://statmodeling.stat.columbia.edu/2020/08/01/ra-fisher-and-the-science-of-hatred/)
+
+[\#Topple The Racists](https://www.bbc.com/news/uk-england-cambridgeshire-53023823)]
+
+
+---
+class: center, middle
+
+# Three key principles:
+
+
+## **Replication**
+## **Randomization**
+## **Blocking**
+
+
+---
+## Overview and key phrases
+
+ + **Scientific objective:** The biological question (**AVOID BEING VAGUE**)
+    + Should include details such as what is being *compared*, what is being *measured* and *how*, and under what *experimental conditions* etc.
+
+---
+
+# Scientific objective
+### Compare three surgical conditionings of a biofluid
+#### Too vague!
+
+--
+
+ + Which biofluid and collected from what?
+ + How will they be compared?
+    + What will be measured?
+    + How will it be measured?
+    + Under which experimental conditions?
+    + By whom?
+    
+---
+# Scientific objective
+
+### Compare three surgical conditionings of a biofluid
+
+
++ Organism? Male Wistar Rat
++ Cell, tissue, biofluid? Lymph
++ What? Global proteomic profile
++ Proteins + Abundances
++ How? 2D–LC–MS/MS
+
+---
+class: inverse, center, middle
+
+ **Experimental unit** Smallest portion of experimental material which is *independently* perturbed
+ 
+--
+
+**Treatment** The experimental condition *independently* applied to an experimental unit
+
+--
+
+**Observational unit** The smallest unit on which a response is measured. If one measurement is made on each rat: **Observational unit** = **Experimental unit**. If Multiple measurements are made on each rat: Each experimental unit has >1 observational unit (*pseudo-* or *technical replication*).
+  
+---
+class: center, middle
+
+## Experimental or Observational unit?
+
+`r countdown::countdown(minutes = 5, font_size = "48px", top = 0)`
+
+### [https://b.socrative.com/login/student/](https://b.socrative.com/login/student/)
+### Room Name: BIOSCIUOA
+
+---
+
+class: inverse
+
+# 1st major principle: Replication
+
+![](https://media.makeameme.org/created/precision-ypqmw8.jpg)
+
+---
+
+class: inverse
+
+# 1st major principle: Replication
+
++ **Biological replication:** each treatment is *independently* applied to each of several humans, animals or plants
+  + To generalize results to population
+
+--
+
++ **Technical replication:** two or more samples from the same biological source which are *independently* processed
+  + Advantageous if processing steps introduce a lot of variation
+  + Increases the precision with which comparisons of relative abundances between treatments are made
+  
+--
+
++ **Pseudo-replication:** one sample from the same biological source, divided into two or more aliquots which are **independently** measured
+  + Advantageous for noisy measuring instruments
+  + Increases the **precision** with which comparisons of relative abundances between treatments are made
+  
+---
+
+class: inverse
+
+# 2nd major principle: Randomisation
+
+![](https://media.makeameme.org/created/your-bias-is.jpg)
+
+---
+
+class: inverse
+
+# 2nd major principle: Randomisation
+
++ **Protects against bias**
+
+
++ Plan the experiment in such a way that the variations caused by extraneous factors can all be combined under the general heading of "chance".
+
++ Ensures that each treatment has the same probability of getting good (or bad) units and thus
+avoids systematic bias
++ random allocation can cancel out population bias; it ensures that any other possible causes for the experimental results are split equally between groups
++ typically statistical analysis assumes that observations are **independent**. This is almost never strictly true in practice but randomisation means that our estimates will behave as if they were based on independent observations
+
+---
+
+class: inverse
+
+# 3rd major principle: Blocking
+
+![](https://www.memecreator.org/static/images/memes/4524459.jpg)
+---
+
+class: inverse
+
+# 3rd major principle: Blocking
+
+
+Blocking helps **control variability** by making treatment groups more alike. Experimental units are divided into subsets (called blocks) so that units within the same block are more similar than units from different subsets or blocks. 
+
+Blocking is a technique for dealing with *nuisance factors*.
+
+A *nuisance factor* is a factor that has some effect on the response, but is of no interest (e.g., age class).
+
+
+
+---
+
+# Other resources
+
+
+[Glass, David J. Experimental Design for Biologists. Second ed. 2014. Print.](https://catalogue.library.auckland.ac.nz/primo-explore/fulldisplay?docid=uoa_alma21237737730002091&search_scope=Combined_Local&tab=books&vid=NEWUI&context=L)
+
+[Welham, S. J. Statistical Methods in Biology : Design and Analysis of Experiments and Regression. 2015. Print.](https://catalogue.library.auckland.ac.nz/primo-explore/fulldisplay?docid=uoa_alma21237737830002091&search_scope=Combined_Local&tab=books&vid=NEWUI&context=L)
+
+[Fisher, Ronald Aylmer. The Design of Experiments. 8th ed. Edinburgh: Oliver & Boyd, 1966. Print. O & B Paperbacks.](https://catalogue.library.auckland.ac.nz/primo-explore/fulldisplay?docid=uoa_alma21198532990002091&context=L&vid=NEWUI&lang=en_US&search_scope=Combined_Local&adaptor=Local%20Search%20Engine&isFrbr=true&tab=books&query=any,contains,The_Design_of_Experiments&sortby=date&facet=frbrgroupid,include,627497507&offset=0)
+
+
+---
+class: inverse, center, middle
+
+# Analysis of a Completely Randomised Design in `R`
+## One-Way Analysis of Variance (ANOVA)
+## Week 2
+
+---
+class: inverse
+## Learning Objectives
+
++ **Explain**
++ **Describe** a Completely Randomised (experimental) Design 
++ **Carry** out a one-way ANOVA in `R` and **draw** the appropriate inference
++ **Define**
+
+---
+
+## One-way ANOVA
+### *everything is a regression*
+
+```{r data, message = FALSE}
+library(tidyverse)
+rats <- read_csv("../data/crd_rats_data.csv")
+rats
+
+```
+## One-way ANOVA
+### *everything is a regression*
+
+```{r plot, message = FALSE}
+ggplot(data = rats,aes(x = Surgery, y = logAUC)) +
+  geom_violin()
+
+```
+
+
+---
+
+## One-way ANOVA
+### *everything is a regression*
+
+```{r aov}
+rats_aov <- aov(logAUC ~ Surgery, data = rats)
+rats_aov
+```
+
+---
+
+## One-way ANOVA
+### *everything is a regression*
+
+```{r lm}
+rats_lm <- lm(logAUC ~ Surgery, data = rats)
+anova(rats_lm)
+```
+
+---
+
+## One-way ANOVA
+### Inference
+
+```{r lmsum}
+summary(rats_lm)$coef
+```
+
+---
+
+# One-way ANOVA
+## Inference
+
+Hypothesis: We test the Null hypothesis, $H_0$, population (`Surgery`) means are the same on average verses the alternative hypothesis, $H_1$, that **at least one** differs from the others!
+
+Assumptions: 
+
+  + Each observation is independent of the other
+  + Each datapoint (`logAUC`) come from the same distribution
+  
+Test Statistic: F-statistic = ${\frac  {{\text{explained variance}}}{{\text{unexplained variance}}}} = {\frac  {{\text{between-group variability}}}{{\text{within-group variability}}}}$ 
+
+
+---
+
+## Inference
+
+Probability of getting an  F-statistic at least as extreme as the one we observe (think of the area under the tails of the curve below) *p-value* Pr(>F)= `r round(anova(rats_lm)$"Pr(>F)"[1],4)` tells us we have sufficient evidence to reject $H_0$ at the 1% level of significance
+
+
+```{r f, echo = FALSE}
+stats_df <- data.frame(Fs = summary(rats_aov)[[1]][[4]][[1]])
+crit_df <- as.data.frame(apply(stats_df,2,rep,each = 100))
+crit_df$Fs <- c(sapply(stats_df$Fs, function(x) seq(x,20, length.out = 100)))
+crit_df$y <- df(crit_df$Fs,df1 = 2,df2 = 9) ## corresponding F val
+ggplot(stats_df,aes(x = Fs)) +
+  geom_vline(aes(xintercept = Fs)) +
+    geom_line(data = data.frame(x = seq(0,20,.1),
+                              y  = df(seq(0,20,.1),df1 = 2,df2 = 9)),
+              aes(x = x,y = y), alpha = 0.7) +
+    theme(panel.background = element_blank(),
+          panel.grid.minor = element_blank(),
+          panel.grid.major = element_blank(),
+          panel.border = element_rect(colour='black', fill = NA),
+          legend.position = "none") +
+    ylab("density") +
+    xlab("F-value") +
+    geom_area(data = crit_df,mapping = aes(x = Fs,y = y),fill = "blue") +
+  geom_line(data = crit_df,mapping = aes(x = Fs,y = y),color = "blue") +
+  geom_text(aes(4, 1,label = paste("F-statistic:", format(round(Fs, 2), nsmall = 2))),
+              size = 4, hjust = 0, color = "black")  +
+  geom_text(aes(4, 0.95,label = paste("p-value:", format(round(pf(Fs,2,9,lower.tail = FALSE),4), 
+                                                         nsmall = 2))),
+              size = 4, hjust = 0, color = "blue") 
+
+```
+---
+
+# `r emo::ji('scream')` p-values `r emo::ji('scream')`
+
+### [The ASA Statement on p-Values: Context, Process, and Purpose](https://www.tandfonline.com/doi/full/10.1080/00031305.2016.1154108)
+
+**Q:** Why do so many colleges and grad schools teach *p-val*=0.05?
+
+
+**A:** Because that's still what the scientific community and journal editors use.
+
+
+**Q:** Why do so many people still use *p-val*=0.05?
+
+
+**A:** Because that's what they were taught in college or grad school. 
+
+---
+
+# `r emo::ji('scream')` p-values `r emo::ji('scream')`
+
+**What is a p-Value?**
+
+Informally, a p-value is the probability under a specified statistical model that a statistical summary of the data (e.g., the sample mean difference between two compared groups) would be equal to or more extreme than its observed value
+
+
+---
+# `r emo::ji('scream')` p-values `r emo::ji('scream')`
+
+**p-values** can indicate how incompatible the data are with a specified statistical model
+
+--
+
+p-values **do not** measure the probability that the studied hypothesis is true, or the probability that the data were produced by random chance alone
+
+--
+
+Scientific conclusions and business or policy decisions **should not** be based only on whether a p-value passes a specific threshold
+
+--
+
+Proper inference requires **full** reporting and transparency
+
+--
+
+A p-value, or statistical significance, does **not** measure the size of an effect or the importance of a result
+
+--
+
+By itself, a p-value does **not** provide a good measure of evidence regarding a model or hypothesis
+
+---
+# `r emo::ji('scream')` p-values `r emo::ji('scream')`
+
+> "Good statistical practice, as an essential component of good scientific practice, 
+> emphasizes principles of good study design and conduct, a variety of numerical 
+> and graphical summaries of data, understanding of the phenomenon under study, 
+> interpretation of results in context, complete reporting and proper
+> logical and quantitative understanding of what data summaries mean. 
+> No single index should substitute for scientific reasoning."
+
+
+> `r tufte::quote_footer('--- ASA Statement on p-Values')`
+
+
+---
+
+The ANOVA enables us to:
+
+ + Test only  the global null hypothesis of *no difference between any of the treatment groups' means*
+	
+ + Estimate the population variance. (We'll come back to why this is important)
+
+--
+
+But...
+
+
+A primary goal of our experiment
+  + Biologically speaking: To identify which pairs  of treatments are biologically different from one another
+  
+  + Statistically speaking: To identify which pairs of treatment means  are statistically  different from one another 
+
