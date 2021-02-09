@@ -49,19 +49,21 @@ class: center, middle
 
 # This course...
 
-## Your turn
+## Your turn...(post-it notes)
 
 `r countdown::countdown(minutes = 2, font_size = "48px", top = 0)`
 
-### [PollEv.com/cjonestodd303](https://pollev.com/cjonestodd303)
 
 ---
 class: center, middle
 
 # This course...
 
+### Advanced biostatistical methods for data analysis
 
-### Goal: Develop skills for reproducible research
+### Develop skills for reproducible research
+
+### Come out with more questions than you started `r emo::ji("wink")`
 
 ---
 class: inverse, center
@@ -89,7 +91,7 @@ class: inverse, center
 #  Recommended texts
 
 STATISTICAL METHODS IN BIOLOGY: Design and Analysis of Experiment and Regression, by Welham , Gezan , Clark & Mead, Published Oct 2014 
-  + e-copy available
+  + e-copy available from the library
 
 MODERN STATISTICS FOR MODERN BIOLOGY , Susan Holmes, Wolfgang Huber, 2018
 
@@ -98,7 +100,7 @@ MODERN STATISTICS FOR MODERN BIOLOGY , Susan Holmes, Wolfgang Huber, 2018
 
 ---
 
-##  Timetable 
+##  Timetable (topics approx.)
 
 + **Lectures:** Thursdays 2–4pm
 + **Workshops** Fridays 2–3pm
@@ -106,16 +108,16 @@ MODERN STATISTICS FOR MODERN BIOLOGY , Susan Holmes, Wolfgang Huber, 2018
 | Week  | Overview  | Lecture | Workshop |
 |---    |---        |---      |---       |
 |  1    | R & RStudio catch up  | 4th March *optional* | 5th March *optional* |
-|  2    | Data wrangling and visualisation  | 11th | 12th |
-|  3    | Experimental design: the roles of replication, randomisation, and blocking  | 18th | 19th|
-|  4    | Pairwise and multiple comparison procedures   | 25th | 26th |
+|  2    | Data wrangling and visualisation. Intro to experimental design | 11th | 12th |
+|  3    | Pairwise and multiple comparison procedures | 18th | 19th|
+|  4    | Multiple comparison and resampling procedures   | 25th | 26th |
 |  5    | Resampling procedures: randomisation, permutation, and bootstrapping  | 1st April | Good Friday |
-|  | Midterm break  5th--16th April | | |
+|  | **Midterm break  5th--16th April** | | |
 
 
 ---
 
-##  Timetable cont.
+##  Timetable (topics approx.) cont.
 
 
 | Week  | Overview  | Lecture | Workshop |
