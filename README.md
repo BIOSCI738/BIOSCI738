@@ -8,7 +8,8 @@ All files are (C)Copyright by the University of Auckland unless explicitly state
 
 ### Slides
 
-  + [module1](https://biosci738module1.netlify.app/)
+  + [Introduction](https://biosci738intro.netlify.app/)
+  + [Module 1](https://biosci738module1.netlify.app/)
 
 
 ## Contact
