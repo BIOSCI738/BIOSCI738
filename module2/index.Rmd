@@ -255,6 +255,11 @@ class: inverse, center, middle
 class: inverse
 ## Learning Objectives
 
++ **Calculate** Sums of Squares (between and within groups) given the observations 
++ **Define** and **state** the appropriate degrees of freedom in a one-way ANOVA scenario
++ **Calculate** the F-statistics given the appropriate Sums of Squares and degrees of freedom
++ **Interpret** and **discuss** a given *p-value* in the context of a stated hypothesis test
+
 ---
 
 ## The data
@@ -396,18 +401,23 @@ Procedure:
 
 ```{r,echo = FALSE}
 jit <- ggplot() + 
+  geom_jitter(data = rats, aes(x = Surgery, y = logAUC))
+
+rats_df$x_points <- layer_data(jit)$x
+rats_df$y_points <- layer_data(jit)$y
+
+ggplot() + 
   ylab("logAUC") +
   xlab("Treatment") +
   geom_point(data = means, aes(x = Surgery, y = avg, color = Surgery), size = 2) +
-  geom_text(data = means, aes(x = Surgery, y = avg + 0.25, color = Surgery, label = paste0("Treatment mean = ",round(avg,3)))) +
+  geom_text(data = means, aes(x = Surgery, y = avg + 0.25, color = Surgery, 
+                              label = paste0("Treatment mean = ",round(avg,3)))) +
   geom_hline(data = means, aes(yintercept = avg, color = Surgery), alpha = 0.3, lty = 2) +
-  geom_jitter(data = rats, aes(x = Surgery, y = logAUC))
-
-rats_df$x_points <- layer_data(jit,i = 4)$x
-rats_df$y_points <- layer_data(jit,i = 4)$y
-
-jit + 
-  geom_segment(data = rats_df, aes(x = x_points, y = y_points, xend = x_points, yend = tr_avg,color = Surgery), size = 1) 
+  geom_point(data = rats_df, aes(x = x_points, y = y_points, color = Surgery), alpha = 0.3) +
+  geom_segment(data = rats_df, aes(x = x_points, y = y_points, 
+                                   xend = x_points, yend = tr_avg,color = Surgery), 
+               size = 1, alpha = 0.5) +
+    theme(legend.position = "none")
 ```
 
 ---
@@ -437,7 +447,7 @@ This is the **F-statistic**... more to come!
 class: inverse, center, middle
 
 # Analysis of a Completely Randomised Design in `R`
-## `lm()` and `aov()`
+## `aov()` and `lm()`
 
 ---
 class: inverse
@@ -448,24 +458,7 @@ class: inverse
 + **Carry** out linear regression in `R` with one categorical explanatory variable (one-way ANOVA) and **draw** the appropriate inference
 + **Communicate** statistical concepts and experimental outcomes clearly using language appropriate for both a **scientific** and **non-scientific** audience
 
----
 
-## Everything is a regression...
-
-![](https://pbs.twimg.com/media/EeMWb7QWsAIGftR?format=jpg&name=small)
-
----
-
-## Looking forward
-
-| Traditional name    | Model formula  | R code  |
-| ------------------- |:--------------:| -------:|
-| Simple regression   | $Y \sim X_{continuous}$ | `lm(Y ~ X)` |
-| One-way ANOVA       | $Y \sim X_{categorical}$      |   `lm(Y ~ X)` |
-| Two-way ANOVA       | $Y \sim X1_{categorical} + X2_{categorical}$| `lm(Y ~ X1 + X2)` |
-| ANCOVA              | $Y \sim X1_{continuous} + X2_{categorical}$ |`lm(Y ~ X1 + X2)` |
-| Multiple regression | $Y \sim X1_{continuous} + X2_{continuous}$ | `lm(Y ~ X1 + X2)` |
-| Factorial ANOVA     | $Y \sim X1_{categorical} * X2_{categorical}$|   `lm(Y ~ X1 * X2)` or `lm(Y ~ X1 + X2 + X1:X2)` |
 ---
 
 ## One-way ANOVA
@@ -495,18 +488,12 @@ rats_aov
 ```
 
 .footnote[recognize the **Sums of Squares** values?]
+
 ---
 
-## One-way ANOVA `lm()`
-
-```{r lm}
+```{r lm-quiet, echo = FALSE}
 rats_lm <- lm(logAUC ~ Surgery, data = rats)
-anova(rats_lm)
 ```
-
-.footnote[recognize the **Sums of Squares** values?]
----
-
 
 ## Inference
 
@@ -629,6 +616,38 @@ A primary goal of our experiment
 
 
 ---
+
+## Everything is a regression...
+
+![](https://pbs.twimg.com/media/EeMWb7QWsAIGftR?format=jpg&name=small)
+
+---
+
+## Looking forward
+
+| Traditional name    | Model formula  | R code  |
+| ------------------- |:--------------:| -------:|
+| Simple regression   | $Y \sim X_{continuous}$ | `lm(Y ~ X)` |
+| One-way ANOVA       | $Y \sim X_{categorical}$      |   `lm(Y ~ X)` |
+| Two-way ANOVA       | $Y \sim X1_{categorical} + X2_{categorical}$| `lm(Y ~ X1 + X2)` |
+| ANCOVA              | $Y \sim X1_{continuous} + X2_{categorical}$ |`lm(Y ~ X1 + X2)` |
+| Multiple regression | $Y \sim X1_{continuous} + X2_{continuous}$ | `lm(Y ~ X1 + X2)` |
+| Factorial ANOVA     | $Y \sim X1_{categorical} * X2_{categorical}$|   `lm(Y ~ X1 * X2)` or `lm(Y ~ X1 + X2 + X1:X2)` |
+
+
+---
+
+## One-way ANOVA `lm()`
+
+```{r lm}
+rats_lm <- lm(logAUC ~ Surgery, data = rats)
+anova(rats_lm)
+```
+
+.footnote[recognize the **Sums of Squares** values?]
+
+---
+
 
 ## Inference `lm()`
 

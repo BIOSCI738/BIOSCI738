@@ -4,6 +4,7 @@
     <title>BIOSCI738</title>
     <meta charset="utf-8" />
     <meta name="author" content="Charlotte M. Jones-Todd" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/countdown/countdown.css" rel="stylesheet" />
     <script src="libs/countdown/countdown.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
@@ -115,7 +116,7 @@ class: center, middle
 
 ## Experimental or Observational unit?
 
-<div class="countdown" id="timer_60237821" style="top:0;right:0;font-size:48px;" data-warnwhen="0">
+<div class="countdown" id="timer_60245bb7" style="top:0;right:0;font-size:48px;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -252,6 +253,11 @@ class: inverse, center, middle
 ---
 class: inverse
 ## Learning Objectives
+
++ **Calculate** Sums of Squares (between and within groups) given the observations 
++ **Define** and **state** the appropriate degrees of freedom in a one-way ANOVA scenario
++ **Calculate** the F-statistics given the appropriate Sums of Squares and degrees of freedom
++ **Interpret** and **discuss** a given *p-value* in the context of a stated hypothesis test
 
 ---
 
@@ -686,7 +692,7 @@ This is the **F-statistic**... more to come!
 class: inverse, center, middle
 
 # Analysis of a Completely Randomised Design in `R`
-## `lm()` and `aov()`
+## `aov()` and `lm()`
 
 ---
 class: inverse
@@ -697,24 +703,7 @@ class: inverse
 + **Carry** out linear regression in `R` with one categorical explanatory variable (one-way ANOVA) and **draw** the appropriate inference
 + **Communicate** statistical concepts and experimental outcomes clearly using language appropriate for both a **scientific** and **non-scientific** audience
 
----
 
-## Everything is a regression...
-
-![](https://pbs.twimg.com/media/EeMWb7QWsAIGftR?format=jpg&amp;name=small)
-
----
-
-## Looking forward
-
-| Traditional name    | Model formula  | R code  |
-| ------------------- |:--------------:| -------:|
-| Simple regression   | `\(Y \sim X_{continuous}\)` | `lm(Y ~ X)` |
-| One-way ANOVA       | `\(Y \sim X_{categorical}\)`      |   `lm(Y ~ X)` |
-| Two-way ANOVA       | `\(Y \sim X1_{categorical} + X2_{categorical}\)`| `lm(Y ~ X1 + X2)` |
-| ANCOVA              | `\(Y \sim X1_{continuous} + X2_{categorical}\)` |`lm(Y ~ X1 + X2)` |
-| Multiple regression | `\(Y \sim X1_{continuous} + X2_{continuous}\)` | `lm(Y ~ X1 + X2)` |
-| Factorial ANOVA     | `\(Y \sim X1_{categorical} * X2_{categorical}\)`|   `lm(Y ~ X1 * X2)` or `lm(Y ~ X1 + X2 + X1:X2)` |
 ---
 
 ## One-way ANOVA
@@ -769,29 +758,9 @@ rats_aov
 ```
 
 .footnote[recognize the **Sums of Squares** values?]
+
 ---
 
-## One-way ANOVA `lm()`
-
-
-```r
-rats_lm &lt;- lm(logAUC ~ Surgery, data = rats)
-anova(rats_lm)
-```
-
-```
-## Analysis of Variance Table
-## 
-## Response: logAUC
-##           Df  Sum Sq Mean Sq F value   Pr(&gt;F)   
-## Surgery    2 22.0263 11.0132  16.359 0.001006 **
-## Residuals  9  6.0591  0.6732                    
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-```
-
-.footnote[recognize the **Sums of Squares** values?]
----
 
 
 ## Inference
@@ -894,6 +863,50 @@ A primary goal of our experiment
 
 
 ---
+
+## Everything is a regression...
+
+![](https://pbs.twimg.com/media/EeMWb7QWsAIGftR?format=jpg&amp;name=small)
+
+---
+
+## Looking forward
+
+| Traditional name    | Model formula  | R code  |
+| ------------------- |:--------------:| -------:|
+| Simple regression   | `\(Y \sim X_{continuous}\)` | `lm(Y ~ X)` |
+| One-way ANOVA       | `\(Y \sim X_{categorical}\)`      |   `lm(Y ~ X)` |
+| Two-way ANOVA       | `\(Y \sim X1_{categorical} + X2_{categorical}\)`| `lm(Y ~ X1 + X2)` |
+| ANCOVA              | `\(Y \sim X1_{continuous} + X2_{categorical}\)` |`lm(Y ~ X1 + X2)` |
+| Multiple regression | `\(Y \sim X1_{continuous} + X2_{continuous}\)` | `lm(Y ~ X1 + X2)` |
+| Factorial ANOVA     | `\(Y \sim X1_{categorical} * X2_{categorical}\)`|   `lm(Y ~ X1 * X2)` or `lm(Y ~ X1 + X2 + X1:X2)` |
+
+
+---
+
+## One-way ANOVA `lm()`
+
+
+```r
+rats_lm &lt;- lm(logAUC ~ Surgery, data = rats)
+anova(rats_lm)
+```
+
+```
+## Analysis of Variance Table
+## 
+## Response: logAUC
+##           Df  Sum Sq Mean Sq F value   Pr(&gt;F)   
+## Surgery    2 22.0263 11.0132  16.359 0.001006 **
+## Residuals  9  6.0591  0.6732                    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+.footnote[recognize the **Sums of Squares** values?]
+
+---
+
 
 ## Inference `lm()`
 
