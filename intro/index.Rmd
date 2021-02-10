@@ -1,6 +1,6 @@
 ---
 title: "BIOSCI738"
-subtitle: "![](img/uoa.png){width=5%} Universty of Auckland"
+subtitle: "![](https://cpb-ap-se2.wpmucdn.com/blogs.auckland.ac.nz/dist/d/79/files/2015/10/uoa-v-reverse1.png){width=5%} Universty of Auckland"
 author: "Charlotte M. Jones-Todd"
 institute: "[bluepages](https://stats-uoa.github.io/BIOSCI738/)"
 date: "Introduction"
@@ -40,7 +40,7 @@ style_solarized_light()
 
 + `r emo::ji("plant")`  Grew up in **Llanddewi Brefi**, mid Wales
 + `r emo::ji("mortar_board")`  PhD (Stats) @ **University of St Andrews**, Scotland
-+ `r emo::ji("woman_technologist")` Research interests **spatial point processes** and software develompent
++ `r emo::ji("woman_technologist")` Research interests **spatial point processes** and software development
 + **Outside of work**, I look after `r emo::ji("horse")` & `r emo::ji("chicken")` & `r emo::ji("dog")` and drink `r emo::ji("wine")`
 
 
@@ -52,6 +52,15 @@ class: center, middle
 ## Your turn...(post-it notes)
 
 `r countdown::countdown(minutes = 2, font_size = "48px", top = 0)`
+
+
+---
+class: center, middle, inverse
+
+background-image: url("https://i.pinimg.com/originals/b1/d8/48/b1d848d6a5dcd28256f3031dd5925dec.jpg")
+background-size: contain
+
+# You chose the hardest discipline `r emo::ji("wink")`
 
 
 ---
