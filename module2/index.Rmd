@@ -22,10 +22,13 @@ output:
 class: inverse, center, middle
 
 ```{r xaringan-themer, include=FALSE, warning=FALSE}
-options(htmltools.dir.version = FALSE,cache = TRUE, warning = FALSE, message = FALSE)
+options(htmltools.dir.version = FALSE,cache = TRUE, warning = FALSE, message = FALSE, comment = FALSE)
+options(warn=-1)
 library(xaringanthemer)
+xaringanExtra::use_panelset()
 require(kableExtra)
 style_solarized_light()
+knitr::opts_chunk$set(tidy = TRUE, tidy.opts = list(comment = FALSE))
 ```
 
 <style type="text/css">
@@ -267,6 +270,7 @@ class: inverse
 ```{r data-quiet, message = FALSE, echo = FALSE}
 library(tidyverse)
 rats <- read_csv("../data/crd_rats_data.csv")
+rats$Surgery <- as_factor(rats$Surgery)
 ```
 
 ```{r, echo = FALSE, results = "asis"}
@@ -588,10 +592,7 @@ By itself, a p-value does **not** provide a good measure of evidence regarding a
 > and graphical summaries of data, understanding of the phenomenon under study, 
 > interpretation of results in context, complete reporting and proper
 > logical and quantitative understanding of what data summaries mean. 
-> No single index should substitute for scientific reasoning."
-
-
-> `r tufte::quote_footer('--- ASA Statement on p-Values')`
+> No single index should substitute for scientific reasoning." `r tufte::quote_footer('--- ASA Statement on p-Values')`
 
 
 ---
@@ -675,3 +676,1111 @@ ggplot(rats, aes(x = Surgery, y = logAUC)) +
   geom_text(data = means[1,],aes(x = Surgery, y = base - 0.25, color = Surgery, label = paste0("Baseline = ",round(avg,3))))
   
 ```
+---
+## Inference `lm()`
+
+Which pairs of means are different?
+ + Pair-wise comparisons of means
+  	+ Use two-sample t-tests
+ 	+ We need to calculate our **observed**  t-value where
+$\text{t-value} = \frac{\text{Sample Difference}_{ij} - \text{Difference assuming } H_0 \text{ is true}_{ij}}{\text{SE of } \text{Sample Difference}_{ij}}$
+ where
+   $\text{Sample Difference}_{ij}$ = Difference between pair of sample means
+ + Compute the p-value for observed t-value
+
+
+---
+
+## Inference `lm()`
+
+```{r lmsum2}
+summary(rats_lm)$coef
+```
+
+
+(Intercept) = $\text{mean}_C$ = `r summary(rats_lm)$coef[1,1]`
+
+SE of (Intercept) = SE of $\text{mean}_C$ = SEM = `r summary(rats_lm)$coef[1,1]`
+
+$\text{Surgery}_P$ = $\text{mean}_P$ – $\text{mean}_C$ = `r summary(rats_lm)$coef[2,1]`
+
+SE of $\text{Surgery}_P$ = SE of ($\text{mean}_P$ - $\text{mean}_C$ ) = SED = `r summary(rats_lm)$coef[2,2]`
+
+---
+
+## Hypotheses being tested
+
++ The t value and Pr (>|t|) are the t - and p-value for testing the null hypotheses:
+	+ Mean abundance is zero for C population
+	+ No difference between the population means of P and C
+	+ No difference between the population means of S and C
+
+We’re interested in 2 and 3, but not necessarily 1!
+
+ Two-sample t -tests for pairwise comparisons of means
+ 
++ SurgeryP : t value = Estimate ÷ Std.Error =  0.8446; Pr (>|t|) =  0.4202
+	
+.footnote[Cannot get t - or p -value of mean P – mean S directly from table]
+
+---
+### Estimation of $\sigma^2$
+```{r, echo = FALSE}
+anova(rats_lm)
+```
+Some notation:
+
++ $\sigma^2$ denotes the **population** variance
++ $s^2$ denotes the **sample** variance, i.e. is estimated from dataset
++ A hat (^) above a maths symbol means an *estimated value*
++ So, what is the value of $\sigma^2$?
+
+`r countdown::countdown(minutes = 0.5, font_size = "48px", top = 0)`
+	
+--
+0.6732
+ 
+---
+#### Standard Error of the Mean, SEM, 
+#### Error of the Difference between two means, SED
+
+What is the difference?
+
++ From Analysis of Variance Table:
+	+ **SEM** = $\sqrt{\frac{\hat{\sigma^2}}{n}} = \sqrt{\frac{0.673}{4}} = 0.4103$ ($n$ is the group replication)
+	+ **SED** = $\sqrt{\frac{2\times\hat{\sigma^2}}{n}} = \sqrt{\frac{2 \times0.673}{4}} = 0.5801$ (only true for equi-replicated groups)
+
+```{r tbl12, echo = FALSE}
+tbl12 <- tibble::tribble(
+~`Group`, ~`Mean`, ~`Standard Errors`, ~` `,
+" "," ","SEM","SED",
+"C","8.460","0.4103","0.5801",
+"P","8.950","0.4103","0.5801",
+"S","11.547","0.4103","0.5801"
+)
+
+kableExtra::kable_styling(knitr::kable(tbl12), font_size = 18)
+```
+
+---
+class: inverse, middle
+
+## There’s an easier way!!
+
+### Use package `predictmeans`
+		
+
+---
+###  Analysis of a CRD Using the `predictmeans` package
+
+```{r,echo = FALSE}
+options(warn=-1)
+```
+
+```{r predmeans, message=FALSE, warnings = FALSE}
+# Load predictmeans (assumes already installed)
+library(predictmeans)
+pred_means <- predictmeans(rats_lm , modelterm = "Surgery",pairwise = TRUE, adj = "none", plot = FALSE)
+pred_means$`Predicted Means`
+```
+
+---
+###  Analysis of a CRD Using the `predictmeans` package
+
+**compare** 
+
+```{r}
+rats_lm
+```
+
+
+$\text{Surgery_P}$ = P mean – C mean 		0.490 = 8.9500 – 8.4600
+$\text{Surgery_S}$ = S mean – C mean 		3.087 = 11.5475 – 8.4600
+
+What about the difference between $\text{Surgery_S}$ and $\text{Surgery_P}$?
+
+S mean – P mean       = 11.5475 – 8.9500  =   2.5975
+$\text{Surgery_S}$ – $\text{Surgery_P}$ =   3.087 – 0.490    =   2.597
+
+
+---
+###  Analysis of a CRD Using the `predictmeans` package
+
+```{r}
+pred_means$`Standard Error of Means`
+pred_means$LSD
+```
+
+.footnote[All **SED**s the same, - each level of Treatment factor, Surgery,  has the same replication]
+
+---
+###  Analysis of a CRD Using the `predictmeans` package
+
+```{r}
+pred_means$`Pairwise LSDs`
+```
+
+.footnote[LSDs matrix has **mean** differences (row-col) **above** the diagonal, LSDs below the diagonal]
+
+---
+###  Analysis of a CRD Using the `predictmeans` package
+
+```{r}
+pred_means$`Pairwise p-value`
+```
+
+.footnote[The matrix has t-value above the diagonal, p-value (adjusted by ‘none’ method) below the diagonal]
+
+
+---
+
+### How would you summarise this info?
+
+
+`r countdown::countdown(minutes = 1, font_size = "48px", top = 0)`
+
+--
+
+.panelset[.panel[.panel-name[Table?]
+```{r tbl19, echo = FALSE}
+tbl19 <- tibble::tribble(
+~`Group`, ~`Mean`, ~`SE`, ~`t`, ~`p`,
+"C","8.460","0.225","-0.845","0.4202",
+"P","8.950","0.542","-5.322","0.0005",
+"S","11.547","0.400","-4.477","0.0015"
+)
+kableExtra::kable_styling(knitr::kable(tbl19), font_size = 18)
+```
+]
+.panel[.panel-name[Please no...]
+```{r dynamite, echo = FALSE}
+ggplot(rats) +
+  aes(x = Surgery, y = logAUC,) +
+  stat_summary(aes(width = .8), geom = "bar", fun.y = "mean") +
+  stat_summary(geom = "errorbar", fun.data = "mean_se", width = .2)
+```
+
+]
+.panel[.panel-name[Mean +/- 2SEs]
+```{r d2 SEs, echo = FALSE}
+cdata <- plyr::ddply(rats, "Surgery", summarise,
+               N    = length(logAUC),
+               mean = mean(logAUC),
+               sd   = sd(logAUC),
+               se   = sd / sqrt(N))
+pd <- position_dodge(0.78)
+
+ggplot(cdata, aes(x = Surgery, y = mean, group = Surgery)) +
+      geom_point(position=pd) +
+      geom_errorbar(data=cdata, aes(ymin=mean-2*se, ymax=mean+2*se), 
+                    width=.1, position=pd)
+
+```
+]
+.panel[.panel-name[Mean $\pm$ 2SEs]
+
+```{r, echo = FALSE}
+ggplot(data = rats, aes(x = Surgery, y = logAUC)) +
+    geom_point(size = 4, alpha = .5) + 
+    stat_summary(fun.data = "mean_cl_normal", geom = "crossbar") +
+    labs(title = "95% Mean Confidence Intervals")
+```
+]
+]
+---
+
+## Why error bars that are $\pm$ twice the SE?
+
+This is approx. the 95% confidence interval for the population mean
+
+The exact 95% CI is given by
+  + Mean $\pm$ $t_{df,1 - \alpha/2}$ $\times$ SEM
+ ( df = degrees of freedom; $\alpha$ = level of significance)
+
+Each mean has its own confidence interval whose width depends on the SEM for that mean
+
+When the df are large (e.g. 30 or greater) and $\alpha$ = 0.05 $t_{df,1 - \alpha/2}$ = $t_{large,0.975}$ $\approx$ 2
+
+Hence, the 95% confidence interval for the population mean is approximately Mean ± 2 $\pm$ SEM
+	
+---
+
+## 95% CI for the Control group mean
+
+$t_{df,1 - \alpha/2}$ = $t_{9,1 - 0.05/2}$ = 2.262
+
+(In `R` $t_{9,1 - 0.05/2}$ = `qt (0.975, 9)` )
+LSD = $t_{9,1 - 0.05/2} \times$ SED = 2.262  $\times$  0.41025
+
+95% CI: 8.460 $\pm$ 0.928 = ( 7.532, 9.388)
+
+
+```{r tbl22, echo = FALSE}
+tbl22 <- tibble::tribble(
+~`Group`, ~`Mean`, ~`SE`, ~`t`, ~`p`,
+"C","8.460","0.225","-0.845","0.4202",
+"P","8.950","0.542","-5.322","0.0005",
+"S","11.547","0.400","-4.477","0.0015"
+)
+
+kableExtra::kable_styling(knitr::kable(tbl22), font_size = 18)
+```
+
+---
+
+### The Least significant difference, LSD
+
+
++ The LSD = $t_{df,1 - \alpha/2}$ $\times$  SED
+	
++ The SED is the **S**tandard **E**rror of the **D**ifference (of a pair of means)
+
++ SED = $\sqrt{SEM_1^2 + SEM_2^2}$
+		
++ When the two means have the same replication SED = $\sqrt{2} \times$  SEM
+
++  When a pair of means differ by **more** than  the LSD, we say:
+
+*Their difference is statistically significant at the 100 $\alpha$ % level*
+
+---
+
+### Which means are significantly different?
+
+```{r,echo = TRUE}
+predictmeans(rats_lm , modelterm = "Surgery",pairwise = TRUE, adj = "none", plot = TRUE)
+```
+---
+class: inverse, middle, center
+
+## Model diagnostics and data transformations
+
+---
+#  Key assumptions of Analysis of Variance 
+
+Observations are **independent**
+ 
++ Check experiment description
++ How were data collected?
+	
+All observations have the **same variance**
+
++ Spread of the observations does not depend on the Treatment Mean
+	
+All observations are (approximately) normally distributed.
+
+---
+
+#### Raw AUC data
+
+
+```{r raw, echo = FALSE}
+rats$AUC <-  exp(rats$logAUC) 
+ggplot(rats, aes(x = Surgery, y = AUC)) +
+         geom_boxplot() +
+         geom_dotplot(binaxis = "y", stackdir = "center", dotsize = 0.75) +
+         theme_bw() + xlab("Raw AUC")
+```
+
+--
+
+.footnote[<span style="color:red">Shows variability in AUC increases with mean AUC</span>]
+---
+
+#### Log AUC data
+
+
+```{r raw2, echo = FALSE}
+ggplot(rats, aes(x = Surgery, y = logAUC)) +
+         geom_boxplot() +
+         geom_dotplot(binaxis = "y", stackdir = "center", dotsize = 0.75) +
+         theme_bw() + xlab("log AUC")
+```
+
+--
+
+.footnote[<span style="color:red">Shows variability in AUC not related with mean `logAUC`</span>]
+
+---
+
+## Residual plot to evaluate homogeneity of variances assumption
+
+Plot residuals against the estimated values
+of the treatment means (Predicted Values)
+
+--
+
+If the variability of the observations around
+the treatment means differs between
+groups, this will be reflected in the residual
+plot
+
+---
+
+## Residual plot to evaluate homogeneity of variances assumption
+
+```{r}
+crd.lm <- lm(AUC ~ Surgery, data = rats)
+anova(crd.lm)
+```
+
+
+
+---
+
+## Residual plot to evaluate homogeneity of variances assumption
+
+
+```{r resids}
+rats$Residuals <- residuals(crd.lm)
+# Extract predicted (fitted) values and add to the data frame
+rats$Fitted.Values <- fitted.values(crd.lm)
+rats
+```
+
+---
+
+### Is the homogeneity of variance assumption satisfied?
+
+`r countdown::countdown(minutes = 2, font_size = "48px", bottom = 0)`
+
+.panelset[
+ .panel[.panel-name[Plot]
+ 
+```{r, echo = FALSE, fig.height = 5}
+fan <- ggplot(rats, aes(x = Fitted.Values, y = Residuals)) +
+  theme_bw() + 
+  geom_point(size = 4, shape = 18) +
+  geom_hline( yintercept = 0, col = 2, size = 2) +
+  geom_abline( intercept = 0, slope = +1.5, col = 4, linetype = 2 ,size = 2) +
+  geom_abline( intercept = 0, slope = -1.5, col = 4, linetype = 2 ,size = 2)
+fan
+```
+]
+.panel[.panel-name[Code]
+```{r plot residscc, eval = FALSE}
+ggplot(rats, aes(x = Fitted.Values, y = Residuals)) +
+  theme_bw() + 
+  geom_point(size = 4, shape = 18) +
+  geom_hline( yintercept = 0, col = 2, size = 2) +
+  geom_abline( intercept = 0, slope = +1.5, col = 4, linetype = 2 ,size = 2) +
+ geom_abline( intercept = 0, slope = -1.5, col = 4, linetype = 2 ,size = 2)
+
+```
+]
+]
+
+--
+
+Residuals increase in variability with predicted mean values so our equal variance assumption is **violated**
+
+---
+
+#### Other diagnostic plots
+
+```{r qqnorm}
+gglm::gglm(crd.lm) # Plot the four main diagnostic plots
+```
+
+---
+
+## QQplot
+
++ Normal quantile-quantile (QQ) plot
+
+  • Plot sorted residuals versus expected order statistics from a standard normal distribution
+
++ Samples should be close to a line
+
++ Points moving away from 45 degree line at the tails suggest the data are from a skewed distribution, but it is difficult to be confident with so few data points
+
+
+---
+##  Outliers 
+### Causes
+
++ Errors in collecting and/or recording of data
++ Mistakes in technique
++ Treatment and/or environment
++ Affect statistical inference
++ Inflation of estimated experimental error variance
++ Influence estimate of treatment mean
++ Investigate cause before discarding data
++ Discarded data results in loss of information
+
+---
+###  Looking for outliers with residuals 
+
++ Large positive or negative values far removed from the 1-to-1 line in the normal QQ plot
+	+ Points far removed from upper and lower boundaries of the Residuals versus Predicted values plot
+
+---
+###  Variance stabilizing transformations 
+
++ Used to change the scale of the observations
+	+ To conform more closely with the ANOVA assumptions
+	+ To provide more valid inferences from ANOVA
+	+ Significance levels ($\alpha$) don't apply to original data
+	+ Conduct analysis and make all inferences on transformed
+	+ Present summary tables on the original measurement scale
+
+---
+
+### logAUC
+
+```{r}
+rats_lm <- lm(logAUC ~ Surgery, data = rats)
+anova(rats_lm)
+```
+
+---
+
+
+.panelset[.panel[.panel-name[Before transform]
+```{r}
+gglm::gglm(crd.lm)
+```
+]
+.panel[.panel-name[After transform]
+```{r}
+gglm::gglm(rats_lm)
+```
+]
+]
+
+---
+
+.panelset[.panel[.panel-name[Before differences]
+```{r}
+pm.lm <- predictmeans(crd.lm, modelterm="Surgery", pairwise = TRUE, plot = FALSE)
+pwLSDs.pmlm <- pm.lm$"Pairwise LSDs"
+diffs <- pwLSDs.pmlm[upper.tri(pwLSDs.pmlm)]
+LSDs <- pwLSDs.pmlm[lower.tri(pwLSDs.pmlm)]
+diffNames <- c("C-P", "C-S", "P-S")
+pValues.pmlm <- pm.lm$`Pairwise p-value`
+before <- data.frame(diff = diffNames, Difference = diffs,
+           SED = pm.lm$"Standard Error of Differences",
+           LSD = LSDs, lowerLimit = diffs-LSDs, upperLimit=diffs+LSDs,
+           "p-value" = pValues.pmlm[lower.tri(pValues.pmlm)])
+knitr::kable(before)
+```
+
+]
+.panel[.panel-name[After differences]
+```{r}
+pm.lm <- predictmeans(rats_lm, modelterm="Surgery", pairwise = TRUE, plot = FALSE)
+pwLSDs.pmlm <- pm.lm$"Pairwise LSDs"
+diffs <- pwLSDs.pmlm[upper.tri(pwLSDs.pmlm)]
+LSDs <- pwLSDs.pmlm[lower.tri(pwLSDs.pmlm)]
+diffNames <- c("C-P", "C-S", "P-S")
+pValues.pmlm <- pm.lm$`Pairwise p-value`
+after <- data.frame(diff = diffNames, Difference = diffs,
+           SED = pm.lm$"Standard Error of Differences",
+           LSD = LSDs, lowerLimit = diffs-LSDs, upperLimit=diffs+LSDs,
+           "p-value" = pValues.pmlm[lower.tri(pValues.pmlm)])
+knitr::kable(after)
+```
+]]
+
+---
+
+## Interpreting results
+
++ Data on the original scale
+  $y_{c1}, y_{c2}, y_{c3}, y_{c4},...,y_{s4}$
+  
++ On the log-scale
+  $\text{log}(y_{c1}), \text{log}(y_{c2}), \text{log}(y_{c3}), \text{log}(y_{c4}),...,\text{log}(y_{s4})$
+  
++ Mean of C group
+  $\frac{\text{log}(y_{c1}) + \text{log}(y_{c2}) + \text{log}(y_{c3}) + \text{log}(y_{c4})}{4}$ = $\frac{1}{4}(\text{log}(y_{c1}) + \text{log}(y_{c2}) + \text{log}(y_{c3}) + \text{log}(y_{c4}))$
+  
+
+---
+
+## Interpreting results
+### Useful log rules
+
++ $\text{log}(A) + \text{log}(B) = \text{log}(AB)$
++ $\text{log}(A) - \text{log}(B) = \text{log}(\frac{A}{B})$
++ $n\text{log}(A) = \text{log}(A^n)$
+
+---
+
+## Interpreting results
+
+Mean of C group $\bar{x_c}$
+
+$\bar{x_c} = \frac{1}{4}(\text{log}(y_{c1}) + \text{log}(y_{c2}) + \text{log}(y_{c3}) + \text{log}(y_{c4})) = \text{log}(y_{c1} \times y_{c2} \times y_{c3} \times y_{c4})^\frac{1}{4}$
+
+Back-transform to original scale (*geometric mean*)
+
+$e^\bar{x_c}$ = $(y_{c1} \times y_{c2} \times y_{c3} \times y_{c4})^\frac{1}{4}$
+
+---
+
+## Interpreting results
+
+Difference between two group means (C and P) $\bar{x_p} - \bar{x_c}$
+  
+Back-transform to original scale $e^{\bar{x_p} - \bar{x_c}} = \frac{e^{\bar{x_p}}}{e^\bar{x_c}}$ (*ratio of two geometric means*)
+
+ + Ratio of 1 implies that the average abundance of protein X in P group, relative to C group, is the same
+ 
+ + If however, the ratio were 1.5 then the average abundance of protein X in P group is 50% higher than in the C group
+ 
+
+---
+ 
+ ## Interpreting results
+ 
+```{r}
+knitr::kable(after)
+```
+
+```{r tbl50, echo = FALSE}
+tbl50 <- tibble::tribble(
+~` `, ~`Log-scale`, ~` `, ~`Original scale`, ~` `,
+"Comparison","Estimated Difference","Standard Error","Ratio","95% CI",
+"C – P","-0.4900","0.5802","0.61","(0.16, 2.27)",
+"C – S","-3.0875","0.5802","0.05","(0.01 0.17)",
+"P – S","-2.5975","0.5802","0.07","(0.02, 0.28)"
+)
+
+kableExtra::kable_styling(knitr::kable(tbl50), font_size = 18)
+```
+
+---
+class: inverse, middle, center
+
+## Errors in hypothesis testing and the multiple testing problem
+
+
+---
+##  Example: Proteome of lymph 
+
+### There are 3 group means
+
++ Which pairs, if any, are different from one another?
++ Carry out multiple comparisons/hypothesis tests
+	
+	
+     + $H_{01}$: $\mu_C$ = $\mu_P$
+	   + $H_{02}$:  $\mu_C$ = $\mu_S$
+	   + $H_{03}$:  $\mu_P$ = $\mu_S$
+
+---
+##  Statistical hypothesis testing 
+
+Two competing claims, or hypotheses
++ Assertions about the true value of some population characteristic.
+	+ e.g., population mean, $\mu$
+
++ Claim 1: **Null**  hypothesis, $H_0$  (no difference)
+versus
++ Claim 2: **Alternative**  hypothesis, $H_A$  (there is a difference)
+	+ Usually the claim the researcher wants to validate
+
+---
+
+## For any single hypothesis: Type I error
++ Declare a difference (i.e. reject $H_0$ ) when there is no difference (i.e. $H_0$ is true)
+	+ Also known as a false positive or false discovery
+	+ Risk of the Type I error is determined by the “level of significance”, i.e.
+	+ $\alpha$ = Pr (Type I error) = Pr (false discovery)
+	+ We choose this!
+		+ $\alpha$ = 0.05 is a popular choice by biologists `r emo::ji("scream")` `r emo::ji("warning")` `r emo::ji("scream")`
+---
+class: inverse
+
+![](https://raw.githubusercontent.com/allisonhorst/stats-illustrations/master/other-stats-artwork/type_1_errors.png)
+---
+##  Type II error 
+
++ Difference not declared (i.e. $H_0$ not  rejected) when there is a difference (i.e. $H_0$ is false)
+	+ Also known as a false negative
+	+  $\beta$ = Pr (do not reject $H_0$ when $H_0$ is false)
+	+ So, what does 1 − $\beta$ tell us?
+1 − $\beta$ 	= Pr (reject $H_0$ when $H_0$ is false)
+= Pr (a true positive)
++ This is the statistical power of the test!!
+
+---
+class: inverse
+
+![](https://raw.githubusercontent.com/allisonhorst/stats-illustrations/master/other-stats-artwork/type_2_errors.png) 
+---
+##  Relationship between Type I and Type II errors 
+
++ Reducing the chance of a Type I error increases the chance of a Type II error
+	+ They are inversely related
+	+ Type II error rate is determined by a combination of:
+		+ Size of difference (of biological significance) between the true population means
+		+ Experimental error variance
+		+ Sample size, and
+		+ Choice of Type I error rate ($\alpha$)
+
+---
+class: inverse
+
+## Power and significance
+
+**Type I** error (false positive): declare a difference (i.e., reject $H_0$) when there is no difference (i.e. $H_0$ is true). Risk of the Type I error is determined by the *level of significance* (which we set!) (i.e., $\alpha =\text{ P(Type I error)} = \text{P(false positive)}$.
+
+**Type II** error (false negative): difference not declared (i.e., $H_0$ not rejected) when there is a difference (i.e., $H_0$ is false). Let $\beta =$ P(do not reject $H_0$ when $H_0$ is false); so, $1-\beta$ = P(reject $H_0$ when $H_0$ is false) = P(a true positive), which is the statistical **power** of the test.
+
+---
+class: inverse
+
+## Multiple comparisons
+
+**Each** time we carry out a hypothesis test the probability we get a false positive result (type I error) is given by $\alpha$ (the *level of significance* we choose).
+
+When we have **multiple comparisons** to make we should then control the **Type I** error rate across the entire *family* of tests under consideration, i.e., control the Family-Wise Error Rate (FWER); this ensures that the risk of making at least one **Type I** error among the family of comparisons in the experiment is $\alpha$.
+
+---
+#  Risks associated with hypothesis testing 
+
+
+
+|State of Nature  | Don't reject $H_0$ | reject $H_0$ |
+|---              |---                |---            |
+| $H_0$ is true |  `r emo::ji("check")` | Type I error  |
+| $H_0$ is false  | Type II error  | `r emo::ji("check")` |
+
+---
+
+### Simulate the situation
+
+```{r t-test1, echo = FALSE}
+set.seed(1314)
+pop <- rnorm(1000, 5, 1)
+sim <- data.frame(group = rep(c("A","B"), each = 10), 
+                  val = c(sample(pop,10, replace = FALSE),
+                          sample(pop,10, replace = FALSE)))
+sim$y <- 0
+ggplot(data = sim[sim$group == "A",], aes(x = val, y = y)) +
+  geom_point() + ylim(0,0.3) + xlim(0,10) +
+  theme_bw() + ylab("P(x)") +
+  ggtitle("Sample from population A (n = 10)")
+```
+
+---
+
+### Simulate the situation
+
+```{r t-test2, echo = FALSE}
+ma <- mean(sim[sim$group == "A","val"])
+sa <- sd(sim[sim$group == "A","val"])
+ggplot(data = sim[sim$group == "A",], aes(x = val, y = y)) +
+  geom_point() + ylim(0,0.3) + xlim(0,10) +
+  theme_bw() + ylab("P(x)") +
+  ggtitle("Sample from population A (n = 10)") +
+  geom_vline(xintercept = ma, lty = 2, alpha = 0.6, color = "grey") +
+  annotate("text", x = ma, y = 0.15, parse = TRUE,
+           label = "bar(x) *' = 6.02'") +
+  annotate("text", x = ma, y = 0.1, parse = TRUE,
+           label = "s[A] * ' = 1.02'")
+```
+
+
+---
+
+### Simulate the situation
+
+```{r t-test3, echo = FALSE}
+mb <- mean(sim[sim$group == "B","val"])
+sb <- sd(sim[sim$group == "B","val"])
+ggplot(data = sim[sim$group == "A",], aes(x = val, y = y)) +
+  geom_point() + ylim(0,0.3) + xlim(0,10) +
+  theme_bw() + ylab("P(x)") +
+  ggtitle("Sample from population B (n = 10)") + 
+  theme(plot.title = element_text(color = "purple")) +
+  geom_vline(xintercept = ma, lty = 2, alpha = 0.6, color = "grey") +
+  annotate("text", x = ma, y = 0.15, parse = TRUE,
+           label = "bar(x) *' = 6.02'") +
+  annotate("text", x = ma, y = 0.1, parse = TRUE,
+           label = "s[A] * ' = 1.02'") +
+  geom_point(data = sim[sim$group == "B",], 
+             aes(x = val, y = y),shape = 3, color = "purple") +
+  geom_vline(xintercept = mb, lty = 2, alpha = 0.4, color = "purple") +
+  annotate("text", x = mb, y = 0.15, parse = TRUE,
+           label = "bar(x) *' = 4.79'", color = "purple") +
+  annotate("text", x = mb, y = 0.1, parse = TRUE,
+           label = "s[B] * ' = 0.77'",color = "purple") 
+```
+
+### Simulate the situation
+
+```{r t-test4, echo = FALSE}
+mb <- mean(sim[sim$group == "B","val"])
+sb <- sd(sim[sim$group == "B","val"])
+ggplot(data = sim[sim$group == "A",], aes(x = val, y = y)) +
+  geom_point() + ylim(0,0.3) + xlim(0,10) +
+  theme_bw() + ylab("P(x)") +
+  geom_vline(xintercept = ma, lty = 2, alpha = 0.6, color = "grey") +
+  annotate("text", x = ma, y = 0.15, parse = TRUE,
+           label = "bar(x) *' = 6.02'") +
+  annotate("text", x = ma, y = 0.1, parse = TRUE,
+           label = "s[A] * ' = 1.02'") +
+  geom_point(data = sim[sim$group == "B",], 
+             aes(x = val, y = y),shape = 3, color = "purple") +
+  geom_vline(xintercept = mb, lty = 2, alpha = 0.4, color = "purple") +
+  annotate("text", x = mb, y = 0.15, parse = TRUE,
+           label = "bar(x) *' = 4.79'", color = "purple") +
+  annotate("text", x = mb, y = 0.1, parse = TRUE,
+           label = "s[B] * ' = 0.77'",color = "purple") 
+  
+```
+
+---
+
+```{r t-test}
+ggpubr::compare_means(val ~ group, data = sim, method = "t.test")
+```
+
+---
+
+
+```{r between, echo = FALSE}
+# plot
+ggstatsplot::ggbetweenstats(
+  data = sim,
+  x = group,
+  y = val,
+  type = "r", # robust statistics 
+  k = 3, # number of decimal places for statistical results
+  xlab = "Group", # label for the x-axis variable
+  ylab = "Value", # label for the y-axis variable
+  title = "", # title text for the plot
+  ggtheme = ggthemes::theme_fivethirtyeight(), # choosing a different theme
+  ggstatsplot.layer = FALSE, # turn off `ggstatsplot` theme layer
+  package = "wesanderson", # package from which color palette is to be taken
+  palette = "Darjeeling1" # choosing a different color palette
+)
+```
+
+---
+
+class: inverse, center, middle
+
+## p-value indicates we have evidence to reject the null hupothesis at the 0.1% level
+
+--
+
+## But the samples were taken from the **SAME** population
+
+---
+```{r t-test5, echo = FALSE}
+ggplot(data = sim[sim$group == "A",], aes(x = val, y = y)) +
+  geom_point() +  xlim(0,10) +
+  theme_bw() + ylab("P(x)") +
+  ggtitle("FALSE POSITIVE") +
+  geom_vline(xintercept = ma, lty = 2, alpha = 0.6, color = "grey") +
+  annotate("text", x = ma, y = 0.15, parse = TRUE,
+           label = "bar(x) *' = 6.02'") +
+  annotate("text", x = ma, y = 0.1, parse = TRUE,
+           label = "s[A] * ' = 1.02'") +
+  geom_point(data = sim[sim$group == "B",], 
+             aes(x = val, y = y),shape = 3, color = "purple") +
+  geom_vline(xintercept = mb, lty = 2, alpha = 0.4, color = "purple") +
+  annotate("text", x = mb, y = 0.15, parse = TRUE,
+           label = "bar(x) *' = 4.79'", color = "purple") +
+  annotate("text", x = mb, y = 0.1, parse = TRUE,
+           label = "s[B] * ' = 0.77'",color = "purple") +
+  stat_function(fun = dnorm, n = 1000, args = list(mean = 5, sd = 1), 
+                alpha = 0.5) +
+  geom_vline(xintercept = 5) + annotate("text", x = 5.5, y = 0.25, parse = TRUE,
+           label = "mu * '= 5'") 
+  
+```
+---
+
+### Pairwise comparison of 3 groups
+
+What's the error rate in 1000 trials? i.e. How often is a difference wrongly declared?
+
+```{r type 1}
+pval <- matrix(numeric(3000), ncol = 3)
+for (i in 1:nrow(pval)){
+   sim <- data.frame(group = rep(c("A","B","C"), each = 10), 
+                    val = c(sample(pop,10, replace = FALSE),
+                            sample(pop,10, replace = FALSE),
+                            sample(pop,10, replace = FALSE)))
+   test01 <- t.test(val ~ group, data = sim[sim$group != "A",])$p.value
+   test02 <- t.test(val ~ group, data = sim[sim$group != "B",])$p.value
+   test03 <- t.test(val ~ group, data = sim[sim$group != "C",])$p.value
+   pval[i,] <- c(test01,test02,test03)
+}
+```
+
+---
+```{r type 1vals}
+p <- c(pval) <= 0.05 ## when do they fail?
+prop.table(table(p))
+p <- c(pval) <= 0.01 ## when do they fail?
+prop.table(table(p))
+p <- c(pval) <= 0.2 ## when do they fail?
+prop.table(table(p))
+```
+
+---
+
+## Probability of commiting no Type I errors
+
+$(1 - \alpha)^m$ where $m$ is the number of independent tests
+
+```{r typ1}
+(1 - 0.05)^3
+```
+
+---
+
+FWER = $\alpha_F$ $1 - (1 - \alpha)^m$ where $m$ is the number of independent tests
+
+Probability of committing at least one Type I error
+
+1 minus the probability of committing no Type I errors
+
+```{r type1}
+1 - (1 - 0.05)^3
+```
+
+---
+
+PCER when $\alpha_F$ is fixed
+
+We need to find the PCER when the FWER is $\alpha_F$
+
+```{r typef}
+1 - (1 - 0.05)^1/3
+```
+
+---
+
+```{r alp, echo = FALSE}
+m <- data.frame(m = rep(1:10,3))
+m$alpha <- rep(c(0.01,0.05,0.2),each = 10)
+m$fwer <- 1 - (1 - m$alpha)^m$m 
+m$pcer <- 1 - (1 - m$alpha)^(1/m$m) 
+require(patchwork)
+p <- ggplot(data = m, aes(x = as.factor(m), y = pcer, 
+                          color = as.factor(alpha), group = as.factor(alpha) )) +
+  geom_point() + geom_line() + xlab("Number of comparisons, m") +
+  labs(colour = "alpha") +
+  ylab("Per comparison error rate") + 
+  theme_classic() + geom_hline(yintercept = 0.0005) 
+f <- ggplot(data = m, aes(x = as.factor(m), y = fwer, color = as.factor(alpha),
+                          group = as.factor(alpha))) +
+  geom_point()  + geom_line() + xlab("Number of comparisons, m") +
+  ylab("Family wise comparison error rate") + 
+  labs(colour = "alpha") +
+  theme_classic()
+f + p
+```
+
+
+---
+
+### So what can we do?
+
++ Control the Type I error rate across the
+entire “family” of tests u```{r type 1}nder consideration.
+Familywise error rate
+
++ The risk of making at least one Type I error
+among the family of comparisons in the
+experiment
+
++ Also known as the *experimentwise* error
+rate
+
+---
+
+### Familywise error rate (FWER)
+
+• Suppose we conduct m independent t-tests
+• Assume H 0 is true for all m tests
+• For any single test, let...
+Pr(commit a Type 1 error) = $\alpha$ C
+– Known as the per comparison error rate (PCER)
+• What’s the probability a correct decision is
+made?
+Pr(do not commit a Type 1 error) = 1 −  C
+---
+---
+#  Familywise error rate (FWER) 
+
++ Probability of committing no Type I errors
+(assuming m  independent  t -tests)
++ Probability of committing at least one Type I error
+	+ 1 minus the probability of committing no Type I errors
++ denotes the upper limit of the FWER, i.e.
+FWER ≤
++ We need to find the PCER when the FWER is
+
+---
+#  Familywise error rate (FWER) 
+
++ If we set FWER = , from previous slide:
+(assuming m  independent  t -tests)
++ We need to make the subject in the above equation, i.e.
+
+---
+#  Familywise error rate (FWER) 
+
+Why is  F the upper limit?
++ We assumed the tests are independent!
+	+ Are the tests independent of one another?
+	+ Consider again the CRD
+
+
+---
+#  Familywise error rate (FWER) 
+
+Why is  F the upper limit?
++ There are three pairwise comparisons
+	+ Null hypotheses:  P ‒  C = 0;  S  ‒  C  = 0;  P  ‒  S = 0
+	+ What are the t -statistics for testing these null hypotheses?
+	+ Let’s look at one of these, e.g. H 0 :  P ‒  C = 0
+where is the SED of .
+
+---
+#  Familywise error rate (FWER) 
+
+Why is  F the upper limit?
++ Consider the for the other hypothesis tests
+	+ Do any of them share information?
+		+ Some of the t -statistics share the same sample mean in their numerator; Sham vs Control, Sham vs Pancreatitis
+		+ They all share the s 2 (from the ANOVA’s Residual MS)
+	+ Let’s look at what happens to:
+		+ the FWER,  F , when fix the PCER,  C ,  at 0.05, 0.01 and 0.10
+		+ the PCER,  C  , when fix the FWER,  F ,  at 0.05, 0.01 and 0.10
+
+---
+#  F when C = 0.01, 0.05, 0.10  
+
+Each test conducted with a PCER of  C = 0.01, 0.05 , 0.10 .
+Risk of at least one Type I error escalates as  the number of tests increases.
+![](assets/img/image37.emf)
+
+---
+#  C when F = 0.01, 0.05, 0.10  
+
+Each test conducted with an FWER of  F = 0.01, 0.05 , 0.10 .
+When we want to keep the risk of committing at least one Type I error fixed at  F = 0.05 , the PCER for m = 10 tests is 0.005 .
+So what can we do?
+![](assets/img/image38.emf)
+
+---
+#  Adjustments for multiple testing 
+
+Fisher’s, Least Significant Difference, LSD
+Bonferroni correction, i.e.
+where = number of pairwise comparisons
+Multiple comparison procedures
+Tukey’s Honest Significant Difference (HSD)
+Dunnett’s test
+Lots more
+False Discovery Rate (FDR)
+
+---
+#  Fisher’s LSD 
+
+The idea:
+Carry out post-hoc tests only if the ANOVA omnibus F -test is significant
+Declare significant 100x α % any pairwise difference > LSD
+Note: If α = 0.5, then 100 x α % = 5%
+Does not control the FWER
+
+---
+#  Bonferroni correction 
+
+We reject all null hypotheses for which the p-value
+where
+= FWER
+= number of pairwise comparisons
+Extremely general and simple , but often not powerful
+It makes no assumptions about independence between tests
+This means is invalid if this assumption is violated
+
+---
+#  Bonferroni inequality 
+
+PCER,  C = 0.05 (Fisher’s LSD)
+PCER,  B  =  C  /3 = 0.05/3 = 0.0167 ( Bonferroni correction)
+Since we have only 3 means, and so only 3 comparisons division of PCER by 3
+Does not change any of our conclusions – width of CI’s does not increase very much
+.pull-left[![](assets/img/image39.png)]
+
+.pull-right[![](assets/img/image41.png)]
+
+---
+#  Tukey’s Honest Significant Difference (HSD) 
+
++ Compares the mean of every treatment with the mean of every other treatment
+	+ CRD example:
+H 01 :  P −  c = 0
+H 02 :  P −  S  = 0
+H 03 :  S −  c  = 0
++ Uses Studentized range distribution, compared with t -distribution for Fisher’s LSD and Bonferroni correction:
+
+---
+#  Tukey’s Honest Significant Difference (HSD) 
+
++ Idea: If we pick out the tallest and shortest members of a class, they may appear to have significantly different heights, but in fact they are from the same population
+	+ Somebody has to be the most extreme
+	+ Tukey’s Honest Significant Difference (HSD ) adjusts for this
+	+ Looks at the range, Biggest – Smallest, of a set of means
+	+ Could these have come from the same underlying distribution?
+
+---
+#  Tukey’s Honest Significant Difference (HSD) 
+
++ Uses Tukey’s  Studentised Range
+where m is the is -level critical value for m 	means.
+$`Pairwise p-value`
+C       P       S
+C 0.0000 -0.8446 -5.3216
+P 0.6863  0.0000 -4.4770
+S 0.0012  0.0039  0.0000
+"The matrix has t-value above the diagonal,
+p-value (adjusted by ‘ tukey ’ method) below the diagonal"
+
+---
+#  Tukey’s Honest Significant Difference (HSD) 
+
+
+
+---
+#  Bonferroni vs Tukey’s HSD 
+
++ As the number of means, m, increases
+	+ The number of pairs of means m(m-1)/2 = increases very rapidly
+	+ Tukey’s HSD does not increase so rapidly
+	+ Suppose SED = 1, PCER a = 0.05
+
+```{r tbl89, echo = FALSE}
+tbl89 <- tibble::tribble(
+~`m`, ~`Comparisons`, ~`Bonferroni`, ~`Tukey HSD`,
+"2","1","1.96","1.96",
+"3","3","2.39","2.35",
+"5","10","2.81","2.73",
+"10","45","3.26","3.17"
+)
+
+kableExtra::kable_styling(knitr::kable(tbl89), font_size = 18)
+```
+
+---
+
+
+## PDQR R-function
+
+![](https://raw.githubusercontent.com/cmjt/statbiscuits/master/figs_n_gifs/pdqr.png)
+
+
+---
+
+
+
