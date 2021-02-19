@@ -4,12 +4,7 @@
 
 All files are (C)Copyright by the University of Auckland unless explicitly stated otherwise. Distrubution without prior written permission is prohibited.
 
-### *blupages* [here](https://stats-uoa.github.io/BIOSCI738/)
-
-### Slides
-
-  + [Introduction](https://biosci738intro.netlify.app/)
-  + [Module 1](https://biosci738module1.netlify.app/)
+### *bluebook* [here](https://stats-uoa.github.io/BIOSCI738/)
 
 
 ## Contact

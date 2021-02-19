@@ -41,6 +41,8 @@ if [ "$dobook" = true ]; then
 	exit 2
     fi
     R -e "bookdown::render_book('index.Rmd',output_dir = './')" 2>&1 >/dev/null
+    mv _bookdown_files/_main_files/ ./
+    rmdir _bookdown_files/
 else
     if [ "$doslides" = true ]; then
 	## slides
