@@ -1,11 +1,11 @@
 --- 
-title: "BIOSCI738 *bluepages*, University of Auckland"
+title: "*bluebook*  BIOSCI738"
 author: "Charlotte Jones-Todd"
-date: "Semester 1, 2021"
+date: "Semester 1, 2021, University of Auckland"
 output: 
   bookdown::gitbook:
     css: "src/my-style.css"
-    toc_depth: 2
+    toc_depth: 3
     download:
       - ["biosci738.pdf", "PDF"]
       - ["biosci738.epub", "EPUB"]
@@ -15,7 +15,6 @@ output:
       facebook: no
   
 ---
-
 
 # Preface {-}
 
@@ -56,7 +55,3 @@ Taught material will be delivered, each week, via 2 hour lectures. Each week the
 + Ordination: multidimensional scaling, correspondence analysis
 + Supervised learning: discriminant  analysis
 + Networks and graphs
-
-## Slides
-
-[Module 1 slides here](https://biosci738module1.netlify.app/)

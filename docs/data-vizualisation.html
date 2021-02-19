@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3 Data vizualisation | BIOSCI738 bluepages, University of Auckland</title>
+  <meta name="description" content="3 Data vizualisation | BIOSCI738 bluepages, University of Auckland" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3 Data vizualisation | BIOSCI738 bluepages, University of Auckland" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3 Data vizualisation | BIOSCI738 bluepages, University of Auckland" />
+  
+  
+  
+
+<meta name="author" content="Charlotte Jones-Todd" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="māori-data-sovereignty-principles.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/panelset-0.0.17/panelset.css" rel="stylesheet" />
+<script src="libs/panelset-0.0.17/panelset.js"></script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="src/my-style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#course-overview"><i class="fa fa-check"></i><b>0.1</b> Course Overview</a></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#key-topics"><i class="fa fa-check"></i><b>0.2</b> Key Topics</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html"><i class="fa fa-check"></i><b>1</b> <code>R</code>, <code>RStudio</code>, and <code>git</code></a><ul>
+<li class="chapter" data-level="1.1" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html#learning-objectives"><i class="fa fa-check"></i><b>1.1</b> Learning objectives</a></li>
+<li class="chapter" data-level="1.2" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html#intro-to-r-rstudio"><i class="fa fa-check"></i><b>1.2</b> Intro to <code>R</code> &amp; <code>RStudio</code></a><ul>
+<li class="chapter" data-level="1.2.1" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html#why"><i class="fa fa-check"></i><b>1.2.1</b> Why?</a></li>
+<li class="chapter" data-level="1.2.2" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html#installing-r-and-rstudio"><i class="fa fa-check"></i><b>1.2.2</b> Installing R and RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html#getting-started"><i class="fa fa-check"></i><b>1.3</b> Getting started</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html#r-errors"><i class="fa fa-check"></i><b>1.3.1</b> R errors 😱</a></li>
+<li class="chapter" data-level="1.3.2" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html#r-scripts-a-.r-file"><i class="fa fa-check"></i><b>1.3.2</b> R <em>Script</em>s (a <code>.r</code> file)</a></li>
+<li class="chapter" data-level="1.3.3" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html#writing-comments"><i class="fa fa-check"></i><b>1.3.3</b> Writing <em>Comments</em></a></li>
+<li class="chapter" data-level="1.3.4" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html#change-the-rstudio-appearance-up-to-your-taste"><i class="fa fa-check"></i><b>1.3.4</b> Change the <code>RStudio</code> appearance up to your taste</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html#reproducible-research"><i class="fa fa-check"></i><b>1.4</b> Reproducible research</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html#good-practice"><i class="fa fa-check"></i><b>1.4.1</b> Good practice</a></li>
+<li class="chapter" data-level="1.4.2" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html#version-control"><i class="fa fa-check"></i><b>1.4.2</b> Version control</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html#git-and-github"><i class="fa fa-check"></i><b>1.5</b> <code>git</code> and GitHub</a><ul>
+<li class="chapter" data-level="1.5.1" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html#setup-tldr"><i class="fa fa-check"></i><b>1.5.1</b> Setup TL;DR</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html#exploratory-data-analysis"><i class="fa fa-check"></i><b>1.6</b> Exploratory Data Analysis</a><ul>
+<li class="chapter" data-level="1.6.1" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html#starting-out-with-tidyverse"><i class="fa fa-check"></i><b>1.6.1</b> Starting out with <code>tidyverse</code></a></li>
+<li class="chapter" data-level="1.6.2" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html#reading-in-data-from-a-.csv-file"><i class="fa fa-check"></i><b>1.6.2</b> Reading in data from a <code>.csv</code> file</a></li>
+<li class="chapter" data-level="1.6.3" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html#explore-your-data"><i class="fa fa-check"></i><b>1.6.3</b> Explore your data</a></li>
+<li class="chapter" data-level="1.6.4" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html#explore-your-data-1"><i class="fa fa-check"></i><b>1.6.4</b> Explore your data</a></li>
+<li class="chapter" data-level="1.6.5" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html#the-pipe-operator"><i class="fa fa-check"></i><b>1.6.5</b> The pipe operator <code>%&gt;%</code></a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html#other-resources"><i class="fa fa-check"></i><b>1.7</b> Other resources</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="māori-data-sovereignty-principles.html"><a href="māori-data-sovereignty-principles.html"><i class="fa fa-check"></i><b>2</b> Māori Data Sovereignty principles</a><ul>
+<li class="chapter" data-level="2.1" data-path="māori-data-sovereignty-principles.html"><a href="māori-data-sovereignty-principles.html#learning-objectives-1"><i class="fa fa-check"></i><b>2.1</b> Learning objectives</a></li>
+<li class="chapter" data-level="2.2" data-path="māori-data-sovereignty-principles.html"><a href="māori-data-sovereignty-principles.html#māori-data-sovereignty-principles-1"><i class="fa fa-check"></i><b>2.2</b> Māori Data Sovereignty principles</a></li>
+<li class="chapter" data-level="2.3" data-path="māori-data-sovereignty-principles.html"><a href="māori-data-sovereignty-principles.html#māori-data-sovereignty-principles-2"><i class="fa fa-check"></i><b>2.3</b> Māori Data Sovereignty principles</a></li>
+<li class="chapter" data-level="2.4" data-path="māori-data-sovereignty-principles.html"><a href="māori-data-sovereignty-principles.html#resources"><i class="fa fa-check"></i><b>2.4</b> Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-vizualisation.html"><a href="data-vizualisation.html"><i class="fa fa-check"></i><b>3</b> Data vizualisation</a><ul>
+<li class="chapter" data-level="3.1" data-path="data-vizualisation.html"><a href="data-vizualisation.html#learning-objectives-2"><i class="fa fa-check"></i><b>3.1</b> Learning objectives</a></li>
+<li class="chapter" data-level="3.2" data-path="data-vizualisation.html"><a href="data-vizualisation.html#data-viz"><i class="fa fa-check"></i><b>3.2</b> Data Viz</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="data-vizualisation.html"><a href="data-vizualisation.html#exploratory-and-explanatory-plots"><i class="fa fa-check"></i><b>3.2.1</b> Exploratory and explanatory plots</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="data-vizualisation.html"><a href="data-vizualisation.html#ten-simple-rules-for-better-figures"><i class="fa fa-check"></i><b>3.3</b> <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003833">Ten Simple Rules for Better Figures</a></a><ul>
+<li class="chapter" data-level="3.3.1" data-path="data-vizualisation.html"><a href="data-vizualisation.html#does-not-spark-joy"><i class="fa fa-check"></i><b>3.3.1</b> Does not <em>spark joy</em></a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="data-vizualisation.html"><a href="data-vizualisation.html#ggplot2"><i class="fa fa-check"></i><b>3.4</b> <code>ggplot2</code></a></li>
+<li class="chapter" data-level="3.5" data-path="data-vizualisation.html"><a href="data-vizualisation.html#common-dataframe-manipulations-in-the-tidyverse"><i class="fa fa-check"></i><b>3.5</b> Common dataframe manipulations in the <code>tidyverse</code></a><ul>
+<li class="chapter" data-level="3.5.1" data-path="data-vizualisation.html"><a href="data-vizualisation.html#using-dplyr-and-tidyr"><i class="fa fa-check"></i><b>3.5.1</b> Using <code>dplyr</code> and <code>tidyr</code></a></li>
+<li class="chapter" data-level="3.5.2" data-path="data-vizualisation.html"><a href="data-vizualisation.html#introuducing-the-palmer-penguins"><i class="fa fa-check"></i><b>3.5.2</b> Introuducing the <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0090081">Palmer penguins</a></a></li>
+<li class="chapter" data-level="3.5.3" data-path="data-vizualisation.html"><a href="data-vizualisation.html#common-dataframe-manipulations-in-the-tidyverse-using-dplyr-and-tidyr"><i class="fa fa-check"></i><b>3.5.3</b> Common dataframe manipulations in the <code>tidyverse</code>, using <code>dplyr</code> and <code>tidyr</code></a></li>
+<li class="chapter" data-level="3.5.4" data-path="data-vizualisation.html"><a href="data-vizualisation.html#ggplot2-layers"><i class="fa fa-check"></i><b>3.5.4</b> <code>ggplot2</code> layers</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="data-vizualisation.html"><a href="data-vizualisation.html#example"><i class="fa fa-check"></i><b>3.6</b> Example</a></li>
+<li class="chapter" data-level="3.7" data-path="data-vizualisation.html"><a href="data-vizualisation.html#example-scatter-plot"><i class="fa fa-check"></i><b>3.7</b> Example: scatter plot</a></li>
+<li class="chapter" data-level="3.8" data-path="data-vizualisation.html"><a href="data-vizualisation.html#example-scatter-plot-1"><i class="fa fa-check"></i><b>3.8</b> Example: scatter plot</a></li>
+<li class="chapter" data-level="3.9" data-path="data-vizualisation.html"><a href="data-vizualisation.html#example-boxplot-and-theme"><i class="fa fa-check"></i><b>3.9</b> Example: boxplot and theme</a></li>
+<li class="chapter" data-level="3.10" data-path="data-vizualisation.html"><a href="data-vizualisation.html#example-boxplot-and-theme-1"><i class="fa fa-check"></i><b>3.10</b> Example: boxplot and theme</a></li>
+<li class="chapter" data-level="3.11" data-path="data-vizualisation.html"><a href="data-vizualisation.html#example-boxplot-and-theme-2"><i class="fa fa-check"></i><b>3.11</b> Example: boxplot and theme</a></li>
+<li class="chapter" data-level="3.12" data-path="data-vizualisation.html"><a href="data-vizualisation.html#example-scatter-plot-by-species"><i class="fa fa-check"></i><b>3.12</b> Example: scatter plot by species</a></li>
+<li class="chapter" data-level="3.13" data-path="data-vizualisation.html"><a href="data-vizualisation.html#resources-1"><i class="fa fa-check"></i><b>3.13</b> Resources</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">BIOSCI738 <em>bluepages</em>, University of Auckland</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data-vizualisation" class="section level1">
+<h1><span class="header-section-number">3</span> Data vizualisation</h1>
+<div id="learning-objectives-2" class="section level2">
+<h2><span class="header-section-number">3.1</span> Learning objectives</h2>
+<ul>
+<li><strong>Discuss</strong>the ethics of data vizualisation</li>
+<li><strong>Create</strong> and <strong>communicate</strong> informative data visualisations using <code>R</code></li>
+<li><strong>Discuss</strong> and <strong>critique</strong> data visualisations</li>
+<li><strong>Carry out</strong>, and <strong>interpret</strong> the outputs of, basic exploratory data analysis using in-built R functions</li>
+</ul>
+</div>
+<div id="data-viz" class="section level2">
+<h2><span class="header-section-number">3.2</span> Data Viz</h2>
+<blockquote>
+&quot;...have obligations in that we have a great deal of power over how people ultimately make use of data, both in the patterns they see and the conclusions they draw.&quot;
+<footer>
+--- Michael Correll, Ethical Dimensions of Visualization Research
+</footer>
+</blockquote>
+<blockquote>
+&quot;Clutter and confusion are not attributes of data - they are shortcomings of design.&quot;
+<footer>
+--- Edward Tufte
+</footer>
+</blockquote>
+<div id="exploratory-and-explanatory-plots" class="section level3">
+<h3><span class="header-section-number">3.2.1</span> Exploratory and explanatory plots</h3>
+<ol style="list-style-type: decimal">
+<li><strong>Exploratory plots</strong> (<em>for you</em>)</li>
+</ol>
+<ul>
+<li>data exploration</li>
+<li>doesn't have to look pretty</li>
+<li>just needs to get to the point</li>
+<li>explore and discover new data facets</li>
+<li>formulate new questions</li>
+</ul>
+<p>For example,</p>
+<p><img src="_main_files/figure-html/example,%20me-1.png" width="672" /><img src="_main_files/figure-html/example,%20me-2.png" width="672" /></p>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>Explanatory plots</strong> (<em>for others</em>), most common kind of graph used in scientific publications</li>
+</ol>
+<ul>
+<li>clear purpose</li>
+<li>designed for the audience</li>
+<li>make it easy to read (<em>this covers a lot of things</em>)</li>
+<li>do not distort</li>
+<li>guide the reader to a particular conclusion</li>
+<li>answer a specific question</li>
+<li>support a decision</li>
+</ul>
+<p>For example,</p>
+<div class="figure">
+<img src="https://jimgruman.netlify.app/post/variableimportance/2020_31_PalmerPenguins.png" />
+
+</div>
+<p>Plots by Cedric Scherer and mentioned on <a href="https://jimgruman.netlify.app/post/variableimportance/">this blog</a></p>
+</div>
+</div>
+<div id="ten-simple-rules-for-better-figures" class="section level2">
+<h2><span class="header-section-number">3.3</span> <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003833">Ten Simple Rules for Better Figures</a></h2>
+<blockquote>
+&quot;Scientific visualization is classically defined as the process of graphically displaying scientific data. However, this process is far from direct or automatic. There are so many different ways to represent the same data: scatter plots, linear plots, bar plots, and pie charts, to name just a few. Furthermore, the same data, using the same type of plot, may be perceived very differently depending on who is looking at the figure. A more accurate definition for scientific visualization would be a graphical interface between people and data.&quot;
+<footer>
+--- Nicolas P. Rougier, Michael Droettboom, Philip E. Bourne, Ten Simple Rules for Better Figures
+</footer>
+</blockquote>
+<ul>
+<li><p><strong>Know</strong> Your Audience</p></li>
+<li><p><strong>Identify</strong> Your Message</p></li>
+<li><p><strong>Adapt</strong> the Figure to the Support Medium</p></li>
+<li><p><strong>Captions</strong> Are Not Optional</p></li>
+<li><p><strong>Do Not</strong> Trust the Defaults</p></li>
+<li><p>Use <strong>Color</strong> Effectively</p></li>
+<li><p><strong>Do Not Mislead</strong> the Reader</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Misleading_graph">There are formulas to measure how misleading a graph is!</a></li>
+</ul></li>
+<li><p><strong>Avoid</strong> <em>Chartjunk</em></p></li>
+<li><p><strong>Message</strong> Trumps Beauty</p></li>
+</ul>
+<blockquote>
+&quot;message and readability of the figure is the most important aspect while beauty is only an option&quot;
+<footer>
+--- Nicolas P. Rougier, Michael Droettboom, Philip E. Bourne, Ten Simple Rules for Better Figures
+</footer>
+</blockquote>
+<ul>
+<li><p>Get the Right <strong>Tool</strong></p>
+<ul>
+<li>I'm an advocate for <code>R</code> 😉</li>
+</ul></li>
+</ul>
+<div id="does-not-spark-joy" class="section level3">
+<h3><span class="header-section-number">3.3.1</span> Does not <em>spark joy</em></h3>
+<p><img src="https://www.statschat.org.nz/wp-content/uploads/2015/03/nrd4570-f2.jpg" width="50%"> <img src="https://www.statschat.org.nz/wp-content/uploads/2013/07/article-3178-300x200.png" width="50%"></p>
+<p>.footnote[<a href="https://www.statschat.org.nz/2015/03/18/awful-graphs-about-interesting-data/">Awful graphs about interesting data</a> &amp; <a href="https://www.statschat.org.nz/2013/07/30/3d-bar-graphs-just-say-no/">3d bar graphs: just say no</a>]</p>
+</div>
+</div>
+<div id="ggplot2" class="section level2">
+<h2><span class="header-section-number">3.4</span> <code>ggplot2</code></h2>
+<p><code>ggplot2</code> is an <code>R</code> package for producing statistical, or data, graphics; it has an underlying grammar based on the <a href="https://www.amazon.com/Grammar-Graphics-Statistics-Computing/dp/0387245448">Grammar of Graphics</a></p>
+<p>Every <code>ggplot2</code> plot has three key components:</p>
+<ul>
+<li><p><code>data</code>,</p></li>
+<li><p>A set of <code>aes</code>thetic mappings between variables in the data and visual properties, and</p></li>
+<li><p>At least one layer which describes how to render each observation. Layers are usually created with a <code>geom</code> function.</p></li>
+</ul>
+</div>
+<div id="common-dataframe-manipulations-in-the-tidyverse" class="section level2">
+<h2><span class="header-section-number">3.5</span> Common dataframe manipulations in the <code>tidyverse</code></h2>
+<div id="using-dplyr-and-tidyr" class="section level3">
+<h3><span class="header-section-number">3.5.1</span> Using <code>dplyr</code> and <code>tidyr</code></h3>
+<p><strong><code>tidy</code> data</strong></p>
+<blockquote>
+&quot;Tidy datasets are all alike, but every messy dataset is messy in its own way.&quot;
+<footer>
+--- Hadley Wickham
+</footer>
+</blockquote>
+<p>There are three interrelated rules which make a dataset <code>tidy</code>:</p>
+<ol style="list-style-type: decimal">
+<li>Each variable must have its own column</li>
+<li>Each observation must have its own row</li>
+<li>Each value must have its own cell</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/allisonhorst/stats-illustrations/master/rstats-artwork/tidydata_1.jpg" /> [illustrations from the Openscapes blog <a href="https://www.openscapes.org/blog/2020/10/12/tidy-data/">Tidy Data for reproducibility, efficiency, and collaboration</a> by Julia Lowndes and Allison Horst</p>
+<p>Why ensure that your data is <code>tidy</code>?</p>
+<ul>
+<li><p><strong>Consistency:</strong> using a consistent format aids learning and reproducibility</p></li>
+<li><p><strong>Simplicity:</strong> it's a format that is well understood by <code>R</code></p></li>
+</ul>
+<blockquote>
+&quot;Tidy datasets are easy to manipulate, model and visualize, and have a specific structure: each variable is a column, each observation is a row, and each type of observational unit is a table. This framework makes it easy to tidy messy datasets because only a small set of tools are needed to deal with a wide range of un-tidy datasets.&quot;
+<footer>
+--- Hadley Wickham, Tidy data
+</footer>
+</blockquote>
+</div>
+<div id="introuducing-the-palmer-penguins" class="section level3">
+<h3><span class="header-section-number">3.5.2</span> Introuducing the <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0090081">Palmer penguins</a></h3>
+<iframe src="https://giphy.com/embed/3og0IO5z8Rd30ktV6g" width="40%" height="400px" style="border: none;">
+</iframe>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(palmerpenguins) ## contains some nice penguin data
+penguins</code></pre></div>
+<pre><code>## # A tibble: 344 x 8
+##    species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g
+##    &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt;
+##  1 Adelie  Torge…           39.1          18.7              181        3750
+##  2 Adelie  Torge…           39.5          17.4              186        3800
+##  3 Adelie  Torge…           40.3          18                195        3250
+##  4 Adelie  Torge…           NA            NA                 NA          NA
+##  5 Adelie  Torge…           36.7          19.3              193        3450
+##  6 Adelie  Torge…           39.3          20.6              190        3650
+##  7 Adelie  Torge…           38.9          17.8              181        3625
+##  8 Adelie  Torge…           39.2          19.6              195        4675
+##  9 Adelie  Torge…           34.1          18.1              193        3475
+## 10 Adelie  Torge…           42            20.2              190        4250
+## # … with 334 more rows, and 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
+<p>So, what does this show us?</p>
+<ul>
+<li><code>A tibble: 344 x 8</code>: A <code>tibble</code> is a specific kind of data frame in <code>R</code>. The <code>penguin</code> dataset has</li>
+<li><code>344</code> rows (i.e., 344 different observations). Here, each observation corresponds to a penguin.</li>
+<li><code>8</code> columns corresponding to 3 variables describing each observation.</li>
+<li><p><code>species</code>, <code>island</code>, <code>bill_length_mm</code>, <code>bill_depth_mm</code>, <code>flipper_length_mm</code>, <code>body_mass_g</code>, <code>sex</code>, and <code>year</code> are the different variables of this dataset.</p></li>
+<li><p>We then have a preview of the first 10 rows of observations corresponding to the first 10 penguins. ``<code>... with 334 more rows</code> indicates there are 334 more rows to see, but these have not been printed (likely as it would clog our screen)</p></li>
+</ul>
+<p>To learn more about the penguins read the <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0090081">paper that talks all about the data collection.</a></p>
+</div>
+<div id="common-dataframe-manipulations-in-the-tidyverse-using-dplyr-and-tidyr" class="section level3">
+<h3><span class="header-section-number">3.5.3</span> Common dataframe manipulations in the <code>tidyverse</code>, using <code>dplyr</code> and <code>tidyr</code></h3>
+<p>Even from these first few rows of data we can see that there are some <code>NA</code> values. Let's count the number of <code>NA</code>s. Remember the <code>%&gt;%</code> operator? Here we're going to be introduced to a few new things</p>
+<ul>
+<li>the <code>apply()</code> function,</li>
+<li>the <code>is.na()</code> function, and</li>
+<li>how <code>R</code> deals with <code>logical</code> values!</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+penguins <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">apply</span>(.,<span class="dv">2</span>,is.na) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">apply</span>(.,<span class="dv">2</span>,sum)</code></pre></div>
+<pre><code>##           species            island    bill_length_mm     bill_depth_mm 
+##                 0                 0                 2                 2 
+## flipper_length_mm       body_mass_g               sex              year 
+##                 2                 2                11                 0</code></pre>
+<p>There's lot going on in that code! Let's break it down</p>
+<ul>
+<li>Take <code>penguins</code> then</li>
+<li>Use <code>penguins</code> as an input to the <code>apply()</code> function (this is specified as the first argument using the <code>.</code>)</li>
+<li>Now the <code>apply()</code> function takes 3 arguments:
+<ol style="list-style-type: decimal">
+<li>the data object you want it to <em>apply</em> something to (in our case <code>penguins</code>)</li>
+<li>the margin you want to <em>apply</em> that something to; 1 stands for rows and 2 stands for columns, and</li>
+<li>the function you want it to apply (in our case <code>is.na()</code>).</li>
+</ol></li>
+<li>So the second line of code is asking <code>R</code> to <em>apply</em> the <code>is.na()</code> function over the columns of <code>penguins</code>
+<ul>
+<li><code>is.na()</code> asks for each value it's fed is it an <code>NA</code> value; it returns a <code>TRUE</code> if so and a <code>FALSE</code> otherwise</li>
+</ul></li>
+<li>The output from the first <code>apply()</code> is then fed to the second <code>apply()</code> (using the <code>.</code>). The <code>sum()</code> function then add them up!
+<ul>
+<li><code>R</code> treats a <code>TRUE</code> as a 1 and a <code>FALSE</code> as a 0.</li>
+</ul></li>
+</ul>
+<p>So how many <code>NA</code>s do you think there are!</p>
+<p>Doesn't help much. To</p>
+<p>Now we know there are <code>NA</code> values throughout the data let's remove then and create a new <code>NA</code> free version called <code>penguins_nafree</code>. There is a really handy <code>tidyverse</code> (<code>dplyr</code>) function for this!</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">penguins_nafree &lt;-<span class="st"> </span>penguins <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">drop_na</span>()
+penguins_nafree</code></pre></div>
+<pre><code>## # A tibble: 333 x 8
+##    species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g
+##    &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt;
+##  1 Adelie  Torge…           39.1          18.7              181        3750
+##  2 Adelie  Torge…           39.5          17.4              186        3800
+##  3 Adelie  Torge…           40.3          18                195        3250
+##  4 Adelie  Torge…           36.7          19.3              193        3450
+##  5 Adelie  Torge…           39.3          20.6              190        3650
+##  6 Adelie  Torge…           38.9          17.8              181        3625
+##  7 Adelie  Torge…           39.2          19.6              195        4675
+##  8 Adelie  Torge…           41.1          17.6              182        3200
+##  9 Adelie  Torge…           38.6          21.2              191        3800
+## 10 Adelie  Torge…           34.6          21.1              198        4400
+## # … with 323 more rows, and 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
+<p>Below are some other useful manipulation functions; have a look at the outputs and run them yourselves and see if you can work out what they're doing.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>(penguins_nafree, island <span class="op">==</span><span class="st"> &quot;Torgersen&quot;</span> )</code></pre></div>
+<pre><code>## # A tibble: 47 x 8
+##    species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g
+##    &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt;
+##  1 Adelie  Torge…           39.1          18.7              181        3750
+##  2 Adelie  Torge…           39.5          17.4              186        3800
+##  3 Adelie  Torge…           40.3          18                195        3250
+##  4 Adelie  Torge…           36.7          19.3              193        3450
+##  5 Adelie  Torge…           39.3          20.6              190        3650
+##  6 Adelie  Torge…           38.9          17.8              181        3625
+##  7 Adelie  Torge…           39.2          19.6              195        4675
+##  8 Adelie  Torge…           41.1          17.6              182        3200
+##  9 Adelie  Torge…           38.6          21.2              191        3800
+## 10 Adelie  Torge…           34.6          21.1              198        4400
+## # … with 37 more rows, and 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summarise</span>(penguins_nafree, <span class="dt">avgerage_bill_length =</span> <span class="kw">mean</span>(bill_length_mm))</code></pre></div>
+<pre><code>## # A tibble: 1 x 1
+##   avgerage_bill_length
+##                  &lt;dbl&gt;
+## 1                 44.0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">group_by</span>(penguins_nafree, species)</code></pre></div>
+<pre><code>## # A tibble: 333 x 8
+## # Groups:   species [3]
+##    species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g
+##    &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt;
+##  1 Adelie  Torge…           39.1          18.7              181        3750
+##  2 Adelie  Torge…           39.5          17.4              186        3800
+##  3 Adelie  Torge…           40.3          18                195        3250
+##  4 Adelie  Torge…           36.7          19.3              193        3450
+##  5 Adelie  Torge…           39.3          20.6              190        3650
+##  6 Adelie  Torge…           38.9          17.8              181        3625
+##  7 Adelie  Torge…           39.2          19.6              195        4675
+##  8 Adelie  Torge…           41.1          17.6              182        3200
+##  9 Adelie  Torge…           38.6          21.2              191        3800
+## 10 Adelie  Torge…           34.6          21.1              198        4400
+## # … with 323 more rows, and 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
+<p>Often we want to summarise variables by different groups (factors). Below we</p>
+<ul>
+<li>Take the <code>penguins_nafree</code> data then</li>
+<li>Use this and apply the <code>group_by()</code> function to group by <code>species</code></li>
+<li>Use this output and apply the <code>summarize()</code> function to calculate the mean (using (<code>mean()</code>) bill length (<code>bill_length_mm</code>) of each group (<code>species</code>), calling the resulting number <code>avgerage_bill_length</code></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">penguins_nafree <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(species) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">avgerage_bill_length =</span> <span class="kw">mean</span>(bill_length_mm))</code></pre></div>
+<pre><code>## # A tibble: 3 x 2
+##   species   avgerage_bill_length
+## * &lt;fct&gt;                    &lt;dbl&gt;
+## 1 Adelie                    38.8
+## 2 Chinstrap                 48.8
+## 3 Gentoo                    47.6</code></pre>
+<p>We can also group by multiple factors, for example,</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">penguins_nafree <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(island,species) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">avgerage_bill_length =</span> <span class="kw">mean</span>(bill_length_mm))</code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;island&#39;. You can override using the `.groups` argument.</code></pre>
+<pre><code>## # A tibble: 5 x 3
+## # Groups:   island [3]
+##   island    species   avgerage_bill_length
+##   &lt;fct&gt;     &lt;fct&gt;                    &lt;dbl&gt;
+## 1 Biscoe    Adelie                    39.0
+## 2 Biscoe    Gentoo                    47.6
+## 3 Dream     Adelie                    38.5
+## 4 Dream     Chinstrap                 48.8
+## 5 Torgersen Adelie                    39.0</code></pre>
+</div>
+<div id="ggplot2-layers" class="section level3">
+<h3><span class="header-section-number">3.5.4</span> <code>ggplot2</code> layers</h3>
+<p><img src="https://www.ericchowkokyew.com/wp-content/uploads/2019/07/image-2.png" width="50%"></p>
+</div>
+</div>
+<div id="example" class="section level2">
+<h2><span class="header-section-number">3.6</span> Example</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(palmerpenguins) ## contains some nice penguin data
+<span class="kw">library</span>(ggplot2) ## for plotting
+penguins</code></pre></div>
+<pre><code>## # A tibble: 344 x 8
+##    species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g
+##    &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt;
+##  1 Adelie  Torge…           39.1          18.7              181        3750
+##  2 Adelie  Torge…           39.5          17.4              186        3800
+##  3 Adelie  Torge…           40.3          18                195        3250
+##  4 Adelie  Torge…           NA            NA                 NA          NA
+##  5 Adelie  Torge…           36.7          19.3              193        3450
+##  6 Adelie  Torge…           39.3          20.6              190        3650
+##  7 Adelie  Torge…           38.9          17.8              181        3625
+##  8 Adelie  Torge…           39.2          19.6              195        4675
+##  9 Adelie  Torge…           34.1          18.1              193        3475
+## 10 Adelie  Torge…           42            20.2              190        4250
+## # … with 334 more rows, and 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
+<p>count: false</p>
+</div>
+<div id="example-scatter-plot" class="section level2">
+<h2><span class="header-section-number">3.7</span> Example: scatter plot</h2>
+<p>.left-panel-flippoint-auto[</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(penguins,<span class="kw">aes</span>(<span class="dt">x =</span> body_mass_g, <span class="dt">y =</span> flipper_length_mm))   ## data &amp; aesthetics#&lt;&lt;</code></pre></div>
+<p>]</p>
+<p>.right-panel-flippoint-auto[ <img src="_main_files/figure-html/flippoint_auto_1_output-1.png" width="672" />]</p>
+<p>count: false</p>
+</div>
+<div id="example-scatter-plot-1" class="section level2">
+<h2><span class="header-section-number">3.8</span> Example: scatter plot</h2>
+<p>.left-panel-flippoint-auto[</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(penguins,<span class="kw">aes</span>(<span class="dt">x =</span> body_mass_g, <span class="dt">y =</span> flipper_length_mm)) <span class="op">+</span><span class="st">  </span>## data &amp; aesthetics
+<span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st">  </span>## geom
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) ## statistics (linear regression line)  ## statistics (linear regression line)#&lt;&lt;</code></pre></div>
+<p>]</p>
+<p>.right-panel-flippoint-auto[</p>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="_main_files/figure-html/flippoint_auto_3_output-1.png" width="672" /> ]</p>
+<style>
+.left-panel-flippoint-auto {
+  color: #777;
+  width: 38.6138613861386%;
+  height: 92%;
+  float: left;
+  font-size: 80%
+}
+.right-panel-flippoint-auto {
+  width: 59.4059405940594%;
+  float: right;
+  padding-left: 1%;
+  font-size: 80%
+}
+.middle-panel-flippoint-auto {
+  width: 0%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+</style>
+<p>count: false</p>
+</div>
+<div id="example-boxplot-and-theme" class="section level2">
+<h2><span class="header-section-number">3.9</span> Example: boxplot and theme</h2>
+<p>.left-panel-flipbox2-auto[</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(penguins,<span class="kw">aes</span>(<span class="dt">x =</span> species, <span class="dt">y =</span> flipper_length_mm))   ## data &amp; aesthetics#&lt;&lt;</code></pre></div>
+<p>]</p>
+<p>.right-panel-flipbox2-auto[ <img src="_main_files/figure-html/flipbox2_auto_1_output-1.png" width="672" />]</p>
+<p>count: false</p>
+</div>
+<div id="example-boxplot-and-theme-1" class="section level2">
+<h2><span class="header-section-number">3.10</span> Example: boxplot and theme</h2>
+<p>.left-panel-flipbox2-auto[</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(penguins,<span class="kw">aes</span>(<span class="dt">x =</span> species, <span class="dt">y =</span> flipper_length_mm)) <span class="op">+</span><span class="st">  </span>## data &amp; aesthetics
+<span class="st">    </span><span class="kw">geom_boxplot</span>()  <span class="op">+</span><span class="st">  </span>## geom
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Flipper length (mm) by species&quot;</span>)   <span class="co">#&lt;&lt;</span></code></pre></div>
+<p>]</p>
+<p>.right-panel-flipbox2-auto[ <img src="_main_files/figure-html/flipbox2_auto_3_output-1.png" width="672" />]</p>
+<p>count: false</p>
+</div>
+<div id="example-boxplot-and-theme-2" class="section level2">
+<h2><span class="header-section-number">3.11</span> Example: boxplot and theme</h2>
+<p>.left-panel-flipbox2-auto[</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(penguins,<span class="kw">aes</span>(<span class="dt">x =</span> species, <span class="dt">y =</span> flipper_length_mm)) <span class="op">+</span><span class="st">  </span>## data &amp; aesthetics
+<span class="st">    </span><span class="kw">geom_boxplot</span>()  <span class="op">+</span><span class="st">  </span>## geom
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Flipper length (mm) by species&quot;</span>) <span class="op">+</span><span class="st">  </span>
+<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Flipper length (mm)&quot;</span>) <span class="op">+</span><span class="st">  </span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Species&quot;</span>)   <span class="co">#&lt;&lt;</span></code></pre></div>
+<p>]</p>
+<p>.right-panel-flipbox2-auto[ <img src="_main_files/figure-html/flipbox2_auto_5_output-1.png" width="672" />]</p>
+<p>count: false</p>
+</div>
+<div id="example-scatter-plot-by-species" class="section level2">
+<h2><span class="header-section-number">3.12</span> Example: scatter plot by species</h2>
+<p>.left-panel-flippoint2-auto[</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(penguins,<span class="kw">aes</span>(<span class="dt">x =</span> body_mass_g, <span class="dt">y =</span> flipper_length_mm, <span class="dt">color =</span> species)) <span class="op">+</span><span class="st">  </span>## data and aesthetics
+<span class="st">    </span><span class="kw">geom_point</span>()   ## geom#&lt;&lt;</code></pre></div>
+<p>]</p>
+<p>.right-panel-flippoint2-auto[ <img src="_main_files/figure-html/flippoint2_auto_2_output-1.png" width="672" />]</p>
+<p>class: center <img src="_main_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+</div>
+<div id="resources-1" class="section level2">
+<h2><span class="header-section-number">3.13</span> Resources</h2>
+<ul>
+<li><a href="https://rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf"><code>ggplot2</code> cheatsheet</a></li>
+<li><a href="https://ggplot2-book.org/introduction.html">Elegant Graphics for Data Analysis</a></li>
+<li><a href="https://ourcodingclub.github.io/tutorials/datavis/">Using <code>ggplot2</code> to communicate your results</a></li>
+<li><a href="https://www.statschat.org.nz/?s=graphs">Interesting blogs on graphs in the media</a></li>
+<li><a href="https://dplyr.tidyverse.org/"><code>tidyverse</code></a></li>
+<li><a href="https://vita.had.co.nz/papers/tidy-data.html"><code>Tidy</code> Data</a></li>
+<li><a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0090081">Palmer penguins</a></li>
+</ul>
+
+</div>
+</div>
+
+
+
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="māori-data-sovereignty-principles.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

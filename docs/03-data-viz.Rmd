@@ -1,0 +1,334 @@
+# Data wrangling and vizualisation
+
+
+## Learning objectives
+
++ **Carry out**, and **interpret** the outputs of, basic exploratory data analysis using in-built R functions
++ **Discuss** the ethics of data vizualisation
++ **Create** and **communicate** informative data visualisations using `R`
++ **Discuss** and **critique** data visualisations
+
+
+## Common dataframe manipulations in the `tidyverse`
+
+### Using `dplyr` and `tidyr`
+
+**`tidy` data**
+
+> "Tidy datasets are all alike, but every messy dataset is messy in its own way." `r tufte::quote_footer('--- Hadley Wickham')`
+
+
+There are three interrelated rules which make a dataset `tidy`:
+
+ 1. Each variable must have its own column
+ 2. Each observation must have its own row
+ 3. Each value must have its own cell
+
+![](https://raw.githubusercontent.com/allisonhorst/stats-illustrations/master/rstats-artwork/tidydata_1.jpg)
+[illustrations from the Openscapes blog [Tidy Data for reproducibility, efficiency, and collaboration](https://www.openscapes.org/blog/2020/10/12/tidy-data/) by Julia Lowndes and Allison Horst
+
+Why ensure that your data is `tidy`? 
+
+ + **Consistency:** using a consistent format aids learning and reproducibility
+
+ + **Simplicity:** it's a format that is well understood by `R`
+ 
+> "Tidy datasets are easy to manipulate, model and visualize, and have a specific structure: each variable is a column, each observation is a row, and each type of observational unit is a table. This framework makes it easy to tidy messy datasets because only a small set of tools are needed to deal with a wide range of un-tidy datasets." `r tufte::quote_footer('--- Hadley Wickham, Tidy data')`
+
+### Introuducing the [Palmer penguins](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0090081)
+
+
+```{r embed, out.extra='style="border: none;"', out.width='40%', echo = FALSE}
+knitr::include_url('https://giphy.com/embed/3og0IO5z8Rd30ktV6g')
+```
+
+```{r}
+library(palmerpenguins) ## contains some nice penguin data
+penguins
+```
+
+So, what does this show us?
+
++ `A tibble: 344 x 8`: A `tibble` is a specific kind of data frame in `R`. The `penguin` dataset has
+  + `344` rows (i.e., 344 different observations). Here, each observation corresponds to a penguin.
+  + `8` columns corresponding to 3 variables describing each observation.
+  + `species`, `island`, `bill_length_mm`, `bill_depth_mm`, `flipper_length_mm`, `body_mass_g`, `sex`, and  `year` are the different variables of this dataset.
+  
++ We then have a preview of the first 10 rows of observations corresponding to the first 10 penguins. ```... with 334 more rows` indicates there are 334 more rows to see, but these have not been printed (likely as it would clog our screen)
+
+To learn more about the penguins read the [paper that talks all about the data collection.](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0090081)
+
+### Common dataframe manipulations in the `tidyverse`, using `dplyr` and `tidyr`
+
+Even from these first few rows of data we can see that there are some `NA` values. Let's count the number of `NA`s. Remember the `%>%` operator? Here we're going to be introduced to a few new things
+
+  + the `apply()` function,
+  + the `is.na()` function, and
+  + how `R` deals with `logical` values!
+
+```{r, message = FALSE}
+library(tidyverse)
+penguins %>% 
+  apply(.,2,is.na) %>%
+  apply(.,2,sum)
+```
+There's lot going on in that code! Let's break it down
+
++ Take `penguins` then
++ Use `penguins` as an input to the `apply()` function (this is specified as the first argument using the `.`)
+  + Now the `apply()` function takes 3 arguments: 
+    1. the data object you want it to *apply* something to (in our case `penguins`)
+    2. the margin you want to *apply* that something to; 1 stands for rows and 2 stands for columns, and
+    3. the function you want it to apply (in our case `is.na()`).
+  + So the second line of code is asking `R` to *apply* the `is.na()` function over the columns of `penguins`
+    + `is.na()` asks for each value it's fed is it an `NA` value; it returns a `TRUE` if so and a `FALSE` otherwise
++ The output from the first `apply()` is then fed to the second `apply()` (using the `.`). The `sum()` function then add them up!
+    + `R` treats a `TRUE` as a 1 and a `FALSE` as a 0.
+    
+So how many `NA`s do you think there are!
+
+Doesn't help much. To
+
+Now we know there are `NA` values throughout the data let's remove then and create a new `NA` free version called `penguins_nafree`. There is a really handy `tidyverse` (`dplyr`) function for this!
+
+```{r}
+penguins_nafree <- penguins %>% drop_na()
+penguins_nafree
+```
+
+Below are some other useful manipulation functions; have a look at the outputs and run them yourselves and see if you can work out what they're doing.
+
+```{r}
+filter(penguins_nafree, island == "Torgersen" )
+summarise(penguins_nafree, avgerage_bill_length = mean(bill_length_mm))
+group_by(penguins_nafree, species)
+```
+
+
+Often we want to summarise variables by different groups (factors). Below we
+
++ Take the `penguins_nafree` data then
++ Use this and apply the `group_by()` function to group by `species`
++ Use this output and apply the `summarize()` function to calculate the mean (using (`mean()`) bill length (`bill_length_mm`) of each group (`species`), calling the resulting number `avgerage_bill_length`
+
+
+```{r}
+penguins_nafree %>% 
+  group_by(species) %>% 
+  summarise(avgerage_bill_length = mean(bill_length_mm))
+```
+
+We can also group by multiple factors, for example, 
+
+
+```{r}
+penguins_nafree %>% 
+  group_by(island,species) %>% 
+  summarise(avgerage_bill_length = mean(bill_length_mm))
+```
+
+
+## Data Viz
+
+> "...have obligations in that we have a great deal of power over how people ultimately make use of data, both in the patterns they see and the conclusions they draw." `r tufte::quote_footer('--- Michael Correll, Ethical Dimensions of Visualization Research')`
+
+> "Clutter and confusion are not attributes of data - they are shortcomings of design." `r tufte::quote_footer('--- Edward Tufte')`
+
+
+### Exploratory and explanatory plots
+
+1. **Exploratory plots** (*for you*)
+
+  + data exploration
+  + doesn't have to look pretty
+  + just needs to get to the point
+  + explore and discover new data facets
+  + formulate new questions
+  
+For example,
+  
+```{r example, me, echo = FALSE, fig.cap="", warning = FALSE, message = FALSE}
+library(palmerpenguins)
+penguins_nafree <- penguins %>% drop_na()
+## scatter
+ggplot(data = penguins_nafree, aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +
+  geom_point()
+## histogram
+ggplot(data = penguins, aes(x = bill_length_mm)) +
+  geom_histogram(aes(fill = species), alpha = 0.5, position = "identity")
+```
+
+
+ 2. **Explanatory plots** (*for others*), most common kind of graph used in
+scientific publications
+
+   + clear purpose
+   + designed for the audience
+   + make it easy to read (*this covers a lot of things*)
+   + do not distort
+   + guide the reader to a particular conclusion 
+   + answer a specific question
+   + support a decision
+   
+For example,
+
+![](https://jimgruman.netlify.app/post/variableimportance/2020_31_PalmerPenguins.png)
+
+Plots by Cedric Scherer and mentioned on [this blog](https://jimgruman.netlify.app/post/variableimportance/)
+
+
+
+## [Ten Simple Rules for Better Figures](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003833)
+
+> "Scientific visualization is classically defined as the process of graphically displaying scientific data. However, this process is far from direct or automatic. There are so many different ways to represent the same data: scatter plots, linear plots, bar plots, and pie charts, to name just a few. Furthermore, the same data, using the same type of plot, may be perceived very differently depending on who is looking at the figure. A more accurate definition for scientific visualization would be a graphical interface between people and data." `r tufte::quote_footer('--- Nicolas P. Rougier, Michael Droettboom, Philip E. Bourne, Ten Simple Rules for Better Figures ')`
+
+  + **Know** Your Audience
+ 
+ + **Identify** Your Message
+ 
+ + **Adapt** the Figure to the Support Medium
+ 
+ + **Captions** Are Not Optional
+ 
+ + **Do Not** Trust the Defaults
+ 
+ + Use **Color** Effectively
+ 
+ + **Do Not Mislead** the Reader
+ 
+    + [There are formulas to measure how misleading a graph is!](https://en.wikipedia.org/wiki/Misleading_graph)
+    
+ + **Avoid** *Chartjunk*
+ 
+ + **Message** Trumps Beauty
+ 
+> "message and readability of the figure is the most important aspect while beauty is only an option" `r tufte::quote_footer('--- Nicolas P. Rougier, Michael Droettboom, Philip E. Bourne, Ten Simple Rules for Better Figures ')`
+
+ + Get the Right **Tool**
+ 
+    + I'm an advocate for `R` `r emo::ji("wink")`
+    
+## `ggplot2`
+
+`ggplot2` is an `R` package for producing statistical, or data, graphics; it has an underlying grammar based on the [Grammar of Graphics](https://www.amazon.com/Grammar-Graphics-Statistics-Computing/dp/0387245448)
+
+Every `ggplot2` plot has three key components:
+
+  + `data`,
+
+  + A set of `aes`thetic mappings between variables in the data and visual properties, and
+
+  + At least one layer which describes how to render each observation. Layers are usually created with a `geom` function.
+
+
+
+### `ggplot2` layers
+
+![](img/ggplot.png)
+
+
+
+### Examples
+
+
+**Scatter plot** using `geom_point()`
+
+```{r flippoint,message=FALSE,warning=FALSE}
+ggplot(penguins,aes(x = body_mass_g, y = flipper_length_mm)) + ## data & aesthetics
+    geom_point() + ## geom
+  geom_smooth(method = 'lm', se = FALSE) ## statistics (linear regression line)
+```
+
+**Boxplot** using `geom_boxplot()` 
+
+```{r flipbox2,message=FALSE,warning=FALSE}
+ggplot(penguins,aes(x = species, y = flipper_length_mm)) + ## data & aesthetics
+    geom_boxplot()  + ## geom
+  ggtitle("Flipper length (mm) by species") +
+  ylab("Flipper length (mm)") +
+  xlab("Species") +
+  theme_dark() ## theme
+```
+
+
+**Scatter plot** specifying `color` using `geom_point()`
+
+```{r flippoint2, message=FALSE,warning=FALSE}
+ggplot(penguins,aes(x = body_mass_g, y = flipper_length_mm, color = species)) + ## data and aesthetics
+    geom_point() + ## geom
+  geom_smooth(method = 'lm', se = FALSE) ## statistic (linear regression line without intervals)
+```
+
+
+### The Good, the Bad, and the Ugly...
+
+```{r boxesc, eval = FALSE}
+box <- ggplot(penguins,aes(x = species, y = flipper_length_mm)) + ## data & aesthetics
+    geom_boxplot()  + ## geom
+  ggtitle("Flipper length (mm) by species") +
+  ylab("Flipper length (mm)") +
+  xlab("Species") +
+  theme_dark() ## theme
+box
+jitter <- ggplot(penguins,aes(x = species, y = flipper_length_mm)) + ## data & aesthetics
+    geom_jitter()  + ## geom
+  ggtitle("Flipper length (mm) by species") +
+  ylab("Flipper length (mm)") +
+  xlab("Species") +
+  theme_dark() ## theme
+jitter
+violin <- ggplot(penguins,aes(x = species, y = flipper_length_mm)) + ## data & aesthetics
+    geom_violin()  + ## geom
+  ggtitle("Flipper length (mm) by species") +
+  ylab("Flipper length (mm)") +
+  xlab("Species") +
+  theme_dark() ## theme
+violin
+```
+
+
+```{r simple, echo = TRUE,warning=FALSE}
+ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm)) +
+    geom_point() +
+    geom_smooth(method = "lm", col = "blue", se = FALSE)
+```
+
+```{r facet, echo = TRUE,warning=FALSE}
+ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm, 
+                         col = species)) +
+    geom_point(size = 2, alpha = 0.5) + 
+    geom_smooth(method = "lm", se = FALSE) +
+    facet_grid(~ sex) +
+    theme_bw() + 
+    labs(title = "Flipper Length and Body Mass, by Sex & Species",
+         subtitle = paste0(nrow(penguins), " of the Palmer Penguins"),
+         x = "Body Mass (g)", 
+         y = "Flipper Length (mm)")
+```
+
+
+```{r facetna, echo = TRUE,warning=FALSE}
+penguins_nafree <- penguins %>% drop_na()
+ggplot(penguins_nafree, aes(x = body_mass_g, y = flipper_length_mm, 
+                         col = species)) +
+    geom_point(size = 2, alpha = 0.5) + 
+    geom_smooth(method = "lm", se = FALSE) +
+    facet_grid(~ sex) +
+    theme_bw() + 
+    labs(title = "Flipper Length and Body Mass, by Sex & Species",
+         subtitle = paste0(nrow(penguins_nafree), " of the Palmer Penguins"),
+         x = "Body Mass (g)", 
+         y = "Flipper Length (mm)")
+```
+
+
+
+## Resources
+
++ [`ggplot2` cheatsheet](https://rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf)
++ [Elegant Graphics for Data Analysis](https://ggplot2-book.org/introduction.html)
++ [Using `ggplot2` to communicate your results](https://ourcodingclub.github.io/tutorials/datavis/)
++ [Interesting blogs on graphs in the media](https://www.statschat.org.nz/?s=graphs)
++ [`tidyverse`](https://dplyr.tidyverse.org/)
++ [`Tidy` Data](https://vita.had.co.nz/papers/tidy-data.html)
++ [Palmer penguins](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0090081)
