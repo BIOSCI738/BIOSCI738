@@ -175,11 +175,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.5.1" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#aov"><i class="fa fa-check"></i><b>4.5.1</b> <code>aov()</code></a></li>
 <li class="chapter" data-level="4.5.2" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#lm"><i class="fa fa-check"></i><b>4.5.2</b> <code>lm()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="4.6" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#the-predictmeans-package"><i class="fa fa-check"></i><b>4.6</b> The <code>predictmeans</code> package</a></li>
-<li class="chapter" data-level="4.7" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#diagnostic-plots"><i class="fa fa-check"></i><b>4.7</b> Diagnostic plots</a></li>
-<li class="chapter" data-level="4.8" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#p-values"><i class="fa fa-check"></i><b>4.8</b> 😱 p-values 😱</a></li>
-<li class="chapter" data-level="4.9" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#terminology-and-issues"><i class="fa fa-check"></i><b>4.9</b> Terminology and issues</a></li>
-<li class="chapter" data-level="4.10" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#resources-2"><i class="fa fa-check"></i><b>4.10</b> Resources</a></li>
+<li class="chapter" data-level="4.6" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#p-values"><i class="fa fa-check"></i><b>4.6</b> 😱 p-values 😱</a></li>
+<li class="chapter" data-level="4.7" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#terminology-and-issues"><i class="fa fa-check"></i><b>4.7</b> Terminology and issues</a></li>
+<li class="chapter" data-level="4.8" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#resources-2"><i class="fa fa-check"></i><b>4.8</b> Resources</a></li>
 </ul></li>
 </ul>
 
@@ -214,9 +212,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>Replication</li>
 <li>Blocking</li>
 </ul></li>
-<li><strong>Discuss</strong> the advantages and disadvantages of different designs</li>
-<li><strong>Critique</strong> experimental designs</li>
-<li><strong>Communicate</strong> statistical concepts and experimental outcomes clearly using language appropriate for both a <strong>scientific</strong> and <strong>non-scientific</strong> audience</li>
 <li><strong>Calculate</strong> Sums of Squares (between and within groups) given the observations</li>
 <li><strong>Define</strong> and <strong>state</strong> the appropriate degrees of freedom in a one-way ANOVA scenario</li>
 <li><strong>Calculate</strong> the F-statistics given the appropriate Sums of Squares and degrees of freedom</li>
@@ -372,98 +367,8 @@ rats &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class=
 <ul>
 <li>SurgeryP : t value = Estimate ÷ Std.Error = 0.8446; Pr (&gt;|t|) = 0.4202</li>
 </ul>
-</div>
-</div>
-<div id="the-predictmeans-package" class="section level2">
-<h2><span class="header-section-number">4.6</span> The <code>predictmeans</code> package</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Load predictmeans (assumes already installed)</span>
-<span class="kw">library</span>(predictmeans)
-pred_means &lt;-<span class="st"> </span><span class="kw">predictmeans</span>(rats_lm , <span class="dt">modelterm =</span> <span class="st">&quot;Surgery&quot;</span>,<span class="dt">pairwise =</span> <span class="ot">TRUE</span>, <span class="dt">adj =</span> <span class="st">&quot;none&quot;</span>, <span class="dt">plot =</span> <span class="ot">FALSE</span>)
-pred_means<span class="op">$</span><span class="st">`</span><span class="dt">Predicted Means</span><span class="st">`</span></code></pre></div>
-<pre><code>## Surgery
-##       C       P       S 
-##  8.4600  8.9500 11.5475</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pred_means<span class="op">$</span><span class="st">`</span><span class="dt">Standard Error of Means</span><span class="st">`</span></code></pre></div>
-<pre><code>## All means have the same Stder 
-##                       0.41025</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pred_means<span class="op">$</span>LSD</code></pre></div>
-<pre><code>##  Max.LSD  Min.LSD Aveg.LSD 
-##  1.31247  1.31247  1.31247 
-## attr(,&quot;Significant level&quot;)
-## [1] 0.05
-## attr(,&quot;Degree of freedom&quot;)
-## [1] 9</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pred_means<span class="op">$</span><span class="st">`</span><span class="dt">Pairwise p-value</span><span class="st">`</span></code></pre></div>
-<pre><code>##        C       P       S
-## C 0.0000 -0.8446 -5.3216
-## P 0.4202  0.0000 -4.4770
-## S 0.0005  0.0015  0.0000
-## attr(,&quot;Degree of freedom&quot;)
-## [1] 9
-## attr(,&quot;Note&quot;)
-## [1] &quot;The matrix has t-value above the diagonal, p-value (adjusted by &#39;none&#39; method) below the diagonal&quot;
-## attr(,&quot;Letter-based representation of pairwise comparisons at significant level &#39;0.05&#39;&quot;)
-##   Treatment    Mean Group
-## 1         S 11.5475    A 
-## 2         P  8.9500     B
-## 3         C  8.4600     B</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">predictmeans</span>(rats_lm , <span class="dt">modelterm =</span> <span class="st">&quot;Surgery&quot;</span>,<span class="dt">pairwise =</span> <span class="ot">TRUE</span>, <span class="dt">adj =</span> <span class="st">&quot;none&quot;</span>, <span class="dt">plot =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<pre><code>## $`Predicted Means`
-## Surgery
-##       C       P       S 
-##  8.4600  8.9500 11.5475 
-## 
-## $`Standard Error of Means`
-## All means have the same Stder 
-##                       0.41025 
-## 
-## $`Standard Error of Differences`
-##   Max.SED   Min.SED  Aveg.SED 
-## 0.5801856 0.5801856 0.5801856 
-## 
-## $LSD
-##  Max.LSD  Min.LSD Aveg.LSD 
-##  1.31247  1.31247  1.31247 
-## attr(,&quot;Significant level&quot;)
-## [1] 0.05
-## attr(,&quot;Degree of freedom&quot;)
-## [1] 9
-## 
-## $`Pairwise LSDs`
-##         C        P       S
-## C 0.00000 -0.49000 -3.0875
-## P 1.31247  0.00000 -2.5975
-## S 1.31247  1.31247  0.0000
-## attr(,&quot;Significant level&quot;)
-## [1] 0.05
-## attr(,&quot;Degree of freedom&quot;)
-## [1] 9
-## attr(,&quot;Note&quot;)
-## [1] &quot;LSDs matrix has mean differences (row-col) above the diagonal, LSDs (adjusted by &#39;none&#39; method) below the diagonal&quot;
-## 
-## $`Pairwise p-value`
-##        C       P       S
-## C 0.0000 -0.8446 -5.3216
-## P 0.4202  0.0000 -4.4770
-## S 0.0005  0.0015  0.0000
-## attr(,&quot;Degree of freedom&quot;)
-## [1] 9
-## attr(,&quot;Note&quot;)
-## [1] &quot;The matrix has t-value above the diagonal, p-value (adjusted by &#39;none&#39; method) below the diagonal&quot;
-## attr(,&quot;Letter-based representation of pairwise comparisons at significant level &#39;0.05&#39;&quot;)
-##   Treatment    Mean Group
-## 1         S 11.5475    A 
-## 2         P  8.9500     B
-## 3         C  8.4600     B
-## 
-## $mean_table
-##   Surgery Predicted means Standard error Df LL of 95% CI UL of 95% CI
-## 1       C          8.4600      0.4102531  9     7.531943     9.388057
-## 2       P          8.9500      0.4102531  9     8.021943     9.878057
-## 3       S         11.5475      0.4102531  9    10.619443    12.475557</code></pre>
-</div>
-<div id="diagnostic-plots" class="section level2">
-<h2><span class="header-section-number">4.7</span> Diagnostic plots</h2>
+<div id="diagnostic-plots" class="section level4">
+<h4><span class="header-section-number">4.5.2.1</span> Diagnostic plots</h4>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gglm<span class="op">::</span><span class="kw">gglm</span>(rats_lm) <span class="co"># Plot the four main diagnostic plots</span></code></pre></div>
 <p><img src="_main_files/figure-html/qqnorm-1.png" width="672" /></p>
 <p><strong>Residuals vs Fitted</strong> plot</p>
@@ -475,8 +380,10 @@ pred_means<span class="op">$</span><span class="st">`</span><span class="dt">Pre
 <p><strong>Residuals vs Leverage</strong> plot (standardized residuals vs Leverage)</p>
 <p>This can help detect outliers in a linear regression model. For linear regression model leverage measures how sensitive a fitted value is to a change in the true response. We're looking at how the spread of standardized residuals changes as the leverage. This can also be used to detect heteroskedasticity and non-linearity: the spread of standardized residuals shouldn't change as a function of leverage. In addition, points with high leverage may be influential: that is, deleting them would change the model a lot.</p>
 </div>
+</div>
+</div>
 <div id="p-values" class="section level2">
-<h2><span class="header-section-number">4.8</span> 😱 p-values 😱</h2>
+<h2><span class="header-section-number">4.6</span> 😱 p-values 😱</h2>
 <p><strong><a href="https://www.tandfonline.com/doi/full/10.1080/00031305.2016.1154108">The ASA Statement on p-Values: Context, Process, and Purpose</a></strong></p>
 <blockquote>
 &quot;Good statistical practice, as an essential component of good scientific practice, emphasizes principles of good study design and conduct, a variety of numerical and graphical summaries of data, understanding of the phenomenon under study, interpretation of results in context, complete reporting and proper logical and quantitative understanding of what data summaries mean. No single index should substitute for scientific reasoning.&quot;
@@ -496,7 +403,7 @@ pred_means<span class="op">$</span><span class="st">`</span><span class="dt">Pre
 </ul>
 </div>
 <div id="terminology-and-issues" class="section level2">
-<h2><span class="header-section-number">4.9</span> Terminology and issues</h2>
+<h2><span class="header-section-number">4.7</span> Terminology and issues</h2>
 <p><strong>Type I</strong> error (false positive): declare a difference (i.e., reject <span class="math inline">\(H_0\)</span>) when there is no difference (i.e. <span class="math inline">\(H_0\)</span> is true). Risk of the Type I error is determined by the <em>level of significance</em> (which we set!) (i.e., <span class="math inline">\(\alpha =\text{ P(Type I error)} = \text{P(false positive)}\)</span>.</p>
 <div class="figure">
 <img src="https://raw.githubusercontent.com/allisonhorst/stats-illustrations/master/other-stats-artwork/type_1_errors.png" />
@@ -530,11 +437,10 @@ pred_means<span class="op">$</span><span class="st">`</span><span class="dt">Pre
 </tr>
 </tbody>
 </table>
-<pre><code>## Loading required package: patchwork</code></pre>
 <p><img src="_main_files/figure-html/alp-1.png" width="672" /></p>
 </div>
 <div id="resources-2" class="section level2">
-<h2><span class="header-section-number">4.10</span> Resources</h2>
+<h2><span class="header-section-number">4.8</span> Resources</h2>
 <div class="figure">
 <img src="https://pbs.twimg.com/media/EeMWb7QWsAIGftR?format=jpg&amp;name=small" />
 

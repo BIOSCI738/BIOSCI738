@@ -10,9 +10,6 @@
        + Randomization
        + Replication
        + Blocking
-   + **Discuss** the advantages and disadvantages of different designs
-   + **Critique** experimental designs
-   + **Communicate** statistical concepts and experimental outcomes clearly using language appropriate for both a **scientific** and **non-scientific** audience
    + **Calculate** Sums of Squares (between and within groups) given the observations 
    + **Define** and **state** the appropriate degrees of freedom in a one-way ANOVA scenario
    + **Calculate** the F-statistics given the appropriate Sums of Squares and degrees of freedom
@@ -314,32 +311,13 @@ We're interested in 2 and 3, but not necessarily 1!
  
 + SurgeryP : t value = Estimate ÷ Std.Error =  0.8446; Pr (>|t|) =  0.4202
 	
-##  The `predictmeans` package
 
+#### Diagnostic plots
 ```{r,echo = FALSE}
 options(warn=-1)
 ```
 
-```{r predmeans, message=FALSE, warnings = FALSE}
-# Load predictmeans (assumes already installed)
-library(predictmeans)
-pred_means <- predictmeans(rats_lm , modelterm = "Surgery",pairwise = TRUE, adj = "none", plot = FALSE)
-pred_means$`Predicted Means`
-```
-
-```{r}
-pred_means$`Standard Error of Means`
-pred_means$LSD
-pred_means$`Pairwise p-value`
-```
-
-```{r,echo = TRUE}
-predictmeans(rats_lm , modelterm = "Surgery",pairwise = TRUE, adj = "none", plot = TRUE)
-```
-
-## Diagnostic plots
-
-```{r qqnorm}
+```{r qqnorm, warning=FALSE, message=FALSE}
 gglm::gglm(rats_lm) # Plot the four main diagnostic plots
 ```
 
@@ -407,7 +385,7 @@ When we have **multiple comparisons** to make we should then control the **Type 
 | $H_0$ is false  | Type II error  | `r emo::ji("check")` |
 
 
-```{r alp, echo = FALSE}
+```{r alp, echo = FALSE, message=FALSE}
 m <- data.frame(m = rep(1:10,3))
 m$alpha <- rep(c(0.01,0.05,0.2),each = 10)
 m$fwer <- 1 - (1 - m$alpha)^m$m 
