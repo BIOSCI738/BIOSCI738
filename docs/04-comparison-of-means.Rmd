@@ -385,30 +385,6 @@ When we have **multiple comparisons** to make we should then control the **Type 
 | $H_0$ is false  | Type II error  | `r emo::ji("check")` |
 
 
-```{r alp, echo = FALSE, message=FALSE}
-m <- data.frame(m = rep(1:10,3))
-m$alpha <- rep(c(0.01,0.05,0.2),each = 10)
-m$fwer <- 1 - (1 - m$alpha)^m$m 
-m$pcer <- 1 - (1 - m$alpha)^(1/m$m) 
-require(patchwork)
-p <- ggplot(data = m, aes(x = as.factor(m), y = pcer, 
-                          color = as.factor(alpha), group = as.factor(alpha) )) +
-  geom_point() + geom_line() + xlab("Number of comparisons, m") +
-  labs(colour = "alpha") +
-  ylab("Per comparison error rate") + 
-  theme_classic() + geom_hline(yintercept = 0.0005) 
-f <- ggplot(data = m, aes(x = as.factor(m), y = fwer, color = as.factor(alpha),
-                          group = as.factor(alpha))) +
-  geom_point()  + geom_line() + xlab("Number of comparisons, m") +
-  ylab("Family wise comparison error rate") + 
-  labs(colour = "alpha") +
-  theme_classic()
-f + p
-```
-
-
-
-
 ## Resources
 
 ![](https://pbs.twimg.com/media/EeMWb7QWsAIGftR?format=jpg&name=small)

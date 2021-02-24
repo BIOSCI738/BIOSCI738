@@ -26,20 +26,50 @@ When we have **multiple comparisons** to make we should then control the **Type 
 
 The **familywise error rate (FWER)** is the risk of making at least one **Type I** error among the family of comparisons in the experiment. Now let's consider carrying out $m$ independent t-tests and let for any single test, let Pr(commit a Type 1 error) $= \alpha_c$ be the **per comparison error rate (PCER)**. So for a single test the probability a correct decision is made is $1 - \alpha_c$. Therefore for $m$ **independent** t-tests the probability of committing no Type I errors is $(1 - \alpha_c)^m$ and the probability of committing at least one Type I error is $1 -(1 - \alpha_c)^m = \alpha_F$ which is the upper limit of the FWER.
 
-### Fisher’s, Least Significant Difference, LSD
+```{r alp, echo = FALSE, message=FALSE}
+library(ggplot2)
+m <- data.frame(m = rep(1:10,3))
+m$alpha <- rep(c(0.01,0.05,0.2),each = 10)
+m$fwer <- 1 - (1 - m$alpha)^m$m 
+m$pcer <- 1 - (1 - m$alpha)^(1/m$m) 
+require(patchwork)
+p <- ggplot(data = m, aes(x = as.factor(m), y = pcer, 
+                          color = as.factor(alpha), group = as.factor(alpha) )) +
+  geom_point() + geom_line() + xlab("Number of comparisons, m") +
+  labs(colour = "alpha") +
+  ylab("Per comparison error rate") + 
+  theme_classic() + geom_hline(yintercept = 0.0005) 
+f <- ggplot(data = m, aes(x = as.factor(m), y = fwer, color = as.factor(alpha),
+                          group = as.factor(alpha))) +
+  geom_point()  + geom_line() + xlab("Number of comparisons, m") +
+  ylab("Family wise comparison error rate") + 
+  labs(colour = "alpha") +
+  theme_classic()
+f + p
+```
 
-Carry out post-hoc tests only if the ANOVA F-test is *significant*. If so declare significant $100\alpha\%$ any pairwise difference > LSD. This does **not** control the FWER.
+### Classification of multiple hypothesis tests
 
-### Bonferroni correction
+Suppose we have a number $m$ of null hypotheses, $H_1, H_2, ..., H_m$. Using the traditional parlence we reject the null hypothesis if the test is declared significant and do not reject the null hypothesis if the test is non-significant. Now, summing each type of outcome over all $H_i (i = 1.,..,m)$  yields the following random variables:
 
-### Multiple comparison procedures
+|    |Null hypothesis is true (H0)|	Alternative hypothesis is true (HA)	|Total|
+|---|---                          |---                                  |---  | 
+|Test is declared significant|	V |	S |	R |
+|Test is declared non-significant|	U |	T	| m - R |
+|Total|	$m_{0}$ |	$m - m_0$ |	m |
 
-#### Tukey’s Honest Significant Difference (HSD)
 
-#### Dunnett’s test
++ $m$ is the total number hypotheses tested
++ $m_{0}$ is the number of true null hypotheses, an unknown parameter
++ $m - m_0$ is the number of true alternative hypotheses
++ $V$ is the number of false positives (Type I error) (also called "false discoveries")
++ $S$ is the number of true positives (also called "true discoveries")
++ $T$ is the number of false negatives (Type II error)
++ $U$ is the number of true negatives
++ $R=V+S$ is the number of rejected null hypotheses (also called "discoveries", either true or false)
 
 
-##  The `predictmeans` package
+### Using the `predictmeans` package
 
 ```{r,echo = FALSE}
 options(warn=-1)
@@ -52,24 +82,219 @@ rats <- read_csv("../data/crd_rats_data.csv")
 rats$Surgery <- as_factor(rats$Surgery)
 ```
 
+Recall,
 
 ```{r lm}
 rats_lm <- lm(logAUC ~ Surgery, data = rats)
+coef(rats_lm)
 ```
+Using the `predictmeans` package
 
 ```{r predmeans, message=FALSE, warnings = FALSE}
 # Load predictmeans (assumes already installed)
 library(predictmeans)
-pred_means <- predictmeans(rats_lm , modelterm = "Surgery",pairwise = TRUE, adj = "none", plot = FALSE)
-pred_means$`Predicted Means`
+```
+
+ + **Fisher’s, Least Significant Difference (LSD)**
+
+Carry out post-hoc tests only if the ANOVA F-test is *significant*. If so declare significant $100\alpha\%$ any pairwise difference > LSD. This does **not** control the FWER.
+
+```{r}
+tukey <- predictmeans(rats_lm , modelterm = "Surgery", adj = "tukey",pairwise = TRUE)
+```
+
+ + **Bonferroni correction**
+
+We reject the $H_0$ for which the p-value, *p-val*, is *p-val* $< \alpha_c = \frac{\alpha_f}{n_c}$ where $\alpha_f$ is the FWER and $n_c$ is the number of pairwise comparisons. Howerer, this makes **no** assumptions about independence between tests.
+
+
+```{r}
+bonferroni <- predictmeans(rats_lm , modelterm = "Surgery", adj = "bonferroni",pairwise = TRUE)
+``` 
+
+
+### Multiple comparison procedures
+
+ + **Tukey’s Honest Significant Difference (HSD)**
+
+This compares the mean of every treatment with the mean of every other treatmen and uses a *studentized range* distribution compated with a t-distribution for Fisher's LSD and the Bonferroni correction.
+
+Here Tukey's *studentixed range* (TSR) $=q_{m,df}(1 - \frac{\alpha}{2})\sqrt{2\times \frac{\text{residual MS}}{\text{# reps}}}$
+
+```{r}
+TukeyHSD(aov(logAUC~Surgery, data = rats))
+```
++ **False Discovert Rate (FDR)**
+
+The FDR controls the expected (mean) proportion of false discoveries amongst the $R$ (out of $m$) hypotheses declared significant.
+
+Consider testing $m$ null hypotheses with corresponding p-values $P_1, P_2,...,P_m$; we then order then so that  $P_{(1)} < P_{(2)} <...<P_{(m)}$ (where $P_{(i)}$ is the $i^{th}$ largest $i=1,...,m$). The $i^{th}$ ordered p-value is calculated as  $\frac{i}{m}q^*$ and the $i^{th}$ null hypotesis is rejected if $P_i \leq \frac{i}{m}q^*$
+
+
+## A Randomised Controlled Block Design (RCBD) in `R`
+
+```{r, echo = FALSE, message = FALSE}
+rcbd <- read_csv("../data/rcbd.csv")
+```
+
+You'll find the `rcbd.csv` file on CANVAS.
+
+```{r, eval = FALSE}
+rcbd <- read_csv("rcbd.csv")
 ```
 
 ```{r}
-pred_means$`Standard Error of Means`
-pred_means$LSD
-pred_means$`Pairwise p-value`
+glimpse(rcbd)
+## Note: Run should be a factor
+rcbd$Run <- as.factor(rcbd$Run)
+glimpse(rcbd)
 ```
 
-```{r,echo = TRUE}
-predictmeans(rats_lm , modelterm = "Surgery",pairwise = TRUE, adj = "none", plot = TRUE)
+**Analysis** using `lm()`
+
+```{r}
+lm_mod <- lm(logAUC8 ~ Surgery + Run, data = rcbd)
+anova(lm_mod)
 ```
+
+
+**Analysis** using `aov()`
+
+```{r}
+aov_mod <- aov(logAUC8 ~ Surgery + Error(Run), data = rcbd)
+summary(aov_mod)
+```
+
+**Analysis** using `lmer()`
+
+```{r}
+lmer_mod <- lmer(logAUC8 ~ Surgery + (1|Run), data = rcbd)
+anova(lmer_mod)
+```
+
+## Factorial experiments
+
++ Two or more sets of treatments (factors)
+
+
+### Equal replications (balanced design)
+
+**Analysis** using `lm()`
+
+
+```{r, echo = FALSE, message = FALSE}
+factorial <- read_csv("../data/factorial_expt.csv")
+```
+
+
+```{r, eval = FALSE}
+factorial <- read_csv("factorial_expt.csv")
+```
+
+**Fitting models with interaction terms**
+
+```{r}
+glimpse(factorial)
+## change to factors (saves errors with predictmeans)
+factorial$Disease <- as.factor(factorial$Disease)
+factorial$Organ <- as.factor(factorial$Organ)
+## shorthand version
+fac_lm <- lm(logAUC ~ Disease*Organ, data = factorial)
+## longhand version
+fac_lm_lh <- lm(logAUC ~ Disease + Organ +Disease:Organ, data = factorial)
+## both are the SAME
+cbind("short hand" = coef(fac_lm),"long hand" = coef(fac_lm_lh))
+```
+
+So the full model is
+
+```{r, echo = FALSE, results='asis'}
+library(equatiomatic)
+extract_eq(fac_lm, wrap = TRUE)
+```
+
+And the **gobal** null hypotheses being tested are:
+
++ $H_0: \hat{\mu}_{\text{Diabetic}} = \hat{\mu}_{\text{Healthy}}$
++ $H_0: \hat{\mu}_{\text{innerLV}} = \hat{\mu}_{\text{outerLV}}$
++ $H_0: \hat{\mu}_{\text{Diabetic,innerLV}} = \hat{\mu}_{\text{Diabetic,outerLV}} = \hat{\mu}_{\text{Healthy,innerLV}} = \hat{\mu}_{\text{Healthy,outerLV}}$
+
+```{r}
+anova(fac_lm)
+```
+
+Plotting the fitted model
+
+```{r, echo = FALSE}
+ggplot(data = factorial, aes(x = Disease, y = logAUC, color = Organ)) +
+   geom_point() 
+```
+
+**Note** with a balanced design ordering of term doesn't matter. For example,
+
+```{r}
+fac_lm <- lm(logAUC ~ Disease*Organ, data = factorial)
+anova(fac_lm)
+fac_lm_2 <- lm(logAUC ~ Organ*Disease, data = factorial)
+anova(fac_lm_2)
+```
+
+**Inference** using `predictmeans`
+
+```{r}
+interaction <- predictmeans(fac_lm, modelterm = "Disease:Organ", pairwise = TRUE)
+interaction$`Predicted Means`
+interaction$`Standard Error of Means`
+interaction$`Pairwise LSDs`
+## plot
+print(interaction$predictmeansPlot)
+```
+
+
+### Unqual replications (unbalanced design)
+
+As per lecture slides let's set `logAUC` obvservations 1,2,3, 10 to `NA`
+
+```{r}
+unbalanced <- factorial
+unbalanced$logAUC[c(1:3,10)] <- NA
+unbalanced
+unbalanced_nafree <- unbalanced %>% drop_na()
+unbalanced_nafree
+```
+
+```{r}
+unbalanced_nafree %>% group_by(Disease, Organ) %>% tally()
+```
+**Analysis** using `lm()`
+
+**Note**: order matters. For example,
+
+```{r}
+fac_lm <- lm(logAUC ~ Disease*Organ, data = unbalanced_nafree)
+anova(fac_lm)
+fac_lm_2 <- lm(logAUC ~ Organ*Disease, data = unbalanced_nafree)
+anova(fac_lm_2)
+```
+
+
+## TL;DR, Model formula syntax in `R`
+
+In `R` to specify the model you want to fit you typically create a model formula object; this is usually then passed as the first argument to the model fitting function (e.g., `lm()`).
+
+Some notes on syntax:
+
+Consider the model formula example `y ~ x + z + x:z`. There is a lot going on here:
+
+ + The variable to the left of `~` specifies the response, everything to the right specify the explanatory variables
+ + `+` indicated to include the variable to the left of it and to the right of it (it does **not** mean they should be summed)
+ + `:` denotes the interaction of the variables to its left and right
+ 
+Additional, some other symbols have special meanings in model formula:
+
+ + `*` means to include all main effects and interactions, so `a*b` is the same as `a + b + a:b`
+ 
+ + `^` is used to include main effects and interactions up to a specified level. For example, `(a + b + c)^2` is equivalent to `a + b + c + a:b + a:c + b:c` (note `(a + b + c)^3` would also add `a:b:c`)
+ + `-` excludes terms that might otherwise be included. For example, `-1` excludes the intercept otherwise included by default, and `a*b - b` would produce `a + a:b`
+ 
+Mathematical functions can also be directly used in the model formula to transform a variable directly (e.g., `y ~ exp(x) + log(z) + x:z`). One thing that may seem counter intuitive is in creating polynomial expressions (e.g., x2). Here the expression `y ~ x^2` does **not** relate to squaring the explanatory variable x (this is to do with the syntax `^` you see above. To include x2 as a term in our model we have to use the `I()` (the "as-is" operator). For example, `y ~ I(x^2) `).

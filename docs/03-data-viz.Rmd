@@ -178,7 +178,7 @@ Plots by Cedric Scherer and mentioned on [this blog](https://jimgruman.netlify.a
 
 
 
-## [Ten Simple Rules for Better Figures](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003833)
+## Ten Simple Rules for Better Figures 
 
 > "Scientific visualization is classically defined as the process of graphically displaying scientific data. However, this process is far from direct or automatic. There are so many different ways to represent the same data: scatter plots, linear plots, bar plots, and pie charts, to name just a few. Furthermore, the same data, using the same type of plot, may be perceived very differently depending on who is looking at the figure. A more accurate definition for scientific visualization would be a graphical interface between people and data." `r tufte::quote_footer('--- Nicolas P. Rougier, Michael Droettboom, Philip E. Bourne, Ten Simple Rules for Better Figures ')`
 
@@ -326,6 +326,7 @@ ggplot(penguins_nafree, aes(x = body_mass_g, y = flipper_length_mm,
 ## Resources
 
 + [`ggplot2` cheatsheet](https://rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf)
++ [Ten Simple Rules for Better Figures](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003833)
 + [Elegant Graphics for Data Analysis](https://ggplot2-book.org/introduction.html)
 + [Using `ggplot2` to communicate your results](https://ourcodingclub.github.io/tutorials/datavis/)
 + [Interesting blogs on graphs in the media](https://www.statschat.org.nz/?s=graphs)
