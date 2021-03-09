@@ -111,12 +111,12 @@ ggplot(rats, aes(x = Surgery, y = logAUC)) +
 
 **Sums of Squares?** 
 
-$`r round(means$avg[1] - mean,3)`^2 + `r round(means$avg[2] - mean,3)`^2 + `r round(means$avg[3] - mean,3)`^2$
+`r round(means$avg[1] - mean,3)`^2 + `r round(means$avg[2] - mean,3)`^2 + `r round(means$avg[3] - mean,3)`^2
 
 **add up the squared differences?** but... there are 4 observations in each group (treatment)
 
 
-$4\times(`r round(means$avg[1] - mean,3)`)^2 + 4\times(`r round(means$avg[2] - mean,3)`)^2 + 4\times(`r round(means$avg[3] - mean,3)`)^2$
+4$\times$(`r round(means$avg[1] - mean,3)`)^2 + 4$\times$(`r round(means$avg[2] - mean,3)`)^2 + 4$\times$(`r round(means$avg[3] - mean,3)`)^2
 
 This is the **Between Groups Sums of Squares** or the **Between group SS (SSB)** 
 
@@ -178,14 +178,14 @@ So mean **SSB** =  `r sum(4*((means$avg - mean)^2))` / 2
 
 The within group SS (**SSW**) = `r sum(rats_df$obvs_minus_tr_avg^2)`
 
-Here we have $2\times 3$ bits of *unique* information: within groups **degrees of freedom** is 9.
+Here we have 2$\times$ 3 bits of *unique* information: within groups **degrees of freedom** is 9.
 
 So mean **SSW** = `r round(sum(rats_df$obvs_minus_tr_avg^2),3)`/9
 
 
-Consider the ratio ${\frac  {{\text{variation due to treatments}}}{{\text{unexplained variance}}}} = {\frac  {{\text{ mean between-group variability}}}{{\text{mean within-group variability}}}}$  $=\frac{\text{mean SSB}}{\text{mean SSW}}$ $=\frac{\text{MSB}}{\text{MSW}}$  = $=\frac{\text{experimental variance}}{\text{error variance}}$ `r (sum(4*((means$avg - mean)^2))/2)/(sum(rats_df$obvs_minus_tr_avg^2)/9)`
+Consider the ratio ${\frac{{\text{variation due to treatments}}}{{\text{unexplained variance}}}} = {\frac{{\text{ mean between-group variability}}}{{\text{mean within-group variability}}}}$  $=\frac{\text{mean SSB}}{\text{mean SSW}}$ $=\frac{\text{MSB}}{\text{MSW}}$  = $=\frac{\text{experimental variance}}{\text{error variance}}$ `r (sum(4*((means$avg - mean)^2))/2)/(sum(rats_df$obvs_minus_tr_avg^2)/9)`
 
-This is the **F-statistic**... 
+This is the **F-statistic!**
 
 ## Analysis of a Completely Randomised Design in `R`: `aov()` and `lm()`
 
@@ -204,6 +204,7 @@ rats %>%
 
 ```{r aov}
 rats_aov <- aov(logAUC ~ Surgery, data = rats)
+summary(rats_aov)
 ```
 
 **Inference**
@@ -283,12 +284,6 @@ $\text{t-value} = \frac{\text{Sample Difference}_{ij} - \text{Difference assumin
  + Compute the p-value for observed t-value
 
 
-
-```{r lmsum2}
-summary(rats_lm)$coef
-```
-
-
 (Intercept) = $\text{mean}_C$ = `r summary(rats_lm)$coef[1,1]`
 
 SE of (Intercept) = SE of $\text{mean}_C$ = SEM = `r summary(rats_lm)$coef[1,2]`
@@ -310,33 +305,15 @@ We're interested in 2 and 3, but not necessarily 1!
  Two-sample t -tests for pairwise comparisons of means
  
 + SurgeryP : t value = Estimate ÷ Std.Error =  0.8446; Pr (>|t|) =  0.4202
+
+**F-test:**
+
+```{r lmsum2}
+anova(rats_lm)
+```
 	
+**The same as `aov()`** in fact `aov()` is calling `lm()` in the background.
 
-#### Diagnostic plots
-```{r,echo = FALSE}
-options(warn=-1)
-```
-
-```{r qqnorm, warning=FALSE, message=FALSE}
-gglm::gglm(rats_lm) # Plot the four main diagnostic plots
-```
-
-**Residuals vs Fitted** plot
-
-You are basically looking for no pattern or structure in your residuals (e.g., a "starry" night). You definitely don't want to see is the scatter increasing around the zero line (dashed line) as the fitted values get bigger (e.g., think of a trumpet, a wedge of cheese, or even a slice of pizza) which would indicate unequal variances (heteroscedacity). 
-
-**Normal quantile-quantile (QQ)** plot
-
-This plot shows the sorted residuals versus expected order statistics from a standard normal distribution. Samples should be close to a line; points moving away from 45 degree line at the tails suggest the data are from a skewed distribution.
-
-
-**Scale-Location** plot ($\sqrt{\text{|standardized residuals vs Fitted|}}$)
-
-Another way to check the homoskedasticity (constant-variance) assumption. We want the  line to be roughly horizontal. If this is the case then the average magnitude of the standardized residuals isn't changing much as a function of the fitted values. We'd also like the spread around the  line not to vary much with the fitted values; then the variability of magnitudes doesn't vary much as a function of the fitted values.
-
-**Residuals vs Leverage** plot (standardized residuals vs Leverage)
-
-This can help detect outliers in a linear regression model. For linear regression model leverage measures how sensitive a fitted value is to a change in the true response. We're looking at how the spread of standardized residuals changes as the leverage. This can also be used to detect heteroskedasticity and non-linearity: the spread of standardized residuals shouldn't change as a function of leverage. In addition, points with high leverage may be influential: that is, deleting them would change the model a lot. 
 
 ##  `r emo::ji('scream')` p-values `r emo::ji('scream')`
 
@@ -383,6 +360,41 @@ When we have **multiple comparisons** to make we should then control the **Type 
 |---              |---                |---            |
 | $H_0$ is true |  `r emo::ji("check")` | Type I error  |
 | $H_0$ is false  | Type II error  | `r emo::ji("check")` |
+
+#### Diagnostic plots
+
+Carrying out any linear regression we have some **key assumptions**
+
++ **Independence** 
++ There is a **linear relationship** between the response and the explanatory variables
++ The residuals have **constant variance**
++ The **residuals** are normally distributed
+
+```{r,echo = FALSE}
+options(warn=-1)
+```
+
+```{r qqnorm, warning=FALSE, message=FALSE, eval = FALSE}
+gglm::gglm(rats_lm) # Plot the four main diagnostic plots
+```
+
+**Residuals vs Fitted** plot
+
+You are basically looking for no pattern or structure in your residuals (e.g., a "starry" night). You definitely don't want to see is the scatter increasing around the zero line (dashed line) as the fitted values get bigger (e.g., think of a trumpet, a wedge of cheese, or even a slice of pizza) which would indicate unequal variances (heteroscedacity). 
+
+**Normal quantile-quantile (QQ)** plot
+
+This plot shows the sorted residuals versus expected order statistics from a standard normal distribution. Samples should be close to a line; points moving away from 45 degree line at the tails suggest the data are from a skewed distribution.
+
+
+**Scale-Location** plot ($\sqrt{\text{|standardized residuals vs Fitted|}}$)
+
+Another way to check the homoskedasticity (constant-variance) assumption. We want the  line to be roughly horizontal. If this is the case then the average magnitude of the standardized residuals isn't changing much as a function of the fitted values. We'd also like the spread around the  line not to vary much with the fitted values; then the variability of magnitudes doesn't vary much as a function of the fitted values.
+
+**Residuals vs Leverage** plot (standardized residuals vs Leverage)
+
+This can help detect outliers in a linear regression model. For linear regression model leverage measures how sensitive a fitted value is to a change in the true response. We're looking at how the spread of standardized residuals changes as the leverage. This can also be used to detect heteroskedasticity and non-linearity: the spread of standardized residuals shouldn't change as a function of leverage. In addition, points with high leverage may be influential: that is, deleting them would change the model a lot. 
+
 
 
 ## Resources

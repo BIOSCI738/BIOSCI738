@@ -2,7 +2,16 @@
 
 [''**Data sovereignty** is the idea that data are subject to the laws and governance structures within the nation it is collected''](https://en.wikipedia.org/wiki/Data_sovereignty)
 
+ > "Māori Data Sovereignty has emerged as a critical policy issue as Aotearoa
+New Zealand develops world-leading linked administrative data resources." `r tufte::quote_footer('--- Andrew Sporle, Maui Hudson, Kiri West. Chapter 5, Indigenous Data Sovereignty and Policy')`
 
+
+[Te Tiriti o Waitangi/Treaty of Waitangi](https://nzhistory.govt.nz/politics/treaty/read-the-Treaty/differences-between-the-texts) obliges the Government to actively protect [taonga](https://maoridictionary.co.nz/search?keywords=taonga), consult with Māori in respect of taonga, give effect to the principle of partnership and recognize Māori rangatiratanga over taonga. Factors that relate to how communities might recognize the taonga nature of any dataset include
+
+ + provenance of the data: does the dataset come from a significant Māori source?
+ + opportunity for the data: could the dataset support Māori aspirations for their people or their whenua (land)?
+ + utility of the data: does the dataset have multiple uses?
+ 
 ## Learning objectives
 
 + **Define** data sovereignty and **explain** this in relation to a researcher's obligation when collecting, displaying, and analysing data
@@ -25,8 +34,7 @@ New Zealand develops world-leading linked administrative data resources." `r tuf
 > Data is a “potential taonga, something precious that needs to be maintained, in relation to its utility” `r tufte::quote_footer('--- Dr W. Edwards, TMR website')`
 
 
-**Māori Data Sovereignty principles** to inform the recognition
-of Māori rights and interests in data, and the ethical use of data to enhance Māori well-being:
+**Māori Data Sovereignty principles** to inform the recognition of Māori rights and interests in data, and the ethical use of data to enhance Māori well-being:
 
 
   **Rangatiratanga**, authority
