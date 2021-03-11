@@ -178,7 +178,7 @@ So mean **SSB** =  `r sum(4*((means$avg - mean)^2))` / 2
 
 The within group SS (**SSW**) = `r sum(rats_df$obvs_minus_tr_avg^2)`
 
-Here we have 2$\times$ 3 bits of *unique* information: within groups **degrees of freedom** is 9.
+Here we have 3$\times$ 3 bits of *unique* information: within groups **degrees of freedom** is 9.
 
 So mean **SSW** = `r round(sum(rats_df$obvs_minus_tr_avg^2),3)`/9
 
@@ -186,6 +186,11 @@ So mean **SSW** = `r round(sum(rats_df$obvs_minus_tr_avg^2),3)`/9
 Consider the ratio ${\frac{{\text{variation due to treatments}}}{{\text{unexplained variance}}}} = {\frac{{\text{ mean between-group variability}}}{{\text{mean within-group variability}}}}$  $=\frac{\text{mean SSB}}{\text{mean SSW}}$ $=\frac{\text{MSB}}{\text{MSW}}$  = $=\frac{\text{experimental variance}}{\text{error variance}}$ `r (sum(4*((means$avg - mean)^2))/2)/(sum(rats_df$obvs_minus_tr_avg^2)/9)`
 
 This is the **F-statistic!**
+
+### Degrees of freedom (DF)
+
+Essentially *statistical currency* (i.e., **unique** bits of information). So in the example above we have 3 treatment groups and if we know the mean of two we know the third (i.e., 2 *unique* bits of info) so SSB df = 2. Now, for SSW df. We have 12 observations (4 in each group); we know the treatment means so if we have three of those observed values in each group we know the fourth: 12 - 3 = 9 (i.e., number of observations - number of df lost due to knowing the cell means).
+
 
 ## Analysis of a Completely Randomised Design in `R`: `aov()` and `lm()`
 
@@ -374,7 +379,7 @@ Carrying out any linear regression we have some **key assumptions**
 options(warn=-1)
 ```
 
-```{r qqnorm, warning=FALSE, message=FALSE, eval = FALSE}
+```{r qqnorm, warning=FALSE, message=FALSE}
 gglm::gglm(rats_lm) # Plot the four main diagnostic plots
 ```
 

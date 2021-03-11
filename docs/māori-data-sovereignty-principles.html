@@ -52,66 +52,41 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
 <link rel="stylesheet" href="src/my-style.css" type="text/css" />
@@ -154,7 +129,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.6.1" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html#starting-out-with-tidyverse"><i class="fa fa-check"></i><b>1.6.1</b> Starting out with <code>tidyverse</code></a></li>
 <li class="chapter" data-level="1.6.2" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html#reading-in-data-from-a-.csv-file"><i class="fa fa-check"></i><b>1.6.2</b> Reading in data from a <code>.csv</code> file</a></li>
 <li class="chapter" data-level="1.6.3" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html#explore-your-data"><i class="fa fa-check"></i><b>1.6.3</b> Explore your data</a></li>
-<li class="chapter" data-level="1.6.4" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html#the-pipe-operator"><i class="fa fa-check"></i><b>1.6.4</b> The pipe operator <code>%&gt;%</code></a></li>
+<li class="chapter" data-level="1.6.4" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html#explore-your-data-1"><i class="fa fa-check"></i><b>1.6.4</b> Explore your data</a></li>
+<li class="chapter" data-level="1.6.5" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html#the-pipe-operator"><i class="fa fa-check"></i><b>1.6.5</b> The pipe operator <code>%&gt;%</code></a></li>
 </ul></li>
 <li class="chapter" data-level="1.7" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html#other-resources"><i class="fa fa-check"></i><b>1.7</b> Other resources</a></li>
 </ul></li>
@@ -168,7 +144,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.1" data-path="data-wrangling-and-vizualisation.html"><a href="data-wrangling-and-vizualisation.html#learning-objectives-2"><i class="fa fa-check"></i><b>3.1</b> Learning objectives</a></li>
 <li class="chapter" data-level="3.2" data-path="data-wrangling-and-vizualisation.html"><a href="data-wrangling-and-vizualisation.html#common-dataframe-manipulations-in-the-tidyverse"><i class="fa fa-check"></i><b>3.2</b> Common dataframe manipulations in the <code>tidyverse</code></a><ul>
 <li class="chapter" data-level="3.2.1" data-path="data-wrangling-and-vizualisation.html"><a href="data-wrangling-and-vizualisation.html#using-dplyr-and-tidyr"><i class="fa fa-check"></i><b>3.2.1</b> Using <code>dplyr</code> and <code>tidyr</code></a></li>
-<li class="chapter" data-level="3.2.2" data-path="data-wrangling-and-vizualisation.html"><a href="data-wrangling-and-vizualisation.html#introuducing-the-palmer-penguins"><i class="fa fa-check"></i><b>3.2.2</b> Introuducing the <span>Palmer penguins</span></a></li>
+<li class="chapter" data-level="3.2.2" data-path="data-wrangling-and-vizualisation.html"><a href="data-wrangling-and-vizualisation.html#introuducing-the-palmer-penguins"><i class="fa fa-check"></i><b>3.2.2</b> Introuducing the <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0090081">Palmer penguins</a></a></li>
 <li class="chapter" data-level="3.2.3" data-path="data-wrangling-and-vizualisation.html"><a href="data-wrangling-and-vizualisation.html#common-dataframe-manipulations-in-the-tidyverse-using-dplyr-and-tidyr"><i class="fa fa-check"></i><b>3.2.3</b> Common dataframe manipulations in the <code>tidyverse</code>, using <code>dplyr</code> and <code>tidyr</code></a></li>
 </ul></li>
 <li class="chapter" data-level="3.3" data-path="data-wrangling-and-vizualisation.html"><a href="data-wrangling-and-vizualisation.html#data-viz"><i class="fa fa-check"></i><b>3.3</b> Data Viz</a><ul>
@@ -178,7 +154,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.5" data-path="data-wrangling-and-vizualisation.html"><a href="data-wrangling-and-vizualisation.html#ggplot2"><i class="fa fa-check"></i><b>3.5</b> <code>ggplot2</code></a><ul>
 <li class="chapter" data-level="3.5.1" data-path="data-wrangling-and-vizualisation.html"><a href="data-wrangling-and-vizualisation.html#ggplot2-layers"><i class="fa fa-check"></i><b>3.5.1</b> <code>ggplot2</code> layers</a></li>
 <li class="chapter" data-level="3.5.2" data-path="data-wrangling-and-vizualisation.html"><a href="data-wrangling-and-vizualisation.html#examples"><i class="fa fa-check"></i><b>3.5.2</b> Examples</a></li>
-<li class="chapter" data-level="3.5.3" data-path="data-wrangling-and-vizualisation.html"><a href="data-wrangling-and-vizualisation.html#the-good-the-bad-and-the-ugly"><i class="fa fa-check"></i><b>3.5.3</b> The Good, the Bad, and the Ugly…</a></li>
+<li class="chapter" data-level="3.5.3" data-path="data-wrangling-and-vizualisation.html"><a href="data-wrangling-and-vizualisation.html#the-good-the-bad-and-the-ugly..."><i class="fa fa-check"></i><b>3.5.3</b> The Good, the Bad, and the Ugly...</a></li>
 </ul></li>
 <li class="chapter" data-level="3.6" data-path="data-wrangling-and-vizualisation.html"><a href="data-wrangling-and-vizualisation.html#resources-1"><i class="fa fa-check"></i><b>3.6</b> Resources</a></li>
 </ul></li>
@@ -194,6 +170,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.4.1" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#between-group-ss-ssb"><i class="fa fa-check"></i><b>4.4.1</b> Between group SS (SSB)</a></li>
 <li class="chapter" data-level="4.4.2" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#within-group-ss-ssw"><i class="fa fa-check"></i><b>4.4.2</b> Within group SS (SSW)</a></li>
 <li class="chapter" data-level="4.4.3" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#f-statistic"><i class="fa fa-check"></i><b>4.4.3</b> F-statistic</a></li>
+<li class="chapter" data-level="4.4.4" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#degrees-of-freedom-df"><i class="fa fa-check"></i><b>4.4.4</b> Degrees of freedom (DF)</a></li>
 </ul></li>
 <li class="chapter" data-level="4.5" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#analysis-of-a-completely-randomised-design-in-r-aov-and-lm"><i class="fa fa-check"></i><b>4.5</b> Analysis of a Completely Randomised Design in <code>R</code>: <code>aov()</code> and <code>lm()</code></a><ul>
 <li class="chapter" data-level="4.5.1" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#aov"><i class="fa fa-check"></i><b>4.5.1</b> <code>aov()</code></a></li>
@@ -222,46 +199,56 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="māori-data-sovereignty-principles" class="section level1">
 <h1><span class="header-section-number">2</span> Māori Data Sovereignty principles</h1>
-<p><a href="https://en.wikipedia.org/wiki/Data_sovereignty">’‘<strong>Data sovereignty</strong> is the idea that data are subject to the laws and governance structures within the nation it is collected’’</a></p>
+<p><a href="https://en.wikipedia.org/wiki/Data_sovereignty">''<strong>Data sovereignty</strong> is the idea that data are subject to the laws and governance structures within the nation it is collected''</a></p>
+<blockquote>
+&quot;Māori Data Sovereignty has emerged as a critical policy issue as Aotearoa New Zealand develops world-leading linked administrative data resources.&quot;
+<footer>
+--- Andrew Sporle, Maui Hudson, Kiri West. Chapter 5, Indigenous Data Sovereignty and Policy
+</footer>
+</blockquote>
+<p><a href="https://nzhistory.govt.nz/politics/treaty/read-the-Treaty/differences-between-the-texts">Te Tiriti o Waitangi/Treaty of Waitangi</a> obliges the Government to actively protect <a href="https://maoridictionary.co.nz/search?keywords=taonga">taonga</a>, consult with Māori in respect of taonga, give effect to the principle of partnership and recognize Māori rangatiratanga over taonga. Factors that relate to how communities might recognize the taonga nature of any dataset include</p>
+<ul>
+<li>provenance of the data: does the dataset come from a significant Māori source?</li>
+<li>opportunity for the data: could the dataset support Māori aspirations for their people or their whenua (land)?</li>
+<li>utility of the data: does the dataset have multiple uses?</li>
+</ul>
 <div id="learning-objectives-1" class="section level2">
 <h2><span class="header-section-number">2.1</span> Learning objectives</h2>
 <ul>
-<li><strong>Define</strong> data sovereignty and <strong>explain</strong> this in relation to a researcher’s obligation when collecting, displaying, and analysing data</li>
+<li><strong>Define</strong> data sovereignty and <strong>explain</strong> this in relation to a researcher's obligation when collecting, displaying, and analysing data</li>
 <li><strong>Define</strong> and <strong>discuss</strong> Māori Data Sovereignty principles</li>
 </ul>
 </div>
 <div id="māori-data-sovereignty-principles-1" class="section level2">
 <h2><span class="header-section-number">2.2</span> Māori Data Sovereignty principles</h2>
 <blockquote>
-“For Indigenous peoples, historical encounters with statistics have been fraught, and none more so than when involving official data produced as part of colonial attempts at statecraft.”
+&quot;For Indigenous peoples, historical encounters with statistics have been fraught, and none more so than when involving official data produced as part of colonial attempts at statecraft.&quot;
 <footer>
-— Lovett, R., Lee, V., Kukutai, T., Cormack, D., Rainie, S.C. and Walker, J., 2019. Good data practices for Indigenous data sovereignty and governance. Good data, pp.26-36.
+--- Lovett, R., Lee, V., Kukutai, T., Cormack, D., Rainie, S.C. and Walker, J., 2019. Good data practices for Indigenous data sovereignty and governance. Good data, pp.26-36.
 </footer>
 </blockquote>
 <blockquote>
-“Māori Data Sovereignty has emerged as a critical policy issue as Aotearoa
-New Zealand develops world-leading linked administrative data resources.”
+&quot;Māori Data Sovereignty has emerged as a critical policy issue as Aotearoa New Zealand develops world-leading linked administrative data resources.&quot;
 <footer>
-— Andrew Sporle, Maui Hudson, Kiri West. Chapter 5, Indigenous Data Sovereignty and Policy
+--- Andrew Sporle, Maui Hudson, Kiri West. Chapter 5, Indigenous Data Sovereignty and Policy
 </footer>
 </blockquote>
 </div>
 <div id="māori-data-sovereignty-principles-2" class="section level2">
 <h2><span class="header-section-number">2.3</span> Māori Data Sovereignty principles</h2>
 <blockquote>
-“Māori data refers to data produced by Māori or that is about Māori and the environments we have relationships with.”
+“Māori data refers to data produced by Māori or that is about Māori and the environments we have relationships with.&quot;
 <footer>
-— Te Mana Raraunga Charter
+--- Te Mana Raraunga Charter
 </footer>
 </blockquote>
 <blockquote>
 Data is a “potential taonga, something precious that needs to be maintained, in relation to its utility”
 <footer>
-— Dr W. Edwards, TMR website
+--- Dr W. Edwards, TMR website
 </footer>
 </blockquote>
-<p><strong>Māori Data Sovereignty principles</strong> to inform the recognition
-of Māori rights and interests in data, and the ethical use of data to enhance Māori well-being:</p>
+<p><strong>Māori Data Sovereignty principles</strong> to inform the recognition of Māori rights and interests in data, and the ethical use of data to enhance Māori well-being:</p>
 <p><strong>Rangatiratanga</strong>, authority</p>
 <ul>
 <li>Māori have an inherent right to exercise control over Māori data and Māori data ecosystems. This right includes, but is not limited to, the creation, collection, access, analysis, interpretation, management, security, dissemination, use and reuse of Māori data.</li>
@@ -294,8 +281,7 @@ of Māori rights and interests in data, and the ethical use of data to enhance M
 <ul>
 <li>Māori data shall be stored and transferred in such a way that it enables and reinforces the capacity of Māori to exercise kaitiakitanga over Māori data.</li>
 <li>Ethics. Tikanga, kawa (protocols) and mātauranga (knowledge) shall underpin the protection, access and use of Māori data.</li>
-<li>Māori shall decide which Māori
-data shall be controlled (tapu) or open (noa) access.</li>
+<li>Māori shall decide which Māori data shall be controlled (tapu) or open (noa) access.</li>
 </ul>
 </div>
 <div id="resources" class="section level2">
@@ -370,7 +356,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "true";
+    var src = "";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
