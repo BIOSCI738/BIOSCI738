@@ -179,13 +179,12 @@ This
 
 
 
-### Version control
-
-![](https://images3.memedroid.com/images/UPLOADED29/5b7d571106c71.jpeg){scale=60%}
 
 
-## `git` and GitHub
+## Version control with `git` and GitHub
 **All workshops will use these tools**
+
+![](https://images3.memedroid.com/images/UPLOADED29/5b7d571106c71.jpeg){scale=50%}
 
 `git` the software
 
