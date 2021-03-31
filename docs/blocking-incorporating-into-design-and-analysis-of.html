@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>4 Introduction to the design and analysis of experiments | bluebook BIOSCI738</title>
-  <meta name="description" content="4 Introduction to the design and analysis of experiments | bluebook BIOSCI738" />
+  <title>8 Blocking: incorporating into design and analysis of | bluebook BIOSCI738</title>
+  <meta name="description" content="8 Blocking: incorporating into design and analysis of | bluebook BIOSCI738" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="4 Introduction to the design and analysis of experiments | bluebook BIOSCI738" />
+  <meta property="og:title" content="8 Blocking: incorporating into design and analysis of | bluebook BIOSCI738" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="4 Introduction to the design and analysis of experiments | bluebook BIOSCI738" />
+  <meta name="twitter:title" content="8 Blocking: incorporating into design and analysis of | bluebook BIOSCI738" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="data-wrangling-and-vizualisation.html"/>
-<link rel="next" href="a-completely-randomomised-design.html"/>
+<link rel="prev" href="factorial-experiments.html"/>
+<link rel="next" href="split-plot-and-repeated-measures-designs.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -263,226 +263,199 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="introduction-to-the-design-and-analysis-of-experiments" class="section level1">
-<h1><span class="header-section-number">4</span> Introduction to the design and analysis of experiments</h1>
-<div id="learning-objectives-3" class="section level2">
-<h2><span class="header-section-number">4.1</span> Learning Objectives</h2>
+<div id="blocking-incorporating-into-design-and-analysis-of" class="section level1">
+<h1><span class="header-section-number">8</span> Blocking: incorporating into design and analysis of</h1>
+<div id="learning-objectives-7" class="section level2">
+<h2><span class="header-section-number">8.1</span> Learning objectives</h2>
 <ul>
-<li><strong>Identify</strong> the following
-<ul>
-<li>experimental unit</li>
-<li>observational units</li>
-</ul></li>
-<li><strong>List</strong> and <strong>describe</strong> the three main principals of experimental design
-<ul>
-<li>Randomization</li>
-<li>Replication</li>
-<li>Blocking</li>
-</ul></li>
-<li><strong>Calculate</strong> Sums of Squares (between and within groups) given the observations</li>
-<li><strong>Define</strong> and <strong>state</strong> the appropriate degrees of freedom in a one-way ANOVA scenario</li>
-<li><strong>Calculate</strong> the F-statistics given the appropriate Sums of Squares and degrees of freedom</li>
-<li><strong>Interpret</strong> and <strong>discuss</strong> a given <em>p-value</em> in the context of a stated hypothesis test</li>
-<li><strong>Explain</strong> between group and within group variation</li>
-<li><strong>Communicate</strong> statistical concepts and experimental outcomes clearly using language appropriate for both a <strong>scientific</strong> and <strong>non-scientific</strong> audience</li>
+<li><strong>Describe</strong> a Randomized Complete Block Design (RCBD)</li>
+<li><strong>Describe</strong> a Split-plot Design (RCBD)</li>
+<li><strong>Carry</strong> out analysis of a RCBD in <code>R</code> using <code>aov()</code>, <code>lm()</code>, and <code>lmer()</code> and <strong>discuss</strong> and <strong>compare</strong> the three</li>
+<li><strong>Define</strong> a fixed and random effect in the context of experimental design</li>
 </ul>
 </div>
-<div id="key-phrases" class="section level2">
-<h2><span class="header-section-number">4.2</span> Key phrases</h2>
-<p><strong>Experimental unit</strong> Smallest portion of experimental material which is <em>independently</em> perturbed</p>
-<p><strong>Treatment</strong> The experimental condition <em>independently</em> applied to an experimental unit</p>
-<p><strong>Observational unit</strong> The smallest unit on which a response is measured. If one measurement is made on each rat: <strong>Observational unit</strong> = <strong>Experimental unit</strong>. If Multiple measurements are made on each rat: Each experimental unit has &gt;1 observational unit (<em>pseudo-</em> or <em>technical replication</em>).</p>
-</div>
-<div id="three-key-principles" class="section level2">
-<h2><span class="header-section-number">4.3</span> Three key principles:</h2>
-<div id="replication" class="section level3">
-<h3><span class="header-section-number">4.3.1</span> <strong>Replication</strong></h3>
+<div id="blocking-1" class="section level2">
+<h2><span class="header-section-number">8.2</span> Blocking</h2>
+<p><em>Recall</em></p>
 <ul>
-<li><strong>Biological replication:</strong> each treatment is <em>independently</em> applied to each of several humans, animals or plants
-<ul>
-<li>To generalize results to population</li>
-</ul></li>
-<li><strong>Technical replication:</strong> two or more samples from the same biological source which are <em>independently</em> processed
-<ul>
-<li>Advantageous if processing steps introduce a lot of variation</li>
-<li>Increases the precision with which comparisons of relative abundances between treatments are made</li>
-</ul></li>
-<li><strong>Pseudo-replication:</strong> one sample from the same biological source, divided into two or more aliquots which are <strong>independently</strong> measured
-<ul>
-<li>Advantageous for noisy measuring instruments</li>
-<li>Increases the <strong>precision</strong> with which comparisons of relative abundances between treatments are made</li>
-</ul></li>
+<li><p>Blocking helps control variability by making treatment groups more alike. Experimental units are divided into subsets (called blocks) so that units within the same block are more similar than units from different subsets or blocks.</p></li>
+<li><p>Blocking is a technique for dealing with nuisance factors. A nuisance factor is a factor that has some effect on the response, but is of no interest (e.g., age class).</p></li>
 </ul>
+<p><strong>Key idea</strong></p>
+<p>Partition known sources of variation which are unimportant to key scientific question(s) to improve precision of comparisons between treatment means.</p>
 </div>
-<div id="randomization" class="section level3">
-<h3><span class="header-section-number">4.3.2</span> <strong>Randomization</strong></h3>
+<div id="a-randomised-controlled-block-design-rcbd" class="section level2">
+<h2><span class="header-section-number">8.3</span> A Randomised Controlled Block Design (RCBD)</h2>
+<p><img src="img/rcbd.png" /></p>
+<p><strong>response = systematic component + error component</strong></p>
+</div>
+<div id="fixed-or-random" class="section level2">
+<h2><span class="header-section-number">8.4</span> Fixed or Random???</h2>
+<p><img src="https://1.bp.blogspot.com/-9PUW42GjR0U/WX1PQagQNXI/AAAAAAAAIoo/sIs8WyGSNFg0PbV_koT9Bgery_7VuKIPgCLcBGAs/s1600/1taixn.jpg" /></p>
+<p><strong>Fixed effects</strong></p>
+<p>Terms (parameters) in a statistical model which are fixed, or non-random, quantities. For example, Treatment group’s mean response: for the same Treatment, we expect this quantity to be the same from experiment to experiment.</p>
 <ul>
-<li><p><strong>Protects against bias</strong></p></li>
-<li><p>Plan the experiment in such a way that the variations caused by extraneous factors can all be combined under the general heading of “chance”.</p></li>
-<li>Ensures that each treatment has the same probability of getting good (or bad) units and thus
-avoids systematic bias</li>
-<li>random allocation can cancel out population bias; it ensures that any other possible causes for the experimental results are split equally between groups</li>
-<li><p>typically statistical analysis assumes that observations are <strong>independent</strong>. This is almost never strictly true in practice but randomisation means that our estimates will behave as if they were based on independent observations</p></li>
+<li>Terms with specific levels chosen for the experiment, and the primary aim is unbiased estimation of effects, should be allocated as fixed</li>
 </ul>
-</div>
-<div id="blocking" class="section level3">
-<h3><span class="header-section-number">4.3.3</span> <strong>Blocking</strong></h3>
+<p><strong>Random effects</strong></p>
+<p>Terms (parameters) in a statistical model which are considered as random quantities or variables.</p>
 <ul>
-<li><p>Blocking helps <strong>control variability</strong> by making treatment groups more alike. Experimental units are divided into subsets (called blocks) so that units within the same block are more similar than units from different subsets or blocks.</p></li>
-<li><p>Blocking is a technique for dealing with <em>nuisance factors</em>. A <em>nuisance factor</em> is a factor that has some effect on the response, but is of no interest (e.g., age class).</p></li>
+<li>Terms associated with the structure of the design should be allocated as random.</li>
+<li>Terms whose levels are a representative sample from a population, and where the variance of the population is of interest, should be allocated as random</li>
 </ul>
+<div id="ignoring-an-effect" class="section level3">
+<h3><span class="header-section-number">8.4.1</span> Ignoring an effect</h3>
+<p>You’ll find the <code>rcbd.csv</code> file on CANVAS.</p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb99-1" title="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb99-2" title="2">rcbd &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;rcbd.csv&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" title="1"><span class="co">## Note: Run should be a factor</span></a>
+<a class="sourceLine" id="cb100-2" title="2">rcbd<span class="op">$</span>Run &lt;-<span class="st"> </span><span class="kw">as.factor</span>(rcbd<span class="op">$</span>Run)</a>
+<a class="sourceLine" id="cb100-3" title="3"><span class="kw">glimpse</span>(rcbd)</a></code></pre></div>
+<pre><code>## Rows: 12
+## Columns: 5
+## $ Run     &lt;fct&gt; 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4
+## $ Surgery &lt;chr&gt; &quot;C&quot;, &quot;P&quot;, &quot;S&quot;, &quot;C&quot;, &quot;P&quot;, &quot;S&quot;, &quot;C&quot;, &quot;P&quot;, &quot;S&quot;, &quot;C&quot;, &quot;P&quot;, &quot;S&quot;
+## $ Rat     &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
+## $ logAUC8 &lt;dbl&gt; 9.24, 8.81, 10.75, 3.89, 8.62, 10.24, 8.42, 9.93, 11.68, 8.77,…
+## $ logAUC4 &lt;dbl&gt; 7.55, 9.34, 12.43, 6.59, 7.94, 8.56, 7.32, 8.37, 7.27, 8.24, 1…</code></pre>
+<p><strong>One-way vs two-way…</strong></p>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" title="1"><span class="kw">anova</span>(<span class="kw">lm</span>(logAUC4 <span class="op">~</span><span class="st"> </span>Surgery, <span class="dt">data =</span> rcbd))</a></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: logAUC4
+##           Df Sum Sq Mean Sq F value Pr(&gt;F)
+## Surgery    2 14.662  7.3308  2.5034 0.1366
+## Residuals  9 26.355  2.9284</code></pre>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" title="1">lm2 &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC4 <span class="op">~</span><span class="st"> </span>Run <span class="op">+</span><span class="st"> </span>Surgery, <span class="dt">data =</span> rcbd)</a>
+<a class="sourceLine" id="cb104-2" title="2"><span class="kw">anova</span>(lm2)</a></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: logAUC4
+##           Df  Sum Sq Mean Sq F value  Pr(&gt;F)  
+## Run        3 18.1317  6.0439  4.4097 0.05812 .
+## Surgery    2 14.6617  7.3308  5.3487 0.04640 *
+## Residuals  6  8.2235  1.3706                  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p><strong>Always check assumptions</strong></p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" title="1">gglm<span class="op">::</span><span class="kw">gglm</span>(lm2)</a></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
 </div>
-</div>
-<div id="one-way-analysis-of-variance-anova" class="section level2">
-<h2><span class="header-section-number">4.4</span> One-Way <strong>An</strong>alysis <strong>o</strong>f <strong>Va</strong>riance (ANOVA)</h2>
-<div id="between-group-ss-ssb" class="section level3">
-<h3><span class="header-section-number">4.4.1</span> Between group SS (SSB)</h3>
-<p><strong>The idea</strong>: Assess <strong>distances</strong> between treatment (<em>surgical condition</em>) means relative to our uncertainty about the actual (<em>true</em>) treatment means.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
-<p><strong>add up the differences:</strong> -1.192 + -0.703 + 1.895 = 0. <strong>This is always the case!</strong></p>
-<p><strong>So adding up the differences:</strong> -1.192 + -0.703 + 1.895 = 0. <strong>Not a great way to measure distances!</strong></p>
-<p><strong>Sums of Squares?</strong></p>
-<p>-1.192^2 + -0.703^2 + 1.895^2</p>
-<p><strong>add up the squared differences?</strong> but… there are 4 observations in each group (treatment)</p>
-<p>4<span class="math inline">\(\times\)</span>(-1.192)^2 + 4<span class="math inline">\(\times\)</span>(-0.703)^2 + 4<span class="math inline">\(\times\)</span>(1.895)^2</p>
-<p>This is the <strong>Between Groups Sums of Squares</strong> or the <strong>Between group SS (SSB)</strong></p>
-<p>So the Between group SS (SSB) = 22.02635</p>
-<p><strong>Adding up the differences:</strong> -1.192 + -0.703 + 1.895 = 0. <strong>This is always the case</strong> and that itself gives us information…</p>
-<p><strong>We only need to know two of the values to work out the third!</strong></p>
-<p>So we have only 2 bits of <strong>unique</strong> information; <strong>SSB degrees of freedom</strong> = 2</p>
-</div>
-<div id="within-group-ss-ssw" class="section level3">
-<h3><span class="header-section-number">4.4.2</span> Within group SS (SSW)</h3>
-<p>The <strong>Within group SS (SSW)</strong> arises from the same idea:</p>
-<p>To assess distances between treatment (surgical condition) means <strong>relative</strong> to our uncertainty about the actual (true) treatment means.</p>
-<p>Procedure:</p>
+<div id="analysis-using-lmer-from-lme4" class="section level3">
+<h3><span class="header-section-number">8.4.2</span> Analysis using <code>lmer()</code> from <code>lme4</code></h3>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" title="1"><span class="kw">library</span>(lme4)</a>
+<a class="sourceLine" id="cb107-2" title="2">lmer_mod &lt;-<span class="st"> </span><span class="kw">lmer</span>(logAUC8 <span class="op">~</span><span class="st"> </span>Surgery <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span><span class="op">|</span>Run), <span class="dt">data =</span> rcbd)</a>
+<a class="sourceLine" id="cb107-3" title="3"><span class="kw">summary</span>(lmer_mod)</a></code></pre></div>
+<pre><code>## Linear mixed model fit by REML [&#39;lmerMod&#39;]
+## Formula: logAUC8 ~ Surgery + (1 | Run)
+##    Data: rcbd
+## 
+## REML criterion at convergence: 37.2
+## 
+## Scaled residuals: 
+##     Min      1Q  Median      3Q     Max 
+## -1.8525 -0.2273  0.1772  0.4036  1.3309 
+## 
+## Random effects:
+##  Groups   Name        Variance Std.Dev.
+##  Run      (Intercept) 1.479    1.216   
+##  Residual             1.447    1.203   
+## Number of obs: 12, groups:  Run, 4
+## 
+## Fixed effects:
+##             Estimate Std. Error t value
+## (Intercept)   7.5800     0.8552   8.863
+## SurgeryP      1.9750     0.8506   2.322
+## SurgeryS      3.8500     0.8506   4.526
+## 
+## Correlation of Fixed Effects:
+##          (Intr) SrgryP
+## SurgeryP -0.497       
+## SurgeryS -0.497  0.500</code></pre>
+<p>Now what about the <em>Random effects</em></p>
+<p>We have two variance components</p>
 <ul>
-<li>Observation - Treatment mean</li>
-<li>Square the difference</li>
-<li>Add them up!</li>
+<li>Between Groups (Runs) <span class="math inline">\(\hat{\sigma^2}_{\text{Run}}\)</span> = 1.479</li>
+<li>Within Runs (between observations) <span class="math inline">\(\hat{\sigma_2}\)</span> = 1.447</li>
 </ul>
-<p><strong>Within group SS (SSW)</strong> <em>unexplained variance</em></p>
-<p><img src="_main_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
-</div>
-<div id="f-statistic" class="section level3">
-<h3><span class="header-section-number">4.4.3</span> F-statistic</h3>
-<p>Recall the Between group SS (<strong>SSB</strong>) = 22.02635</p>
-<p>So mean <strong>SSB</strong> = 22.02635 / 2</p>
-<p>The within group SS (<strong>SSW</strong>) = 6.059075</p>
-<p>Here we have 3<span class="math inline">\(\times\)</span> 3 bits of <em>unique</em> information: within groups <strong>degrees of freedom</strong> is 9.</p>
-<p>So mean <strong>SSW</strong> = 6.059/9</p>
-<p>Consider the ratio <span class="math inline">\({\frac{{\text{variation due to treatments}}}{{\text{unexplained variance}}}} = {\frac{{\text{ mean between-group variability}}}{{\text{mean within-group variability}}}}\)</span> <span class="math inline">\(=\frac{\text{mean SSB}}{\text{mean SSW}}\)</span> <span class="math inline">\(=\frac{\text{MSB}}{\text{MSW}}\)</span> = <span class="math inline">\(=\frac{\text{experimental variance}}{\text{error variance}}\)</span> 16.3586975</p>
-<p>This is the <strong>F-statistic!</strong></p>
-</div>
-<div id="degrees-of-freedom-df" class="section level3">
-<h3><span class="header-section-number">4.4.4</span> Degrees of freedom (DF)</h3>
-<p>Essentially <em>statistical currency</em> (i.e., <strong>unique</strong> bits of information). So in the example above we have 3 treatment groups and if we know the mean of two we know the third (i.e., 2 <em>unique</em> bits of info) so SSB df = 2. Now, for SSW df. We have 12 observations (4 in each group); we know the treatment means so if we have three of those observed values in each group we know the fourth: 12 - 3 = 9 (i.e., number of observations - number of df lost due to knowing the cell means).</p>
-</div>
-</div>
-<div id="p-values" class="section level2">
-<h2><span class="header-section-number">4.5</span> 😱 p-values 😱</h2>
-<p><strong><a href="https://www.tandfonline.com/doi/full/10.1080/00031305.2016.1154108">The ASA Statement on p-Values: Context, Process, and Purpose</a></strong></p>
-<blockquote>
-“Good statistical practice, as an essential component of good scientific practice, emphasizes principles of good study design and conduct, a variety of numerical and graphical summaries of data, understanding of the phenomenon under study, interpretation of results in context, complete reporting and proper logical and quantitative understanding of what data summaries mean. No single index should substitute for scientific reasoning.”
-<footer>
-— ASA Statement on p-Values
-</footer>
-</blockquote>
-<p><strong>What is a p-Value?</strong></p>
-<p>Informally, a p-value is the probability under a specified statistical model that a statistical summary of the data (e.g., the sample mean difference between two compared groups) would be equal to or more extreme than its observed value</p>
+<p>Note that <code>aov()</code> presents the same information, but in a different way:</p>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" title="1"><span class="kw">summary</span>(<span class="kw">aov</span>(logAUC8 <span class="op">~</span><span class="st"> </span>Surgery <span class="op">+</span><span class="st"> </span><span class="kw">Error</span>(Run), <span class="dt">data =</span> rcbd))</a></code></pre></div>
+<pre><code>## 
+## Error: Run
+##           Df Sum Sq Mean Sq F value Pr(&gt;F)
+## Residuals  3  17.65   5.883               
+## 
+## Error: Within
+##           Df Sum Sq Mean Sq F value Pr(&gt;F)  
+## Surgery    2 29.652  14.826   10.25 0.0116 *
+## Residuals  6  8.682   1.447                 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <ul>
-<li><p><strong>p-values</strong> can indicate how incompatible the data are with a specified statistical model</p></li>
-<li><p>p-values <strong>do not</strong> measure the probability that the studied hypothesis is true, or the probability that the data were produced by random chance alone</p></li>
-<li><p>Scientific conclusions and business or policy decisions <strong>should not</strong> be based only on whether a p-value passes a specific threshold</p></li>
-<li><p>Proper inference requires <strong>full</strong> reporting and transparency</p></li>
-<li><p>A p-value, or statistical significance, does <strong>not</strong> measure the size of an effect or the importance of a result</p></li>
-<li><p>By itself, a p-value does <strong>not</strong> provide a good measure of evidence regarding a model or hypothesis</p></li>
+<li>Within Runs (Residuals) <span class="math inline">\(\hat{\sigma}_2\)</span> = 1.447 (<em>same as <code>lmer</code></em>)</li>
+<li>Between Run variance = <span class="math inline">\(\hat{\sigma}^2\)</span> + <span class="math inline">\(3\:\hat{\sigma}^2_{\text{Run}}\)</span> so <span class="math inline">\(\hat{\sigma}^2_{\text{Run}} = \frac{5.883 - \hat{\sigma}^2 }{3} = \frac{5.883 - 1.447}{3} = 1.479\)</span></li>
 </ul>
-</div>
-<div id="terminology-and-issues" class="section level2">
-<h2><span class="header-section-number">4.6</span> Terminology and issues</h2>
-<p><strong>Type I</strong> error (false positive): declare a difference (i.e., reject <span class="math inline">\(H_0\)</span>) when there is no difference (i.e. <span class="math inline">\(H_0\)</span> is true). Risk of the Type I error is determined by the <em>level of significance</em> (which we set!) (i.e., <span class="math inline">\(\alpha =\text{ P(Type I error)} = \text{P(false positive)}\)</span>.</p>
-<p><img src="https://raw.githubusercontent.com/allisonhorst/stats-illustrations/master/other-stats-artwork/type_1_errors.png" /></p>
-<p><strong>Type II</strong> error (false negative): difference not declared (i.e., <span class="math inline">\(H_0\)</span> not rejected) when there is a difference (i.e., <span class="math inline">\(H_0\)</span> is false). Let <span class="math inline">\(\beta =\)</span> P(do not reject <span class="math inline">\(H_0\)</span> when <span class="math inline">\(H_0\)</span> is false); so, <span class="math inline">\(1-\beta\)</span> = P(reject <span class="math inline">\(H_0\)</span> when <span class="math inline">\(H_0\)</span> is false) = P(a true positive), which is the statistical <strong>power</strong> of the test.</p>
-<p><img src="https://raw.githubusercontent.com/allisonhorst/stats-illustrations/master/other-stats-artwork/type_2_errors.png" /></p>
-<p><strong>Each</strong> time we carry out a hypothesis test the probability we get a false positive result (type I error) is given by <span class="math inline">\(\alpha\)</span> (the <em>level of significance</em> we choose).</p>
-<p>When we have <strong>multiple comparisons</strong> to make we should then control the <strong>Type I</strong> error rate across the entire <em>family</em> of tests under consideration, i.e., control the Family-Wise Error Rate (FWER); this ensures that the risk of making at least one <strong>Type I</strong> error among the family of comparisons in the experiment is <span class="math inline">\(\alpha\)</span>.</p>
-<table>
-<thead>
-<tr class="header">
-<th>State of Nature</th>
-<th>Don’t reject <span class="math inline">\(H_0\)</span></th>
-<th>reject <span class="math inline">\(H_0\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><span class="math inline">\(H_0\)</span> is true</td>
-<td>✅</td>
-<td>Type I error</td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(H_0\)</span> is false</td>
-<td>Type II error</td>
-<td>✅</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="resources-2" class="section level2">
-<h2><span class="header-section-number">4.7</span> Resources</h2>
-<p><img src="https://pbs.twimg.com/media/EeMWb7QWsAIGftR?format=jpg&amp;name=small" /></p>
-<p><strong>Looking forward</strong></p>
-<table>
-<colgroup>
-<col width="44%" />
-<col width="37%" />
-<col width="18%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Traditional name</th>
-<th align="center">Model formula</th>
-<th align="right">R code</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Simple regression</td>
-<td align="center"><span class="math inline">\(Y \sim X_{continuous}\)</span></td>
-<td align="right"><code>lm(Y ~ X)</code></td>
-</tr>
-<tr class="even">
-<td>One-way ANOVA</td>
-<td align="center"><span class="math inline">\(Y \sim X_{categorical}\)</span></td>
-<td align="right"><code>lm(Y ~ X)</code></td>
-</tr>
-<tr class="odd">
-<td>Two-way ANOVA</td>
-<td align="center"><span class="math inline">\(Y \sim X1_{categorical} + X2_{categorical}\)</span></td>
-<td align="right"><code>lm(Y ~ X1 + X2)</code></td>
-</tr>
-<tr class="even">
-<td>ANCOVA</td>
-<td align="center"><span class="math inline">\(Y \sim X1_{continuous} + X2_{categorical}\)</span></td>
-<td align="right"><code>lm(Y ~ X1 + X2)</code></td>
-</tr>
-<tr class="odd">
-<td>Multiple regression</td>
-<td align="center"><span class="math inline">\(Y \sim X1_{continuous} + X2_{continuous}\)</span></td>
-<td align="right"><code>lm(Y ~ X1 + X2)</code></td>
-</tr>
-<tr class="even">
-<td>Factorial ANOVA</td>
-<td align="center"><span class="math inline">\(Y \sim X1_{categorical} * X2_{categorical}\)</span></td>
-<td align="right"><code>lm(Y ~ X1 * X2)</code> or <code>lm(Y ~ X1 + X2 + X1:X2)</code></td>
-</tr>
-</tbody>
-</table>
-<p><a href="https://catalogue.library.auckland.ac.nz/primo-explore/fulldisplay?docid=uoa_alma21237737730002091&amp;search_scope=Combined_Local&amp;tab=books&amp;vid=NEWUI&amp;context=L">Glass, David J. Experimental Design for Biologists. Second ed. 2014. Print.</a></p>
-<p><a href="https://catalogue.library.auckland.ac.nz/primo-explore/fulldisplay?docid=uoa_alma21237737830002091&amp;search_scope=Combined_Local&amp;tab=books&amp;vid=NEWUI&amp;context=L">Welham, S. J. Statistical Methods in Biology : Design and Analysis of Experiments and Regression. 2015. Print.</a></p>
-<p><a href="https://catalogue.library.auckland.ac.nz/primo-explore/fulldisplay?docid=uoa_alma21198532990002091&amp;context=L&amp;vid=NEWUI&amp;lang=en_US&amp;search_scope=Combined_Local&amp;adaptor=Local%20Search%20Engine&amp;isFrbr=true&amp;tab=books&amp;query=any,contains,The_Design_of_Experiments&amp;sortby=date&amp;facet=frbrgroupid,include,627497507&amp;offset=0">Fisher, Ronald Aylmer. The Design of Experiments. 8th ed. Edinburgh: Oliver &amp; Boyd, 1966. Print. O &amp; B Paperbacks.</a></p>
+<div id="sems-seds" class="section level4">
+<h4><span class="header-section-number">8.4.2.1</span> SEMs &amp; SEDs</h4>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb111-1" title="1"><span class="kw">library</span>(predictmeans)</a>
+<a class="sourceLine" id="cb111-2" title="2">pred_means &lt;-<span class="st"> </span><span class="kw">predictmeans</span>(lmer_mod, <span class="dt">modelterm =</span> <span class="st">&quot;Surgery&quot;</span>, <span class="dt">pairwise =</span> <span class="ot">TRUE</span>, <span class="dt">plot =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb111-3" title="3">pred_means</a></code></pre></div>
+<pre><code>## $`Predicted Means`
+## Surgery
+##      C      P      S 
+##  7.580  9.555 11.430 
+## 
+## $`Standard Error of Means`
+## All means have the same Stder 
+##                       0.85524 
+## 
+## $`Standard Error of Differences`
+##   Max.SED   Min.SED  Aveg.SED 
+## 0.8505913 0.8505913 0.8505913 
+## 
+## $LSD
+##  Max.LSD  Min.LSD Aveg.LSD 
+##  2.08132  2.08132  2.08132 
+## attr(,&quot;Significant level&quot;)
+## [1] 0.05
+## attr(,&quot;Degree of freedom&quot;)
+## [1] 6
+## 
+## $`Pairwise LSDs`
+##         C        P      S
+## C 0.00000 -1.97500 -3.850
+## P 2.08132  0.00000 -1.875
+## S 2.08132  2.08132  0.000
+## attr(,&quot;Significant level&quot;)
+## [1] 0.05
+## attr(,&quot;Degree of freedom&quot;)
+## [1] 6
+## attr(,&quot;Note&quot;)
+## [1] &quot;LSDs matrix has mean differences (row-col) above the diagonal, LSDs (adjusted by &#39;none&#39; method) below the diagonal&quot;
+## 
+## $`Pairwise p-value`
+##        C       P       S
+## C 0.0000 -2.3219 -4.5263
+## P 0.0593  0.0000 -2.2043
+## S 0.0040  0.0697  0.0000
+## attr(,&quot;Degree of freedom&quot;)
+## [1] 6
+## attr(,&quot;Note&quot;)
+## [1] &quot;The matrix has t-value above the diagonal, p-value (adjusted by &#39;none&#39; method) below the diagonal&quot;
+## attr(,&quot;Letter-based representation of pairwise comparisons at significant level &#39;0.05&#39;&quot;)
+##   Treatment   Mean Group
+## 1         S 11.430    A 
+## 2         P  9.555    AB
+## 3         C  7.580     B
+## 
+## $mean_table
+##   Surgery Predicted means Standard error Df LL of 95% CI UL of 95% CI
+## 1       C           7.580      0.8552404  6     5.487302     9.672698
+## 2       P           9.555      0.8552404  6     7.462302    11.647698
+## 3       S          11.430      0.8552404  6     9.337302    13.522698</code></pre>
 
+</div>
+</div>
 </div>
 </div>
             </section>
@@ -490,8 +463,8 @@ avoids systematic bias</li>
           </div>
         </div>
       </div>
-<a href="data-wrangling-and-vizualisation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="a-completely-randomomised-design.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="factorial-experiments.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="split-plot-and-repeated-measures-designs.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

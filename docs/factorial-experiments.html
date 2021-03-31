@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>4 Introduction to the design and analysis of experiments | bluebook BIOSCI738</title>
-  <meta name="description" content="4 Introduction to the design and analysis of experiments | bluebook BIOSCI738" />
+  <title>7 Factorial experiments | bluebook BIOSCI738</title>
+  <meta name="description" content="7 Factorial experiments | bluebook BIOSCI738" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="4 Introduction to the design and analysis of experiments | bluebook BIOSCI738" />
+  <meta property="og:title" content="7 Factorial experiments | bluebook BIOSCI738" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="4 Introduction to the design and analysis of experiments | bluebook BIOSCI738" />
+  <meta name="twitter:title" content="7 Factorial experiments | bluebook BIOSCI738" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="data-wrangling-and-vizualisation.html"/>
-<link rel="next" href="a-completely-randomomised-design.html"/>
+<link rel="prev" href="multiple-comparisons.html"/>
+<link rel="next" href="blocking-incorporating-into-design-and-analysis-of.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -263,225 +263,218 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="introduction-to-the-design-and-analysis-of-experiments" class="section level1">
-<h1><span class="header-section-number">4</span> Introduction to the design and analysis of experiments</h1>
-<div id="learning-objectives-3" class="section level2">
-<h2><span class="header-section-number">4.1</span> Learning Objectives</h2>
+<div id="factorial-experiments" class="section level1">
+<h1><span class="header-section-number">7</span> Factorial experiments</h1>
+<p><img src="https://magoosh.com/statistics/files/2018/04/297r7s.jpg" /></p>
+<div id="learning-objectives-6" class="section level2">
+<h2><span class="header-section-number">7.1</span> Learning objectives</h2>
 <ul>
-<li><strong>Identify</strong> the following
-<ul>
-<li>experimental unit</li>
-<li>observational units</li>
-</ul></li>
-<li><strong>List</strong> and <strong>describe</strong> the three main principals of experimental design
-<ul>
-<li>Randomization</li>
-<li>Replication</li>
-<li>Blocking</li>
-</ul></li>
-<li><strong>Calculate</strong> Sums of Squares (between and within groups) given the observations</li>
-<li><strong>Define</strong> and <strong>state</strong> the appropriate degrees of freedom in a one-way ANOVA scenario</li>
-<li><strong>Calculate</strong> the F-statistics given the appropriate Sums of Squares and degrees of freedom</li>
-<li><strong>Interpret</strong> and <strong>discuss</strong> a given <em>p-value</em> in the context of a stated hypothesis test</li>
-<li><strong>Explain</strong> between group and within group variation</li>
-<li><strong>Communicate</strong> statistical concepts and experimental outcomes clearly using language appropriate for both a <strong>scientific</strong> and <strong>non-scientific</strong> audience</li>
+<li><strong>Describe</strong> and <strong>discuss</strong> factorial experiments with both equal and unequal replication</li>
+<li><strong>Carry</strong> out linear regression in <code>R</code> with two categorical explanatory variables and an interaction (two-way ANOVA with interaction) and <strong>draw</strong> the appropriate inference</li>
+<li><strong>Calculate</strong> the marginal means for a balanced and unbalanced design</li>
 </ul>
 </div>
-<div id="key-phrases" class="section level2">
-<h2><span class="header-section-number">4.2</span> Key phrases</h2>
-<p><strong>Experimental unit</strong> Smallest portion of experimental material which is <em>independently</em> perturbed</p>
-<p><strong>Treatment</strong> The experimental condition <em>independently</em> applied to an experimental unit</p>
-<p><strong>Observational unit</strong> The smallest unit on which a response is measured. If one measurement is made on each rat: <strong>Observational unit</strong> = <strong>Experimental unit</strong>. If Multiple measurements are made on each rat: Each experimental unit has &gt;1 observational unit (<em>pseudo-</em> or <em>technical replication</em>).</p>
-</div>
-<div id="three-key-principles" class="section level2">
-<h2><span class="header-section-number">4.3</span> Three key principles:</h2>
-<div id="replication" class="section level3">
-<h3><span class="header-section-number">4.3.1</span> <strong>Replication</strong></h3>
+<div id="factorial-design-as-a-crd" class="section level2">
+<h2><span class="header-section-number">7.2</span> Factorial design (as a CRD)</h2>
+<p><strong>Example</strong></p>
+<p><em>Scientific Objective</em> Global metabolic profiling and comparison of relative abundances of proteins in the inner and outer left ventricle wall of diabetic and healthy male Wistar rats.</p>
+<p><img src="img/factorial_crd.png" /></p>
+<div id="equal-replications-balanced-design" class="section level3">
+<h3><span class="header-section-number">7.2.1</span> Equal replications (balanced design)</h3>
+<p><strong>Analysis</strong> using <code>lm()</code></p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" title="1">factorial &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;factorial_expt.csv&quot;</span>)</a></code></pre></div>
+<p><strong>Fitting models with interaction terms</strong></p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" title="1"><span class="kw">glimpse</span>(factorial)</a></code></pre></div>
+<pre><code>## Rows: 12
+## Columns: 5
+## $ Disease &lt;chr&gt; &quot;Healthy&quot;, &quot;Healthy&quot;, &quot;Healthy&quot;, &quot;Healthy&quot;, &quot;Healthy&quot;, &quot;Health…
+## $ Organ   &lt;chr&gt; &quot;innerLV&quot;, &quot;outerLV&quot;, &quot;innerLV&quot;, &quot;outerLV&quot;, &quot;innerLV&quot;, &quot;outerL…
+## $ Animal  &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
+## $ Sample  &lt;dbl&gt; 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2
+## $ logAUC  &lt;dbl&gt; 9.40, 8.83, 10.33, 10.49, 9.74, 10.98, 7.92, 9.37, 8.69, 11.31…</code></pre>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" title="1"><span class="co">## change to factors (saves errors with predictmeans)</span></a>
+<a class="sourceLine" id="cb74-2" title="2">factorial<span class="op">$</span>Disease &lt;-<span class="st"> </span><span class="kw">as.factor</span>(factorial<span class="op">$</span>Disease)</a>
+<a class="sourceLine" id="cb74-3" title="3">factorial<span class="op">$</span>Organ &lt;-<span class="st"> </span><span class="kw">as.factor</span>(factorial<span class="op">$</span>Organ)</a>
+<a class="sourceLine" id="cb74-4" title="4"><span class="co">## shorthand version</span></a>
+<a class="sourceLine" id="cb74-5" title="5">fac_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC <span class="op">~</span><span class="st"> </span>Disease<span class="op">*</span>Organ, <span class="dt">data =</span> factorial)</a>
+<a class="sourceLine" id="cb74-6" title="6"><span class="co">## longhand version</span></a>
+<a class="sourceLine" id="cb74-7" title="7">fac_lm_lh &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC <span class="op">~</span><span class="st"> </span>Disease <span class="op">+</span><span class="st"> </span>Organ <span class="op">+</span>Disease<span class="op">:</span>Organ, <span class="dt">data =</span> factorial)</a>
+<a class="sourceLine" id="cb74-8" title="8"><span class="co">## both are the SAME</span></a>
+<a class="sourceLine" id="cb74-9" title="9"><span class="kw">cbind</span>(<span class="st">&quot;short hand&quot;</span> =<span class="st"> </span><span class="kw">coef</span>(fac_lm),<span class="st">&quot;long hand&quot;</span> =<span class="st"> </span><span class="kw">coef</span>(fac_lm_lh))</a></code></pre></div>
+<pre><code>##                             short hand long hand
+## (Intercept)                   7.873333  7.873333
+## DiseaseHealthy                1.950000  1.950000
+## OrganouterLV                  2.116667  2.116667
+## DiseaseHealthy:OrganouterLV  -1.840000 -1.840000</code></pre>
+<p>So the full model is</p>
+<p><span class="math display">\[
+\begin{aligned}
+\operatorname{logAUC} &amp;= \alpha + \beta_{1}(\operatorname{Disease}_{\operatorname{Healthy}}) + \beta_{2}(\operatorname{Organ}_{\operatorname{outerLV}}) + \beta_{3}(\operatorname{Disease}_{\operatorname{Healthy}} \times \operatorname{Organ}_{\operatorname{outerLV}})\ + \\
+&amp;\quad \epsilon
+\end{aligned}
+\]</span></p>
+<p>And the <strong>gobal</strong> null hypotheses being tested are:</p>
 <ul>
-<li><strong>Biological replication:</strong> each treatment is <em>independently</em> applied to each of several humans, animals or plants
-<ul>
-<li>To generalize results to population</li>
-</ul></li>
-<li><strong>Technical replication:</strong> two or more samples from the same biological source which are <em>independently</em> processed
-<ul>
-<li>Advantageous if processing steps introduce a lot of variation</li>
-<li>Increases the precision with which comparisons of relative abundances between treatments are made</li>
-</ul></li>
-<li><strong>Pseudo-replication:</strong> one sample from the same biological source, divided into two or more aliquots which are <strong>independently</strong> measured
-<ul>
-<li>Advantageous for noisy measuring instruments</li>
-<li>Increases the <strong>precision</strong> with which comparisons of relative abundances between treatments are made</li>
-</ul></li>
+<li><span class="math inline">\(H_0: \hat{\mu}_{\text{Diabetic}} = \hat{\mu}_{\text{Healthy}}\)</span></li>
+<li><span class="math inline">\(H_0: \hat{\mu}_{\text{innerLV}} = \hat{\mu}_{\text{outerLV}}\)</span></li>
+<li><span class="math inline">\(H_0: \hat{\mu}_{\text{Diabetic,innerLV}} = \hat{\mu}_{\text{Diabetic,outerLV}} = \hat{\mu}_{\text{Healthy,innerLV}} = \hat{\mu}_{\text{Healthy,outerLV}}\)</span></li>
 </ul>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" title="1"><span class="kw">anova</span>(fac_lm)</a></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: logAUC
+##               Df Sum Sq Mean Sq F value  Pr(&gt;F)  
+## Disease        1 3.1827  3.1827  3.6304 0.09320 .
+## Organ          1 4.2960  4.2960  4.9003 0.05775 .
+## Disease:Organ  1 2.5392  2.5392  2.8963 0.12719  
+## Residuals      8 7.0135  0.8767                  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Plotting the fitted model</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+<p><strong>Note</strong> with a balanced design ordering of term doesn’t matter. For example,</p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" title="1">fac_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC <span class="op">~</span><span class="st"> </span>Disease<span class="op">*</span>Organ, <span class="dt">data =</span> factorial)</a>
+<a class="sourceLine" id="cb78-2" title="2"><span class="kw">anova</span>(fac_lm)</a></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: logAUC
+##               Df Sum Sq Mean Sq F value  Pr(&gt;F)  
+## Disease        1 3.1827  3.1827  3.6304 0.09320 .
+## Organ          1 4.2960  4.2960  4.9003 0.05775 .
+## Disease:Organ  1 2.5392  2.5392  2.8963 0.12719  
+## Residuals      8 7.0135  0.8767                  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb80-1" title="1">fac_lm_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC <span class="op">~</span><span class="st"> </span>Organ<span class="op">*</span>Disease, <span class="dt">data =</span> factorial)</a>
+<a class="sourceLine" id="cb80-2" title="2"><span class="kw">anova</span>(fac_lm_<span class="dv">2</span>)</a></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: logAUC
+##               Df Sum Sq Mean Sq F value  Pr(&gt;F)  
+## Organ          1 4.2960  4.2960  4.9003 0.05775 .
+## Disease        1 3.1827  3.1827  3.6304 0.09320 .
+## Organ:Disease  1 2.5392  2.5392  2.8963 0.12719  
+## Residuals      8 7.0135  0.8767                  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p><strong>Inference</strong> using <code>predictmeans</code></p>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb82-1" title="1">interaction &lt;-<span class="st"> </span><span class="kw">predictmeans</span>(fac_lm, <span class="dt">modelterm =</span> <span class="st">&quot;Disease:Organ&quot;</span>, <span class="dt">pairwise =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb82-2" title="2">interaction<span class="op">$</span><span class="st">`</span><span class="dt">Predicted Means</span><span class="st">`</span></a></code></pre></div>
+<pre><code>##          Organ innerLV outerLV
+## Disease                       
+## Diabetic        7.8733  9.9900
+## Healthy         9.8233 10.1000</code></pre>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb84-1" title="1">interaction<span class="op">$</span><span class="st">`</span><span class="dt">Standard Error of Means</span><span class="st">`</span></a></code></pre></div>
+<pre><code>## All means have the same Stder 
+##                       0.54058</code></pre>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" title="1">interaction<span class="op">$</span><span class="st">`</span><span class="dt">Pairwise LSDs</span><span class="st">`</span></a></code></pre></div>
+<pre><code>##                  Diabetic:innerLV Diabetic:outerLV Healthy:innerLV
+## Diabetic:innerLV          0.00000         -2.11667        -1.95000
+## Diabetic:outerLV          1.76294          0.00000         0.16667
+## Healthy:innerLV           1.76294          1.76294         0.00000
+## Healthy:outerLV           1.76294          1.76294         1.76294
+##                  Healthy:outerLV
+## Diabetic:innerLV        -2.22667
+## Diabetic:outerLV        -0.11000
+## Healthy:innerLV         -0.27667
+## Healthy:outerLV          0.00000
+## attr(,&quot;Significant level&quot;)
+## [1] 0.05
+## attr(,&quot;Degree of freedom&quot;)
+## [1] 8
+## attr(,&quot;Note&quot;)
+## [1] &quot;LSDs matrix has mean differences (row-col) above the diagonal, LSDs (adjusted by &#39;none&#39; method) below the diagonal&quot;</code></pre>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb88-1" title="1"><span class="co">## plot</span></a>
+<a class="sourceLine" id="cb88-2" title="2"><span class="kw">print</span>(interaction<span class="op">$</span>predictmeansPlot)</a></code></pre></div>
 </div>
-<div id="randomization" class="section level3">
-<h3><span class="header-section-number">4.3.2</span> <strong>Randomization</strong></h3>
+<div id="unqual-replications-unbalanced-design" class="section level3">
+<h3><span class="header-section-number">7.2.2</span> Unqual replications (unbalanced design)</h3>
+<p>As per lecture slides let’s set <code>logAUC</code> obvservations 1,2,3, 10 to <code>NA</code></p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" title="1">unbalanced &lt;-<span class="st"> </span>factorial</a>
+<a class="sourceLine" id="cb89-2" title="2">unbalanced<span class="op">$</span>logAUC[<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,<span class="dv">10</span>)] &lt;-<span class="st"> </span><span class="ot">NA</span></a>
+<a class="sourceLine" id="cb89-3" title="3">unbalanced</a></code></pre></div>
+<pre><code>## # A tibble: 12 x 5
+##    Disease  Organ   Animal Sample logAUC
+##    &lt;fct&gt;    &lt;fct&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+##  1 Healthy  innerLV      1      1  NA   
+##  2 Healthy  outerLV      2      2  NA   
+##  3 Healthy  innerLV      3      1  NA   
+##  4 Healthy  outerLV      4      2  10.5 
+##  5 Healthy  innerLV      5      1   9.74
+##  6 Healthy  outerLV      6      2  11.0 
+##  7 Diabetic innerLV      7      1   7.92
+##  8 Diabetic outerLV      8      2   9.37
+##  9 Diabetic innerLV      9      1   8.69
+## 10 Diabetic outerLV     10      2  NA   
+## 11 Diabetic innerLV     11      1   7.01
+## 12 Diabetic outerLV     12      2   9.29</code></pre>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" title="1">unbalanced_nafree &lt;-<span class="st"> </span>unbalanced <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">drop_na</span>()</a>
+<a class="sourceLine" id="cb91-2" title="2">unbalanced_nafree</a></code></pre></div>
+<pre><code>## # A tibble: 8 x 5
+##   Disease  Organ   Animal Sample logAUC
+##   &lt;fct&gt;    &lt;fct&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+## 1 Healthy  outerLV      4      2  10.5 
+## 2 Healthy  innerLV      5      1   9.74
+## 3 Healthy  outerLV      6      2  11.0 
+## 4 Diabetic innerLV      7      1   7.92
+## 5 Diabetic outerLV      8      2   9.37
+## 6 Diabetic innerLV      9      1   8.69
+## 7 Diabetic innerLV     11      1   7.01
+## 8 Diabetic outerLV     12      2   9.29</code></pre>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" title="1">unbalanced_nafree <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(Disease, Organ) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tally</span>()</a></code></pre></div>
+<pre><code>## # A tibble: 4 x 3
+## # Groups:   Disease [2]
+##   Disease  Organ       n
+##   &lt;fct&gt;    &lt;fct&gt;   &lt;int&gt;
+## 1 Diabetic innerLV     3
+## 2 Diabetic outerLV     2
+## 3 Healthy  innerLV     1
+## 4 Healthy  outerLV     2</code></pre>
+<p><strong>Analysis</strong> using <code>lm()</code></p>
+<p><strong>Note</strong>: order matters. For example,</p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb95-1" title="1">fac_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC <span class="op">~</span><span class="st"> </span>Disease<span class="op">*</span>Organ, <span class="dt">data =</span> unbalanced_nafree)</a>
+<a class="sourceLine" id="cb95-2" title="2"><span class="kw">anova</span>(fac_lm)</a></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: logAUC
+##               Df Sum Sq Mean Sq F value  Pr(&gt;F)  
+## Disease        1 7.1102  7.1102 18.4955 0.01264 *
+## Organ          1 3.1149  3.1149  8.1027 0.04656 *
+## Disease:Organ  1 0.0913  0.0913  0.2376 0.65145  
+## Residuals      4 1.5377  0.3844                  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb97-1" title="1">fac_lm_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC <span class="op">~</span><span class="st"> </span>Organ<span class="op">*</span>Disease, <span class="dt">data =</span> unbalanced_nafree)</a>
+<a class="sourceLine" id="cb97-2" title="2"><span class="kw">anova</span>(fac_lm_<span class="dv">2</span>)</a></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: logAUC
+##               Df Sum Sq Mean Sq F value  Pr(&gt;F)  
+## Organ          1 5.7291  5.7291 14.9029 0.01814 *
+## Disease        1 4.4960  4.4960 11.6953 0.02678 *
+## Organ:Disease  1 0.0913  0.0913  0.2376 0.65145  
+## Residuals      4 1.5377  0.3844                  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+</div>
+<div id="tldr-model-formula-syntax-in-r" class="section level2">
+<h2><span class="header-section-number">7.3</span> TL;DR, Model formula syntax in <code>R</code></h2>
+<p>In <code>R</code> to specify the model you want to fit you typically create a model formula object; this is usually then passed as the first argument to the model fitting function (e.g., <code>lm()</code>).</p>
+<p>Some notes on syntax:</p>
+<p>Consider the model formula example <code>y ~ x + z + x:z</code>. There is a lot going on here:</p>
 <ul>
-<li><p><strong>Protects against bias</strong></p></li>
-<li><p>Plan the experiment in such a way that the variations caused by extraneous factors can all be combined under the general heading of “chance”.</p></li>
-<li>Ensures that each treatment has the same probability of getting good (or bad) units and thus
-avoids systematic bias</li>
-<li>random allocation can cancel out population bias; it ensures that any other possible causes for the experimental results are split equally between groups</li>
-<li><p>typically statistical analysis assumes that observations are <strong>independent</strong>. This is almost never strictly true in practice but randomisation means that our estimates will behave as if they were based on independent observations</p></li>
+<li>The variable to the left of <code>~</code> specifies the response, everything to the right specify the explanatory variables</li>
+<li><code>+</code> indicated to include the variable to the left of it and to the right of it (it does <strong>not</strong> mean they should be summed)</li>
+<li><code>:</code> denotes the interaction of the variables to its left and right</li>
 </ul>
-</div>
-<div id="blocking" class="section level3">
-<h3><span class="header-section-number">4.3.3</span> <strong>Blocking</strong></h3>
+<p>Additional, some other symbols have special meanings in model formula:</p>
 <ul>
-<li><p>Blocking helps <strong>control variability</strong> by making treatment groups more alike. Experimental units are divided into subsets (called blocks) so that units within the same block are more similar than units from different subsets or blocks.</p></li>
-<li><p>Blocking is a technique for dealing with <em>nuisance factors</em>. A <em>nuisance factor</em> is a factor that has some effect on the response, but is of no interest (e.g., age class).</p></li>
+<li><p><code>*</code> means to include all main effects and interactions, so <code>a*b</code> is the same as <code>a + b + a:b</code></p></li>
+<li><code>^</code> is used to include main effects and interactions up to a specified level. For example, <code>(a + b + c)^2</code> is equivalent to <code>a + b + c + a:b + a:c + b:c</code> (note <code>(a + b + c)^3</code> would also add <code>a:b:c</code>)</li>
+<li><p><code>-</code> excludes terms that might otherwise be included. For example, <code>-1</code> excludes the intercept otherwise included by default, and <code>a*b - b</code> would produce <code>a + a:b</code></p></li>
 </ul>
-</div>
-</div>
-<div id="one-way-analysis-of-variance-anova" class="section level2">
-<h2><span class="header-section-number">4.4</span> One-Way <strong>An</strong>alysis <strong>o</strong>f <strong>Va</strong>riance (ANOVA)</h2>
-<div id="between-group-ss-ssb" class="section level3">
-<h3><span class="header-section-number">4.4.1</span> Between group SS (SSB)</h3>
-<p><strong>The idea</strong>: Assess <strong>distances</strong> between treatment (<em>surgical condition</em>) means relative to our uncertainty about the actual (<em>true</em>) treatment means.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
-<p><strong>add up the differences:</strong> -1.192 + -0.703 + 1.895 = 0. <strong>This is always the case!</strong></p>
-<p><strong>So adding up the differences:</strong> -1.192 + -0.703 + 1.895 = 0. <strong>Not a great way to measure distances!</strong></p>
-<p><strong>Sums of Squares?</strong></p>
-<p>-1.192^2 + -0.703^2 + 1.895^2</p>
-<p><strong>add up the squared differences?</strong> but… there are 4 observations in each group (treatment)</p>
-<p>4<span class="math inline">\(\times\)</span>(-1.192)^2 + 4<span class="math inline">\(\times\)</span>(-0.703)^2 + 4<span class="math inline">\(\times\)</span>(1.895)^2</p>
-<p>This is the <strong>Between Groups Sums of Squares</strong> or the <strong>Between group SS (SSB)</strong></p>
-<p>So the Between group SS (SSB) = 22.02635</p>
-<p><strong>Adding up the differences:</strong> -1.192 + -0.703 + 1.895 = 0. <strong>This is always the case</strong> and that itself gives us information…</p>
-<p><strong>We only need to know two of the values to work out the third!</strong></p>
-<p>So we have only 2 bits of <strong>unique</strong> information; <strong>SSB degrees of freedom</strong> = 2</p>
-</div>
-<div id="within-group-ss-ssw" class="section level3">
-<h3><span class="header-section-number">4.4.2</span> Within group SS (SSW)</h3>
-<p>The <strong>Within group SS (SSW)</strong> arises from the same idea:</p>
-<p>To assess distances between treatment (surgical condition) means <strong>relative</strong> to our uncertainty about the actual (true) treatment means.</p>
-<p>Procedure:</p>
-<ul>
-<li>Observation - Treatment mean</li>
-<li>Square the difference</li>
-<li>Add them up!</li>
-</ul>
-<p><strong>Within group SS (SSW)</strong> <em>unexplained variance</em></p>
-<p><img src="_main_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
-</div>
-<div id="f-statistic" class="section level3">
-<h3><span class="header-section-number">4.4.3</span> F-statistic</h3>
-<p>Recall the Between group SS (<strong>SSB</strong>) = 22.02635</p>
-<p>So mean <strong>SSB</strong> = 22.02635 / 2</p>
-<p>The within group SS (<strong>SSW</strong>) = 6.059075</p>
-<p>Here we have 3<span class="math inline">\(\times\)</span> 3 bits of <em>unique</em> information: within groups <strong>degrees of freedom</strong> is 9.</p>
-<p>So mean <strong>SSW</strong> = 6.059/9</p>
-<p>Consider the ratio <span class="math inline">\({\frac{{\text{variation due to treatments}}}{{\text{unexplained variance}}}} = {\frac{{\text{ mean between-group variability}}}{{\text{mean within-group variability}}}}\)</span> <span class="math inline">\(=\frac{\text{mean SSB}}{\text{mean SSW}}\)</span> <span class="math inline">\(=\frac{\text{MSB}}{\text{MSW}}\)</span> = <span class="math inline">\(=\frac{\text{experimental variance}}{\text{error variance}}\)</span> 16.3586975</p>
-<p>This is the <strong>F-statistic!</strong></p>
-</div>
-<div id="degrees-of-freedom-df" class="section level3">
-<h3><span class="header-section-number">4.4.4</span> Degrees of freedom (DF)</h3>
-<p>Essentially <em>statistical currency</em> (i.e., <strong>unique</strong> bits of information). So in the example above we have 3 treatment groups and if we know the mean of two we know the third (i.e., 2 <em>unique</em> bits of info) so SSB df = 2. Now, for SSW df. We have 12 observations (4 in each group); we know the treatment means so if we have three of those observed values in each group we know the fourth: 12 - 3 = 9 (i.e., number of observations - number of df lost due to knowing the cell means).</p>
-</div>
-</div>
-<div id="p-values" class="section level2">
-<h2><span class="header-section-number">4.5</span> 😱 p-values 😱</h2>
-<p><strong><a href="https://www.tandfonline.com/doi/full/10.1080/00031305.2016.1154108">The ASA Statement on p-Values: Context, Process, and Purpose</a></strong></p>
-<blockquote>
-“Good statistical practice, as an essential component of good scientific practice, emphasizes principles of good study design and conduct, a variety of numerical and graphical summaries of data, understanding of the phenomenon under study, interpretation of results in context, complete reporting and proper logical and quantitative understanding of what data summaries mean. No single index should substitute for scientific reasoning.”
-<footer>
-— ASA Statement on p-Values
-</footer>
-</blockquote>
-<p><strong>What is a p-Value?</strong></p>
-<p>Informally, a p-value is the probability under a specified statistical model that a statistical summary of the data (e.g., the sample mean difference between two compared groups) would be equal to or more extreme than its observed value</p>
-<ul>
-<li><p><strong>p-values</strong> can indicate how incompatible the data are with a specified statistical model</p></li>
-<li><p>p-values <strong>do not</strong> measure the probability that the studied hypothesis is true, or the probability that the data were produced by random chance alone</p></li>
-<li><p>Scientific conclusions and business or policy decisions <strong>should not</strong> be based only on whether a p-value passes a specific threshold</p></li>
-<li><p>Proper inference requires <strong>full</strong> reporting and transparency</p></li>
-<li><p>A p-value, or statistical significance, does <strong>not</strong> measure the size of an effect or the importance of a result</p></li>
-<li><p>By itself, a p-value does <strong>not</strong> provide a good measure of evidence regarding a model or hypothesis</p></li>
-</ul>
-</div>
-<div id="terminology-and-issues" class="section level2">
-<h2><span class="header-section-number">4.6</span> Terminology and issues</h2>
-<p><strong>Type I</strong> error (false positive): declare a difference (i.e., reject <span class="math inline">\(H_0\)</span>) when there is no difference (i.e. <span class="math inline">\(H_0\)</span> is true). Risk of the Type I error is determined by the <em>level of significance</em> (which we set!) (i.e., <span class="math inline">\(\alpha =\text{ P(Type I error)} = \text{P(false positive)}\)</span>.</p>
-<p><img src="https://raw.githubusercontent.com/allisonhorst/stats-illustrations/master/other-stats-artwork/type_1_errors.png" /></p>
-<p><strong>Type II</strong> error (false negative): difference not declared (i.e., <span class="math inline">\(H_0\)</span> not rejected) when there is a difference (i.e., <span class="math inline">\(H_0\)</span> is false). Let <span class="math inline">\(\beta =\)</span> P(do not reject <span class="math inline">\(H_0\)</span> when <span class="math inline">\(H_0\)</span> is false); so, <span class="math inline">\(1-\beta\)</span> = P(reject <span class="math inline">\(H_0\)</span> when <span class="math inline">\(H_0\)</span> is false) = P(a true positive), which is the statistical <strong>power</strong> of the test.</p>
-<p><img src="https://raw.githubusercontent.com/allisonhorst/stats-illustrations/master/other-stats-artwork/type_2_errors.png" /></p>
-<p><strong>Each</strong> time we carry out a hypothesis test the probability we get a false positive result (type I error) is given by <span class="math inline">\(\alpha\)</span> (the <em>level of significance</em> we choose).</p>
-<p>When we have <strong>multiple comparisons</strong> to make we should then control the <strong>Type I</strong> error rate across the entire <em>family</em> of tests under consideration, i.e., control the Family-Wise Error Rate (FWER); this ensures that the risk of making at least one <strong>Type I</strong> error among the family of comparisons in the experiment is <span class="math inline">\(\alpha\)</span>.</p>
-<table>
-<thead>
-<tr class="header">
-<th>State of Nature</th>
-<th>Don’t reject <span class="math inline">\(H_0\)</span></th>
-<th>reject <span class="math inline">\(H_0\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><span class="math inline">\(H_0\)</span> is true</td>
-<td>✅</td>
-<td>Type I error</td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(H_0\)</span> is false</td>
-<td>Type II error</td>
-<td>✅</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="resources-2" class="section level2">
-<h2><span class="header-section-number">4.7</span> Resources</h2>
-<p><img src="https://pbs.twimg.com/media/EeMWb7QWsAIGftR?format=jpg&amp;name=small" /></p>
-<p><strong>Looking forward</strong></p>
-<table>
-<colgroup>
-<col width="44%" />
-<col width="37%" />
-<col width="18%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Traditional name</th>
-<th align="center">Model formula</th>
-<th align="right">R code</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Simple regression</td>
-<td align="center"><span class="math inline">\(Y \sim X_{continuous}\)</span></td>
-<td align="right"><code>lm(Y ~ X)</code></td>
-</tr>
-<tr class="even">
-<td>One-way ANOVA</td>
-<td align="center"><span class="math inline">\(Y \sim X_{categorical}\)</span></td>
-<td align="right"><code>lm(Y ~ X)</code></td>
-</tr>
-<tr class="odd">
-<td>Two-way ANOVA</td>
-<td align="center"><span class="math inline">\(Y \sim X1_{categorical} + X2_{categorical}\)</span></td>
-<td align="right"><code>lm(Y ~ X1 + X2)</code></td>
-</tr>
-<tr class="even">
-<td>ANCOVA</td>
-<td align="center"><span class="math inline">\(Y \sim X1_{continuous} + X2_{categorical}\)</span></td>
-<td align="right"><code>lm(Y ~ X1 + X2)</code></td>
-</tr>
-<tr class="odd">
-<td>Multiple regression</td>
-<td align="center"><span class="math inline">\(Y \sim X1_{continuous} + X2_{continuous}\)</span></td>
-<td align="right"><code>lm(Y ~ X1 + X2)</code></td>
-</tr>
-<tr class="even">
-<td>Factorial ANOVA</td>
-<td align="center"><span class="math inline">\(Y \sim X1_{categorical} * X2_{categorical}\)</span></td>
-<td align="right"><code>lm(Y ~ X1 * X2)</code> or <code>lm(Y ~ X1 + X2 + X1:X2)</code></td>
-</tr>
-</tbody>
-</table>
-<p><a href="https://catalogue.library.auckland.ac.nz/primo-explore/fulldisplay?docid=uoa_alma21237737730002091&amp;search_scope=Combined_Local&amp;tab=books&amp;vid=NEWUI&amp;context=L">Glass, David J. Experimental Design for Biologists. Second ed. 2014. Print.</a></p>
-<p><a href="https://catalogue.library.auckland.ac.nz/primo-explore/fulldisplay?docid=uoa_alma21237737830002091&amp;search_scope=Combined_Local&amp;tab=books&amp;vid=NEWUI&amp;context=L">Welham, S. J. Statistical Methods in Biology : Design and Analysis of Experiments and Regression. 2015. Print.</a></p>
-<p><a href="https://catalogue.library.auckland.ac.nz/primo-explore/fulldisplay?docid=uoa_alma21198532990002091&amp;context=L&amp;vid=NEWUI&amp;lang=en_US&amp;search_scope=Combined_Local&amp;adaptor=Local%20Search%20Engine&amp;isFrbr=true&amp;tab=books&amp;query=any,contains,The_Design_of_Experiments&amp;sortby=date&amp;facet=frbrgroupid,include,627497507&amp;offset=0">Fisher, Ronald Aylmer. The Design of Experiments. 8th ed. Edinburgh: Oliver &amp; Boyd, 1966. Print. O &amp; B Paperbacks.</a></p>
+<p>Mathematical functions can also be directly used in the model formula to transform a variable directly (e.g., <code>y ~ exp(x) + log(z) + x:z</code>). One thing that may seem counter intuitive is in creating polynomial expressions (e.g., x2). Here the expression <code>y ~ x^2</code> does <strong>not</strong> relate to squaring the explanatory variable x (this is to do with the syntax <code>^</code> you see above. To include x2 as a term in our model we have to use the <code>I()</code> (the “as-is” operator). For example, <code>y ~ I(x^2)</code>).</p>
 
 </div>
 </div>
@@ -490,8 +483,8 @@ avoids systematic bias</li>
           </div>
         </div>
       </div>
-<a href="data-wrangling-and-vizualisation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="a-completely-randomomised-design.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="multiple-comparisons.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="blocking-incorporating-into-design-and-analysis-of.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

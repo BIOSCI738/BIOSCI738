@@ -1,0 +1,115 @@
+# Blocking: incorporating into design and analysis of
+
+## Learning objectives
+
+ + **Describe** a Randomized Complete Block Design (RCBD)
+ + **Describe** a Split-plot Design (RCBD)
+ + **Carry** out analysis of a RCBD in `R` using `aov()`, `lm()`, and `lmer()` and **discuss** and **compare** the three
+ + **Define** a fixed and random effect in the context of experimental design
+ 
+## Blocking
+
+*Recall*
+
++ Blocking helps control variability by making treatment groups more alike. Experimental units are divided into subsets (called blocks) so that units within the same block are more similar than units from different subsets or blocks.
+
++ Blocking is a technique for dealing with nuisance factors. A nuisance factor is a factor that has some effect on the response, but is of no interest (e.g., age class).
+
+**Key idea**
+
+Partition known sources of variation which are unimportant to key scientific question(s) to improve precision of comparisons between treatment means.
+
+## A Randomised Controlled Block Design (RCBD)
+
+![](img/rcbd.png)
+
+
+**response = systematic component + error component**
+
+## Fixed or Random???
+
+![](https://1.bp.blogspot.com/-9PUW42GjR0U/WX1PQagQNXI/AAAAAAAAIoo/sIs8WyGSNFg0PbV_koT9Bgery_7VuKIPgCLcBGAs/s1600/1taixn.jpg)
+
+**Fixed effects**
+
+Terms (parameters) in a statistical model which are fixed, or non-random, quantities. For example, Treatment group’s mean response: for the same Treatment, we expect this quantity to be the same from experiment to experiment.
+
+ + Terms with specific levels chosen for the experiment, and the primary aim is unbiased estimation of effects, should be allocated as fixed
+
+**Random effects**
+
+Terms (parameters) in a statistical model which are considered as random quantities or variables.
+
+ + Terms associated with the structure of the design should be allocated as random. 
+ + Terms whose levels are a representative sample from a population, and where the variance of the population is of interest, should be allocated as random
+
+### Ignoring an effect
+
+```{r, echo = FALSE, message = FALSE}
+library(tidyverse)
+rcbd <- read_csv("../data/rcbd.csv")
+```
+
+You'll find the `rcbd.csv` file on CANVAS.
+
+```{r, eval = FALSE}
+library(tidyverse)
+rcbd <- read_csv("rcbd.csv")
+```
+
+```{r}
+## Note: Run should be a factor
+rcbd$Run <- as.factor(rcbd$Run)
+glimpse(rcbd)
+```
+**One-way vs two-way...**
+
+```{r}
+anova(lm(logAUC4 ~ Surgery, data = rcbd))
+```
+
+
+```{r}
+lm2 <- lm(logAUC4 ~ Run + Surgery, data = rcbd)
+anova(lm2)
+```
+**Always check assumptions**
+
+```{r}
+gglm::gglm(lm2)
+```
+
+### Analysis using `lmer()` from `lme4`
+
+```{r}
+library(lme4)
+lmer_mod <- lmer(logAUC8 ~ Surgery + (1|Run), data = rcbd)
+summary(lmer_mod)
+```
+Now what about the *Random effects*
+
+We have two variance components
+  
+  + Between Groups (Runs) $\hat{\sigma^2}_{\text{Run}}$ = 1.479
+  + Within Runs (between observations) $\hat{\sigma_2}$ = 1.447
+  
+Note that `aov()` presents the same information, but in a different way:
+
+```{r}
+summary(aov(logAUC8 ~ Surgery + Error(Run), data = rcbd))
+```
+
+ + Within Runs (Residuals) $\hat{\sigma}_2$ = 1.447 (*same as `lmer`*)
+ + Between Run variance = $\hat{\sigma}^2$ +  $3\:\hat{\sigma}^2_{\text{Run}}$ so $\hat{\sigma}^2_{\text{Run}} = \frac{5.883 - \hat{\sigma}^2 }{3} = \frac{5.883 - 1.447}{3} = 1.479$
+
+
+
+
+#### SEMs \& SEDs
+
+
+```{r}
+library(predictmeans)
+pred_means <- predictmeans(lmer_mod, modelterm = "Surgery", pairwise = TRUE, plot = FALSE)
+pred_means
+```

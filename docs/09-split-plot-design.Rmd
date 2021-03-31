@@ -1,0 +1,164 @@
+# Split-plot and repeated measures designs
+
+## Learning objectives
+
+   + **Describe** and **discuss** split-plot experimental design
+   + **Describe** and **discuss** repeated measures experiments
+   + **Write** `R` code to **visualise** repeated measures data 
+   + **Carry** out appropriate analysis in `R` and **draw** the appropriate inference
+
+
+## Analysis of a split-plot design
+
+**Recall the diabetic and healthy male Wistar rats...**
+
+![](img/factorial_crd.png)
+**BUT** what about
+
+![](img/split-plot.png)
+**Data available on CANVAS**
+
+```{r, echo = FALSE, message = FALSE}
+split_plot <- read_csv("../data/split_plot.csv")
+```
+
+
+```{r, eval = FALSE}
+split_plot <- read_csv("split_plot.csv")
+```
+
+```{r}
+## recall we need to set factors
+split_plot$Animal <- factor(split_plot$Animal)
+split_plot$Sample <- factor(split_plot$Sample)
+split_plot
+```
+
+### Using `aov()`
+
+```{r}
+sp_aov <- aov(logAUC ~ Disease*Organ + Error(Animal/Sample), data = split_plot)
+summary(sp_aov)
+```
+
+### Using `lmer()` (from `lmeTest` and `lmer4`) and `predictmeans()`
+
+```{r}
+library(lmerTest) ## MUST LOAD THIS
+sp_lmer <- lmerTest::lmer(logAUC ~ Disease*Organ + (1|Animal), data = split_plot) ## MUST SPECIFY WHICH PACKAGE
+anova(sp_lmer,type = 2)
+```
+
+```{r}
+library(lme4)
+library(predictmeans)
+sp_lmer4 <- lme4::lmer(logAUC ~ Disease*Organ + (1|Animal), data = split_plot) ## MUST SPECIFY WHICH PACKAGE
+sp_predmeans <- predictmeans(sp_lmer4,modelterm = "Disease:Organ", pairwise = TRUE, plot = FALSE)
+sp_predmeans
+```
+
+
+## Analysis of a repeated measures design
+
+We have (*balanced*) data with the same number of observations on each rat at the same time points.
+
+### The data
+
+**Data available on CANVAS**
+
+```{r, echo = FALSE, message = FALSE}
+library(tidyverse)
+liver <- read_csv("../data/repeated_measures_liver.csv")
+```
+
+
+```{r, eval = FALSE}
+library(tidyverse)
+liver <- read_csv("repeated_measures_liver.csv")
+```
+
+```{r}
+## change time to factor
+liver$Time <- as.factor(liver$Time)
+glimpse(liver)
+```
+
+
+### Visualise
+
+**plot data**
+
+```{r}
+ggplot(liver, aes(x = Time, y = Glucose, color = Treatment, group = Animal)) +
+  geom_line(size = 1) + 
+  geom_point(shape = 1) +
+  theme_bw()
+```
+
+**plot group means**
+
+```{r}
+liver_means <- liver %>% group_by(Time,Treatment) %>%
+  summarise(Glucose = mean(Glucose))
+ggplot(liver_means, aes(x = Time, y = Glucose, color = Treatment, group = Treatment)) +
+  geom_line(size = 1) + 
+  geom_point(shape = 1) +
+  theme_bw()
+```
+
+**linear?**
+
+```{r}
+ggplot(liver_means, aes(x = Time, y = Glucose, color = Treatment, group = Treatment)) +
+  geom_smooth(method = "lm", se = FALSE) +
+  geom_point(shape = 1) +
+  theme_bw()
+```
+
+### Using `aov()`
+
+```{r}
+re_aov <- aov(Glucose ~ Treatment*Time + Error(Animal),data = liver)
+summary(re_aov)
+```
+
+### Using `lmer()` (from `lmerTest` and `lme4`) and `predictmeans()`
+
+```{r}
+library(lmerTest) ## MUST LOAD THIS
+re_lmer <- lmerTest::lmer(Glucose ~ Treatment*Time + (1|Animal),data = liver) ## MUST SPECIFY WHICH PACKAGE
+anova(re_lmer,type = 2)
+```
+
+```{r}
+library(lme4)
+library(predictmeans)
+re_lmer4 <- lme4::lmer(Glucose ~ Treatment*Time + (1|Animal),data = liver) ## MUST SPECIFY WHICH PACKAGE
+predictmeans::residplot(re_lmer4)
+sp_predmeans <- predictmeans(re_lmer4,modelterm = "Time", pairwise = TRUE)
+sp_predmeans
+```
+
+
+## Repeated measures designs as *split-plots in time*
+
+In this set of *balanced* data we have
+ + Same number of observations on each rat
+ + At the same time points
+
+
+We could analyse as a split-plot design, where
+ + *plots* = different rats
+ + *subplots* = different times within a rat
+
+Here we would have **two** error components
+ + Between rats
+ + Between times within rats
+
+There are, however, two big differences between Repeated Measures and Split-plot Designs
+  1. Cannot randomise the levels of time
+    + Measurement 2 hours, comes after that at 1 hour
+  2. Split plot design block structure
+    + Imposes the same correlation on any two subplots in the the same plot
+       + Implausible for repeated measures designs as observations further apart in time likely to be less
+correlated than observations close together
