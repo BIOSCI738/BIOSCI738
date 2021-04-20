@@ -52,66 +52,41 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
 <link rel="stylesheet" href="src/my-style.css" type="text/css" />
@@ -154,7 +129,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.6.1" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html#starting-out-with-tidyverse"><i class="fa fa-check"></i><b>1.6.1</b> Starting out with <code>tidyverse</code></a></li>
 <li class="chapter" data-level="1.6.2" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html#reading-in-data-from-a-.csv-file"><i class="fa fa-check"></i><b>1.6.2</b> Reading in data from a <code>.csv</code> file</a></li>
 <li class="chapter" data-level="1.6.3" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html#explore-your-data"><i class="fa fa-check"></i><b>1.6.3</b> Explore your data</a></li>
-<li class="chapter" data-level="1.6.4" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html#the-pipe-operator"><i class="fa fa-check"></i><b>1.6.4</b> The pipe operator <code>%&gt;%</code></a></li>
+<li class="chapter" data-level="1.6.4" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html#explore-your-data-1"><i class="fa fa-check"></i><b>1.6.4</b> Explore your data</a></li>
+<li class="chapter" data-level="1.6.5" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html#the-pipe-operator"><i class="fa fa-check"></i><b>1.6.5</b> The pipe operator <code>%&gt;%</code></a></li>
 </ul></li>
 <li class="chapter" data-level="1.7" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html#other-resources"><i class="fa fa-check"></i><b>1.7</b> Other resources</a></li>
 </ul></li>
@@ -168,7 +144,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.1" data-path="data-wrangling-and-vizualisation.html"><a href="data-wrangling-and-vizualisation.html#learning-objectives-2"><i class="fa fa-check"></i><b>3.1</b> Learning objectives</a></li>
 <li class="chapter" data-level="3.2" data-path="data-wrangling-and-vizualisation.html"><a href="data-wrangling-and-vizualisation.html#common-dataframe-manipulations-in-the-tidyverse"><i class="fa fa-check"></i><b>3.2</b> Common dataframe manipulations in the <code>tidyverse</code></a><ul>
 <li class="chapter" data-level="3.2.1" data-path="data-wrangling-and-vizualisation.html"><a href="data-wrangling-and-vizualisation.html#using-dplyr-and-tidyr"><i class="fa fa-check"></i><b>3.2.1</b> Using <code>dplyr</code> and <code>tidyr</code></a></li>
-<li class="chapter" data-level="3.2.2" data-path="data-wrangling-and-vizualisation.html"><a href="data-wrangling-and-vizualisation.html#introuducing-the-palmer-penguins"><i class="fa fa-check"></i><b>3.2.2</b> Introuducing the <span>Palmer penguins</span></a></li>
+<li class="chapter" data-level="3.2.2" data-path="data-wrangling-and-vizualisation.html"><a href="data-wrangling-and-vizualisation.html#introuducing-the-palmer-penguins"><i class="fa fa-check"></i><b>3.2.2</b> Introuducing the <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0090081">Palmer penguins</a></a></li>
 <li class="chapter" data-level="3.2.3" data-path="data-wrangling-and-vizualisation.html"><a href="data-wrangling-and-vizualisation.html#common-dataframe-manipulations-in-the-tidyverse-using-dplyr-and-tidyr"><i class="fa fa-check"></i><b>3.2.3</b> Common dataframe manipulations in the <code>tidyverse</code>, using <code>dplyr</code> and <code>tidyr</code></a></li>
 </ul></li>
 <li class="chapter" data-level="3.3" data-path="data-wrangling-and-vizualisation.html"><a href="data-wrangling-and-vizualisation.html#data-viz"><i class="fa fa-check"></i><b>3.3</b> Data Viz</a><ul>
@@ -178,7 +154,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.5" data-path="data-wrangling-and-vizualisation.html"><a href="data-wrangling-and-vizualisation.html#ggplot2"><i class="fa fa-check"></i><b>3.5</b> <code>ggplot2</code></a><ul>
 <li class="chapter" data-level="3.5.1" data-path="data-wrangling-and-vizualisation.html"><a href="data-wrangling-and-vizualisation.html#ggplot2-layers"><i class="fa fa-check"></i><b>3.5.1</b> <code>ggplot2</code> layers</a></li>
 <li class="chapter" data-level="3.5.2" data-path="data-wrangling-and-vizualisation.html"><a href="data-wrangling-and-vizualisation.html#examples"><i class="fa fa-check"></i><b>3.5.2</b> Examples</a></li>
-<li class="chapter" data-level="3.5.3" data-path="data-wrangling-and-vizualisation.html"><a href="data-wrangling-and-vizualisation.html#the-good-the-bad-and-the-ugly"><i class="fa fa-check"></i><b>3.5.3</b> The Good, the Bad, and the Ugly…</a></li>
+<li class="chapter" data-level="3.5.3" data-path="data-wrangling-and-vizualisation.html"><a href="data-wrangling-and-vizualisation.html#the-good-the-bad-and-the-ugly..."><i class="fa fa-check"></i><b>3.5.3</b> The Good, the Bad, and the Ugly...</a></li>
 </ul></li>
 <li class="chapter" data-level="3.6" data-path="data-wrangling-and-vizualisation.html"><a href="data-wrangling-and-vizualisation.html#resources-1"><i class="fa fa-check"></i><b>3.6</b> Resources</a></li>
 </ul></li>
@@ -246,6 +222,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="split-plot-and-repeated-measures-designs.html"><a href="split-plot-and-repeated-measures-designs.html#repeated-measures-designs-as-split-plots-in-time"><i class="fa fa-check"></i><b>9.4</b> Repeated measures designs as <em>split-plots in time</em></a></li>
 </ul></li>
+<li class="chapter" data-level="10" data-path="statistical-inference.html"><a href="statistical-inference.html"><i class="fa fa-check"></i><b>10</b> Statistical Inference</a><ul>
+<li class="chapter" data-level="10.1" data-path="statistical-inference.html"><a href="statistical-inference.html#learning-objectives-9"><i class="fa fa-check"></i><b>10.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="10.2" data-path="statistical-inference.html"><a href="statistical-inference.html#regression"><i class="fa fa-check"></i><b>10.2</b> Regression</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="statistical-inference.html"><a href="statistical-inference.html#some-mathematical-notation"><i class="fa fa-check"></i><b>10.2.1</b> Some mathematical notation</a></li>
+<li class="chapter" data-level="10.2.2" data-path="statistical-inference.html"><a href="statistical-inference.html#modeling-bill-depth"><i class="fa fa-check"></i><b>10.2.2</b> Modeling Bill Depth</a></li>
+<li class="chapter" data-level="10.2.3" data-path="statistical-inference.html"><a href="statistical-inference.html#single-continuous-variable"><i class="fa fa-check"></i><b>10.2.3</b> Single continuous variable</a></li>
+<li class="chapter" data-level="10.2.4" data-path="statistical-inference.html"><a href="statistical-inference.html#factor-and-a-continous-variable"><i class="fa fa-check"></i><b>10.2.4</b> Factor and a continous variable</a></li>
+<li class="chapter" data-level="10.2.5" data-path="statistical-inference.html"><a href="statistical-inference.html#interactions"><i class="fa fa-check"></i><b>10.2.5</b> Interactions</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="statistical-inference.html"><a href="statistical-inference.html#model-comparison-selection-and-checking-again"><i class="fa fa-check"></i><b>10.3</b> Model, comparison, selection, and checking (again)</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="statistical-inference.html"><a href="statistical-inference.html#model-comparison-and-selection"><i class="fa fa-check"></i><b>10.3.1</b> Model comparison and selection</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="statistical-inference.html"><a href="statistical-inference.html#point-predictions-and-confidence-intervals"><i class="fa fa-check"></i><b>10.4</b> Point predictions and confidence intervals</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="statistical-inference.html"><a href="statistical-inference.html#confidence-intervals-for-parameters"><i class="fa fa-check"></i><b>10.4.1</b> Confidence intervals for parameters</a></li>
+<li class="chapter" data-level="10.4.2" data-path="statistical-inference.html"><a href="statistical-inference.html#point-prediction"><i class="fa fa-check"></i><b>10.4.2</b> Point prediction</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="statistical-inference.html"><a href="statistical-inference.html#tldr-lm"><i class="fa fa-check"></i><b>10.5</b> TL;DR <code>lm()</code></a><ul>
+<li class="chapter" data-level="10.5.1" data-path="statistical-inference.html"><a href="statistical-inference.html#model-formula-syntax"><i class="fa fa-check"></i><b>10.5.1</b> <strong>Model formula</strong> syntax</a></li>
+</ul></li>
+<li class="chapter" data-level="10.6" data-path="statistical-inference.html"><a href="statistical-inference.html#other-resources-optional-but-recommended"><i class="fa fa-check"></i><b>10.6</b> Other resources: optional but recommended</a></li>
+<li class="chapter" data-level="10.7" data-path="statistical-inference.html"><a href="statistical-inference.html#beyond-linear-models-to-generalised-linear-models-glms-not-examinable"><i class="fa fa-check"></i><b>10.7</b> Beyond Linear Models to Generalised Linear Models (GLMs) (<em>not examinable</em>)</a><ul>
+<li class="chapter" data-level="10.7.1" data-path="statistical-inference.html"><a href="statistical-inference.html#counting-animals..."><i class="fa fa-check"></i><b>10.7.1</b> Counting animals...</a></li>
+<li class="chapter" data-level="10.7.2" data-path="statistical-inference.html"><a href="statistical-inference.html#other-modelling-approaches-not-examinable"><i class="fa fa-check"></i><b>10.7.2</b> Other modelling approaches (not examinable)</a></li>
+</ul></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -278,30 +279,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="intro-to-r-rstudio" class="section level2">
 <h2><span class="header-section-number">1.2</span> Intro to <code>R</code> &amp; <code>RStudio</code></h2>
-<p><strong>R is the pheromone to RStudio’s PDA</strong></p>
-<p><img src="img/r-rstudio-pda.jpg" /></p>
-<p><code>R</code> is the pheromone to <code>RStudio</code>’s PDA.</p>
-<p><code>R</code> is a language, specifically, a programming language; it’s the way you can speak to your computer to ask it to carry out certain computations.</p>
+<p><strong>R is the pheromone to RStudio's PDA</strong></p>
+<div class="figure">
+<img src="img/r-rstudio-pda.jpg" />
+
+</div>
+<p><code>R</code> is the pheromone to <code>RStudio</code>'s PDA.</p>
+<p><code>R</code> is a language, specifically, a programming language; it's the way you can speak to your computer to ask it to carry out certain computations.</p>
 <p><code>RStudio</code> is an integrated development environment (IDE). This means it is basically an interface, albeit a fancy one, that makes it easier to communicate with your computer in the language <code>R</code>. The main benefit is the additional features it has that enable you to more efficiently <em>speak</em> <code>R</code>.</p>
-<p><strong>Note</strong> <code>R</code> and <code>RStudio</code> are two <strong>different</strong> pieces of software; for this course you are expected to download both. As you’d expect, the PDA depends on the pheromones (i.e., <code>RStudio</code> depends on <code>R</code>) so you have to download <code>R</code> to use <code>RStudio</code>!</p>
+<p><strong>Note</strong> <code>R</code> and <code>RStudio</code> are two <strong>different</strong> pieces of software; for this course you are expected to download both. As you'd expect, the PDA depends on the pheromones (i.e., <code>RStudio</code> depends on <code>R</code>) so you have to download <code>R</code> to use <code>RStudio</code>!</p>
 <div id="why" class="section level3">
 <h3><span class="header-section-number">1.2.1</span> Why?</h3>
 <p><code>R</code></p>
 <ul>
-<li>It’s free</li>
-<li>It’s <a href="https://opensource.com/resources/what-open-source">open source</a></li>
+<li>It's free</li>
+<li>It's <a href="https://opensource.com/resources/what-open-source">open source</a></li>
 <li>A general-purpose of programming language</li>
 <li>Written by statisticians (here in Auckland!)</li>
-<li>It’s available for all operating systems (Windows, Linux, and Mac)</li>
+<li>It's available for all operating systems (Windows, Linux, and Mac)</li>
 <li>There is a huge online support network</li>
-<li>It’s extremely flexible; if you can code it you can do it! 15,000+ packages available!</li>
-<li>…</li>
+<li>It's extremely flexible; if you can code it you can do it! 15,000+ packages available!</li>
+<li>...</li>
 </ul>
 <p><code>RStudio</code></p>
 <blockquote>
-“If R were an airplane, RStudio would be the airport…”
+&quot;If R were an airplane, RStudio would be the airport...&quot;
 <footer>
-— Julie Lowndes, Introduction to RStudio Awesomeness
+--- Julie Lowndes, Introduction to RStudio Awesomeness
 </footer>
 </blockquote>
 <ul>
@@ -311,7 +315,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>There is a huge online support network</li>
 <li>Offers many other features and tools to make your workflow with <code>R</code> easier</li>
 <li>It facilitates <a href="https://en.wikipedia.org/wiki/Reproducibility">reproducibility</a></li>
-<li>…</li>
+<li>...</li>
 </ul>
 </div>
 <div id="installing-r-and-rstudio" class="section level3">
@@ -323,10 +327,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong>Check all is working</strong>
 <ul>
 <li>Open up <code>RStudio</code> from your computer menu, the icon will look something like this <img src="https://vectorified.com/images/rstudio-icon-31.png" style="width:7.0%" /> (<strong>DO NOT</strong> use this icon <img src="https://cdn.iconscout.com/icon/free/png-512/r-5-283170.png" style="width:4.0%" />, this is a link to <code>R</code> and will only open a very basic interface)</li>
-<li>Wait a little and you should see <code>RStudio</code> open up to something similar to the screenshot below
-<img src="https://stats220.earo.me/img/rstudio-interface.png" /></li>
+<li>Wait a little and you should see <code>RStudio</code> open up to something similar to the screenshot below <img src="https://stats220.earo.me/img/rstudio-interface.png" /></li>
 <li>Pay close attention to the notes in the screenshot and familiarise yourself with the terms.</li>
-<li>Finally, in the <em>Console</em> next to the prompt type <code>1:10</code> and press enter on your keyboard. Your computer should say something back you (in the <em>Console</em>)! What do you think you were asking it to do? Does the output make sense?<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></li>
+<li>Finally, in the <em>Console</em> next to the prompt type <code>1:10</code> and press enter on your keyboard. Your computer should say something back you (in the <em>Console</em>)! What do you think you were asking it to do? Does the output make sense?<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></li>
 </ul></li>
 </ol>
 </div>
@@ -344,50 +347,53 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><em>Running</em> code: the act of telling R to perform an act by giving it commands in the console.</li>
 <li><em>Objects</em>: where values are saved in (see later for creating an <em>object</em>.</li>
 <li><em>Script</em>: a text file containing a set of commands and comments.</li>
-<li><em>Comments</em>: notes written within a <em>Script</em> to better document/explain what’s happening</li>
+<li><em>Comments</em>: notes written within a <em>Script</em> to better document/explain what's happening</li>
 </ul>
 <div id="r-errors" class="section level3">
 <h3><span class="header-section-number">1.3.1</span> R errors 😱</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data_file_not_in_my_working_directory.csv&quot;</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data_file_not_in_my_working_directory.csv&quot;</span>)</code></pre></div>
 <pre><code>## Warning in file(file, &quot;rt&quot;): cannot open file
 ## &#39;data_file_not_in_my_working_directory.csv&#39;: No such file or directory</code></pre>
 <pre><code>## Error in file(file, &quot;rt&quot;): cannot open the connection</code></pre>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">library</span>(some_library_I_have_not_installed)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(some_library_I_have_not_installed)</code></pre></div>
 <pre><code>## Error in library(some_library_I_have_not_installed): there is no package called &#39;some_library_I_have_not_installed&#39;</code></pre>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">some_function_I_spelled_worng</span>(<span class="dt">x =</span> x)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">some_function_I_spelled_worng</span>(<span class="dt">x =</span> x)</code></pre></div>
 <pre><code>## Error in some_function_I_spelled_worng(x = x): could not find function &quot;some_function_I_spelled_worng&quot;</code></pre>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">an_object_I_have_not_created</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">an_object_I_have_not_created</code></pre></div>
 <pre><code>## Error in eval(expr, envir, enclos): object &#39;an_object_I_have_not_created&#39; not found</code></pre>
 <p><strong>What do you think the issues are here</strong> 😉</p>
 </div>
 <div id="r-scripts-a-.r-file" class="section level3">
 <h3><span class="header-section-number">1.3.2</span> R <em>Script</em>s (a <code>.r</code> file)</h3>
 <p>Go <strong>File</strong> &gt; <strong>New File</strong> &gt; <strong>R Script</strong> to open up a new <em>Script</em></p>
-<p>If you had only three panes showing before, a new (fourth) pane should open up in the top left of <code>RStudio</code>. This file will have a <code>.r</code> extension and is where you can write, edit, and save the <code>R</code> commands you write. It’s a dedicated text editor for your <code>R</code> code (very useful if you want to save your code to run at a later date). The main difference between typing your code into a <em>Script</em> vs <em>Console</em> is that you edit it and save it for later! Remember though the <em>Console</em> is the pane where you communicate with your computer so all code you write will have to be <em>Run</em> here. There are two ways of <em>running</em> a line of code you’ve written in your <em>Script</em></p>
+<p>If you had only three panes showing before, a new (fourth) pane should open up in the top left of <code>RStudio</code>. This file will have a <code>.r</code> extension and is where you can write, edit, and save the <code>R</code> commands you write. It's a dedicated text editor for your <code>R</code> code (very useful if you want to save your code to run at a later date). The main difference between typing your code into a <em>Script</em> vs <em>Console</em> is that you edit it and save it for later! Remember though the <em>Console</em> is the pane where you communicate with your computer so all code you write will have to be <em>Run</em> here. There are two ways of <em>running</em> a line of code you've written in your <em>Script</em></p>
 <ul>
 <li>Ensure your cursor is on the line of code you want to run, hold down <strong>Ctrl</strong> and press <strong>Enter</strong>.</li>
 <li>Ensure your cursor is on the line of code you want to run, then use your mouse to click the Run button (it has a green arrow next to it) on the top right of the <em>Script</em> pane.</li>
 </ul>
-<p>Type <code>1:10</code> in your <em>Script</em> and practise <em>running</em> this line of code using both methods above. Not that if you’ve <em>Run</em> the code successfully then your computer will speak back to you each time via the <em>Console</em></p>
+<p>Type <code>1:10</code> in your <em>Script</em> and practise <em>running</em> this line of code using both methods above. Not that if you've <em>Run</em> the code successfully then your computer will speak back to you each time via the <em>Console</em></p>
 </div>
 <div id="writing-comments" class="section level3">
 <h3><span class="header-section-number">1.3.3</span> Writing <em>Comments</em></h3>
-<p><em>Comments</em> are notes to yourself (future or present) or to someone else and are, typically, written interspersed in your code. Now, the comments you write will typically be in a language your computer doesn’t understand (e.g., English). So that you can write yourself notes in your <em>Script</em> you need to tell your computer using the <code>R</code> language to ignore them. To do this precede any note you write with #, see below. The # is <code>R</code> for <em>ignore anything after this character</em>.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="co">## IGNORE ME</span></a>
-<a class="sourceLine" id="cb10-2" title="2"><span class="co">## I&#39;m a comment</span></a>
-<a class="sourceLine" id="cb10-3" title="3"><span class="co">## I repeat I&#39;m a comment</span></a>
-<a class="sourceLine" id="cb10-4" title="4"><span class="co">## I am not a cat</span></a>
-<a class="sourceLine" id="cb10-5" title="5"><span class="co">## OK let&#39;s run some code</span></a>
-<a class="sourceLine" id="cb10-6" title="6"><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span></a></code></pre></div>
+<p><em>Comments</em> are notes to yourself (future or present) or to someone else and are, typically, written interspersed in your code. Now, the comments you write will typically be in a language your computer doesn't understand (e.g., English). So that you can write yourself notes in your <em>Script</em> you need to tell your computer using the <code>R</code> language to ignore them. To do this precede any note you write with #, see below. The # is <code>R</code> for <em>ignore anything after this character</em>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## IGNORE ME
+## I&#39;m a comment
+## I repeat I&#39;m a comment
+## I am not a cat
+## OK let&#39;s run some code
+<span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="co">## Hmm maybe I should check this</span></a>
-<a class="sourceLine" id="cb12-2" title="2"><span class="co">## @kareem_carr ;-)</span></a></code></pre></div>
-<p>Now remember when you want to leave your <code>R</code> session you’ll need to <strong>Save</strong> your <em>Script</em> to use it again. To do this go <strong>File</strong> &gt; <strong>Save As</strong> and name your file what you wish (remember too to choose a relevant folder on your computer, or as recommended use the <code>.Rproj</code> set-up as above).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Hmm maybe I should check this
+## @kareem_carr ;-)</code></pre></div>
+<p>Now remember when you want to leave your <code>R</code> session you'll need to <strong>Save</strong> your <em>Script</em> to use it again. To do this go <strong>File</strong> &gt; <strong>Save As</strong> and name your file what you wish (remember too to choose a relevant folder on your computer, or as recommended use the <code>.Rproj</code> set-up as above).</p>
 </div>
 <div id="change-the-rstudio-appearance-up-to-your-taste" class="section level3">
 <h3><span class="header-section-number">1.3.4</span> Change the <code>RStudio</code> appearance up to your taste</h3>
 <p>Go to <strong>Tools</strong> &gt; <strong>Global Options</strong> &gt; <strong>Apperance</strong></p>
-<p><img src="https://support.rstudio.com/hc/article_attachments/115020425168/Screen_Shot_2017-08-24_at_1.14.19_PM.png" /></p>
+<div class="figure">
+<img src="https://support.rstudio.com/hc/article_attachments/115020425168/Screen_Shot_2017-08-24_at_1.14.19_PM.png" />
+
+</div>
 </div>
 </div>
 <div id="reproducible-research" class="section level2">
@@ -398,25 +404,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <div id="good-practice" class="section level3">
 <h3><span class="header-section-number">1.4.1</span> Good practice</h3>
-<p><strong>Always start with a clean workspace</strong> <strong>Why?</strong> <em>So your ex (code) can’t come and mess up your life!</em></p>
-<p><img src="https://memegenerator.net/img/instances/57296391/when-your-ex-texts-you-after-months-hey-whats-up-not-today-satan-not-today.jpg" /></p>
+<p><strong>Always start with a clean workspace</strong> <strong>Why?</strong> <em>So your ex (code) can't come and mess up your life!</em></p>
+<div class="figure">
+<img src="https://memegenerator.net/img/instances/57296391/when-your-ex-texts-you-after-months-hey-whats-up-not-today-satan-not-today.jpg" />
+
+</div>
 <p>Go to <strong>Tools</strong> &gt; <strong>Global Options</strong></p>
-<p><img src="https://miro.medium.com/max/2784/1*dUNl71Jic2zYhYS2hxOBZA.png" /></p>
+<div class="figure">
+<img src="https://miro.medium.com/max/2784/1*dUNl71Jic2zYhYS2hxOBZA.png" />
+
+</div>
 <p><strong>Project-oriented workflow</strong>. Recommended: <code>.Rproj</code></p>
 <ul>
 <li><strong>Organised</strong> Set up each Each assignment/university course as a <em>project</em></li>
-<li><strong>Self-contained</strong> a <em>project</em> is a folder that contains all relevant files
-<ul>
+<li><strong>Self-contained</strong> a <em>project</em> is a folder that contains all relevant files</li>
 <li>All paths can then be relative to that <em>project</em></li>
-</ul></li>
 <li><strong>Reproducible</strong> the <em>project</em> should just work on a different computer</li>
 </ul>
 <p>Got to <strong>Project</strong> (top right) &gt; <strong>New Project</strong> &gt; <strong>Create Project</strong> <img src="https://stats220.earo.me/img/rstudio-proj.png" /></p>
 <p><strong>Project set-up</strong></p>
-<p><img src="https://raw.githubusercontent.com/martinctc/blog/master/images/RPROJECT_2000dpi.png" style="width:30.0%" /></p>
+<div class="figure">
+<img src="https://raw.githubusercontent.com/martinctc/blog/master/images/RPROJECT_2000dpi.png" style="width:30.0%" />
+
+</div>
 <p><strong>⚠️Warning⚠️</strong></p>
 <p><a href="https://www.tidyverse.org/blog/2017/12/workflow-vs-script/">Jenny Bryan will set your computer on fire</a> 🔥 if you start your script like this</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="kw">rm</span>(<span class="dt">list =</span> <span class="kw">ls</span>())</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(<span class="dt">list =</span> <span class="kw">ls</span>())</code></pre></div>
 <p>This</p>
 <ul>
 <li>does <strong>NOT</strong> create a fresh <code>R</code> process</li>
@@ -428,12 +441,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="version-control-with-git-and-github" class="section level2">
 <h2><span class="header-section-number">1.5</span> Version control with <code>git</code> and GitHub</h2>
 <p><strong>All workshops will use these tools</strong></p>
-<p><img src="https://images3.memedroid.com/images/UPLOADED29/5b7d571106c71.jpeg" scale="50%" /></p>
+<div class="figure">
+<img src="https://images3.memedroid.com/images/UPLOADED29/5b7d571106c71.jpeg" scale="50%" />
+
+</div>
 <p><code>git</code> the software</p>
 <blockquote>
-“Track Changes features from Microsoft Word on steroids”
+&quot;Track Changes features from Microsoft Word on steroids&quot;
 <footer>
-— Jenny Bryan
+--- Jenny Bryan
 </footer>
 </blockquote>
 <ul>
@@ -442,9 +458,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p><strong>GitHub</strong> an online hosting service</p>
 <blockquote>
-“Think of it as DropBox but much, much better”
+&quot;Think of it as DropBox but much, much better&quot;
 <footer>
-— Jenny Bryan
+--- Jenny Bryan
 </footer>
 </blockquote>
 <ul>
@@ -453,11 +469,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="setup-tldr" class="section level3">
 <h3><span class="header-section-number">1.5.1</span> Setup TL;DR</h3>
 <ul>
-<li>Register an account with GitHub <a href="https://github.com">https://github.com</a></li>
-<li>Make sure you’ve got the latest version of <code>R</code></li>
+<li>Register an account with GitHub <a href="https://github.com" class="uri">https://github.com</a></li>
+<li>Make sure you've got the latest version of <code>R</code></li>
 </ul>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">R.version.string</a></code></pre></div>
-<pre><code>## [1] &quot;R version 4.0.4 (2021-02-15)&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">R.version.string</code></pre></div>
+<pre><code>## [1] &quot;R version 4.0.3 (2020-10-10)&quot;</code></pre>
 <ul>
 <li>Upgrade <code>RStudio</code> to the <a href="https://rstudio.com/products/rstudio/download/preview/">new preview version</a> (<em>optional</em>)</li>
 <li>Install git: follow <a href="https://happygitwithr.com/install-git.html">these instructions</a></li>
@@ -469,39 +485,54 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><p>On <code>GitHub</code>, navigate to the Code tab of the repository</p></li>
 <li><p>On the right side of the screen, click <code>Clone or download</code></p></li>
-<li><p>Click the <code>Copy to clipboard</code> icon to the right of the repository URL (e.g., <a href="https://github.com/STATS-UOA/workshops-biosci738.git">https://github.com/STATS-UOA/workshops-biosci738.git</a>)</p></li>
+<li><p>Click the <code>Copy to clipboard</code> icon to the right of the repository URL (e.g., <a href="https://github.com/STATS-UOA/workshops-biosci738.git" class="uri">https://github.com/STATS-UOA/workshops-biosci738.git</a>)</p></li>
 </ul>
-<p><img src="img/gh_code.png" /></p>
+<div class="figure">
+<img src="img/gh_code.png" />
+
+</div>
 <ul>
 <li><p>Open <code>RStudio</code> in your local environment</p></li>
 <li><p>Click <code>File</code>, <code>New Project</code>, <code>Version Control</code>, <code>Git</code></p></li>
 </ul>
-<p><img src="img/rstudio_new_project.png" /></p>
-<p><img src="img/rstudio_git.png" /></p>
+<div class="figure">
+<img src="img/rstudio_new_project.png" />
+
+</div>
+<div class="figure">
+<img src="img/rstudio_git.png" />
+
+</div>
 <ul>
-<li>Paste the repository URL and enter TAB to move to the <code>Project directory name</code> field. I’ve chosen to store this folder on my Desktop, obviously put it wherever you wish :-)</li>
+<li>Paste the repository URL and enter TAB to move to the <code>Project directory name</code> field. I've chosen to store this folder on my Desktop, obviously put it wherever you wish :-)</li>
 </ul>
-<p><img src="img/rstudio_clone.png" /></p>
+<div class="figure">
+<img src="img/rstudio_clone.png" />
+
+</div>
 <ul>
 <li>Click <code>Create Project</code>. Your <em>Files</em> pane should now look similar to this</li>
 </ul>
-<p><img src="img/files.png" /></p>
+<div class="figure">
+<img src="img/files.png" />
+
+</div>
 </div>
 </div>
 <div id="exploratory-data-analysis" class="section level2">
 <h2><span class="header-section-number">1.6</span> Exploratory Data Analysis</h2>
-<p>or EDA we will be using <code>tidyverse</code>. <a href="https://www.tidyverse.org/">‘tidyverse’</a> is a collection of <code>R</code> packages that all share underlying design philosophy, grammar, and data structures. They are specifically designed to make data wrangling, manipulation, visualisation, and analysis simpler.</p>
+<p>or EDA we will be using <code>tidyverse</code>. <a href="https://www.tidyverse.org/">'tidyverse'</a> is a collection of <code>R</code> packages that all share underlying design philosophy, grammar, and data structures. They are specifically designed to make data wrangling, manipulation, visualisation, and analysis simpler.</p>
 <div id="starting-out-with-tidyverse" class="section level3">
 <h3><span class="header-section-number">1.6.1</span> Starting out with <code>tidyverse</code></h3>
 <p><img src="https://raw.githubusercontent.com/allisonhorst/stats-illustrations/master/rstats-artwork/tidyverse_celestial.png" width="40%"></p>
 <p>Artwork by <span class="citation">[@allison_horst]</span>(<a href="https://github.com/allisonhorst/" class="uri">https://github.com/allisonhorst/</a>)</p>
 <p>Starting out with <code>tidyverse</code></p>
 <p>To install <strong>all</strong> the packages that belong to the <code>tidyverse</code> run</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="co">## request (download) the tidyverse packages from the centralised library</span></a>
-<a class="sourceLine" id="cb16-2" title="2"><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</a></code></pre></div>
-<p>To tell your computer to access the <code>tidyverse</code> functionality in your session run (<strong>Note</strong> you’ll have to do this each time you start up an <code>R</code> session):</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="co">## Get the tidyverse packages from our local library</span></a>
-<a class="sourceLine" id="cb17-2" title="2"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## request (download) the tidyverse packages from the centralised library
+<span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</code></pre></div>
+<p>To tell your computer to access the <code>tidyverse</code> functionality in your session run (<strong>Note</strong> you'll have to do this each time you start up an <code>R</code> session):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Get the tidyverse packages from our local library
+<span class="kw">library</span>(tidyverse)</code></pre></div>
 </div>
 <div id="reading-in-data-from-a-.csv-file" class="section level3">
 <h3><span class="header-section-number">1.6.2</span> Reading in data from a <code>.csv</code> file</h3>
@@ -511,12 +542,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>In the <em>Environment</em> pane click <strong>Import Dataset</strong> &gt; ** From Text (readr)** &gt; <strong>Browse</strong> &gt; <em>Choose your file, remembering which folder you downloaded it to. this is where <code>.Rproj</code> is useful</em> &gt; <em>Another pane should pop up, check the data looks as you might expect</em> &gt; <strong>Import</strong></p></li>
 <li><p>Or</p></li>
 </ol>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">paua &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;paua.csv&quot;</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">paua &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;paua.csv&quot;</span>)</code></pre></div>
 </div>
 <div id="explore-your-data" class="section level3">
 <h3><span class="header-section-number">1.6.3</span> Explore your data</h3>
-<p>Let’s have a look at your data in the <em>Console</em></p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1">paua</a></code></pre></div>
+<p>Let's have a look at your data in the <em>Console</em></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">paua</code></pre></div>
 <pre><code>## # A tibble: 60 x 3
 ##    Species            Length   Age
 ##    &lt;chr&gt;               &lt;dbl&gt; &lt;dbl&gt;
@@ -531,17 +562,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  9 Haliotis australis   7.2   8.56
 ## 10 Haliotis iris        4.25  5.50
 ## # … with 50 more rows</code></pre>
-<p>###Explore your data</p>
+</div>
+<div id="explore-your-data-1" class="section level3">
+<h3><span class="header-section-number">1.6.4</span> Explore your data</h3>
 <p>Using the <code>glimpse()</code> command for an alternative view</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="kw">glimpse</span>(paua)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glimpse</span>(paua)</code></pre></div>
 <pre><code>## Rows: 60
 ## Columns: 3
-## $ Species &lt;chr&gt; &quot;Haliotis iris&quot;, &quot;Haliotis australis&quot;, &quot;Haliotis australis&quot;, &quot;…
-## $ Length  &lt;dbl&gt; 1.80, 5.40, 4.80, 5.75, 5.65, 2.80, 5.90, 3.75, 7.20, 4.25, 6.…
-## $ Age     &lt;dbl&gt; 1.497884, 11.877010, 5.416991, 4.497799, 5.500789, 2.500972, 6…</code></pre>
+## $ Species &lt;chr&gt; &quot;Haliotis iris&quot;, &quot;Haliotis australis&quot;, &quot;Haliotis australis&quot;, …
+## $ Length  &lt;dbl&gt; 1.80, 5.40, 4.80, 5.75, 5.65, 2.80, 5.90, 3.75, 7.20, 4.25, 6…
+## $ Age     &lt;dbl&gt; 1.497884, 11.877010, 5.416991, 4.497799, 5.500789, 2.500972, …</code></pre>
 </div>
 <div id="the-pipe-operator" class="section level3">
-<h3><span class="header-section-number">1.6.4</span> The pipe operator <code>%&gt;%</code></h3>
+<h3><span class="header-section-number">1.6.5</span> The pipe operator <code>%&gt;%</code></h3>
 <p>A nifty <code>tidyverse</code> tool is called the pipe operator <code>%&gt;%</code>. The pipe operator allows us to combine multiple operations in <code>R</code> into a single sequential chain of actions.</p>
 <p>Say you would like to perform a hypothetical sequence of operations on a hypothetical data frame x using hypothetical functions f(), g(), and h():</p>
 <ul>
@@ -551,12 +584,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Use the output of this as an input to a function <code>h()</code></li>
 </ul>
 <p>So to calculate the mean <strong>Age</strong> of each <strong>Species</strong> in the <code>paua</code> dataset we would use</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1">paua <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb23-2" title="2"><span class="kw">group_by</span>(Species) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb23-3" title="3"><span class="kw">summarize</span>(<span class="dt">mean_age =</span> <span class="kw">mean</span>(Age))</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">paua <span class="op">%&gt;%</span>
+<span class="kw">group_by</span>(Species) <span class="op">%&gt;%</span>
+<span class="kw">summarize</span>(<span class="dt">mean_age =</span> <span class="kw">mean</span>(Age))</code></pre></div>
 <pre><code>## # A tibble: 2 x 2
 ##   Species            mean_age
-##   &lt;chr&gt;                 &lt;dbl&gt;
+## * &lt;chr&gt;                 &lt;dbl&gt;
 ## 1 Haliotis australis     7.55
 ## 2 Haliotis iris          4.40</code></pre>
 <p>You would read the sequence above as:</p>
@@ -565,13 +598,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Use this and apply the <code>group_by()</code> function to group by <code>Species</code></li>
 <li>Use this output and apply the <code>summarize()</code> function to calculate the mean Age of each group (Species), calling the resulting number <code>mean_age</code></li>
 </ul>
-<p>Or to describe my daily routine…</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1">I <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb25-2" title="2"><span class="st">  </span><span class="kw">wake_up</span>(<span class="dt">time =</span> <span class="st">&quot;later than I should&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb25-3" title="3"><span class="st">  </span><span class="kw">give</span>(<span class="dt">who =</span> <span class="st">&quot;Watson&quot;</span> , <span class="dt">what =</span> <span class="st">&quot;medication&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb25-4" title="4"><span class="st">  </span><span class="kw">make</span>(<span class="dt">who=</span> <span class="st">&quot;myself&quot;</span>, <span class="dt">what =</span> <span class="st">&quot;coffee&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb25-5" title="5"><span class="st">  </span><span class="kw">drink</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb25-6" title="6"><span class="st">  </span><span class="kw">try</span>(<span class="kw">remember_what_I_have_on</span>(<span class="dt">date =</span> <span class="st">&quot;today&quot;</span>))</a></code></pre></div>
+<p>Or to describe my daily routine...</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">I <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">wake_up</span>(<span class="dt">time =</span> <span class="st">&quot;later than I should&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">give</span>(<span class="dt">who =</span> <span class="st">&quot;Watson&quot;</span> , <span class="dt">what =</span> <span class="st">&quot;medication&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">make</span>(<span class="dt">who=</span> <span class="st">&quot;myself&quot;</span>, <span class="dt">what =</span> <span class="st">&quot;coffee&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">drink</span>() <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">try</span>(<span class="kw">remember_what_I_have_on</span>(<span class="dt">date =</span> <span class="st">&quot;today&quot;</span>))</code></pre></div>
 <p><strong>Have a go at writing your own!</strong></p>
 </div>
 </div>
@@ -585,15 +618,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="http://r4stats.com/articles/popularity/">The Popularity of Data Science Software</a></li>
 <li><a href="https://happygitwithr.com/">Happy Git and GitHub for the useR</a></li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/allisonhorst/stats-illustrations/master/rstats-artwork/r_rollercoaster.png" />
-Artwork by <a href="https://github.com/allisonhorst/">@allison_horst</a></p>
+<p><img src="https://raw.githubusercontent.com/allisonhorst/stats-illustrations/master/rstats-artwork/r_rollercoaster.png" /> Artwork by <a href="https://github.com/allisonhorst/">@allison_horst</a></p>
 
 </div>
 </div>
 <div class="footnotes">
 <hr />
 <ol start="1">
-<li id="fn1"><p>You should have seen the numbers 1 to 10 printed out as a sequence.<a href="r-rstudio-and-git.html#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn1"><p>You should have seen the numbers 1 to 10 printed out as a sequence.<a href="r-rstudio-and-git.html#fnref1">↩</a></p></li>
 </ol>
 </div>
             </section>
@@ -657,7 +689,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "true";
+    var src = "";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))

@@ -1,0 +1,542 @@
+# Statistical Inference
+
+## Learning Objectives
+
++ Carry out and interpret tests for the existence of relationships between explanatory variables and the response in a linear model
+   + Write R code to fit a linear model with a single continuous explanatory variable
+   + Write R code to fit a linear model with a continuous explanatory variable and a factor explanatory variable
+   + Interpret estimated effects with reference to confidence intervals from linear regression models. Specifically the interpretation of
+      + the intercept
+      + the effect of a factor
+      + the effect of a one-unit increase in a numeric variable
+      + the effect of an x-unit increase in a numeric variable
+   + Make a point prediction of the response for a new observation
++ Write R code to fit a linear model with interaction terms in the explanatory variables
+  + Interpret estimated effects with reference to confidence intervals from linear regression models. Specifically the interpretation of
+     + main effects in a model with an interaction
+     + the effect of one variable when others are included in the model
+  + Explain why you may want to include interaction effects in a linear model
+  + Describe the differences between the operators `:` and `*` in an `R` model-fitting formula
+  
+
+
+## Regression
+
+![](https://raw.githubusercontent.com/cmjt/statbiscuits/master/figs_n_gifs/lm.gif)
+
+### Some mathematical notation
+
+Let's consider a linear regression with a simple explanatory variable:
+
+$$Y_i = \alpha + \beta_1x_i + \epsilon_i$$
+where
+
+$$\epsilon_i \sim \text{Normal}(0,\sigma^2).$$
+
+Here for observation $i$
+
+  + $Y_i$ is the value of the response 
+  + $x_i$ is the value of the explanatory variable 
+  + $\epsilon_i$ is the error term: the difference between $Y_i$ and its expected value
+  + $\alpha$ is the intercept term (a parameter to be estimated), and 
+  + $\beta_1$ is the slope: coefficient of the explanatory variable (a parameter to be estimated)
+
+Does this remind you of anything?
+
+![](https://memegenerator.net/img/instances/63099571/one-does-not-simply-forget-ymxc.jpg)
+
+
+### Modeling Bill Depth 
+
+**Remember the penguins from [Chapter 2](https://stats-uoa.github.io/BIOSCI220/data-exploration-and-visualization.html#data-wrangling-and-manipulation)**?
+
+![](https://cran.r-project.org/web/packages/palmerpenguins/readme/man/figures/culmen_depth.png)
+
+**Key assumptions**
+
++ **Independence** 
++ There is a **linear relationship** between the response and the explanatory variables
++ The residuals have **constant variance**
++ The **residuals** are normally distributed
+
+```{r, message = FALSE, warning=FALSE}
+library(tidyverse)
+library(palmerpenguins)
+penguins_nafree <- penguins %>% drop_na()
+```
+
+```{r, message=FALSE}
+ggplot(data = penguins_nafree, aes(x = bill_depth_mm)) +
+  geom_histogram() + theme_classic() +
+  xlab("Bill depth (mm)")
+
+```
+
+
+First off let's fit a null (intercept only)  model. This in *old money* would be called a one sample t-test. 
+
+```{r null}
+slm_null <- lm(bill_depth_mm ~ 1, data = penguins_nafree)
+summary(slm_null)$coef
+```
+
+**Model formula**
+
+This model, from above, is simply $$Y_i = \alpha + \epsilon_i.$$ 
+
+Here for observation $i$ $Y_i$ is the value of the response (`bill_depth_mm`) and $\alpha$ is a parameter to be estimated (typically called the intercept).
+
+
+**Inference**
+
+The `(Intercept)` term, `r summary(slm_null)$coef[1,1]`, tells us the (estimated) average value of the response (`bill_depth_mm`), see
+
+```{r av}
+penguins_nafree %>% summarise(average_bill_depth = mean(bill_depth_mm))
+```
+
+The SEM (`Std. Error`) = `r summary(slm_null)$coef[1,2]`. 
+
+The hypothesis being tested is $H_0:$ (`(Intercept)` ) $\text{mean}_{\text{`average_bill_depth`}} = 0$ vs. $H_1:$ (`(Intercept)`) $\text{mean}_{\text{`average_bill_depth`}} \neq 0$ 
+
+The t-statistic is given by `t value` = `Estimate` / `Std. Error` =  `r summary(slm_null)$coef[1,3]`
+
+The p-value is given by`Pr (>|t|)` =  `r summary(slm_null)$coef[1,4]`.
+
+So the probability of observing a t-statistic as least as extreme given under the null hypothesis (average bill depth = 0) given our data is `r summary(slm_null)$coef[1,4]`, pretty strong evidence against the null hypothesis I'd say!
+	
+
+### Single continuous variable
+
+**Does `bill_length_mm` help explain some of the variation in `bill_depth_mm`?**
+
+```{r}
+p1 <- ggplot(data = penguins_nafree, aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point() + ylab("Bill depth (mm)") +
+  xlab("Bill length (mm)") + theme_classic()
+p1
+```
+
+```{r slm}
+slm <- lm(bill_depth_mm ~ bill_length_mm, data = penguins_nafree)
+```
+
+
+
+**Model formula**
+
+This model is simply $$Y_i = \alpha + \beta_1x_i + \epsilon_i$$ where for observation $i$ $Y_i$ is the value of the response (`bill_depth_mm`) and $x_i$ is the value of the explanatory variable (`bill_length_mm`); As above $\alpha$ and $\beta_1$ are parameters to be estimated. We could also write this model as
+  
+  
+```{r, echo = FALSE, results='asis'}
+library(equatiomatic)
+extract_eq(slm, wrap = TRUE)
+```
+
+**Fitted model**
+
+As before we can get out estimated parameters (here $\alpha$ and $\beta_1$) using
+
+```{r}
+summary(slm)$coef
+```
+
+Here, the `(Intercept)`: `Estimate` ($\alpha$ above) gives us the estimated average bill depth (mm) **given the estimated relationship** bill length (mm) and bill length.
+
+The `bill_length_mm` : `Estimate` ($\beta_1$ above) is the slope associated with bill length (mm). So, here for every 1mm increase in bill length we estimated a `r -1*round(summary(slm)$coef[2,1],3)`mm decrease (or a `r round(summary(slm)$coef[2,1],3)`mm increase) in bill depth.
+
+```{r}
+## calculate predicted values
+penguins_nafree$pred_vals <- predict(slm)
+## plot
+ggplot(data = penguins_nafree, aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point() + ylab("Bill depth (mm)") +
+  xlab("Bill length (mm)") + theme_classic() +
+  geom_line(aes(y = pred_vals))
+
+```
+
+### Factor and a continous variable
+
+**Adding** `species`; remember `species` is a factor variable!
+
+```{r}
+p2 <- ggplot(data = penguins_nafree,
+             aes(y = bill_depth_mm, x = bill_length_mm, color = species)) +
+  geom_point() + ylab("Bill depth (mm)") +
+  xlab("Bill length (mm)") + theme_classic()
+p2
+```
+
+```{r}
+slm_sp <- lm(bill_depth_mm ~ bill_length_mm + species, data = penguins_nafree)
+```
+
+
+**Model formula**
+
+Now we have two explanatory variables, so our model formula becomes
+
+$$Y_i = \beta_0 + \beta_1z_i + \beta_2x_i + \epsilon_i$$
+$$\epsilon_i \sim \text{Normal}(0,\sigma^2)$$
+
+where for observation $i$
+
+  + $Y_i$ is the value of the response (`bill_depth_mm`)
+  + $z_i$ is one explanatory variable (`bill_length_mm` say)
+  + $x_i$ is another explanatory variable (`species` say)
+  + $\epsilon_i$ is the error term: the difference between $Y_i$ and its expected value
+  + $\alpha$, $\beta_1$, and $\beta_2$ are all parameters to be estimated.
+  
+
+Remember though that when we have factor explanatory variables (e.g., `species`) we have to use dummy variables, see lecture. Here the **Adelie** group are the baseline (`R` does this alphabetically, to change this see previous chapter).
+
+So model formula is
+
+```{r, echo = FALSE, results='asis'}
+extract_eq(slm_sp, wrap = TRUE)
+```
+
+**Fitted model**
+
+
+```{r}
+summary(slm_sp)$coef
+```
+
+
+**Simpson's paradox...** look how the slope associated with bill length (coefficient of `bill_length_mm`) has switched direction from the model above! Why do you think this is?
+
+
+Here, the `(Intercept)`: `Estimate` gives us the estimated average bill depth (mm) of the **Adelie** penguins **given the other variables in the model**.
+
+The `bill_length_mm` : `Estimate` ($\beta_1$ above) is the slope associated with bill length (mm). So, here for every 1mm increase in bill length we estimated a `r round(summary(slm_sp)$coef[2,1],3)`mm increase in bill depth.
+
+What about the coefficient of the other species levels? Look at the plot below, these values give the shift (up or down) of the **parallel** lines from the **Adelie** level. So given the estimated relationship between bill depth and bill length these coefficients are the estimated change from the baseline. 
+
+```{r}
+## calculate predicted values
+penguins_nafree$pred_vals <- predict(slm_sp)
+## plot
+ggplot(data = penguins_nafree, aes(y = bill_depth_mm, x = bill_length_mm, color = species)) +
+  geom_point() + ylab("Bill depth (mm)") +
+  xlab("Bill length (mm)") + theme_classic()  +
+  geom_line(aes(y = pred_vals))
+
+```
+
+
+
+### Interactions
+
+Recall the (*additive*) model formula from above
+
+$$Y_i = \beta_0 + \beta_1z_i + \beta_2x_i + \epsilon_i$$
+
+
+  
+**but**  what about interactions between variables? For example, 
+
+$$Y_i = \beta_0 + \beta_1z_i + \beta_2x_i + \beta_3z_ix_i + \epsilon_i$$
+
+**Note:** to include interaction effects in our model by using either the `*` or `:` syntax in our model formula. For example,
+
+ + `:` denotes the interaction of the variables to its left and right, and
+
+ + `*` means to include all main effects and interactions, so `a*b` is the same as `a + b + a:b`.
+
+See [Model formula syntax](Model formula syntax) for further details.
+
+To specify a model with additive and interaction effects we use
+
+```{r}
+slm_int <- lm(bill_depth_mm ~ bill_length_mm*species, data = penguins_nafree)
+
+```
+
+
+**Model formula**
+
+The model formula is then
+
+```{r, echo = FALSE, results='asis'}
+extract_eq(slm_int, wrap = TRUE)
+```
+
+**Fitted model**
+
+```{r}
+summary(slm_int)$coef
+```
+
+As before the `(Intercept)`: `Estimate` gives us the estimated average bill depth (mm) of the **Adelie** penguins **given the other variables in the model**.
+
+The `bill_length_mm` : `Estimate` ($\beta_1$ above) is the slope associated with bill length (mm). So, here for every 1mm increase in bill length we estimated a `r round(summary(slm_int)$coef[2,1],3)`mm increase in bill depth.
+
+The main effects of species (i.e., `speciesChinstrap`: `Estimate` and `speciesGentoo`:`Estimate` ) again give the shift (up or down) of the lines from the **Adelie** level; however these lines are no longer parallel! The interaction terms (i.e., `bill_length_mm:speciesChinstrap` and `bill_length_mm:speciesGentoo`) specify the species specific slopes **given the other variables in the model**.
+
+
+Look at the plot below. Now we've specified this *all singing and dancing* interaction model we might ask **are the non-parallel lines non-parallel enough to reject the parallel line model**?
+
+```{r}
+## calculate predicted values
+penguins_nafree$pred_vals <- predict(slm_int)
+## plot
+ggplot(data = penguins_nafree, aes(y = bill_depth_mm, x = bill_length_mm, color = species)) +
+  geom_point() + ylab("Bill depth (mm)") +
+  xlab("Bill length (mm)") + theme_classic()  +
+  geom_line(aes(y = pred_vals))
+
+```
+
+
+
+## Model, comparison, selection, and checking (again)
+
+
+Remember that it is always is imperative that we **check the underlying assumptions** of our model! If our assumptions are not met then basically the maths falls over and we can't reliably draw inference from the model (e.g., can't trust the parameter estimates etc.). Two of the most important assumption are:
+
+  + equal variances (homogeneity of variance), and 
+  
+  + normality of residuals. 
+  
+Let's look at the fit of the `slm` model (single continuous explanatory variable)
+
+```{r}
+gglm::gglm(slm) # Plot the four main diagnostic plots
+```
+
+Do you think the residuals are Normally distributed (look at the QQ plot)? Think of what this model is, do you think it's the best we can do? 
+
+### Model comparison and selection
+
+**Are the non-parallel lines non-parallel enough to reject the parallel line model?** 
+
+Now we can compare **nested** linear models by hypothesis testing. Luckily the `R` function `anova()` automates this. Yes the same idea as we've previously learnt about ANOVA! We essentially perform an F-ratio test between the nested models! 
+
+By **nested** we mean that one model is a subset of the other (i.e., where some coefficients have been fixed at zero). For example,
+
+$$Y_i = \beta_0 + \beta_1z_i + \epsilon_i$$
+
+is a nested version of
+
+$$Y_i = \beta_0 + \beta_1z_i + \beta_2x_i + \epsilon_i$$ where $\beta_2$ has been fixed to zero.
+
+As an example consider testing the single explanatory variable model `slm` against the same model with species included as a variable  `slm_sp`. To carry out the appropriate hypothesis test in `R` we can run
+
+```{r, echo = TRUE}
+anova(slm,slm_sp)
+```
+As you'll see the `anova()` function takes the two model objects (`slm` and `slm_sp`) each as arguments. It returns an ANOVA testing whether the more complex model (`slm_sp`) is just as good at capturing the variation in the data as the simpler model (`slm`). The returned p-value should be interpreted as in any other hypothesis test. i.e., the probability of observing a statistic as least as extreme under our null hypothesis (here that each model is as good at capturing the variation in the data).
+
+What would we conclude here? I'd say we have pretty strong evidence against the models being equally good! I'd definitely plump for `slm_sp` over `slm`, looking back at the plots above does this make sense?
+
+Now what about `slm_int` vs `slm_sp`?
+
+```{r, echo = TRUE}
+anova(slm_sp,slm_int)
+```
+So it seems both models are just as good at capturing the variation in our data: we're happy with the parallel lines!
+
+Another way we might compare models is by using the Akaike information criterion (AIC) (you'll see more of this later in the course). AIC is an estimator of out-of-sample prediction error and can be used as a metric to choose between competing models. Between nested models we're looking for the smallest AIC (i.e., smallest out-of-sample prediction error). Typically, a difference of 4 or more is considered to indicate an improvement; this should not be taken as writ however, using multiple comparison techniques is advised.
+
+`R` already has an `AIC()` function that can be used directly on your `lm()` model object(s). For example,
+
+```{r, echo = TRUE}
+AIC(slm,slm_sp,slm_int)
+```
+
+
+
+This backs up what our ANOVA suggested model `slm_sp` as that preferred! As always it's important to do a sanity check! Does this make sense? Have a look at the outputs from these models and see what you think.
+
+Just because we've chosen a model (*the best of a bad bunch* perhaps) this doesn't let us off the hook. We should check our assumptions
+
+```{r}
+gglm::gglm(slm_sp) # Plot the four main diagnostic plots
+```
+**Residuals vs Fitted** plot: equal spread? Doesn't look too trumpety! 
+
+**Normal quantile-quantile (QQ)** plot: skewed? Maybe slightly right skewed (deviation upwards from the right tail)
+
+**Scale-Location** plot: equal spared? I'd say so.
+
+**Residuals vs Leverage**: ? Maybe a couple of points with high leverage.
+
+## Point predictions and confidence intervals
+
+After all that what do estimated parameters mean?
+
+### Confidence intervals for parameters
+
+For the *chosen* `slm_sp` model we can get these simply by using 
+
+```{r, echo = TRUE}
+cis <- confint(slm_sp)
+cis
+```
+By default the 95% intervals are returned (see previous lecture)
+
+So this tells us that For every 1mm increase in bill length we estimate the expected bill depth to increases between `r round(cis[2,1],3)` and `r round(cis[2,2],3)` mm
+
++ We estimate that the expected bill depth of a Chinstrap penguin is between
+`r -1*round(cis[3,2],1)` and `r -1*round(cis[3,1],1)` mm shallower than the Adelie penguin
+
+
+
+### Point prediction
+
+Using the `slm_sp` model we can make a point prediction for the expected bill depth (mm) for Gentoo penguins with a bill length of 50mm.
+
+Recall the model equation
+
+```{r, echo = FALSE}
+equatiomatic::extract_eq(slm_sp,wrap = TRUE, terms_per_line = 1)
+```
+
+We can then simply substitute in the values:
+
+
+$$\widehat{\text{bill depth}} = \hat{\alpha} + \hat{\beta_1}*50 + \hat{\beta_3}*1$$
+$$\downarrow$$
+
+$$\widehat{\text{bill depth}} = 10.56 + 0.20*50 - 5.10*1$$
+$$\downarrow$$
+
+$$15.47\text{mm}$$
+
+Rather than *by hand* we can do this easily in `R`
+
+```{r,echo = TRUE}
+## create new data frame with data we want to predict to
+## the names have to match those in our original data frame
+newdata <- data.frame(species = "Gentoo",bill_length_mm = 50)
+## use predict() function
+predict(slm_sp, newdata = newdata) ## more accurate than our by hand version!
+```
+What does this look like on a plot
+
+```{r, echo = FALSE}
+## calculate predicted values
+penguins_nafree$pred_vals <- predict(slm_sp)
+pred_data <- data.frame(x = c(30,50), y = c(predict(slm_sp, newdata = newdata),10))
+ggplot(data = penguins_nafree, aes(y = bill_depth_mm, x = bill_length_mm, color = species)) +
+  geom_point() + ylab("Bill depth (mm)") +
+  xlab("Bill length (mm)") + theme_classic()  +
+  geom_line(aes(y = pred_vals)) + 
+  geom_segment(data = pred_data, aes(x = x[1], y = y[1], xend = x[2], yend = y[1]), 
+               inherit.aes = FALSE) + 
+  geom_segment(data = pred_data, aes(x = x[2], y = y[1], xend = x[2], yend = y[2]), 
+               inherit.aes = FALSE) +
+  coord_cartesian(xlim = ggplot_build(p2)$layout$panel_scales_x[[1]]$range$range,
+                  ylim = ggplot_build(p2)$layout$panel_scales_y[[1]]$range$range)
+```
+
+## TL;DR `lm()`
+
+
+| Traditional name    | Model formula  | R code  |
+| ------------------- |:--------------:| -------:|
+| Simple regression   | $Y \sim X_{continuous}$ | `lm(Y ~ X)` |
+| One-way ANOVA       | $Y \sim X_{categorical}$      |   `lm(Y ~ X)` |
+| Two-way ANOVA       | $Y \sim X1_{categorical} + X2_{categorical}$| `lm(Y ~ X1 + X2)` |
+| ANCOVA              | $Y \sim X1_{continuous} + X2_{categorical}$ |`lm(Y ~ X1 + X2)` |
+| Multiple regression | $Y \sim X1_{continuous} + X2_{continuous}$ | `lm(Y ~ X1 + X2)` |
+| Factorial ANOVA     | $Y \sim X1_{categorical} * X2_{categorical}$|   `lm(Y ~ X1 * X2)` or `lm(Y ~ X1 + X2 + X1:X2)` |
+
+**[Artwork by \@allison_horst](https://github.com/allisonhorst/stats-illustrations)**
+
+
+![Meet your MLR teaching assistants](https://github.com/allisonhorst/stats-illustrations/blob/master/other-stats-artwork/dragons.png?raw=true)
+
+![Interpret coefficients for categorical predictor variables](https://github.com/allisonhorst/stats-illustrations/blob/master/other-stats-artwork/dragon_regression.png?raw=true)
+
+![Interpret coefficients for continuous predictor variables](https://github.com/allisonhorst/stats-illustrations/blob/master/other-stats-artwork/dragons_continuous.png?raw=true)
+
+![Make predictions using the regression model](https://github.com/allisonhorst/stats-illustrations/blob/master/other-stats-artwork/dragon_predict_mlr.png?raw=true)
+
+![Residuals](https://github.com/allisonhorst/stats-illustrations/blob/master/other-stats-artwork/dragon_residual.png?raw=true)
+
+![Check residuals for normality](https://github.com/allisonhorst/stats-illustrations/blob/master/other-stats-artwork/dragon_residual_distribution.png?raw=true)
+
+### **Model formula** syntax
+
+In `R` to specify the model you want to fit you typically create a model formula object; this is usually then passed as the first argument to the model fitting function (e.g., `lm()`).
+
+Some notes on syntax:
+
+Consider the model formula example `y ~ x + z + x:z`. There is a lot going on here:
+
+ + The variable to the left of `~` specifies the response, everything to the right specify the explanatory variables
+ + `+` indicated to include the variable to the left of it and to the right of it (it does **not** mean they should be summed)
+ + `:` denotes the interaction of the variables to its left and right
+ 
+Additional, some other symbols have special meanings in model formula:
+
+ + `*` means to include all main effects and interactions, so `a*b` is the same as `a + b + a:b`
+ 
+ + `^` is used to include main effects and interactions up to a specified level. For example, `(a + b + c)^2` is equivalent to `a + b + c + a:b + a:c + b:c` (note `(a + b + c)^3` would also add `a:b:c`)
+ + `-` excludes terms that might otherwise be included. For example, `-1` excludes the intercept otherwise included by default, and `a*b - b` would produce `a + a:b`
+ 
+Mathematical functions can also be directly used in the model formula to transform a variable directly (e.g., `y ~ exp(x) + log(z) + x:z`). One thing that may seem counter intuitive is in creating polynomial expressions (e.g., $x^2$). Here the expression `y ~ x^2` does **not** relate to squaring the explanatory variable $x$ (this is to do with the syntax `^` you see above. To include $x^2$ as a term in our model we have to use the `I()` (the "as-is" operator). For example, `y ~ I(x^2) `).
+
+## Other resources: optional but recommended
+
++ [Exploring interactions with continuous predictors in regression models](https://interactions.jacob-long.com/articles/interactions.html)
++ [The ASA Statement on p-Values: Context, Process, and Purpose](https://www.tandfonline.com/doi/full/10.1080/00031305.2016.1154108)
+
+
+## Beyond Linear Models to Generalised Linear Models (GLMs) (*not examinable*)
+
+Recall the assumptions of a linear model
+
++ The $i$th observation's response, $Y_i$, comes from a normal distribution
++ Its mean, $\mu_i$, is a linear combination of the explanatory terms
++ Its variance, $\sigma^2$, is the same for all observations
++ Each observation's response is independent of all others
+  
+But, what if we want to rid ourselves from a model with normal errors? 
+
+The answer: Generalised Linear Models.
+
+### Counting animals... 
+
+A normal distribution does not adequately describe the response, the number of animals
+
+ + It is a continuous distribution, but the response is discrete
+ + It is symmetric, but the response is unlikely to be so
+ + It is unbounded, and assumes it is plausible for the response to be negative
+
+
+I addition, a linear regression model typically assumes constant variance, but int his situation this unlikely to be the case.
+
+So why assume a normal distribution? Let's use a Poisson distribution instead.
+
+\begin{equation*}    
+    \mu_i = \beta_0 + \beta_1 x_i,
+  \end{equation*}
+
+So 
+  \begin{equation*}
+    Y_i \sim \text{Normal}(\mu_i\, \sigma^2),
+  \end{equation*}
+  
+becomes
+  
+\begin{equation*}
+    Y_i \sim \text{Poisson}(\mu_i),
+\end{equation*}
+  
+The Poisson distribution is commonly used as a general-purpose distribution for counts. A key feature of this distribution is $\text{Var}(Y_i) = \mu_i$, so we expect the variance to increase with the mean.
+
+### Other modelling approaches (not examinable)
+
+| `R` function    | Use                    | 
+| --------------- |------------------------|
+| `glm()`         | Fit a  linear model with a specific error structure specified using the `family =` argument (Poisson, binomial, gamma)|
+| `gam()`         | Fit a generalised additive model. The R package `mgcv` must be loaded |
+|`lme()` and `nlme()`| Fit linear and non-linear mixed effects models. The R package `nlme` must be loaded |
+| `lmer()`        | Fit linear and generalised linear and non-linear mixed effects models. The package `lme4` must be installed and loaded |
+| `gls()`         | Fit generalised least squares models. The R package `nlme` must be loaded |
+
+

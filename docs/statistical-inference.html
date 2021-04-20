@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>10 Statistical Inference | bluebook BIOSCI738</title>
+  <meta name="description" content="10 Statistical Inference | bluebook BIOSCI738" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="10 Statistical Inference | bluebook BIOSCI738" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="10 Statistical Inference | bluebook BIOSCI738" />
+  
+  
+  
+
+<meta name="author" content="Charlotte Jones-Todd" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="split-plot-and-repeated-measures-designs.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="src/my-style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#course-overview"><i class="fa fa-check"></i><b>0.1</b> Course Overview</a></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#key-topics"><i class="fa fa-check"></i><b>0.2</b> Key Topics</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html"><i class="fa fa-check"></i><b>1</b> <code>R</code>, <code>RStudio</code>, and <code>git</code></a><ul>
+<li class="chapter" data-level="1.1" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html#learning-objectives"><i class="fa fa-check"></i><b>1.1</b> Learning objectives</a></li>
+<li class="chapter" data-level="1.2" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html#intro-to-r-rstudio"><i class="fa fa-check"></i><b>1.2</b> Intro to <code>R</code> &amp; <code>RStudio</code></a><ul>
+<li class="chapter" data-level="1.2.1" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html#why"><i class="fa fa-check"></i><b>1.2.1</b> Why?</a></li>
+<li class="chapter" data-level="1.2.2" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html#installing-r-and-rstudio"><i class="fa fa-check"></i><b>1.2.2</b> Installing R and RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html#getting-started"><i class="fa fa-check"></i><b>1.3</b> Getting started</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html#r-errors"><i class="fa fa-check"></i><b>1.3.1</b> R errors 😱</a></li>
+<li class="chapter" data-level="1.3.2" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html#r-scripts-a-.r-file"><i class="fa fa-check"></i><b>1.3.2</b> R <em>Script</em>s (a <code>.r</code> file)</a></li>
+<li class="chapter" data-level="1.3.3" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html#writing-comments"><i class="fa fa-check"></i><b>1.3.3</b> Writing <em>Comments</em></a></li>
+<li class="chapter" data-level="1.3.4" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html#change-the-rstudio-appearance-up-to-your-taste"><i class="fa fa-check"></i><b>1.3.4</b> Change the <code>RStudio</code> appearance up to your taste</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html#reproducible-research"><i class="fa fa-check"></i><b>1.4</b> Reproducible research</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html#good-practice"><i class="fa fa-check"></i><b>1.4.1</b> Good practice</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html#version-control-with-git-and-github"><i class="fa fa-check"></i><b>1.5</b> Version control with <code>git</code> and GitHub</a><ul>
+<li class="chapter" data-level="1.5.1" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html#setup-tldr"><i class="fa fa-check"></i><b>1.5.1</b> Setup TL;DR</a></li>
+<li class="chapter" data-level="1.5.2" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html#cloning-a-repository-from-github-using-rstudio"><i class="fa fa-check"></i><b>1.5.2</b> Cloning a repository from <code>GitHub</code> using <code>RStudio</code></a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html#exploratory-data-analysis"><i class="fa fa-check"></i><b>1.6</b> Exploratory Data Analysis</a><ul>
+<li class="chapter" data-level="1.6.1" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html#starting-out-with-tidyverse"><i class="fa fa-check"></i><b>1.6.1</b> Starting out with <code>tidyverse</code></a></li>
+<li class="chapter" data-level="1.6.2" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html#reading-in-data-from-a-.csv-file"><i class="fa fa-check"></i><b>1.6.2</b> Reading in data from a <code>.csv</code> file</a></li>
+<li class="chapter" data-level="1.6.3" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html#explore-your-data"><i class="fa fa-check"></i><b>1.6.3</b> Explore your data</a></li>
+<li class="chapter" data-level="1.6.4" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html#explore-your-data-1"><i class="fa fa-check"></i><b>1.6.4</b> Explore your data</a></li>
+<li class="chapter" data-level="1.6.5" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html#the-pipe-operator"><i class="fa fa-check"></i><b>1.6.5</b> The pipe operator <code>%&gt;%</code></a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="r-rstudio-and-git.html"><a href="r-rstudio-and-git.html#other-resources"><i class="fa fa-check"></i><b>1.7</b> Other resources</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="māori-data-sovereignty-principles.html"><a href="māori-data-sovereignty-principles.html"><i class="fa fa-check"></i><b>2</b> Māori Data Sovereignty principles</a><ul>
+<li class="chapter" data-level="2.1" data-path="māori-data-sovereignty-principles.html"><a href="māori-data-sovereignty-principles.html#learning-objectives-1"><i class="fa fa-check"></i><b>2.1</b> Learning objectives</a></li>
+<li class="chapter" data-level="2.2" data-path="māori-data-sovereignty-principles.html"><a href="māori-data-sovereignty-principles.html#māori-data-sovereignty-principles-1"><i class="fa fa-check"></i><b>2.2</b> Māori Data Sovereignty principles</a></li>
+<li class="chapter" data-level="2.3" data-path="māori-data-sovereignty-principles.html"><a href="māori-data-sovereignty-principles.html#māori-data-sovereignty-principles-2"><i class="fa fa-check"></i><b>2.3</b> Māori Data Sovereignty principles</a></li>
+<li class="chapter" data-level="2.4" data-path="māori-data-sovereignty-principles.html"><a href="māori-data-sovereignty-principles.html#resources"><i class="fa fa-check"></i><b>2.4</b> Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-wrangling-and-vizualisation.html"><a href="data-wrangling-and-vizualisation.html"><i class="fa fa-check"></i><b>3</b> Data wrangling and vizualisation</a><ul>
+<li class="chapter" data-level="3.1" data-path="data-wrangling-and-vizualisation.html"><a href="data-wrangling-and-vizualisation.html#learning-objectives-2"><i class="fa fa-check"></i><b>3.1</b> Learning objectives</a></li>
+<li class="chapter" data-level="3.2" data-path="data-wrangling-and-vizualisation.html"><a href="data-wrangling-and-vizualisation.html#common-dataframe-manipulations-in-the-tidyverse"><i class="fa fa-check"></i><b>3.2</b> Common dataframe manipulations in the <code>tidyverse</code></a><ul>
+<li class="chapter" data-level="3.2.1" data-path="data-wrangling-and-vizualisation.html"><a href="data-wrangling-and-vizualisation.html#using-dplyr-and-tidyr"><i class="fa fa-check"></i><b>3.2.1</b> Using <code>dplyr</code> and <code>tidyr</code></a></li>
+<li class="chapter" data-level="3.2.2" data-path="data-wrangling-and-vizualisation.html"><a href="data-wrangling-and-vizualisation.html#introuducing-the-palmer-penguins"><i class="fa fa-check"></i><b>3.2.2</b> Introuducing the <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0090081">Palmer penguins</a></a></li>
+<li class="chapter" data-level="3.2.3" data-path="data-wrangling-and-vizualisation.html"><a href="data-wrangling-and-vizualisation.html#common-dataframe-manipulations-in-the-tidyverse-using-dplyr-and-tidyr"><i class="fa fa-check"></i><b>3.2.3</b> Common dataframe manipulations in the <code>tidyverse</code>, using <code>dplyr</code> and <code>tidyr</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="data-wrangling-and-vizualisation.html"><a href="data-wrangling-and-vizualisation.html#data-viz"><i class="fa fa-check"></i><b>3.3</b> Data Viz</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="data-wrangling-and-vizualisation.html"><a href="data-wrangling-and-vizualisation.html#exploratory-and-explanatory-plots"><i class="fa fa-check"></i><b>3.3.1</b> Exploratory and explanatory plots</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="data-wrangling-and-vizualisation.html"><a href="data-wrangling-and-vizualisation.html#ten-simple-rules-for-better-figures"><i class="fa fa-check"></i><b>3.4</b> Ten Simple Rules for Better Figures</a></li>
+<li class="chapter" data-level="3.5" data-path="data-wrangling-and-vizualisation.html"><a href="data-wrangling-and-vizualisation.html#ggplot2"><i class="fa fa-check"></i><b>3.5</b> <code>ggplot2</code></a><ul>
+<li class="chapter" data-level="3.5.1" data-path="data-wrangling-and-vizualisation.html"><a href="data-wrangling-and-vizualisation.html#ggplot2-layers"><i class="fa fa-check"></i><b>3.5.1</b> <code>ggplot2</code> layers</a></li>
+<li class="chapter" data-level="3.5.2" data-path="data-wrangling-and-vizualisation.html"><a href="data-wrangling-and-vizualisation.html#examples"><i class="fa fa-check"></i><b>3.5.2</b> Examples</a></li>
+<li class="chapter" data-level="3.5.3" data-path="data-wrangling-and-vizualisation.html"><a href="data-wrangling-and-vizualisation.html#the-good-the-bad-and-the-ugly..."><i class="fa fa-check"></i><b>3.5.3</b> The Good, the Bad, and the Ugly...</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="data-wrangling-and-vizualisation.html"><a href="data-wrangling-and-vizualisation.html#resources-1"><i class="fa fa-check"></i><b>3.6</b> Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html"><i class="fa fa-check"></i><b>4</b> Introduction to the design and analysis of experiments</a><ul>
+<li class="chapter" data-level="4.1" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#learning-objectives-3"><i class="fa fa-check"></i><b>4.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="4.2" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#key-phrases"><i class="fa fa-check"></i><b>4.2</b> Key phrases</a></li>
+<li class="chapter" data-level="4.3" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#three-key-principles"><i class="fa fa-check"></i><b>4.3</b> Three key principles:</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#replication"><i class="fa fa-check"></i><b>4.3.1</b> <strong>Replication</strong></a></li>
+<li class="chapter" data-level="4.3.2" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#randomization"><i class="fa fa-check"></i><b>4.3.2</b> <strong>Randomization</strong></a></li>
+<li class="chapter" data-level="4.3.3" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#blocking"><i class="fa fa-check"></i><b>4.3.3</b> <strong>Blocking</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#one-way-analysis-of-variance-anova"><i class="fa fa-check"></i><b>4.4</b> One-Way <strong>An</strong>alysis <strong>o</strong>f <strong>Va</strong>riance (ANOVA)</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#between-group-ss-ssb"><i class="fa fa-check"></i><b>4.4.1</b> Between group SS (SSB)</a></li>
+<li class="chapter" data-level="4.4.2" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#within-group-ss-ssw"><i class="fa fa-check"></i><b>4.4.2</b> Within group SS (SSW)</a></li>
+<li class="chapter" data-level="4.4.3" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#f-statistic"><i class="fa fa-check"></i><b>4.4.3</b> F-statistic</a></li>
+<li class="chapter" data-level="4.4.4" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#degrees-of-freedom-df"><i class="fa fa-check"></i><b>4.4.4</b> Degrees of freedom (DF)</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#p-values"><i class="fa fa-check"></i><b>4.5</b> 😱 p-values 😱</a></li>
+<li class="chapter" data-level="4.6" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#terminology-and-issues"><i class="fa fa-check"></i><b>4.6</b> Terminology and issues</a></li>
+<li class="chapter" data-level="4.7" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#resources-2"><i class="fa fa-check"></i><b>4.7</b> Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="a-completely-randomomised-design.html"><a href="a-completely-randomomised-design.html"><i class="fa fa-check"></i><b>5</b> A completely randomomised design</a><ul>
+<li class="chapter" data-level="5.1" data-path="a-completely-randomomised-design.html"><a href="a-completely-randomomised-design.html#learning-objectives-4"><i class="fa fa-check"></i><b>5.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="5.2" data-path="a-completely-randomomised-design.html"><a href="a-completely-randomomised-design.html#analysis-of-a-completely-randomised-design-in-r-aov-and-lm"><i class="fa fa-check"></i><b>5.2</b> Analysis of a Completely Randomised Design in <code>R</code>: <code>aov()</code> and <code>lm()</code></a><ul>
+<li class="chapter" data-level="5.2.1" data-path="a-completely-randomomised-design.html"><a href="a-completely-randomomised-design.html#aov"><i class="fa fa-check"></i><b>5.2.1</b> <code>aov()</code></a></li>
+<li class="chapter" data-level="5.2.2" data-path="a-completely-randomomised-design.html"><a href="a-completely-randomomised-design.html#lm"><i class="fa fa-check"></i><b>5.2.2</b> <code>lm()</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html"><i class="fa fa-check"></i><b>6</b> Multiple comparisons</a><ul>
+<li class="chapter" data-level="6.1" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html#learning-objectives-5"><i class="fa fa-check"></i><b>6.1</b> Learning objectives</a></li>
+<li class="chapter" data-level="6.2" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html#adjustments-for-multiple-testing"><i class="fa fa-check"></i><b>6.2</b> Adjustments for multiple testing</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html#classification-of-multiple-hypothesis-tests"><i class="fa fa-check"></i><b>6.2.1</b> Classification of multiple hypothesis tests</a></li>
+<li class="chapter" data-level="6.2.2" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html#using-the-predictmeans-package"><i class="fa fa-check"></i><b>6.2.2</b> Using the <code>predictmeans</code> package</a></li>
+<li class="chapter" data-level="6.2.3" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html#multiple-comparison-procedures"><i class="fa fa-check"></i><b>6.2.3</b> Multiple comparison procedures</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="factorial-experiments.html"><a href="factorial-experiments.html"><i class="fa fa-check"></i><b>7</b> Factorial experiments</a><ul>
+<li class="chapter" data-level="7.1" data-path="factorial-experiments.html"><a href="factorial-experiments.html#learning-objectives-6"><i class="fa fa-check"></i><b>7.1</b> Learning objectives</a></li>
+<li class="chapter" data-level="7.2" data-path="factorial-experiments.html"><a href="factorial-experiments.html#factorial-design-as-a-crd"><i class="fa fa-check"></i><b>7.2</b> Factorial design (as a CRD)</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="factorial-experiments.html"><a href="factorial-experiments.html#equal-replications-balanced-design"><i class="fa fa-check"></i><b>7.2.1</b> Equal replications (balanced design)</a></li>
+<li class="chapter" data-level="7.2.2" data-path="factorial-experiments.html"><a href="factorial-experiments.html#unqual-replications-unbalanced-design"><i class="fa fa-check"></i><b>7.2.2</b> Unqual replications (unbalanced design)</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="factorial-experiments.html"><a href="factorial-experiments.html#tldr-model-formula-syntax-in-r"><i class="fa fa-check"></i><b>7.3</b> TL;DR, Model formula syntax in <code>R</code></a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="blocking-incorporating-into-design-and-analysis-of.html"><a href="blocking-incorporating-into-design-and-analysis-of.html"><i class="fa fa-check"></i><b>8</b> Blocking: incorporating into design and analysis of</a><ul>
+<li class="chapter" data-level="8.1" data-path="blocking-incorporating-into-design-and-analysis-of.html"><a href="blocking-incorporating-into-design-and-analysis-of.html#learning-objectives-7"><i class="fa fa-check"></i><b>8.1</b> Learning objectives</a></li>
+<li class="chapter" data-level="8.2" data-path="blocking-incorporating-into-design-and-analysis-of.html"><a href="blocking-incorporating-into-design-and-analysis-of.html#blocking-1"><i class="fa fa-check"></i><b>8.2</b> Blocking</a></li>
+<li class="chapter" data-level="8.3" data-path="blocking-incorporating-into-design-and-analysis-of.html"><a href="blocking-incorporating-into-design-and-analysis-of.html#a-randomised-controlled-block-design-rcbd"><i class="fa fa-check"></i><b>8.3</b> A Randomised Controlled Block Design (RCBD)</a></li>
+<li class="chapter" data-level="8.4" data-path="blocking-incorporating-into-design-and-analysis-of.html"><a href="blocking-incorporating-into-design-and-analysis-of.html#fixed-or-random"><i class="fa fa-check"></i><b>8.4</b> Fixed or Random???</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="blocking-incorporating-into-design-and-analysis-of.html"><a href="blocking-incorporating-into-design-and-analysis-of.html#ignoring-an-effect"><i class="fa fa-check"></i><b>8.4.1</b> Ignoring an effect</a></li>
+<li class="chapter" data-level="8.4.2" data-path="blocking-incorporating-into-design-and-analysis-of.html"><a href="blocking-incorporating-into-design-and-analysis-of.html#analysis-using-lmer-from-lme4"><i class="fa fa-check"></i><b>8.4.2</b> Analysis using <code>lmer()</code> from <code>lme4</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="split-plot-and-repeated-measures-designs.html"><a href="split-plot-and-repeated-measures-designs.html"><i class="fa fa-check"></i><b>9</b> Split-plot and repeated measures designs</a><ul>
+<li class="chapter" data-level="9.1" data-path="split-plot-and-repeated-measures-designs.html"><a href="split-plot-and-repeated-measures-designs.html#learning-objectives-8"><i class="fa fa-check"></i><b>9.1</b> Learning objectives</a></li>
+<li class="chapter" data-level="9.2" data-path="split-plot-and-repeated-measures-designs.html"><a href="split-plot-and-repeated-measures-designs.html#analysis-of-a-split-plot-design"><i class="fa fa-check"></i><b>9.2</b> Analysis of a split-plot design</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="split-plot-and-repeated-measures-designs.html"><a href="split-plot-and-repeated-measures-designs.html#using-aov"><i class="fa fa-check"></i><b>9.2.1</b> Using <code>aov()</code></a></li>
+<li class="chapter" data-level="9.2.2" data-path="split-plot-and-repeated-measures-designs.html"><a href="split-plot-and-repeated-measures-designs.html#using-lmer-from-lmetest-and-lmer4-and-predictmeans"><i class="fa fa-check"></i><b>9.2.2</b> Using <code>lmer()</code> (from <code>lmeTest</code> and <code>lmer4</code>) and <code>predictmeans()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="split-plot-and-repeated-measures-designs.html"><a href="split-plot-and-repeated-measures-designs.html#analysis-of-a-repeated-measures-design"><i class="fa fa-check"></i><b>9.3</b> Analysis of a repeated measures design</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="split-plot-and-repeated-measures-designs.html"><a href="split-plot-and-repeated-measures-designs.html#the-data"><i class="fa fa-check"></i><b>9.3.1</b> The data</a></li>
+<li class="chapter" data-level="9.3.2" data-path="split-plot-and-repeated-measures-designs.html"><a href="split-plot-and-repeated-measures-designs.html#visualise"><i class="fa fa-check"></i><b>9.3.2</b> Visualise</a></li>
+<li class="chapter" data-level="9.3.3" data-path="split-plot-and-repeated-measures-designs.html"><a href="split-plot-and-repeated-measures-designs.html#using-aov-1"><i class="fa fa-check"></i><b>9.3.3</b> Using <code>aov()</code></a></li>
+<li class="chapter" data-level="9.3.4" data-path="split-plot-and-repeated-measures-designs.html"><a href="split-plot-and-repeated-measures-designs.html#using-lmer-from-lmertest-and-lme4-and-predictmeans"><i class="fa fa-check"></i><b>9.3.4</b> Using <code>lmer()</code> (from <code>lmerTest</code> and <code>lme4</code>) and <code>predictmeans()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="split-plot-and-repeated-measures-designs.html"><a href="split-plot-and-repeated-measures-designs.html#repeated-measures-designs-as-split-plots-in-time"><i class="fa fa-check"></i><b>9.4</b> Repeated measures designs as <em>split-plots in time</em></a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="statistical-inference.html"><a href="statistical-inference.html"><i class="fa fa-check"></i><b>10</b> Statistical Inference</a><ul>
+<li class="chapter" data-level="10.1" data-path="statistical-inference.html"><a href="statistical-inference.html#learning-objectives-9"><i class="fa fa-check"></i><b>10.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="10.2" data-path="statistical-inference.html"><a href="statistical-inference.html#regression"><i class="fa fa-check"></i><b>10.2</b> Regression</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="statistical-inference.html"><a href="statistical-inference.html#some-mathematical-notation"><i class="fa fa-check"></i><b>10.2.1</b> Some mathematical notation</a></li>
+<li class="chapter" data-level="10.2.2" data-path="statistical-inference.html"><a href="statistical-inference.html#modeling-bill-depth"><i class="fa fa-check"></i><b>10.2.2</b> Modeling Bill Depth</a></li>
+<li class="chapter" data-level="10.2.3" data-path="statistical-inference.html"><a href="statistical-inference.html#single-continuous-variable"><i class="fa fa-check"></i><b>10.2.3</b> Single continuous variable</a></li>
+<li class="chapter" data-level="10.2.4" data-path="statistical-inference.html"><a href="statistical-inference.html#factor-and-a-continous-variable"><i class="fa fa-check"></i><b>10.2.4</b> Factor and a continous variable</a></li>
+<li class="chapter" data-level="10.2.5" data-path="statistical-inference.html"><a href="statistical-inference.html#interactions"><i class="fa fa-check"></i><b>10.2.5</b> Interactions</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="statistical-inference.html"><a href="statistical-inference.html#model-comparison-selection-and-checking-again"><i class="fa fa-check"></i><b>10.3</b> Model, comparison, selection, and checking (again)</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="statistical-inference.html"><a href="statistical-inference.html#model-comparison-and-selection"><i class="fa fa-check"></i><b>10.3.1</b> Model comparison and selection</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="statistical-inference.html"><a href="statistical-inference.html#point-predictions-and-confidence-intervals"><i class="fa fa-check"></i><b>10.4</b> Point predictions and confidence intervals</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="statistical-inference.html"><a href="statistical-inference.html#confidence-intervals-for-parameters"><i class="fa fa-check"></i><b>10.4.1</b> Confidence intervals for parameters</a></li>
+<li class="chapter" data-level="10.4.2" data-path="statistical-inference.html"><a href="statistical-inference.html#point-prediction"><i class="fa fa-check"></i><b>10.4.2</b> Point prediction</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="statistical-inference.html"><a href="statistical-inference.html#tldr-lm"><i class="fa fa-check"></i><b>10.5</b> TL;DR <code>lm()</code></a><ul>
+<li class="chapter" data-level="10.5.1" data-path="statistical-inference.html"><a href="statistical-inference.html#model-formula-syntax"><i class="fa fa-check"></i><b>10.5.1</b> <strong>Model formula</strong> syntax</a></li>
+</ul></li>
+<li class="chapter" data-level="10.6" data-path="statistical-inference.html"><a href="statistical-inference.html#other-resources-optional-but-recommended"><i class="fa fa-check"></i><b>10.6</b> Other resources: optional but recommended</a></li>
+<li class="chapter" data-level="10.7" data-path="statistical-inference.html"><a href="statistical-inference.html#beyond-linear-models-to-generalised-linear-models-glms-not-examinable"><i class="fa fa-check"></i><b>10.7</b> Beyond Linear Models to Generalised Linear Models (GLMs) (<em>not examinable</em>)</a><ul>
+<li class="chapter" data-level="10.7.1" data-path="statistical-inference.html"><a href="statistical-inference.html#counting-animals..."><i class="fa fa-check"></i><b>10.7.1</b> Counting animals...</a></li>
+<li class="chapter" data-level="10.7.2" data-path="statistical-inference.html"><a href="statistical-inference.html#other-modelling-approaches-not-examinable"><i class="fa fa-check"></i><b>10.7.2</b> Other modelling approaches (not examinable)</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"><em>bluebook</em> BIOSCI738</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="statistical-inference" class="section level1">
+<h1><span class="header-section-number">10</span> Statistical Inference</h1>
+<div id="learning-objectives-9" class="section level2">
+<h2><span class="header-section-number">10.1</span> Learning Objectives</h2>
+<ul>
+<li>Carry out and interpret tests for the existence of relationships between explanatory variables and the response in a linear model</li>
+<li>Write R code to fit a linear model with a single continuous explanatory variable</li>
+<li>Write R code to fit a linear model with a continuous explanatory variable and a factor explanatory variable</li>
+<li>Interpret estimated effects with reference to confidence intervals from linear regression models. Specifically the interpretation of
+<ul>
+<li>the intercept</li>
+<li>the effect of a factor</li>
+<li>the effect of a one-unit increase in a numeric variable</li>
+<li>the effect of an x-unit increase in a numeric variable</li>
+</ul></li>
+<li>Make a point prediction of the response for a new observation</li>
+<li>Write R code to fit a linear model with interaction terms in the explanatory variables</li>
+<li>Interpret estimated effects with reference to confidence intervals from linear regression models. Specifically the interpretation of
+<ul>
+<li>main effects in a model with an interaction</li>
+<li>the effect of one variable when others are included in the model</li>
+</ul></li>
+<li>Explain why you may want to include interaction effects in a linear model</li>
+<li>Describe the differences between the operators <code>:</code> and <code>*</code> in an <code>R</code> model-fitting formula</li>
+</ul>
+</div>
+<div id="regression" class="section level2">
+<h2><span class="header-section-number">10.2</span> Regression</h2>
+<div class="figure">
+<img src="https://raw.githubusercontent.com/cmjt/statbiscuits/master/figs_n_gifs/lm.gif" />
+
+</div>
+<div id="some-mathematical-notation" class="section level3">
+<h3><span class="header-section-number">10.2.1</span> Some mathematical notation</h3>
+<p>Let's consider a linear regression with a simple explanatory variable:</p>
+<p><span class="math display">\[Y_i = \alpha + \beta_1x_i + \epsilon_i\]</span> where</p>
+<p><span class="math display">\[\epsilon_i \sim \text{Normal}(0,\sigma^2).\]</span></p>
+<p>Here for observation <span class="math inline">\(i\)</span></p>
+<ul>
+<li><span class="math inline">\(Y_i\)</span> is the value of the response</li>
+<li><span class="math inline">\(x_i\)</span> is the value of the explanatory variable</li>
+<li><span class="math inline">\(\epsilon_i\)</span> is the error term: the difference between <span class="math inline">\(Y_i\)</span> and its expected value</li>
+<li><span class="math inline">\(\alpha\)</span> is the intercept term (a parameter to be estimated), and</li>
+<li><span class="math inline">\(\beta_1\)</span> is the slope: coefficient of the explanatory variable (a parameter to be estimated)</li>
+</ul>
+<p>Does this remind you of anything?</p>
+<div class="figure">
+<img src="https://memegenerator.net/img/instances/63099571/one-does-not-simply-forget-ymxc.jpg" />
+
+</div>
+</div>
+<div id="modeling-bill-depth" class="section level3">
+<h3><span class="header-section-number">10.2.2</span> Modeling Bill Depth</h3>
+<p><strong>Remember the penguins from <a href="https://stats-uoa.github.io/BIOSCI220/data-exploration-and-visualization.html#data-wrangling-and-manipulation">Chapter 2</a></strong>?</p>
+<div class="figure">
+<img src="https://cran.r-project.org/web/packages/palmerpenguins/readme/man/figures/culmen_depth.png" />
+
+</div>
+<p><strong>Key assumptions</strong></p>
+<ul>
+<li><strong>Independence</strong></li>
+<li>There is a <strong>linear relationship</strong> between the response and the explanatory variables</li>
+<li>The residuals have <strong>constant variance</strong></li>
+<li>The <strong>residuals</strong> are normally distributed</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+<span class="kw">library</span>(palmerpenguins)
+penguins_nafree &lt;-<span class="st"> </span>penguins <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">drop_na</span>()</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> penguins_nafree, <span class="kw">aes</span>(<span class="dt">x =</span> bill_depth_mm)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>() <span class="op">+</span><span class="st"> </span><span class="kw">theme_classic</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Bill depth (mm)&quot;</span>)</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-60-1.png" width="672" /></p>
+<p>First off let's fit a null (intercept only) model. This in <em>old money</em> would be called a one sample t-test.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">slm_null &lt;-<span class="st"> </span><span class="kw">lm</span>(bill_depth_mm <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> penguins_nafree)
+<span class="kw">summary</span>(slm_null)<span class="op">$</span>coef</code></pre></div>
+<pre><code>##             Estimate Std. Error  t value      Pr(&gt;|t|)
+## (Intercept) 17.16486  0.1079134 159.0614 1.965076e-315</code></pre>
+<p><strong>Model formula</strong></p>
+<p>This model, from above, is simply <span class="math display">\[Y_i = \alpha + \epsilon_i.\]</span></p>
+<p>Here for observation <span class="math inline">\(i\)</span> <span class="math inline">\(Y_i\)</span> is the value of the response (<code>bill_depth_mm</code>) and <span class="math inline">\(\alpha\)</span> is a parameter to be estimated (typically called the intercept).</p>
+<p><strong>Inference</strong></p>
+<p>The <code>(Intercept)</code> term, 17.1648649, tells us the (estimated) average value of the response (<code>bill_depth_mm</code>), see</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">penguins_nafree <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">average_bill_depth =</span> <span class="kw">mean</span>(bill_depth_mm))</code></pre></div>
+<pre><code>## # A tibble: 1 x 1
+##   average_bill_depth
+##                &lt;dbl&gt;
+## 1               17.2</code></pre>
+<p>The SEM (<code>Std. Error</code>) = 0.1079134.</p>
+<p>The hypothesis being tested is <span class="math inline">\(H_0:\)</span> (<code>(Intercept)</code> ) <span class="math inline">\(\text{mean}_{\text{`average_bill_depth`}} = 0\)</span> vs. <span class="math inline">\(H_1:\)</span> (<code>(Intercept)</code>) <span class="math inline">\(\text{mean}_{\text{`average_bill_depth`}} \neq 0\)</span></p>
+<p>The t-statistic is given by <code>t value</code> = <code>Estimate</code> / <code>Std. Error</code> = 159.0614207</p>
+<p>The p-value is given by<code>Pr (&gt;|t|)</code> = 1.965076110^{-315}.</p>
+<p>So the probability of observing a t-statistic as least as extreme given under the null hypothesis (average bill depth = 0) given our data is 1.965076110^{-315}, pretty strong evidence against the null hypothesis I'd say!</p>
+</div>
+<div id="single-continuous-variable" class="section level3">
+<h3><span class="header-section-number">10.2.3</span> Single continuous variable</h3>
+<p><strong>Does <code>bill_length_mm</code> help explain some of the variation in <code>bill_depth_mm</code>?</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> penguins_nafree, <span class="kw">aes</span>(<span class="dt">x =</span> bill_length_mm, <span class="dt">y =</span> bill_depth_mm)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Bill depth (mm)&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Bill length (mm)&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_classic</span>()
+p1</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">slm &lt;-<span class="st"> </span><span class="kw">lm</span>(bill_depth_mm <span class="op">~</span><span class="st"> </span>bill_length_mm, <span class="dt">data =</span> penguins_nafree)</code></pre></div>
+<p><strong>Model formula</strong></p>
+<p>This model is simply <span class="math display">\[Y_i = \alpha + \beta_1x_i + \epsilon_i\]</span> where for observation <span class="math inline">\(i\)</span> <span class="math inline">\(Y_i\)</span> is the value of the response (<code>bill_depth_mm</code>) and <span class="math inline">\(x_i\)</span> is the value of the explanatory variable (<code>bill_length_mm</code>); As above <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta_1\)</span> are parameters to be estimated. We could also write this model as</p>
+<p><span class="math display">\[
+\begin{aligned}
+\operatorname{bill\_depth\_mm} &amp;= \alpha + \beta_{1}(\operatorname{bill\_length\_mm}) + \epsilon
+\end{aligned}
+\]</span></p>
+<p><strong>Fitted model</strong></p>
+<p>As before we can get out estimated parameters (here <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta_1\)</span>) using</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(slm)<span class="op">$</span>coef</code></pre></div>
+<pre><code>##                   Estimate Std. Error   t value     Pr(&gt;|t|)
+## (Intercept)    20.78664867 0.85417308 24.335406 1.026904e-75
+## bill_length_mm -0.08232675 0.01926835 -4.272642 2.528290e-05</code></pre>
+<p>Here, the <code>(Intercept)</code>: <code>Estimate</code> (<span class="math inline">\(\alpha\)</span> above) gives us the estimated average bill depth (mm) <strong>given the estimated relationship</strong> bill length (mm) and bill length.</p>
+<p>The <code>bill_length_mm</code> : <code>Estimate</code> (<span class="math inline">\(\beta_1\)</span> above) is the slope associated with bill length (mm). So, here for every 1mm increase in bill length we estimated a 0.082mm decrease (or a -0.082mm increase) in bill depth.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## calculate predicted values
+penguins_nafree<span class="op">$</span>pred_vals &lt;-<span class="st"> </span><span class="kw">predict</span>(slm)
+## plot
+<span class="kw">ggplot</span>(<span class="dt">data =</span> penguins_nafree, <span class="kw">aes</span>(<span class="dt">x =</span> bill_length_mm, <span class="dt">y =</span> bill_depth_mm)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Bill depth (mm)&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Bill length (mm)&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_classic</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y =</span> pred_vals))</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-64-1.png" width="672" /></p>
+</div>
+<div id="factor-and-a-continous-variable" class="section level3">
+<h3><span class="header-section-number">10.2.4</span> Factor and a continous variable</h3>
+<p><strong>Adding</strong> <code>species</code>; remember <code>species</code> is a factor variable!</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> penguins_nafree,
+             <span class="kw">aes</span>(<span class="dt">y =</span> bill_depth_mm, <span class="dt">x =</span> bill_length_mm, <span class="dt">color =</span> species)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Bill depth (mm)&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Bill length (mm)&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_classic</span>()
+p2</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-65-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">slm_sp &lt;-<span class="st"> </span><span class="kw">lm</span>(bill_depth_mm <span class="op">~</span><span class="st"> </span>bill_length_mm <span class="op">+</span><span class="st"> </span>species, <span class="dt">data =</span> penguins_nafree)</code></pre></div>
+<p><strong>Model formula</strong></p>
+<p>Now we have two explanatory variables, so our model formula becomes</p>
+<p><span class="math display">\[Y_i = \beta_0 + \beta_1z_i + \beta_2x_i + \epsilon_i\]</span> <span class="math display">\[\epsilon_i \sim \text{Normal}(0,\sigma^2)\]</span></p>
+<p>where for observation <span class="math inline">\(i\)</span></p>
+<ul>
+<li><span class="math inline">\(Y_i\)</span> is the value of the response (<code>bill_depth_mm</code>)</li>
+<li><span class="math inline">\(z_i\)</span> is one explanatory variable (<code>bill_length_mm</code> say)</li>
+<li><span class="math inline">\(x_i\)</span> is another explanatory variable (<code>species</code> say)</li>
+<li><span class="math inline">\(\epsilon_i\)</span> is the error term: the difference between <span class="math inline">\(Y_i\)</span> and its expected value</li>
+<li><span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta_1\)</span>, and <span class="math inline">\(\beta_2\)</span> are all parameters to be estimated.</li>
+</ul>
+<p>Remember though that when we have factor explanatory variables (e.g., <code>species</code>) we have to use dummy variables, see lecture. Here the <strong>Adelie</strong> group are the baseline (<code>R</code> does this alphabetically, to change this see previous chapter).</p>
+<p>So model formula is</p>
+<p><span class="math display">\[
+\begin{aligned}
+\operatorname{bill\_depth\_mm} &amp;= \alpha + \beta_{1}(\operatorname{bill\_length\_mm}) + \beta_{2}(\operatorname{species}_{\operatorname{Chinstrap}}) + \beta_{3}(\operatorname{species}_{\operatorname{Gentoo}})\ + \\
+&amp;\quad \epsilon
+\end{aligned}
+\]</span></p>
+<p><strong>Fitted model</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(slm_sp)<span class="op">$</span>coef</code></pre></div>
+<pre><code>##                    Estimate Std. Error    t value     Pr(&gt;|t|)
+## (Intercept)      10.5652616 0.69092642  15.291442 2.977289e-40
+## bill_length_mm    0.2004431 0.01767974  11.337449 2.258955e-25
+## speciesChinstrap -1.9330779 0.22571878  -8.564099 4.259893e-16
+## speciesGentoo    -5.1033153 0.19439523 -26.252267 1.043789e-82</code></pre>
+<p><strong>Simpson's paradox...</strong> look how the slope associated with bill length (coefficient of <code>bill_length_mm</code>) has switched direction from the model above! Why do you think this is?</p>
+<p>Here, the <code>(Intercept)</code>: <code>Estimate</code> gives us the estimated average bill depth (mm) of the <strong>Adelie</strong> penguins <strong>given the other variables in the model</strong>.</p>
+<p>The <code>bill_length_mm</code> : <code>Estimate</code> (<span class="math inline">\(\beta_1\)</span> above) is the slope associated with bill length (mm). So, here for every 1mm increase in bill length we estimated a 0.2mm increase in bill depth.</p>
+<p>What about the coefficient of the other species levels? Look at the plot below, these values give the shift (up or down) of the <strong>parallel</strong> lines from the <strong>Adelie</strong> level. So given the estimated relationship between bill depth and bill length these coefficients are the estimated change from the baseline.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## calculate predicted values
+penguins_nafree<span class="op">$</span>pred_vals &lt;-<span class="st"> </span><span class="kw">predict</span>(slm_sp)
+## plot
+<span class="kw">ggplot</span>(<span class="dt">data =</span> penguins_nafree, <span class="kw">aes</span>(<span class="dt">y =</span> bill_depth_mm, <span class="dt">x =</span> bill_length_mm, <span class="dt">color =</span> species)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Bill depth (mm)&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Bill length (mm)&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_classic</span>()  <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y =</span> pred_vals))</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-69-1.png" width="672" /></p>
+</div>
+<div id="interactions" class="section level3">
+<h3><span class="header-section-number">10.2.5</span> Interactions</h3>
+<p>Recall the (<em>additive</em>) model formula from above</p>
+<p><span class="math display">\[Y_i = \beta_0 + \beta_1z_i + \beta_2x_i + \epsilon_i\]</span></p>
+<p><strong>but</strong> what about interactions between variables? For example,</p>
+<p><span class="math display">\[Y_i = \beta_0 + \beta_1z_i + \beta_2x_i + \beta_3z_ix_i + \epsilon_i\]</span></p>
+<p><strong>Note:</strong> to include interaction effects in our model by using either the <code>*</code> or <code>:</code> syntax in our model formula. For example,</p>
+<ul>
+<li><p><code>:</code> denotes the interaction of the variables to its left and right, and</p></li>
+<li><p><code>*</code> means to include all main effects and interactions, so <code>a*b</code> is the same as <code>a + b + a:b</code>.</p></li>
+</ul>
+<p>See <a href="Model%20formula%20syntax">Model formula syntax</a> for further details.</p>
+<p>To specify a model with additive and interaction effects we use</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">slm_int &lt;-<span class="st"> </span><span class="kw">lm</span>(bill_depth_mm <span class="op">~</span><span class="st"> </span>bill_length_mm<span class="op">*</span>species, <span class="dt">data =</span> penguins_nafree)</code></pre></div>
+<p><strong>Model formula</strong></p>
+<p>The model formula is then</p>
+<p><span class="math display">\[
+\begin{aligned}
+\operatorname{bill\_depth\_mm} &amp;= \alpha + \beta_{1}(\operatorname{bill\_length\_mm}) + \beta_{2}(\operatorname{species}_{\operatorname{Chinstrap}}) + \beta_{3}(\operatorname{species}_{\operatorname{Gentoo}})\ + \\
+&amp;\quad \beta_{4}(\operatorname{bill\_length\_mm} \times \operatorname{species}_{\operatorname{Chinstrap}}) + \beta_{5}(\operatorname{bill\_length\_mm} \times \operatorname{species}_{\operatorname{Gentoo}}) + \epsilon
+\end{aligned}
+\]</span></p>
+<p><strong>Fitted model</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(slm_int)<span class="op">$</span>coef</code></pre></div>
+<pre><code>##                                    Estimate Std. Error    t value     Pr(&gt;|t|)
+## (Intercept)                     11.48770713 1.15987305  9.9042797 2.135979e-20
+## bill_length_mm                   0.17668344 0.02980564  5.9278518 7.793199e-09
+## speciesChinstrap                -3.91856701 2.06730876 -1.8954919 5.890889e-02
+## speciesGentoo                   -6.36675118 1.77989710 -3.5770333 4.000274e-04
+## bill_length_mm:speciesChinstrap  0.04552828 0.04594283  0.9909769 3.224296e-01
+## bill_length_mm:speciesGentoo     0.03092816 0.04111608  0.7522157 4.524625e-01</code></pre>
+<p>As before the <code>(Intercept)</code>: <code>Estimate</code> gives us the estimated average bill depth (mm) of the <strong>Adelie</strong> penguins <strong>given the other variables in the model</strong>.</p>
+<p>The <code>bill_length_mm</code> : <code>Estimate</code> (<span class="math inline">\(\beta_1\)</span> above) is the slope associated with bill length (mm). So, here for every 1mm increase in bill length we estimated a 0.177mm increase in bill depth.</p>
+<p>The main effects of species (i.e., <code>speciesChinstrap</code>: <code>Estimate</code> and <code>speciesGentoo</code>:<code>Estimate</code> ) again give the shift (up or down) of the lines from the <strong>Adelie</strong> level; however these lines are no longer parallel! The interaction terms (i.e., <code>bill_length_mm:speciesChinstrap</code> and <code>bill_length_mm:speciesGentoo</code>) specify the species specific slopes <strong>given the other variables in the model</strong>.</p>
+<p>Look at the plot below. Now we've specified this <em>all singing and dancing</em> interaction model we might ask <strong>are the non-parallel lines non-parallel enough to reject the parallel line model</strong>?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## calculate predicted values
+penguins_nafree<span class="op">$</span>pred_vals &lt;-<span class="st"> </span><span class="kw">predict</span>(slm_int)
+## plot
+<span class="kw">ggplot</span>(<span class="dt">data =</span> penguins_nafree, <span class="kw">aes</span>(<span class="dt">y =</span> bill_depth_mm, <span class="dt">x =</span> bill_length_mm, <span class="dt">color =</span> species)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Bill depth (mm)&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Bill length (mm)&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_classic</span>()  <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y =</span> pred_vals))</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-73-1.png" width="672" /></p>
+</div>
+</div>
+<div id="model-comparison-selection-and-checking-again" class="section level2">
+<h2><span class="header-section-number">10.3</span> Model, comparison, selection, and checking (again)</h2>
+<p>Remember that it is always is imperative that we <strong>check the underlying assumptions</strong> of our model! If our assumptions are not met then basically the maths falls over and we can't reliably draw inference from the model (e.g., can't trust the parameter estimates etc.). Two of the most important assumption are:</p>
+<ul>
+<li><p>equal variances (homogeneity of variance), and</p></li>
+<li><p>normality of residuals.</p></li>
+</ul>
+<p>Let's look at the fit of the <code>slm</code> model (single continuous explanatory variable)</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gglm<span class="op">::</span><span class="kw">gglm</span>(slm) <span class="co"># Plot the four main diagnostic plots</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-74-1.png" width="672" /></p>
+<p>Do you think the residuals are Normally distributed (look at the QQ plot)? Think of what this model is, do you think it's the best we can do?</p>
+<div id="model-comparison-and-selection" class="section level3">
+<h3><span class="header-section-number">10.3.1</span> Model comparison and selection</h3>
+<p><strong>Are the non-parallel lines non-parallel enough to reject the parallel line model?</strong></p>
+<p>Now we can compare <strong>nested</strong> linear models by hypothesis testing. Luckily the <code>R</code> function <code>anova()</code> automates this. Yes the same idea as we've previously learnt about ANOVA! We essentially perform an F-ratio test between the nested models!</p>
+<p>By <strong>nested</strong> we mean that one model is a subset of the other (i.e., where some coefficients have been fixed at zero). For example,</p>
+<p><span class="math display">\[Y_i = \beta_0 + \beta_1z_i + \epsilon_i\]</span></p>
+<p>is a nested version of</p>
+<p><span class="math display">\[Y_i = \beta_0 + \beta_1z_i + \beta_2x_i + \epsilon_i\]</span> where <span class="math inline">\(\beta_2\)</span> has been fixed to zero.</p>
+<p>As an example consider testing the single explanatory variable model <code>slm</code> against the same model with species included as a variable <code>slm_sp</code>. To carry out the appropriate hypothesis test in <code>R</code> we can run</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anova</span>(slm,slm_sp)</code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Model 1: bill_depth_mm ~ bill_length_mm
+## Model 2: bill_depth_mm ~ bill_length_mm + species
+##   Res.Df     RSS Df Sum of Sq      F    Pr(&gt;F)    
+## 1    331 1220.16                                  
+## 2    329  299.62  2    920.55 505.41 &lt; 2.2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>As you'll see the <code>anova()</code> function takes the two model objects (<code>slm</code> and <code>slm_sp</code>) each as arguments. It returns an ANOVA testing whether the more complex model (<code>slm_sp</code>) is just as good at capturing the variation in the data as the simpler model (<code>slm</code>). The returned p-value should be interpreted as in any other hypothesis test. i.e., the probability of observing a statistic as least as extreme under our null hypothesis (here that each model is as good at capturing the variation in the data).</p>
+<p>What would we conclude here? I'd say we have pretty strong evidence against the models being equally good! I'd definitely plump for <code>slm_sp</code> over <code>slm</code>, looking back at the plots above does this make sense?</p>
+<p>Now what about <code>slm_int</code> vs <code>slm_sp</code>?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anova</span>(slm_sp,slm_int)</code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Model 1: bill_depth_mm ~ bill_length_mm + species
+## Model 2: bill_depth_mm ~ bill_length_mm * species
+##   Res.Df    RSS Df Sum of Sq      F Pr(&gt;F)
+## 1    329 299.62                           
+## 2    327 298.62  2   0.99284 0.5436 0.5812</code></pre>
+<p>So it seems both models are just as good at capturing the variation in our data: we're happy with the parallel lines!</p>
+<p>Another way we might compare models is by using the Akaike information criterion (AIC) (you'll see more of this later in the course). AIC is an estimator of out-of-sample prediction error and can be used as a metric to choose between competing models. Between nested models we're looking for the smallest AIC (i.e., smallest out-of-sample prediction error). Typically, a difference of 4 or more is considered to indicate an improvement; this should not be taken as writ however, using multiple comparison techniques is advised.</p>
+<p><code>R</code> already has an <code>AIC()</code> function that can be used directly on your <code>lm()</code> model object(s). For example,</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">AIC</span>(slm,slm_sp,slm_int)</code></pre></div>
+<pre><code>##         df       AIC
+## slm      3 1383.4462
+## slm_sp   5  919.8347
+## slm_int  7  922.7294</code></pre>
+<p>This backs up what our ANOVA suggested model <code>slm_sp</code> as that preferred! As always it's important to do a sanity check! Does this make sense? Have a look at the outputs from these models and see what you think.</p>
+<p>Just because we've chosen a model (<em>the best of a bad bunch</em> perhaps) this doesn't let us off the hook. We should check our assumptions</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gglm<span class="op">::</span><span class="kw">gglm</span>(slm_sp) <span class="co"># Plot the four main diagnostic plots</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-78-1.png" width="672" /> <strong>Residuals vs Fitted</strong> plot: equal spread? Doesn't look too trumpety!</p>
+<p><strong>Normal quantile-quantile (QQ)</strong> plot: skewed? Maybe slightly right skewed (deviation upwards from the right tail)</p>
+<p><strong>Scale-Location</strong> plot: equal spared? I'd say so.</p>
+<p><strong>Residuals vs Leverage</strong>: ? Maybe a couple of points with high leverage.</p>
+</div>
+</div>
+<div id="point-predictions-and-confidence-intervals" class="section level2">
+<h2><span class="header-section-number">10.4</span> Point predictions and confidence intervals</h2>
+<p>After all that what do estimated parameters mean?</p>
+<div id="confidence-intervals-for-parameters" class="section level3">
+<h3><span class="header-section-number">10.4.1</span> Confidence intervals for parameters</h3>
+<p>For the <em>chosen</em> <code>slm_sp</code> model we can get these simply by using</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cis &lt;-<span class="st"> </span><span class="kw">confint</span>(slm_sp)
+cis</code></pre></div>
+<pre><code>##                       2.5 %     97.5 %
+## (Intercept)       9.2060707 11.9244526
+## bill_length_mm    0.1656635  0.2352227
+## speciesChinstrap -2.3771120 -1.4890438
+## speciesGentoo    -5.4857298 -4.7209009</code></pre>
+<p>By default the 95% intervals are returned (see previous lecture)</p>
+<p>So this tells us that For every 1mm increase in bill length we estimate the expected bill depth to increases between 0.166 and 0.235 mm</p>
+<ul>
+<li>We estimate that the expected bill depth of a Chinstrap penguin is between 1.5 and 2.4 mm shallower than the Adelie penguin</li>
+</ul>
+</div>
+<div id="point-prediction" class="section level3">
+<h3><span class="header-section-number">10.4.2</span> Point prediction</h3>
+<p>Using the <code>slm_sp</code> model we can make a point prediction for the expected bill depth (mm) for Gentoo penguins with a bill length of 50mm.</p>
+<p>Recall the model equation</p>
+<pre><code>## $$
+## \begin{aligned}
+## \operatorname{bill\_depth\_mm} &amp;= \alpha\ + \\
+## &amp;\quad \beta_{1}(\operatorname{bill\_length\_mm})\ + \\
+## &amp;\quad \beta_{2}(\operatorname{species}_{\operatorname{Chinstrap}})\ + \\
+## &amp;\quad \beta_{3}(\operatorname{species}_{\operatorname{Gentoo}})\ + \\
+## &amp;\quad \epsilon
+## \end{aligned}
+## $$</code></pre>
+<p>We can then simply substitute in the values:</p>
+<p><span class="math display">\[\widehat{\text{bill depth}} = \hat{\alpha} + \hat{\beta_1}*50 + \hat{\beta_3}*1\]</span> <span class="math display">\[\downarrow\]</span></p>
+<p><span class="math display">\[\widehat{\text{bill depth}} = 10.56 + 0.20*50 - 5.10*1\]</span> <span class="math display">\[\downarrow\]</span></p>
+<p><span class="math display">\[15.47\text{mm}\]</span></p>
+<p>Rather than <em>by hand</em> we can do this easily in <code>R</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## create new data frame with data we want to predict to
+## the names have to match those in our original data frame
+newdata &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">species =</span> <span class="st">&quot;Gentoo&quot;</span>,<span class="dt">bill_length_mm =</span> <span class="dv">50</span>)
+## use predict() function
+<span class="kw">predict</span>(slm_sp, <span class="dt">newdata =</span> newdata) ## more accurate than our by hand version!</code></pre></div>
+<pre><code>##       1 
+## 15.4841</code></pre>
+<p>What does this look like on a plot</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-82-1.png" width="672" /></p>
+</div>
+</div>
+<div id="tldr-lm" class="section level2">
+<h2><span class="header-section-number">10.5</span> TL;DR <code>lm()</code></h2>
+<table style="width:64%;">
+<colgroup>
+<col width="27%" />
+<col width="23%" />
+<col width="12%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Traditional name</th>
+<th align="center">Model formula</th>
+<th align="right">R code</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Simple regression</td>
+<td align="center"><span class="math inline">\(Y \sim X_{continuous}\)</span></td>
+<td align="right"><code>lm(Y ~ X)</code></td>
+</tr>
+<tr class="even">
+<td>One-way ANOVA</td>
+<td align="center"><span class="math inline">\(Y \sim X_{categorical}\)</span></td>
+<td align="right"><code>lm(Y ~ X)</code></td>
+</tr>
+<tr class="odd">
+<td>Two-way ANOVA</td>
+<td align="center"><span class="math inline">\(Y \sim X1_{categorical} + X2_{categorical}\)</span></td>
+<td align="right"><code>lm(Y ~ X1 + X2)</code></td>
+</tr>
+<tr class="even">
+<td>ANCOVA</td>
+<td align="center"><span class="math inline">\(Y \sim X1_{continuous} + X2_{categorical}\)</span></td>
+<td align="right"><code>lm(Y ~ X1 + X2)</code></td>
+</tr>
+<tr class="odd">
+<td>Multiple regression</td>
+<td align="center"><span class="math inline">\(Y \sim X1_{continuous} + X2_{continuous}\)</span></td>
+<td align="right"><code>lm(Y ~ X1 + X2)</code></td>
+</tr>
+<tr class="even">
+<td>Factorial ANOVA</td>
+<td align="center"><span class="math inline">\(Y \sim X1_{categorical} * X2_{categorical}\)</span></td>
+<td align="right"><code>lm(Y ~ X1 * X2)</code> or <code>lm(Y ~ X1 + X2 + X1:X2)</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong><a href="https://github.com/allisonhorst/stats-illustrations">Artwork by @allison_horst</a></strong></p>
+<div class="figure">
+<img src="https://github.com/allisonhorst/stats-illustrations/blob/master/other-stats-artwork/dragons.png?raw=true" alt="Meet your MLR teaching assistants" />
+<p class="caption">Meet your MLR teaching assistants</p>
+</div>
+<div class="figure">
+<img src="https://github.com/allisonhorst/stats-illustrations/blob/master/other-stats-artwork/dragon_regression.png?raw=true" alt="Interpret coefficients for categorical predictor variables" />
+<p class="caption">Interpret coefficients for categorical predictor variables</p>
+</div>
+<div class="figure">
+<img src="https://github.com/allisonhorst/stats-illustrations/blob/master/other-stats-artwork/dragons_continuous.png?raw=true" alt="Interpret coefficients for continuous predictor variables" />
+<p class="caption">Interpret coefficients for continuous predictor variables</p>
+</div>
+<div class="figure">
+<img src="https://github.com/allisonhorst/stats-illustrations/blob/master/other-stats-artwork/dragon_predict_mlr.png?raw=true" alt="Make predictions using the regression model" />
+<p class="caption">Make predictions using the regression model</p>
+</div>
+<div class="figure">
+<img src="https://github.com/allisonhorst/stats-illustrations/blob/master/other-stats-artwork/dragon_residual.png?raw=true" alt="Residuals" />
+<p class="caption">Residuals</p>
+</div>
+<div class="figure">
+<img src="https://github.com/allisonhorst/stats-illustrations/blob/master/other-stats-artwork/dragon_residual_distribution.png?raw=true" alt="Check residuals for normality" />
+<p class="caption">Check residuals for normality</p>
+</div>
+<div id="model-formula-syntax" class="section level3">
+<h3><span class="header-section-number">10.5.1</span> <strong>Model formula</strong> syntax</h3>
+<p>In <code>R</code> to specify the model you want to fit you typically create a model formula object; this is usually then passed as the first argument to the model fitting function (e.g., <code>lm()</code>).</p>
+<p>Some notes on syntax:</p>
+<p>Consider the model formula example <code>y ~ x + z + x:z</code>. There is a lot going on here:</p>
+<ul>
+<li>The variable to the left of <code>~</code> specifies the response, everything to the right specify the explanatory variables</li>
+<li><code>+</code> indicated to include the variable to the left of it and to the right of it (it does <strong>not</strong> mean they should be summed)</li>
+<li><code>:</code> denotes the interaction of the variables to its left and right</li>
+</ul>
+<p>Additional, some other symbols have special meanings in model formula:</p>
+<ul>
+<li><p><code>*</code> means to include all main effects and interactions, so <code>a*b</code> is the same as <code>a + b + a:b</code></p></li>
+<li><code>^</code> is used to include main effects and interactions up to a specified level. For example, <code>(a + b + c)^2</code> is equivalent to <code>a + b + c + a:b + a:c + b:c</code> (note <code>(a + b + c)^3</code> would also add <code>a:b:c</code>)</li>
+<li><p><code>-</code> excludes terms that might otherwise be included. For example, <code>-1</code> excludes the intercept otherwise included by default, and <code>a*b - b</code> would produce <code>a + a:b</code></p></li>
+</ul>
+<p>Mathematical functions can also be directly used in the model formula to transform a variable directly (e.g., <code>y ~ exp(x) + log(z) + x:z</code>). One thing that may seem counter intuitive is in creating polynomial expressions (e.g., <span class="math inline">\(x^2\)</span>). Here the expression <code>y ~ x^2</code> does <strong>not</strong> relate to squaring the explanatory variable <span class="math inline">\(x\)</span> (this is to do with the syntax <code>^</code> you see above. To include <span class="math inline">\(x^2\)</span> as a term in our model we have to use the <code>I()</code> (the &quot;as-is&quot; operator). For example, <code>y ~ I(x^2)</code>).</p>
+</div>
+</div>
+<div id="other-resources-optional-but-recommended" class="section level2">
+<h2><span class="header-section-number">10.6</span> Other resources: optional but recommended</h2>
+<ul>
+<li><a href="https://interactions.jacob-long.com/articles/interactions.html">Exploring interactions with continuous predictors in regression models</a></li>
+<li><a href="https://www.tandfonline.com/doi/full/10.1080/00031305.2016.1154108">The ASA Statement on p-Values: Context, Process, and Purpose</a></li>
+</ul>
+</div>
+<div id="beyond-linear-models-to-generalised-linear-models-glms-not-examinable" class="section level2">
+<h2><span class="header-section-number">10.7</span> Beyond Linear Models to Generalised Linear Models (GLMs) (<em>not examinable</em>)</h2>
+<p>Recall the assumptions of a linear model</p>
+<ul>
+<li>The <span class="math inline">\(i\)</span>th observation's response, <span class="math inline">\(Y_i\)</span>, comes from a normal distribution</li>
+<li>Its mean, <span class="math inline">\(\mu_i\)</span>, is a linear combination of the explanatory terms</li>
+<li>Its variance, <span class="math inline">\(\sigma^2\)</span>, is the same for all observations</li>
+<li>Each observation's response is independent of all others</li>
+</ul>
+<p>But, what if we want to rid ourselves from a model with normal errors?</p>
+<p>The answer: Generalised Linear Models.</p>
+<div id="counting-animals..." class="section level3">
+<h3><span class="header-section-number">10.7.1</span> Counting animals...</h3>
+<p>A normal distribution does not adequately describe the response, the number of animals</p>
+<ul>
+<li>It is a continuous distribution, but the response is discrete</li>
+<li>It is symmetric, but the response is unlikely to be so</li>
+<li>It is unbounded, and assumes it is plausible for the response to be negative</li>
+</ul>
+<p>I addition, a linear regression model typically assumes constant variance, but int his situation this unlikely to be the case.</p>
+<p>So why assume a normal distribution? Let's use a Poisson distribution instead.</p>
+<span class="math display">\[\begin{equation*}    
+    \mu_i = \beta_0 + \beta_1 x_i,
+  \end{equation*}\]</span>
+So
+<span class="math display">\[\begin{equation*}
+    Y_i \sim \text{Normal}(\mu_i\, \sigma^2),
+  \end{equation*}\]</span>
+<p>becomes</p>
+<span class="math display">\[\begin{equation*}
+    Y_i \sim \text{Poisson}(\mu_i),
+\end{equation*}\]</span>
+<p>The Poisson distribution is commonly used as a general-purpose distribution for counts. A key feature of this distribution is <span class="math inline">\(\text{Var}(Y_i) = \mu_i\)</span>, so we expect the variance to increase with the mean.</p>
+</div>
+<div id="other-modelling-approaches-not-examinable" class="section level3">
+<h3><span class="header-section-number">10.7.2</span> Other modelling approaches (not examinable)</h3>
+<table style="width:57%;">
+<colgroup>
+<col width="22%" />
+<col width="34%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><code>R</code> function</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>glm()</code></td>
+<td>Fit a linear model with a specific error structure specified using the <code>family =</code> argument (Poisson, binomial, gamma)</td>
+</tr>
+<tr class="even">
+<td><code>gam()</code></td>
+<td>Fit a generalised additive model. The R package <code>mgcv</code> must be loaded</td>
+</tr>
+<tr class="odd">
+<td><code>lme()</code> and <code>nlme()</code></td>
+<td>Fit linear and non-linear mixed effects models. The R package <code>nlme</code> must be loaded</td>
+</tr>
+<tr class="even">
+<td><code>lmer()</code></td>
+<td>Fit linear and generalised linear and non-linear mixed effects models. The package <code>lme4</code> must be installed and loaded</td>
+</tr>
+<tr class="odd">
+<td><code>gls()</code></td>
+<td>Fit generalised least squares models. The R package <code>nlme</code> must be loaded</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+
+
+
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="split-plot-and-repeated-measures-designs.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
