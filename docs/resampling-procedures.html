@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3 Data wrangling and vizualisation | bluebook BIOSCI738</title>
-  <meta name="description" content="3 Data wrangling and vizualisation | bluebook BIOSCI738" />
+  <title>11 Resampling Procedures | bluebook BIOSCI738</title>
+  <meta name="description" content="11 Resampling Procedures | bluebook BIOSCI738" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3 Data wrangling and vizualisation | bluebook BIOSCI738" />
+  <meta property="og:title" content="11 Resampling Procedures | bluebook BIOSCI738" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3 Data wrangling and vizualisation | bluebook BIOSCI738" />
+  <meta name="twitter:title" content="11 Resampling Procedures | bluebook BIOSCI738" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="māori-data-sovereignty-principles.html"/>
-<link rel="next" href="introduction-to-the-design-and-analysis-of-experiments.html"/>
+<link rel="prev" href="statistical-inference.html"/>
+
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -275,396 +275,206 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="data-wrangling-and-vizualisation" class="section level1">
-<h1><span class="header-section-number">3</span> Data wrangling and vizualisation</h1>
-<div id="learning-objectives-2" class="section level2">
-<h2><span class="header-section-number">3.1</span> Learning objectives</h2>
+<div id="resampling-procedures" class="section level1">
+<h1><span class="header-section-number">11</span> Resampling Procedures</h1>
+<div id="learning-objectives-10" class="section level2">
+<h2><span class="header-section-number">11.1</span> Learning Objectives</h2>
 <ul>
-<li><strong>Carry out</strong>, and <strong>interpret</strong> the outputs of, basic exploratory data analysis using in-built R functions</li>
-<li><strong>Discuss</strong> the ethics of data vizualisation</li>
-<li><strong>Create</strong> and <strong>communicate</strong> informative data visualisations using <code>R</code></li>
-<li><strong>Discuss</strong> and <strong>critique</strong> data visualisations</li>
-</ul>
-</div>
-<div id="common-dataframe-manipulations-in-the-tidyverse" class="section level2">
-<h2><span class="header-section-number">3.2</span> Common dataframe manipulations in the <code>tidyverse</code></h2>
-<div id="using-dplyr-and-tidyr" class="section level3">
-<h3><span class="header-section-number">3.2.1</span> Using <code>dplyr</code> and <code>tidyr</code></h3>
-<p><strong><code>tidy</code> data</strong></p>
-<blockquote>
-&quot;Tidy datasets are all alike, but every messy dataset is messy in its own way.&quot;
-<footer>
---- Hadley Wickham
-</footer>
-</blockquote>
-<p>There are three interrelated rules which make a dataset <code>tidy</code>:</p>
-<ol style="list-style-type: decimal">
-<li>Each variable must have its own column</li>
-<li>Each observation must have its own row</li>
-<li>Each value must have its own cell</li>
-</ol>
-<p><img src="https://raw.githubusercontent.com/allisonhorst/stats-illustrations/master/rstats-artwork/tidydata_1.jpg" /> [illustrations from the Openscapes blog <a href="https://www.openscapes.org/blog/2020/10/12/tidy-data/">Tidy Data for reproducibility, efficiency, and collaboration</a> by Julia Lowndes and Allison Horst</p>
-<p>Why ensure that your data is <code>tidy</code>?</p>
+<li>List the aims, write out the appropriate null and alternative hypothesis using statistical notation for, and write <code>R</code> code to carry out a
 <ul>
-<li><p><strong>Consistency:</strong> using a consistent format aids learning and reproducibility</p></li>
-<li><p><strong>Simplicity:</strong> it's a format that is well understood by <code>R</code></p></li>
-</ul>
-<blockquote>
-&quot;Tidy datasets are easy to manipulate, model and visualize, and have a specific structure: each variable is a column, each observation is a row, and each type of observational unit is a table. This framework makes it easy to tidy messy datasets because only a small set of tools are needed to deal with a wide range of un-tidy datasets.&quot;
-<footer>
---- Hadley Wickham, Tidy data
-</footer>
-</blockquote>
-</div>
-<div id="introuducing-the-palmer-penguins" class="section level3">
-<h3><span class="header-section-number">3.2.2</span> Introuducing the <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0090081">Palmer penguins</a></h3>
-<iframe src="https://giphy.com/embed/3og0IO5z8Rd30ktV6g" width="40%" height="400px" style="border: none;">
-</iframe>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(palmerpenguins) ## contains some nice penguin data
-penguins</code></pre></div>
-<pre><code>## # A tibble: 344 x 8
-##    species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g
-##    &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt;
-##  1 Adelie  Torge…           39.1          18.7              181        3750
-##  2 Adelie  Torge…           39.5          17.4              186        3800
-##  3 Adelie  Torge…           40.3          18                195        3250
-##  4 Adelie  Torge…           NA            NA                 NA          NA
-##  5 Adelie  Torge…           36.7          19.3              193        3450
-##  6 Adelie  Torge…           39.3          20.6              190        3650
-##  7 Adelie  Torge…           38.9          17.8              181        3625
-##  8 Adelie  Torge…           39.2          19.6              195        4675
-##  9 Adelie  Torge…           34.1          18.1              193        3475
-## 10 Adelie  Torge…           42            20.2              190        4250
-## # … with 334 more rows, and 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
-<p>So, what does this show us?</p>
-<ul>
-<li><code>A tibble: 344 x 8</code>: A <code>tibble</code> is a specific kind of data frame in <code>R</code>. The <code>penguin</code> dataset has</li>
-<li><code>344</code> rows (i.e., 344 different observations). Here, each observation corresponds to a penguin.</li>
-<li><code>8</code> columns corresponding to 3 variables describing each observation.</li>
-<li><p><code>species</code>, <code>island</code>, <code>bill_length_mm</code>, <code>bill_depth_mm</code>, <code>flipper_length_mm</code>, <code>body_mass_g</code>, <code>sex</code>, and <code>year</code> are the different variables of this dataset.</p></li>
-<li><p>We then have a preview of the first 10 rows of observations corresponding to the first 10 penguins. ``<code>... with 334 more rows</code> indicates there are 334 more rows to see, but these have not been printed (likely as it would clog our screen)</p></li>
-</ul>
-<p>To learn more about the penguins read the <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0090081">paper that talks all about the data collection.</a></p>
-</div>
-<div id="common-dataframe-manipulations-in-the-tidyverse-using-dplyr-and-tidyr" class="section level3">
-<h3><span class="header-section-number">3.2.3</span> Common dataframe manipulations in the <code>tidyverse</code>, using <code>dplyr</code> and <code>tidyr</code></h3>
-<p>Even from these first few rows of data we can see that there are some <code>NA</code> values. Let's count the number of <code>NA</code>s. Remember the <code>%&gt;%</code> operator? Here we're going to be introduced to a few new things</p>
-<ul>
-<li>the <code>apply()</code> function,</li>
-<li>the <code>is.na()</code> function, and</li>
-<li>how <code>R</code> deals with <code>logical</code> values!</li>
-</ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
-penguins <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">apply</span>(.,<span class="dv">2</span>,is.na) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">apply</span>(.,<span class="dv">2</span>,sum)</code></pre></div>
-<pre><code>##           species            island    bill_length_mm     bill_depth_mm 
-##                 0                 0                 2                 2 
-## flipper_length_mm       body_mass_g               sex              year 
-##                 2                 2                11                 0</code></pre>
-<p>There's lot going on in that code! Let's break it down</p>
-<ul>
-<li>Take <code>penguins</code> then</li>
-<li>Use <code>penguins</code> as an input to the <code>apply()</code> function (this is specified as the first argument using the <code>.</code>)</li>
-<li>Now the <code>apply()</code> function takes 3 arguments:
-<ol style="list-style-type: decimal">
-<li>the data object you want it to <em>apply</em> something to (in our case <code>penguins</code>)</li>
-<li>the margin you want to <em>apply</em> that something to; 1 stands for rows and 2 stands for columns, and</li>
-<li>the function you want it to apply (in our case <code>is.na()</code>).</li>
-</ol></li>
-<li>So the second line of code is asking <code>R</code> to <em>apply</em> the <code>is.na()</code> function over the columns of <code>penguins</code>
-<ul>
-<li><code>is.na()</code> asks for each value it's fed is it an <code>NA</code> value; it returns a <code>TRUE</code> if so and a <code>FALSE</code> otherwise</li>
-</ul></li>
-<li>The output from the first <code>apply()</code> is then fed to the second <code>apply()</code> (using the <code>.</code>). The <code>sum()</code> function then add them up!
-<ul>
-<li><code>R</code> treats a <code>TRUE</code> as a 1 and a <code>FALSE</code> as a 0.</li>
+<li>permutation (<em>randomization</em>) test</li>
+<li>bootsrap procedure</li>
 </ul></li>
 </ul>
-<p>So how many <code>NA</code>s do you think there are!</p>
-<p>Doesn't help much. To</p>
-<p>Now we know there are <code>NA</code> values throughout the data let's remove then and create a new <code>NA</code> free version called <code>penguins_nafree</code>. There is a really handy <code>tidyverse</code> (<code>dplyr</code>) function for this!</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">penguins_nafree &lt;-<span class="st"> </span>penguins <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">drop_na</span>()
-penguins_nafree</code></pre></div>
-<pre><code>## # A tibble: 333 x 8
-##    species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g
-##    &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt;
-##  1 Adelie  Torge…           39.1          18.7              181        3750
-##  2 Adelie  Torge…           39.5          17.4              186        3800
-##  3 Adelie  Torge…           40.3          18                195        3250
-##  4 Adelie  Torge…           36.7          19.3              193        3450
-##  5 Adelie  Torge…           39.3          20.6              190        3650
-##  6 Adelie  Torge…           38.9          17.8              181        3625
-##  7 Adelie  Torge…           39.2          19.6              195        4675
-##  8 Adelie  Torge…           41.1          17.6              182        3200
-##  9 Adelie  Torge…           38.6          21.2              191        3800
-## 10 Adelie  Torge…           34.6          21.1              198        4400
-## # … with 323 more rows, and 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
-<p>Below are some other useful manipulation functions; have a look at the outputs and run them yourselves and see if you can work out what they're doing.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>(penguins_nafree, island <span class="op">==</span><span class="st"> &quot;Torgersen&quot;</span> )</code></pre></div>
-<pre><code>## # A tibble: 47 x 8
-##    species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g
-##    &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt;
-##  1 Adelie  Torge…           39.1          18.7              181        3750
-##  2 Adelie  Torge…           39.5          17.4              186        3800
-##  3 Adelie  Torge…           40.3          18                195        3250
-##  4 Adelie  Torge…           36.7          19.3              193        3450
-##  5 Adelie  Torge…           39.3          20.6              190        3650
-##  6 Adelie  Torge…           38.9          17.8              181        3625
-##  7 Adelie  Torge…           39.2          19.6              195        4675
-##  8 Adelie  Torge…           41.1          17.6              182        3200
-##  9 Adelie  Torge…           38.6          21.2              191        3800
-## 10 Adelie  Torge…           34.6          21.1              198        4400
-## # … with 37 more rows, and 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summarise</span>(penguins_nafree, <span class="dt">avgerage_bill_length =</span> <span class="kw">mean</span>(bill_length_mm))</code></pre></div>
-<pre><code>## # A tibble: 1 x 1
-##   avgerage_bill_length
-##                  &lt;dbl&gt;
-## 1                 44.0</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">group_by</span>(penguins_nafree, species)</code></pre></div>
-<pre><code>## # A tibble: 333 x 8
-## # Groups:   species [3]
-##    species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g
-##    &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt;
-##  1 Adelie  Torge…           39.1          18.7              181        3750
-##  2 Adelie  Torge…           39.5          17.4              186        3800
-##  3 Adelie  Torge…           40.3          18                195        3250
-##  4 Adelie  Torge…           36.7          19.3              193        3450
-##  5 Adelie  Torge…           39.3          20.6              190        3650
-##  6 Adelie  Torge…           38.9          17.8              181        3625
-##  7 Adelie  Torge…           39.2          19.6              195        4675
-##  8 Adelie  Torge…           41.1          17.6              182        3200
-##  9 Adelie  Torge…           38.6          21.2              191        3800
-## 10 Adelie  Torge…           34.6          21.1              198        4400
-## # … with 323 more rows, and 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
-<p>Often we want to summarise variables by different groups (factors). Below we</p>
-<ul>
-<li>Take the <code>penguins_nafree</code> data then</li>
-<li>Use this and apply the <code>group_by()</code> function to group by <code>species</code></li>
-<li>Use this output and apply the <code>summarize()</code> function to calculate the mean (using (<code>mean()</code>) bill length (<code>bill_length_mm</code>) of each group (<code>species</code>), calling the resulting number <code>avgerage_bill_length</code></li>
-</ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">penguins_nafree <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">group_by</span>(species) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">avgerage_bill_length =</span> <span class="kw">mean</span>(bill_length_mm))</code></pre></div>
-<pre><code>## # A tibble: 3 x 2
-##   species   avgerage_bill_length
-## * &lt;fct&gt;                    &lt;dbl&gt;
-## 1 Adelie                    38.8
-## 2 Chinstrap                 48.8
-## 3 Gentoo                    47.6</code></pre>
-<p>We can also group by multiple factors, for example,</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">penguins_nafree <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">group_by</span>(island,species) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">avgerage_bill_length =</span> <span class="kw">mean</span>(bill_length_mm))</code></pre></div>
-<pre><code>## `summarise()` has grouped output by &#39;island&#39;. You can override using the `.groups` argument.</code></pre>
-<pre><code>## # A tibble: 5 x 3
-## # Groups:   island [3]
-##   island    species   avgerage_bill_length
-##   &lt;fct&gt;     &lt;fct&gt;                    &lt;dbl&gt;
-## 1 Biscoe    Adelie                    39.0
-## 2 Biscoe    Gentoo                    47.6
-## 3 Dream     Adelie                    38.5
-## 4 Dream     Chinstrap                 48.8
-## 5 Torgersen Adelie                    39.0</code></pre>
 </div>
-</div>
-<div id="data-viz" class="section level2">
-<h2><span class="header-section-number">3.3</span> Data Viz</h2>
-<blockquote>
-&quot;...have obligations in that we have a great deal of power over how people ultimately make use of data, both in the patterns they see and the conclusions they draw.&quot;
-<footer>
---- Michael Correll, Ethical Dimensions of Visualization Research
-</footer>
-</blockquote>
-<blockquote>
-&quot;Clutter and confusion are not attributes of data - they are shortcomings of design.&quot;
-<footer>
---- Edward Tufte
-</footer>
-</blockquote>
-<div id="exploratory-and-explanatory-plots" class="section level3">
-<h3><span class="header-section-number">3.3.1</span> Exploratory and explanatory plots</h3>
+<div id="resampling" class="section level2">
+<h2><span class="header-section-number">11.2</span> Resampling</h2>
+<p><strong>What is resampling?</strong></p>
+<p>Any of a variety of methods for doing one of the following</p>
 <ol style="list-style-type: decimal">
-<li><strong>Exploratory plots</strong> (<em>for you</em>)</li>
+<li><strong>Estimating the precision of sample statistics</strong> (e.g., bootstrapping)</li>
+<li><strong>Performing significance tests</strong> (e.g., permutation/exact/randomisation tests)</li>
+<li><strong>Validating models</strong> (e.g., bootstrapping, cross validation)</li>
+</ol>
+<div id="significance-tests" class="section level3">
+<h3><span class="header-section-number">11.2.1</span> Significance tests</h3>
+<p>A significance test can tell us whether an observed effect (e.g., difference between two means (or medians), or correlation between two variables) could occur by chance in selecting a random sample from each of the two populations.</p>
+<p>The basic approach to permutation tests is straightforward:</p>
+<ol style="list-style-type: decimal">
+<li>Choose a statistic to measure the effect in question (e.g., differences between group means)</li>
+<li>Calculate that test statistic on the observed data. Note this metric can be <strong>anything</strong> you wish</li>
+<li>Construct the sampling distribution that this statistic would have if the effect were not present in the population (i.e., the distribution under the <em>Null</em> hypothesis, <span class="math inline">\(H_0\)</span>): For chosen number of times
+<ul>
+<li>shuffle the data labels</li>
+<li>calculate the test statistic for the reshuffled data and retain</li>
+</ul></li>
+<li>Find the location of your observed statistic in the sampling distribution. The location of observed statistic in sampling distribution is informative:</li>
 </ol>
 <ul>
-<li>data exploration</li>
-<li>doesn't have to look pretty</li>
-<li>just needs to get to the point</li>
-<li>explore and discover new data facets</li>
-<li>formulate new questions</li>
+<li>if in the main body of the distribution then the observed statistic could easily have occurred by chance</li>
+<li>if in the tail of the distribution then the observed statistic would rarely occur by chance and there is evidence that something other than chance is operating.</li>
 </ul>
-<p>For example,</p>
-<p><img src="_main_files/figure-html/example,%20me-1.png" width="672" /><img src="_main_files/figure-html/example,%20me-2.png" width="672" /></p>
-<ol start="2" style="list-style-type: decimal">
-<li><strong>Explanatory plots</strong> (<em>for others</em>), most common kind of graph used in scientific publications</li>
+<ol start="5" style="list-style-type: decimal">
+<li>Calculate the proportion of times your reshuffled statistics equal or exceed the observed. This <em>p-value</em> is the probability that we observe a statistic at least as “extreme” as the one we observed <strong>State</strong> the strength of evidence against the null on the basis of this <strong>probability</strong>.</li>
 </ol>
-<ul>
-<li>clear purpose</li>
-<li>designed for the audience</li>
-<li>make it easy to read (<em>this covers a lot of things</em>)</li>
-<li>do not distort</li>
-<li>guide the reader to a particular conclusion</li>
-<li>answer a specific question</li>
-<li>support a decision</li>
-</ul>
-<p>For example,</p>
-<div class="figure">
-<img src="https://jimgruman.netlify.app/post/variableimportance/2020_31_PalmerPenguins.png" />
+</div>
+</div>
+<div id="significance-testing-using-permutation-randomisation-tests" class="section level2">
+<h2><span class="header-section-number">11.3</span> Significance testing using permutation (<em>randomisation</em>) tests</h2>
+<div id="permutation-test-on-two-independent-samples" class="section level3">
+<h3><span class="header-section-number">11.3.1</span> Permutation Test on Two Independent Samples</h3>
+<div id="pāua-shell-lengths" class="section level4">
+<h4><span class="header-section-number">11.3.1.1</span> Pāua shell lengths</h4>
+<p>Remember the Pāua data from <a href="https://stats-uoa.github.io/BIOSCI738/r-rstudio-and-git.html#exploratory-data-analysis">Chapter 1</a> One question we may want to ask is if on average the shell length differs between Species?</p>
+<p><strong>Scientific question</strong>: Are the shell lengths of shells the same in both species? <strong>Null hypothesis</strong>: The distribution of shell lengths in <em>Haliotis iris</em> the same as in <em>Haliotis australis</em> <strong>Test statistic</strong>: Difference of sample means</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">means &lt;-<span class="st"> </span>paua <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(Species) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">means =</span> <span class="kw">mean</span>(Length))
+<span class="kw">ggplot</span>(paua,<span class="kw">aes</span>(<span class="dt">x =</span> Species, <span class="dt">y =</span> Length)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_violin</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.4</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Length (cms)&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">data =</span> means, <span class="kw">aes</span>(<span class="dt">x =</span> Species, <span class="dt">y =</span> means, <span class="dt">color =</span> Species), <span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">data =</span> means, <span class="kw">aes</span>(<span class="dt">yintercept =</span> means, <span class="dt">color =</span> Species), <span class="dt">lty =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_text</span>(<span class="dt">data =</span> means, <span class="kw">aes</span>(<span class="dt">x =</span> Species, <span class="dt">y =</span> means <span class="op">+</span><span class="st"> </span><span class="fl">0.3</span>, <span class="dt">label =</span> <span class="kw">paste0</span>(<span class="st">&quot;Species averege = &quot;</span>,<span class="kw">round</span>(means,<span class="dv">3</span>)), <span class="dt">color =</span> Species))</code></pre></div>
+<p><img src="_main_files/figure-html/violen-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(paua,<span class="kw">aes</span>(<span class="dt">x =</span> Length, <span class="dt">fill =</span> Species)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">position =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Length (cms)&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_classic</span>()</code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="_main_files/figure-html/violen-2.png" width="672" /></p>
+<p>But because the data are skewed and we've likely got non-constant variances we may be better off adopting a randomization test, rather than a parametric t-test</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## observed differences in means
+diff_in_means &lt;-<span class="st"> </span>(paua <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(Species) <span class="op">%&gt;%</span>
+<span class="st">                    </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(Length)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">                    </span><span class="kw">summarise</span>(<span class="dt">diff =</span> <span class="kw">diff</span>(mean)))<span class="op">$</span>diff
+diff_in_means</code></pre></div>
+<pre><code>## [1] -0.9569444</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Number of times I want to randomise
+nreps &lt;-<span class="st"> </span><span class="dv">1000</span>   
+## initialize empty array to hold results
+randomisation_difference_mean &lt;-<span class="st"> </span><span class="kw">numeric</span>(nreps)
+<span class="kw">set.seed</span>(<span class="dv">1234</span>) ## *****Remove this line for actual analyses*****
+## This means that each run with produce the same results and
+## agree with the printout that I show.
 
+<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>nreps) {
+  ## the observations
+  data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">value =</span> paua<span class="op">$</span>Length)
+  ##  randomise labels
+  data<span class="op">$</span>random_labels &lt;-<span class="kw">sample</span>(paua<span class="op">$</span>Species, <span class="dt">replace =</span> <span class="ot">FALSE</span>)
+  ## randomised differences in mean
+  randomisation_difference_mean[i] &lt;-<span class="st"> </span>(data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(random_labels) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(value)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">diff =</span> <span class="kw">diff</span>(mean)))<span class="op">$</span>diff
+}
+## results
+results &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">randomisation_difference_mean =</span> randomisation_difference_mean)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## How many randomised differences in means are as least as extreme as the one we observed
+## absolute value as dealing with two tailed
+n_exceed &lt;-<span class="st"> </span><span class="kw">sum</span>(<span class="kw">abs</span>(results<span class="op">$</span>randomisation_difference_mean) <span class="op">&gt;=</span><span class="st"> </span><span class="kw">abs</span>(diff_in_means))
+n_exceed</code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## proportion
+n_exceed<span class="op">/</span>nreps</code></pre></div>
+<pre><code>## [1] 0.001</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(results, <span class="kw">aes</span>(<span class="dt">x =</span> randomisation_difference_mean)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;Differences between randomised group means&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> diff_in_means, <span class="dt">col =</span> <span class="st">&quot;cyan4&quot;</span>, <span class="dt">size =</span> <span class="dv">1</span>,<span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">annotate</span>(<span class="dt">geom =</span> <span class="st">&#39;text&#39;</span>, <span class="dt">label =</span> <span class="st">&quot;Observed difference between means&quot;</span> , 
+           <span class="dt">x =</span> <span class="op">-</span><span class="ot">Inf</span>, <span class="dt">y =</span> <span class="ot">Inf</span>, <span class="dt">hjust =</span> <span class="dv">0</span>, <span class="dt">vjust =</span> <span class="fl">1.5</span>, <span class="dt">color =</span> <span class="st">&quot;cyan4&quot;</span>)</code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="_main_files/figure-html/hist-1.png" width="672" /></p>
+<p>How would the parametric t-test have served?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(Length <span class="op">~</span><span class="st"> </span>Species, <span class="dt">data =</span> paua)</code></pre></div>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  Length by Species
+## t = 3.5404, df = 57.955, p-value = 0.0007957
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  0.4158802 1.4980086
+## sample estimates:
+## mean in group Haliotis australis      mean in group Haliotis iris 
+##                         5.766667                         4.809722</code></pre>
+<p>Not too different after all</p>
 </div>
-<p>Plots by Cedric Scherer and mentioned on <a href="https://jimgruman.netlify.app/post/variableimportance/">this blog</a></p>
+<div id="jackal-mandible-lengths" class="section level4">
+<h4><span class="header-section-number">11.3.1.2</span> Jackal mandible lengths</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Mandible lengths (mm) for  golden jackals (Canis aureus) of each sex from the British Museum
+jackal &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">mandible_length_mm =</span> <span class="kw">c</span>(<span class="dv">120</span>, <span class="dv">107</span>, <span class="dv">110</span>, <span class="dv">116</span>, <span class="dv">114</span>, <span class="dv">111</span>, <span class="dv">113</span>, <span class="dv">117</span>, <span class="dv">114</span>, <span class="dv">112</span>,
+                                            <span class="dv">110</span>, <span class="dv">111</span>, <span class="dv">107</span>, <span class="dv">108</span>, <span class="dv">110</span>, <span class="dv">105</span>, <span class="dv">107</span>, <span class="dv">106</span>, <span class="dv">111</span>, <span class="dv">111</span>),
+                     <span class="dt">sex =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;Male&quot;</span>,<span class="st">&quot;Female&quot;</span>), <span class="dt">each =</span> <span class="dv">10</span>))</code></pre></div>
+<p><strong>Scientific question</strong>: Are the jaw lengths of jackals the same in both sexes? <strong>Null hypothesis</strong>: The distribution of jaw lengths in male jackals the same as in in females <strong>Test statistic</strong>: Difference of sample means</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-85-1.png" width="672" /></p>
+<p>Rather than a <em>for loop</em> let's try this another way.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## observed statistic
+jackal_mean_diff &lt;-<span class="st"> </span>(jackal <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(sex) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(mandible_length_mm)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">summarise</span>(<span class="dt">diff =</span> <span class="kw">diff</span>(mean)))<span class="op">$</span>diff
+## Generate all possible combinations
+## This time we&#39;re doing ALL possble ones
+## rather than a rendom 1000
+combinations &lt;-<span class="st"> </span><span class="kw">combn</span>(<span class="dv">20</span>,<span class="dv">10</span>)
+## Do the permutations
+permtest_combinations &lt;-<span class="st"> </span><span class="kw">apply</span>(combinations, <span class="dv">2</span>, <span class="cf">function</span>(x)
+  <span class="kw">mean</span>(jackal<span class="op">$</span>mandible_length_mm[x]) <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(jackal<span class="op">$</span>mandible_length_mm[<span class="op">-</span>x]))
+## Full Permutation test p.value
+<span class="kw">length</span>(permtest_combinations[<span class="kw">abs</span>(permtest_combinations) <span class="op">&gt;=</span><span class="st"> </span>jackal_mean_diff]) <span class="op">/</span><span class="st"> </span><span class="kw">choose</span>(<span class="dv">20</span>,<span class="dv">10</span>)</code></pre></div>
+<pre><code>## [1] 0.003334127</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Now let&#39;s use 10000 random permutations, sample without replacement
+## set up matrix
+random_perm &lt;-<span class="st"> </span><span class="kw">apply</span>(<span class="kw">matrix</span>(<span class="dv">0</span>, <span class="dt">nrow =</span> <span class="dv">10000</span>, <span class="dt">ncol =</span> <span class="dv">1</span>), <span class="dv">1</span>, <span class="cf">function</span>(x) <span class="kw">sample</span>(<span class="dv">20</span>))
+random_mean_diff &lt;-<span class="st"> </span><span class="kw">apply</span>(random_perm, <span class="dv">2</span>, <span class="cf">function</span>(x){
+  z &lt;-<span class="st"> </span>jackal<span class="op">$</span>mandible_length_mm[x]
+  <span class="kw">mean</span>(z[jackal<span class="op">$</span>sex <span class="op">==</span><span class="st"> &quot;Male&quot;</span>]) <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(z[jackal<span class="op">$</span>sex <span class="op">==</span><span class="st"> &quot;Female&quot;</span>])
+})
+random_p.value &lt;-<span class="st"> </span><span class="kw">length</span>(random_mean_diff [<span class="kw">abs</span>(random_mean_diff) <span class="op">&gt;=</span><span class="st"> </span>jackal_mean_diff]) <span class="op">/</span><span class="st"> </span><span class="dv">10000</span> ## note the abs()
+random_p.value</code></pre></div>
+<pre><code>## [1] 0.0029</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Now what about a t-test (two-sample)
+<span class="kw">t.test</span>(mandible_length_mm <span class="op">~</span><span class="st"> </span>sex, <span class="dt">data =</span> jackal)<span class="op">$</span>p.value</code></pre></div>
+<pre><code>## [1] 0.003359952</code></pre>
 </div>
 </div>
-<div id="ten-simple-rules-for-better-figures" class="section level2">
-<h2><span class="header-section-number">3.4</span> Ten Simple Rules for Better Figures</h2>
-<blockquote>
-&quot;Scientific visualization is classically defined as the process of graphically displaying scientific data. However, this process is far from direct or automatic. There are so many different ways to represent the same data: scatter plots, linear plots, bar plots, and pie charts, to name just a few. Furthermore, the same data, using the same type of plot, may be perceived very differently depending on who is looking at the figure. A more accurate definition for scientific visualization would be a graphical interface between people and data.&quot;
-<footer>
---- Nicolas P. Rougier, Michael Droettboom, Philip E. Bourne, Ten Simple Rules for Better Figures
-</footer>
-</blockquote>
+<div id="p-values-from-permutation-tests" class="section level3">
+<h3><span class="header-section-number">11.3.2</span> P-values from permutation tests</h3>
 <ul>
-<li><p><strong>Know</strong> Your Audience</p></li>
-<li><p><strong>Identify</strong> Your Message</p></li>
-<li><p><strong>Adapt</strong> the Figure to the Support Medium</p></li>
-<li><p><strong>Captions</strong> Are Not Optional</p></li>
-<li><p><strong>Do Not</strong> Trust the Defaults</p></li>
-<li><p>Use <strong>Color</strong> Effectively</p></li>
-<li><p><strong>Do Not Mislead</strong> the Reader</p>
-<ul>
-<li><a href="https://en.wikipedia.org/wiki/Misleading_graph">There are formulas to measure how misleading a graph is!</a></li>
-</ul></li>
-<li><p><strong>Avoid</strong> <em>Chartjunk</em></p></li>
-<li><p><strong>Message</strong> Trumps Beauty</p></li>
+<li>In experimental situations a large p-value (large tail proportion) means that the luck of the randomisation quite often produces group differences as large or even larger than what we've got in our data.</li>
+<li>A small p-value means that the luck of the randomisation draw hardly ever produces group differences as large as we've got in our data.</li>
+<li><strong>Statistical significance does not imply practical significance.</strong></li>
+<li><strong>Statistical significance says nothing about the size of treatment differences.</strong> To estimate the sizes of differences you need confidence intervals.</li>
 </ul>
-<blockquote>
-&quot;message and readability of the figure is the most important aspect while beauty is only an option&quot;
-<footer>
---- Nicolas P. Rougier, Michael Droettboom, Philip E. Bourne, Ten Simple Rules for Better Figures
-</footer>
-</blockquote>
+<p><strong>NOTE: We can extend the randomization test to make inference about any sample statistic (not just the mean)</strong></p>
+</div>
+</div>
+<div id="the-bootstrap" class="section level2">
+<h2><span class="header-section-number">11.4</span> The bootstrap</h2>
+<p>Recall that the sampling distribution shows us what would happen if we took very many samples under the same conditions. The bootstrap is a procedure for finding the (approximate) sampling distribution from just one sample.</p>
+<p>In brief,</p>
 <ul>
-<li><p>Get the Right <strong>Tool</strong></p>
-<ul>
-<li>I'm an advocate for <code>R</code> 😉</li>
-</ul></li>
-</ul>
-</div>
-<div id="ggplot2" class="section level2">
-<h2><span class="header-section-number">3.5</span> <code>ggplot2</code></h2>
-<p><code>ggplot2</code> is an <code>R</code> package for producing statistical, or data, graphics; it has an underlying grammar based on the <a href="https://www.amazon.com/Grammar-Graphics-Statistics-Computing/dp/0387245448">Grammar of Graphics</a></p>
-<p>Every <code>ggplot2</code> plot has three key components:</p>
-<ul>
-<li><p><code>data</code>,</p></li>
-<li><p>A set of <code>aes</code>thetic mappings between variables in the data and visual properties, and</p></li>
-<li><p>At least one layer which describes how to render each observation. Layers are usually created with a <code>geom</code> function.</p></li>
-</ul>
-<div id="ggplot2-layers" class="section level3">
-<h3><span class="header-section-number">3.5.1</span> <code>ggplot2</code> layers</h3>
-<div class="figure">
-<img src="img/ggplot.png" />
-
-</div>
-</div>
-<div id="examples" class="section level3">
-<h3><span class="header-section-number">3.5.2</span> Examples</h3>
-<p><strong>Scatter plot</strong> using <code>geom_point()</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(penguins,<span class="kw">aes</span>(<span class="dt">x =</span> body_mass_g, <span class="dt">y =</span> flipper_length_mm)) <span class="op">+</span><span class="st"> </span>## data &amp; aesthetics
-<span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span>## geom
-<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) ## statistics (linear regression line)</code></pre></div>
-<p><img src="_main_files/figure-html/flippoint-1.png" width="672" /></p>
-<p><strong>Boxplot</strong> using <code>geom_boxplot()</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(penguins,<span class="kw">aes</span>(<span class="dt">x =</span> species, <span class="dt">y =</span> flipper_length_mm)) <span class="op">+</span><span class="st"> </span>## data &amp; aesthetics
-<span class="st">    </span><span class="kw">geom_boxplot</span>()  <span class="op">+</span><span class="st"> </span>## geom
-<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Flipper length (mm) by species&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Flipper length (mm)&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Species&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_dark</span>() ## theme</code></pre></div>
-<p><img src="_main_files/figure-html/flipbox2-1.png" width="672" /></p>
-<p><strong>Scatter plot</strong> specifying <code>color</code> using <code>geom_point()</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(penguins,<span class="kw">aes</span>(<span class="dt">x =</span> body_mass_g, <span class="dt">y =</span> flipper_length_mm, <span class="dt">color =</span> species)) <span class="op">+</span><span class="st"> </span>## data and aesthetics
-<span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span>## geom
-<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) ## statistic (linear regression line without intervals)</code></pre></div>
-<p><img src="_main_files/figure-html/flippoint2-1.png" width="672" /></p>
-</div>
-<div id="the-good-the-bad-and-the-ugly..." class="section level3">
-<h3><span class="header-section-number">3.5.3</span> The Good, the Bad, and the Ugly...</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">box &lt;-<span class="st"> </span><span class="kw">ggplot</span>(penguins,<span class="kw">aes</span>(<span class="dt">x =</span> species, <span class="dt">y =</span> flipper_length_mm)) <span class="op">+</span><span class="st"> </span>## data &amp; aesthetics
-<span class="st">    </span><span class="kw">geom_boxplot</span>()  <span class="op">+</span><span class="st"> </span>## geom
-<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Flipper length (mm) by species&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Flipper length (mm)&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Species&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_dark</span>() ## theme
-box
-jitter &lt;-<span class="st"> </span><span class="kw">ggplot</span>(penguins,<span class="kw">aes</span>(<span class="dt">x =</span> species, <span class="dt">y =</span> flipper_length_mm)) <span class="op">+</span><span class="st"> </span>## data &amp; aesthetics
-<span class="st">    </span><span class="kw">geom_jitter</span>()  <span class="op">+</span><span class="st"> </span>## geom
-<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Flipper length (mm) by species&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Flipper length (mm)&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Species&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_dark</span>() ## theme
-jitter
-violin &lt;-<span class="st"> </span><span class="kw">ggplot</span>(penguins,<span class="kw">aes</span>(<span class="dt">x =</span> species, <span class="dt">y =</span> flipper_length_mm)) <span class="op">+</span><span class="st"> </span>## data &amp; aesthetics
-<span class="st">    </span><span class="kw">geom_violin</span>()  <span class="op">+</span><span class="st"> </span>## geom
-<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Flipper length (mm) by species&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Flipper length (mm)&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Species&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_dark</span>() ## theme
-violin</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(penguins, <span class="kw">aes</span>(<span class="dt">x =</span> body_mass_g, <span class="dt">y =</span> flipper_length_mm)) <span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>)</code></pre></div>
-<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="_main_files/figure-html/simple-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(penguins, <span class="kw">aes</span>(<span class="dt">x =</span> body_mass_g, <span class="dt">y =</span> flipper_length_mm, 
-                         <span class="dt">col =</span> species)) <span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span>
-<span class="st">    </span><span class="kw">facet_grid</span>(<span class="op">~</span><span class="st"> </span>sex) <span class="op">+</span>
-<span class="st">    </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Flipper Length and Body Mass, by Sex &amp; Species&quot;</span>,
-         <span class="dt">subtitle =</span> <span class="kw">paste0</span>(<span class="kw">nrow</span>(penguins), <span class="st">&quot; of the Palmer Penguins&quot;</span>),
-         <span class="dt">x =</span> <span class="st">&quot;Body Mass (g)&quot;</span>, 
-         <span class="dt">y =</span> <span class="st">&quot;Flipper Length (mm)&quot;</span>)</code></pre></div>
-<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="_main_files/figure-html/facet-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">penguins_nafree &lt;-<span class="st"> </span>penguins <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">drop_na</span>()
-<span class="kw">ggplot</span>(penguins_nafree, <span class="kw">aes</span>(<span class="dt">x =</span> body_mass_g, <span class="dt">y =</span> flipper_length_mm, 
-                         <span class="dt">col =</span> species)) <span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span>
-<span class="st">    </span><span class="kw">facet_grid</span>(<span class="op">~</span><span class="st"> </span>sex) <span class="op">+</span>
-<span class="st">    </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Flipper Length and Body Mass, by Sex &amp; Species&quot;</span>,
-         <span class="dt">subtitle =</span> <span class="kw">paste0</span>(<span class="kw">nrow</span>(penguins_nafree), <span class="st">&quot; of the Palmer Penguins&quot;</span>),
-         <span class="dt">x =</span> <span class="st">&quot;Body Mass (g)&quot;</span>, 
-         <span class="dt">y =</span> <span class="st">&quot;Flipper Length (mm)&quot;</span>)</code></pre></div>
-<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="_main_files/figure-html/facetna-1.png" width="672" /></p>
-</div>
-</div>
-<div id="resources-1" class="section level2">
-<h2><span class="header-section-number">3.6</span> Resources</h2>
-<ul>
-<li><a href="https://rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf"><code>ggplot2</code> cheatsheet</a></li>
-<li><a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003833">Ten Simple Rules for Better Figures</a></li>
-<li><a href="https://ggplot2-book.org/introduction.html">Elegant Graphics for Data Analysis</a></li>
-<li><a href="https://ourcodingclub.github.io/tutorials/datavis/">Using <code>ggplot2</code> to communicate your results</a></li>
-<li><a href="https://www.statschat.org.nz/?s=graphs">Interesting blogs on graphs in the media</a></li>
-<li><a href="https://dplyr.tidyverse.org/"><code>tidyverse</code></a></li>
-<li><a href="https://vita.had.co.nz/papers/tidy-data.html"><code>Tidy</code> Data</a></li>
-<li><a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0090081">Palmer penguins</a></li>
+<li>The original sample represents the distribution of the population from which it was drawn.</li>
+<li>Resamples, taken with replacement from the original sample are representative of what we would get from drawing many samples from the population (the distribution of the statistics calculated from each resample is known as the <em>bootstrap distribution</em> of the statistic).</li>
+<li>The bootstrap distribution of a statistic represents that statistic’s sampling distribution.</li>
 </ul>
 
 </div>
 </div>
+
+
+
+
+
+
             </section>
 
           </div>
         </div>
       </div>
-<a href="māori-data-sovereignty-principles.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="introduction-to-the-design-and-analysis-of-experiments.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="statistical-inference.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
