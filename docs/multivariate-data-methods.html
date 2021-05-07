@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>bluebook BIOSCI738</title>
-  <meta name="description" content="bluebook BIOSCI738" />
+  <title>12 Multivariate Data Methods | bluebook BIOSCI738</title>
+  <meta name="description" content="12 Multivariate Data Methods | bluebook BIOSCI738" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="bluebook BIOSCI738" />
+  <meta property="og:title" content="12 Multivariate Data Methods | bluebook BIOSCI738" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="bluebook BIOSCI738" />
+  <meta name="twitter:title" content="12 Multivariate Data Methods | bluebook BIOSCI738" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
+<link rel="prev" href="resampling-procedures.html"/>
 
-<link rel="next" href="r-rstudio-and-git.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -287,55 +287,416 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title"><em>bluebook</em> BIOSCI738</h1>
-<p class="author"><em>Charlotte Jones-Todd</em></p>
-<p class="date"><em>Semester 1, 2021, University of Auckland</em></p>
+<div id="multivariate-data-methods" class="section level1">
+<h1><span class="header-section-number">12</span> Multivariate Data Methods</h1>
+<div id="learning-objectives-11" class="section level2">
+<h2><span class="header-section-number">12.1</span> Learning Objectives</h2>
+<ul>
+<li>Explain the aims and motivation behind cluster analysis and its relevance in biology</li>
+<li>Write <code>R</code> code to carry out hierarchical and k-means cluster analysis</li>
+<li>Interpret <code>R</code> output from hierarchical and k-means cluster analysis</li>
+<li>Interpret and communicate, to both a statistical and non-statistical audience, clustering techniques, specifically,
+<ul>
+<li><em>Divisive methods</em>, nonparametric algorithms such as k-means</li>
+<li><em>Agglomerative methods</em>, clustering cases and/or variables into a hierarchy of sets (i.e., hierarchical clustering)</li>
+</ul></li>
+</ul>
 </div>
-<div id="preface" class="section level1 unnumbered">
-<h1>Preface</h1>
-<p><img src="https://raw.githubusercontent.com/allisonhorst/stats-illustrations/master/other-stats-artwork/debugging.jpg" /> Artwork by <a href="https://github.com/allisonhorst/">@allison_horst</a></p>
-<div id="course-overview" class="section level2">
-<h2><span class="header-section-number">0.1</span> Course Overview</h2>
-<p>This is a postgraduate course in statistical methods geared towards the needs of students of biology, ecology, and environmental science. Whether heading to research or industry, it is imperative that biology students have the statistical and computational skills to apply and interpret fundamental statistical concepts and analyses to assess and critique their experiments and other data.</p>
-<p>This course is suited to students with an interest in (bio)statistics who would like to equip themselves with the tools and know-how to be able to correctly prepare experiments, analyse data, interpret their results and draw valid conclusions. The statistical concepts and methods taught in this course will provide students with the tools to make and evaluate scientific discoveries as well as propose and justify decisions based on data. Some basic statistical knowledg is assumed.</p>
-<p>This course will use the programming language <code>R</code>; <code>R</code> is a free software environment for statistical computing and graphics. Students are strongly encouraged to use <code>R</code> through the freely available IDE (integrated development environment) <code>RStudio</code>. Students will have access to R and RStudio in university computing laboratories, but are also encouraged to download and install <code>R</code> and <code>RStudio</code> on their own devices.</p>
+<div id="clustering" class="section level2">
+<h2><span class="header-section-number">12.2</span> Clustering</h2>
+<p>So, it's all about variation again! And the idea of minimizing it.</p>
+<p><strong>Goals</strong></p>
+<ul>
+<li>See measures of (dis)similarity and distances that help us define clusters.</li>
+<li>Uncover hidden or latent clustering by partitioning the data into tighter sets.</li>
+<li><em>Divisive methods</em>: nonparametric algorithms such as k-means to split data into a small number of clusters.</li>
+<li><em>Agglomerative methods</em>: clustering cases and/or variables into a hierarchy of sets - hierarchical clustering.</li>
+<li>Study how to validate clusters through resampling-based bootstrap methods</li>
+</ul>
+<div id="clustering-algorithms" class="section level3">
+<h3><span class="header-section-number">12.2.1</span> Clustering algorithms</h3>
+<ul>
+<li><p>The distances are used to construct the clusters.</p>
+<ul>
+<li>Agglomerative methods, that build a hierarchical clustering tree</li>
+<li>Partitioning methods that separate the data into subsets</li>
+</ul></li>
+</ul>
+<p>Both types of methods require a choice to be made: the number k of clusters.</p>
+<ul>
+<li>Partitioning methods such as k-means this choice has to be made at the outset whereas for hierarchical clustering this can be deferred to the end of the analysis.</li>
+</ul>
+<div id="k-means" class="section level4">
+<h4><span class="header-section-number">12.2.1.1</span> k-means</h4>
+<p>K-means clustering involves defining clusters so that the overall variation within a cluster (known as total within-cluster variation) is minimized. How do we define this variation? Typically, using Euclidean distances; the total within-cluster variation, is in this case, is defined as the sum of squared distances Euclidean distances between observations and the corresponding cluster centroid.</p>
+<p>In summary, this is the procedure</p>
+<ul>
+<li>The number of clusters (k) are specified</li>
+<li>k objects from the dataset are selected at random and <em>set</em> as the initial cluster centers or means</li>
+<li>Each observation is assigned to their closest centroid (<em>based on the Euclidean distance between the object and the centroid</em>)</li>
+<li>For each of the k clusters the cluster centroid is then updated based on calculating the new mean values of all the data points in the cluster</li>
+<li>Repeat the two previous steps until 1) the cluster assignments stop changing or 2) the maximum number of iterations is reached</li>
+</ul>
 </div>
-<div id="key-topics" class="section level2">
-<h2><span class="header-section-number">0.2</span> Key Topics</h2>
-<p>Taught material will be delivered, each week, via 2 hour lectures. Each week there will also be a 1 hour practical workshop focused on the material covered in the lecture. A list of topics and concepts covert in this course is given below.</p>
-<p><strong>Exploratory Data Analysis and Communication</strong></p>
+<div id="hierarchical-clustering" class="section level4">
+<h4><span class="header-section-number">12.2.1.2</span> Hierarchical clustering</h4>
+<p>Hierarchical clustering is a bottom-up approach: + similar observations and subclasses are assembled iteratively</p>
+<p>Linnaeus made nested clusters of organisms according to specific characteristics. The order of the labels does not matter within sibling pairs. + Horizontal distances are usually meaningless + Vertical distances can encode some information.</p>
+<p>In summary, this is the procedure</p>
 <ul>
-<li>Data wrangling</li>
-<li>Data visualisation</li>
-</ul>
-<p><strong>Experimental Design and Statistical Inference</strong></p>
+<li>Start with a matrix of distances, (or similarities) between pairs of observations (cases)</li>
+<li>Choice of distance measure key first step</li>
+<li>Algorithm:
 <ul>
-<li>Introduction to design and analysis of experiments</li>
-<li>Comparison procedures: pairwise comparisons of means, one-way ANOVA</li>
-<li>Multiple comparison procedures (controlling errors in hypothesis testing)</li>
-<li>Multiple regression with continuous and categorical explanatory variables</li>
-<li>Mixed models; incorporating fixed and random effects</li>
-<li>Resampling procedures: randomisation, permutation, and bootstrapping</li>
+<li>Initial n singleton clusters</li>
+<li>Scan distance matrix for two closest individuals, group them together</li>
+<li>Compute distance from cluster of size 2 to remaining n-1 singleton clusters</li>
+</ul></li>
 </ul>
-<p><strong>Multivariate Analysis</strong></p>
+<p><strong>Ways to calculate distances between the aggregates</strong></p>
 <ul>
-<li>Cluster analysis</li>
-<li>Unsupervised learning: principal components analysis, dimension reduction</li>
-<li>Ordination: multidimensional scaling, correspondence analysis</li>
-<li>Supervised learning: discriminant analysis</li>
-<li>Networks and graphs</li>
+<li>Single Linkage (<em>nearest neighbour/minimal jump</em>): Computes the distance between clusters as the smallest distance between any two points in the two clusters</li>
 </ul>
+<div class="figure">
+<img src="img/single_linkage.png" />
+
+</div>
+<ul>
+<li>Complete Linkage (<em>maximum jump</em>): Calculates the maximum distance betweentwo points from each cluster</li>
+</ul>
+<div class="figure">
+<img src="img/maximum_linkage.png" />
+
+</div>
+<ul>
+<li><p>Average linkage: Computes the mean of distances between all pairs of observations</p></li>
+<li><p>Ward's method: where the goal is to minimize the variance within clusters</p></li>
+</ul>
+<div class="figure">
+<img src="img/wards_linkage.png" />
+
+</div>
+<table>
+<thead>
+<tr class="header">
+<th>Method</th>
+<th>Pros</th>
+<th>Cons</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Single linkage</td>
+<td>number of clusters</td>
+<td>comblike trees.</td>
+</tr>
+<tr class="even">
+<td>Complete linkage</td>
+<td>compact clusters</td>
+<td>one obs. can alter groups</td>
+</tr>
+<tr class="odd">
+<td>Average linkage</td>
+<td>similar size and variance</td>
+<td>not robust</td>
+</tr>
+<tr class="even">
+<td>Centroid</td>
+<td>robust to outliers</td>
+<td>smaller number of clusters</td>
+</tr>
+<tr class="odd">
+<td>Ward</td>
+<td>minimising an inertia</td>
+<td>clusters small if high variability</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="identify-optimal-number-of-clusters" class="section level4">
+<h4><span class="header-section-number">12.2.1.3</span> Identify optimal number of clusters</h4>
+<p>Identifying the appropriate k is important because too many or too few clusters impedes viewing overall trends. Too many clusters can lead to over-fitting (which limits generalizations) while insufficient clusters limits insights into commonality of groups.</p>
+<p>There are assorted methodologies to identify the appropriate <span class="math inline">\(k\)</span>. Tests range from blunt visual inspections to robust algorithms. The optimal number of clusters is ultimately a <strong>subjective decision</strong>.</p>
+</div>
+</div>
+<div id="with-ants" class="section level3">
+<h3><span class="header-section-number">12.2.2</span> With ants</h3>
+<p>The data <code>pitfalls.csv</code> is available on CANVAS</p>
+<p>Data were collected on the distribution of ant species at 30 sites across the Auckland region using pitfall traps.</p>
+<ul>
+<li><p>Twenty pitfall traps at each site were left open for ten days and the number of individuals captured counted</p></li>
+<li><p>Data used here are standardised <span class="math inline">\(\text{log}(x + 1)\)</span> transformed for the four most abundant species:</p>
+<ul>
+<li><em>Nylanderia spp</em></li>
+<li><em>Pheidole rugosula</em></li>
+<li><em>Tetramorium grassii</em></li>
+<li><em>Pachycondyla sp</em></li>
+</ul></li>
+</ul>
+<p>At each location twenty pitfall traps were placed in each of four habitats (Forest, Grass, Urban, Scrub) and left for ten days. At the end of this sampling all individuals in the pitfall traps were identified and summed at each site (location x habitat). This sampling protocol was repeated for 3 months over summer 2011.</p>
+<pre><code>## # A tibble: 30 x 8
+##    Location Habitat Month Site    Nyl   Phe   Tet   Pac
+##    &lt;chr&gt;    &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 West     Forest      1 WF1       0     0     0   157
+##  2 West     Grass       1 WG1       0     2     7    37
+##  3 West     Urban       1 WU1       3     7     0     0
+##  4 West     Forest      2 WF2       0     0     0    31
+##  5 West     Grass       2 WG2       5     0    25     0
+##  6 West     Forest      3 WF3       0     0     0    21
+##  7 West     Grass       3 WG3       0     3     2     1
+##  8 West     Urban       3 WU3       0     1     0     0
+##  9 Central  Forest      1 CF1       0     0     0     1
+## 10 Central  Grass       1 CG1       0     3    22     2
+## # … with 20 more rows</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+ants &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;pitfalls.csv&quot;</span>)</code></pre></div>
+<p><strong>Hierarchical clustering</strong></p>
+<p>Data are species counts, so we will use Bray Curtis measure:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pitfall.dist &lt;-<span class="st"> </span>vegan<span class="op">::</span><span class="kw">vegdist</span>(ants[,<span class="dv">5</span><span class="op">:</span><span class="dv">8</span>], <span class="dt">method =</span> <span class="st">&quot;bray&quot;</span>, <span class="dt">binary =</span> <span class="ot">FALSE</span>)
+factoextra<span class="op">::</span><span class="kw">fviz_dist</span>(pitfall.dist)</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-89-1.png" width="672" /></p>
+<p>Computing 4 dendrograms</p>
+<ul>
+<li>Single-linkage</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">single &lt;-<span class="st"> </span>ants[,<span class="dv">5</span><span class="op">:</span><span class="dv">8</span>] <span class="op">%&gt;%</span>
+<span class="st">  </span>vegan<span class="op">::</span><span class="kw">vegdist</span>(., <span class="dt">method =</span> <span class="st">&quot;bray&quot;</span>, <span class="dt">binary =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">hclust</span>(<span class="dt">method =</span> <span class="st">&quot;single&quot;</span>)
+<span class="kw">plot</span>(single, <span class="dt">labels =</span> ants<span class="op">$</span>Site)</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-90-1.png" width="672" /></p>
+<ul>
+<li>Maximum linkage</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">complete &lt;-<span class="st"> </span>ants[,<span class="dv">5</span><span class="op">:</span><span class="dv">8</span>] <span class="op">%&gt;%</span>
+<span class="st">  </span>vegan<span class="op">::</span><span class="kw">vegdist</span>(., <span class="dt">method =</span> <span class="st">&quot;bray&quot;</span>, <span class="dt">binary =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">hclust</span>(<span class="dt">method =</span> <span class="st">&quot;complete&quot;</span>)
+<span class="kw">plot</span>(complete, <span class="dt">labels =</span> ants<span class="op">$</span>Site)</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-91-1.png" width="672" /></p>
+<ul>
+<li>Average linkage (UPGMA)</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">average &lt;-<span class="st"> </span>ants[,<span class="dv">5</span><span class="op">:</span><span class="dv">8</span>] <span class="op">%&gt;%</span>
+<span class="st">  </span>vegan<span class="op">::</span><span class="kw">vegdist</span>(., <span class="dt">method =</span> <span class="st">&quot;bray&quot;</span>, <span class="dt">binary =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">hclust</span>(<span class="dt">method =</span> <span class="st">&quot;average&quot;</span>)
+<span class="kw">plot</span>(average, <span class="dt">labels =</span> ants<span class="op">$</span>Site)</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-92-1.png" width="672" /></p>
+<ul>
+<li>Ward’s</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ward &lt;-<span class="st"> </span>ants[,<span class="dv">5</span><span class="op">:</span><span class="dv">8</span>] <span class="op">%&gt;%</span>
+<span class="st">  </span>vegan<span class="op">::</span><span class="kw">vegdist</span>(., <span class="dt">method =</span> <span class="st">&quot;bray&quot;</span>, <span class="dt">binary =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">hclust</span>(<span class="dt">method =</span> <span class="st">&quot;ward.D&quot;</span>)
+<span class="kw">plot</span>(ward, <span class="dt">labels =</span> ants<span class="op">$</span>Site)</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-93-1.png" width="672" /></p>
+<p><strong>WHAT ARE DENDROGRAMS GOOD FOR?</strong> Suggesting clusters for further study...</p>
+<p>Using the function <code>cutree()</code> to split into clusters and plot:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ants<span class="op">$</span>clust4 &lt;-<span class="st"> </span><span class="kw">cutree</span>(ward, <span class="dt">k =</span> <span class="dv">4</span>)
+<span class="kw">library</span>(ape)   ## install
+pitfall.phylo &lt;-<span class="st"> </span><span class="kw">as.phylo</span>(ward)
+pitfall.phylo<span class="op">$</span>tip.label &lt;-<span class="st"> </span>ants<span class="op">$</span>Site
+## Set colours 
+colours  &lt;-<span class="st">  </span><span class="kw">c</span>(<span class="st">&quot;red&quot;</span>,<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;green&quot;</span>,<span class="st">&quot;black&quot;</span>)
+<span class="kw">plot</span>(pitfall.phylo, <span class="dt">cex =</span> <span class="fl">0.6</span>, <span class="dt">tip.color =</span> colours[ants<span class="op">$</span>clust4], <span class="dt">label.offset =</span> <span class="fl">0.05</span>) </code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-94-1.png" width="672" /></p>
+</div>
+<div id="k-means-using-the-palmerpenguins-data" class="section level3">
+<h3><span class="header-section-number">12.2.3</span> k-means using the <code>palmerpenguins</code> data</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(palmerpenguins)
+## getting rid of NAs
+penguins_nafree &lt;-<span class="st"> </span>penguins <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">drop_na</span>()</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## introducing a new package GGally, please install
+## using install.packages(&quot;GGally&quot;)
+<span class="kw">library</span>(GGally)
+penguins_nafree <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(species, <span class="kw">where</span>(is.numeric)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggpairs</span>(<span class="dt">columns =</span> <span class="kw">c</span>(<span class="st">&quot;flipper_length_mm&quot;</span>, <span class="st">&quot;body_mass_g&quot;</span>, 
+                     <span class="st">&quot;bill_length_mm&quot;</span>, <span class="st">&quot;bill_depth_mm&quot;</span>)) </code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-96-1.png" width="672" /></p>
+<p>We see that a lot of these variables (e.g., <code>flipper_length_mm</code>, <code>body_mass_g</code>, and <code>bill_length_mm</code>) are relatively strongly (positively) related to one another. Could they actually be telling us the same information? Combined we could think of these three variables all telling us a little about <em>bigness</em> of penguin. Is there a way we could reduce these three variables, into say 1, to represent the <em>bigness</em> of a penguin. We may not need <em>all</em> the information (variation) captured by these variables, but could get away with fewer <em>new uncorrelated</em> variables that represent basically the same information (e.g., penguin <em>bigness</em>), thereby, <strong>reducing the dimensionality of the data</strong> (more on this later).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## create a data frame of what we&#39;re interested in
+df &lt;-<span class="st"> </span>penguins_nafree <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(<span class="kw">where</span>(is.numeric), <span class="op">-</span>year)</code></pre></div>
+<p>We use the <code>kmeans()</code> function.</p>
+<p>The first argument of <code>kmeans()</code> should be the dataset you wish to cluster. Below we use data frame <code>df</code>, the penguin data discussed above. But how many clusters do we choose? Let's try 1 to 5... (i.e., using the <code>centers</code> argument). Setting <code>nstart = 25</code> means that R will try 25 different random starting assignments and then select the best results corresponding to the one with the lowest within cluster variation.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## set the seed so we all start off in the same place
+<span class="kw">set.seed</span>(<span class="dv">4321</span>)
+## one cluster
+k1 &lt;-<span class="st"> </span><span class="kw">kmeans</span>(df, <span class="dt">centers =</span> <span class="dv">1</span>, <span class="dt">nstart =</span> <span class="dv">25</span>)
+## two clusters
+k2 &lt;-<span class="st"> </span><span class="kw">kmeans</span>(df, <span class="dt">centers =</span> <span class="dv">2</span>, <span class="dt">nstart =</span> <span class="dv">25</span>)
+## three clusters
+k3 &lt;-<span class="st"> </span><span class="kw">kmeans</span>(df, <span class="dt">centers =</span> <span class="dv">3</span>, <span class="dt">nstart =</span> <span class="dv">25</span>)
+## four clusters
+k4 &lt;-<span class="st"> </span><span class="kw">kmeans</span>(df, <span class="dt">centers =</span> <span class="dv">4</span>, <span class="dt">nstart =</span> <span class="dv">25</span>)
+## five clusters
+k5 &lt;-<span class="st"> </span><span class="kw">kmeans</span>(df, <span class="dt">centers =</span> <span class="dv">5</span>, <span class="dt">nstart =</span> <span class="dv">25</span>)</code></pre></div>
+<p>The <code>kmeans()</code> function returns a list of components:</p>
+<ul>
+<li><code>cluster</code>, integers indicating the cluster to which each observation is allocated</li>
+<li><code>centers</code>, a matrix of cluster centers/means</li>
+<li><code>totss</code>, the total sum of squares</li>
+<li><code>withinss</code>, within-cluster sum of squares, one component per cluster</li>
+<li><code>tot.withinss</code>, total within-cluster sum of squares</li>
+<li><code>betweenss</code>, between-cluster sum of squares</li>
+<li><code>size</code>, number of observations in each cluster</li>
+</ul>
+<div id="choosing-the-number-of-clusters" class="section level4">
+<h4><span class="header-section-number">12.2.3.1</span> Choosing the number of clusters</h4>
+<p>We have an idea there may be 3 clusters, perhaps, but how do we know this is the best fit? Remember it's a <strong>subjective choice</strong> and we'll be looking at a few pointers</p>
+<p><strong>Visual inspection</strong> method</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(factoextra) ## a new packahe for kmeasn viz, please install
+p1 &lt;-<span class="st"> </span><span class="kw">fviz_cluster</span>(k1, <span class="dt">data =</span> df)
+p2 &lt;-<span class="st"> </span><span class="kw">fviz_cluster</span>(k2, <span class="dt">data =</span> df)
+p3 &lt;-<span class="st"> </span><span class="kw">fviz_cluster</span>(k3, <span class="dt">data =</span> df)
+p4 &lt;-<span class="st"> </span><span class="kw">fviz_cluster</span>(k4, <span class="dt">data =</span> df)
+p5 &lt;-<span class="st"> </span><span class="kw">fviz_cluster</span>(k5, <span class="dt">data =</span> df)
+
+## for arranging plots
+<span class="kw">library</span>(patchwork) 
+(p1<span class="op">|</span><span class="st"> </span>p2<span class="op">|</span><span class="st"> </span>p3)<span class="op">/</span><span class="st"> </span>(p4 <span class="op">|</span><span class="st"> </span>p5)</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-99-1.png" width="672" /></p>
+<p>Alternatively, you can use standard pairwise scatter plots to illustrate the clusters compared to the original variables.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">cluster =</span> k3<span class="op">$</span>cluster,
+         <span class="dt">species =</span> penguins_nafree<span class="op">$</span>species) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(flipper_length_mm, bill_depth_mm, <span class="dt">color =</span> <span class="kw">factor</span>(cluster), <span class="dt">label =</span> species)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_text</span>()</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-100-1.png" width="672" /></p>
+<p><strong>Elbow</strong> method</p>
+<p>Optimal clusters are at the point in which the knee &quot;bends&quot; or in mathematical terms when the marginal total within sum of squares (<code>tot.withinss</code>) for an additional cluster begins to decrease at a linear rate</p>
+<p>This is easier to see via a plot:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fviz_nbclust</span>(df, kmeans, <span class="dt">method =</span> <span class="st">&quot;wss&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">subtitle =</span> <span class="st">&quot;Elbow method&quot;</span>)</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-101-1.png" width="672" /></p>
+<p>There is a pretty obvious inflection (elbow) at 2 clusters, but maybe at 3 too. We can rule out an optimal number of clusters above 3 as there is then only a minimal marginal reduction in total within sum of squares. However, the model is ambiguous on whether 2 or 3 clusters is optimal...</p>
+<p><strong>Silhouette</strong> method</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Silhouette method</span>
+<span class="kw">fviz_nbclust</span>(df, kmeans, <span class="dt">method =</span> <span class="st">&quot;silhouette&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">subtitle =</span> <span class="st">&quot;Silhouette method&quot;</span>)</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-102-1.png" width="672" /></p>
+<p><strong>Gap</strong> method</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Gap statistic</span>
+<span class="co"># recommended value: nboot = 500 for your analysis (it will take a while)</span>
+<span class="kw">set.seed</span>(<span class="dv">123</span>) ## remove this
+<span class="kw">fviz_nbclust</span>(df, kmeans, <span class="dt">nstart =</span> <span class="dv">25</span>,  <span class="dt">method =</span> <span class="st">&quot;gap_stat&quot;</span>, <span class="dt">nboot =</span> <span class="dv">50</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">subtitle =</span> <span class="st">&quot;Gap statistic method&quot;</span>)</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-103-1.png" width="672" /></p>
+<p><strong>Basically it's up to you to collate all the suggestions and make and informed decision</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Trying all the cluster indecies AHHHHH
+<span class="kw">library</span>(NbClust)
+cluster_<span class="dv">30</span>_indexes &lt;-<span class="st"> </span><span class="kw">NbClust</span>(<span class="dt">data =</span> df, <span class="dt">distance =</span> <span class="st">&quot;euclidean&quot;</span>, <span class="dt">min.nc =</span> <span class="dv">2</span>, <span class="dt">max.nc =</span> <span class="dv">9</span>, <span class="dt">method =</span> <span class="st">&quot;complete&quot;</span>, <span class="dt">index =</span><span class="st">&quot;all&quot;</span>)</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-104-1.png" width="672" /></p>
+<pre><code>## *** : The Hubert index is a graphical method of determining the number of clusters.
+##                 In the plot of Hubert index, we seek a significant knee that corresponds to a 
+##                 significant increase of the value of the measure i.e the significant peak in Hubert
+##                 index second differences plot. 
+## </code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-104-2.png" width="672" /></p>
+<pre><code>## *** : The D index is a graphical method of determining the number of clusters. 
+##                 In the plot of D index, we seek a significant knee (the significant peak in Dindex
+##                 second differences plot) that corresponds to a significant increase of the value of
+##                 the measure. 
+##  
+## ******************************************************************* 
+## * Among all indices:                                                
+## * 5 proposed 2 as the best number of clusters 
+## * 6 proposed 3 as the best number of clusters 
+## * 1 proposed 4 as the best number of clusters 
+## * 4 proposed 5 as the best number of clusters 
+## * 1 proposed 8 as the best number of clusters 
+## * 3 proposed 9 as the best number of clusters 
+## 
+##                    ***** Conclusion *****                            
+##  
+## * According to the majority rule, the best number of clusters is  3 
+##  
+##  
+## *******************************************************************</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fviz_nbclust</span>(cluster_<span class="dv">30</span>_indexes) <span class="op">+</span>
+<span class="st">      </span><span class="kw">theme_minimal</span>() <span class="op">+</span>
+<span class="st">      </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Frequency of Optimal Clusters using 30 indexes in NbClust Package&quot;</span>)</code></pre></div>
+<pre><code>## Among all indices: 
+## ===================
+## * 2 proposed  0 as the best number of clusters
+## * 1 proposed  1 as the best number of clusters
+## * 5 proposed  2 as the best number of clusters
+## * 6 proposed  3 as the best number of clusters
+## * 1 proposed  4 as the best number of clusters
+## * 4 proposed  5 as the best number of clusters
+## * 1 proposed  8 as the best number of clusters
+## * 3 proposed  9 as the best number of clusters
+## * 3 proposed  NA&#39;s as the best number of clusters
+## 
+## Conclusion
+## =========================
+## * According to the majority rule, the best number of clusters is  3 .</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-104-3.png" width="672" /></p>
+<p>Not obvious, basically still undecided between 2 and 3, but according to the absolute majority rule the &quot;best&quot; number is 3</p>
+</div>
+</div>
+</div>
+<div id="tldr-k-means-clustering" class="section level2">
+<h2><span class="header-section-number">12.3</span> TL;DR k-means clustering</h2>
+<p><strong><a href="https://github.com/allisonhorst/stats-illustrations">Artwork by @allison_horst</a></strong></p>
+<p><img src="https://github.com/allisonhorst/stats-illustrations/raw/master/other-stats-artwork/kmeans_1.jpg" /> <img src="https://github.com/allisonhorst/stats-illustrations/raw/master/other-stats-artwork/kmeans_2.jpg" /> <img src="https://github.com/allisonhorst/stats-illustrations/raw/master/other-stats-artwork/kmeans_3.jpg" /> <img src="https://github.com/allisonhorst/stats-illustrations/raw/master/other-stats-artwork/kmeans_4.jpg" /> <img src="https://github.com/allisonhorst/stats-illustrations/raw/master/other-stats-artwork/kmeans_5.jpg" /> <img src="https://github.com/allisonhorst/stats-illustrations/raw/master/other-stats-artwork/kmeans_6.jpg" /> <img src="https://github.com/allisonhorst/stats-illustrations/raw/master/other-stats-artwork/kmeans_7.jpg" /> <img src="https://github.com/allisonhorst/stats-illustrations/raw/master/other-stats-artwork/kmeans_8.jpg" /> <img src="https://github.com/allisonhorst/stats-illustrations/raw/master/other-stats-artwork/kmeans_9.jpg" /> <img src="https://github.com/allisonhorst/stats-illustrations/raw/master/other-stats-artwork/kmeans_10.jpg" /> <img src="https://github.com/allisonhorst/stats-illustrations/raw/master/other-stats-artwork/kmeans_11.jpg" /> <img src="https://github.com/allisonhorst/stats-illustrations/raw/master/other-stats-artwork/kmeans_12.jpg" /></p>
+</div>
+<div id="other-resources-optional-but-recommended-1" class="section level2">
+<h2><span class="header-section-number">12.4</span> Other resources: optional but recommended</h2>
+<ul>
+<li><p><a href="https://cmjt.github.io/statbiscuits/eigenfaces.html">Eigenfaces</a></p></li>
+<li><p><a href="https://cmjt.github.io/statbiscuits/clusterducks.html">ClusterDucks</a></p></li>
+<li><p><a href="https://little-book-of-r-for-multivariate-analysis.readthedocs.io/en/latest/index.html">Little book for Multivariate Analysis</a></p></li>
+<li><p><a href="https://juba.github.io/explor/">'explor' is an R package to allow interactive exploration of multivariate analysis results</a></p></li>
+<li><p><a href="https://towardsdatascience.com/the-mathematics-behind-principal-component-analysis-fff2d7f4b643">The Mathematics Behind Principal Component Analysis (6 min read)</a></p></li>
+<li><p><a href="https://uc-r.github.io/kmeans_clustering">K-means cluster analysis</a></p></li>
+</ul>
+<div id="multidimensional-scaling-in-r-not-examinable" class="section level3">
+<h3><span class="header-section-number">12.4.1</span> Multidimensional Scaling in <code>R</code> (<em>not examinable</em>)</h3>
+<p>Multidimensional scaling (MDS) is actually the more general technique of dimension reduction. PCA is a special case of MDS!</p>
+<p>To carry out MDS in <code>R</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggfortify)
+## Plotting Multidimensional Scaling (for interest)
+## stats::cmdscale performs Classical MDS
+<span class="kw">data</span>(<span class="st">&quot;eurodist&quot;</span>) ## road distances (in km) between 21 cities in Europe.
+<span class="kw">autoplot</span>(eurodist)</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-105-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Plotting Classical (Metric) Multidimensional Scaling
+<span class="kw">autoplot</span>(<span class="kw">cmdscale</span>(eurodist, <span class="dt">eig =</span> <span class="ot">TRUE</span>))</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-105-2.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">autoplot</span>(<span class="kw">cmdscale</span>(eurodist, <span class="dt">eig =</span> <span class="ot">TRUE</span>), <span class="dt">label =</span> <span class="ot">TRUE</span>, <span class="dt">shape =</span> <span class="ot">FALSE</span>,
+         <span class="dt">label.size =</span> <span class="dv">3</span>)</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-105-3.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Plotting Non-metric Multidimensional Scaling
+## MASS::isoMDS and MASS::sammon perform Non-metric MDS
+<span class="kw">library</span>(MASS)
+<span class="kw">autoplot</span>(<span class="kw">sammon</span>(eurodist))</code></pre></div>
+<pre><code>## Initial stress        : 0.01705
+## stress after  10 iters: 0.00951, magic = 0.500
+## stress after  20 iters: 0.00941, magic = 0.500</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-105-4.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">autoplot</span>(<span class="kw">sammon</span>(eurodist), <span class="dt">shape =</span> <span class="ot">FALSE</span>, <span class="dt">label =</span> <span class="ot">TRUE</span>,<span class="dt">label.size =</span> <span class="dv">3</span>)</code></pre></div>
+<pre><code>## Initial stress        : 0.01705
+## stress after  10 iters: 0.00951, magic = 0.500
+## stress after  20 iters: 0.00941, magic = 0.500</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-105-5.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Have a go at interpreting these plots based on the geography of the cities :-)</code></pre></div>
 
 </div>
 </div>
+</div>
+
+
+
+
+
+
             </section>
 
           </div>
         </div>
       </div>
+<a href="resampling-procedures.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
-<a href="r-rstudio-and-git.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -258,6 +258,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="11.4" data-path="resampling-procedures.html"><a href="resampling-procedures.html#the-bootstrap"><i class="fa fa-check"></i><b>11.4</b> The bootstrap</a></li>
 </ul></li>
+<li class="chapter" data-level="12" data-path="multivariate-data-methods.html"><a href="multivariate-data-methods.html"><i class="fa fa-check"></i><b>12</b> Multivariate Data Methods</a><ul>
+<li class="chapter" data-level="12.1" data-path="multivariate-data-methods.html"><a href="multivariate-data-methods.html#learning-objectives-11"><i class="fa fa-check"></i><b>12.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="12.2" data-path="multivariate-data-methods.html"><a href="multivariate-data-methods.html#clustering"><i class="fa fa-check"></i><b>12.2</b> Clustering</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="multivariate-data-methods.html"><a href="multivariate-data-methods.html#clustering-algorithms"><i class="fa fa-check"></i><b>12.2.1</b> Clustering algorithms</a></li>
+<li class="chapter" data-level="12.2.2" data-path="multivariate-data-methods.html"><a href="multivariate-data-methods.html#with-ants"><i class="fa fa-check"></i><b>12.2.2</b> With ants</a></li>
+<li class="chapter" data-level="12.2.3" data-path="multivariate-data-methods.html"><a href="multivariate-data-methods.html#k-means-using-the-palmerpenguins-data"><i class="fa fa-check"></i><b>12.2.3</b> k-means using the <code>palmerpenguins</code> data</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="multivariate-data-methods.html"><a href="multivariate-data-methods.html#tldr-k-means-clustering"><i class="fa fa-check"></i><b>12.3</b> TL;DR k-means clustering</a></li>
+<li class="chapter" data-level="12.4" data-path="multivariate-data-methods.html"><a href="multivariate-data-methods.html#other-resources-optional-but-recommended-1"><i class="fa fa-check"></i><b>12.4</b> Other resources: optional but recommended</a><ul>
+<li class="chapter" data-level="12.4.1" data-path="multivariate-data-methods.html"><a href="multivariate-data-methods.html#multidimensional-scaling-in-r-not-examinable"><i class="fa fa-check"></i><b>12.4.1</b> Multidimensional Scaling in <code>R</code> (<em>not examinable</em>)</a></li>
+</ul></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -323,18 +335,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(palmerpenguins) ## contains some nice penguin data
 penguins</code></pre></div>
 <pre><code>## # A tibble: 344 x 8
-##    species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g
-##    &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt;
-##  1 Adelie  Torge…           39.1          18.7              181        3750
-##  2 Adelie  Torge…           39.5          17.4              186        3800
-##  3 Adelie  Torge…           40.3          18                195        3250
-##  4 Adelie  Torge…           NA            NA                 NA          NA
-##  5 Adelie  Torge…           36.7          19.3              193        3450
-##  6 Adelie  Torge…           39.3          20.6              190        3650
-##  7 Adelie  Torge…           38.9          17.8              181        3625
-##  8 Adelie  Torge…           39.2          19.6              195        4675
-##  9 Adelie  Torge…           34.1          18.1              193        3475
-## 10 Adelie  Torge…           42            20.2              190        4250
+##    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+##  1 Adelie  Torgersen           39.1          18.7               181        3750
+##  2 Adelie  Torgersen           39.5          17.4               186        3800
+##  3 Adelie  Torgersen           40.3          18                 195        3250
+##  4 Adelie  Torgersen           NA            NA                  NA          NA
+##  5 Adelie  Torgersen           36.7          19.3               193        3450
+##  6 Adelie  Torgersen           39.3          20.6               190        3650
+##  7 Adelie  Torgersen           38.9          17.8               181        3625
+##  8 Adelie  Torgersen           39.2          19.6               195        4675
+##  9 Adelie  Torgersen           34.1          18.1               193        3475
+## 10 Adelie  Torgersen           42            20.2               190        4250
 ## # … with 334 more rows, and 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
 <p>So, what does this show us?</p>
 <ul>
@@ -387,34 +399,34 @@ penguins <span class="op">%&gt;%</span><span class="st"> </span>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">penguins_nafree &lt;-<span class="st"> </span>penguins <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">drop_na</span>()
 penguins_nafree</code></pre></div>
 <pre><code>## # A tibble: 333 x 8
-##    species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g
-##    &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt;
-##  1 Adelie  Torge…           39.1          18.7              181        3750
-##  2 Adelie  Torge…           39.5          17.4              186        3800
-##  3 Adelie  Torge…           40.3          18                195        3250
-##  4 Adelie  Torge…           36.7          19.3              193        3450
-##  5 Adelie  Torge…           39.3          20.6              190        3650
-##  6 Adelie  Torge…           38.9          17.8              181        3625
-##  7 Adelie  Torge…           39.2          19.6              195        4675
-##  8 Adelie  Torge…           41.1          17.6              182        3200
-##  9 Adelie  Torge…           38.6          21.2              191        3800
-## 10 Adelie  Torge…           34.6          21.1              198        4400
+##    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+##  1 Adelie  Torgersen           39.1          18.7               181        3750
+##  2 Adelie  Torgersen           39.5          17.4               186        3800
+##  3 Adelie  Torgersen           40.3          18                 195        3250
+##  4 Adelie  Torgersen           36.7          19.3               193        3450
+##  5 Adelie  Torgersen           39.3          20.6               190        3650
+##  6 Adelie  Torgersen           38.9          17.8               181        3625
+##  7 Adelie  Torgersen           39.2          19.6               195        4675
+##  8 Adelie  Torgersen           41.1          17.6               182        3200
+##  9 Adelie  Torgersen           38.6          21.2               191        3800
+## 10 Adelie  Torgersen           34.6          21.1               198        4400
 ## # … with 323 more rows, and 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
 <p>Below are some other useful manipulation functions; have a look at the outputs and run them yourselves and see if you can work out what they're doing.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>(penguins_nafree, island <span class="op">==</span><span class="st"> &quot;Torgersen&quot;</span> )</code></pre></div>
 <pre><code>## # A tibble: 47 x 8
-##    species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g
-##    &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt;
-##  1 Adelie  Torge…           39.1          18.7              181        3750
-##  2 Adelie  Torge…           39.5          17.4              186        3800
-##  3 Adelie  Torge…           40.3          18                195        3250
-##  4 Adelie  Torge…           36.7          19.3              193        3450
-##  5 Adelie  Torge…           39.3          20.6              190        3650
-##  6 Adelie  Torge…           38.9          17.8              181        3625
-##  7 Adelie  Torge…           39.2          19.6              195        4675
-##  8 Adelie  Torge…           41.1          17.6              182        3200
-##  9 Adelie  Torge…           38.6          21.2              191        3800
-## 10 Adelie  Torge…           34.6          21.1              198        4400
+##    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+##  1 Adelie  Torgersen           39.1          18.7               181        3750
+##  2 Adelie  Torgersen           39.5          17.4               186        3800
+##  3 Adelie  Torgersen           40.3          18                 195        3250
+##  4 Adelie  Torgersen           36.7          19.3               193        3450
+##  5 Adelie  Torgersen           39.3          20.6               190        3650
+##  6 Adelie  Torgersen           38.9          17.8               181        3625
+##  7 Adelie  Torgersen           39.2          19.6               195        4675
+##  8 Adelie  Torgersen           41.1          17.6               182        3200
+##  9 Adelie  Torgersen           38.6          21.2               191        3800
+## 10 Adelie  Torgersen           34.6          21.1               198        4400
 ## # … with 37 more rows, and 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summarise</span>(penguins_nafree, <span class="dt">avgerage_bill_length =</span> <span class="kw">mean</span>(bill_length_mm))</code></pre></div>
 <pre><code>## # A tibble: 1 x 1
@@ -424,18 +436,18 @@ penguins_nafree</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">group_by</span>(penguins_nafree, species)</code></pre></div>
 <pre><code>## # A tibble: 333 x 8
 ## # Groups:   species [3]
-##    species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g
-##    &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt;
-##  1 Adelie  Torge…           39.1          18.7              181        3750
-##  2 Adelie  Torge…           39.5          17.4              186        3800
-##  3 Adelie  Torge…           40.3          18                195        3250
-##  4 Adelie  Torge…           36.7          19.3              193        3450
-##  5 Adelie  Torge…           39.3          20.6              190        3650
-##  6 Adelie  Torge…           38.9          17.8              181        3625
-##  7 Adelie  Torge…           39.2          19.6              195        4675
-##  8 Adelie  Torge…           41.1          17.6              182        3200
-##  9 Adelie  Torge…           38.6          21.2              191        3800
-## 10 Adelie  Torge…           34.6          21.1              198        4400
+##    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+##  1 Adelie  Torgersen           39.1          18.7               181        3750
+##  2 Adelie  Torgersen           39.5          17.4               186        3800
+##  3 Adelie  Torgersen           40.3          18                 195        3250
+##  4 Adelie  Torgersen           36.7          19.3               193        3450
+##  5 Adelie  Torgersen           39.3          20.6               190        3650
+##  6 Adelie  Torgersen           38.9          17.8               181        3625
+##  7 Adelie  Torgersen           39.2          19.6               195        4675
+##  8 Adelie  Torgersen           41.1          17.6               182        3200
+##  9 Adelie  Torgersen           38.6          21.2               191        3800
+## 10 Adelie  Torgersen           34.6          21.1               198        4400
 ## # … with 323 more rows, and 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
 <p>Often we want to summarise variables by different groups (factors). Below we</p>
 <ul>
@@ -448,7 +460,7 @@ penguins_nafree</code></pre></div>
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">avgerage_bill_length =</span> <span class="kw">mean</span>(bill_length_mm))</code></pre></div>
 <pre><code>## # A tibble: 3 x 2
 ##   species   avgerage_bill_length
-## * &lt;fct&gt;                    &lt;dbl&gt;
+##   &lt;fct&gt;                    &lt;dbl&gt;
 ## 1 Adelie                    38.8
 ## 2 Chinstrap                 48.8
 ## 3 Gentoo                    47.6</code></pre>
