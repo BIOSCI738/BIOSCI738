@@ -256,7 +256,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="11.3.1" data-path="resampling-procedures.html"><a href="resampling-procedures.html#permutation-test-on-two-independent-samples"><i class="fa fa-check"></i><b>11.3.1</b> Permutation Test on Two Independent Samples</a></li>
 <li class="chapter" data-level="11.3.2" data-path="resampling-procedures.html"><a href="resampling-procedures.html#p-values-from-permutation-tests"><i class="fa fa-check"></i><b>11.3.2</b> P-values from permutation tests</a></li>
 </ul></li>
-<li class="chapter" data-level="11.4" data-path="resampling-procedures.html"><a href="resampling-procedures.html#the-bootstrap"><i class="fa fa-check"></i><b>11.4</b> The bootstrap</a></li>
+<li class="chapter" data-level="11.4" data-path="resampling-procedures.html"><a href="resampling-procedures.html#the-bootstrap"><i class="fa fa-check"></i><b>11.4</b> The bootstrap</a><ul>
+<li class="chapter" data-level="11.4.1" data-path="resampling-procedures.html"><a href="resampling-procedures.html#example-constructing-bootstrap-confidence-intervals"><i class="fa fa-check"></i><b>11.4.1</b> Example: constructing bootstrap confidence intervals</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="resampling-procedures.html"><a href="resampling-procedures.html#differences-between-permutation-test-and-bootstrap-test"><i class="fa fa-check"></i><b>11.5</b> Differences between permutation test and bootstrap test</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="multivariate-data-methods.html"><a href="multivariate-data-methods.html"><i class="fa fa-check"></i><b>12</b> Multivariate Data Methods</a><ul>
 <li class="chapter" data-level="12.1" data-path="multivariate-data-methods.html"><a href="multivariate-data-methods.html#learning-objectives-11"><i class="fa fa-check"></i><b>12.1</b> Learning Objectives</a></li>
@@ -268,6 +271,19 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="12.3" data-path="multivariate-data-methods.html"><a href="multivariate-data-methods.html#tldr-k-means-clustering"><i class="fa fa-check"></i><b>12.3</b> TL;DR k-means clustering</a></li>
 <li class="chapter" data-level="12.4" data-path="multivariate-data-methods.html"><a href="multivariate-data-methods.html#other-resources-optional-but-recommended-1"><i class="fa fa-check"></i><b>12.4</b> Other resources: optional but recommended</a><ul>
 <li class="chapter" data-level="12.4.1" data-path="multivariate-data-methods.html"><a href="multivariate-data-methods.html#multidimensional-scaling-in-r-not-examinable"><i class="fa fa-check"></i><b>12.4.1</b> Multidimensional Scaling in <code>R</code> (<em>not examinable</em>)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="dimension-reduction.html"><a href="dimension-reduction.html"><i class="fa fa-check"></i><b>13</b> Dimension reduction</a><ul>
+<li class="chapter" data-level="13.1" data-path="dimension-reduction.html"><a href="dimension-reduction.html#learning-objectives-12"><i class="fa fa-check"></i><b>13.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="13.2" data-path="dimension-reduction.html"><a href="dimension-reduction.html#dimension-reduction-1"><i class="fa fa-check"></i><b>13.2</b> Dimension reduction</a></li>
+<li class="chapter" data-level="13.3" data-path="dimension-reduction.html"><a href="dimension-reduction.html#pca-in-r"><i class="fa fa-check"></i><b>13.3</b> PCA in <code>R</code></a><ul>
+<li class="chapter" data-level="13.3.1" data-path="dimension-reduction.html"><a href="dimension-reduction.html#using-the-palmerpenguins-data"><i class="fa fa-check"></i><b>13.3.1</b> Using the <code>palmerpenguins</code> data</a></li>
+<li class="chapter" data-level="13.3.2" data-path="dimension-reduction.html"><a href="dimension-reduction.html#athletes"><i class="fa fa-check"></i><b>13.3.2</b> Athletes</a></li>
+<li class="chapter" data-level="13.3.3" data-path="dimension-reduction.html"><a href="dimension-reduction.html#ants-from-previous-chapter"><i class="fa fa-check"></i><b>13.3.3</b> Ants (from previous chapter)</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="dimension-reduction.html"><a href="dimension-reduction.html#reality-check-reducing-noise..."><i class="fa fa-check"></i><b>13.4</b> Reality check: reducing noise...</a></li>
+<li class="chapter" data-level="13.5" data-path="dimension-reduction.html"><a href="dimension-reduction.html#other-resources-optional-but-recommended-2"><i class="fa fa-check"></i><b>13.5</b> Other resources: optional but recommended</a><ul>
+<li class="chapter" data-level="13.5.1" data-path="dimension-reduction.html"><a href="dimension-reduction.html#multidimensional-scaling-in-r"><i class="fa fa-check"></i><b>13.5.1</b> Multidimensional Scaling in <code>R</code></a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -468,8 +484,371 @@ random_p.value</code></pre></div>
 <p>In brief,</p>
 <ul>
 <li>The original sample represents the distribution of the population from which it was drawn.</li>
-<li>Resamples, taken with replacement from the original sample are representative of what we would get from drawing many samples from the population (the distribution of the statistics calculated from each resample is known as the <em>bootstrap distribution</em> of the statistic).</li>
+<li>Resamples, taken <strong>with replacement</strong> from the original sample are representative of what we would get from drawing many samples from the population (the distribution of the statistics calculated from each resample is known as the <em>bootstrap distribution</em> of the statistic).</li>
 <li>The bootstrap distribution of a statistic represents that statistic’s sampling distribution.</li>
+</ul>
+<div id="example-constructing-bootstrap-confidence-intervals" class="section level3">
+<h3><span class="header-section-number">11.4.1</span> Example: constructing bootstrap confidence intervals</h3>
+<p><strong>Old faithful</strong> is a gyser located in Yellowstone National Park, Wyoming. Below is a histogram of the durations of 299 consecutive eruptions. Clearly bimodal!</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">MASS<span class="op">::</span>geyser</code></pre></div>
+<pre><code>##     waiting  duration
+## 1        80 4.0166667
+## 2        71 2.1500000
+## 3        57 4.0000000
+## 4        80 4.0000000
+## 5        75 4.0000000
+## 6        77 2.0000000
+## 7        60 4.3833333
+## 8        86 4.2833333
+## 9        77 2.0333333
+## 10       56 4.8333333
+## 11       81 1.8333333
+## 12       50 5.4500000
+## 13       89 1.6166667
+## 14       54 4.8666667
+## 15       90 4.3833333
+## 16       73 1.7666667
+## 17       60 4.6666667
+## 18       83 2.0000000
+## 19       65 4.7333333
+## 20       82 4.2166667
+## 21       84 1.9000000
+## 22       54 4.9666667
+## 23       85 2.0000000
+## 24       58 4.0000000
+## 25       79 2.0000000
+## 26       57 4.0000000
+## 27       88 2.8333333
+## 28       68 4.5000000
+## 29       76 4.0666667
+## 30       78 3.7166667
+## 31       74 3.5166667
+## 32       85 4.4666667
+## 33       75 2.2166667
+## 34       65 4.8833333
+## 35       76 2.6000000
+## 36       58 4.1500000
+## 37       91 2.2000000
+## 38       50 4.7666667
+## 39       87 1.8333333
+## 40       48 4.6000000
+## 41       93 2.2666667
+## 42       54 4.1333333
+## 43       86 2.0000000
+## 44       53 4.0000000
+## 45       78 2.0000000
+## 46       52 4.0000000
+## 47       83 1.8833333
+## 48       60 4.2666667
+## 49       87 2.0833333
+## 50       49 4.4666667
+## 51       80 2.5000000
+## 52       60 4.0000000
+## 53       92 1.7666667
+## 54       43 4.3333333
+## 55       89 2.1833333
+## 56       60 4.4833333
+## 57       84 3.8833333
+## 58       69 3.3333333
+## 59       74 3.7333333
+## 60       71 4.0000000
+## 61      108 1.9500000
+## 62       50 5.2666667
+## 63       77 2.0000000
+## 64       57 4.0000000
+## 65       80 2.0000000
+## 66       61 4.0000000
+## 67       82 2.0000000
+## 68       48 4.0000000
+## 69       81 3.5333333
+## 70       73 2.1666667
+## 71       62 4.5000000
+## 72       79 2.0166667
+## 73       54 4.1500000
+## 74       80 4.2000000
+## 75       73 4.3333333
+## 76       81 1.9333333
+## 77       62 4.6500000
+## 78       81 3.8166667
+## 79       71 4.0333333
+## 80       79 4.1666667
+## 81       81 4.6666667
+## 82       74 1.8166667
+## 83       59 4.0000000
+## 84       81 3.0000000
+## 85       66 4.0000000
+## 86       87 2.0000000
+## 87       53 4.4500000
+## 88       80 2.0500000
+## 89       50 4.2500000
+## 90       87 1.9166667
+## 91       51 4.6666667
+## 92       82 1.7333333
+## 93       58 4.3833333
+## 94       81 1.7666667
+## 95       49 4.6000000
+## 96       92 1.8666667
+## 97       50 4.4500000
+## 98       88 1.6333333
+## 99       62 5.0333333
+## 100      93 1.8166667
+## 101      56 5.1000000
+## 102      89 1.6333333
+## 103      51 4.2833333
+## 104      79 2.0000000
+## 105      58 4.0000000
+## 106      82 2.0000000
+## 107      52 4.5333333
+## 108      88 2.0000000
+## 109      52 4.0000000
+## 110      78 2.9333333
+## 111      69 4.7333333
+## 112      75 3.9000000
+## 113      77 1.9500000
+## 114      53 4.1166667
+## 115      80 1.8000000
+## 116      55 4.6666667
+## 117      87 1.8333333
+## 118      53 4.7000000
+## 119      85 2.1166667
+## 120      61 4.7833333
+## 121      93 1.8166667
+## 122      54 4.1000000
+## 123      76 4.6500000
+## 124      80 4.0000000
+## 125      81 2.0000000
+## 126      59 4.0000000
+## 127      86 4.0000000
+## 128      78 4.2166667
+## 129      71 4.1333333
+## 130      77 3.9333333
+## 131      76 3.7500000
+## 132      94 4.4166667
+## 133      75 2.4666667
+## 134      50 4.1666667
+## 135      83 3.8000000
+## 136      82 4.3166667
+## 137      72 3.8666667
+## 138      77 4.6833333
+## 139      75 1.7000000
+## 140      65 4.9666667
+## 141      79 4.2666667
+## 142      72 4.5833333
+## 143      78 4.0000000
+## 144      77 4.0000000
+## 145      79 4.0000000
+## 146      75 4.0000000
+## 147      78 1.9833333
+## 148      64 4.6000000
+## 149      80 0.8333333
+## 150      49 4.9166667
+## 151      88 1.7333333
+## 152      54 4.5833333
+## 153      85 1.7000000
+## 154      51 4.7500000
+## 155      96 1.8333333
+## 156      50 4.5000000
+## 157      80 1.8666667
+## 158      78 4.4500000
+## 159      81 4.4500000
+## 160      72 4.0000000
+## 161      75 4.8000000
+## 162      78 4.0000000
+## 163      87 4.0000000
+## 164      69 2.0000000
+## 165      55 4.0000000
+## 166      83 1.9333333
+## 167      49 4.5833333
+## 168      82 2.0000000
+## 169      57 3.7000000
+## 170      84 2.8666667
+## 171      57 4.8333333
+## 172      84 3.4500000
+## 173      73 4.3833333
+## 174      78 1.8000000
+## 175      57 4.4000000
+## 176      79 2.4833333
+## 177      57 4.5166667
+## 178      90 2.1000000
+## 179      62 4.3500000
+## 180      87 4.3666667
+## 181      78 1.7833333
+## 182      52 4.9166667
+## 183      98 1.8166667
+## 184      48 4.0000000
+## 185      78 4.0000000
+## 186      79 4.0000000
+## 187      65 3.8666667
+## 188      84 1.8500000
+## 189      50 4.7000000
+## 190      83 2.0166667
+## 191      60 4.4666667
+## 192      80 1.8666667
+## 193      50 4.1666667
+## 194      88 1.9000000
+## 195      50 4.2500000
+## 196      84 3.2500000
+## 197      74 4.2166667
+## 198      76 1.8833333
+## 199      65 4.9833333
+## 200      89 1.8500000
+## 201      49 4.0000000
+## 202      88 1.9666667
+## 203      51 4.7666667
+## 204      78 4.0000000
+## 205      85 2.0000000
+## 206      65 4.0000000
+## 207      75 4.0000000
+## 208      77 2.3833333
+## 209      69 4.4166667
+## 210      92 4.2166667
+## 211      68 4.3666667
+## 212      87 2.0000000
+## 213      61 4.4500000
+## 214      81 1.7500000
+## 215      55 4.5000000
+## 216      93 1.6166667
+## 217      53 4.7000000
+## 218      84 2.5666667
+## 219      70 3.7000000
+## 220      73 4.2333333
+## 221      93 1.9333333
+## 222      50 4.3500000
+## 223      87 4.0000000
+## 224      77 4.0000000
+## 225      74 4.0000000
+## 226      72 4.2166667
+## 227      82 4.0000000
+## 228      74 4.1333333
+## 229      80 1.8833333
+## 230      49 4.4666667
+## 231      91 1.9500000
+## 232      53 4.2166667
+## 233      86 1.7166667
+## 234      49 4.4500000
+## 235      79 4.2500000
+## 236      89 3.9666667
+## 237      87 4.3833333
+## 238      76 1.9666667
+## 239      59 4.4500000
+## 240      80 4.2666667
+## 241      89 1.9166667
+## 242      45 4.4166667
+## 243      93 3.0000000
+## 244      72 4.0000000
+## 245      71 2.0000000
+## 246      54 4.0000000
+## 247      79 3.2833333
+## 248      74 1.8333333
+## 249      65 4.6166667
+## 250      78 1.8333333
+## 251      57 4.6166667
+## 252      87 4.6000000
+## 253      72 4.2500000
+## 254      84 1.9333333
+## 255      47 4.9833333
+## 256      84 1.9666667
+## 257      57 4.3000000
+## 258      87 4.2000000
+## 259      68 4.5333333
+## 260      86 4.4000000
+## 261      75 4.6166667
+## 262      73 2.0000000
+## 263      53 4.0000000
+## 264      82 4.0000000
+## 265      93 3.9166667
+## 266      77 2.0000000
+## 267      54 4.5000000
+## 268      96 1.8000000
+## 269      48 4.0000000
+## 270      89 2.7500000
+## 271      63 4.7333333
+## 272      84 3.9666667
+## 273      76 1.9500000
+## 274      62 4.9666667
+## 275      83 1.8500000
+## 276      50 4.8000000
+## 277      85 4.0000000
+## 278      78 4.0000000
+## 279      78 4.0000000
+## 280      81 4.0000000
+## 281      78 4.0000000
+## 282      76 4.0000000
+## 283      74 4.0000000
+## 284      81 2.0000000
+## 285      66 4.0000000
+## 286      84 1.9333333
+## 287      48 4.3333333
+## 288      93 1.6666667
+## 289      47 4.7666667
+## 290      87 1.9500000
+## 291      51 4.6833333
+## 292      78 1.9333333
+## 293      54 4.4166667
+## 294      87 2.1333333
+## 295      52 4.0833333
+## 296      85 2.0666667
+## 297      58 4.0000000
+## 298      88 4.0000000
+## 299      79 2.0000000</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> MASS<span class="op">::</span>geyser, <span class="kw">aes</span>(<span class="dt">x =</span> duration)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Duration of eruptions (m)&quot;</span>)</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-87-1.png" width="672" /> <strong>Step 1:</strong> Calculating the observed mean eruption duration time:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mean &lt;-<span class="st"> </span>MASS<span class="op">::</span>geyser <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(duration))
+mean</code></pre></div>
+<pre><code>##       mean
+## 1 3.460814</code></pre>
+<p><strong>Step 2:</strong> Construct bootstrap distribution</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Number of times I want to bootstrap
+nreps &lt;-<span class="st"> </span><span class="dv">1000</span>   
+## initialize empty array to hold results
+bootstrap_means &lt;-<span class="st"> </span><span class="kw">numeric</span>(nreps)
+<span class="kw">set.seed</span>(<span class="dv">1234</span>) ## *****Remove this line for actual analyses*****
+## This means that each run with produce the same results and
+## agree with the printout that I show.
+<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>nreps) {
+  ## bootstrap. note with replacement
+  bootstrap_sample &lt;-<span class="st"> </span><span class="kw">sample</span>(MASS<span class="op">::</span>geyser<span class="op">$</span>duration, <span class="dt">replace =</span> <span class="ot">TRUE</span>)
+  ##  bootstraped mean resample
+  bootstrap_means[i] &lt;-<span class="st"> </span><span class="kw">mean</span>(bootstrap_sample)
+}
+## results
+results &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">bootstrap_means =</span> bootstrap_means)
+<span class="kw">ggplot</span>(<span class="dt">data =</span> results, <span class="kw">aes</span>(<span class="dt">x =</span> bootstrap_means)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="kw">as.numeric</span>(mean)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Bootstrap distribution&quot;</span>)</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-89-1.png" width="672" /></p>
+<p><strong>Bootstrap estimate of bias</strong> is the difference between the mean of the boostrap distribution and the value of the statistic in the original sample:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">bias &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(mean) <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(results<span class="op">$</span>bootstrap_means)
+bias</code></pre></div>
+<pre><code>## [1] 0.001200111</code></pre>
+<p><strong>Bootstrap standard error of a statistic</strong> is the standard deviation of its bootstrap distribution:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sd</span>(results<span class="op">$</span>bootstrap_means)</code></pre></div>
+<pre><code>## [1] 0.06740607</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## compare to SEM of original data
+ MASS<span class="op">::</span>geyser <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">sem =</span> <span class="kw">sd</span>(duration)<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">length</span>(duration)))</code></pre></div>
+<pre><code>##          sem
+## 1 0.06638498</code></pre>
+<p><strong>Bootstrap <span class="math inline">\(t\)</span> confidence interval</strong>. If, for a sample of size <span class="math inline">\(n\)</span> the boostrap distribution is approximately Normal and the estimate of bias is small then an approximate <span class="math inline">\(C\)</span> confidence for the parameter corresponding to the statistic is: <span class="math display">\[\text{statistic} \pm t^* \text{SE}_\text{bootstrap}\]</span> where <span class="math inline">\(t*\)</span> is the critical value of the <span class="math inline">\(t_{n-1}\)</span> distribution with area <span class="math inline">\(C\)</span> between <span class="math inline">\(-t^*\)</span> and <span class="math inline">\(t^*\)</span>. For <span class="math inline">\(C = 0.95\)</span>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">as.numeric</span>(mean) <span class="op">+</span><span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>) <span class="op">*</span><span class="st"> </span><span class="kw">qt</span>(<span class="fl">0.975</span>,<span class="dv">298</span>)<span class="op">*</span><span class="kw">sd</span>(results<span class="op">$</span>bootstrap_means)</code></pre></div>
+<pre><code>## [1] 3.328162 3.593466</code></pre>
+<p>So our 95% confidence interval is 3.3 to 3.6.</p>
+<p><strong>Bootstrap <span class="math inline">\(percentile\)</span> confidence interval</strong>. Use the bootstrap distribution itself to determine the limits of the confidence interval by taking the limits of the sorted, central <span class="math inline">\(C\)</span> bulk of the distribution. For <span class="math inline">\(C = 0.95\)</span>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sort</span>(results<span class="op">$</span>bootstrap_means)[<span class="kw">c</span>(<span class="dv">25</span>,<span class="dv">975</span>)]</code></pre></div>
+<pre><code>## [1] 3.328428 3.591081</code></pre>
+</div>
+</div>
+<div id="differences-between-permutation-test-and-bootstrap-test" class="section level2">
+<h2><span class="header-section-number">11.5</span> Differences between permutation test and bootstrap test</h2>
+<ul>
+<li><p>The permutation test exploits symmetry under the null hypothesis.</p></li>
+<li><p>A full permutation test p-value is exact, conditional on data values in the combined sample.</p></li>
+<li><p>A bootstrap estimates the probability mechanism that generated the samples under the null hypothesis.</p></li>
+<li><p>A bootstrap does <strong>not</strong> require any special symmetry or assumption or exchangability.</p></li>
 </ul>
 
 </div>

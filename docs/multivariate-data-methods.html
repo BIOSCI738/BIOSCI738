@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="resampling-procedures.html"/>
-
+<link rel="next" href="dimension-reduction.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -256,7 +256,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="11.3.1" data-path="resampling-procedures.html"><a href="resampling-procedures.html#permutation-test-on-two-independent-samples"><i class="fa fa-check"></i><b>11.3.1</b> Permutation Test on Two Independent Samples</a></li>
 <li class="chapter" data-level="11.3.2" data-path="resampling-procedures.html"><a href="resampling-procedures.html#p-values-from-permutation-tests"><i class="fa fa-check"></i><b>11.3.2</b> P-values from permutation tests</a></li>
 </ul></li>
-<li class="chapter" data-level="11.4" data-path="resampling-procedures.html"><a href="resampling-procedures.html#the-bootstrap"><i class="fa fa-check"></i><b>11.4</b> The bootstrap</a></li>
+<li class="chapter" data-level="11.4" data-path="resampling-procedures.html"><a href="resampling-procedures.html#the-bootstrap"><i class="fa fa-check"></i><b>11.4</b> The bootstrap</a><ul>
+<li class="chapter" data-level="11.4.1" data-path="resampling-procedures.html"><a href="resampling-procedures.html#example-constructing-bootstrap-confidence-intervals"><i class="fa fa-check"></i><b>11.4.1</b> Example: constructing bootstrap confidence intervals</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="resampling-procedures.html"><a href="resampling-procedures.html#differences-between-permutation-test-and-bootstrap-test"><i class="fa fa-check"></i><b>11.5</b> Differences between permutation test and bootstrap test</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="multivariate-data-methods.html"><a href="multivariate-data-methods.html"><i class="fa fa-check"></i><b>12</b> Multivariate Data Methods</a><ul>
 <li class="chapter" data-level="12.1" data-path="multivariate-data-methods.html"><a href="multivariate-data-methods.html#learning-objectives-11"><i class="fa fa-check"></i><b>12.1</b> Learning Objectives</a></li>
@@ -268,6 +271,19 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="12.3" data-path="multivariate-data-methods.html"><a href="multivariate-data-methods.html#tldr-k-means-clustering"><i class="fa fa-check"></i><b>12.3</b> TL;DR k-means clustering</a></li>
 <li class="chapter" data-level="12.4" data-path="multivariate-data-methods.html"><a href="multivariate-data-methods.html#other-resources-optional-but-recommended-1"><i class="fa fa-check"></i><b>12.4</b> Other resources: optional but recommended</a><ul>
 <li class="chapter" data-level="12.4.1" data-path="multivariate-data-methods.html"><a href="multivariate-data-methods.html#multidimensional-scaling-in-r-not-examinable"><i class="fa fa-check"></i><b>12.4.1</b> Multidimensional Scaling in <code>R</code> (<em>not examinable</em>)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="dimension-reduction.html"><a href="dimension-reduction.html"><i class="fa fa-check"></i><b>13</b> Dimension reduction</a><ul>
+<li class="chapter" data-level="13.1" data-path="dimension-reduction.html"><a href="dimension-reduction.html#learning-objectives-12"><i class="fa fa-check"></i><b>13.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="13.2" data-path="dimension-reduction.html"><a href="dimension-reduction.html#dimension-reduction-1"><i class="fa fa-check"></i><b>13.2</b> Dimension reduction</a></li>
+<li class="chapter" data-level="13.3" data-path="dimension-reduction.html"><a href="dimension-reduction.html#pca-in-r"><i class="fa fa-check"></i><b>13.3</b> PCA in <code>R</code></a><ul>
+<li class="chapter" data-level="13.3.1" data-path="dimension-reduction.html"><a href="dimension-reduction.html#using-the-palmerpenguins-data"><i class="fa fa-check"></i><b>13.3.1</b> Using the <code>palmerpenguins</code> data</a></li>
+<li class="chapter" data-level="13.3.2" data-path="dimension-reduction.html"><a href="dimension-reduction.html#athletes"><i class="fa fa-check"></i><b>13.3.2</b> Athletes</a></li>
+<li class="chapter" data-level="13.3.3" data-path="dimension-reduction.html"><a href="dimension-reduction.html#ants-from-previous-chapter"><i class="fa fa-check"></i><b>13.3.3</b> Ants (from previous chapter)</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="dimension-reduction.html"><a href="dimension-reduction.html#reality-check-reducing-noise..."><i class="fa fa-check"></i><b>13.4</b> Reality check: reducing noise...</a></li>
+<li class="chapter" data-level="13.5" data-path="dimension-reduction.html"><a href="dimension-reduction.html#other-resources-optional-but-recommended-2"><i class="fa fa-check"></i><b>13.5</b> Other resources: optional but recommended</a><ul>
+<li class="chapter" data-level="13.5.1" data-path="dimension-reduction.html"><a href="dimension-reduction.html#multidimensional-scaling-in-r"><i class="fa fa-check"></i><b>13.5.1</b> Multidimensional Scaling in <code>R</code></a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -454,7 +470,7 @@ ants &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class=
 <p>Data are species counts, so we will use Bray Curtis measure:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pitfall.dist &lt;-<span class="st"> </span>vegan<span class="op">::</span><span class="kw">vegdist</span>(ants[,<span class="dv">5</span><span class="op">:</span><span class="dv">8</span>], <span class="dt">method =</span> <span class="st">&quot;bray&quot;</span>, <span class="dt">binary =</span> <span class="ot">FALSE</span>)
 factoextra<span class="op">::</span><span class="kw">fviz_dist</span>(pitfall.dist)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-89-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-96-1.png" width="672" /></p>
 <p>Computing 4 dendrograms</p>
 <ul>
 <li>Single-linkage</li>
@@ -463,7 +479,7 @@ factoextra<span class="op">::</span><span class="kw">fviz_dist</span>(pitfall.di
 <span class="st">  </span>vegan<span class="op">::</span><span class="kw">vegdist</span>(., <span class="dt">method =</span> <span class="st">&quot;bray&quot;</span>, <span class="dt">binary =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">hclust</span>(<span class="dt">method =</span> <span class="st">&quot;single&quot;</span>)
 <span class="kw">plot</span>(single, <span class="dt">labels =</span> ants<span class="op">$</span>Site)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-90-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-97-1.png" width="672" /></p>
 <ul>
 <li>Maximum linkage</li>
 </ul>
@@ -471,7 +487,7 @@ factoextra<span class="op">::</span><span class="kw">fviz_dist</span>(pitfall.di
 <span class="st">  </span>vegan<span class="op">::</span><span class="kw">vegdist</span>(., <span class="dt">method =</span> <span class="st">&quot;bray&quot;</span>, <span class="dt">binary =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">hclust</span>(<span class="dt">method =</span> <span class="st">&quot;complete&quot;</span>)
 <span class="kw">plot</span>(complete, <span class="dt">labels =</span> ants<span class="op">$</span>Site)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-91-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-98-1.png" width="672" /></p>
 <ul>
 <li>Average linkage (UPGMA)</li>
 </ul>
@@ -479,7 +495,7 @@ factoextra<span class="op">::</span><span class="kw">fviz_dist</span>(pitfall.di
 <span class="st">  </span>vegan<span class="op">::</span><span class="kw">vegdist</span>(., <span class="dt">method =</span> <span class="st">&quot;bray&quot;</span>, <span class="dt">binary =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">hclust</span>(<span class="dt">method =</span> <span class="st">&quot;average&quot;</span>)
 <span class="kw">plot</span>(average, <span class="dt">labels =</span> ants<span class="op">$</span>Site)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-92-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-99-1.png" width="672" /></p>
 <ul>
 <li>Ward’s</li>
 </ul>
@@ -487,7 +503,7 @@ factoextra<span class="op">::</span><span class="kw">fviz_dist</span>(pitfall.di
 <span class="st">  </span>vegan<span class="op">::</span><span class="kw">vegdist</span>(., <span class="dt">method =</span> <span class="st">&quot;bray&quot;</span>, <span class="dt">binary =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">hclust</span>(<span class="dt">method =</span> <span class="st">&quot;ward.D&quot;</span>)
 <span class="kw">plot</span>(ward, <span class="dt">labels =</span> ants<span class="op">$</span>Site)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-93-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-100-1.png" width="672" /></p>
 <p><strong>WHAT ARE DENDROGRAMS GOOD FOR?</strong> Suggesting clusters for further study...</p>
 <p>Using the function <code>cutree()</code> to split into clusters and plot:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ants<span class="op">$</span>clust4 &lt;-<span class="st"> </span><span class="kw">cutree</span>(ward, <span class="dt">k =</span> <span class="dv">4</span>)
@@ -497,7 +513,7 @@ pitfall.phylo<span class="op">$</span>tip.label &lt;-<span class="st"> </span>an
 ## Set colours 
 colours  &lt;-<span class="st">  </span><span class="kw">c</span>(<span class="st">&quot;red&quot;</span>,<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;green&quot;</span>,<span class="st">&quot;black&quot;</span>)
 <span class="kw">plot</span>(pitfall.phylo, <span class="dt">cex =</span> <span class="fl">0.6</span>, <span class="dt">tip.color =</span> colours[ants<span class="op">$</span>clust4], <span class="dt">label.offset =</span> <span class="fl">0.05</span>) </code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-94-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-101-1.png" width="672" /></p>
 </div>
 <div id="k-means-using-the-palmerpenguins-data" class="section level3">
 <h3><span class="header-section-number">12.2.3</span> k-means using the <code>palmerpenguins</code> data</h3>
@@ -511,7 +527,7 @@ penguins_nafree <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">select</span>(species, <span class="kw">where</span>(is.numeric)) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">ggpairs</span>(<span class="dt">columns =</span> <span class="kw">c</span>(<span class="st">&quot;flipper_length_mm&quot;</span>, <span class="st">&quot;body_mass_g&quot;</span>, 
                      <span class="st">&quot;bill_length_mm&quot;</span>, <span class="st">&quot;bill_depth_mm&quot;</span>)) </code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-96-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-103-1.png" width="672" /></p>
 <p>We see that a lot of these variables (e.g., <code>flipper_length_mm</code>, <code>body_mass_g</code>, and <code>bill_length_mm</code>) are relatively strongly (positively) related to one another. Could they actually be telling us the same information? Combined we could think of these three variables all telling us a little about <em>bigness</em> of penguin. Is there a way we could reduce these three variables, into say 1, to represent the <em>bigness</em> of a penguin. We may not need <em>all</em> the information (variation) captured by these variables, but could get away with fewer <em>new uncorrelated</em> variables that represent basically the same information (e.g., penguin <em>bigness</em>), thereby, <strong>reducing the dimensionality of the data</strong> (more on this later).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## create a data frame of what we&#39;re interested in
 df &lt;-<span class="st"> </span>penguins_nafree <span class="op">%&gt;%</span>
@@ -554,44 +570,44 @@ p5 &lt;-<span class="st"> </span><span class="kw">fviz_cluster</span>(k5, <span 
 ## for arranging plots
 <span class="kw">library</span>(patchwork) 
 (p1<span class="op">|</span><span class="st"> </span>p2<span class="op">|</span><span class="st"> </span>p3)<span class="op">/</span><span class="st"> </span>(p4 <span class="op">|</span><span class="st"> </span>p5)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-99-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-106-1.png" width="672" /></p>
 <p>Alternatively, you can use standard pairwise scatter plots to illustrate the clusters compared to the original variables.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">cluster =</span> k3<span class="op">$</span>cluster,
          <span class="dt">species =</span> penguins_nafree<span class="op">$</span>species) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(flipper_length_mm, bill_depth_mm, <span class="dt">color =</span> <span class="kw">factor</span>(cluster), <span class="dt">label =</span> species)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_text</span>()</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-100-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-107-1.png" width="672" /></p>
 <p><strong>Elbow</strong> method</p>
 <p>Optimal clusters are at the point in which the knee &quot;bends&quot; or in mathematical terms when the marginal total within sum of squares (<code>tot.withinss</code>) for an additional cluster begins to decrease at a linear rate</p>
 <p>This is easier to see via a plot:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fviz_nbclust</span>(df, kmeans, <span class="dt">method =</span> <span class="st">&quot;wss&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">subtitle =</span> <span class="st">&quot;Elbow method&quot;</span>)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-101-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-108-1.png" width="672" /></p>
 <p>There is a pretty obvious inflection (elbow) at 2 clusters, but maybe at 3 too. We can rule out an optimal number of clusters above 3 as there is then only a minimal marginal reduction in total within sum of squares. However, the model is ambiguous on whether 2 or 3 clusters is optimal...</p>
 <p><strong>Silhouette</strong> method</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Silhouette method</span>
 <span class="kw">fviz_nbclust</span>(df, kmeans, <span class="dt">method =</span> <span class="st">&quot;silhouette&quot;</span>)<span class="op">+</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">subtitle =</span> <span class="st">&quot;Silhouette method&quot;</span>)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-102-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-109-1.png" width="672" /></p>
 <p><strong>Gap</strong> method</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Gap statistic</span>
 <span class="co"># recommended value: nboot = 500 for your analysis (it will take a while)</span>
 <span class="kw">set.seed</span>(<span class="dv">123</span>) ## remove this
 <span class="kw">fviz_nbclust</span>(df, kmeans, <span class="dt">nstart =</span> <span class="dv">25</span>,  <span class="dt">method =</span> <span class="st">&quot;gap_stat&quot;</span>, <span class="dt">nboot =</span> <span class="dv">50</span>)<span class="op">+</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">subtitle =</span> <span class="st">&quot;Gap statistic method&quot;</span>)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-103-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-110-1.png" width="672" /></p>
 <p><strong>Basically it's up to you to collate all the suggestions and make and informed decision</strong></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Trying all the cluster indecies AHHHHH
 <span class="kw">library</span>(NbClust)
 cluster_<span class="dv">30</span>_indexes &lt;-<span class="st"> </span><span class="kw">NbClust</span>(<span class="dt">data =</span> df, <span class="dt">distance =</span> <span class="st">&quot;euclidean&quot;</span>, <span class="dt">min.nc =</span> <span class="dv">2</span>, <span class="dt">max.nc =</span> <span class="dv">9</span>, <span class="dt">method =</span> <span class="st">&quot;complete&quot;</span>, <span class="dt">index =</span><span class="st">&quot;all&quot;</span>)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-104-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-111-1.png" width="672" /></p>
 <pre><code>## *** : The Hubert index is a graphical method of determining the number of clusters.
 ##                 In the plot of Hubert index, we seek a significant knee that corresponds to a 
 ##                 significant increase of the value of the measure i.e the significant peak in Hubert
 ##                 index second differences plot. 
 ## </code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-104-2.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-111-2.png" width="672" /></p>
 <pre><code>## *** : The D index is a graphical method of determining the number of clusters. 
 ##                 In the plot of D index, we seek a significant knee (the significant peak in Dindex
 ##                 second differences plot) that corresponds to a significant increase of the value of
@@ -630,7 +646,7 @@ cluster_<span class="dv">30</span>_indexes &lt;-<span class="st"> </span><span c
 ## Conclusion
 ## =========================
 ## * According to the majority rule, the best number of clusters is  3 .</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-104-3.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-111-3.png" width="672" /></p>
 <p>Not obvious, basically still undecided between 2 and 3, but according to the absolute majority rule the &quot;best&quot; number is 3</p>
 </div>
 </div>
@@ -659,13 +675,13 @@ cluster_<span class="dv">30</span>_indexes &lt;-<span class="st"> </span><span c
 ## stats::cmdscale performs Classical MDS
 <span class="kw">data</span>(<span class="st">&quot;eurodist&quot;</span>) ## road distances (in km) between 21 cities in Europe.
 <span class="kw">autoplot</span>(eurodist)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-105-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-112-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Plotting Classical (Metric) Multidimensional Scaling
 <span class="kw">autoplot</span>(<span class="kw">cmdscale</span>(eurodist, <span class="dt">eig =</span> <span class="ot">TRUE</span>))</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-105-2.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-112-2.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">autoplot</span>(<span class="kw">cmdscale</span>(eurodist, <span class="dt">eig =</span> <span class="ot">TRUE</span>), <span class="dt">label =</span> <span class="ot">TRUE</span>, <span class="dt">shape =</span> <span class="ot">FALSE</span>,
          <span class="dt">label.size =</span> <span class="dv">3</span>)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-105-3.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-112-3.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Plotting Non-metric Multidimensional Scaling
 ## MASS::isoMDS and MASS::sammon perform Non-metric MDS
 <span class="kw">library</span>(MASS)
@@ -673,30 +689,24 @@ cluster_<span class="dv">30</span>_indexes &lt;-<span class="st"> </span><span c
 <pre><code>## Initial stress        : 0.01705
 ## stress after  10 iters: 0.00951, magic = 0.500
 ## stress after  20 iters: 0.00941, magic = 0.500</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-105-4.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-112-4.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">autoplot</span>(<span class="kw">sammon</span>(eurodist), <span class="dt">shape =</span> <span class="ot">FALSE</span>, <span class="dt">label =</span> <span class="ot">TRUE</span>,<span class="dt">label.size =</span> <span class="dv">3</span>)</code></pre></div>
 <pre><code>## Initial stress        : 0.01705
 ## stress after  10 iters: 0.00951, magic = 0.500
 ## stress after  20 iters: 0.00941, magic = 0.500</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-105-5.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-112-5.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Have a go at interpreting these plots based on the geography of the cities :-)</code></pre></div>
 
 </div>
 </div>
 </div>
-
-
-
-
-
-
             </section>
 
           </div>
         </div>
       </div>
-<a href="resampling-procedures.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="resampling-procedures.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="dimension-reduction.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
