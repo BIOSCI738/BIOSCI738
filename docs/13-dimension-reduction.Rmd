@@ -317,26 +317,3 @@ fviz_screeplot(pca, choice = "eigenvalue") +
 + [The Mathematics Behind Principal Component Analysis (6 min read)](https://towardsdatascience.com/the-mathematics-behind-principal-component-analysis-fff2d7f4b643)
 
 
-### Multidimensional Scaling in `R` 
-
-Multidimensional scaling (MDS) is actually the more general technique of dimension reduction. PCA is a special case of MDS! 
-
-To carry out MDS in `R`
-
-```{r,eval = TRUE}
-library(ggfortify)
-## Plotting Multidimensional Scaling (for interest)
-## stats::cmdscale performs Classical MDS
-data("eurodist") ## road distances (in km) between 21 cities in Europe.
-autoplot(eurodist)
-## Plotting Classical (Metric) Multidimensional Scaling
-autoplot(cmdscale(eurodist, eig = TRUE))
-autoplot(cmdscale(eurodist, eig = TRUE), label = TRUE, shape = FALSE,
-         label.size = 3)
-## Plotting Non-metric Multidimensional Scaling
-## MASS::isoMDS and MASS::sammon perform Non-metric MDS
-library(MASS)
-autoplot(sammon(eurodist))
-autoplot(sammon(eurodist), shape = FALSE, label = TRUE,label.size = 3)
-## Have a go at interpreting these plots based on the geography of the cities :-)
-```
