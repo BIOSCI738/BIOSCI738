@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>6 Multiple comparisons | bluebook BIOSCI738</title>
-  <meta name="description" content="6 Multiple comparisons | bluebook BIOSCI738" />
+  <title>14 Ordination | bluebook BIOSCI738</title>
+  <meta name="description" content="14 Ordination | bluebook BIOSCI738" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="6 Multiple comparisons | bluebook BIOSCI738" />
+  <meta property="og:title" content="14 Ordination | bluebook BIOSCI738" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="6 Multiple comparisons | bluebook BIOSCI738" />
+  <meta name="twitter:title" content="14 Ordination | bluebook BIOSCI738" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="a-completely-randomomised-design.html"/>
-<link rel="next" href="factorial-experiments.html"/>
+<link rel="prev" href="dimension-reduction.html"/>
+<link rel="next" href="linear-discriminant-analysis-lda.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -317,145 +317,287 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="multiple-comparisons" class="section level1">
-<h1><span class="header-section-number">6</span> Multiple comparisons</h1>
-<div id="learning-objectives-5" class="section level2">
-<h2><span class="header-section-number">6.1</span> Learning objectives</h2>
+<div id="ordination" class="section level1">
+<h1><span class="header-section-number">14</span> Ordination</h1>
+<div id="multidimensional-scaling-mds-aka-principal-coordinate-analysis-pco" class="section level2">
+<h2><span class="header-section-number">14.1</span> Multidimensional Scaling (MDS), AKA <em>Principal Coordinate Analysis (PCO)</em></h2>
+<p>Consider data which are not represented as points in a feature space:</p>
 <ul>
-<li><strong>Discuss</strong> and <strong>critique</strong> methods for controlling errors in hypothesis testing, for example Fisher’s LSD and the Bonferroni Correction</li>
-<li><strong>Detail</strong> and <strong>draw</strong> inference form multiple comparison procedures such as Tukey’s HSD and Dunnett's test</li>
-<li><strong>Describe</strong> the family wise error rate (FWER) and false discover rate (FDR) in the context of multiple comparisons</li>
-<li><strong>Calculate</strong> the marginal means for a balanced and unbalanced design</li>
-<li><strong>Communicate</strong> statistical concepts and experimental outcomes clearly using language appropriate for both a <strong>scientific</strong> and <strong>non-scientific</strong> audience</li>
+<li>Where we are only provided with (dis)similarity matrices between objects (e.g., chemical compounds, images, trees, or other complex objects)</li>
+<li>Where there are no obvious coordinates in (continuous) n-dimensional space .</li>
 </ul>
-</div>
-<div id="adjustments-for-multiple-testing" class="section level2">
-<h2><span class="header-section-number">6.2</span> Adjustments for multiple testing</h2>
-<p>Recall that <strong>each</strong> time we carry out a hypothesis test the probability we get a false positive result (type I error) is given by <span class="math inline">\(\alpha\)</span> (the <em>level of significance</em> we choose).</p>
-<p>When we have <strong>multiple comparisons</strong> to make we should then control the <strong>Type I</strong> error rate across the entire <em>family</em> of tests under consideration, i.e., control the Family-Wise Error Rate (FWER); this ensures that the risk of making at least one <strong>Type I</strong> error among the family of comparisons in the experiment is <span class="math inline">\(\alpha\)</span>.</p>
-<table>
-<thead>
-<tr class="header">
-<th>State of Nature</th>
-<th>Don't reject <span class="math inline">\(H_0\)</span></th>
-<th>reject <span class="math inline">\(H_0\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><span class="math inline">\(H_0\)</span> is true</td>
-<td>✅</td>
-<td>Type I error</td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(H_0\)</span> is false</td>
-<td>Type II error</td>
-<td>✅</td>
-</tr>
-</tbody>
-</table>
-<p>or...</p>
-<div class="figure">
-<img src="https://miro.medium.com/max/924/0*8P474MYDyFZZBdVQ.png" />
-
-</div>
-<p>The <strong>familywise error rate (FWER)</strong> is the risk of making at least one <strong>Type I</strong> error among the family of comparisons in the experiment. Now let's consider carrying out <span class="math inline">\(m\)</span> independent t-tests and let for any single test, let Pr(commit a Type 1 error) <span class="math inline">\(= \alpha_c\)</span> be the <strong>per comparison error rate (PCER)</strong>. So for a single test the probability a correct decision is made is <span class="math inline">\(1 - \alpha_c\)</span>. Therefore for <span class="math inline">\(m\)</span> <strong>independent</strong> t-tests the probability of committing no Type I errors is <span class="math inline">\((1 - \alpha_c)^m\)</span> and the probability of committing at least one Type I error is <span class="math inline">\(1 -(1 - \alpha_c)^m = \alpha_F\)</span> which is the upper limit of the FWER.</p>
-<p><img src="_main_files/figure-html/alp-1.png" width="672" /></p>
-<div id="classification-of-multiple-hypothesis-tests" class="section level3">
-<h3><span class="header-section-number">6.2.1</span> Classification of multiple hypothesis tests</h3>
-<p>Suppose we have a number <span class="math inline">\(m\)</span> of null hypotheses, <span class="math inline">\(H_1, H_2, ..., H_m\)</span>. Using the traditional parlence we reject the null hypothesis if the test is declared significant and do not reject the null hypothesis if the test is non-significant. Now, summing each type of outcome over all <span class="math inline">\(H_i (i = 1.,..,m)\)</span> yields the following random variables:</p>
-<table>
-<thead>
-<tr class="header">
-<th></th>
-<th>Null hypothesis is true (H0)</th>
-<th>Alternative hypothesis is true (HA)</th>
-<th>Total</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Test is declared significant</td>
-<td>V</td>
-<td>S</td>
-<td>R</td>
-</tr>
-<tr class="even">
-<td>Test is declared non-significant</td>
-<td>U</td>
-<td>T</td>
-<td>m - R</td>
-</tr>
-<tr class="odd">
-<td>Total</td>
-<td><span class="math inline">\(m_{0}\)</span></td>
-<td><span class="math inline">\(m - m_0\)</span></td>
-<td>m</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li><span class="math inline">\(m\)</span> is the total number hypotheses tested</li>
-<li><span class="math inline">\(m_{0}\)</span> is the number of true null hypotheses, an unknown parameter</li>
-<li><span class="math inline">\(m - m_0\)</span> is the number of true alternative hypotheses</li>
-<li><span class="math inline">\(V\)</span> is the number of false positives (<strong>Type I error</strong>) (also called <em>false discoveries</em>)</li>
-<li><span class="math inline">\(S\)</span> is the number of true positives (also called <em>true discoveries</em>)</li>
-<li><span class="math inline">\(T\)</span> is the number of false negatives (<strong>Type II error</strong>)</li>
-<li><span class="math inline">\(U\)</span> is the number of true negatives</li>
-<li><span class="math inline">\(R=V+S\)</span> is the number of rejected null hypotheses (also called <em>discoveries</em>, either true or false)</li>
-</ul>
-</div>
-<div id="using-the-predictmeans-package" class="section level3">
-<h3><span class="header-section-number">6.2.2</span> Using the <code>predictmeans</code> package</h3>
-<p>Recall,</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rats_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC <span class="op">~</span><span class="st"> </span>Surgery, <span class="dt">data =</span> rats)
-<span class="kw">coef</span>(rats_lm)</code></pre></div>
-<pre><code>## (Intercept)    SurgeryP    SurgeryS 
-##      8.4600      0.4900      3.0875</code></pre>
-<p><span class="math display">\[
-\begin{aligned}
-\operatorname{logAUC} &amp;= \alpha + \beta_{1}(\operatorname{Surgery}_{\operatorname{P}}) + \beta_{2}(\operatorname{Surgery}_{\operatorname{S}}) + \epsilon
-\end{aligned}
-\]</span></p>
-<p>Using the <code>predictmeans</code> package</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Load predictmeans (assumes already installed)</span>
-<span class="kw">library</span>(predictmeans)</code></pre></div>
-<ul>
-<li><strong>Fisher’s, Least Significant Difference (LSD)</strong></li>
-</ul>
-<p>Carry out post-hoc tests only if the ANOVA F-test is <em>significant</em>. If so declare significant <span class="math inline">\(100\alpha\%\)</span> any pairwise difference &gt; LSD. This does <strong>not</strong> control the FWER.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tukey &lt;-<span class="st"> </span><span class="kw">predictmeans</span>(rats_lm , <span class="dt">modelterm =</span> <span class="st">&quot;Surgery&quot;</span>, <span class="dt">adj =</span> <span class="st">&quot;tukey&quot;</span>,<span class="dt">pairwise =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<ul>
-<li><strong>Bonferroni correction</strong></li>
-</ul>
-<p>We reject the <span class="math inline">\(H_0\)</span> for which the p-value, <em>p-val</em>, is <em>p-val</em> <span class="math inline">\(&lt; \alpha_c = \frac{\alpha_f}{n_c}\)</span> where <span class="math inline">\(\alpha_f\)</span> is the FWER and <span class="math inline">\(n_c\)</span> is the number of pairwise comparisons. Howerer, this makes <strong>no</strong> assumptions about independence between tests.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">bonferroni &lt;-<span class="st"> </span><span class="kw">predictmeans</span>(rats_lm , <span class="dt">modelterm =</span> <span class="st">&quot;Surgery&quot;</span>, <span class="dt">adj =</span> <span class="st">&quot;bonferroni&quot;</span>,<span class="dt">pairwise =</span> <span class="ot">TRUE</span>)</code></pre></div>
-</div>
-<div id="multiple-comparison-procedures" class="section level3">
-<h3><span class="header-section-number">6.2.3</span> Multiple comparison procedures</h3>
-<ul>
-<li><strong>Tukey’s Honest Significant Difference (HSD)</strong></li>
-</ul>
-<p>This compares the mean of every treatment with the mean of every other treatmen and uses a <em>studentized range</em> distribution compated with a t-distribution for Fisher's LSD and the Bonferroni correction.</p>
-<p>Here Tukey's <em>studentixed range</em> (TSR) <span class="math inline">\(=q_{m,df}(1 - \frac{\alpha}{2})\sqrt{2\times \frac{\text{residual MS}}{\text{# reps}}}\)</span></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">TukeyHSD</span>(<span class="kw">aov</span>(logAUC<span class="op">~</span>Surgery, <span class="dt">data =</span> rats))</code></pre></div>
-<pre><code>##   Tukey multiple comparisons of means
-##     95% family-wise confidence level
+<div id="examples-in-r" class="section level3">
+<h3><span class="header-section-number">14.1.1</span> Examples in <code>R</code></h3>
+<p><strong>Distances (in km) between North Island cities</strong></p>
+<p>File <code>north_island_distances.csv</code> can be found on CANVAS</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+ni &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;north_islands_distances.csv&quot;</span>)[<span class="dv">1</span>,<span class="op">-</span>]</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(pheatmap)
+<span class="kw">pheatmap</span>(ni, <span class="dt">cluster_rows =</span> <span class="ot">TRUE</span>,
+         <span class="dt">treeheight_row =</span> <span class="dv">2</span>, <span class="dt">treeheight_col =</span> <span class="dv">2</span>,
+         <span class="dt">fontsize_row =</span> <span class="dv">12</span>, <span class="dt">fontsize_col =</span> <span class="dv">12</span>,
+         <span class="dt">cellwidth =</span> <span class="dv">26</span>, <span class="dt">cellheight =</span> <span class="dv">26</span>)</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-142-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mds &lt;-<span class="st"> </span><span class="kw">cmdscale</span>(ni, <span class="dt">eig =</span> <span class="ot">TRUE</span>)
+mds</code></pre></div>
+<pre><code>## $points
+##             [,1]       [,2]
+##  [1,]  259.23245   67.43013
+##  [2,] -107.54173 -285.70950
+##  [3,]  129.07943   42.71295
+##  [4,] -173.12950  -25.15974
+##  [5,] -150.83765  -34.70680
+##  [6,]   37.39858  -18.39760
+##  [7,]  118.78535  -85.88683
+##  [8,] -192.73988  181.50600
+##  [9,] -385.83172  167.76477
+## [10,]   49.93256 -140.17112
+## [11,]  415.65212  130.61774
 ## 
-## Fit: aov(formula = logAUC ~ Surgery, data = rats)
+## $eig
+##  [1]  5.249373e+05  1.953521e+05  4.217767e+04  1.872276e+04  1.222717e+03
+##  [6]  2.910383e-11 -1.399691e+02 -4.733140e+02 -1.103819e+04 -1.883151e+04
+## [11] -2.462990e+04
 ## 
-## $Surgery
-##       diff        lwr      upr     p adj
-## P-C 0.4900 -1.1298813 2.109881 0.6863267
-## S-C 3.0875  1.4676187 4.707381 0.0012479
-## S-P 2.5975  0.9776187 4.217381 0.0039400</code></pre>
+## $x
+## NULL
+## 
+## $ac
+## [1] 0
+## 
+## $GOF
+## [1] 0.8600209 0.9206005</code></pre>
+<p><strong>Eckmans colour perception (1954)</strong></p>
+<p>Data may from objects for which we have similarities but no underlying (geometric) space. Here the goal is to understand the underlying dimensionality of colour perception.</p>
 <ul>
-<li><strong>False Discovert Rate (FDR)</strong></li>
+<li>Similarities for 14 colours, with wavelengths from 434 to 674nm based on rating by 31 subjects</li>
+<li>Each pair of colours was rated on a 5-point scale:
+<ul>
+<li>0 = no similarity up to 4 = identical.</li>
+</ul></li>
+<li>After averaging over 31 raters the similarities were divided by 4 such that they are within the unit interval.</li>
 </ul>
-<p>The FDR controls the expected (mean) proportion of false discoveries amongst the <span class="math inline">\(R\)</span> (out of <span class="math inline">\(m\)</span>) hypotheses declared significant.</p>
-<p>Consider testing <span class="math inline">\(m\)</span> null hypotheses with corresponding p-values <span class="math inline">\(P_1, P_2,...,P_m\)</span>; we then order then so that <span class="math inline">\(P_{(1)} &lt; P_{(2)} &lt;...&lt;P_{(m)}\)</span> (where <span class="math inline">\(P_{(i)}\)</span> is the <span class="math inline">\(i^{th}\)</span> largest <span class="math inline">\(i=1,...,m\)</span>). The <span class="math inline">\(i^{th}\)</span> ordered p-value is calculated as <span class="math inline">\(\frac{i}{m}q^*\)</span> and the <span class="math inline">\(i^{th}\)</span> null hypotesis is rejected if <span class="math inline">\(P_i \leq \frac{i}{m}q^*\)</span></p>
-
+<p>Data available on CANVAS</p>
+<pre><code>##     w4 34.w4 45.w4 65.w4 72.w4
+## 1 0.00  0.14  0.58  0.58  0.82
+## 2 0.14  0.00  0.50  0.56  0.78
+## 3 0.58  0.50  0.00  0.19  0.53
+## 4 0.58  0.56  0.19  0.00  0.46
+## 5 0.82  0.78  0.53  0.46  0.00</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+ekman &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;ekman.csv&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ekman.mds &lt;-<span class="st"> </span><span class="kw">cmdscale</span>(ekman, <span class="dt">eig =</span> <span class="ot">TRUE</span>)
+ekman.mds</code></pre></div>
+<pre><code>## $points
+##             [,1]        [,2]
+##  [1,] -0.2137161 -0.41852576
+##  [2,] -0.2562012 -0.41065436
+##  [3,] -0.4119890 -0.30925977
+##  [4,] -0.4369586 -0.27266935
+##  [5,] -0.4388604  0.07518594
+##  [6,] -0.3364868  0.37262279
+##  [7,] -0.2429950  0.47735969
+##  [8,] -0.1893125  0.48826989
+##  [9,]  0.2418131  0.29739050
+## [10,]  0.4016882  0.15279550
+## [11,]  0.4986351 -0.02861306
+## [12,]  0.4956801 -0.10485148
+## [13,]  0.4582372 -0.14801944
+## [14,]  0.4304660 -0.17103108
+## 
+## $eig
+##  [1]  1.982134e+00  1.299333e+00  4.409240e-01  3.739315e-01  1.584615e-01
+##  [6]  1.030075e-01  4.151723e-02  3.166641e-02  1.846570e-02  4.165058e-03
+## [11]  1.345088e-03  2.151057e-16 -2.673286e-02 -4.743236e-02
+## 
+## $x
+## NULL
+## 
+## $ac
+## [1] 0
+## 
+## $GOF
+## [1] 0.7245270 0.7365888</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">round</span>(ekman.mds<span class="op">$</span>eig,<span class="dv">2</span>)</code></pre></div>
+<pre><code>##  [1]  1.98  1.30  0.44  0.37  0.16  0.10  0.04  0.03  0.02  0.00  0.00  0.00
+## [13] -0.03 -0.05</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">autoplot</span>(ekman.mds)</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-146-1.png" width="672" /></p>
+<p><strong>Distances (in km) between 21 cities in Europe</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggfortify)
+## Plotting Multidimensional Scaling (for interest)
+## stats::cmdscale performs Classical MDS
+<span class="kw">data</span>(<span class="st">&quot;eurodist&quot;</span>) ## road distances (in km) between 21 cities in Europe.
+<span class="kw">autoplot</span>(eurodist)</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-147-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Plotting Classical (Metric) Multidimensional Scaling
+<span class="kw">autoplot</span>(<span class="kw">cmdscale</span>(eurodist, <span class="dt">eig =</span> <span class="ot">TRUE</span>))</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-147-2.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">autoplot</span>(<span class="kw">cmdscale</span>(eurodist, <span class="dt">eig =</span> <span class="ot">TRUE</span>), <span class="dt">label =</span> <span class="ot">TRUE</span>, <span class="dt">shape =</span> <span class="ot">FALSE</span>,
+         <span class="dt">label.size =</span> <span class="dv">3</span>)</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-147-3.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Plotting Non-metric Multidimensional Scaling
+## MASS::isoMDS and MASS::sammon perform Non-metric MDS
+<span class="kw">library</span>(MASS)
+<span class="kw">autoplot</span>(<span class="kw">sammon</span>(eurodist))</code></pre></div>
+<pre><code>## Initial stress        : 0.01705
+## stress after  10 iters: 0.00951, magic = 0.500
+## stress after  20 iters: 0.00941, magic = 0.500</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-147-4.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">autoplot</span>(<span class="kw">sammon</span>(eurodist), <span class="dt">shape =</span> <span class="ot">FALSE</span>, <span class="dt">label =</span> <span class="ot">TRUE</span>,<span class="dt">label.size =</span> <span class="dv">3</span>)</code></pre></div>
+<pre><code>## Initial stress        : 0.01705
+## stress after  10 iters: 0.00951, magic = 0.500
+## stress after  20 iters: 0.00941, magic = 0.500</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-147-5.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Have a go at interpreting these plots based on the geography of the cities :-)</code></pre></div>
 </div>
+</div>
+<div id="non-metric-multidimensional-scaling" class="section level2">
+<h2><span class="header-section-number">14.2</span> Non-metric Multidimensional Scaling</h2>
+<p>Multidimensional scaling aims to minimize the difference between the squared distances <span class="math inline">\(D^2\)</span> from the distance matrix <span class="math inline">\(D\)</span>, and the squared distances between the points with their new coordinates. Unfortunately, this objective tends to be sensitive to outliers: one single data point with large distances to everyone else can dominate, and thus skew, the whole analysis.</p>
+<p>So how should we seek a more robust criterion?</p>
+<ul>
+<li>disregard the actual values of the distances</li>
+<li>require only the relative rankings of the original and the new distances are as similar as possible.</li>
+</ul>
+<p>Such a rank based approach is robust: its sensitivity to outliers is reduced!</p>
+<p>Robust ordination, or non metric multidimensional scaling (NMDS), attempts to embed the points in a new space such that the order of the reconstructed distances in the new map is the same as the ordering of the original distance matrix. NMDS looks for a transformation <code>f()</code> of the given dissimilarities, distances d. The quality of the approximation can be measured by the standardized residual sum of squares (STRESS) function: <span class="math inline">\(\text{Stress}^2 = \frac{\Sigma(f(d) - \tilde{d})^2}{\Sigma d^2}\)</span> where <span class="math inline">\(f(d)\approx \tilde{d}\)</span>.</p>
+<p>NMDS is not sequential:</p>
+<ul>
+<li>we have to specify the underlying dimensionality k at the outset (like kmeans)</li>
+<li>optimization is run to maximize the reconstruction of the distances in k dimensions.</li>
+<li>there is no notion of percentage of variation explained by individual axes as provided in PCA.</li>
+<li>as for kmeans Make a screeplot for <span class="math inline">\(k = 1,2,3,...\)</span> and looking at how well the STRESS drops.</li>
+<li>because each calculation of a NMDS result requires a new optimization that is both random and dependent on the value of k, we repeat the process M times</li>
+</ul>
+<div id="examples-in-r-1" class="section level3">
+<h3><span class="header-section-number">14.2.1</span> Examples in <code>R</code></h3>
+<p>Use the function <code>metaMDS</code> from the <code>vegan</code> package; <code>metaMDS</code> performs NMDS, and tries to find a stable solution using several random starts. In addition, it standardizes the scaling in the result, so that the configurations are easier to interpret.</p>
+<p><strong>Illustration with k = 2</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(vegan)
+nMDS<span class="fl">.2</span> &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="dv">100</span>, <span class="kw">metaMDS</span>(ekman, <span class="dt">k =</span> <span class="dv">2</span>, <span class="dt">autotransform =</span> <span class="ot">FALSE</span>)) </code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">stressplot</span>(<span class="kw">metaMDS</span>(ekman, <span class="dt">k =</span> <span class="dv">2</span>, <span class="dt">autotransform =</span> <span class="ot">FALSE</span>), <span class="dt">pch =</span> <span class="dv">20</span>, <span class="dt">cex =</span> <span class="dv">2</span>)</code></pre></div>
+<pre><code>## Run 0 stress 0.02310251 
+## Run 1 stress 0.02310251 
+## ... New best solution
+## ... Procrustes: rmse 0.000001613474  max resid 0.000002653004 
+## ... Similar to previous best
+## Run 2 stress 0.02310251 
+## ... Procrustes: rmse 0.000003270629  max resid 0.000006636766 
+## ... Similar to previous best
+## Run 3 stress 0.02310251 
+## ... Procrustes: rmse 0.000001828138  max resid 0.000003125327 
+## ... Similar to previous best
+## Run 4 stress 0.02310251 
+## ... Procrustes: rmse 0.000001083592  max resid 0.000002104326 
+## ... Similar to previous best
+## Run 5 stress 0.02310251 
+## ... Procrustes: rmse 0.000001330889  max resid 0.000002522211 
+## ... Similar to previous best
+## Run 6 stress 0.02310251 
+## ... Procrustes: rmse 0.000002661504  max resid 0.000004233961 
+## ... Similar to previous best
+## Run 7 stress 0.02310251 
+## ... Procrustes: rmse 0.0000005070932  max resid 0.0000008269046 
+## ... Similar to previous best
+## Run 8 stress 0.02310251 
+## ... Procrustes: rmse 0.00000214105  max resid 0.000003850841 
+## ... Similar to previous best
+## Run 9 stress 0.02310251 
+## ... Procrustes: rmse 0.000004179598  max resid 0.000006733372 
+## ... Similar to previous best
+## Run 10 stress 0.02310251 
+## ... Procrustes: rmse 0.000003010374  max resid 0.000005431574 
+## ... Similar to previous best
+## Run 11 stress 0.02310251 
+## ... Procrustes: rmse 0.000001046163  max resid 0.000001580493 
+## ... Similar to previous best
+## Run 12 stress 0.02310251 
+## ... Procrustes: rmse 0.000006604759  max resid 0.00001111471 
+## ... Similar to previous best
+## Run 13 stress 0.02310251 
+## ... Procrustes: rmse 0.000002046216  max resid 0.000003303987 
+## ... Similar to previous best
+## Run 14 stress 0.02310251 
+## ... Procrustes: rmse 0.000001756297  max resid 0.000002511059 
+## ... Similar to previous best
+## Run 15 stress 0.02310251 
+## ... Procrustes: rmse 0.0000007030217  max resid 0.000001314074 
+## ... Similar to previous best
+## Run 16 stress 0.02310251 
+## ... Procrustes: rmse 0.000003897324  max resid 0.000006532695 
+## ... Similar to previous best
+## Run 17 stress 0.02310251 
+## ... Procrustes: rmse 0.000001444798  max resid 0.000002431135 
+## ... Similar to previous best
+## Run 18 stress 0.02310251 
+## ... New best solution
+## ... Procrustes: rmse 0.0000006231313  max resid 0.000001076696 
+## ... Similar to previous best
+## Run 19 stress 0.02310251 
+## ... Procrustes: rmse 0.000003876489  max resid 0.000006507571 
+## ... Similar to previous best
+## Run 20 stress 0.02310251 
+## ... Procrustes: rmse 0.000001774289  max resid 0.000003188385 
+## ... Similar to previous best
+## *** Solution reached</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-149-1.png" width="672" /></p>
+</div>
+</div>
+<div id="correspondence-analysis-ca" class="section level2">
+<h2><span class="header-section-number">14.3</span> Correspondence Analysis (CA)</h2>
+<p>CA is a special case of metric MDS where the distance measure is the chi-square distance. It is conceptually similar to principal component analysis but where the data are categorical, counts, rather than continuous. CA is traditionally applied to contingency tables where rows and columns are treated equivalently; it decomposes the chi-square statistic associated with this table into orthogonal factors. Correspondence analysis is usually the best way to follow up on a <em>significant</em> chi-square test.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">HairEyeColor</code></pre></div>
+<pre><code>## , , Sex = Male
+## 
+##        Eye
+## Hair    Brown Blue Hazel Green
+##   Black    32   11    10     3
+##   Brown    53   50    25    15
+##   Red      10   10     7     7
+##   Blond     3   30     5     8
+## 
+## , , Sex = Female
+## 
+##        Eye
+## Hair    Brown Blue Hazel Green
+##   Black    36    9     5     2
+##   Brown    66   34    29    14
+##   Red      16    7     7     7
+##   Blond     4   64     5     8</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">HC.df &lt;-<span class="st"> </span><span class="kw">as.data.frame.matrix</span>(HairEyeColor[ , , <span class="dv">2</span>])
+HC.df</code></pre></div>
+<pre><code>##       Brown Blue Hazel Green
+## Black    36    9     5     2
+## Brown    66   34    29    14
+## Red      16    7     7     7
+## Blond     4   64     5     8</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">chisq.test</span>(HC.df)</code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  HC.df
+## X-squared = 106.66, df = 9, p-value &lt; 2.2e-16</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ade4)
+coaHC &lt;-<span class="st"> </span><span class="kw">dudi.coa</span>(HC.df, <span class="dt">scannf =</span> <span class="ot">FALSE</span>, <span class="dt">nf =</span> <span class="dv">2</span>)</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-152-1.png" width="672" /></p>
+<p>The first axis shows a contrast between black haired and blonde haired students, mirrored by the brown eye, blue eye contrast. In CA the two categories, rows and columns play symmetric roles and we interpret the proximity of Blue eyes and Blond hair as showing strong co-occurence of these categories.</p>
+<p><strong>Biplot barycentric scaling</strong></p>
+<ul>
+<li>Row points at the centre of gravity of the column levels with their respective weights</li>
+<li>Blue eyes at centre of gravity of the (Black, Brown, Red, Blond) with weights proportional to (9,34,7,64), the hair counts for blue eyes.</li>
+<li>The Blond row point is very heavily weighted so Blond hair and Blue eyes close together</li>
+</ul>
+</div>
+<div id="summary" class="section level2">
+<h2><span class="header-section-number">14.4</span> Summary</h2>
+<p><strong>Multivariate data</strong></p>
+<p>Distance methods are useful when data consist of associations (similarities/distances) among observations. There are many measures of distance, and their choice, much like transformations, is important in the outcome of the analysis. Many multivariate methods are just special cases of one another, with special names to match.</p>
+<p>If data are, approximately, continuous measurements we can use PCA to produce a lower dimensional representation. For <em>general</em> data we construct a matrix of distances between sample points and use the distance matrix to construct a geometric representation; distances between geometric points approximate distances from distance matrix. For count data Correspondence Analysis (CA) widely used.</p>
+<p>PCO and metric MDS will usually provide almost identical answers if Kruskal’s STRESS is used</p>
+<p><strong>Metric or non-metric?</strong> + Metric has few advantages over Principal Coordinates Analysis (unless many negative eigenvalues) + Non-metric does better with fewer dimensions but can be more prone to sub-optimal solutions.</p>
+<p><strong>How many dimensions?</strong> + STRESS &lt;10% is “good representation” + Scree diagram</p>
+
 </div>
 </div>
             </section>
@@ -463,8 +605,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           </div>
         </div>
       </div>
-<a href="a-completely-randomomised-design.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="factorial-experiments.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="dimension-reduction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="linear-discriminant-analysis-lda.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

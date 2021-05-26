@@ -1,0 +1,220 @@
+# Linear Discriminant Analysis (LDA)
+
+
+LDA is a supervised learning technique: The main goal is to predict some feature of interest using sing one or more variables (the predictors)
+
+## Example in `R`
+
+```{r, echo = FALSE}
+library(tidyverse)
+diabetes <- read_csv("../data/diabetes.csv")
+```
+
+```{r, eval = FALSE}
+library(tidyverse)
+diabetes <- read_csv("diabetes.csv")
+```
+
+**The data**
+
+```{r}
+diabetes$group <- factor(diabetes$group)
+diabetes
+```
+
+Some variables can predict group of a patient
+
+```{r}
+ggplot(reshape2::melt(diabetes, id.vars = c("id", "group")),
+       aes(x = value, col = group)) +
+  geom_density() + facet_wrap( ~variable, ncol = 1, scales = "free") +
+  theme(legend.position = "bottom")
+```
+
+Possible classification rules?
+
+
+```{r}
+ggplot(diabetes, mapping = aes(x = insulin, y = glutest)) +
+  theme_bw() +
+  geom_point(aes(colour = group), size = 3) +
+  labs( x = "insulin" , y = "glutest") +
+  theme(axis.title = element_text( size = 16),
+        axis.text  = element_text(size = 12))
+```
+
+### Carrying out LDA
+
+
+**Some similarity to regression**
+
+```{r}
+library(MASS)
+diabetes_lda  <-  lda(group ~ insulin + glutest, data = diabetes)
+diabetes_lda
+```
+
+
+**Components of `diabetes_lda`**
+
++ `diabetes_lda$prior` gives the prior probabilities of belonging to each group. By default these reflect the proportions of membership in the data:
+
+```{r}
+prop.table(table(diabetes$group))
+```
+
+*--> randomly chosen subject has probability 0.52 of coming from group 3*
+
++ `diabetes_lda$mean` gives the means of each predictor in each group:
+
+
+```{r, echo = FALSE}
+ggplot(diabetes, mapping = aes(x = insulin, y = glutest)) +
+  theme_bw() +
+  geom_point(aes(colour = group), size = 3) +
+  labs( x = "insulin" , y = "glutest") +
+  theme(axis.title = element_text( size = 16),
+        axis.text  = element_text(size = 12)) +
+  annotate("text", label = "* 1", size = 10, x = diabetes_lda$means[1,1], y = diabetes_lda$means[1,2], colour = "red") +
+  annotate("text", label = "* 2", size = 10, x = diabetes_lda$means[2,1], y = diabetes_lda$means[2,2], colour = "green") +
+  annotate("text", label = "* 3", size = 10, x = diabetes_lda$means[3,1], y = diabetes_lda$means[3,2], colour = "blue") 
+```
+
+
++ `Proportion of Trace` gives the percentage separation achieved by each discriminant function
+
++ `diabetes_lda$scaling` contains the linear discriminant functions (i.e., the linear combination of variables giving best separation between groups):
+
+```{r}
+diabetes_lda$scaling
+```
+
+i.e., 
+
+  + LD1: $-0.00446 \times \text{insulin} - 0.00578 \times \text{glutest}$
+
+  + LD2: $-0.01591 \times \text{insulin} + 0.00481 \times \text{glutest}$
+
+
+**How well does LDA do on training data?**
+
+```{r}
+ghat <- predict(diabetes_lda)$class
+table(prediced = ghat, observed = diabetes$group)
+```
+
+The missclassification rate is therefore
+
+```{r}
+mean(ghat != diabetes$group)
+```
+
+### Prediction
+
+```{r}
+diabetes.pred <- predict(diabetes_lda)
+str(diabetes.pred)
+```
+
++ `$class`: predicted group for each observation
++ `$posterior`: probability of falling into each group
++ `$x`: matrix with 2 columns one for each LD score
+
+
+**Output**
+
++ Every possible point is classified to one of three groups
++ The divisions between groups are linear (**Linear** Discriminant Analysis)
+
+
+```{r, echo = FALSE}
+make1Dgrid  <-  function(x) {
+  rg  <-  grDevices::extendrange(x)
+  seq(from = rg[1], to = rg[2], length.out = 100)
+}
+
+# Set up grid for prediction, 100 x 100 that covers the data range of the two variables
+
+diabetes_grid.df <-  with(diabetes,
+                     expand.grid(insulin = make1Dgrid(insulin),
+                                 glutest = make1Dgrid(glutest)))
+
+# Do the predictions
+
+diabetes_grid.df$ghat  <- 
+  predict(diabetes_lda, newdata = diabetes_grid.df)$class
+
+# Equal prior probabilities 
+
+diabetes_grid.df$ghat.equal  <- 
+  predict(diabetes_lda, newdata = diabetes_grid.df, prior = rep(1,3)/3)$class
+
+
+# The group centres.
+
+centers  <-  diabetes_lda$means
+
+# Compute the ellipse. 
+# Start from a unit circle and apply the corresponding affine transformation from the LDA output.
+
+unitcircle  <-  exp(1i * seq(0, 2*pi, length.out = 90)) %>%
+  {cbind(Re(.), Im(.))}
+ellipse  <-  unitcircle %*% solve(diabetes_lda$scaling)
+
+# All three ellipses, one for each group center.
+
+ellipses  <-  lapply(seq_len(nrow(centers)), function(i) {
+  (ellipse +
+     matrix(centers[i, ], byrow = TRUE,
+            ncol = ncol(centers), nrow = nrow(ellipse))) %>%
+    cbind(group = i)
+  }) %>% do.call(rbind, .) %>% data.frame
+
+ellipses$group  <-  factor(ellipses$group)
+
+
+ggdb <- ggplot(diabetes, mapping = aes(x = insulin, y = glutest)) +
+  theme_bw() +
+  geom_point(aes(colour = group), size = 3) +
+  labs( x = "insulin" , y = "glutest") +
+  theme(axis.title = element_text( size = 16),
+        axis.text  = element_text(size = 12)) 
+
+ggdb + geom_raster(aes(fill = ghat),
+                   data = diabetes_grid.df, alpha = 0.25, interpolate = TRUE) +
+  geom_point(data = as_tibble(centers), pch = "+", size = 8) +
+  geom_path(aes(colour = group), data = ellipses) +
+  scale_x_continuous(expand = c(0, 0)) +
+  scale_y_continuous(expand = c(0, 0))
+```
+
+The three ellipses represent the class centres and the covariance matrix of the LDA model. Note there is only **one** covariance matrix, which is the same for all three classes. This results in
+
+  + the sizes and orientations of the ellipses being the same for the three classes (only their centres differ)
+  + the ellipses represent contours of equal class membership probability.
+  
+  
+A key assumption of LDA is that the correlations between variables are the same in each group (i.e., common covariance matrix).
+
+
+Recall that, by default, the prior probabilities are the initial proportions. **What if we set equal prior probabilities?**
+
+The confusion matrix/missclassification rate:
+
+```{r}
+equal.ghat <- predict(diabetes_lda, prior = rep(1,3)/3)$class
+table(predicted = equal.ghat,observed = diabetes$group)
+## missclassification rate
+mean(equal.ghat != diabetes$group)
+```
+
+There are now 8 cases classified as Group 3 with prior weights classified as Group 2 with equal weights $\rightarrow$ bias towards group with larger initial size.
+
+```{r, echo = FALSE}
+ggdb + geom_raster(aes(fill = ghat.equal),
+                   data = diabetes_grid.df, alpha = 0.25, interpolate = TRUE) +
+  geom_point(data = as_tibble(centers), pch = "+", size = 8) +
+  geom_path(aes(colour = group), data = ellipses) +
+  scale_x_continuous(expand = c(0, 0)) +
+  scale_y_continuous(expand = c(0, 0))
+```

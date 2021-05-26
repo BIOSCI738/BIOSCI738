@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="multivariate-data-methods.html"/>
-
+<link rel="next" href="ordination.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -282,8 +282,22 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="13.3.3" data-path="dimension-reduction.html"><a href="dimension-reduction.html#ants-from-previous-chapter"><i class="fa fa-check"></i><b>13.3.3</b> Ants (from previous chapter)</a></li>
 </ul></li>
 <li class="chapter" data-level="13.4" data-path="dimension-reduction.html"><a href="dimension-reduction.html#reality-check-reducing-noise..."><i class="fa fa-check"></i><b>13.4</b> Reality check: reducing noise...</a></li>
-<li class="chapter" data-level="13.5" data-path="dimension-reduction.html"><a href="dimension-reduction.html#other-resources-optional-but-recommended-2"><i class="fa fa-check"></i><b>13.5</b> Other resources: optional but recommended</a><ul>
-<li class="chapter" data-level="13.5.1" data-path="dimension-reduction.html"><a href="dimension-reduction.html#multidimensional-scaling-in-r"><i class="fa fa-check"></i><b>13.5.1</b> Multidimensional Scaling in <code>R</code></a></li>
+<li class="chapter" data-level="13.5" data-path="dimension-reduction.html"><a href="dimension-reduction.html#other-resources-optional-but-recommended-2"><i class="fa fa-check"></i><b>13.5</b> Other resources: optional but recommended</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="ordination.html"><a href="ordination.html"><i class="fa fa-check"></i><b>14</b> Ordination</a><ul>
+<li class="chapter" data-level="14.1" data-path="ordination.html"><a href="ordination.html#multidimensional-scaling-mds-aka-principal-coordinate-analysis-pco"><i class="fa fa-check"></i><b>14.1</b> Multidimensional Scaling (MDS), AKA <em>Principal Coordinate Analysis (PCO)</em></a><ul>
+<li class="chapter" data-level="14.1.1" data-path="ordination.html"><a href="ordination.html#examples-in-r"><i class="fa fa-check"></i><b>14.1.1</b> Examples in <code>R</code></a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="ordination.html"><a href="ordination.html#non-metric-multidimensional-scaling"><i class="fa fa-check"></i><b>14.2</b> Non-metric Multidimensional Scaling</a><ul>
+<li class="chapter" data-level="14.2.1" data-path="ordination.html"><a href="ordination.html#examples-in-r-1"><i class="fa fa-check"></i><b>14.2.1</b> Examples in <code>R</code></a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="ordination.html"><a href="ordination.html#correspondence-analysis-ca"><i class="fa fa-check"></i><b>14.3</b> Correspondence Analysis (CA)</a></li>
+<li class="chapter" data-level="14.4" data-path="ordination.html"><a href="ordination.html#summary"><i class="fa fa-check"></i><b>14.4</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html"><i class="fa fa-check"></i><b>15</b> Linear Discriminant Analysis (LDA)</a><ul>
+<li class="chapter" data-level="15.1" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html#example-in-r"><i class="fa fa-check"></i><b>15.1</b> Example in <code>R</code></a><ul>
+<li class="chapter" data-level="15.1.1" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html#carrying-out-lda"><i class="fa fa-check"></i><b>15.1.1</b> Carrying out LDA</a></li>
+<li class="chapter" data-level="15.1.2" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html#prediction"><i class="fa fa-check"></i><b>15.1.2</b> Prediction</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -599,53 +613,16 @@ noise</code></pre></div>
 <li><p><a href="https://juba.github.io/explor/">'explor' is an R package to allow interactive exploration of multivariate analysis results</a></p></li>
 <li><p><a href="https://towardsdatascience.com/the-mathematics-behind-principal-component-analysis-fff2d7f4b643">The Mathematics Behind Principal Component Analysis (6 min read)</a></p></li>
 </ul>
-<div id="multidimensional-scaling-in-r" class="section level3">
-<h3><span class="header-section-number">13.5.1</span> Multidimensional Scaling in <code>R</code></h3>
-<p>Multidimensional scaling (MDS) is actually the more general technique of dimension reduction. PCA is a special case of MDS!</p>
-<p>To carry out MDS in <code>R</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggfortify)
-## Plotting Multidimensional Scaling (for interest)
-## stats::cmdscale performs Classical MDS
-<span class="kw">data</span>(<span class="st">&quot;eurodist&quot;</span>) ## road distances (in km) between 21 cities in Europe.
-<span class="kw">autoplot</span>(eurodist)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-140-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Plotting Classical (Metric) Multidimensional Scaling
-<span class="kw">autoplot</span>(<span class="kw">cmdscale</span>(eurodist, <span class="dt">eig =</span> <span class="ot">TRUE</span>))</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-140-2.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">autoplot</span>(<span class="kw">cmdscale</span>(eurodist, <span class="dt">eig =</span> <span class="ot">TRUE</span>), <span class="dt">label =</span> <span class="ot">TRUE</span>, <span class="dt">shape =</span> <span class="ot">FALSE</span>,
-         <span class="dt">label.size =</span> <span class="dv">3</span>)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-140-3.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Plotting Non-metric Multidimensional Scaling
-## MASS::isoMDS and MASS::sammon perform Non-metric MDS
-<span class="kw">library</span>(MASS)
-<span class="kw">autoplot</span>(<span class="kw">sammon</span>(eurodist))</code></pre></div>
-<pre><code>## Initial stress        : 0.01705
-## stress after  10 iters: 0.00951, magic = 0.500
-## stress after  20 iters: 0.00941, magic = 0.500</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-140-4.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">autoplot</span>(<span class="kw">sammon</span>(eurodist), <span class="dt">shape =</span> <span class="ot">FALSE</span>, <span class="dt">label =</span> <span class="ot">TRUE</span>,<span class="dt">label.size =</span> <span class="dv">3</span>)</code></pre></div>
-<pre><code>## Initial stress        : 0.01705
-## stress after  10 iters: 0.00951, magic = 0.500
-## stress after  20 iters: 0.00941, magic = 0.500</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-140-5.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Have a go at interpreting these plots based on the geography of the cities :-)</code></pre></div>
 
 </div>
 </div>
-</div>
-
-
-
-
-
-
             </section>
 
           </div>
         </div>
       </div>
-<a href="multivariate-data-methods.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="multivariate-data-methods.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="ordination.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
