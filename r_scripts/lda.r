@@ -17,7 +17,7 @@ ggplot(diabetes, mapping = aes(x = insulin, y = glutest)) +
         axis.text  = element_text(size = 12))
 ## LDA with two variables
 diabetes_lda  <-  lda(group ~ insulin + glutest, data = diabetes)
-## how many discriminant functions are possible? (min variables and groups)
+## how many discriminant functions are possible?
 diabetes_lda
 ## missclassification
 ghat <- predict(diabetes_lda)$class

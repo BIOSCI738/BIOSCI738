@@ -1,11 +1,13 @@
 --- 
-title: "*bluebook*  BIOSCI738"
-author: "Charlotte Jones-Todd"
-date: "Semester 1, 2021, University of Auckland"
+title: "Advanced Biological Data Analysis"
+author: ""
+date: "Dr. C. M. Jones-Todd, University of Auckland"
 output: 
   bookdown::gitbook:
     css: "src/my-style.css"
     toc_depth: 3
+    split_by: section
+    number_sections: false
     download:
       - ["biosci738.pdf", "PDF"]
       - ["biosci738.epub", "EPUB"]
@@ -16,42 +18,11 @@ output:
   
 ---
 
-# Preface {-}
+# BIOSCI 738 {-}
+
+**Nau mai haere mai welcome!**
 
 ![](https://raw.githubusercontent.com/allisonhorst/stats-illustrations/master/other-stats-artwork/debugging.jpg)
 Artwork by [\@allison_horst](https://github.com/allisonhorst/)
 
-## Course Overview
 
-This is a postgraduate course in statistical methods geared towards the needs of students of biology, ecology, and environmental science. Whether heading to research or industry, it is imperative that biology students have the statistical and computational skills to apply and interpret fundamental statistical concepts and analyses to assess and critique their experiments and other data.
-
-This course is suited to students with an interest in (bio)statistics who would like to equip themselves with the tools and know-how to be able to correctly prepare experiments, analyse data, interpret their results and draw valid conclusions. The statistical concepts and methods taught in this course will provide students with the tools to make and evaluate scientific discoveries as well as propose and justify decisions based on data. Some basic statistical knowledg is assumed. 
-
-This course will use the programming language `R`; `R` is a free software environment for statistical computing and graphics. Students are strongly encouraged to use `R` through the freely available IDE (integrated development environment) `RStudio`. Students will have access to R and RStudio in university computing laboratories, but are also encouraged to download and install `R` and `RStudio` on their own devices.
-
-
-## Key Topics
-
-Taught material will be delivered, each week, via 2 hour lectures. Each week there will also be a 1 hour practical  workshop focused on the material covered in the lecture. A list of topics and concepts covert in this course is given below.
-
-**Exploratory Data Analysis and Communication**
-
-+ Data wrangling 
-+ Data visualisation
-
-**Experimental Design and Statistical Inference**
-
-+ Introduction to design and analysis of experiments
-+ Comparison procedures: pairwise comparisons of means, one-way ANOVA
-+ Multiple comparison procedures (controlling errors in hypothesis testing) 
-+ Multiple regression with continuous and categorical explanatory variables
-+ Mixed models; incorporating fixed and random effects
-+ Resampling procedures: randomisation, permutation, and bootstrapping
-
-**Multivariate Analysis**
-
-+ Cluster analysis
-+ Unsupervised learning: principal components analysis, dimension reduction
-+ Ordination: multidimensional scaling, correspondence analysis
-+ Supervised learning: discriminant  analysis
-+ Networks and graphs

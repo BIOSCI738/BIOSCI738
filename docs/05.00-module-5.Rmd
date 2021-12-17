@@ -1,0 +1,80 @@
+# Module 5
+
++ glm and glmer
+
+## Beyond Linear Models to Generalised Linear Models (GLMs)
+
+Recall the assumptions of a linear model
+
++ The $i$th observation's response, $Y_i$, comes from a normal distribution
++ Its mean, $\mu_i$, is a linear combination of the explanatory terms
++ Its variance, $\sigma^2$, is the same for all observations
++ Each observation's response is independent of all others
+  
+But, what if we want to rid ourselves from a model with normal errors? 
+
+The answer: Generalised Linear Models.
+
+### Counting animals... 
+
+A normal distribution does not adequately describe the response, the number of animals
+
+ + It is a continuous distribution, but the response is discrete
+ + It is symmetric, but the response is unlikely to be so
+ + It is unbounded, and assumes it is plausible for the response to be negative
+
+
+I addition, a linear regression model typically assumes constant variance, but int his situation this unlikely to be the case.
+
+So why assume a normal distribution? Let's use a Poisson distribution instead.
+
+\begin{equation*}    
+    \mu_i = \beta_0 + \beta_1 x_i,
+  \end{equation*}
+
+So 
+  \begin{equation*}
+    Y_i \sim \text{Normal}(\mu_i\, \sigma^2),
+  \end{equation*}
+  
+becomes
+  
+\begin{equation*}
+    Y_i \sim \text{Poisson}(\mu_i),
+\end{equation*}
+  
+The Poisson distribution is commonly used as a general-purpose distribution for counts. A key feature of this distribution is $\text{Var}(Y_i) = \mu_i$, so we expect the variance to increase with the mean.
+
+### Other modelling approaches (not examinable)
+
+| `R` function    | Use                    | 
+| --------------- |------------------------|
+| `glm()`         | Fit a  linear model with a specific error structure specified using the `family =` argument (Poisson, binomial, gamma)|
+| `gam()`         | Fit a generalised additive model. The R package `mgcv` must be loaded |
+|`lme()` and `nlme()`| Fit linear and non-linear mixed effects models. The R package `nlme` must be loaded |
+| `lmer()`        | Fit linear and generalised linear and non-linear mixed effects models. The package `lme4` must be installed and loaded |
+| `gls()`         | Fit generalised least squares models. The R package `nlme` must be loaded |
+
+
+### **Model formula** syntax
+
+In `R` to specify the model you want to fit you typically create a model formula object; this is usually then passed as the first argument to the model fitting function (e.g., `lm()`).
+
+Some notes on syntax:
+
+Consider the model formula example `y ~ x + z + x:z`. There is a lot going on here:
+
+ + The variable to the left of `~` specifies the response, everything to the right specify the explanatory variables
+ + `+` indicated to include the variable to the left of it and to the right of it (it does **not** mean they should be summed)
+ + `:` denotes the interaction of the variables to its left and right
+ 
+Additional, some other symbols have special meanings in model formula:
+
+ + `*` means to include all main effects and interactions, so `a*b` is the same as `a + b + a:b`
+ 
+ + `^` is used to include main effects and interactions up to a specified level. For example, `(a + b + c)^2` is equivalent to `a + b + c + a:b + a:c + b:c` (note `(a + b + c)^3` would also add `a:b:c`)
+ + `-` excludes terms that might otherwise be included. For example, `-1` excludes the intercept otherwise included by default, and `a*b - b` would produce `a + a:b`
+ 
+Mathematical functions can also be directly used in the model formula to transform a variable directly (e.g., `y ~ exp(x) + log(z) + x:z`). One thing that may seem counter intuitive is in creating polynomial expressions (e.g., $x^2$). Here the expression `y ~ x^2` does **not** relate to squaring the explanatory variable $x$ (this is to do with the syntax `^` you see above. To include $x^2$ as a term in our model we have to use the `I()` (the "as-is" operator). For example, `y ~ I(x^2) `).
+
+

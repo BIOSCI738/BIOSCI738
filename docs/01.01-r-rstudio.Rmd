@@ -1,0 +1,174 @@
+## `R` and `RStudio`
+
+
+### Intro to `R` & `RStudio`
+
+**R is the pheromone to RStudio's PDA**
+
+![](img/r-rstudio-pda.jpg)
+
+`R` is the pheromone to `RStudio`'s PDA.
+
+
+`R` is a language, specifically, a programming language; it's the way you can speak to your computer to ask it to carry out certain computations.
+
+`RStudio` is an integrated development environment (IDE). This means it is basically an interface, albeit a fancy one, that makes it easier to communicate with your computer in the language `R`. The main benefit is the additional features it has that enable you to more efficiently *speak* `R`.
+
+**Note** `R` and `RStudio` are two **different** pieces of software; for this course you are expected to download both. As you'd expect, the PDA depends on the pheromones (i.e., `RStudio` depends on `R`) so you have to download `R` to use `RStudio`! 
+
+
+### Why?
+
+`R`
+
++ It's free
++ It's [open source](https://opensource.com/resources/what-open-source)
++ A general-purpose of programming language
++ Written by statisticians (here in Auckland!)
++ It's available for all operating systems (Windows, Linux, and Mac)
++ There is a huge online support network
++ It's extremely flexible; if you can code it you can do it! 15,000+ packages available!
++ ...
+
+`RStudio`
+
+> "If R were an airplane, RStudio would be the airport..." `r tufte::quote_footer('--- Julie Lowndes, Introduction to RStudio Awesomeness')`
+
+ 
++ Speaks nicely to `R`
++ Tab completion
++ Debugging capabilities
++ There is a huge online support network
++ Offers many other features and tools to make your workflow with `R` easier
++ It facilitates [reproducibility](https://en.wikipedia.org/wiki/Reproducibility)
++ ...
+
+### Installing R and RStudio
+
+As mentioned above `RStudio` depends on `R` so there is an order you should follow when you download these software.
+
+ 1. **Download and install `R`** by following [these instructions](https://cloud.r-project.org/). Make sure you choose the correct operating system.
+ 
+ 2. **Download and install `RStudio`** by [going here](https://rstudio.com/products/rstudio/download/) choosing RStudio Desktop *Open Source License* **Free** and following instructions. 
+
+ 3. **Check all is working**
+    + Open up `RStudio` from your computer menu, the icon will look something like this ![](https://vectorified.com/images/rstudio-icon-31.png){width=7%} (**DO NOT** use this icon  ![](https://cdn.iconscout.com/icon/free/png-512/r-5-283170.png){width=4%}, this is a link to `R` and will only open a very basic interface)
+    + Wait a little and you should see `RStudio` open up to something similar to the screenshot below
+    ![](https://stats220.earo.me/img/rstudio-interface.png)
+    + Pay close attention to the notes in the screenshot and familiarise yourself with the terms.
+    + Finally, in the *Console* next to the prompt type `1:10` and press enter on your keyboard. Your computer should say something back you (in the *Console*)! What do you think you were asking it to do? Does the output make sense?^[You should have seen the numbers 1 to 10 printed out as a sequence.]
+
+
+
+### Getting started
+
+As in *step 3.* above  open up `RStudio` from your computer menu, the icon will look something like this ![](https://vectorified.com/images/rstudio-icon-31.png){width=7%}. Using the diagram above identify the different panes:
+
+ + *Console* where you directly type command in and communicate with your computer (via the language `R`).
+ + *Environment pane*
+ + *Files pane*
+
+Some terminology
+
++ *Running* code: the act of telling R to perform an act by giving it commands in the console.
++ *Objects*: where values are saved in  (see later for creating an *object*.
++ *Script*: a text file containing a set of commands and comments.
++ *Comments*: notes written within a *Script* to better document/explain what's happening
+
+### R errors  `r emo::ji('scream')`
+
+```{r errors, echo = TRUE, error = TRUE}
+data <- read.csv("data_file_not_in_my_working_directory.csv")
+library(some_library_I_have_not_installed)
+some_function_I_spelled_worng(x = x)
+an_object_I_have_not_created
+```
+
+**What do you think the issues are here** `r emo::ji("wink")`
+
+### R *Script*s (a `.r` file)
+
+Go **File** > **New File** > **R Script** to open up a new *Script*
+
+If you had only three panes showing before, a new (fourth) pane should open up in the top left of `RStudio`. This file will have a `.r` extension and is where you can write, edit, and save the `R` commands you write. It's a dedicated text editor for your `R` code (very useful if you want to save your code to run at a later date). The main difference between typing your code into a *Script* vs *Console* is that you edit it and save it for later! Remember though the *Console* is the pane where you communicate with your computer so all code you write will have to be *Run* here. There are two ways of *running* a line of code you've written in your *Script*
+
+ + Ensure your cursor is on the line of code you want to run, hold down **Ctrl** and press **Enter**.
+ + Ensure your cursor is on the line of code you want to run, then use your mouse to click the Run button (it has a green arrow next to it) on the top right of the *Script* pane.
+
+Type `1:10` in your *Script* and practise *running* this line of code using both methods above. Not that if you've *Run* the code successfully then your computer will speak back to you each time via the *Console*
+
+### Writing *Comments*
+
+*Comments* are notes to yourself (future or present) or to someone else and are, typically, written interspersed in your code. Now, the comments you write will typically be in a language your computer doesn't understand (e.g., English). So that you can write yourself notes in your *Script* you need to tell your computer using the `R` language to ignore them. To do this precede any note you write with \#, see below. The \# is `R` for *ignore anything after this character*.
+
+```{r comments, echo = TRUE, eval = TRUE}
+## IGNORE ME
+## I'm a comment
+## I repeat I'm a comment
+## I am not a cat
+## OK let's run some code
+2 + 2
+## Hmm maybe I should check this
+## @kareem_carr ;-)
+```
+
+Now remember when you want to leave your `R` session you'll need to **Save** your *Script* to use it again. To do this go **File** > **Save As** and name your file what you wish (remember too to choose a relevant folder on your computer, or as recommended use the `.Rproj` set-up as above).
+
+
+### Change the `RStudio` appearance up to your taste
+
+Go to **Tools** > **Global Options** > **Apperance**
+
+![](https://support.rstudio.com/hc/article_attachments/115020425168/Screen_Shot_2017-08-24_at_1.14.19_PM.png)
+
+
+
+### Reproducible research
+
+ + Keep all similar files for the same analysis in the same place 
+
+ + **NEVER** change raw data
+
+### Good practice
+
+**Always start with a clean workspace** **Why?** *So your ex (code) can't come and mess up your life!*
+
+![](https://memegenerator.net/img/instances/57296391/when-your-ex-texts-you-after-months-hey-whats-up-not-today-satan-not-today.jpg) 
+
+
+Go to **Tools** > **Global Options**
+
+![](https://miro.medium.com/max/2784/1*dUNl71Jic2zYhYS2hxOBZA.png)
+
+
+**Project-oriented workflow**. Recommended: `.Rproj`
+
++ **Organised** Set up each Each assignment/university course as a *project*
++ **Self-contained** a *project* is a folder that contains all relevant files
+   + All paths can then be relative to that *project*
++ **Reproducible** the *project* should just work on a different computer
+
+Got to **Project** (top right) > **New Project** > **Create Project** ![](https://stats220.earo.me/img/rstudio-proj.png)
+
+**Project set-up**
+
+![](https://raw.githubusercontent.com/martinctc/blog/master/images/RPROJECT_2000dpi.png){width=30%}
+
+
+**`r emo::ji("warning")`Warning`r emo::ji("warning")`**
+
+[Jenny Bryan will set your computer on fire](https://www.tidyverse.org/blog/2017/12/workflow-vs-script/) `r emo::ji("fire")` if you start your script like this
+
+```{r fire, echo = TRUE, eval = FALSE}
+rm(list = ls())
+```
+
+This
+
++ does **NOT** create a fresh `R` process
++ it makes your script vulnerable
++ it **will** come back to bite you
+
+
+
+

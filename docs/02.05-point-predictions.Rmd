@@ -1,0 +1,68 @@
+## Point predictions and confidence intervals
+
+After all that what do estimated parameters mean?
+
+### Confidence intervals for parameters
+
+For the *chosen* `slm_sp` model we can get these simply by using 
+
+```{r, echo = TRUE}
+cis <- confint(slm_sp)
+cis
+```
+By default the 95% intervals are returned (see previous lecture)
+
+So this tells us that For every 1mm increase in bill length we estimate the expected bill depth to increases between `r round(cis[2,1],3)` and `r round(cis[2,2],3)` mm
+
++ We estimate that the expected bill depth of a Chinstrap penguin is between
+`r -1*round(cis[3,2],1)` and `r -1*round(cis[3,1],1)` mm shallower than the Adelie penguin
+
+
+### Point prediction
+
+Using the `slm_sp` model we can make a point prediction for the expected bill depth (mm) for Gentoo penguins with a bill length of 50mm.
+
+Recall the model equation
+
+```{r, echo = FALSE}
+equatiomatic::extract_eq(slm_sp,wrap = TRUE, terms_per_line = 1)
+```
+
+We can then simply substitute in the values:
+
+
+$$\widehat{\text{bill depth}} = \hat{\alpha} + \hat{\beta_1}*50 + \hat{\beta_3}*1$$
+$$\downarrow$$
+
+$$\widehat{\text{bill depth}} = 10.56 + 0.20*50 - 5.10*1$$
+$$\downarrow$$
+
+$$15.47\text{mm}$$
+
+Rather than *by hand* we can do this easily in `R`
+
+```{r,echo = TRUE}
+## create new data frame with data we want to predict to
+## the names have to match those in our original data frame
+newdata <- data.frame(species = "Gentoo",bill_length_mm = 50)
+## use predict() function
+predict(slm_sp, newdata = newdata) ## more accurate than our by hand version!
+```
+
+What does this look like on a plot
+
+```{r, echo = FALSE}
+## calculate predicted values
+penguins_nafree$pred_vals <- predict(slm_sp)
+pred_data <- data.frame(x = c(30,50), y = c(predict(slm_sp, newdata = newdata),10))
+ggplot(data = penguins_nafree, aes(y = bill_depth_mm, x = bill_length_mm, color = species)) +
+  geom_point() + ylab("Bill depth (mm)") +
+  xlab("Bill length (mm)") + theme_classic()  +
+  geom_line(aes(y = pred_vals)) + 
+  geom_segment(data = pred_data, aes(x = x[1], y = y[1], xend = x[2], yend = y[1]), 
+               inherit.aes = FALSE) + 
+  geom_segment(data = pred_data, aes(x = x[2], y = y[1], xend = x[2], yend = y[2]), 
+               inherit.aes = FALSE) +
+  coord_cartesian(xlim = ggplot_build(p2)$layout$panel_scales_x[[1]]$range$range,
+                  ylim = ggplot_build(p2)$layout$panel_scales_y[[1]]$range$range)
+```

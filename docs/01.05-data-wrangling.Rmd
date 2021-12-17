@@ -1,0 +1,120 @@
+## Data wrangling
+
+
+### Common dataframe manipulations in the `tidyverse`
+
+#### Using `dplyr` and `tidyr`
+
+**`tidy` data**
+
+> "Tidy datasets are all alike, but every messy dataset is messy in its own way." `r tufte::quote_footer('--- Hadley Wickham')`
+
+
+There are three interrelated rules which make a dataset `tidy`:
+
+ 1. Each variable must have its own column
+ 2. Each observation must have its own row
+ 3. Each value must have its own cell
+
+![](https://raw.githubusercontent.com/allisonhorst/stats-illustrations/master/rstats-artwork/tidydata_1.jpg)
+[illustrations from the Openscapes blog [Tidy Data for reproducibility, efficiency, and collaboration](https://www.openscapes.org/blog/2020/10/12/tidy-data/) by Julia Lowndes and Allison Horst
+
+Why ensure that your data is `tidy`? 
+
+ + **Consistency:** using a consistent format aids learning and reproducibility
+
+ + **Simplicity:** it's a format that is well understood by `R`
+ 
+> "Tidy datasets are easy to manipulate, model and visualize, and have a specific structure: each variable is a column, each observation is a row, and each type of observational unit is a table. This framework makes it easy to tidy messy datasets because only a small set of tools are needed to deal with a wide range of un-tidy datasets." `r tufte::quote_footer('--- Hadley Wickham, Tidy data')`
+
+### Introuducing the [Palmer penguins](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0090081)
+
+
+```{r embed, out.extra='style="border: none;"', out.width='40%', echo = FALSE}
+knitr::include_url('https://giphy.com/embed/3og0IO5z8Rd30ktV6g')
+```
+
+```{r}
+library(palmerpenguins) ## contains some nice penguin data
+penguins
+```
+
+So, what does this show us?
+
++ `A tibble: 344 x 8`: A `tibble` is a specific kind of data frame in `R`. The `penguin` dataset has
+  + `344` rows (i.e., 344 different observations). Here, each observation corresponds to a penguin.
+  + `8` columns corresponding to 3 variables describing each observation.
+  + `species`, `island`, `bill_length_mm`, `bill_depth_mm`, `flipper_length_mm`, `body_mass_g`, `sex`, and  `year` are the different variables of this dataset.
+  
++ We then have a preview of the first 10 rows of observations corresponding to the first 10 penguins. ```... with 334 more rows` indicates there are 334 more rows to see, but these have not been printed (likely as it would clog our screen)
+
+To learn more about the penguins read the [paper that talks all about the data collection.](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0090081)
+
+### Common dataframe manipulations in the `tidyverse`, using `dplyr` and `tidyr`
+
+Even from these first few rows of data we can see that there are some `NA` values. Let's count the number of `NA`s. Remember the `%>%` operator? Here we're going to be introduced to a few new things
+
+  + the `apply()` function,
+  + the `is.na()` function, and
+  + how `R` deals with `logical` values!
+
+```{r, message = FALSE}
+library(tidyverse)
+penguins %>% 
+  apply(.,2,is.na) %>%
+  apply(.,2,sum)
+```
+There's lot going on in that code! Let's break it down
+
++ Take `penguins` then
++ Use `penguins` as an input to the `apply()` function (this is specified as the first argument using the `.`)
+  + Now the `apply()` function takes 3 arguments: 
+    1. the data object you want it to *apply* something to (in our case `penguins`)
+    2. the margin you want to *apply* that something to; 1 stands for rows and 2 stands for columns, and
+    3. the function you want it to apply (in our case `is.na()`).
+  + So the second line of code is asking `R` to *apply* the `is.na()` function over the columns of `penguins`
+    + `is.na()` asks for each value it's fed is it an `NA` value; it returns a `TRUE` if so and a `FALSE` otherwise
++ The output from the first `apply()` is then fed to the second `apply()` (using the `.`). The `sum()` function then add them up!
+    + `R` treats a `TRUE` as a 1 and a `FALSE` as a 0.
+    
+So how many `NA`s do you think there are!
+
+Doesn't help much. To
+
+Now we know there are `NA` values throughout the data let's remove then and create a new `NA` free version called `penguins_nafree`. There is a really handy `tidyverse` (`dplyr`) function for this!
+
+```{r}
+penguins_nafree <- penguins %>% drop_na()
+penguins_nafree
+```
+
+Below are some other useful manipulation functions; have a look at the outputs and run them yourselves and see if you can work out what they're doing.
+
+```{r}
+filter(penguins_nafree, island == "Torgersen" )
+summarise(penguins_nafree, avgerage_bill_length = mean(bill_length_mm))
+group_by(penguins_nafree, species)
+```
+
+
+Often we want to summarise variables by different groups (factors). Below we
+
++ Take the `penguins_nafree` data then
++ Use this and apply the `group_by()` function to group by `species`
++ Use this output and apply the `summarize()` function to calculate the mean (using (`mean()`) bill length (`bill_length_mm`) of each group (`species`), calling the resulting number `avgerage_bill_length`
+
+
+```{r}
+penguins_nafree %>% 
+  group_by(species) %>% 
+  summarise(avgerage_bill_length = mean(bill_length_mm))
+```
+
+We can also group by multiple factors, for example, 
+
+
+```{r}
+penguins_nafree %>% 
+  group_by(island,species) %>% 
+  summarise(avgerage_bill_length = mean(bill_length_mm))
+```

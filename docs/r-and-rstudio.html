@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>R and RStudio | Advanced Biological Data Analysis</title>
+  <meta name="description" content="R and RStudio | Advanced Biological Data Analysis" />
+  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="R and RStudio | Advanced Biological Data Analysis" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="R and RStudio | Advanced Biological Data Analysis" />
+  
+  
+  
+
+<meta name="author" content="" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="module-1.html"/>
+<link rel="next" href="version-control-with-git-and-github.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="src/my-style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>BIOSCI 738</a></li>
+<li class="chapter" data-level="" data-path="useful-information-to-set-you-up-for-your-semester.html"><a href="useful-information-to-set-you-up-for-your-semester.html"><i class="fa fa-check"></i>Useful information to set you up for your semester</a><ul>
+<li class="chapter" data-level="" data-path="useful-information-to-set-you-up-for-your-semester.html"><a href="useful-information-to-set-you-up-for-your-semester.html#course-outline"><i class="fa fa-check"></i>Course outline</a></li>
+<li class="chapter" data-level="" data-path="useful-information-to-set-you-up-for-your-semester.html"><a href="useful-information-to-set-you-up-for-your-semester.html#timetable-assessment-structure"><i class="fa fa-check"></i>Timetable &amp; assessment structure</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-1.html"><a href="module-1.html"><i class="fa fa-check"></i>Module 1</a><ul>
+<li><a href="r-and-rstudio.html#r-and-rstudio"><code>R</code> and <code>RStudio</code></a><ul>
+<li><a href="r-and-rstudio.html#intro-to-r-rstudio">Intro to <code>R</code> &amp; <code>RStudio</code></a></li>
+<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html"><i class="fa fa-check"></i>Why?</a></li>
+<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#installing-r-and-rstudio"><i class="fa fa-check"></i>Installing R and RStudio</a></li>
+<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#getting-started"><i class="fa fa-check"></i>Getting started</a></li>
+<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#r-errors"><i class="fa fa-check"></i>R errors 😱</a></li>
+<li><a href="r-and-rstudio.html#r-scripts-a-.r-file">R <em>Script</em>s (a <code>.r</code> file)</a></li>
+<li><a href="r-and-rstudio.html#writing-comments">Writing <em>Comments</em></a></li>
+<li><a href="r-and-rstudio.html#change-the-rstudio-appearance-up-to-your-taste">Change the <code>RStudio</code> appearance up to your taste</a></li>
+<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#reproducible-research"><i class="fa fa-check"></i>Reproducible research</a></li>
+<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#good-practice"><i class="fa fa-check"></i>Good practice</a></li>
+</ul></li>
+<li><a href="version-control-with-git-and-github.html#version-control-with-git-and-github">Version control with <code>git</code> and GitHub</a><ul>
+<li class="chapter" data-level="" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html"><i class="fa fa-check"></i>Setup TL;DR</a></li>
+<li><a href="version-control-with-git-and-github.html#cloning-a-repository-from-github-using-rstudio">Cloning a repository from <code>GitHub</code> using <code>RStudio</code></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html"><i class="fa fa-check"></i>Exploratory Data Analysis</a><ul>
+<li><a href="exploratory-data-analysis.html#starting-out-with-tidyverse">Starting out with <code>tidyverse</code></a></li>
+<li><a href="exploratory-data-analysis.html#reading-in-data-from-a-.csv-file">Reading in data from a <code>.csv</code> file</a></li>
+<li class="chapter" data-level="" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#explore-your-data"><i class="fa fa-check"></i>Explore your data</a></li>
+<li><a href="exploratory-data-analysis.html#the-pipe-operator">The pipe operator <code>%&gt;%</code></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="māori-data-sovereignty-principles.html"><a href="māori-data-sovereignty-principles.html"><i class="fa fa-check"></i>Māori Data Sovereignty principles</a></li>
+<li class="chapter" data-level="" data-path="data-wrangling.html"><a href="data-wrangling.html"><i class="fa fa-check"></i>Data wrangling</a><ul>
+<li><a href="data-wrangling.html#common-dataframe-manipulations-in-the-tidyverse">Common dataframe manipulations in the <code>tidyverse</code></a></li>
+<li><a href="data-wrangling.html#introuducing-the-palmer-penguins">Introuducing the <span>Palmer penguins</span></a></li>
+<li><a href="data-wrangling.html#common-dataframe-manipulations-in-the-tidyverse-using-dplyr-and-tidyr">Common dataframe manipulations in the <code>tidyverse</code>, using <code>dplyr</code> and <code>tidyr</code></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-viz.html"><a href="data-viz.html"><i class="fa fa-check"></i>Data Viz</a><ul>
+<li class="chapter" data-level="" data-path="data-viz.html"><a href="data-viz.html#exploratory-and-explanatory-plots"><i class="fa fa-check"></i>Exploratory and explanatory plots</a></li>
+<li class="chapter" data-level="" data-path="data-viz.html"><a href="data-viz.html#ten-simple-rules-for-better-figures"><i class="fa fa-check"></i>Ten Simple Rules for Better Figures</a></li>
+<li><a href="data-viz.html#ggplot2"><code>ggplot2</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-2.html"><a href="module-2.html"><i class="fa fa-check"></i>Module 2</a><ul>
+<li class="chapter" data-level="" data-path="permutation-tests.html"><a href="permutation-tests.html"><i class="fa fa-check"></i>Permutation tests</a><ul>
+<li><a href="permutation-tests.html#significance-testing-using-permutation-randomisation-tests">Significance testing using permutation (<em>randomisation</em>) tests</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-bootstrap.html"><a href="the-bootstrap.html"><i class="fa fa-check"></i>The bootstrap</a><ul>
+<li class="chapter" data-level="" data-path="the-bootstrap.html"><a href="the-bootstrap.html#example-constructing-bootstrap-confidence-intervals"><i class="fa fa-check"></i>Example: constructing bootstrap confidence intervals</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="differences.html"><a href="differences.html"><i class="fa fa-check"></i>Differences</a></li>
+<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i>Linear regression</a><ul>
+<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#some-mathematical-notation"><i class="fa fa-check"></i>Some mathematical notation</a></li>
+<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#modeling-bill-depth"><i class="fa fa-check"></i>Modeling Bill Depth</a></li>
+<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#single-continuous-variable"><i class="fa fa-check"></i>Single continuous variable</a></li>
+<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#one-factor-and-a-continous-variable"><i class="fa fa-check"></i>One factor and a continous variable</a></li>
+<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#interactions"><i class="fa fa-check"></i>Interactions</a></li>
+</ul></li>
+<li><a href="tldr-lm.html#tldr-lm">TL;DR <code>lm()</code></a></li>
+<li class="chapter" data-level="" data-path="model-comparison-and-selection.html"><a href="model-comparison-and-selection.html"><i class="fa fa-check"></i>Model comparison and selection</a><ul>
+<li class="chapter" data-level="" data-path="model-comparison-and-selection.html"><a href="model-comparison-and-selection.html#model-comparison-and-selection-1"><i class="fa fa-check"></i>Model comparison and selection</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="point-predictions-and-confidence-intervals.html"><a href="point-predictions-and-confidence-intervals.html"><i class="fa fa-check"></i>Point predictions and confidence intervals</a><ul>
+<li class="chapter" data-level="" data-path="point-predictions-and-confidence-intervals.html"><a href="point-predictions-and-confidence-intervals.html#confidence-intervals-for-parameters"><i class="fa fa-check"></i>Confidence intervals for parameters</a></li>
+<li class="chapter" data-level="" data-path="point-predictions-and-confidence-intervals.html"><a href="point-predictions-and-confidence-intervals.html#point-prediction"><i class="fa fa-check"></i>Point prediction</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="p-values-an-intro.html"><a href="p-values-an-intro.html"><i class="fa fa-check"></i>p-values, an intro</a><ul>
+<li class="chapter" data-level="" data-path="p-values-an-intro.html"><a href="p-values-an-intro.html#p-values-from-permutation-tests"><i class="fa fa-check"></i>P-values from permutation tests</a></li>
+<li class="chapter" data-level="" data-path="p-values-an-intro.html"><a href="p-values-an-intro.html#p-values"><i class="fa fa-check"></i>😱 p-values 😱</a></li>
+<li class="chapter" data-level="" data-path="p-values-an-intro.html"><a href="p-values-an-intro.html#type-i-and-type-ii-errors"><i class="fa fa-check"></i>Type I and Type II errors</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-3.html"><a href="module-3.html"><i class="fa fa-check"></i>Module 3</a><ul>
+<li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html"><i class="fa fa-check"></i>Introduction to the design and analysis of experiments</a><ul>
+<li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#key-phrases"><i class="fa fa-check"></i>Key phrases</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#three-key-principles"><i class="fa fa-check"></i>Three key principles:</a></li>
+</ul></li>
+<li><a href="one-way-analysis-of-variance-anova.html#one-way-analysis-of-variance-anova">One-Way <strong>An</strong>alysis <strong>o</strong>f <strong>Va</strong>riance (ANOVA)</a><ul>
+<li class="chapter" data-level="" data-path="one-way-analysis-of-variance-anova.html"><a href="one-way-analysis-of-variance-anova.html"><i class="fa fa-check"></i>Between group SS (SSB)</a></li>
+<li class="chapter" data-level="" data-path="one-way-analysis-of-variance-anova.html"><a href="one-way-analysis-of-variance-anova.html#within-group-ss-ssw"><i class="fa fa-check"></i>Within group SS (SSW)</a></li>
+<li class="chapter" data-level="" data-path="one-way-analysis-of-variance-anova.html"><a href="one-way-analysis-of-variance-anova.html#f-statistic"><i class="fa fa-check"></i>F-statistic</a></li>
+<li class="chapter" data-level="" data-path="one-way-analysis-of-variance-anova.html"><a href="one-way-analysis-of-variance-anova.html#degrees-of-freedom-df"><i class="fa fa-check"></i>Degrees of freedom (DF)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-4.html"><a href="module-4.html"><i class="fa fa-check"></i>Module 4</a></li>
+<li class="chapter" data-level="" data-path="module-5.html"><a href="module-5.html"><i class="fa fa-check"></i>Module 5</a><ul>
+<li class="chapter" data-level="" data-path="beyond-linear-models-to-generalised-linear-models-glms.html"><a href="beyond-linear-models-to-generalised-linear-models-glms.html"><i class="fa fa-check"></i>Beyond Linear Models to Generalised Linear Models (GLMs)</a><ul>
+<li class="chapter" data-level="" data-path="beyond-linear-models-to-generalised-linear-models-glms.html"><a href="beyond-linear-models-to-generalised-linear-models-glms.html#counting-animals"><i class="fa fa-check"></i>Counting animals…</a></li>
+<li class="chapter" data-level="" data-path="beyond-linear-models-to-generalised-linear-models-glms.html"><a href="beyond-linear-models-to-generalised-linear-models-glms.html#other-modelling-approaches-not-examinable"><i class="fa fa-check"></i>Other modelling approaches (not examinable)</a></li>
+<li><a href="beyond-linear-models-to-generalised-linear-models-glms.html#model-formula-syntax"><strong>Model formula</strong> syntax</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-6.html"><a href="module-6.html"><i class="fa fa-check"></i>Module 6</a><ul>
+<li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i>Clustering</a><ul>
+<li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#clustering-algorithms"><i class="fa fa-check"></i>Clustering algorithms</a></li>
+<li><a href="clustering.html#k-means-using-the-palmerpenguins-data">k-means using the <code>palmerpenguins</code> data</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tldr-k-means-clustering.html"><a href="tldr-k-means-clustering.html"><i class="fa fa-check"></i>TL;DR k-means clustering</a></li>
+<li class="chapter" data-level="" data-path="dimension-reduction.html"><a href="dimension-reduction.html"><i class="fa fa-check"></i>Dimension reduction</a><ul>
+<li><a href="dimension-reduction.html#pca-in-r">PCA in <code>R</code></a></li>
+<li class="chapter" data-level="" data-path="dimension-reduction.html"><a href="dimension-reduction.html#reality-check-reducing-noise"><i class="fa fa-check"></i>Reality check: reducing noise…</a></li>
+</ul></li>
+<li><a href="multidimensional-scaling-mds-aka-principal-coordinate-analysis-pco.html#multidimensional-scaling-mds-aka-principal-coordinate-analysis-pco">Multidimensional Scaling (MDS), AKA <em>Principal Coordinate Analysis (PCO)</em></a><ul>
+<li><a href="multidimensional-scaling-mds-aka-principal-coordinate-analysis-pco.html#examples-in-r">Examples in <code>R</code></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="non-metric-multidimensional-scaling.html"><a href="non-metric-multidimensional-scaling.html"><i class="fa fa-check"></i>Non-metric Multidimensional Scaling</a><ul>
+<li><a href="non-metric-multidimensional-scaling.html#examples-in-r-1">Examples in <code>R</code></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="correspondence-analysis-ca.html"><a href="correspondence-analysis-ca.html"><i class="fa fa-check"></i>Correspondence Analysis (CA)</a></li>
+<li class="chapter" data-level="" data-path="mds-summary.html"><a href="mds-summary.html"><i class="fa fa-check"></i>MDS summary</a></li>
+<li class="chapter" data-level="" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html"><i class="fa fa-check"></i>Linear Discriminant Analysis (LDA)</a><ul>
+<li><a href="linear-discriminant-analysis-lda.html#example-in-r">Example in <code>R</code></a></li>
+<li class="chapter" data-level="" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html#prediction"><i class="fa fa-check"></i>Prediction</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Advanced Biological Data Analysis</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="r-and-rstudio" class="section level2">
+<h2><code>R</code> and <code>RStudio</code></h2>
+<div id="intro-to-r-rstudio" class="section level3">
+<h3>Intro to <code>R</code> &amp; <code>RStudio</code></h3>
+<p><strong>R is the pheromone to RStudio’s PDA</strong></p>
+<p><img src="img/r-rstudio-pda.jpg" /></p>
+<p><code>R</code> is the pheromone to <code>RStudio</code>’s PDA.</p>
+<p><code>R</code> is a language, specifically, a programming language; it’s the way you can speak to your computer to ask it to carry out certain computations.</p>
+<p><code>RStudio</code> is an integrated development environment (IDE). This means it is basically an interface, albeit a fancy one, that makes it easier to communicate with your computer in the language <code>R</code>. The main benefit is the additional features it has that enable you to more efficiently <em>speak</em> <code>R</code>.</p>
+<p><strong>Note</strong> <code>R</code> and <code>RStudio</code> are two <strong>different</strong> pieces of software; for this course you are expected to download both. As you’d expect, the PDA depends on the pheromones (i.e., <code>RStudio</code> depends on <code>R</code>) so you have to download <code>R</code> to use <code>RStudio</code>!</p>
+</div>
+<div id="why" class="section level3">
+<h3>Why?</h3>
+<p><code>R</code></p>
+<ul>
+<li>It’s free</li>
+<li>It’s <a href="https://opensource.com/resources/what-open-source">open source</a></li>
+<li>A general-purpose of programming language</li>
+<li>Written by statisticians (here in Auckland!)</li>
+<li>It’s available for all operating systems (Windows, Linux, and Mac)</li>
+<li>There is a huge online support network</li>
+<li>It’s extremely flexible; if you can code it you can do it! 15,000+ packages available!</li>
+<li>…</li>
+</ul>
+<p><code>RStudio</code></p>
+<blockquote>
+“If R were an airplane, RStudio would be the airport…”
+<footer>
+— Julie Lowndes, Introduction to RStudio Awesomeness
+</footer>
+</blockquote>
+<ul>
+<li>Speaks nicely to <code>R</code></li>
+<li>Tab completion</li>
+<li>Debugging capabilities</li>
+<li>There is a huge online support network</li>
+<li>Offers many other features and tools to make your workflow with <code>R</code> easier</li>
+<li>It facilitates <a href="https://en.wikipedia.org/wiki/Reproducibility">reproducibility</a></li>
+<li>…</li>
+</ul>
+</div>
+<div id="installing-r-and-rstudio" class="section level3">
+<h3>Installing R and RStudio</h3>
+<p>As mentioned above <code>RStudio</code> depends on <code>R</code> so there is an order you should follow when you download these software.</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Download and install <code>R</code></strong> by following <a href="https://cloud.r-project.org/">these instructions</a>. Make sure you choose the correct operating system.</p></li>
+<li><p><strong>Download and install <code>RStudio</code></strong> by <a href="https://rstudio.com/products/rstudio/download/">going here</a> choosing RStudio Desktop <em>Open Source License</em> <strong>Free</strong> and following instructions.</p></li>
+<li><strong>Check all is working</strong>
+<ul>
+<li>Open up <code>RStudio</code> from your computer menu, the icon will look something like this <img src="https://vectorified.com/images/rstudio-icon-31.png" style="width:7.0%" /> (<strong>DO NOT</strong> use this icon <img src="https://cdn.iconscout.com/icon/free/png-512/r-5-283170.png" style="width:4.0%" />, this is a link to <code>R</code> and will only open a very basic interface)</li>
+<li>Wait a little and you should see <code>RStudio</code> open up to something similar to the screenshot below
+<img src="https://stats220.earo.me/img/rstudio-interface.png" /></li>
+<li>Pay close attention to the notes in the screenshot and familiarise yourself with the terms.</li>
+<li>Finally, in the <em>Console</em> next to the prompt type <code>1:10</code> and press enter on your keyboard. Your computer should say something back you (in the <em>Console</em>)! What do you think you were asking it to do? Does the output make sense?<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></li>
+</ul></li>
+</ol>
+</div>
+<div id="getting-started" class="section level3">
+<h3>Getting started</h3>
+<p>As in <em>step 3.</em> above open up <code>RStudio</code> from your computer menu, the icon will look something like this <img src="https://vectorified.com/images/rstudio-icon-31.png" style="width:7.0%" />. Using the diagram above identify the different panes:</p>
+<ul>
+<li><em>Console</em> where you directly type command in and communicate with your computer (via the language <code>R</code>).</li>
+<li><em>Environment pane</em></li>
+<li><em>Files pane</em></li>
+</ul>
+<p>Some terminology</p>
+<ul>
+<li><em>Running</em> code: the act of telling R to perform an act by giving it commands in the console.</li>
+<li><em>Objects</em>: where values are saved in (see later for creating an <em>object</em>.</li>
+<li><em>Script</em>: a text file containing a set of commands and comments.</li>
+<li><em>Comments</em>: notes written within a <em>Script</em> to better document/explain what’s happening</li>
+</ul>
+</div>
+<div id="r-errors" class="section level3">
+<h3>R errors 😱</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data_file_not_in_my_working_directory.csv&quot;</span>)</a></code></pre></div>
+<pre><code>## Warning in file(file, &quot;rt&quot;): cannot open file
+## &#39;data_file_not_in_my_working_directory.csv&#39;: No such file or directory</code></pre>
+<pre><code>## Error in file(file, &quot;rt&quot;): cannot open the connection</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">library</span>(some_library_I_have_not_installed)</a></code></pre></div>
+<pre><code>## Error in library(some_library_I_have_not_installed): there is no package called &#39;some_library_I_have_not_installed&#39;</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">some_function_I_spelled_worng</span>(<span class="dt">x =</span> x)</a></code></pre></div>
+<pre><code>## Error in some_function_I_spelled_worng(x = x): could not find function &quot;some_function_I_spelled_worng&quot;</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">an_object_I_have_not_created</a></code></pre></div>
+<pre><code>## Error in eval(expr, envir, enclos): object &#39;an_object_I_have_not_created&#39; not found</code></pre>
+<p><strong>What do you think the issues are here</strong> 😉</p>
+</div>
+<div id="r-scripts-a-.r-file" class="section level3">
+<h3>R <em>Script</em>s (a <code>.r</code> file)</h3>
+<p>Go <strong>File</strong> &gt; <strong>New File</strong> &gt; <strong>R Script</strong> to open up a new <em>Script</em></p>
+<p>If you had only three panes showing before, a new (fourth) pane should open up in the top left of <code>RStudio</code>. This file will have a <code>.r</code> extension and is where you can write, edit, and save the <code>R</code> commands you write. It’s a dedicated text editor for your <code>R</code> code (very useful if you want to save your code to run at a later date). The main difference between typing your code into a <em>Script</em> vs <em>Console</em> is that you edit it and save it for later! Remember though the <em>Console</em> is the pane where you communicate with your computer so all code you write will have to be <em>Run</em> here. There are two ways of <em>running</em> a line of code you’ve written in your <em>Script</em></p>
+<ul>
+<li>Ensure your cursor is on the line of code you want to run, hold down <strong>Ctrl</strong> and press <strong>Enter</strong>.</li>
+<li>Ensure your cursor is on the line of code you want to run, then use your mouse to click the Run button (it has a green arrow next to it) on the top right of the <em>Script</em> pane.</li>
+</ul>
+<p>Type <code>1:10</code> in your <em>Script</em> and practise <em>running</em> this line of code using both methods above. Not that if you’ve <em>Run</em> the code successfully then your computer will speak back to you each time via the <em>Console</em></p>
+</div>
+<div id="writing-comments" class="section level3">
+<h3>Writing <em>Comments</em></h3>
+<p><em>Comments</em> are notes to yourself (future or present) or to someone else and are, typically, written interspersed in your code. Now, the comments you write will typically be in a language your computer doesn’t understand (e.g., English). So that you can write yourself notes in your <em>Script</em> you need to tell your computer using the <code>R</code> language to ignore them. To do this precede any note you write with #, see below. The # is <code>R</code> for <em>ignore anything after this character</em>.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="co">## IGNORE ME</span></a>
+<a class="sourceLine" id="cb10-2" title="2"><span class="co">## I&#39;m a comment</span></a>
+<a class="sourceLine" id="cb10-3" title="3"><span class="co">## I repeat I&#39;m a comment</span></a>
+<a class="sourceLine" id="cb10-4" title="4"><span class="co">## I am not a cat</span></a>
+<a class="sourceLine" id="cb10-5" title="5"><span class="co">## OK let&#39;s run some code</span></a>
+<a class="sourceLine" id="cb10-6" title="6"><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span></a></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="co">## Hmm maybe I should check this</span></a>
+<a class="sourceLine" id="cb12-2" title="2"><span class="co">## @kareem_carr ;-)</span></a></code></pre></div>
+<p>Now remember when you want to leave your <code>R</code> session you’ll need to <strong>Save</strong> your <em>Script</em> to use it again. To do this go <strong>File</strong> &gt; <strong>Save As</strong> and name your file what you wish (remember too to choose a relevant folder on your computer, or as recommended use the <code>.Rproj</code> set-up as above).</p>
+</div>
+<div id="change-the-rstudio-appearance-up-to-your-taste" class="section level3">
+<h3>Change the <code>RStudio</code> appearance up to your taste</h3>
+<p>Go to <strong>Tools</strong> &gt; <strong>Global Options</strong> &gt; <strong>Apperance</strong></p>
+<p><img src="https://support.rstudio.com/hc/article_attachments/115020425168/Screen_Shot_2017-08-24_at_1.14.19_PM.png" /></p>
+</div>
+<div id="reproducible-research" class="section level3">
+<h3>Reproducible research</h3>
+<ul>
+<li><p>Keep all similar files for the same analysis in the same place</p></li>
+<li><p><strong>NEVER</strong> change raw data</p></li>
+</ul>
+</div>
+<div id="good-practice" class="section level3">
+<h3>Good practice</h3>
+<p><strong>Always start with a clean workspace</strong> <strong>Why?</strong> <em>So your ex (code) can’t come and mess up your life!</em></p>
+<p><img src="https://memegenerator.net/img/instances/57296391/when-your-ex-texts-you-after-months-hey-whats-up-not-today-satan-not-today.jpg" /></p>
+<p>Go to <strong>Tools</strong> &gt; <strong>Global Options</strong></p>
+<p><img src="https://miro.medium.com/max/2784/1*dUNl71Jic2zYhYS2hxOBZA.png" /></p>
+<p><strong>Project-oriented workflow</strong>. Recommended: <code>.Rproj</code></p>
+<ul>
+<li><strong>Organised</strong> Set up each Each assignment/university course as a <em>project</em></li>
+<li><strong>Self-contained</strong> a <em>project</em> is a folder that contains all relevant files
+<ul>
+<li>All paths can then be relative to that <em>project</em></li>
+</ul></li>
+<li><strong>Reproducible</strong> the <em>project</em> should just work on a different computer</li>
+</ul>
+<p>Got to <strong>Project</strong> (top right) &gt; <strong>New Project</strong> &gt; <strong>Create Project</strong> <img src="https://stats220.earo.me/img/rstudio-proj.png" /></p>
+<p><strong>Project set-up</strong></p>
+<p><img src="https://raw.githubusercontent.com/martinctc/blog/master/images/RPROJECT_2000dpi.png" style="width:30.0%" /></p>
+<p><strong>⚠️Warning⚠️</strong></p>
+<p><a href="https://www.tidyverse.org/blog/2017/12/workflow-vs-script/">Jenny Bryan will set your computer on fire</a> 🔥 if you start your script like this</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="kw">rm</span>(<span class="dt">list =</span> <span class="kw">ls</span>())</a></code></pre></div>
+<p>This</p>
+<ul>
+<li>does <strong>NOT</strong> create a fresh <code>R</code> process</li>
+<li>it makes your script vulnerable</li>
+<li>it <strong>will</strong> come back to bite you</li>
+</ul>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>You should have seen the numbers 1 to 10 printed out as a sequence.<a href="r-and-rstudio.html#fnref1" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="module-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="version-control-with-git-and-github.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "lunr",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

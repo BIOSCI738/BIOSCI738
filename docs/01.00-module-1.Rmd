@@ -1,0 +1,39 @@
+# Module 1 {-}
+
+**Learning objectives**
+
++ **Define** the difference between `R` and `RStudio`
++ **Explain** what an `R` function is; describe what an argument to an `R` function is
++ **Explain** what an `R` package is; distinguish between the functions `install.packages()` and `library()`
++ **Use** the appropriate `R` function to read in a data file
++ **Explain** the importance of reproducibility in terms of scientific research
++ **Use** the functionality offered by git and GitHub through `RStudio`
++ **Define** and **discuss** Māori Data Sovereignty principles
++ **Define** data sovereignty and explain this in relation to a researcher's obligation when collecting, displaying, and analysing data
++ Carry out and **interpret** the outputs of basic exploratory data analysis using in-built R functions
++ **Create** and **communicate** informative data visualisations using `R`
++ **Discuss** and **critique** data visualisations
+
+**Other resources**
+
++ [R for Data Science](https://r4ds.had.co.nz/)
++ [RStudio Education](https://education.rstudio.com/learn/beginner/)
++ [An Introduction to R](https://intro2r.com/)
++ [R for Biologists](https://www.rforbiologists.org/)
++ [The Popularity of Data Science Software](http://r4stats.com/articles/popularity/)
++ [Happy Git and GitHub for the useR](https://happygitwithr.com/)
++ [Why data sovereignty matters](https://www.onenet.co.nz/our-resources/why-data-sovereignty-matters/)
++ [Indigenous Data Sovereignty and Policy](https://library.oapen.org/handle/20.500.12657/42782)
++ [Principles of Māori Data Sovereignty](https://cdn.auckland.ac.nz/assets/psych/about/our-research/documents/TMR%2BM%C4%81ori%2BData%2BSovereignty%2BPrinciples%2BOct%2B2018.pdf)
++ [Good data practices for Indigenous data sovereignty and governance.](https://researchcommons.waikato.ac.nz/bitstream/handle/10289/12919/data%20practices.pdf?sequence=5&isAllowed=y)
++ [`ggplot2` cheatsheet](https://rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf)
++ [Ten Simple Rules for Better Figures](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003833)
++ [Elegant Graphics for Data Analysis](https://ggplot2-book.org/introduction.html)
++ [Using `ggplot2` to communicate your results](https://ourcodingclub.github.io/tutorials/datavis/)
++ [Interesting blogs on graphs in the media](https://www.statschat.org.nz/?s=graphs)
++ [`tidyverse`](https://dplyr.tidyverse.org/)
++ [`Tidy` Data](https://vita.had.co.nz/papers/tidy-data.html)
++ [Palmer penguins](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0090081)
+
+
+

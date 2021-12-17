@@ -1,0 +1,286 @@
+## Dimension reduction
+
+Reduction of dimensions is needed when there are far too many features in a dataset, making it hard to distinguish between the important ones that are relevant to the output and the redundant or not-so important ones. Reducing the dimensions of data is called **dimensionality reduction.**
+
+So the aim is to **find the best low-dimensional representation of the variation** in a multivariate (lots and lots of variables) data set, but how do we do this? 
+
+One way is termed Principal Component Analysis (PCA). PCA is a **feature extraction** method that **reduces the dimensionality of the data** (number of variables) by creating new uncorrelated variables while minimizing loss of information on the original variables.
+
+**Think of a baguette.** The baguette pictured here represents two data dimensions: 1) the length of the bread and 2) the height of the bread (we'll ignore depth of bread for now). Think of the baguette as your data; when we carry out PCA we're rotating our original axes (*x- and y-coordinates*) to capture as much of the variation in our data as possible. This results in **new** uncorrelated variables that each explain a \% of variation in our data; the procedure is designed so that the first new variable (PC1) explains the most, the second (PC2) the second most and so on.
+
+![](https://raw.githubusercontent.com/cmjt/statbiscuits/master/figs_n_gifs/pca.gif)
+
+
+Now rather than a baguette think of data; the baguette above represent the *shape* of the scatter between the two variables plotted below. The rotating grey axes represent the PCA procedure, essentially searching for the *best* rotation of the original axes to represent the variation in the data as best it can. Mathematically the Euclidean distance (e.g., the distance between points $p$ and $q$ in Euclidean space, $\sqrt{(p-q)^2}$) between the points and the rotating axes is being minimized (i.e., the shortest possible across all points), see the blue lines. Once this distance is minimized across all points we "settle" on our new axes (the black tiled axes).
+
+![](https://raw.githubusercontent.com/cmjt/statbiscuits/master/figs_n_gifs/perp.gif)
+
+Luckily we can do this all in `R`!
+
+### PCA  in `R`
+
+#### Using the `palmerpenguins` data
+
+```{r}
+## getting rid of NAs
+penguins_nafree <- penguins %>% drop_na()
+```
+
+When carrying out PCA we're only interested in numeric variables, so let's just plot those. We can use the piping operator `%>%` to do this with out creating a new data frame
+
+```{r}
+library(GGally)
+penguins_nafree %>%
+  dplyr::select(species, where(is.numeric)) %>% 
+  ggpairs(aes(color = species),
+        columns = c("flipper_length_mm", "body_mass_g", 
+                     "bill_length_mm", "bill_depth_mm")) 
+
+```
+
+
+**Using `prcomp()`**
+
+There are three basic types of information we obtain from Principal Component Analysis:
+
+  + **PC scores:**  the coordinates of our samples on the new PC axis: the new uncorrelated variables (stored in `pca$x`)
+
+  + **Eigenvalues:** (see above) represent the variance explained by each PC; we can use these to calculate the proportion of variance in the original data that each axis explains
+
+  + **Variable loadings** (eigenvectors): these reflect the weight that each variable has on a particular PC and can be thought of as the correlation between the PC and the original variable
+  
+Before we carry out PCA we **should** scale out data. **WHY?**
+  
+```{r}
+pca <- penguins_nafree %>% 
+  dplyr::select(where(is.numeric), -year) %>% ## year makes no sense here so we remove it and keep the other numeric variables
+  scale() %>% ## scale the variables
+  prcomp()
+## print out a summary
+summary(pca)
+```
+  
+This output tells us that we obtain 4 principal components, which are called `PC1` `PC2`, `PC3`, and `PC4` (this is as expected because we used the 4 original numeric variables!). Each of these `PC`s explains a percentage of the total variation (`Proportion of Variance`) in the dataset: 
+ 
+ + `PC1` explains $\sim$ 68\% of the total variance, which means that just over half of the information in the dataset 
+ (5 variables) can be encapsulated by just that one Principal Component. 
+ + `PC2` explains $\sim$ 19\% of the variance.
+ + `PC3` explains $\sim$ 9\% of the variance.
+ + `PC4` explains $\sim$ 2\% of the variance.
+ 
+ 
+From the `Cumulative Proportion` row we see that by knowing the position of a sample in relation to just `PC1` and `PC2` we can get a pretty accurate view on where it stands in relation to other samples, as just `PC1` and `PC2`  explain 88\% of the variance.
+
+
+The **loadings** (*relationship*) between the initial variables and the principal components are stored in `pca$rotation`:
+
+```{r}
+pca$rotation
+```
+
+Here we can see that `bill_length_mm` has a strong positive relationship with `PC1`, whereas `bill_depth_mm` has a strong negative relationship. Both `fliper_length_mm` and `body_mass_g` also have a strong positive relationship with `PC1`. 
+
+Plotting this we get
+
+```{r, echo = FALSE}
+pca$rotation %>%
+  as.data.frame() %>%
+  mutate(variables = rownames(.)) %>%
+  gather(PC,loading,PC1:PC4) %>%
+  ggplot(aes(abs(loading), variables, fill = loading > 0)) +
+  geom_col() +
+  facet_wrap(~PC, scales = "free_y") +
+  labs(x = "Absolute value of loading",y = NULL, fill = "Positive?") 
+
+```
+
+  
+The new variables (PCs) are stored in `pca$x`, lets plot some of them alongside the loadings using a *biplot*. For `PC1` vs `PC2`:
+
+```{r}
+library(factoextra) ## install this package first
+fviz_pca_biplot(pca, geom = "point") +
+      geom_point (alpha = 0.2)
+```
+
+Now for `PC2` vs `PC3`
+
+```{r}
+fviz_pca_biplot(pca, axes = c(2,3),geom = "point") +
+      geom_point (alpha = 0.2)
+```
+
+**But how many PCs (new variables) do we keep?** The whole point of this exercise is to **reduce** the number of variables we need to explain the variation in our data. So how many of these new variables (PCs) do we keep?
+
+To assess this we can use the information printed above alongside a *screeplot*:
+
+```{r, message=FALSE}
+fviz_screeplot(pca)
+
+```
+
+**Principal components from the original variables**
+
+Recall that the principal components are a linear combination of the (statndardised) variables. So for PC1
+
+```{r}
+loadings1 <- pca$rotation[,1]
+loadings1
+```
+
+Therefore, the first Principle Component will be $0.454\times Z1 -0.399 \times Z2 + 0.5768 \times Z3 + 0.5497 \times Z3$ where $Z1$, $Z2$, $Z3$. and $Z4$ are the scaled numerical variables form the penguins dataset (i.e., `r names(loadings1)`). To compute this we use `R`:
+
+```{r}
+scaled_vars <- penguins_nafree %>% 
+  dplyr::select(where(is.numeric), -year) %>% 
+  scale() %>%
+  as_tibble()
+## By "Hand"
+by_hand <- loadings1[1]*scaled_vars$"bill_length_mm" + 
+  loadings1[2]*scaled_vars$"bill_depth_mm" + 
+  loadings1[3]*scaled_vars$"flipper_length_mm" + 
+  loadings1[4]*scaled_vars$"body_mass_g"
+## From PCA
+pc1 <- pca$x[,1]
+plot(by_hand,pc1)
+```
+
+#### Athletes
+
+```{r, echo = FALSE, message = FALSE}
+athletes <- read_csv("../data/athletes.csv")
+```
+
+You'll find the `athletes.csv` file on CANVAS.
+
+```{r, eval = FALSE}
+athletes <- read_csv("athletes.csv")
+```
+
+```{r}
+athletes
+athletes %>%
+  ggpairs()
+corrplot::corrplot(cor(athletes), method = "ellipse", type = "upper")
+```
+
+```{r}
+pca <- athletes %>%
+  scale() %>%
+  prcomp()
+summary(pca)
+## standard deviations of newly rotated variables
+pca$sdev
+## p = 10 variables
+sum(pca$sdev^2)
+```
+
+**screeplot**
+
+```{r, message = FALSE}
+## screeplot of sdev^2
+fviz_screeplot(pca, choice = "eigenvalue") +
+  geom_hline(yintercept = 1)
+```
+
+**biplots**
+
+```{r}
+fviz_pca_biplot(pca,geom = "point") +
+      geom_point (alpha = 0.2)
+```
+
+ + discus, shot, & javelin more strongly correlated with one another
+ + running events more strongly correlated to one another
+ + could think of PC1 as a *fieldness* variable (i.e., strong +ve loadings from field events and -ve loadings from track events)
+ 
+**Finding correlation** between a PC and the original variable:
+ 
+```{r}
+pca$rotation %*% diag(pca$sdev)
+```
+
+
+
+#### Ants 
+
+
+```{r, echo = FALSE}
+ants <- read_csv("../data/pitfalls.csv")
+```
+
+```{r, eval = FALSE}
+ants <- read_csv("pitfalls.csv")
+```
+
+```{r}
+## choose numeric variables only and transform
+ants_numeric <- ants %>%
+  dplyr::select(where(is.numeric), -Month) %>%
+  mutate(
+  Nyl = log(Nyl + 1),
+  Phe = log(Phe + 1),
+  Tet = log(Tet + 1),
+  Pac = log(Pac + 1))
+
+
+corrplot::corrplot(cor(ants_numeric), method = "ellipse",type = "upper")
+```
+
+```{r}
+pca <- ants_numeric %>%
+  scale() %>%
+  prcomp()
+summary(pca)
+## screeplot of sdev^2
+fviz_screeplot(pca, choice = "eigenvalue") +
+  geom_hline(yintercept = 1)
+## reduced space plot (biplot)
+fviz_pca_biplot(pca,geom = "point") +
+      geom_point (alpha = 0.2)
+```
+
+
++ `Phe` and `Nyl` strongly positively correlated
++ PC2 has a large contribution from `Tet`
+
+**Additional information**
+
+```{r}
+fviz_pca_biplot(pca,geom = "point",alpha = 0.2) +
+      geom_point(aes(color = ants$Location)) +
+  labs(color = "Location")
+```
+
+
++ Central different from North and West?
+
+
+```{r}
+fviz_pca_biplot(pca,geom = "point",alpha = 0.2) +
+      geom_point(aes(color = ants$Habitat)) +
+  labs(color = "Habitat")
+```
+
++ Grass and Scrub intermediate?
+
+### Reality check: reducing noise...
+
+```{r}
+set.seed(1234) ## just for reproduciblity
+noise <- as_tibble(replicate(10,rnorm(200, mean = 50, sd = 10)))
+noise
+corrplot::corrplot(cor(noise), method = "ellipse",type = "upper")
+```
+
+```{r}
+pca <- noise %>%
+  scale() %>%
+  prcomp()
+summary(pca)
+```
+
+```{r, message=FALSE}
+fviz_screeplot(pca, choice = "eigenvalue") +
+  geom_hline(yintercept = 1)
+```

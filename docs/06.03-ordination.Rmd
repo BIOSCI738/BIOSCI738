@@ -1,0 +1,194 @@
+## Multidimensional Scaling (MDS), AKA *Principal Coordinate Analysis (PCO)*
+
+Consider data which are not represented as points in a feature space: 
+
+  + Where we are only provided with (dis)similarity matrices between objects (e.g., chemical compounds, images, trees, or other complex objects)
+  + Where there are no obvious coordinates in (continuous) n-dimensional space .
+
+### Examples in `R`
+
+
+**Distances (in km) between North Island cities**
+
+File `north_island_distances.csv` can be found on CANVAS
+
+```{r, echo = FALSE}
+library(tidyverse)
+ni <- read_csv("../data/north_islands_distances.csv")[,-1]
+```
+
+```{r, eval = FALSE}
+library(tidyverse)
+ni <- read_csv("north_islands_distances.csv")[1,-]
+```
+
+```{r}
+library(pheatmap)
+pheatmap(ni, cluster_rows = TRUE,
+         treeheight_row = 2, treeheight_col = 2,
+         fontsize_row = 12, fontsize_col = 12,
+         cellwidth = 26, cellheight = 26)
+
+
+```
+
+```{r}
+mds <- cmdscale(ni, eig = TRUE)
+mds
+```
+
+
+**Eckmans colour perception (1954)**
+
+Data may from objects for which we have similarities but no underlying (geometric) space. Here the goal is to understand the underlying dimensionality of colour perception.
+
+  + Similarities for 14 colours, with wavelengths from 434 to 674nm based on rating by 31 subjects
+  + Each pair of colours was rated on a 5-point scale:
+      + 0 = no similarity up to 4 = identical.
+  + After averaging over 31 raters the similarities were divided by 4 such that they are within the unit interval.
+
+Data available on CANVAS
+
+```{r, echo = FALSE}
+library(tidyverse)
+ekman <- read_csv("../data/ekman.csv")
+ekman = 1 - ekman - diag(1, ncol(ekman))
+ekman[1:5, 1:5]
+```
+
+```{r, eval = FALSE}
+library(tidyverse)
+ekman <- read_csv("ekman.csv")
+```
+
+
+```{r, eval = FALSE}
+ekman.mds <- cmdscale(ekman, eig = TRUE)
+ekman.mds
+round(ekman.mds$eig,2)
+autoplot(ekman.mds)
+```
+
+**Distances (in km) between 21 cities in Europe**
+
+```{r,eval = FALSE}
+library(ggfortify)
+## Plotting Multidimensional Scaling (for interest)
+## stats::cmdscale performs Classical MDS
+data("eurodist") ## road distances (in km) between 21 cities in Europe.
+autoplot(eurodist)
+## Plotting Classical (Metric) Multidimensional Scaling
+autoplot(cmdscale(eurodist, eig = TRUE))
+autoplot(cmdscale(eurodist, eig = TRUE), label = TRUE, shape = FALSE,
+         label.size = 3)
+## Plotting Non-metric Multidimensional Scaling
+## MASS::isoMDS and MASS::sammon perform Non-metric MDS
+library(MASS)
+autoplot(sammon(eurodist))
+autoplot(sammon(eurodist), shape = FALSE, label = TRUE,label.size = 3)
+## Have a go at interpreting these plots based on the geography of the cities :-)
+```
+
+## Non-metric Multidimensional Scaling
+
+Multidimensional scaling aims to minimize the difference between the squared distances $D^2$ from the distance matrix $D$, and the squared distances between the points with their new coordinates. Unfortunately, this objective tends to be sensitive to outliers: one single data point with large distances to everyone else can dominate, and thus skew, the whole analysis.
+
+So how should we seek a more robust criterion?
+
+  + disregard the actual values of the distances
+  + require only the relative rankings of the original and the new distances are as similar as possible.
+
+
+Such a rank based approach is robust: its sensitivity to outliers is reduced!
+
+Robust ordination, or non metric multidimensional scaling (NMDS), attempts to embed the points in a new space such that the order of the reconstructed distances in the new map is the same as the ordering of the original distance matrix. NMDS looks for a transformation `f()` of the given dissimilarities, distances d. The quality of the approximation can be measured by the standardized residual sum of
+squares (STRESS) function: $\text{Stress}^2 = \frac{\Sigma(f(d) - \tilde{d})^2}{\Sigma d^2}$ where $f(d)\approx  \tilde{d}$.
+
+
+NMDS is not sequential:
+
++ we have to specify the underlying dimensionality k at the outset (like kmeans)
++ optimization is run to maximize the reconstruction of the distances in k dimensions.
++ there is no notion of percentage of variation explained by individual axes as provided in PCA.
++ as for kmeans Make a screeplot for $k = 1,2,3,...$ and looking at how well the STRESS drops.
++ because each calculation of a NMDS result requires a new optimization that is both random and dependent on the value of k, we repeat the process M times
+
+
+### Examples in `R`
+
+Use the function `metaMDS` from the `vegan` package; `metaMDS` performs NMDS, and tries to find a stable solution using several random starts. In addition, it standardizes the scaling in the result, so
+that the configurations are easier to interpret.
+
+**Illustration with k = 2**
+
+```{r, message = FALSE, results='hide'}
+library(vegan)
+nMDS.2 <- replicate(100, metaMDS(ekman, k = 2, autotransform = FALSE)) 
+```
+
+
+```{r, message = FALSE}
+stressplot(metaMDS(ekman, k = 2, autotransform = FALSE), pch = 20, cex = 2)
+
+```
+
+
+  
+## Correspondence Analysis (CA)
+
+CA is a special case of metric MDS where the distance measure is the chi-square distance. It is conceptually similar to principal component analysis but where the data are categorical, counts, rather than continuous. CA is traditionally applied to contingency tables where rows and columns are treated equivalently; it decomposes the chi-square statistic associated with this table into orthogonal factors. Correspondence analysis is usually the best way to follow up on a *significant* chi-square test.
+
+```{r}
+HairEyeColor
+HC.df <- as.data.frame.matrix(HairEyeColor[ , , 2])
+HC.df
+chisq.test(HC.df)
+```
+
+```{r}
+library(ade4)
+coaHC <- dudi.coa(HC.df, scannf = FALSE, nf = 2)
+```
+
+```{r, echo = FALSE}
+library(factoextra)
+fviz_ca_biplot(coaHC, repel = TRUE, col.col = "brown", col.row = "purple",
+               labelsize = 5, pointsize = 5) + ggtitle("") +
+  theme(legend.text = element_text(size = 25),
+        axis.title.x.bottom = element_text(size = 15),
+        axis.title.y.left = element_text(size = 15),
+        axis.text = element_text(size = 15)) +
+  ylim(c(-0.5,0.5))
+
+```
+
+The first axis shows a contrast between black haired and blonde haired students, mirrored by the brown eye, blue eye contrast. In CA the two categories, rows and columns play
+symmetric roles and we interpret the proximity of Blue eyes and Blond hair as showing strong co-occurence of these categories.
+
+**Biplot barycentric scaling**
+
+ + Row points at the centre of gravity of the column levels with their respective weights
+ + Blue eyes at centre of gravity of the (Black, Brown, Red, Blond) with weights proportional to (9,34,7,64), the hair counts for blue eyes.
+ + The Blond row point is very heavily weighted so Blond hair and Blue eyes close together
+
+
+## MDS summary
+
+**Multivariate data**
+
+Distance methods are useful when data consist of associations (similarities/distances) among observations. There are many measures of distance, and their choice,
+much like transformations, is important in the outcome of the analysis. Many multivariate methods are just special cases of one another, with special names to match.
+
+If data are, approximately, continuous measurements we can use PCA to produce a lower dimensional representation. For *general* data we construct a matrix of distances between sample points and use the distance matrix to construct a geometric representation; distances between geometric points approximate distances from distance matrix. For count data Correspondence Analysis (CA) widely used.
+
+
+PCO and metric MDS will usually provide almost identical answers if Kruskal’s STRESS is used
+
+**Metric or non-metric?**
+  + Metric has few advantages over Principal Coordinates Analysis (unless many negative eigenvalues)
+  + Non-metric does better with fewer dimensions but can be more prone to sub-optimal solutions.
+  
+**How many dimensions?**
+  + STRESS <10% is “good representation”
+  + Scree diagram
+  

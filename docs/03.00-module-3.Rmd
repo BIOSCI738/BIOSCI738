@@ -1,0 +1,27 @@
+# Module 3
+
+**Learning objectives**
+
+ + **Identify** the following
+      + experimental unit
+      + observational units
+   + **List** and **describe** the three main principals of experimental design
+       + Randomization
+       + Replication
+       + Blocking
+   + **Calculate** Sums of Squares (between and within groups) given the observations 
+   + **Define** and **state** the appropriate degrees of freedom in a one-way ANOVA scenario
+   + **Calculate** the F-statistics given the appropriate Sums of Squares and degrees of freedom
+   + **Interpret** and **discuss** a given *p-value* in the context of a stated hypothesis test
+   + **Explain** between group and within group variation
+   + **Communicate** statistical concepts and experimental outcomes clearly using language appropriate for both a **scientific** and **non-scientific** audience
+
+**Other resources**
+
++ [Glass, David J. Experimental Design for Biologists. Second ed. 2014. Print.](https://catalogue.library.auckland.ac.nz/primo-explore/fulldisplay?docid=uoa_alma21237737730002091&search_scope=Combined_Local&tab=books&vid=NEWUI&context=L)
++ [Welham, S. J. Statistical Methods in Biology : Design and Analysis of Experiments and Regression. 2015. Print.](https://catalogue.library.auckland.ac.nz/primo-explore/fulldisplay?docid=uoa_alma21237737830002091&search_scope=Combined_Local&tab=books&vid=NEWUI&context=L)
++ [Fisher, Ronald Aylmer. The Design of Experiments. 8th ed. Edinburgh: Oliver & Boyd, 1966. Print. O & B Paperbacks.](https://catalogue.library.auckland.ac.nz/primo-explore/fulldisplay?docid=uoa_alma21198532990002091&context=L&vid=NEWUI&lang=en_US&search_scope=Combined_Local&adaptor=Local%20Search%20Engine&isFrbr=true&tab=books&query=any,contains,The_Design_of_Experiments&sortby=date&facet=frbrgroupid,include,627497507&offset=0)
+
+
++ experimantal design
++ lme4 & lmer etc.

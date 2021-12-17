@@ -1,0 +1,195 @@
+## Data Viz
+
+> "...have obligations in that we have a great deal of power over how people ultimately make use of data, both in the patterns they see and the conclusions they draw." `r tufte::quote_footer('--- Michael Correll, Ethical Dimensions of Visualization Research')`
+
+> "Clutter and confusion are not attributes of data - they are shortcomings of design." `r tufte::quote_footer('--- Edward Tufte')`
+
+
+### Exploratory and explanatory plots
+
+1. **Exploratory plots** (*for you*)
+
+  + data exploration
+  + doesn't have to look pretty
+  + just needs to get to the point
+  + explore and discover new data facets
+  + formulate new questions
+  
+For example,
+  
+```{r example, me, echo = FALSE, fig.cap="", warning = FALSE, message = FALSE}
+library(palmerpenguins)
+penguins_nafree <- penguins %>% drop_na()
+## scatter
+ggplot(data = penguins_nafree, aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +
+  geom_point()
+## histogram
+ggplot(data = penguins, aes(x = bill_length_mm)) +
+  geom_histogram(aes(fill = species), alpha = 0.5, position = "identity")
+```
+
+
+ 2. **Explanatory plots** (*for others*), most common kind of graph used in
+scientific publications
+
+   + clear purpose
+   + designed for the audience
+   + make it easy to read (*this covers a lot of things*)
+   + do not distort
+   + guide the reader to a particular conclusion 
+   + answer a specific question
+   + support a decision
+   
+For example,
+
+![](https://jimgruman.netlify.app/post/variableimportance/2020_31_PalmerPenguins.png)
+
+Plots by Cedric Scherer and mentioned on [this blog](https://jimgruman.netlify.app/post/variableimportance/)
+
+
+
+### Ten Simple Rules for Better Figures 
+
+> "Scientific visualization is classically defined as the process of graphically displaying scientific data. However, this process is far from direct or automatic. There are so many different ways to represent the same data: scatter plots, linear plots, bar plots, and pie charts, to name just a few. Furthermore, the same data, using the same type of plot, may be perceived very differently depending on who is looking at the figure. A more accurate definition for scientific visualization would be a graphical interface between people and data." `r tufte::quote_footer('--- Nicolas P. Rougier, Michael Droettboom, Philip E. Bourne, Ten Simple Rules for Better Figures ')`
+
+  + **Know** Your Audience
+ 
+ + **Identify** Your Message
+ 
+ + **Adapt** the Figure to the Support Medium
+ 
+ + **Captions** Are Not Optional
+ 
+ + **Do Not** Trust the Defaults
+ 
+ + Use **Color** Effectively
+ 
+ + **Do Not Mislead** the Reader
+ 
+    + [There are formulas to measure how misleading a graph is!](https://en.wikipedia.org/wiki/Misleading_graph)
+    
+ + **Avoid** *Chartjunk*
+ 
+ + **Message** Trumps Beauty
+ 
+> "message and readability of the figure is the most important aspect while beauty is only an option" `r tufte::quote_footer('--- Nicolas P. Rougier, Michael Droettboom, Philip E. Bourne, Ten Simple Rules for Better Figures ')`
+
+ + Get the Right **Tool**
+ 
+    + I'm an advocate for `R` `r emo::ji("wink")`
+    
+### `ggplot2`
+
+`ggplot2` is an `R` package for producing statistical, or data, graphics; it has an underlying grammar based on the [Grammar of Graphics](https://www.amazon.com/Grammar-Graphics-Statistics-Computing/dp/0387245448)
+
+Every `ggplot2` plot has three key components:
+
+  + `data`,
+
+  + A set of `aes`thetic mappings between variables in the data and visual properties, and
+
+  + At least one layer which describes how to render each observation. Layers are usually created with a `geom` function.
+
+
+
+#### `ggplot2` layers
+
+![](img/ggplot.png)
+
+
+
+#### Examples
+
+
+**Scatter plot** using `geom_point()`
+
+```{r flippoint,message=FALSE,warning=FALSE}
+ggplot(penguins,aes(x = body_mass_g, y = flipper_length_mm)) + ## data & aesthetics
+    geom_point() + ## geom
+  geom_smooth(method = 'lm', se = FALSE) ## statistics (linear regression line)
+```
+
+**Boxplot** using `geom_boxplot()` 
+
+```{r flipbox2,message=FALSE,warning=FALSE}
+ggplot(penguins,aes(x = species, y = flipper_length_mm)) + ## data & aesthetics
+    geom_boxplot()  + ## geom
+  ggtitle("Flipper length (mm) by species") +
+  ylab("Flipper length (mm)") +
+  xlab("Species") +
+  theme_dark() ## theme
+```
+
+
+**Scatter plot** specifying `color` using `geom_point()`
+
+```{r flippoint2, message=FALSE,warning=FALSE}
+ggplot(penguins,aes(x = body_mass_g, y = flipper_length_mm, color = species)) + ## data and aesthetics
+    geom_point() + ## geom
+  geom_smooth(method = 'lm', se = FALSE) ## statistic (linear regression line without intervals)
+```
+
+
+#### The Good, the Bad, and the Ugly...
+
+```{r boxesc, eval = FALSE}
+box <- ggplot(penguins,aes(x = species, y = flipper_length_mm)) + ## data & aesthetics
+    geom_boxplot()  + ## geom
+  ggtitle("Flipper length (mm) by species") +
+  ylab("Flipper length (mm)") +
+  xlab("Species") +
+  theme_dark() ## theme
+box
+jitter <- ggplot(penguins,aes(x = species, y = flipper_length_mm)) + ## data & aesthetics
+    geom_jitter()  + ## geom
+  ggtitle("Flipper length (mm) by species") +
+  ylab("Flipper length (mm)") +
+  xlab("Species") +
+  theme_dark() ## theme
+jitter
+violin <- ggplot(penguins,aes(x = species, y = flipper_length_mm)) + ## data & aesthetics
+    geom_violin()  + ## geom
+  ggtitle("Flipper length (mm) by species") +
+  ylab("Flipper length (mm)") +
+  xlab("Species") +
+  theme_dark() ## theme
+violin
+```
+
+
+```{r simple, echo = TRUE,warning=FALSE}
+ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm)) +
+    geom_point() +
+    geom_smooth(method = "lm", col = "blue", se = FALSE)
+```
+
+```{r facet, echo = TRUE,warning=FALSE}
+ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm, 
+                         col = species)) +
+    geom_point(size = 2, alpha = 0.5) + 
+    geom_smooth(method = "lm", se = FALSE) +
+    facet_grid(~ sex) +
+    theme_bw() + 
+    labs(title = "Flipper Length and Body Mass, by Sex & Species",
+         subtitle = paste0(nrow(penguins), " of the Palmer Penguins"),
+         x = "Body Mass (g)", 
+         y = "Flipper Length (mm)")
+```
+
+
+```{r facetna, echo = TRUE,warning=FALSE}
+penguins_nafree <- penguins %>% drop_na()
+ggplot(penguins_nafree, aes(x = body_mass_g, y = flipper_length_mm, 
+                         col = species)) +
+    geom_point(size = 2, alpha = 0.5) + 
+    geom_smooth(method = "lm", se = FALSE) +
+    facet_grid(~ sex) +
+    theme_bw() + 
+    labs(title = "Flipper Length and Body Mass, by Sex & Species",
+         subtitle = paste0(nrow(penguins_nafree), " of the Palmer Penguins"),
+         x = "Body Mass (g)", 
+         y = "Flipper Length (mm)")
+```
+
+
+

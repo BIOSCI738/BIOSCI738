@@ -1,0 +1,56 @@
+## Version control with `git` and GitHub
+
+
+![](https://images3.memedroid.com/images/UPLOADED29/5b7d571106c71.jpeg){scale=50%}
+
+`git` the software
+
+
+> "Track Changes features from Microsoft Word on steroids"`r tufte::quote_footer('--- Jenny Bryan ')`
+
+  + a version control system
+  + manages the evolution of a set of files (tidily)
+
+**GitHub** an online hosting service
+
+
+
+> "Think of it as DropBox but much, much better"`r tufte::quote_footer('--- Jenny Bryan ')`
+
+  +  home for your Git-based projects on the internet
+  
+
+### Setup TL;DR
+
++ Register an account with GitHub [https://github.com](https://github.com)
++ Make sure you've got the latest version of `R`
+```{r version}
+R.version.string
+```
++ Upgrade `RStudio` to the [new preview version](https://rstudio.com/products/rstudio/download/preview/) (*optional*)
++ Install git: follow [these instructions](https://happygitwithr.com/install-git.html)
++ [Get started](https://happygitwithr.com/hello-git.html)
+
+### Cloning a repository from `GitHub` using `RStudio`
+
++ On `GitHub`, navigate to the Code tab of the repository
+
++ On the right side of the screen, click `Clone or download`
+
++ Click the `Copy to clipboard` icon to the right of the repository URL (e.g., [https://github.com/STATS-UOA/workshops-biosci738.git](https://github.com/STATS-UOA/workshops-biosci738.git))
+
+![](img/gh_code.png)
++ Open `RStudio` in your local environment
+
++ Click `File`, `New Project`, `Version Control`, `Git`
+
+![](img/rstudio_new_project.png)
+
+![](img/rstudio_git.png)
++ Paste the repository URL and enter TAB to move to the `Project directory name` field. I've chosen to store this folder on my Desktop, obviously put it wherever you wish :-)
+
+![](img/rstudio_clone.png)
+
++ Click `Create Project`. Your *Files* pane should now look similar to this
+
+![](img/files.png)

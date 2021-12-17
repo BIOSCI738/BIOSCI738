@@ -1,0 +1,298 @@
+## Linear regression
+
+![](https://raw.githubusercontent.com/cmjt/statbiscuits/master/figs_n_gifs/lm.gif)
+
+### Some mathematical notation
+
+Let's consider a linear regression with a simple explanatory variable:
+
+$$Y_i = \alpha + \beta_1x_i + \epsilon_i$$
+where
+
+$$\epsilon_i \sim \text{Normal}(0,\sigma^2).$$
+
+Here for observation $i$
+
+  + $Y_i$ is the value of the response 
+  + $x_i$ is the value of the explanatory variable 
+  + $\epsilon_i$ is the error term: the difference between $Y_i$ and its expected value
+  + $\alpha$ is the intercept term (a parameter to be estimated), and 
+  + $\beta_1$ is the slope: coefficient of the explanatory variable (a parameter to be estimated)
+
+Does this remind you of anything?
+
+![](https://memegenerator.net/img/instances/63099571/one-does-not-simply-forget-ymxc.jpg)
+
+
+### Modeling Bill Depth 
+
+**Remember the penguins from [Chapter 2](https://stats-uoa.github.io/BIOSCI220/data-exploration-and-visualization.html#data-wrangling-and-manipulation)**?
+
+![](https://cran.r-project.org/web/packages/palmerpenguins/readme/man/figures/culmen_depth.png)
+
+**Key assumptions**
+
++ **Independence** 
++ There is a **linear relationship** between the response and the explanatory variables
++ The residuals have **constant variance**
++ The **residuals** are normally distributed
+
+```{r, message = FALSE, warning=FALSE}
+library(tidyverse)
+library(palmerpenguins)
+penguins_nafree <- penguins %>% drop_na()
+```
+
+```{r, message=FALSE}
+ggplot(data = penguins_nafree, aes(x = bill_depth_mm)) +
+  geom_histogram() + theme_classic() +
+  xlab("Bill depth (mm)")
+
+```
+
+
+First off let's fit a null (intercept only)  model. This in *old money* would be called a one sample t-test. 
+
+```{r null}
+slm_null <- lm(bill_depth_mm ~ 1, data = penguins_nafree)
+summary(slm_null)$coef
+```
+
+**Model formula**
+
+This model, from above, is simply $$Y_i = \alpha + \epsilon_i.$$ 
+
+Here for observation $i$ $Y_i$ is the value of the response (`bill_depth_mm`) and $\alpha$ is a parameter to be estimated (typically called the intercept).
+
+
+**Inference**
+
+The `(Intercept)` term, `r summary(slm_null)$coef[1,1]`, tells us the (estimated) average value of the response (`bill_depth_mm`), see
+
+```{r av}
+penguins_nafree %>% summarise(average_bill_depth = mean(bill_depth_mm))
+```
+
+The SEM (`Std. Error`) = `r summary(slm_null)$coef[1,2]`. 
+
+The hypothesis being tested is $H_0:$ (`(Intercept)` ) $\text{mean}_{\text{`average_bill_depth`}} = 0$ vs. $H_1:$ (`(Intercept)`) $\text{mean}_{\text{`average_bill_depth`}} \neq 0$ 
+
+The t-statistic is given by `t value` = `Estimate` / `Std. Error` =  `r summary(slm_null)$coef[1,3]`
+
+The p-value is given by`Pr (>|t|)` =  `r summary(slm_null)$coef[1,4]`.
+
+So the probability of observing a t-statistic as least as extreme given under the null hypothesis (average bill depth = 0) given our data is `r summary(slm_null)$coef[1,4]`, pretty strong evidence against the null hypothesis I'd say!
+	
+
+### Single continuous variable
+
+**Does `bill_length_mm` help explain some of the variation in `bill_depth_mm`?**
+
+```{r}
+p1 <- ggplot(data = penguins_nafree, aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point() + ylab("Bill depth (mm)") +
+  xlab("Bill length (mm)") + theme_classic()
+p1
+```
+
+```{r slm}
+slm <- lm(bill_depth_mm ~ bill_length_mm, data = penguins_nafree)
+```
+
+
+
+**Model formula**
+
+This model is simply $$Y_i = \alpha + \beta_1x_i + \epsilon_i$$ where for observation $i$ $Y_i$ is the value of the response (`bill_depth_mm`) and $x_i$ is the value of the explanatory variable (`bill_length_mm`); As above $\alpha$ and $\beta_1$ are parameters to be estimated. We could also write this model as
+  
+  
+```{r, echo = FALSE, results='asis'}
+library(equatiomatic)
+extract_eq(slm, wrap = TRUE)
+```
+
+**Fitted model**
+
+As before we can get out estimated parameters (here $\alpha$ and $\beta_1$) using
+
+```{r}
+summary(slm)$coef
+```
+
+Here, the `(Intercept)`: `Estimate` ($\alpha$ above) gives us the estimated average bill depth (mm) **given the estimated relationship** bill length (mm) and bill length.
+
+The `bill_length_mm` : `Estimate` ($\beta_1$ above) is the slope associated with bill length (mm). So, here for every 1mm increase in bill length we estimated a `r -1*round(summary(slm)$coef[2,1],3)`mm decrease (or a `r round(summary(slm)$coef[2,1],3)`mm increase) in bill depth.
+
+```{r}
+## calculate predicted values
+penguins_nafree$pred_vals <- predict(slm)
+## plot
+ggplot(data = penguins_nafree, aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point() + ylab("Bill depth (mm)") +
+  xlab("Bill length (mm)") + theme_classic() +
+  geom_line(aes(y = pred_vals))
+
+```
+
+### One factor and a continous variable
+
+**Adding** `species`; remember `species` is a factor variable!
+
+```{r}
+p2 <- ggplot(data = penguins_nafree,
+             aes(y = bill_depth_mm, x = bill_length_mm, color = species)) +
+  geom_point() + ylab("Bill depth (mm)") +
+  xlab("Bill length (mm)") + theme_classic()
+p2
+```
+
+```{r}
+slm_sp <- lm(bill_depth_mm ~ bill_length_mm + species, data = penguins_nafree)
+```
+
+
+**Model formula**
+
+Now we have two explanatory variables, so our model formula becomes
+
+$$Y_i = \beta_0 + \beta_1z_i + \beta_2x_i + \epsilon_i$$
+$$\epsilon_i \sim \text{Normal}(0,\sigma^2)$$
+
+where for observation $i$
+
+  + $Y_i$ is the value of the response (`bill_depth_mm`)
+  + $z_i$ is one explanatory variable (`bill_length_mm` say)
+  + $x_i$ is another explanatory variable (`species` say)
+  + $\epsilon_i$ is the error term: the difference between $Y_i$ and its expected value
+  + $\alpha$, $\beta_1$, and $\beta_2$ are all parameters to be estimated.
+  
+
+Remember though that when we have factor explanatory variables (e.g., `species`) we have to use dummy variables, see lecture. Here the **Adelie** group are the baseline (`R` does this alphabetically, to change this see previous chapter).
+
+So model formula is
+
+```{r, echo = FALSE, results='asis'}
+extract_eq(slm_sp, wrap = TRUE)
+```
+
+**Fitted model**
+
+
+```{r}
+summary(slm_sp)$coef
+```
+
+
+**Simpson's paradox...** look how the slope associated with bill length (coefficient of `bill_length_mm`) has switched direction from the model above! Why do you think this is?
+
+
+Here, the `(Intercept)`: `Estimate` gives us the estimated average bill depth (mm) of the **Adelie** penguins **given the other variables in the model**.
+
+The `bill_length_mm` : `Estimate` ($\beta_1$ above) is the slope associated with bill length (mm). So, here for every 1mm increase in bill length we estimated a `r round(summary(slm_sp)$coef[2,1],3)`mm increase in bill depth.
+
+What about the coefficient of the other species levels? Look at the plot below, these values give the shift (up or down) of the **parallel** lines from the **Adelie** level. So given the estimated relationship between bill depth and bill length these coefficients are the estimated change from the baseline. 
+
+```{r}
+## calculate predicted values
+penguins_nafree$pred_vals <- predict(slm_sp)
+## plot
+ggplot(data = penguins_nafree, aes(y = bill_depth_mm, x = bill_length_mm, color = species)) +
+  geom_point() + ylab("Bill depth (mm)") +
+  xlab("Bill length (mm)") + theme_classic()  +
+  geom_line(aes(y = pred_vals))
+
+```
+
+
+
+### Interactions
+
+Recall the (*additive*) model formula from above
+
+$$Y_i = \beta_0 + \beta_1z_i + \beta_2x_i + \epsilon_i$$
+
+
+  
+**but**  what about interactions between variables? For example, 
+
+$$Y_i = \beta_0 + \beta_1z_i + \beta_2x_i + \beta_3z_ix_i + \epsilon_i$$
+
+**Note:** to include interaction effects in our model by using either the `*` or `:` syntax in our model formula. For example,
+
+ + `:` denotes the interaction of the variables to its left and right, and
+
+ + `*` means to include all main effects and interactions, so `a*b` is the same as `a + b + a:b`.
+
+See [Model formula syntax](Model formula syntax) for further details.
+
+To specify a model with additive and interaction effects we use
+
+```{r}
+slm_int <- lm(bill_depth_mm ~ bill_length_mm*species, data = penguins_nafree)
+
+```
+
+
+**Model formula**
+
+The model formula is then
+
+```{r, echo = FALSE, results='asis'}
+extract_eq(slm_int, wrap = TRUE)
+```
+
+**Fitted model**
+
+```{r}
+summary(slm_int)$coef
+```
+
+As before the `(Intercept)`: `Estimate` gives us the estimated average bill depth (mm) of the **Adelie** penguins **given the other variables in the model**.
+
+The `bill_length_mm` : `Estimate` ($\beta_1$ above) is the slope associated with bill length (mm). So, here for every 1mm increase in bill length we estimated a `r round(summary(slm_int)$coef[2,1],3)`mm increase in bill depth.
+
+The main effects of species (i.e., `speciesChinstrap`: `Estimate` and `speciesGentoo`:`Estimate` ) again give the shift (up or down) of the lines from the **Adelie** level; however these lines are no longer parallel! The interaction terms (i.e., `bill_length_mm:speciesChinstrap` and `bill_length_mm:speciesGentoo`) specify the species specific slopes **given the other variables in the model**.
+
+
+Look at the plot below. Now we've specified this *all singing and dancing* interaction model we might ask **are the non-parallel lines non-parallel enough to reject the parallel line model**?
+
+```{r}
+## calculate predicted values
+penguins_nafree$pred_vals <- predict(slm_int)
+## plot
+ggplot(data = penguins_nafree, aes(y = bill_depth_mm, x = bill_length_mm, color = species)) +
+  geom_point() + ylab("Bill depth (mm)") +
+  xlab("Bill length (mm)") + theme_classic()  +
+  geom_line(aes(y = pred_vals))
+
+```
+
+
+
+## TL;DR `lm()`
+
+
+| Traditional name    | Model formula  | R code  |
+| ------------------- |:--------------:| -------:|
+| Simple regression   | $Y \sim X_{continuous}$ | `lm(Y ~ X)` |
+| One-way ANOVA       | $Y \sim X_{categorical}$      |   `lm(Y ~ X)` |
+| Two-way ANOVA       | $Y \sim X1_{categorical} + X2_{categorical}$| `lm(Y ~ X1 + X2)` |
+| ANCOVA              | $Y \sim X1_{continuous} + X2_{categorical}$ |`lm(Y ~ X1 + X2)` |
+| Multiple regression | $Y \sim X1_{continuous} + X2_{continuous}$ | `lm(Y ~ X1 + X2)` |
+| Factorial ANOVA     | $Y \sim X1_{categorical} * X2_{categorical}$|   `lm(Y ~ X1 * X2)` or `lm(Y ~ X1 + X2 + X1:X2)` |
+
+**[Artwork by \@allison_horst](https://github.com/allisonhorst/stats-illustrations)**
+
+
+![Meet your MLR teaching assistants](https://github.com/allisonhorst/stats-illustrations/blob/master/other-stats-artwork/dragons.png?raw=true)
+
+![Interpret coefficients for categorical predictor variables](https://github.com/allisonhorst/stats-illustrations/blob/master/other-stats-artwork/dragon_regression.png?raw=true)
+
+![Interpret coefficients for continuous predictor variables](https://github.com/allisonhorst/stats-illustrations/blob/master/other-stats-artwork/dragons_continuous.png?raw=true)
+
+![Make predictions using the regression model](https://github.com/allisonhorst/stats-illustrations/blob/master/other-stats-artwork/dragon_predict_mlr.png?raw=true)
+
+![Residuals](https://github.com/allisonhorst/stats-illustrations/blob/master/other-stats-artwork/dragon_residual.png?raw=true)
+
+![Check residuals for normality](https://github.com/allisonhorst/stats-illustrations/blob/master/other-stats-artwork/dragon_residual_distribution.png?raw=true)
+

@@ -1,0 +1,72 @@
+
+## Model comparison and selection
+
+
+Remember that it is always is imperative that we **check the underlying assumptions** of our model! If our assumptions are not met then basically the maths falls over and we can't reliably draw inference from the model (e.g., can't trust the parameter estimates etc.). Two of the most important assumption are:
+
+  + equal variances (homogeneity of variance), and 
+  
+  + normality of residuals. 
+  
+Let's look at the fit of the `slm` model (single continuous explanatory variable)
+
+```{r}
+gglm::gglm(slm) # Plot the four main diagnostic plots
+```
+
+Do you think the residuals are Normally distributed (look at the QQ plot)? Think of what this model is, do you think it's the best we can do? 
+
+### Model comparison and selection
+
+**Are the non-parallel lines non-parallel enough to reject the parallel line model?** 
+
+Now we can compare **nested** linear models by hypothesis testing. Luckily the `R` function `anova()` automates this. Yes the same idea as we've previously learnt about ANOVA! We essentially perform an F-ratio test between the nested models! 
+
+By **nested** we mean that one model is a subset of the other (i.e., where some coefficients have been fixed at zero). For example,
+
+$$Y_i = \beta_0 + \beta_1z_i + \epsilon_i$$
+
+is a nested version of
+
+$$Y_i = \beta_0 + \beta_1z_i + \beta_2x_i + \epsilon_i$$ where $\beta_2$ has been fixed to zero.
+
+As an example consider testing the single explanatory variable model `slm` against the same model with species included as a variable  `slm_sp`. To carry out the appropriate hypothesis test in `R` we can run
+
+```{r, echo = TRUE}
+anova(slm,slm_sp)
+```
+As you'll see the `anova()` function takes the two model objects (`slm` and `slm_sp`) each as arguments. It returns an ANOVA testing whether the more complex model (`slm_sp`) is just as good at capturing the variation in the data as the simpler model (`slm`). The returned p-value should be interpreted as in any other hypothesis test. i.e., the probability of observing a statistic as least as extreme under our null hypothesis (here that each model is as good at capturing the variation in the data).
+
+What would we conclude here? I'd say we have pretty strong evidence against the models being equally good! I'd definitely plump for `slm_sp` over `slm`, looking back at the plots above does this make sense?
+
+Now what about `slm_int` vs `slm_sp`?
+
+```{r, echo = TRUE}
+anova(slm_sp,slm_int)
+```
+So it seems both models are just as good at capturing the variation in our data: we're happy with the parallel lines!
+
+Another way we might compare models is by using the Akaike information criterion (AIC) (you'll see more of this later in the course). AIC is an estimator of out-of-sample prediction error and can be used as a metric to choose between competing models. Between nested models we're looking for the smallest AIC (i.e., smallest out-of-sample prediction error). Typically, a difference of 4 or more is considered to indicate an improvement; this should not be taken as writ however, using multiple comparison techniques is advised.
+
+`R` already has an `AIC()` function that can be used directly on your `lm()` model object(s). For example,
+
+```{r, echo = TRUE}
+AIC(slm,slm_sp,slm_int)
+```
+
+
+This backs up what our ANOVA suggested model `slm_sp` as that preferred! As always it's important to do a sanity check! Does this make sense? Have a look at the outputs from these models and see what you think.
+
+Just because we've chosen a model (*the best of a bad bunch* perhaps) this doesn't let us off the hook. We should check our assumptions
+
+```{r}
+gglm::gglm(slm_sp) # Plot the four main diagnostic plots
+```
+
+**Residuals vs Fitted** plot: equal spread? Doesn't look too trumpety! 
+
+**Normal quantile-quantile (QQ)** plot: skewed? Maybe slightly right skewed (deviation upwards from the right tail)
+
+**Scale-Location** plot: equal spared? I'd say so.
+
+**Residuals vs Leverage**: ? Maybe a couple of points with high leverage.

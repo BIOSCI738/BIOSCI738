@@ -1,0 +1,191 @@
+## Introduction to the design and analysis of experiments
+
+
+###  Key phrases
+
+
+**Experimental unit** Smallest portion of experimental material which is *independently* perturbed
+ 
+
+**Treatment** The experimental condition *independently* applied to an experimental unit
+
+
+**Observational unit** The smallest unit on which a response is measured. If one measurement is made on each rat: **Observational unit** = **Experimental unit**. If Multiple measurements are made on each rat: Each experimental unit has >1 observational unit (*pseudo-* or *technical replication*).
+
+
+### Three key principles:
+
+
+#### **Replication**
+
++ **Biological replication:** each treatment is *independently* applied to each of several humans, animals or plants
+  + To generalize results to population
+
+
++ **Technical replication:** two or more samples from the same biological source which are *independently* processed
+  + Advantageous if processing steps introduce a lot of variation
+  + Increases the precision with which comparisons of relative abundances between treatments are made
+
+
++ **Pseudo-replication:** one sample from the same biological source, divided into two or more aliquots which are **independently** measured
+  + Advantageous for noisy measuring instruments
+  + Increases the **precision** with which comparisons of relative abundances between treatments are made
+  
+#### **Randomization**
+
++ **Protects against bias**
+
+
++ Plan the experiment in such a way that the variations caused by extraneous factors can all be combined under the general heading of "chance".
+
++ Ensures that each treatment has the same probability of getting good (or bad) units and thus
+avoids systematic bias
++ random allocation can cancel out population bias; it ensures that any other possible causes for the experimental results are split equally between groups
++ typically statistical analysis assumes that observations are **independent**. This is almost never strictly true in practice but randomisation means that our estimates will behave as if they were based on independent observations
+
+
+#### **Blocking**
+
++ Blocking helps **control variability** by making treatment groups more alike. Experimental units are divided into subsets (called blocks) so that units within the same block are more similar than units from different subsets or blocks. 
+
++ Blocking is a technique for dealing with *nuisance factors*. A *nuisance factor* is a factor that has some effect on the response, but is of no interest (e.g., age class).
+
+
+## One-Way **An**alysis **o**f **Va**riance (ANOVA)
+
+```{r data-quiet, message = FALSE, echo = FALSE}
+library(tidyverse)
+rats <- read_csv("../data/crd_rats_data.csv")
+rats$Surgery <- as_factor(rats$Surgery)
+```
+
+### Between group SS (SSB)
+
+**The idea**: Assess **distances** between treatment (*surgical condition*) means relative to our uncertainty about the actual (*true*) treatment means.
+
+
+```{r, echo = FALSE}
+means <- rats %>% group_by(Surgery) %>% summarise(avg = mean(logAUC))
+mean <- mean(rats$logAUC)
+means$ends <- mean
+ggplot(rats, aes(x = Surgery, y = logAUC)) + 
+    geom_violin()  + 
+  ylab("logAUC") +
+  xlab("Treatment") +
+  geom_point(data = means, aes(x = Surgery, y = avg, color = Surgery), size = 2) +
+  geom_text(data = means, aes(x = Surgery, y = avg + 0.25, color = Surgery, label = paste0("Treatment mean = ",round(avg,3)))) +
+  geom_hline(data = means, aes(yintercept = avg, color = Surgery), alpha = 0.3, lty = 2) +
+  geom_hline(yintercept = mean, color = "red", alpha = 0.3) +
+  annotate(geom = 'text', label = paste0("Overall average = ",round(mean,3)) , 
+           x = -Inf, y = Inf, hjust = 0, vjust = 1.5, color = "red") +
+  geom_segment(data = means, aes(x = Surgery, y = avg, xend = Surgery, yend = ends,color = Surgery), size = 1) +
+  geom_text(data = means, aes(x = Surgery, y = ends + 0.25, color = Surgery, label = paste0("diff to overall = ",round(avg - ends,3))))
+  
+  
+```
+
+
+**add up the differences:** `r round(means$avg[1] - mean,3)` + `r round(means$avg[2] - mean,3)` + `r round(means$avg[3] - mean,3)` = `r round(sum(means$avg - mean),3)`. **This is always the case!**
+
+**So adding up the differences:** `r round(means$avg[1] - mean,3)` + `r round(means$avg[2] - mean,3)` + `r round(means$avg[3] - mean,3)` = `r round(sum(means$avg - mean),3)`. **Not a great way to measure distances!**
+
+
+**Sums of Squares?** 
+
+`r round(means$avg[1] - mean,3)`^2 + `r round(means$avg[2] - mean,3)`^2 + `r round(means$avg[3] - mean,3)`^2
+
+**add up the squared differences?** but... there are 4 observations in each group (treatment)
+
+
+4$\times$(`r round(means$avg[1] - mean,3)`)^2 + 4$\times$(`r round(means$avg[2] - mean,3)`)^2 + 4$\times$(`r round(means$avg[3] - mean,3)`)^2
+
+This is the **Between Groups Sums of Squares** or the **Between group SS (SSB)** 
+
+
+So the Between group SS (SSB) = `r sum(4*((means$avg - mean)^2))`
+
+
+**Adding up the differences:** `r round(means$avg[1] - mean,3)` + `r round(means$avg[2] - mean,3)` + `r round(means$avg[3] - mean,3)` = `r round(sum(means$avg - mean),3)`. **This is always the case** and that itself gives us information...
+
+
+**We only need to know two of the values to work out the third!**
+
+So we have only 2 bits of **unique** information; **SSB degrees of freedom** = 2
+
+### Within group SS (SSW)
+
+The **Within group SS (SSW)** arises from the same idea:
+
+To assess distances between treatment (surgical condition) means **relative** to our uncertainty about the actual (true) treatment means.
+
+Procedure:
+
+ + Observation - Treatment mean
+ + Square the difference
+ + Add them up!
+
+**Within group SS (SSW)** *unexplained variance*
+
+```{r,echo = FALSE}
+rats_df <- rats %>% mutate(ov_avg = mean(logAUC)) %>% 
+  group_by(Surgery) %>% mutate(tr_avg = mean(logAUC), tr_avg_minus_ov_avg = mean(logAUC) - ov_avg,
+                               obvs_minus_tr_avg = logAUC - mean(logAUC))
+jit <- ggplot() + 
+  geom_jitter(data = rats, aes(x = Surgery, y = logAUC))
+
+rats_df$x_points <- layer_data(jit)$x
+rats_df$y_points <- layer_data(jit)$y
+
+ggplot() + 
+  ylab("logAUC") +
+  xlab("Treatment") +
+  geom_point(data = means, aes(x = Surgery, y = avg, color = Surgery), size = 2) +
+  geom_text(data = means, aes(x = Surgery, y = avg + 0.25, color = Surgery, 
+                              label = paste0("Treatment mean = ",round(avg,3)))) +
+  geom_hline(data = means, aes(yintercept = avg, color = Surgery), alpha = 0.3, lty = 2) +
+  geom_point(data = rats_df, aes(x = x_points, y = y_points, color = Surgery), alpha = 0.3) +
+  geom_segment(data = rats_df, aes(x = x_points, y = y_points, 
+                                   xend = x_points, yend = tr_avg,color = Surgery), 
+               size = 1, alpha = 0.5) +
+    theme(legend.position = "none")
+```
+
+### F-statistic
+
+Recall the Between group SS (**SSB**) = `r sum(4*((means$avg - mean)^2))`
+
+So mean **SSB** =  `r sum(4*((means$avg - mean)^2))` / 2
+
+
+The within group SS (**SSW**) = `r sum(rats_df$obvs_minus_tr_avg^2)`
+
+Here we have 3$\times$ 3 bits of *unique* information: within groups **degrees of freedom** is 9.
+
+So mean **SSW** = `r round(sum(rats_df$obvs_minus_tr_avg^2),3)`/9
+
+
+Consider the ratio ${\frac{{\text{variation due to treatments}}}{{\text{unexplained variance}}}} = {\frac{{\text{ mean between-group variability}}}{{\text{mean within-group variability}}}}$  $=\frac{\text{mean SSB}}{\text{mean SSW}}$ $=\frac{\text{MSB}}{\text{MSW}}$  = $=\frac{\text{experimental variance}}{\text{error variance}}$ `r (sum(4*((means$avg - mean)^2))/2)/(sum(rats_df$obvs_minus_tr_avg^2)/9)`
+
+This is the **F-statistic!**
+
+### Degrees of freedom (DF)
+
+Essentially *statistical currency* (i.e., **unique** bits of information). So in the example above we have 3 treatment groups and if we know the mean of two we know the third (i.e., 2 *unique* bits of info) so SSB df = 2. Now, for SSW df. We have 12 observations (4 in each group); we know the treatment means so if we have three of those observed values in each group we know the fourth: 12 - 3 = 9 (i.e., number of observations - number of df lost due to knowing the cell means).
+
+
+**In, summary**
+
+
+![](https://pbs.twimg.com/media/EeMWb7QWsAIGftR?format=jpg&name=small)
+
+
+
+| Traditional name    | Model formula  | R code  |
+| ------------------- |:--------------:| -------:|
+| Simple regression   | $Y \sim X_{continuous}$ | `lm(Y ~ X)` |
+| One-way ANOVA       | $Y \sim X_{categorical}$      |   `lm(Y ~ X)` |
+| Two-way ANOVA       | $Y \sim X1_{categorical} + X2_{categorical}$| `lm(Y ~ X1 + X2)` |
+| ANCOVA              | $Y \sim X1_{continuous} + X2_{categorical}$ |`lm(Y ~ X1 + X2)` |
+| Multiple regression | $Y \sim X1_{continuous} + X2_{continuous}$ | `lm(Y ~ X1 + X2)` |
+| Factorial ANOVA     | $Y \sim X1_{categorical} * X2_{categorical}$|   `lm(Y ~ X1 * X2)` or `lm(Y ~ X1 + X2 + X1:X2)` |
+
