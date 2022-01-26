@@ -1,0 +1,122 @@
+## Least Squares Estimation
+
+
+### Some basic matrix algebra
+
+This section is a recap only, if you need a more in-depth overiew of matrix algebra then use the extra materials provided at the start of this module.
+
+
+Matrices are commonly written in box brackets or parentheses and are typically denoted by upper case bold letters (e.g., A) with elements represented by the corresponding lower case indexed letters:
+
+A=\mathbf {A} ={\begin{bmatrix}a_{11}&a_{12}&\cdots &a_{1n}\\a_{21}&a_{22}&\cdots &a_{2n}\\\vdots &\vdots &\ddots &\vdots \\a_{m1}&a_{m2}&\cdots &a_{mn}\end{bmatrix}}={\begin{pmatrix}a_{11}&a_{12}&\cdots &a_{1n}\\a_{21}&a_{22}&\cdots &a_{2n}\\\vdots &\vdots &\ddots &\vdots \\a_{m1}&a_{m2}&\cdots &a_{mn}\end{pmatrix}}=\left(a_{ij}\right)\in \mathbb {R} ^{m\times n}.}
+
+The entry in the i-th row and j-th column of a matrix A is sometimes referred to as the i,j, (i,j), or (i,j)th entry of the matrix, and most commonly denoted as ai,j, or aij. Alternative notations for that entry are A[i,j] or Ai,j. For example, the (1,3) entry of the following matrix A is 5 (also denoted a13, a1,3, A[1,3] or A1,3):
+
+A=\displaystyle \mathbf {A} ={\begin{bmatrix}4&-7&\color {red}{5}&0\\-2&0&11&8\\19&1&-3&12\end{bmatrix}}}
+
+##### Matrix addition	
+
+The sum A+B of two m-by-n matrices A and B is calculated entrywise:
+(A + B)i,j = Ai,j + Bi,j, where 1 ≤ i ≤ m and 1 ≤ j ≤ n.
+{\displaystyle {\begin{bmatrix}1&3&1\\1&0&0\end{bmatrix}}+{\begin{bmatrix}0&0&5\\7&5&0\end{bmatrix}}={\begin{bmatrix}1+0&3+0&1+5\\1+7&0+5&0+0\end{bmatrix}}={\begin{bmatrix}1&3&6\\8&5&0\end{bmatrix}}}{\displaystyle {\begin{bmatrix}1&3&1\\1&0&0\end{bmatrix}}+{\begin{bmatrix}0&0&5\\7&5&0\end{bmatrix}}={\begin{bmatrix}1+0&3+0&1+5\\1+7&0+5&0+0\end{bmatrix}}={\begin{bmatrix}1&3&6\\8&5&0\end{bmatrix}}}
+
+##### Scalar multiplication	The product cA of a number c (also called a scalar in the parlance of abstract algebra) and a matrix A is computed by multiplying every entry of A by c:
+(cA)i,j = c · Ai,j.
+This operation is called scalar multiplication, but its result is not named "scalar product" to avoid confusion, since "scalar product" is sometimes used as a synonym for "inner product".
+
+{\displaystyle 2\cdot {\begin{bmatrix}1&8&-3\\4&-2&5\end{bmatrix}}={\begin{bmatrix}2\cdot 1&2\cdot 8&2\cdot -3\\2\cdot 4&2\cdot -2&2\cdot 5\end{bmatrix}}={\begin{bmatrix}2&16&-6\\8&-4&10\end{bmatrix}}}{\displaystyle 2\cdot {\begin{bmatrix}1&8&-3\\4&-2&5\end{bmatrix}}={\begin{bmatrix}2\cdot 1&2\cdot 8&2\cdot -3\\2\cdot 4&2\cdot -2&2\cdot 5\end{bmatrix}}={\begin{bmatrix}2&16&-6\\8&-4&10\end{bmatrix}}}
+
+##### Matrix transposition	
+
+The transpose of an m-by-n matrix A is the n-by-m matrix AT (also denoted Atr or tA) formed by turning rows into columns and vice versa:
+(AT)i,j = Aj,i.
+{\displaystyle {\begin{bmatrix}1&2&3\\0&-6&7\end{bmatrix}}^{\mathrm {T} }={\begin{bmatrix}1&0\\2&-6\\3&7\end{bmatrix}}}{\displaystyle {\begin{bmatrix}1&2&3\\0&-6&7\end{bmatrix}}^{\mathrm {T} }={\begin{bmatrix}1&0\\2&-6\\3&7\end{bmatrix}}}
+
+
+##### Matrix multiplication
+
+Multiplication of two matrices is defined if and only if the number of columns of the left matrix is the same as the number of rows of the right matrix. If A is an m-by-n matrix and B is an n-by-p matrix, then their matrix product AB is the m-by-p matrix whose entries are given by dot product of the corresponding row of A and the corresponding column of B:[11]
+
+[AB]i,j=ai,1b1,j+ai,2b2,j+⋯+ai,nbn,j=∑r=1nai,rbr,j,{\displaystyle [\mathbf {AB} ]_{i,j}=a_{i,1}b_{1,j}+a_{i,2}b_{2,j}+\cdots +a_{i,n}b_{n,j}=\sum _{r=1}^{n}a_{i,r}b_{r,j},}
+
+**Note** Matrix multiplication satisfies the rules (AB)C = A(BC) (associativity), and (A + B)C = AC + BC as well as C(A + B) = CA + CB (left and right distributivity), whenever the size of the matrices is such that the various products are defined.[13] The product AB may be defined without BA being defined, namely if A and B are m-by-n and n-by-k matrices, respectively, and m ≠ k. Even if both products are defined, they generally need not be equal, that is: AB ≠ BA.
+
+
+### Matrix representation of a CRD
+
+Let's consider the CRD outlined in the previous module, we can write the effects model using matrix representation:
+
+$$\boldsymbol{y} = \boldsymbol{X\beta} + \boldsymbol{\epsilon}$$
+
+where 
+
+$\boldsymbol{y} = \begin{bmatrix}
+ y_{11} \\ y_{12} \\ y_{13} \\ y_{14} \\ y_{21} \\ y_{22} \\ y_{23} \\ y_{24} \\ y_{31} \\ y_{32} \\ y_{33} \\ y_{34} 
+\end{bmatrix}$, $\boldsymbol{X} = \begin{bmatrix}
+ 1 & 1 & 0 & 0 \\ 1 & 1 & 0 & 0  \\ 1 & 1 & 0 & 0  \\ 1 & 1 & 0 & 0  \\ 1 & 0 & 1 & 0 \\ 1 & 0 & 1 & 0 \\ 1 & 0 & 1 & 0 \\ 1 & 0 & 1 & 0 \\  1 & 0 & 0 & 1 \\ 1 & 0 & 0 & 1 \\ 1 & 0 & 0 & 1 \\ 1 & 0 & 0 & 1 
+\end{bmatrix}$, $\boldsymbol{\beta} = \begin{bmatrix}
+ \alpha \\ \tau_1 \\ \tau_2 \\ \tau_3
+\end{bmatrix}$, and $\boldsymbol{\epsilon} = \begin{bmatrix}
+ \epsilon_{11} \\ \epsilon_{12} \\ \epsilon_{13} \\ \epsilon_{14} \\ \epsilon_{21} \\ \epsilon_{22} \\ \epsilon_{23} \\ \epsilon_{24} \\ \epsilon_{31} \\ \epsilon_{32} \\ \epsilon_{33} \\ \epsilon_{34} 
+\end{bmatrix}.$
+
+where $\boldsymbol{\epsilon} \sim \text{MVN}(\boldsymbol{0}, \boldsymbol{\sigma^2 I})$. The least squares estimators of $\boldsymbol{\beta}$ are the solutions to the $$\boldsymbol{X^{'}X\beta}=\boldsymbol{X^{'}y}$$. 
+
+Recall that for a factor variable we take the one level (the first factor) into the baseline (i.e., the standard) and hence then the coefficients we estimate are compared to it (i.e., the differences in the mean). This is to ensure that the matrix $\boldsymbol{X}$ is full rank. So 
+
+$$\boldsymbol{X} = \begin{bmatrix}
+ 1  & 0 & 0 \\ 1  & 0 & 0  \\ 1  & 0 & 0  \\ 1  & 0 & 0  \\ 1  & 1 & 0 \\ 1 & 1 & 0 \\ 1  & 1 & 0 \\ 1  & 1 & 0 \\  1  & 0 & 1 \\ 1  & 0 & 1 \\ 1  & 0 & 1 \\ 1  & 0 & 1 
+\end{bmatrix}$$
+
+Now, with three factor levels the least squares estimators of $\boldsymbol{\beta}$ are (note the hat to denote the estimates)
+
+$$(\boldsymbol{X^{'}X})^{-1}\boldsymbol{X^{'}y} = \boldsymbol{\hat{\beta}}= \begin{bmatrix}
+ \hat{\alpha} - \hat{\tau_1} \\ \hat{\tau_2} - \hat{\tau_1} \\ \hat{\tau_3} - \hat{\tau_1}
+\end{bmatrix} $$
+
+### A numeric example
+
+#### By hand
+
+Using the mask data from the previous chapter we have
+
+```{r, results='asis',echo = FALSE}
+set.seed(5469)
+type <- factor(rep(paste("Type", 1:3), each = 4))
+df <- data.frame(Mask = type, Droplets = round(c(rnorm(4, 5), rnorm(4, 7), rnorm(4, 9)), 1))
+kableExtra::kable(df)
+```
+
+```{r, eval = TRUE, echo = FALSE}
+write_mat <- function(x) {
+  begin <- "\\begin{bmatrix}"
+  end <- "\\end{bmatrix}"
+  X <-
+    apply(x, 1, function(x) {
+      paste(
+        paste(x, collapse = "&"),
+        "\\\\"
+      )
+    })
+  paste(c(begin, X, end), collapse = "")
+}
+x <- matrix(c(rep(1, 12), rep(c(0, 1, 0), each = 4), rep(0, 8), rep(1, 4)), ncol = 3)
+y <- df$Droplets
+```
+
+so 
+
+$\boldsymbol{X^{'}X} = `r write_mat(t(x)%*%x)`$, $\boldsymbol{X^{'}y} = `r write_mat(t(x)%*%y)`$, and $(\boldsymbol{X^{'}X})^{-1} = `r write_mat(solve(t(x)%*%x))`.$
+
+Therefore, 
+
+$$\boldsymbol{\hat{\beta}} = (\boldsymbol{X^{'}X})^{-1}\boldsymbol{X^{'}y} = \begin{bmatrix}
+ \hat{\alpha} - \hat{\tau_1} \\ \hat{\tau_2} - \hat{\tau_1} \\ \hat{\tau_3} - \hat{\tau_1}
+\end{bmatrix} = `r write_mat(solve(t(x)%*%x))` \times `r write_mat(t(x)%*%y)` = `r write_mat((solve(t(x)%*%x)) %*% (t(x)%*%y))`$$
+
+#### Using `lm` in `R`
+
+```{r}
+mod <- lm(Droplets ~ Mask, data = df)
+summary(mod)
+```

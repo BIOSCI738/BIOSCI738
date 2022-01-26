@@ -1,0 +1,7 @@
+## Bayesian
+
+### Bayes' rule
+
+The conditional probability of the event \(A\) conditional on the event \(B\) is given by
+
+P(A∣B)=P(A&B)P(B).

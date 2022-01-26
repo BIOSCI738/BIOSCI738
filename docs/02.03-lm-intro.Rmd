@@ -1,7 +1,5 @@
 ## Linear regression
 
-![](https://raw.githubusercontent.com/cmjt/statbiscuits/master/figs_n_gifs/lm.gif)
-
 ### Some mathematical notation
 
 Let's consider a linear regression with a simple explanatory variable:
@@ -186,7 +184,7 @@ summary(slm_sp)$coef
 **Simpson's paradox...** look how the slope associated with bill length (coefficient of `bill_length_mm`) has switched direction from the model above! Why do you think this is?
 
 
-Here, the `(Intercept)`: `Estimate` gives us the estimated average bill depth (mm) of the **Adelie** penguins **given the other variables in the model**.
+Here, the `(Intercept)`: `Estimate` gives us the estimated average bill depth (mm) of the **Adelie** penguins **given the estimated relationship** between bill length and bill depth. Technically, this is the estimated bill depth (mm) for Adelie penguins with zero bill length. That is clearly a nonsense way to interpret this as that would be an impossible situation in practice! I would recommend as thinking of this as the y-shift (i.e., height) of the fitted line.
 
 The `bill_length_mm` : `Estimate` ($\beta_1$ above) is the slope associated with bill length (mm). So, here for every 1mm increase in bill length we estimated a `r round(summary(slm_sp)$coef[2,1],3)`mm increase in bill depth.
 
@@ -223,7 +221,6 @@ $$Y_i = \beta_0 + \beta_1z_i + \beta_2x_i + \beta_3z_ix_i + \epsilon_i$$
 
  + `*` means to include all main effects and interactions, so `a*b` is the same as `a + b + a:b`.
 
-See [Model formula syntax](Model formula syntax) for further details.
 
 To specify a model with additive and interaction effects we use
 
@@ -247,16 +244,37 @@ extract_eq(slm_int, wrap = TRUE)
 summary(slm_int)$coef
 ```
 
-As before the `(Intercept)`: `Estimate` gives us the estimated average bill depth (mm) of the **Adelie** penguins **given the other variables in the model**.
+This can be written out:
 
-The `bill_length_mm` : `Estimate` ($\beta_1$ above) is the slope associated with bill length (mm). So, here for every 1mm increase in bill length we estimated a `r round(summary(slm_int)$coef[2,1],3)`mm increase in bill depth.
+```{r, echo = FALSE, results='asis'}
+extract_eq(slm_int, wrap = TRUE, use_coefs = TRUE)
+```
 
-The main effects of species (i.e., `speciesChinstrap`: `Estimate` and `speciesGentoo`:`Estimate` ) again give the shift (up or down) of the lines from the **Adelie** level; however these lines are no longer parallel! The interaction terms (i.e., `bill_length_mm:speciesChinstrap` and `bill_length_mm:speciesGentoo`) specify the species specific slopes **given the other variables in the model**.
+The interaction terms (i.e., `bill_length_mm:speciesChinstrap` and `bill_length_mm:speciesGentoo`) specify the species specific slopes **given the other variables in the model**. We can use our dummy variable trick again to interpret the coefficients correctly. In this instance we have one factor explanatory variable, Species, and one continuous explanatory variable, bill length (mm). As before, Adelie is our baseline reference. 
+
+Let's assume we're talking about the **Adelie** penguins, then our equation becomes (using the dummy variable technique) 
+
+$$\widehat{\text{bill_depth_mm}} = `r round(coef(slm_int)[1], 3)` + (`r round(coef(slm_int)[2], 3)` \times \text{bill_length_mm}).$$
+
+So, the `(Intercept): Estimate` term ($\hat{\alpha}$), again, specifies the height of the Adelie fitted line and the main effect of `bill_length_mm: Estimate` ($\hat{\beta_1}$) estimates the relationship (slope) between bill length (mm) and bill depth (mm) for the Adelie penguin. So, here for every 1mm increase in bill length (mm) for the Adelie penguins we estimate, on average, a `r round(coef(slm_int)[2],3)`mm increase in bill depth (mm).
+
+Now, what about **Gentoo** penguins? Our equation then becomes
+
+$$\widehat{\text{bill_depth_mm}} = `r round(coef(slm_int)[1], 3)` + (`r round(coef(slm_int)[2], 3)` \times \text{bill_length_mm}) + (`r round(coef(slm_int)[4], 3)`) + (`r round(coef(slm_int)[6], 3)` \times \text{bill_length_mm}).$$
+
+which simplifies to
+
+$$\widehat{\text{bill_depth_mm}} = `r round(coef(slm_int)[1] + coef(slm_int)[4], 3)` + (`r round(coef(slm_int)[2] + coef(slm_int)[6], 3)` \times \text{bill_length_mm}).$$
+
+The estimated Gentoo-specific intercept term (y-axis line height) is therefore $\hat{\alpha} + \hat{\beta_3} = `r round(coef(slm_int)[1], 3)` + (`r round(coef(slm_int)[4], 3)`) = `r round(coef(slm_int)[1] + coef(slm_int)[4], 3)`.$ The Gentoo-specific bill length (mm) slope is then $\hat{\beta_1} + \hat{\beta_5} = `r round(coef(slm_int)[2], 3)` + `r round(coef(slm_int)[6], 3)` = `r round(coef(slm_int)[2] + coef(slm_int)[6], 3)`.$ So, for every 1mm increase in bill length (mm) for the Gentoo penguins we estimate, on average, a `r round(coef(slm_int)[2] + coef(slm_int)[6], 3)`mm increase in bill depth (mm), a slightly steeper slope than for the estimated Adelie relationship (i.e., we estimate that as Gentoo bills get longer their depth increases at a, slightly, greater rate than those of Adelie penguins).
+
+In summary, the main effect of species (i.e., `speciesChinstrap`: `Estimate` and `speciesGentoo`:`Estimate` ) again give the shift (up or down) of the lines from the **Adelie** level. However, these lines are no longer parallel (i.e., each species of penguin has a different estimated relationship between bill length and bill depth)! 
 
 
-Look at the plot below. Now we've specified this *all singing and dancing* interaction model we might ask **are the non-parallel lines non-parallel enough to reject the parallel line model**?
 
-```{r}
+But, now we've specified this *all singing and dancing* interaction model we might ask **are the non-parallel lines non-parallel enough to reject the parallel line model**? Look at the plot below; what do you think?
+
+```{r, echo = FALSE}
 ## calculate predicted values
 penguins_nafree$pred_vals <- predict(slm_int)
 ## plot
@@ -267,22 +285,104 @@ ggplot(data = penguins_nafree, aes(y = bill_depth_mm, x = bill_length_mm, color 
 
 ```
 
+### Other possible models
+
+Let's assume that we have the same data types as above, specifically, a continuous response ($y$) and one factor ($f$, with two levels $A$ and $B$) and one continuous ($x$) explanatory variable. Assuming that $A$ is the baseline for $f$ the possible models are depicted below.
+
+```{r, echo = FALSE, fig.height = 6, fig.width = 10}
+library(patchwork)
+data <- data.frame(group = rep(c("A", "B"), each = 2),
+                   x = rep(1:2, times = 2),
+                   y = c(0, 1, 1, 2))
+
+p1 <- data %>%  
+  ggplot(., aes(x = x, y = y, color = group)) +
+  geom_line(aes(group = group), size = 3) +
+  theme_classic() +
+  ylab("y") +
+  xlab("x") + 
+  theme(axis.text = element_blank(), axis.ticks = element_blank()) +
+  guides(color = guide_legend(title = "f")) + 
+  scale_color_manual(values = c("brown", "grey")) +
+  ggtitle("y ~ x + f") + expand_limits(y = -0.15)
+###
+data <- data.frame(group = rep(c("A", "B"), each = 2),
+                   x = rep(1:2, times = 2),
+                   y = c(0, 1, -0.5, 1.5))
+
+p2 <- data %>%  
+  ggplot(., aes(x = x, y = y, color = group)) +
+  geom_line(aes(group = group), size = 3) +
+  theme_classic() +
+  ylab("y") +
+  xlab("x") + 
+  theme(axis.text = element_blank(), axis.ticks = element_blank()) +
+  guides(color = guide_legend(title = "f")) + 
+  scale_color_manual(values = c("brown", "grey")) +
+  ggtitle("y ~ x * f") + expand_limits(y = -0.65)
+###
+data <- data.frame(group = rep(c("A", "B"), each = 2),
+                   x = rep(1:2, times = 2),
+                   y = c(0, 0.75, 0, 1.5))
+
+p3 <- data %>%  
+  ggplot(., aes(x = x, y = y, color = group)) +
+  geom_line(aes(group = group), size = 3) +
+  theme_classic() +
+  ylab("y") +
+  xlab("x") + 
+  theme(axis.text = element_blank(), axis.ticks = element_blank()) +
+  guides(color = guide_legend(title = "f")) + 
+  scale_color_manual(values = c("brown", "grey")) +
+  ggtitle("y ~ x:f") + expand_limits(y = -0.15)
+
+###
+data <- data.frame(group = rep(c("A", "B"), each = 2),
+                   x = rep(1:2, times = 2),
+                   y = c(0, 0, 0.5, 1.5))
+
+p4 <- data %>%  
+  ggplot(., aes(x = x, y = y, color = group)) +
+  geom_line(aes(group = group), size = 3) +
+  theme_classic() +
+  ylab("y") +
+  xlab("x") + 
+  theme(axis.text = element_blank(), axis.ticks = element_blank()) +
+  guides(color = guide_legend(title = "f")) + 
+  scale_color_manual(values = c("brown", "grey")) +
+  ggtitle("y ~ f + x:f") + expand_limits(y = -0.15)
+
+###
+data <- data.frame(group = rep(c("A", "B"), each = 2),
+                   x = rep(1:2, times = 2),
+                   y = c(0, 0, 0, 1.5))
+
+p5 <- data %>%  
+  ggplot(., aes(x = x, y = y, color = group)) +
+  geom_line(aes(group = group), size = 3) +
+  theme_classic() +
+  ylab("y") +
+  xlab("x") + 
+  theme(axis.text = element_blank(), axis.ticks = element_blank()) +
+  guides(color = guide_legend(title = "f")) + 
+  scale_color_manual(values = c("brown", "grey")) +
+  ggtitle("y ~ x:f") + expand_limits(y = -0.15) 
+
+layout <- "
+AABBCC
+#DDEE#
+"
+
+(p1 + p2 + p3 + p4 + p5) + plot_annotation(tag_levels = 'I') + plot_layout(design = layout) + plot_layout(guides = "collect")
+
+```
+
+Note that models III and V are forced to have the same intercept for both levels of $f$. In addition, when you have no main effect of $x$, models IV and V, then the model is forced to have no effect of $x$ for the baseline level of $f$ (in this case $A$).
 
 
 ## TL;DR `lm()`
 
-
-| Traditional name    | Model formula  | R code  |
-| ------------------- |:--------------:| -------:|
-| Simple regression   | $Y \sim X_{continuous}$ | `lm(Y ~ X)` |
-| One-way ANOVA       | $Y \sim X_{categorical}$      |   `lm(Y ~ X)` |
-| Two-way ANOVA       | $Y \sim X1_{categorical} + X2_{categorical}$| `lm(Y ~ X1 + X2)` |
-| ANCOVA              | $Y \sim X1_{continuous} + X2_{categorical}$ |`lm(Y ~ X1 + X2)` |
-| Multiple regression | $Y \sim X1_{continuous} + X2_{continuous}$ | `lm(Y ~ X1 + X2)` |
-| Factorial ANOVA     | $Y \sim X1_{categorical} * X2_{categorical}$|   `lm(Y ~ X1 * X2)` or `lm(Y ~ X1 + X2 + X1:X2)` |
-
 **[Artwork by \@allison_horst](https://github.com/allisonhorst/stats-illustrations)**
-
 
 ![Meet your MLR teaching assistants](https://github.com/allisonhorst/stats-illustrations/blob/master/other-stats-artwork/dragons.png?raw=true)
 

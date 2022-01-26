@@ -1,0 +1,247 @@
+## One and two sample tests
+
+Again, using the `paua.csv` data from CANVAS. Recall that the P$\overline{\text{a}}$ua dataset contains the following variables
+
+ + `Age` of  P$\overline{\text{a}}$ua in years (calculated from counting rings in the cone) 
+ + `Length` of  P$\overline{\text{a}}$ua shell in centimeters
+ + `Species` of  P$\overline{\text{a}}$ua: *Haliotis iris* (typically found in NZ) and
+*Haliotis australis* (less commonly found in NZ) 
+
+```{r read quiet2, echo = FALSE, eval = TRUE, message = FALSE}
+library(tidyverse)
+paua <- read_csv("../data/paua.csv")
+```
+
+```{r read show, echo = TRUE, eval = FALSE, message = FALSE}
+library(tidyverse)
+paua <- read_csv("paua.csv")
+```
+
+
+```{r}
+glimpse(paua)
+```
+
+### One-Sample t-test
+
+Using a violin plot we can look at the distribution of shell `Length`. We can calculate the average `Length` of all shells in our sample
+
+```{r}
+paua %>% summarise(average_length = mean(Length))
+```
+
+
+```{r vio1, echo = FALSE}
+## violin plot with transparent points
+os <- ggplot(paua,aes(x = 1,y = Length)) + 
+  geom_violin() +
+  geom_point(alpha = 0.4) +
+  ylab("Length (cms)") + xlab("") +
+  theme_classic() +
+  geom_point(aes(x = 1, y = mean(Length)), size = 2) +
+  geom_hline(aes( yintercept = mean(Length)), lty = 2, alpha = 0.5) +
+  theme(legend.position = "none") +
+  geom_text(aes(x = 1, y = mean(Length) + 0.5, label = paste0("Averege = ",round(mean(Length),3)))) +
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
+os
+  
+```
+
+What about drawing inference? Do we believe that the average length of P$\overline{\text{a}}$ua shells is, say, 5cm? We know our sample average, but can we make any claims based on this one number?
+
+How do we reflect our uncertainty about the population mean? (*remember it's the population we want to make inference on based on our sample!*) Enter the Standard Error of the Mean, **SEM**,  $= \frac{\sigma}{\sqrt{n}}$; where $\sigma = \sqrt{\frac{\Sigma_{i = 1}^n(x_i - \bar{x})^2}{n-1}}$ ($i = 1,...,n$) is the standard deviation (SD) of the sample, $n$ is the sample size, and $\bar{x}$ is the sample mean.
+
+
+**Calculating $\Sigma_{i = 1}^n(x_i - \bar{x})^2, i = 1,...,n$ by hand**.
+
+It's the sum squared differences of the distances between the $i^{th}$ observation and the sample mean $\bar{x}$ (denoted $\mu_x$ in the GIF below)
+
+![](https://raw.githubusercontent.com/cmjt/statbiscuits/master/figs_n_gifs/var.gif)
+
+So using the example values in the GIF
+
+```{r}
+## our sample of values
+x <- c(1,2,3,5,6,9)
+## sample mean
+sample_mean <- mean(x)
+sample_mean
+## distance from mean for each value
+distance_from_mean <- x - sample_mean
+distance_from_mean
+## squared distance from mean for each value
+squared_distance_from_mean <- distance_from_mean^2
+squared_distance_from_mean
+## sum of the squared distances
+sum(squared_distance_from_mean)
+```
+**Calculating SD and SEM**
+
+Now what about the **SD**? Remember it's the $\sqrt{\frac{\Sigma_{i = 1}^n(x_i - \bar{x})^2}{n-1}}$ so = $\sqrt{\frac{`r sum(squared_distance_from_mean)`}{n-1}}$ = $\sqrt{\frac{`r sum(squared_distance_from_mean)`}{`r length(x)`-1}}$ = $\sqrt{\frac{`r sum(squared_distance_from_mean)`}{`r length(x)-1`}}$ = `r sqrt(sum(squared_distance_from_mean)/(length(x) - 1))`.
+
+Or we could just use `R`'s `sd()` function
+
+```{r}
+sd(x)
+```
+So the **SEM** is $\frac{\text{SD}}{\sqrt{n}}$ = $\frac{`r sd(x)`}{\sqrt{`r length(x)`}}$
+
+In `R`
+
+```{r}
+sd(x)/sqrt(length(x))
+
+```
+
+For the `paua` data we can simply use the in-built functions in `R` to calculate the SEM
+
+```{r sem}
+sem <- paua %>% summarise(mean = mean(Length),
+                   sem = sd(Length)/sqrt(length(Length)))
+sem
+  
+```
+
+**Visualising the uncertainty**
+
+Recall that the SEM is a measure of uncertainty about the mean. So we can use it to express our uncertainty visually. Typically $\pm$ twice the SEM is the interval used:
+
+```{r vizun, echo = FALSE}
+os + geom_hline(data = sem, aes(yintercept = mean + 2*sem), lty = 3, alpha = 0.5) +
+  geom_hline(data = sem, aes(yintercept = mean - 2*sem), lty = 3, alpha = 0.5)
+```
+
+**Why error bars that are $\pm$ twice the SEM?**
+
+This is approximately the 95% confidence interval for the population mean (*see lecture*)
+
+The exact 95% CI is given by $\bar{x}$ (mean) $\pm$ $t_{df,1 - \alpha/2}$ $\times$ SEM
+
+  + df = degrees of freedom (*in this situation* df = n - 1)
+  + $\alpha$ = level of significance
+
+Each mean has its own confidence interval whose width depends on the SEM for that mean
+
+When the df (*more on these later*) are large (e.g. 30 or greater) and $\alpha$ = 0.05 $t_{df,1 - \alpha/2}$ = $t_{large,0.975}$ $\approx$ 2. Hence, the 95% confidence interval for the population mean is approximately $\bar{x}$ (mean) $\pm$ 2 $\times$ SEM
+
+**Back to our hypothesis test**
+
+**Question:** Do we believe that the average length of P$\overline{\text{a}}$ua shells is 5cm?
+
+**Formalizing into a hypothesis test:**  
+
+ + *Null hypothesis*: On average P$\overline{\text{a}}$ua shells are 5cm long
+ + *Alternative hypothesis*: On average P$\overline{\text{a}}$ua shells are **not** 5cm long
+ + *Notationally*: $H_0: \mu = 5$ vs $H_1: \mu \neq 5$ (*$\mu$ is the proposed mean*)
+ 
+**Calculating a statistic** (*we use a t-statistic*)
+
+t-statistic $= \frac{\bar{x}- \mu}{\text{SEM}}$ = $\frac{`r sem[1]` - 5}{`r sem[2]`}$ = `r round((sem[1] - 5)/sem[2], 3)`
+
+   + $\bar{x}$ is the sample mean
+
+   + $\mu$ is the theoretical value (*proposed mean*)
+   
+**The corresponding p-value**
+
+Recall that a p-value is the probability under a specified statistical model that a statistical summary of the data would be equal to or more extreme than its observed value
+
+So in this case it's the probability, under the null hypothesis ($\mu = 5$), that we would observe a statistic as least as extreme as we did.
+
+Under our null hypothesis the distribution of the t-statistic is as below. The one calculated from our hypothesis test was 1.2391. Now, remember that our alternative hypotheses was $H_1: \mu \neq 5$ so we have to consider both sides of the inequality; hence, anything as least as extreme is either $> 1.2391$ or $< -1.2391$ to our observed statistic (vertical lines). Anything as least as extreme is therefore given by the grey shaded areas.
+
+```{r, echo = FALSE}
+data <- data.frame(quantiles = rt(1000,df = 59))
+data$dens <- dt(data$quantiles, df = 59)
+ggplot(data, aes(x = quantiles, y = dens)) +
+  geom_line() +
+  theme_classic() +
+  ylab("density") +
+  xlab("t-statistic") +
+  geom_vline(xintercept = 1.2391, color = "cyan4" , size = 2) + 
+  geom_vline(xintercept = -1.2391, color = "cyan4" , size = 2) +
+  geom_area(data = data[data$quantiles >= 1.2391,],
+            mapping = aes(x = quantiles, y = dens),fill = "grey",alpha = 0.3) +
+  geom_area(data = data[data$quantiles <= -1.2391,],
+            mapping = aes(x = quantiles, y = dens),fill = "grey",alpha = 0.3)
+
+```
+
+We can calculate the p-value using the `pt()` function (where `q` is our calculated t-statistic, and `df` are the degrees of freedom from above):
+
+```{r}
+2*(1 - pt(q  = 1.2391,df = 59))
+```
+
+
+
+Or we could do all of the above in one step using `R`
+
+```{r ostest}
+t.test(paua$Length, mu = 5 )
+```
+
+Recall, that the p-value gives the probability that under our null hypothesis we observe anything as least as extreme as what we did (hence the $\times 2$, think of the grey shaded area in the graph). This probability is $\sim$ 22%. Do you think what we've observed is likely under the null hypothesis?
+
+Does this plot help? The proposed mean is shown by the red horizontal line; the dashed line shows the sample mean and the dotted lines $\pm$ the SEM.
+
+```{r vizunmu, echo  = FALSE}
+os + geom_hline(data = sem, aes(yintercept = mean + 2*sem), lty = 3, alpha = 0.5) +
+  geom_hline(data = sem, aes(yintercept = mean - 2*sem), lty = 3, alpha = 0.5) +
+  geom_hline(aes(yintercept = 5), color = "red")
+```
+
+### Differences between two means
+
+```{r vio, echo = FALSE}
+means <- paua %>% group_by(Species) %>% summarise(means = mean(Length))
+## violin plot with transparent points
+a <- ggplot(paua,aes(x = Species, y = Length)) + 
+  geom_violin() +
+  geom_point(alpha = 0.4) +
+  ylab("Length (cm)") + xlab("") +
+  theme_classic() +
+  geom_point(data = means, aes(x = Species, y = means, color = Species), size = 2) +
+  geom_hline(data = means, aes(yintercept = means, color = Species), lty = 2, alpha = 0.5) +
+  theme(legend.position = "none") +
+  geom_text(data = means, aes(x = Species, y = means + 0.25, label = paste0("Species averege = ",round(means,3)), color = Species))
+a 
+  
+```
+
+**Calculating the differences between species means:**
+
+*Haliotis australis* average - *Haliotis iris* average = $\mu_{\text{Haliotis australis}} - \mu_{\text{Haliotis iris}}$ = `r round(means[1,2],3)` - `r round(means[2,2],3)` = `r round(means[1,2] - means[2,2],3)`. Doesn't really tell us much... 
+
+As above the average values are all well and good, but what about **variation?** Recall the SEM from the one-sample t-test? The same idea holds here, although the calculation is a little bit more complicated (as we have to think about the number of observations in each group). But from the two group SEMs we can calculate the Standard Error of the Difference between two means, **SED**.
+
+
+#### Independent samples t-test using `t.test()`
+
+**Question:** Do we believe that on average the length of P$\overline{\text{a}}$ua shells are equal between species
+
+**Formalizing into a hypothesis test:**
+   
+   + **Null hypothesis**: On average the species' shells are the same length
+   + **Alternative hypothesis**: they aren't!
+   + **Notationally**: $H_0: \mu_{\text{Haliotis iris}} - \mu_{\text{Haliotis australis}} = 0$ vs $H_1: \mu_{\text{Haliotis iris}} \neq \mu_{\text{Haliotis australis}}$
+   
+    + $\mu_{j}$ is the average length for species $j =$ (*Haliotis iris*, *Haliotis australis*), 
+
+**Calculate the test statistic:** t-statistic = $\frac{\bar{x}_{\text{difference}} - \mu}{\text{SED}}$ = $\frac{\bar{x}_{\text{difference}} - 0}{\text{SED}}$
+
+   + where $\bar{x}_{\text{difference}}$ is the differences between the species` averages. 
+
+Calculations area a little bit more tricky here so let's use `R`:
+
+```{r lmt}
+test <- t.test(Length ~ Species, data = paua)
+## printing out the result
+test
+test$p.value
+
+```
+
+Listed are the t-statistic, `t` = `r test$statistic` and the p-value, `p-value` = `r test$p.value` for the hypothesis test outlined above. What would you conclude?

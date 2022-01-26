@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Least Squares Estimation | Advanced Biological Data Analysis</title>
+  <meta name="description" content="Least Squares Estimation | Advanced Biological Data Analysis" />
+  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Least Squares Estimation | Advanced Biological Data Analysis" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Least Squares Estimation | Advanced Biological Data Analysis" />
+  
+  
+  
+
+<meta name="author" content="University of Auckland" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="module-4.html"/>
+<link rel="next" href="maximum-likelkihood-estimation.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="src/my-style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Nau mai haere mai welcome to BIOSCI 738</a></li>
+<li class="chapter" data-level="" data-path="useful-information-to-set-you-up-for-your-semester.html"><a href="useful-information-to-set-you-up-for-your-semester.html"><i class="fa fa-check"></i>Useful information to set you up for your semester</a><ul>
+<li class="chapter" data-level="" data-path="useful-information-to-set-you-up-for-your-semester.html"><a href="useful-information-to-set-you-up-for-your-semester.html#course-outline"><i class="fa fa-check"></i>Course outline</a></li>
+<li class="chapter" data-level="" data-path="useful-information-to-set-you-up-for-your-semester.html"><a href="useful-information-to-set-you-up-for-your-semester.html#learning-outcomes"><i class="fa fa-check"></i>Learning Outcomes</a></li>
+<li class="chapter" data-level="" data-path="useful-information-to-set-you-up-for-your-semester.html"><a href="useful-information-to-set-you-up-for-your-semester.html#course-summary"><i class="fa fa-check"></i>Course summary</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-1.html"><a href="module-1.html"><i class="fa fa-check"></i>Module 1</a><ul>
+<li><a href="r-and-rstudio.html#r-and-rstudio"><code>R</code> and <code>RStudio</code></a><ul>
+<li><a href="r-and-rstudio.html#intro-to-r-rstudio">Intro to <code>R</code> &amp; <code>RStudio</code></a></li>
+<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html"><i class="fa fa-check"></i>Why?</a></li>
+<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#installing-r-and-rstudio"><i class="fa fa-check"></i>Installing R and RStudio</a></li>
+<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#getting-started"><i class="fa fa-check"></i>Getting started</a></li>
+<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#r-errors"><i class="fa fa-check"></i>R errors 😱</a></li>
+<li><a href="r-and-rstudio.html#r-scripts-a-.r-file">R <em>Script</em>s (a <code>.r</code> file)</a></li>
+<li><a href="r-and-rstudio.html#writing-comments">Writing <em>Comments</em></a></li>
+<li><a href="r-and-rstudio.html#change-the-rstudio-appearance-up-to-your-taste">Change the <code>RStudio</code> appearance up to your taste</a></li>
+<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#reproducible-research"><i class="fa fa-check"></i>Reproducible research</a></li>
+<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#good-practice"><i class="fa fa-check"></i>Good practice</a></li>
+</ul></li>
+<li><a href="version-control-with-git-and-github.html#version-control-with-git-and-github">Version control with <code>git</code> and GitHub</a><ul>
+<li class="chapter" data-level="" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html"><i class="fa fa-check"></i>Setup TL;DR</a></li>
+<li><a href="version-control-with-git-and-github.html#cloning-a-repository-from-github-using-rstudio">Cloning a repository from <code>GitHub</code> using <code>RStudio</code></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html"><i class="fa fa-check"></i>Exploratory Data Analysis</a><ul>
+<li><a href="exploratory-data-analysis.html#starting-out-with-tidyverse">Starting out with <code>tidyverse</code></a></li>
+<li><a href="exploratory-data-analysis.html#reading-in-data-from-a-.csv-file">Reading in data from a <code>.csv</code> file</a></li>
+<li class="chapter" data-level="" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html#explore-your-data"><i class="fa fa-check"></i>Explore your data</a></li>
+<li><a href="exploratory-data-analysis.html#the-pipe-operator">The pipe operator <code>%&gt;%</code></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="māori-data-sovereignty-principles.html"><a href="māori-data-sovereignty-principles.html"><i class="fa fa-check"></i>Māori Data Sovereignty principles</a></li>
+<li class="chapter" data-level="" data-path="data-wrangling.html"><a href="data-wrangling.html"><i class="fa fa-check"></i>Data wrangling</a><ul>
+<li><a href="data-wrangling.html#common-dataframe-manipulations-in-the-tidyverse">Common dataframe manipulations in the <code>tidyverse</code></a></li>
+<li><a href="data-wrangling.html#introuducing-the-palmer-penguins">Introuducing the <span>Palmer penguins</span></a></li>
+<li><a href="data-wrangling.html#common-dataframe-manipulations-in-the-tidyverse-using-dplyr-and-tidyr">Common dataframe manipulations in the <code>tidyverse</code>, using <code>dplyr</code> and <code>tidyr</code></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-viz.html"><a href="data-viz.html"><i class="fa fa-check"></i>Data Viz</a><ul>
+<li class="chapter" data-level="" data-path="data-viz.html"><a href="data-viz.html#exploratory-and-explanatory-plots"><i class="fa fa-check"></i>Exploratory and explanatory plots</a></li>
+<li class="chapter" data-level="" data-path="data-viz.html"><a href="data-viz.html#ten-simple-rules-for-better-figures"><i class="fa fa-check"></i>Ten Simple Rules for Better Figures</a></li>
+<li><a href="data-viz.html#ggplot2"><code>ggplot2</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-2.html"><a href="module-2.html"><i class="fa fa-check"></i>Module 2</a><ul>
+<li class="chapter" data-level="" data-path="permutation-tests.html"><a href="permutation-tests.html"><i class="fa fa-check"></i>Permutation tests</a><ul>
+<li><a href="permutation-tests.html#significance-testing-using-permutation-randomisation-tests">Significance testing using permutation (<em>randomisation</em>) tests</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-bootstrap.html"><a href="the-bootstrap.html"><i class="fa fa-check"></i>The bootstrap</a><ul>
+<li class="chapter" data-level="" data-path="the-bootstrap.html"><a href="the-bootstrap.html#example-constructing-bootstrap-confidence-intervals"><i class="fa fa-check"></i>Example: constructing bootstrap confidence intervals</a></li>
+<li class="chapter" data-level="" data-path="the-bootstrap.html"><a href="the-bootstrap.html#differences"><i class="fa fa-check"></i>Differences</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="one-and-two-sample-tests.html"><a href="one-and-two-sample-tests.html"><i class="fa fa-check"></i>One and two sample tests</a><ul>
+<li class="chapter" data-level="" data-path="one-and-two-sample-tests.html"><a href="one-and-two-sample-tests.html#one-sample-t-test"><i class="fa fa-check"></i>One-Sample t-test</a></li>
+<li class="chapter" data-level="" data-path="one-and-two-sample-tests.html"><a href="one-and-two-sample-tests.html#differences-between-two-means"><i class="fa fa-check"></i>Differences between two means</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i>Linear regression</a><ul>
+<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#some-mathematical-notation"><i class="fa fa-check"></i>Some mathematical notation</a></li>
+<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#modeling-bill-depth"><i class="fa fa-check"></i>Modeling Bill Depth</a></li>
+<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#single-continuous-variable"><i class="fa fa-check"></i>Single continuous variable</a></li>
+<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#one-factor-and-a-continous-variable"><i class="fa fa-check"></i>One factor and a continous variable</a></li>
+<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#interactions"><i class="fa fa-check"></i>Interactions</a></li>
+<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#other-possible-models"><i class="fa fa-check"></i>Other possible models</a></li>
+</ul></li>
+<li><a href="tldr-lm.html#tldr-lm">TL;DR <code>lm()</code></a></li>
+<li class="chapter" data-level="" data-path="model-comparison-and-selection.html"><a href="model-comparison-and-selection.html"><i class="fa fa-check"></i>Model comparison and selection</a><ul>
+<li class="chapter" data-level="" data-path="model-comparison-and-selection.html"><a href="model-comparison-and-selection.html#model-comparison-and-selection-1"><i class="fa fa-check"></i>Model comparison and selection</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="point-predictions-and-confidence-intervals.html"><a href="point-predictions-and-confidence-intervals.html"><i class="fa fa-check"></i>Point predictions and confidence intervals</a><ul>
+<li class="chapter" data-level="" data-path="point-predictions-and-confidence-intervals.html"><a href="point-predictions-and-confidence-intervals.html#confidence-intervals-for-parameters"><i class="fa fa-check"></i>Confidence intervals for parameters</a></li>
+<li class="chapter" data-level="" data-path="point-predictions-and-confidence-intervals.html"><a href="point-predictions-and-confidence-intervals.html#point-prediction"><i class="fa fa-check"></i>Point prediction</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="p-values-an-intro.html"><a href="p-values-an-intro.html"><i class="fa fa-check"></i>p-values, an intro</a><ul>
+<li class="chapter" data-level="" data-path="p-values-an-intro.html"><a href="p-values-an-intro.html#p-values-from-permutation-tests"><i class="fa fa-check"></i>P-values from permutation tests</a></li>
+<li class="chapter" data-level="" data-path="p-values-an-intro.html"><a href="p-values-an-intro.html#p-values"><i class="fa fa-check"></i>😱 p-values 😱</a></li>
+<li class="chapter" data-level="" data-path="p-values-an-intro.html"><a href="p-values-an-intro.html#type-i-and-type-ii-errors"><i class="fa fa-check"></i>Type I and Type II errors</a></li>
+</ul></li>
+<li><a href="one-way-analysis-of-variance-anova.html#one-way-analysis-of-variance-anova">One-Way <strong>An</strong>alysis <strong>o</strong>f <strong>Va</strong>riance (ANOVA)</a><ul>
+<li class="chapter" data-level="" data-path="one-way-analysis-of-variance-anova.html"><a href="one-way-analysis-of-variance-anova.html"><i class="fa fa-check"></i>Between group SS (SSB)</a></li>
+<li class="chapter" data-level="" data-path="one-way-analysis-of-variance-anova.html"><a href="one-way-analysis-of-variance-anova.html#within-group-ss-ssw"><i class="fa fa-check"></i>Within group SS (SSW)</a></li>
+<li class="chapter" data-level="" data-path="one-way-analysis-of-variance-anova.html"><a href="one-way-analysis-of-variance-anova.html#f-statistic"><i class="fa fa-check"></i>F-statistic</a></li>
+<li class="chapter" data-level="" data-path="one-way-analysis-of-variance-anova.html"><a href="one-way-analysis-of-variance-anova.html#degrees-of-freedom-df"><i class="fa fa-check"></i>Degrees of freedom (DF)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-3.html"><a href="module-3.html"><i class="fa fa-check"></i>Module 3</a><ul>
+<li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html"><i class="fa fa-check"></i>Introduction to the design and analysis of experiments</a><ul>
+<li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#key-phrases"><i class="fa fa-check"></i>Key phrases</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#the-three-key-principles"><i class="fa fa-check"></i>The three key principles:</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#replication"><i class="fa fa-check"></i>Replication</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#randomization"><i class="fa fa-check"></i>Randomization</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#blocking"><i class="fa fa-check"></i>Blocking</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#setting-up-an-experiment"><i class="fa fa-check"></i>Setting up an experiment</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html"><i class="fa fa-check"></i>Some basic experimental designs</a><ul>
+<li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html#completely-randomised-design-crd"><i class="fa fa-check"></i>Completely randomised design (CRD)</a></li>
+<li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html#randomised-complete-block-design-rcbd"><i class="fa fa-check"></i>Randomised complete block design (RCBD)</a></li>
+<li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html#factorial-design"><i class="fa fa-check"></i>Factorial design</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="modler-v.-designer-the-maths.html"><a href="modler-v.-designer-the-maths.html"><i class="fa fa-check"></i>Modler v. designer: the maths</a><ul>
+<li class="chapter" data-level="" data-path="modler-v.-designer-the-maths.html"><a href="modler-v.-designer-the-maths.html#a-completely-randomised-design-crd"><i class="fa fa-check"></i>A completely randomised design (CRD)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-4.html"><a href="module-4.html"><i class="fa fa-check"></i>Module 4</a><ul>
+<li class="chapter" data-level="" data-path="module-4.html"><a href="module-4.html#extra-materials"><i class="fa fa-check"></i>Extra materials</a></li>
+<li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html"><i class="fa fa-check"></i>Least Squares Estimation</a><ul>
+<li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html#some-basic-matrix-algebra"><i class="fa fa-check"></i>Some basic matrix algebra</a></li>
+<li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html#matrix-representation-of-a-crd"><i class="fa fa-check"></i>Matrix representation of a CRD</a></li>
+<li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html#a-numeric-example"><i class="fa fa-check"></i>A numeric example</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="maximum-likelkihood-estimation.html"><a href="maximum-likelkihood-estimation.html"><i class="fa fa-check"></i>Maximum likelkihood estimation</a><ul>
+<li class="chapter" data-level="" data-path="maximum-likelkihood-estimation.html"><a href="maximum-likelkihood-estimation.html#basic-differeniation-rules"><i class="fa fa-check"></i>Basic differeniation rules</a></li>
+<li class="chapter" data-level="" data-path="maximum-likelkihood-estimation.html"><a href="maximum-likelkihood-estimation.html#maximum-likelihood-for-a-crd"><i class="fa fa-check"></i>Maximum likelihood for a CRD</a></li>
+<li class="chapter" data-level="" data-path="maximum-likelkihood-estimation.html"><a href="maximum-likelkihood-estimation.html#maximum-likelihood-in-general"><i class="fa fa-check"></i>Maximum likelihood in general</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bayesian.html"><a href="bayesian.html"><i class="fa fa-check"></i>Bayesian</a><ul>
+<li class="chapter" data-level="" data-path="bayesian.html"><a href="bayesian.html#bayes-rule"><i class="fa fa-check"></i>Bayes’ rule</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-5.html"><a href="module-5.html"><i class="fa fa-check"></i>Module 5</a><ul>
+<li class="chapter" data-level="" data-path="beyond-linear-models-to-generalised-linear-models-glms.html"><a href="beyond-linear-models-to-generalised-linear-models-glms.html"><i class="fa fa-check"></i>Beyond Linear Models to Generalised Linear Models (GLMs)</a><ul>
+<li class="chapter" data-level="" data-path="beyond-linear-models-to-generalised-linear-models-glms.html"><a href="beyond-linear-models-to-generalised-linear-models-glms.html#counting-animals"><i class="fa fa-check"></i>Counting animals…</a></li>
+<li class="chapter" data-level="" data-path="beyond-linear-models-to-generalised-linear-models-glms.html"><a href="beyond-linear-models-to-generalised-linear-models-glms.html#other-modelling-approaches-not-examinable"><i class="fa fa-check"></i>Other modelling approaches (not examinable)</a></li>
+<li><a href="beyond-linear-models-to-generalised-linear-models-glms.html#model-formula-syntax"><strong>Model formula</strong> syntax</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-6.html"><a href="module-6.html"><i class="fa fa-check"></i>Module 6</a><ul>
+<li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i>Clustering</a><ul>
+<li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#partitioning-methods."><i class="fa fa-check"></i>Partitioning methods.</a></li>
+<li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#hierarchical-methods."><i class="fa fa-check"></i>Hierarchical methods.</a></li>
+<li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#hierarchical-agglomerative-clustering."><i class="fa fa-check"></i>Hierarchical agglomerative clustering.</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tldr.html"><a href="tldr.html"><i class="fa fa-check"></i>TL;DR</a><ul>
+<li class="chapter" data-level="" data-path="tldr.html"><a href="tldr.html#clustering-algorithms"><i class="fa fa-check"></i>Clustering algorithms</a></li>
+<li><a href="tldr.html#k-means-using-the-palmerpenguins-data">k-means using the <code>palmerpenguins</code> data</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tldr-k-means-clustering.html"><a href="tldr-k-means-clustering.html"><i class="fa fa-check"></i>TL;DR k-means clustering</a></li>
+<li class="chapter" data-level="" data-path="dimension-reduction.html"><a href="dimension-reduction.html"><i class="fa fa-check"></i>Dimension reduction</a><ul>
+<li class="chapter" data-level="" data-path="dimension-reduction.html"><a href="dimension-reduction.html#pca"><i class="fa fa-check"></i>PCA</a></li>
+<li class="chapter" data-level="" data-path="dimension-reduction.html"><a href="dimension-reduction.html#reality-check-reducing-noise"><i class="fa fa-check"></i>Reality check: reducing noise…</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html"><i class="fa fa-check"></i>Multidimensional Scaling (MDS)</a><ul>
+<li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html#principal-coordinates."><i class="fa fa-check"></i>Principal Coordinates.</a></li>
+<li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html#metric-scaling."><i class="fa fa-check"></i>Metric Scaling.</a></li>
+<li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html#non-metric-scaling."><i class="fa fa-check"></i>Non-metric scaling.</a></li>
+<li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html#which-to-use-metric-or-non-metric"><i class="fa fa-check"></i>Which to use: metric or non-metric?</a></li>
+<li><a href="multidimensional-scaling-mds.html#examples-in-r">Examples in <code>R</code></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="non-metric-multidimensional-scaling.html"><a href="non-metric-multidimensional-scaling.html"><i class="fa fa-check"></i>Non-metric Multidimensional Scaling</a><ul>
+<li><a href="non-metric-multidimensional-scaling.html#examples-in-r-1">Examples in <code>R</code></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="correspondence-analysis-ca.html"><a href="correspondence-analysis-ca.html"><i class="fa fa-check"></i>Correspondence Analysis (CA)</a></li>
+<li class="chapter" data-level="" data-path="mds-summary.html"><a href="mds-summary.html"><i class="fa fa-check"></i>MDS summary</a></li>
+<li class="chapter" data-level="" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html"><i class="fa fa-check"></i>Linear Discriminant Analysis (LDA)</a><ul>
+<li><a href="linear-discriminant-analysis-lda.html#example-in-r">Example in <code>R</code></a></li>
+<li class="chapter" data-level="" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html#prediction"><i class="fa fa-check"></i>Prediction</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Advanced Biological Data Analysis</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="least-squares-estimation" class="section level2">
+<h2>Least Squares Estimation</h2>
+<div id="some-basic-matrix-algebra" class="section level3">
+<h3>Some basic matrix algebra</h3>
+<p>This section is a recap only, if you need a more in-depth overiew of matrix algebra then use the extra materials provided at the start of this module.</p>
+<p>Matrices are commonly written in box brackets or parentheses and are typically denoted by upper case bold letters (e.g., A) with elements represented by the corresponding lower case indexed letters:</p>
+<p>A= ={\begin{bmatrix}a_{11}&amp;a_{12}&amp;&amp;a_{1n}\a_{21}&amp;a_{22}&amp;&amp;a_{2n}\&amp;&amp;&amp;\a_{m1}&amp;a_{m2}&amp;&amp;a_{mn}\end{bmatrix}}={\begin{pmatrix}a_{11}&amp;a_{12}&amp;&amp;a_{1n}\a_{21}&amp;a_{22}&amp;&amp;a_{2n}\&amp;&amp;&amp;\a_{m1}&amp;a_{m2}&amp;&amp;a_{mn}\end{pmatrix}}=(a_{ij}) ^{mn}.}</p>
+<p>The entry in the i-th row and j-th column of a matrix A is sometimes referred to as the i,j, (i,j), or (i,j)th entry of the matrix, and most commonly denoted as ai,j, or aij. Alternative notations for that entry are A[i,j] or Ai,j. For example, the (1,3) entry of the following matrix A is 5 (also denoted a13, a1,3, A[1,3] or A1,3):</p>
+A= ={
+<span class="math display">\[\begin{bmatrix}4&amp;-7&amp;\color {red}{5}&amp;0\\-2&amp;0&amp;11&amp;8\\19&amp;1&amp;-3&amp;12\end{bmatrix}\]</span>
+<p>}}</p>
+<div id="matrix-addition" class="section level5">
+<h5>Matrix addition</h5>
+The sum A+B of two m-by-n matrices A and B is calculated entrywise:
+(A + B)i,j = Ai,j + Bi,j, where 1 ≤ i ≤ m and 1 ≤ j ≤ n.
+{+{
+<span class="math display">\[\begin{bmatrix}0&amp;0&amp;5\\7&amp;5&amp;0\end{bmatrix}\]</span>
+}={
+<span class="math display">\[\begin{bmatrix}1+0&amp;3+0&amp;1+5\\1+7&amp;0+5&amp;0+0\end{bmatrix}\]</span>
+}={
+<span class="math display">\[\begin{bmatrix}1&amp;3&amp;6\\8&amp;5&amp;0\end{bmatrix}\]</span>
+}}{+{
+<span class="math display">\[\begin{bmatrix}0&amp;0&amp;5\\7&amp;5&amp;0\end{bmatrix}\]</span>
+}={
+<span class="math display">\[\begin{bmatrix}1+0&amp;3+0&amp;1+5\\1+7&amp;0+5&amp;0+0\end{bmatrix}\]</span>
+}={
+<span class="math display">\[\begin{bmatrix}1&amp;3&amp;6\\8&amp;5&amp;0\end{bmatrix}\]</span>
+<p>}}</p>
+</div>
+<div id="scalar-multiplication-the-product-ca-of-a-number-c-also-called-a-scalar-in-the-parlance-of-abstract-algebra-and-a-matrix-a-is-computed-by-multiplying-every-entry-of-a-by-c" class="section level5">
+<h5>Scalar multiplication The product cA of a number c (also called a scalar in the parlance of abstract algebra) and a matrix A is computed by multiplying every entry of A by c:</h5>
+<p>(cA)i,j = c · Ai,j.
+This operation is called scalar multiplication, but its result is not named “scalar product” to avoid confusion, since “scalar product” is sometimes used as a synonym for “inner product”.</p>
+{2={
+<span class="math display">\[\begin{bmatrix}2\cdot 1&amp;2\cdot 8&amp;2\cdot -3\\2\cdot 4&amp;2\cdot -2&amp;2\cdot 5\end{bmatrix}\]</span>
+}={
+<span class="math display">\[\begin{bmatrix}2&amp;16&amp;-6\\8&amp;-4&amp;10\end{bmatrix}\]</span>
+}}{2={
+<span class="math display">\[\begin{bmatrix}2\cdot 1&amp;2\cdot 8&amp;2\cdot -3\\2\cdot 4&amp;2\cdot -2&amp;2\cdot 5\end{bmatrix}\]</span>
+}={
+<span class="math display">\[\begin{bmatrix}2&amp;16&amp;-6\\8&amp;-4&amp;10\end{bmatrix}\]</span>
+<p>}}</p>
+</div>
+<div id="matrix-transposition" class="section level5">
+<h5>Matrix transposition</h5>
+The transpose of an m-by-n matrix A is the n-by-m matrix AT (also denoted Atr or tA) formed by turning rows into columns and vice versa:
+(AT)i,j = Aj,i.
+{^{ }={
+<span class="math display">\[\begin{bmatrix}1&amp;0\\2&amp;-6\\3&amp;7\end{bmatrix}\]</span>
+}}{^{ }={
+<span class="math display">\[\begin{bmatrix}1&amp;0\\2&amp;-6\\3&amp;7\end{bmatrix}\]</span>
+<p>}}</p>
+</div>
+<div id="matrix-multiplication" class="section level5">
+<h5>Matrix multiplication</h5>
+<p>Multiplication of two matrices is defined if and only if the number of columns of the left matrix is the same as the number of rows of the right matrix. If A is an m-by-n matrix and B is an n-by-p matrix, then their matrix product AB is the m-by-p matrix whose entries are given by dot product of the corresponding row of A and the corresponding column of B:[11]</p>
+<p>[AB]i,j=ai,1b1,j+ai,2b2,j+⋯+ai,nbn,j=∑r=1nai,rbr,j,{<em>{i,j}=a</em>{i,1}b_{1,j}+a_{i,2}b_{2,j}++a_{i,n}b_{n,j}=<em>{r=1}^{n}a</em>{i,r}b_{r,j},}</p>
+<p><strong>Note</strong> Matrix multiplication satisfies the rules (AB)C = A(BC) (associativity), and (A + B)C = AC + BC as well as C(A + B) = CA + CB (left and right distributivity), whenever the size of the matrices is such that the various products are defined.[13] The product AB may be defined without BA being defined, namely if A and B are m-by-n and n-by-k matrices, respectively, and m ≠ k. Even if both products are defined, they generally need not be equal, that is: AB ≠ BA.</p>
+</div>
+</div>
+<div id="matrix-representation-of-a-crd" class="section level3">
+<h3>Matrix representation of a CRD</h3>
+<p>Let’s consider the CRD outlined in the previous module, we can write the effects model using matrix representation:</p>
+<p><span class="math display">\[\boldsymbol{y} = \boldsymbol{X\beta} + \boldsymbol{\epsilon}\]</span></p>
+<p>where</p>
+<p><span class="math inline">\(\boldsymbol{y} = \begin{bmatrix}  y_{11} \\ y_{12} \\ y_{13} \\ y_{14} \\ y_{21} \\ y_{22} \\ y_{23} \\ y_{24} \\ y_{31} \\ y_{32} \\ y_{33} \\ y_{34} \end{bmatrix}\)</span>, <span class="math inline">\(\boldsymbol{X} = \begin{bmatrix}  1 &amp; 1 &amp; 0 &amp; 0 \\ 1 &amp; 1 &amp; 0 &amp; 0 \\ 1 &amp; 1 &amp; 0 &amp; 0 \\ 1 &amp; 1 &amp; 0 &amp; 0 \\ 1 &amp; 0 &amp; 1 &amp; 0 \\ 1 &amp; 0 &amp; 1 &amp; 0 \\ 1 &amp; 0 &amp; 1 &amp; 0 \\ 1 &amp; 0 &amp; 1 &amp; 0 \\ 1 &amp; 0 &amp; 0 &amp; 1 \\ 1 &amp; 0 &amp; 0 &amp; 1 \\ 1 &amp; 0 &amp; 0 &amp; 1 \\ 1 &amp; 0 &amp; 0 &amp; 1 \end{bmatrix}\)</span>, <span class="math inline">\(\boldsymbol{\beta} = \begin{bmatrix}  \alpha \\ \tau_1 \\ \tau_2 \\ \tau_3 \end{bmatrix}\)</span>, and <span class="math inline">\(\boldsymbol{\epsilon} = \begin{bmatrix}  \epsilon_{11} \\ \epsilon_{12} \\ \epsilon_{13} \\ \epsilon_{14} \\ \epsilon_{21} \\ \epsilon_{22} \\ \epsilon_{23} \\ \epsilon_{24} \\ \epsilon_{31} \\ \epsilon_{32} \\ \epsilon_{33} \\ \epsilon_{34} \end{bmatrix}.\)</span></p>
+<p>where <span class="math inline">\(\boldsymbol{\epsilon} \sim \text{MVN}(\boldsymbol{0}, \boldsymbol{\sigma^2 I})\)</span>. The least squares estimators of <span class="math inline">\(\boldsymbol{\beta}\)</span> are the solutions to the <span class="math display">\[\boldsymbol{X^{&#39;}X\beta}=\boldsymbol{X^{&#39;}y}\]</span>.</p>
+<p>Recall that for a factor variable we take the one level (the first factor) into the baseline (i.e., the standard) and hence then the coefficients we estimate are compared to it (i.e., the differences in the mean). This is to ensure that the matrix <span class="math inline">\(\boldsymbol{X}\)</span> is full rank. So</p>
+<p><span class="math display">\[\boldsymbol{X} = \begin{bmatrix}
+ 1  &amp; 0 &amp; 0 \\ 1  &amp; 0 &amp; 0  \\ 1  &amp; 0 &amp; 0  \\ 1  &amp; 0 &amp; 0  \\ 1  &amp; 1 &amp; 0 \\ 1 &amp; 1 &amp; 0 \\ 1  &amp; 1 &amp; 0 \\ 1  &amp; 1 &amp; 0 \\  1  &amp; 0 &amp; 1 \\ 1  &amp; 0 &amp; 1 \\ 1  &amp; 0 &amp; 1 \\ 1  &amp; 0 &amp; 1 
+\end{bmatrix}\]</span></p>
+<p>Now, with three factor levels the least squares estimators of <span class="math inline">\(\boldsymbol{\beta}\)</span> are (note the hat to denote the estimates)</p>
+<p><span class="math display">\[(\boldsymbol{X^{&#39;}X})^{-1}\boldsymbol{X^{&#39;}y} = \boldsymbol{\hat{\beta}}= \begin{bmatrix}
+ \hat{\alpha} - \hat{\tau_1} \\ \hat{\tau_2} - \hat{\tau_1} \\ \hat{\tau_3} - \hat{\tau_1}
+\end{bmatrix} \]</span></p>
+</div>
+<div id="a-numeric-example" class="section level3">
+<h3>A numeric example</h3>
+<div id="by-hand" class="section level4">
+<h4>By hand</h4>
+<p>Using the mask data from the previous chapter we have</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+Mask
+</th>
+<th style="text-align:right;">
+Droplets
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Type 1
+</td>
+<td style="text-align:right;">
+5.3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Type 1
+</td>
+<td style="text-align:right;">
+6.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Type 1
+</td>
+<td style="text-align:right;">
+6.6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Type 1
+</td>
+<td style="text-align:right;">
+4.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Type 2
+</td>
+<td style="text-align:right;">
+7.5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Type 2
+</td>
+<td style="text-align:right;">
+7.1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Type 2
+</td>
+<td style="text-align:right;">
+6.3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Type 2
+</td>
+<td style="text-align:right;">
+7.6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Type 3
+</td>
+<td style="text-align:right;">
+8.8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Type 3
+</td>
+<td style="text-align:right;">
+6.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Type 3
+</td>
+<td style="text-align:right;">
+9.2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Type 3
+</td>
+<td style="text-align:right;">
+10.3
+</td>
+</tr>
+</tbody>
+</table>
+<p>so</p>
+<p><span class="math inline">\(\boldsymbol{X^{&#39;}X} = \begin{bmatrix}12&amp;4&amp;4 \\4&amp;4&amp;0 \\4&amp;0&amp;4 \\\end{bmatrix}\)</span>, <span class="math inline">\(\boldsymbol{X^{&#39;}y} = \begin{bmatrix}86.5 \\28.5 \\35.2 \\\end{bmatrix}\)</span>, and <span class="math inline">\((\boldsymbol{X^{&#39;}X})^{-1} = \begin{bmatrix}0.25&amp;-0.25&amp;-0.25 \\-0.25&amp;0.5&amp;0.25 \\-0.25&amp;0.25&amp;0.5 \\\end{bmatrix}.\)</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[\boldsymbol{\hat{\beta}} = (\boldsymbol{X^{&#39;}X})^{-1}\boldsymbol{X^{&#39;}y} = \begin{bmatrix}
+ \hat{\alpha} - \hat{\tau_1} \\ \hat{\tau_2} - \hat{\tau_1} \\ \hat{\tau_3} - \hat{\tau_1}
+\end{bmatrix} = \begin{bmatrix}0.25&amp;-0.25&amp;-0.25 \\-0.25&amp;0.5&amp;0.25 \\-0.25&amp;0.25&amp;0.5 \\\end{bmatrix} \times \begin{bmatrix}86.5 \\28.5 \\35.2 \\\end{bmatrix} = \begin{bmatrix}5.7 \\1.425 \\3.1 \\\end{bmatrix}\]</span></p>
+</div>
+<div id="using-lm-in-r" class="section level4">
+<h4>Using <code>lm</code> in <code>R</code></h4>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb156-1" title="1">mod &lt;-<span class="st"> </span><span class="kw">lm</span>(Droplets <span class="op">~</span><span class="st"> </span>Mask, <span class="dt">data =</span> df)</a>
+<a class="sourceLine" id="cb156-2" title="2"><span class="kw">summary</span>(mod)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Droplets ~ Mask, data = df)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -1.9000 -0.5000  0.1500  0.4188  1.5000 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   5.7000     0.4935  11.550 1.07e-06 ***
+## MaskType 2    1.4250     0.6979   2.042  0.07156 .  
+## MaskType 3    3.1000     0.6979   4.442  0.00162 ** 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.987 on 9 degrees of freedom
+## Multiple R-squared:  0.6872, Adjusted R-squared:  0.6177 
+## F-statistic: 9.886 on 2 and 9 DF,  p-value: 0.005354</code></pre>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="module-4.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="maximum-likelkihood-estimation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "lunr",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -21,7 +21,7 @@
   
   
 
-<meta name="author" content="" />
+<meta name="author" content="University of Auckland" />
 
 
 
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="module-3.html"/>
-<link rel="next" href="one-way-analysis-of-variance-anova.html"/>
+<link rel="next" href="some-basic-experimental-designs.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,6 +51,8 @@
 
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -130,10 +132,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>BIOSCI 738</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Nau mai haere mai welcome to BIOSCI 738</a></li>
 <li class="chapter" data-level="" data-path="useful-information-to-set-you-up-for-your-semester.html"><a href="useful-information-to-set-you-up-for-your-semester.html"><i class="fa fa-check"></i>Useful information to set you up for your semester</a><ul>
 <li class="chapter" data-level="" data-path="useful-information-to-set-you-up-for-your-semester.html"><a href="useful-information-to-set-you-up-for-your-semester.html#course-outline"><i class="fa fa-check"></i>Course outline</a></li>
-<li class="chapter" data-level="" data-path="useful-information-to-set-you-up-for-your-semester.html"><a href="useful-information-to-set-you-up-for-your-semester.html#timetable-assessment-structure"><i class="fa fa-check"></i>Timetable &amp; assessment structure</a></li>
+<li class="chapter" data-level="" data-path="useful-information-to-set-you-up-for-your-semester.html"><a href="useful-information-to-set-you-up-for-your-semester.html#learning-outcomes"><i class="fa fa-check"></i>Learning Outcomes</a></li>
+<li class="chapter" data-level="" data-path="useful-information-to-set-you-up-for-your-semester.html"><a href="useful-information-to-set-you-up-for-your-semester.html#course-summary"><i class="fa fa-check"></i>Course summary</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="module-1.html"><a href="module-1.html"><i class="fa fa-check"></i>Module 1</a><ul>
 <li><a href="r-and-rstudio.html#r-and-rstudio"><code>R</code> and <code>RStudio</code></a><ul>
@@ -176,14 +179,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="" data-path="the-bootstrap.html"><a href="the-bootstrap.html"><i class="fa fa-check"></i>The bootstrap</a><ul>
 <li class="chapter" data-level="" data-path="the-bootstrap.html"><a href="the-bootstrap.html#example-constructing-bootstrap-confidence-intervals"><i class="fa fa-check"></i>Example: constructing bootstrap confidence intervals</a></li>
+<li class="chapter" data-level="" data-path="the-bootstrap.html"><a href="the-bootstrap.html#differences"><i class="fa fa-check"></i>Differences</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="differences.html"><a href="differences.html"><i class="fa fa-check"></i>Differences</a></li>
+<li class="chapter" data-level="" data-path="one-and-two-sample-tests.html"><a href="one-and-two-sample-tests.html"><i class="fa fa-check"></i>One and two sample tests</a><ul>
+<li class="chapter" data-level="" data-path="one-and-two-sample-tests.html"><a href="one-and-two-sample-tests.html#one-sample-t-test"><i class="fa fa-check"></i>One-Sample t-test</a></li>
+<li class="chapter" data-level="" data-path="one-and-two-sample-tests.html"><a href="one-and-two-sample-tests.html#differences-between-two-means"><i class="fa fa-check"></i>Differences between two means</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i>Linear regression</a><ul>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#some-mathematical-notation"><i class="fa fa-check"></i>Some mathematical notation</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#modeling-bill-depth"><i class="fa fa-check"></i>Modeling Bill Depth</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#single-continuous-variable"><i class="fa fa-check"></i>Single continuous variable</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#one-factor-and-a-continous-variable"><i class="fa fa-check"></i>One factor and a continous variable</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#interactions"><i class="fa fa-check"></i>Interactions</a></li>
+<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#other-possible-models"><i class="fa fa-check"></i>Other possible models</a></li>
 </ul></li>
 <li><a href="tldr-lm.html#tldr-lm">TL;DR <code>lm()</code></a></li>
 <li class="chapter" data-level="" data-path="model-comparison-and-selection.html"><a href="model-comparison-and-selection.html"><i class="fa fa-check"></i>Model comparison and selection</a><ul>
@@ -198,12 +206,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="p-values-an-intro.html"><a href="p-values-an-intro.html#p-values"><i class="fa fa-check"></i>😱 p-values 😱</a></li>
 <li class="chapter" data-level="" data-path="p-values-an-intro.html"><a href="p-values-an-intro.html#type-i-and-type-ii-errors"><i class="fa fa-check"></i>Type I and Type II errors</a></li>
 </ul></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="module-3.html"><a href="module-3.html"><i class="fa fa-check"></i>Module 3</a><ul>
-<li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html"><i class="fa fa-check"></i>Introduction to the design and analysis of experiments</a><ul>
-<li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#key-phrases"><i class="fa fa-check"></i>Key phrases</a></li>
-<li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#three-key-principles"><i class="fa fa-check"></i>Three key principles:</a></li>
-</ul></li>
 <li><a href="one-way-analysis-of-variance-anova.html#one-way-analysis-of-variance-anova">One-Way <strong>An</strong>alysis <strong>o</strong>f <strong>Va</strong>riance (ANOVA)</a><ul>
 <li class="chapter" data-level="" data-path="one-way-analysis-of-variance-anova.html"><a href="one-way-analysis-of-variance-anova.html"><i class="fa fa-check"></i>Between group SS (SSB)</a></li>
 <li class="chapter" data-level="" data-path="one-way-analysis-of-variance-anova.html"><a href="one-way-analysis-of-variance-anova.html#within-group-ss-ssw"><i class="fa fa-check"></i>Within group SS (SSW)</a></li>
@@ -211,7 +213,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="one-way-analysis-of-variance-anova.html"><a href="one-way-analysis-of-variance-anova.html#degrees-of-freedom-df"><i class="fa fa-check"></i>Degrees of freedom (DF)</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-4.html"><a href="module-4.html"><i class="fa fa-check"></i>Module 4</a></li>
+<li class="chapter" data-level="" data-path="module-3.html"><a href="module-3.html"><i class="fa fa-check"></i>Module 3</a><ul>
+<li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html"><i class="fa fa-check"></i>Introduction to the design and analysis of experiments</a><ul>
+<li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#key-phrases"><i class="fa fa-check"></i>Key phrases</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#the-three-key-principles"><i class="fa fa-check"></i>The three key principles:</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#replication"><i class="fa fa-check"></i>Replication</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#randomization"><i class="fa fa-check"></i>Randomization</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#blocking"><i class="fa fa-check"></i>Blocking</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#setting-up-an-experiment"><i class="fa fa-check"></i>Setting up an experiment</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html"><i class="fa fa-check"></i>Some basic experimental designs</a><ul>
+<li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html#completely-randomised-design-crd"><i class="fa fa-check"></i>Completely randomised design (CRD)</a></li>
+<li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html#randomised-complete-block-design-rcbd"><i class="fa fa-check"></i>Randomised complete block design (RCBD)</a></li>
+<li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html#factorial-design"><i class="fa fa-check"></i>Factorial design</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="modler-v.-designer-the-maths.html"><a href="modler-v.-designer-the-maths.html"><i class="fa fa-check"></i>Modler v. designer: the maths</a><ul>
+<li class="chapter" data-level="" data-path="modler-v.-designer-the-maths.html"><a href="modler-v.-designer-the-maths.html#a-completely-randomised-design-crd"><i class="fa fa-check"></i>A completely randomised design (CRD)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-4.html"><a href="module-4.html"><i class="fa fa-check"></i>Module 4</a><ul>
+<li class="chapter" data-level="" data-path="module-4.html"><a href="module-4.html#extra-materials"><i class="fa fa-check"></i>Extra materials</a></li>
+<li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html"><i class="fa fa-check"></i>Least Squares Estimation</a><ul>
+<li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html#some-basic-matrix-algebra"><i class="fa fa-check"></i>Some basic matrix algebra</a></li>
+<li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html#matrix-representation-of-a-crd"><i class="fa fa-check"></i>Matrix representation of a CRD</a></li>
+<li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html#a-numeric-example"><i class="fa fa-check"></i>A numeric example</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="maximum-likelkihood-estimation.html"><a href="maximum-likelkihood-estimation.html"><i class="fa fa-check"></i>Maximum likelkihood estimation</a><ul>
+<li class="chapter" data-level="" data-path="maximum-likelkihood-estimation.html"><a href="maximum-likelkihood-estimation.html#basic-differeniation-rules"><i class="fa fa-check"></i>Basic differeniation rules</a></li>
+<li class="chapter" data-level="" data-path="maximum-likelkihood-estimation.html"><a href="maximum-likelkihood-estimation.html#maximum-likelihood-for-a-crd"><i class="fa fa-check"></i>Maximum likelihood for a CRD</a></li>
+<li class="chapter" data-level="" data-path="maximum-likelkihood-estimation.html"><a href="maximum-likelkihood-estimation.html#maximum-likelihood-in-general"><i class="fa fa-check"></i>Maximum likelihood in general</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bayesian.html"><a href="bayesian.html"><i class="fa fa-check"></i>Bayesian</a><ul>
+<li class="chapter" data-level="" data-path="bayesian.html"><a href="bayesian.html#bayes-rule"><i class="fa fa-check"></i>Bayes’ rule</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="module-5.html"><a href="module-5.html"><i class="fa fa-check"></i>Module 5</a><ul>
 <li class="chapter" data-level="" data-path="beyond-linear-models-to-generalised-linear-models-glms.html"><a href="beyond-linear-models-to-generalised-linear-models-glms.html"><i class="fa fa-check"></i>Beyond Linear Models to Generalised Linear Models (GLMs)</a><ul>
 <li class="chapter" data-level="" data-path="beyond-linear-models-to-generalised-linear-models-glms.html"><a href="beyond-linear-models-to-generalised-linear-models-glms.html#counting-animals"><i class="fa fa-check"></i>Counting animals…</a></li>
@@ -221,16 +256,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="" data-path="module-6.html"><a href="module-6.html"><i class="fa fa-check"></i>Module 6</a><ul>
 <li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i>Clustering</a><ul>
-<li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#clustering-algorithms"><i class="fa fa-check"></i>Clustering algorithms</a></li>
-<li><a href="clustering.html#k-means-using-the-palmerpenguins-data">k-means using the <code>palmerpenguins</code> data</a></li>
+<li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#partitioning-methods."><i class="fa fa-check"></i>Partitioning methods.</a></li>
+<li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#hierarchical-methods."><i class="fa fa-check"></i>Hierarchical methods.</a></li>
+<li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#hierarchical-agglomerative-clustering."><i class="fa fa-check"></i>Hierarchical agglomerative clustering.</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tldr.html"><a href="tldr.html"><i class="fa fa-check"></i>TL;DR</a><ul>
+<li class="chapter" data-level="" data-path="tldr.html"><a href="tldr.html#clustering-algorithms"><i class="fa fa-check"></i>Clustering algorithms</a></li>
+<li><a href="tldr.html#k-means-using-the-palmerpenguins-data">k-means using the <code>palmerpenguins</code> data</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="tldr-k-means-clustering.html"><a href="tldr-k-means-clustering.html"><i class="fa fa-check"></i>TL;DR k-means clustering</a></li>
 <li class="chapter" data-level="" data-path="dimension-reduction.html"><a href="dimension-reduction.html"><i class="fa fa-check"></i>Dimension reduction</a><ul>
-<li><a href="dimension-reduction.html#pca-in-r">PCA in <code>R</code></a></li>
+<li class="chapter" data-level="" data-path="dimension-reduction.html"><a href="dimension-reduction.html#pca"><i class="fa fa-check"></i>PCA</a></li>
 <li class="chapter" data-level="" data-path="dimension-reduction.html"><a href="dimension-reduction.html#reality-check-reducing-noise"><i class="fa fa-check"></i>Reality check: reducing noise…</a></li>
 </ul></li>
-<li><a href="multidimensional-scaling-mds-aka-principal-coordinate-analysis-pco.html#multidimensional-scaling-mds-aka-principal-coordinate-analysis-pco">Multidimensional Scaling (MDS), AKA <em>Principal Coordinate Analysis (PCO)</em></a><ul>
-<li><a href="multidimensional-scaling-mds-aka-principal-coordinate-analysis-pco.html#examples-in-r">Examples in <code>R</code></a></li>
+<li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html"><i class="fa fa-check"></i>Multidimensional Scaling (MDS)</a><ul>
+<li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html#principal-coordinates."><i class="fa fa-check"></i>Principal Coordinates.</a></li>
+<li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html#metric-scaling."><i class="fa fa-check"></i>Metric Scaling.</a></li>
+<li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html#non-metric-scaling."><i class="fa fa-check"></i>Non-metric scaling.</a></li>
+<li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html#which-to-use-metric-or-non-metric"><i class="fa fa-check"></i>Which to use: metric or non-metric?</a></li>
+<li><a href="multidimensional-scaling-mds.html#examples-in-r">Examples in <code>R</code></a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="non-metric-multidimensional-scaling.html"><a href="non-metric-multidimensional-scaling.html"><i class="fa fa-check"></i>Non-metric Multidimensional Scaling</a><ul>
 <li><a href="non-metric-multidimensional-scaling.html#examples-in-r-1">Examples in <code>R</code></a></li>
@@ -261,50 +305,105 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="introduction-to-the-design-and-analysis-of-experiments" class="section level2">
 <h2>Introduction to the design and analysis of experiments</h2>
+<blockquote>
+“A useful property of a test of significance is that it exerts a sobering influence on the type of experimenter who jumps to conclusions on scanty data, and who might otherwise try to make everyone excited about some sensational treatment effect that can well be ascribed to the ordinary variation in [their] experiment.”
+<footer>
+— Gertrude Mary Cox
+</footer>
+</blockquote>
 <div id="key-phrases" class="section level3">
 <h3>Key phrases</h3>
-<p><strong>Experimental unit</strong> Smallest portion of experimental material which is <em>independently</em> perturbed</p>
-<p><strong>Treatment</strong> The experimental condition <em>independently</em> applied to an experimental unit</p>
-<p><strong>Observational unit</strong> The smallest unit on which a response is measured. If one measurement is made on each rat: <strong>Observational unit</strong> = <strong>Experimental unit</strong>. If Multiple measurements are made on each rat: Each experimental unit has &gt;1 observational unit (<em>pseudo-</em> or <em>technical replication</em>).</p>
+<p>*An <strong>experiment</strong> is a procedure (or set of actions) where a researcher intentionally changes some factor/treatment/variable to observe the effect of their actions. As mentioned above, the collection of observational data is not experimentation.</p>
+<p>An <strong>experimental unit</strong> is the smallest portion of experimental material which is <em>independently</em> perturbed. This is the item under study for which some variable (treatment) is changed. For example this could be a human subject or an agricultural plot.</p>
+<p>An <strong>observational unit</strong> (or subsample) is the smallest unit on which a response is measured. If the experimental unit is split after the treatment has been applied (e.g., multiple samples taken from one human subject) then this sample is called a subsample or observational unit. If one measurement is made on each experimental unit then the <strong>observational unit</strong> = the <strong>experimental unit</strong>. If multiple measurements are made on each subject (e.g., human) then each experimental unit has &gt;1 observational unit. This is then <em>pseudo-</em> or <em>technical replication</em> (see below).</p>
+<p>A <strong>treatment</strong> (or <strong>independent variable</strong> or <strong>factor</strong> or <strong>treatment factor</strong>) is an experimental condition <em>independently</em> applied to an experimental unit. It is one of the variables that is controlled by the researcher during the experiment (e.g., drug type). The values of the treatments within a set are called <strong>levels</strong>. The <strong>dependent variable</strong> or <strong>response</strong> is the output (or thing) that is measured after an experiment. This is what the researcher measures and assesses if changing the treatment(s) (i.e., independent variable(s)) induces any change. An <strong>effect</strong> is the change in the response variable caused by the controlled changes in the independent variable. Whether the magnitude of the effect (it’s size) is significant (or or any practical interest) is determined by the researcher after carrying out some appropriate analyses.</p>
 </div>
-<div id="three-key-principles" class="section level3">
-<h3>Three key principles:</h3>
-<div id="replication" class="section level4">
-<h4><strong>Replication</strong></h4>
+<div id="the-three-key-principles" class="section level3">
+<h3>The three key principles:</h3>
+<p><a href="https://en.wikipedia.org/wiki/Ronald_Fisher">R. A. Fisher</a>’s work in the area of experimental design is, perhaps, the most well known in the field. The principles he devised we still abide by today, see below. Note, however, to give a balanced view of the celebrated mathematician many of his views (on eugenics and race in particular) are abhorrent to many. I would urge you to <a href="https://www.nature.com/articles/s41437-020-00394-6">read up on his work in this area and come to your own conclusions</a>.</p>
+</div>
+<div id="replication" class="section level3">
+<h3>Replication</h3>
+<p><strong>Biological replication:</strong> each treatment is <em>independently</em> applied to each of several humans, animals or plants. <em>Why?</em> To generalize results to population.</p>
+<p><strong>Technical replication:</strong> two or more samples from the same biological source which are <em>independently</em> processed. <em>Why?</em> Advantageous if processing steps introduce a lot of variation; increases the precision with which comparisons of relative abundances between treatments are made.</p>
+<p><strong>Pseudo-replication:</strong> one sample from the same biological source, divided into two or more aliquots which are <em>independently</em> measured. <em>Why?</em> Advantageous for noisy measuring instruments; increases the <strong>precision</strong> with which comparisons of relative abundances between treatments are made.</p>
+</div>
+<div id="randomization" class="section level3">
+<h3>Randomization</h3>
+<p>The main reason to randomise allocation of treatment to experimental units is to <strong>protect against bias.</strong> We, typically, wish to plan the experiment in such a way that the variations caused by extraneous factors can all be combined under the general heading of “chance”. Doing so ensures that each treatment has the same probability of getting good (or bad) units and thus avoids systematic bias. Random allocation can cancel out population bias; it ensures that any other possible causes for the experimental results are split equally between groups. Typically statistical analysis assumes that observations are <strong>independent</strong>. This is almost never strictly true in practice but randomisation means that our estimates will behave as if they were based on independent observations.</p>
+</div>
+<div id="blocking" class="section level3">
+<h3>Blocking</h3>
+<p>Blocking helps <strong>control variability</strong> by making treatment groups more alike. Experimental units are divided into subsets (called blocks) so that units within the same block are more similar than units from different subsets or blocks. Blocking is a technique for dealing with <em>nuisance factors</em>. A <em>nuisance factor</em> is a factor that has some effect on the response, but is of no interest.</p>
+</div>
+<div id="setting-up-an-experiment" class="section level3">
+<h3>Setting up an experiment</h3>
+<p>When setting up and experiment and/or considering experimental data there are questions we should always answer the following questions.</p>
 <ul>
-<li><strong>Biological replication:</strong> each treatment is <em>independently</em> applied to each of several humans, animals or plants
+<li>What are the <strong>objectives</strong> of the study? <em>Why are you carrying out this experiment?</em></li>
+<li>What is the <strong>scientific question</strong>? <em>What specific hypothesis do you hope to test/investigate?</em></li>
+<li>What are the <strong>experimental units</strong>? <em>What characteristics of the experimental units can be measured?</em> <em>How large is an meaningful effect size in this context?</em></li>
+<li>How many <strong>treatments</strong> are to be studied and what are they? <em>How does the experimenter apply the treatments to the available experimental units and then observe the responses?</em></li>
+<li>What are the potential sources of <strong>variation</strong>? <em>Can you control for the unwanted sources or variation?</em> <em>Can you name all likely sources?</em></li>
+<li>Can the resulting design be <strong>analyzed</strong> or can the desired comparisons be made? **Can you describe and detail the appropriate analysis?*</li>
+</ul>
+<div id="a-simple-example-charlottes-coffee" class="section level4">
+<h4>A simple example: Charlotte’s coffee <svg viewBox="0 0 640 512" style="height:1em;position:relative;display:inline-block;top:.1em;fill:brown;" xmlns="http://www.w3.org/2000/svg"> <path d="M192 384h192c53 0 96-43 96-96h32c70.6 0 128-57.4 128-128S582.6 32 512 32H120c-13.3 0-24 10.7-24 24v232c0 53 43 96 96 96zM512 96c35.3 0 64 28.7 64 64s-28.7 64-64 64h-32V96h32zm47.7 384H48.3c-47.6 0-61-64-36-64h583.3c25 0 11.8 64-35.9 64z"></path></svg> <svg viewBox="0 0 640 512" style="height:1em;position:relative;display:inline-block;top:.1em;fill:black;" xmlns="http://www.w3.org/2000/svg"> <path d="M192 384h192c53 0 96-43 96-96h32c70.6 0 128-57.4 128-128S582.6 32 512 32H120c-13.3 0-24 10.7-24 24v232c0 53 43 96 96 96zM512 96c35.3 0 64 28.7 64 64s-28.7 64-64 64h-32V96h32zm47.7 384H48.3c-47.6 0-61-64-36-64h583.3c25 0 11.8 64-35.9 64z"></path></svg> <svg viewBox="0 0 640 512" style="height:1em;position:relative;display:inline-block;top:.1em;fill:grey;" xmlns="http://www.w3.org/2000/svg"> <path d="M192 384h192c53 0 96-43 96-96h32c70.6 0 128-57.4 128-128S582.6 32 512 32H120c-13.3 0-24 10.7-24 24v232c0 53 43 96 96 96zM512 96c35.3 0 64 28.7 64 64s-28.7 64-64 64h-32V96h32zm47.7 384H48.3c-47.6 0-61-64-36-64h583.3c25 0 11.8 64-35.9 64z"></path></svg></h4>
+<p>Last Christmas I was given a gift set of three types of coffee beans. I want to know which makes the darkest coffee; to do this I measure the opacity after the coffee is made.</p>
 <ul>
-<li>To generalize results to population</li>
-</ul></li>
-<li><strong>Technical replication:</strong> two or more samples from the same biological source which are <em>independently</em> processed
+<li>Three types of coffee beans are: Arabica <svg viewBox="0 0 640 512" style="height:1em;position:relative;display:inline-block;top:.1em;fill:brown;" xmlns="http://www.w3.org/2000/svg"> <path d="M192 384h192c53 0 96-43 96-96h32c70.6 0 128-57.4 128-128S582.6 32 512 32H120c-13.3 0-24 10.7-24 24v232c0 53 43 96 96 96zM512 96c35.3 0 64 28.7 64 64s-28.7 64-64 64h-32V96h32zm47.7 384H48.3c-47.6 0-61-64-36-64h583.3c25 0 11.8 64-35.9 64z"></path></svg>, Liberica <svg viewBox="0 0 640 512" style="height:1em;position:relative;display:inline-block;top:.1em;fill:black;" xmlns="http://www.w3.org/2000/svg"> <path d="M192 384h192c53 0 96-43 96-96h32c70.6 0 128-57.4 128-128S582.6 32 512 32H120c-13.3 0-24 10.7-24 24v232c0 53 43 96 96 96zM512 96c35.3 0 64 28.7 64 64s-28.7 64-64 64h-32V96h32zm47.7 384H48.3c-47.6 0-61-64-36-64h583.3c25 0 11.8 64-35.9 64z"></path></svg>, and Robusta <svg viewBox="0 0 640 512" style="height:1em;position:relative;display:inline-block;top:.1em;fill:grey;" xmlns="http://www.w3.org/2000/svg"> <path d="M192 384h192c53 0 96-43 96-96h32c70.6 0 128-57.4 128-128S582.6 32 512 32H120c-13.3 0-24 10.7-24 24v232c0 53 43 96 96 96zM512 96c35.3 0 64 28.7 64 64s-28.7 64-64 64h-32V96h32zm47.7 384H48.3c-47.6 0-61-64-36-64h583.3c25 0 11.8 64-35.9 64z"></path></svg>.</li>
+<li>12 identical cups are chosen and sets of four cups are <strong>randomly allocated</strong> one of three treatments.</li>
+<li>Four sets of each type of coffee beans are ground and cups made (in the same way) resulting in a total of 12 cups of coffee, see below.</li>
+<li>Samples are taken from each cup and the coffee colour is measured.</li>
+</ul>
+<p><strong>Experiment design:</strong></p>
+<svg viewBox="0 0 640 512" style="position:relative;display:inline-block;top:.1em;fill:brown;height:2em;" xmlns="http://www.w3.org/2000/svg">
+<path d="M192 384h192c53 0 96-43 96-96h32c70.6 0 128-57.4 128-128S582.6 32 512 32H120c-13.3 0-24 10.7-24 24v232c0 53 43 96 96 96zM512 96c35.3 0 64 28.7 64 64s-28.7 64-64 64h-32V96h32zm47.7 384H48.3c-47.6 0-61-64-36-64h583.3c25 0 11.8 64-35.9 64z"></path>
+</svg>
+<svg viewBox="0 0 640 512" style="position:relative;display:inline-block;top:.1em;fill:brown;height:2em;" xmlns="http://www.w3.org/2000/svg">
+<path d="M192 384h192c53 0 96-43 96-96h32c70.6 0 128-57.4 128-128S582.6 32 512 32H120c-13.3 0-24 10.7-24 24v232c0 53 43 96 96 96zM512 96c35.3 0 64 28.7 64 64s-28.7 64-64 64h-32V96h32zm47.7 384H48.3c-47.6 0-61-64-36-64h583.3c25 0 11.8 64-35.9 64z"></path>
+</svg>
+<svg viewBox="0 0 640 512" style="position:relative;display:inline-block;top:.1em;fill:brown;height:2em;" xmlns="http://www.w3.org/2000/svg">
+<path d="M192 384h192c53 0 96-43 96-96h32c70.6 0 128-57.4 128-128S582.6 32 512 32H120c-13.3 0-24 10.7-24 24v232c0 53 43 96 96 96zM512 96c35.3 0 64 28.7 64 64s-28.7 64-64 64h-32V96h32zm47.7 384H48.3c-47.6 0-61-64-36-64h583.3c25 0 11.8 64-35.9 64z"></path>
+</svg>
+<svg viewBox="0 0 640 512" style="position:relative;display:inline-block;top:.1em;fill:black;height:2em;" xmlns="http://www.w3.org/2000/svg">
+<path d="M192 384h192c53 0 96-43 96-96h32c70.6 0 128-57.4 128-128S582.6 32 512 32H120c-13.3 0-24 10.7-24 24v232c0 53 43 96 96 96zM512 96c35.3 0 64 28.7 64 64s-28.7 64-64 64h-32V96h32zm47.7 384H48.3c-47.6 0-61-64-36-64h583.3c25 0 11.8 64-35.9 64z"></path>
+</svg>
+<svg viewBox="0 0 640 512" style="position:relative;display:inline-block;top:.1em;fill:grey;height:2em;" xmlns="http://www.w3.org/2000/svg">
+<path d="M192 384h192c53 0 96-43 96-96h32c70.6 0 128-57.4 128-128S582.6 32 512 32H120c-13.3 0-24 10.7-24 24v232c0 53 43 96 96 96zM512 96c35.3 0 64 28.7 64 64s-28.7 64-64 64h-32V96h32zm47.7 384H48.3c-47.6 0-61-64-36-64h583.3c25 0 11.8 64-35.9 64z"></path>
+</svg>
+<svg viewBox="0 0 640 512" style="position:relative;display:inline-block;top:.1em;fill:black;height:2em;" xmlns="http://www.w3.org/2000/svg">
+<path d="M192 384h192c53 0 96-43 96-96h32c70.6 0 128-57.4 128-128S582.6 32 512 32H120c-13.3 0-24 10.7-24 24v232c0 53 43 96 96 96zM512 96c35.3 0 64 28.7 64 64s-28.7 64-64 64h-32V96h32zm47.7 384H48.3c-47.6 0-61-64-36-64h583.3c25 0 11.8 64-35.9 64z"></path>
+</svg>
+<svg viewBox="0 0 640 512" style="position:relative;display:inline-block;top:.1em;fill:grey;height:2em;" xmlns="http://www.w3.org/2000/svg">
+<path d="M192 384h192c53 0 96-43 96-96h32c70.6 0 128-57.4 128-128S582.6 32 512 32H120c-13.3 0-24 10.7-24 24v232c0 53 43 96 96 96zM512 96c35.3 0 64 28.7 64 64s-28.7 64-64 64h-32V96h32zm47.7 384H48.3c-47.6 0-61-64-36-64h583.3c25 0 11.8 64-35.9 64z"></path>
+</svg>
+<svg viewBox="0 0 640 512" style="position:relative;display:inline-block;top:.1em;fill:black;height:2em;" xmlns="http://www.w3.org/2000/svg">
+<path d="M192 384h192c53 0 96-43 96-96h32c70.6 0 128-57.4 128-128S582.6 32 512 32H120c-13.3 0-24 10.7-24 24v232c0 53 43 96 96 96zM512 96c35.3 0 64 28.7 64 64s-28.7 64-64 64h-32V96h32zm47.7 384H48.3c-47.6 0-61-64-36-64h583.3c25 0 11.8 64-35.9 64z"></path>
+</svg>
+<svg viewBox="0 0 640 512" style="position:relative;display:inline-block;top:.1em;fill:black;height:2em;" xmlns="http://www.w3.org/2000/svg">
+<path d="M192 384h192c53 0 96-43 96-96h32c70.6 0 128-57.4 128-128S582.6 32 512 32H120c-13.3 0-24 10.7-24 24v232c0 53 43 96 96 96zM512 96c35.3 0 64 28.7 64 64s-28.7 64-64 64h-32V96h32zm47.7 384H48.3c-47.6 0-61-64-36-64h583.3c25 0 11.8 64-35.9 64z"></path>
+</svg>
+<svg viewBox="0 0 640 512" style="position:relative;display:inline-block;top:.1em;fill:grey;height:2em;" xmlns="http://www.w3.org/2000/svg">
+<path d="M192 384h192c53 0 96-43 96-96h32c70.6 0 128-57.4 128-128S582.6 32 512 32H120c-13.3 0-24 10.7-24 24v232c0 53 43 96 96 96zM512 96c35.3 0 64 28.7 64 64s-28.7 64-64 64h-32V96h32zm47.7 384H48.3c-47.6 0-61-64-36-64h583.3c25 0 11.8 64-35.9 64z"></path>
+</svg>
+<svg viewBox="0 0 640 512" style="position:relative;display:inline-block;top:.1em;fill:brown;height:2em;" xmlns="http://www.w3.org/2000/svg">
+<path d="M192 384h192c53 0 96-43 96-96h32c70.6 0 128-57.4 128-128S582.6 32 512 32H120c-13.3 0-24 10.7-24 24v232c0 53 43 96 96 96zM512 96c35.3 0 64 28.7 64 64s-28.7 64-64 64h-32V96h32zm47.7 384H48.3c-47.6 0-61-64-36-64h583.3c25 0 11.8 64-35.9 64z"></path>
+</svg>
+<svg viewBox="0 0 640 512" style="position:relative;display:inline-block;top:.1em;fill:grey;height:2em;" xmlns="http://www.w3.org/2000/svg">
+<path d="M192 384h192c53 0 96-43 96-96h32c70.6 0 128-57.4 128-128S582.6 32 512 32H120c-13.3 0-24 10.7-24 24v232c0 53 43 96 96 96zM512 96c35.3 0 64 28.7 64 64s-28.7 64-64 64h-32V96h32zm47.7 384H48.3c-47.6 0-61-64-36-64h583.3c25 0 11.8 64-35.9 64z"></path>
+</svg>
+<div id="scientific-question-does-coffee-colour-differ-between-bean-types-of-coffee-beans" class="section level5">
+<h5>Scientific question: Does coffee colour differ between bean types of coffee beans?</h5>
+<p>There are 3 <em>treatments</em> (types of coffee beans): Arabica, Liberica, and Robusta.</p>
+<p>In this case the <em>experimental unit</em> would be the coffee cup as each one is allocated a different bean type (treatment).</p>
+<p>The <em>observational unit</em> changes depending on the scenario (i.e., what and how samples are taken). For example,</p>
 <ul>
-<li>Advantageous if processing steps introduce a lot of variation</li>
-<li>Increases the precision with which comparisons of relative abundances between treatments are made</li>
-</ul></li>
-<li><strong>Pseudo-replication:</strong> one sample from the same biological source, divided into two or more aliquots which are <strong>independently</strong> measured
-<ul>
-<li>Advantageous for noisy measuring instruments</li>
-<li>Increases the <strong>precision</strong> with which comparisons of relative abundances between treatments are made</li>
-</ul></li>
+<li>if a single ml of liquid is taken from each cup and one measurement is taken per ml taken <span class="math inline">\(\rightarrow\)</span> the observational unit would be the cup;</li>
+<li>if single ml of liquid is taken from each cup and two subsamples are then taken from each ml, then if measurements are taken per subsample <span class="math inline">\(\rightarrow\)</span> then the observational unit would be a subsample;</li>
+<li>if four <span class="math inline">\(\times\)</span> 1 ml of liquid were taken from each cup and from each ml a measurement is taken <span class="math inline">\(\rightarrow\)</span> then the observational unity would be each 1ml sample.</li>
 </ul>
 </div>
-<div id="randomization" class="section level4">
-<h4><strong>Randomization</strong></h4>
-<ul>
-<li><p><strong>Protects against bias</strong></p></li>
-<li><p>Plan the experiment in such a way that the variations caused by extraneous factors can all be combined under the general heading of “chance”.</p></li>
-<li>Ensures that each treatment has the same probability of getting good (or bad) units and thus
-avoids systematic bias</li>
-<li>random allocation can cancel out population bias; it ensures that any other possible causes for the experimental results are split equally between groups</li>
-<li><p>typically statistical analysis assumes that observations are <strong>independent</strong>. This is almost never strictly true in practice but randomisation means that our estimates will behave as if they were based on independent observations</p></li>
-</ul>
-</div>
-<div id="blocking" class="section level4">
-<h4><strong>Blocking</strong></h4>
-<ul>
-<li><p>Blocking helps <strong>control variability</strong> by making treatment groups more alike. Experimental units are divided into subsets (called blocks) so that units within the same block are more similar than units from different subsets or blocks.</p></li>
-<li><p>Blocking is a technique for dealing with <em>nuisance factors</em>. A <em>nuisance factor</em> is a factor that has some effect on the response, but is of no interest (e.g., age class).</p></li>
-</ul>
 </div>
 </div>
 </div>
@@ -314,7 +413,7 @@ avoids systematic bias</li>
         </div>
       </div>
 <a href="module-3.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="one-way-analysis-of-variance-anova.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="some-basic-experimental-designs.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

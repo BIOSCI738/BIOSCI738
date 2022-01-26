@@ -1,0 +1,65 @@
+## Maximum likelkihood estimation
+
+Now, under the assumptions of a linear model then maximum likelihood estimation is equivalent to least squares. However, (as we'll see in a later module) we often need to be more flexible!
+
+### Basic differeniation rules
+
+This section is a recap only, if you need a more in-depth overiew of differentiation then use the extra materials provided at the start of this module.
+
+
+For any functions ff and gg and any real numbers aa and bb, the derivative of the function h(x)=af(x)+bg(x){\displaystyle h(x)=af(x)+bg(x)} with respect to xx is
+
+h′(x)=af′(x)+bg′(x).{\displaystyle h'(x)=af'(x)+bg'(x).}
+
+##### Special cases include:
+
+The constant factor rule
+(af)′=af′{\displaystyle (af)'=af'}
+The sum rule
+(f+g)′=f′+g′{\displaystyle (f+g)'=f'+g'}
+The subtraction rule
+(f−g)′=f′−g′.{\displaystyle (f-g)'=f'-g'.}
+
+##### The product rule
+
+For the functions f and g, the derivative of the function h(x) = f(x) g(x) with respect to x is
+
+h′(x)=(fg)′(x)=f′(x)g(x)+f(x)g′(x).{\displaystyle h'(x)=(fg)'(x)=f'(x)g(x)+f(x)g'(x).}
+
+##### The chain rule
+
+The derivative of the function h(x)=f(g(x))h(x)=f(g(x)) is
+
+h′(x)=f′(g(x))⋅g′(x).{\displaystyle h'(x)=f'(g(x))\cdot g'(x).}
+
+### Maximum likelihood for a CRD
+
+Recall the following CRD equation
+
+$$Y_{ik} = \mu_k + \epsilon_{ik}$$
+
+where $Y_{ik}$ is the response for the $k^{th}$ experimental unit ($k = 1, ..., r_i$, where $r_i$ is the number of experimental replications in the $i^{th}$ level of the treatment factor) subjected to the $i^{th}$ level of the treatment factor ($i = 1, ..., t$,).  Here $\mu_i$ are the different (cell) means for each level of the treatment factor. 
+
+Under the assumptions of a the CRD (i.e., $\epsilon_{ik} \sim N(0, \sigma^2)$) then (for equal number of replicates) the estimates of the cell means ($\mu_k$) are found by minimising the error of the sum of squares $$SS_{\epsilon} = \Sigma_{i=1}^t \Sigma_{k=1}^{r_i}(y_{ik}-\mu_i)^2.$$ Taking the partial derivatives of $SS_{\epsilon}$ with respect to each cell mean, setting to zero, and solving each equation with give us our estimates: $$\frac{\delta SS_{\epsilon}}{\delta \mu_i} = -2 \Sigma_{i=1}^t \Sigma_{k=1}^{r_i}(y_{ik}-\mu_i) = 0.$$ This works out as $\hat{\mu_i} = \overline{y_i.}$
+
+
+
+
+```{r, results='asis',echo = FALSE, message = FALSE}
+set.seed(5469)
+type <- factor(rep(paste("Type", 1:3), each = 4))
+df <- data.frame(Mask = type, Droplets = round(c(rnorm(4, 5), rnorm(4, 7), rnorm(4, 9)), 1))
+library(tidyverse)
+mles <- df %>% group_by(Mask) %>%
+  summarise(mle = mean(Droplets)) %>%
+  pull(., mle)
+```
+
+So in our mask example $`r paste("\\hat{\\mu}_{\\text{Type", 1:3, "}} =",  mles, c(" ,\\; ", "\\; , \\&\\; ", " "), collapse = " ")`.$ Compare these estimates to those we obtained via least squares estimation in the previous section.
+
+### Maximum likelihood in general
+
+
+
+
+

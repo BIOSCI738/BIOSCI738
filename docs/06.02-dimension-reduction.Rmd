@@ -4,6 +4,13 @@ Reduction of dimensions is needed when there are far too many features in a data
 
 So the aim is to **find the best low-dimensional representation of the variation** in a multivariate (lots and lots of variables) data set, but how do we do this? 
 
+PCA is a member of a family of techniques for dimension reduction (ordination).
+
+The word ordination was applied to dimension reduction techniques by botanical ecologists whose
+aim was to identify gradients in species composition in the field. For this reason they wanted to
+reduce the quadrat × species (observations × variables) data matrix to a single ordering (hence
+ordination) of the quadrats which they hoped would reflect the underlying ecological gradient.
+
 One way is termed Principal Component Analysis (PCA). PCA is a **feature extraction** method that **reduces the dimensionality of the data** (number of variables) by creating new uncorrelated variables while minimizing loss of information on the original variables.
 
 **Think of a baguette.** The baguette pictured here represents two data dimensions: 1) the length of the bread and 2) the height of the bread (we'll ignore depth of bread for now). Think of the baguette as your data; when we carry out PCA we're rotating our original axes (*x- and y-coordinates*) to capture as much of the variation in our data as possible. This results in **new** uncorrelated variables that each explain a \% of variation in our data; the procedure is designed so that the first new variable (PC1) explains the most, the second (PC2) the second most and so on.
@@ -17,7 +24,35 @@ Now rather than a baguette think of data; the baguette above represent the *shap
 
 Luckily we can do this all in `R`!
 
-### PCA  in `R`
+### PCA  
+
+
+Principal Component Analysis (PCA) is a technique for the analysis of an unstructured sample of
+multivariate data. Its aim is to display the relative positions of the observations in the data cloud in
+fewer dimensions (while losing as little information as possible) and to help give insight into the
+way the observations vary. It is not a hypothesis testing technique (like t-test or Analysis of
+Variance); it is an exploratory, hypothesis generating tool that describes patterns of variation, and
+suggests relationships that should be investigated further.
+
+
+
+#### Sacling for PCA
+
+A major problem with PCA is that the components are not scale invariant. That means if we change
+the units in which our variables are expressed, we change the components; and not in any simple
+way either. So, every scaling or adjustment of the variables in preparation for the analysis could
+(and usually does ) produce a separate component structure. As I showed in section 4 sensible pre-
+treatment of the data by standardisation or transformation can often increase the interpretability and
+biological relevance of the results. It is therefore important to choose a standardisation or
+transformation carefully. In particular PCA will give different results depending on whether we
+analyse the covariance matrix, where the data have merely been centred (corrected for the column,
+variable, mean), or the correlation matrix, where the data have been standardised to z -scores
+(centred and converted into standard deviation units). This is particularly important, as many
+computer programs to do PCA automatically analyse the correlation matrix . If you do not want that
+standardisation; you may have to explicitly ask for the covariance matrix. As you would expect, the
+results from the two analyses will usually be very different
+
+
 
 #### Using the `palmerpenguins` data
 

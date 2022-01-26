@@ -1,3 +1,7 @@
 # Module 4
 
 + maximum likelihood vs bayes
+
+### Extra materials
+
+[An Introduction to Bayesian Thinking](https://statswithr.github.io/book/the-basics-of-bayesian-statistics.html)
