@@ -132,7 +132,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Nau mai haere mai welcome to BIOSCI 738</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Nau mai, haere mai. Welcome to BIOSCI 738</a></li>
 <li class="chapter" data-level="" data-path="useful-information-to-set-you-up-for-your-semester.html"><a href="useful-information-to-set-you-up-for-your-semester.html"><i class="fa fa-check"></i>Useful information to set you up for your semester</a><ul>
 <li class="chapter" data-level="" data-path="useful-information-to-set-you-up-for-your-semester.html"><a href="useful-information-to-set-you-up-for-your-semester.html#course-outline"><i class="fa fa-check"></i>Course outline</a></li>
 <li class="chapter" data-level="" data-path="useful-information-to-set-you-up-for-your-semester.html"><a href="useful-information-to-set-you-up-for-your-semester.html#learning-outcomes"><i class="fa fa-check"></i>Learning Outcomes</a></li>
@@ -140,20 +140,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="" data-path="module-1.html"><a href="module-1.html"><i class="fa fa-check"></i>Module 1</a><ul>
 <li><a href="r-and-rstudio.html#r-and-rstudio"><code>R</code> and <code>RStudio</code></a><ul>
-<li><a href="r-and-rstudio.html#intro-to-r-rstudio">Intro to <code>R</code> &amp; <code>RStudio</code></a></li>
-<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html"><i class="fa fa-check"></i>Why?</a></li>
-<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#installing-r-and-rstudio"><i class="fa fa-check"></i>Installing R and RStudio</a></li>
+<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html"><i class="fa fa-check"></i>Installing R and RStudio</a></li>
 <li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#getting-started"><i class="fa fa-check"></i>Getting started</a></li>
-<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#r-errors"><i class="fa fa-check"></i>R errors 😱</a></li>
-<li><a href="r-and-rstudio.html#r-scripts-a-.r-file">R <em>Script</em>s (a <code>.r</code> file)</a></li>
-<li><a href="r-and-rstudio.html#writing-comments">Writing <em>Comments</em></a></li>
-<li><a href="r-and-rstudio.html#change-the-rstudio-appearance-up-to-your-taste">Change the <code>RStudio</code> appearance up to your taste</a></li>
-<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#reproducible-research"><i class="fa fa-check"></i>Reproducible research</a></li>
-<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#good-practice"><i class="fa fa-check"></i>Good practice</a></li>
 </ul></li>
-<li><a href="version-control-with-git-and-github.html#version-control-with-git-and-github">Version control with <code>git</code> and GitHub</a><ul>
-<li class="chapter" data-level="" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html"><i class="fa fa-check"></i>Setup TL;DR</a></li>
-<li><a href="version-control-with-git-and-github.html#cloning-a-repository-from-github-using-rstudio">Cloning a repository from <code>GitHub</code> using <code>RStudio</code></a></li>
+<li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html"><i class="fa fa-check"></i>Reproducible research</a><ul>
+<li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html#project-oriented-workflow-good-practice"><i class="fa fa-check"></i>Project-oriented workflow: good practice</a></li>
+<li><a href="reproducible-research.html#version-control-with-git-and-github">Version control with <code>git</code> and GitHub</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html"><i class="fa fa-check"></i>Exploratory Data Analysis</a><ul>
 <li><a href="exploratory-data-analysis.html#starting-out-with-tidyverse">Starting out with <code>tidyverse</code></a></li>
@@ -329,9 +321,9 @@ squares (STRESS) function: <span class="math inline">\(\text{Stress}^2 = \frac{\
 <p>Use the function <code>metaMDS</code> from the <code>vegan</code> package; <code>metaMDS</code> performs NMDS, and tries to find a stable solution using several random starts. In addition, it standardizes the scaling in the result, so
 that the configurations are easier to interpret.</p>
 <p><strong>Illustration with k = 2</strong></p>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb253-1" title="1"><span class="kw">library</span>(vegan)</a>
-<a class="sourceLine" id="cb253-2" title="2">nMDS<span class="fl">.2</span> &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="dv">100</span>, <span class="kw">metaMDS</span>(ekman, <span class="dt">k =</span> <span class="dv">2</span>, <span class="dt">autotransform =</span> <span class="ot">FALSE</span>)) </a></code></pre></div>
-<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb254-1" title="1"><span class="kw">stressplot</span>(<span class="kw">metaMDS</span>(ekman, <span class="dt">k =</span> <span class="dv">2</span>, <span class="dt">autotransform =</span> <span class="ot">FALSE</span>), <span class="dt">pch =</span> <span class="dv">20</span>, <span class="dt">cex =</span> <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb252-1" title="1"><span class="kw">library</span>(vegan)</a>
+<a class="sourceLine" id="cb252-2" title="2">nMDS<span class="fl">.2</span> &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="dv">100</span>, <span class="kw">metaMDS</span>(ekman, <span class="dt">k =</span> <span class="dv">2</span>, <span class="dt">autotransform =</span> <span class="ot">FALSE</span>)) </a></code></pre></div>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb253-1" title="1"><span class="kw">stressplot</span>(<span class="kw">metaMDS</span>(ekman, <span class="dt">k =</span> <span class="dv">2</span>, <span class="dt">autotransform =</span> <span class="ot">FALSE</span>), <span class="dt">pch =</span> <span class="dv">20</span>, <span class="dt">cex =</span> <span class="dv">2</span>)</a></code></pre></div>
 <pre><code>## Run 0 stress 0.02310251 
 ## Run 1 stress 0.02310251 
 ## ... New best solution

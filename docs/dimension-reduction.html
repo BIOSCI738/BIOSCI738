@@ -132,7 +132,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Nau mai haere mai welcome to BIOSCI 738</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Nau mai, haere mai. Welcome to BIOSCI 738</a></li>
 <li class="chapter" data-level="" data-path="useful-information-to-set-you-up-for-your-semester.html"><a href="useful-information-to-set-you-up-for-your-semester.html"><i class="fa fa-check"></i>Useful information to set you up for your semester</a><ul>
 <li class="chapter" data-level="" data-path="useful-information-to-set-you-up-for-your-semester.html"><a href="useful-information-to-set-you-up-for-your-semester.html#course-outline"><i class="fa fa-check"></i>Course outline</a></li>
 <li class="chapter" data-level="" data-path="useful-information-to-set-you-up-for-your-semester.html"><a href="useful-information-to-set-you-up-for-your-semester.html#learning-outcomes"><i class="fa fa-check"></i>Learning Outcomes</a></li>
@@ -140,20 +140,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="" data-path="module-1.html"><a href="module-1.html"><i class="fa fa-check"></i>Module 1</a><ul>
 <li><a href="r-and-rstudio.html#r-and-rstudio"><code>R</code> and <code>RStudio</code></a><ul>
-<li><a href="r-and-rstudio.html#intro-to-r-rstudio">Intro to <code>R</code> &amp; <code>RStudio</code></a></li>
-<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html"><i class="fa fa-check"></i>Why?</a></li>
-<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#installing-r-and-rstudio"><i class="fa fa-check"></i>Installing R and RStudio</a></li>
+<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html"><i class="fa fa-check"></i>Installing R and RStudio</a></li>
 <li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#getting-started"><i class="fa fa-check"></i>Getting started</a></li>
-<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#r-errors"><i class="fa fa-check"></i>R errors 😱</a></li>
-<li><a href="r-and-rstudio.html#r-scripts-a-.r-file">R <em>Script</em>s (a <code>.r</code> file)</a></li>
-<li><a href="r-and-rstudio.html#writing-comments">Writing <em>Comments</em></a></li>
-<li><a href="r-and-rstudio.html#change-the-rstudio-appearance-up-to-your-taste">Change the <code>RStudio</code> appearance up to your taste</a></li>
-<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#reproducible-research"><i class="fa fa-check"></i>Reproducible research</a></li>
-<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#good-practice"><i class="fa fa-check"></i>Good practice</a></li>
 </ul></li>
-<li><a href="version-control-with-git-and-github.html#version-control-with-git-and-github">Version control with <code>git</code> and GitHub</a><ul>
-<li class="chapter" data-level="" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html"><i class="fa fa-check"></i>Setup TL;DR</a></li>
-<li><a href="version-control-with-git-and-github.html#cloning-a-repository-from-github-using-rstudio">Cloning a repository from <code>GitHub</code> using <code>RStudio</code></a></li>
+<li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html"><i class="fa fa-check"></i>Reproducible research</a><ul>
+<li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html#project-oriented-workflow-good-practice"><i class="fa fa-check"></i>Project-oriented workflow: good practice</a></li>
+<li><a href="reproducible-research.html#version-control-with-git-and-github">Version control with <code>git</code> and GitHub</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html"><i class="fa fa-check"></i>Exploratory Data Analysis</a><ul>
 <li><a href="exploratory-data-analysis.html#starting-out-with-tidyverse">Starting out with <code>tidyverse</code></a></li>
@@ -344,15 +336,15 @@ results from the two analyses will usually be very different</p>
 </div>
 <div id="using-the-palmerpenguins-data" class="section level4">
 <h4>Using the <code>palmerpenguins</code> data</h4>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb192-1" title="1"><span class="co">## getting rid of NAs</span></a>
-<a class="sourceLine" id="cb192-2" title="2">penguins_nafree &lt;-<span class="st"> </span>penguins <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">drop_na</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb191-1" title="1"><span class="co">## getting rid of NAs</span></a>
+<a class="sourceLine" id="cb191-2" title="2">penguins_nafree &lt;-<span class="st"> </span>penguins <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">drop_na</span>()</a></code></pre></div>
 <p>When carrying out PCA we’re only interested in numeric variables, so let’s just plot those. We can use the piping operator <code>%&gt;%</code> to do this with out creating a new data frame</p>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb193-1" title="1"><span class="kw">library</span>(GGally)</a>
-<a class="sourceLine" id="cb193-2" title="2">penguins_nafree <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb193-3" title="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(species, <span class="kw">where</span>(is.numeric)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb193-4" title="4"><span class="st">  </span><span class="kw">ggpairs</span>(<span class="kw">aes</span>(<span class="dt">color =</span> species),</a>
-<a class="sourceLine" id="cb193-5" title="5">        <span class="dt">columns =</span> <span class="kw">c</span>(<span class="st">&quot;flipper_length_mm&quot;</span>, <span class="st">&quot;body_mass_g&quot;</span>, </a>
-<a class="sourceLine" id="cb193-6" title="6">                     <span class="st">&quot;bill_length_mm&quot;</span>, <span class="st">&quot;bill_depth_mm&quot;</span>)) </a></code></pre></div>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb192-1" title="1"><span class="kw">library</span>(GGally)</a>
+<a class="sourceLine" id="cb192-2" title="2">penguins_nafree <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb192-3" title="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(species, <span class="kw">where</span>(is.numeric)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb192-4" title="4"><span class="st">  </span><span class="kw">ggpairs</span>(<span class="kw">aes</span>(<span class="dt">color =</span> species),</a>
+<a class="sourceLine" id="cb192-5" title="5">        <span class="dt">columns =</span> <span class="kw">c</span>(<span class="st">&quot;flipper_length_mm&quot;</span>, <span class="st">&quot;body_mass_g&quot;</span>, </a>
+<a class="sourceLine" id="cb192-6" title="6">                     <span class="st">&quot;bill_length_mm&quot;</span>, <span class="st">&quot;bill_depth_mm&quot;</span>)) </a></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-90-1.png" width="672" /></p>
 <p><strong>Using <code>prcomp()</code></strong></p>
 <p>There are three basic types of information we obtain from Principal Component Analysis:</p>
@@ -364,12 +356,12 @@ results from the two analyses will usually be very different</p>
 </ul></li>
 </ul>
 <p>Before we carry out PCA we <strong>should</strong> scale out data. <strong>WHY?</strong></p>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb194-1" title="1">pca &lt;-<span class="st"> </span>penguins_nafree <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb194-2" title="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="kw">where</span>(is.numeric), <span class="op">-</span>year) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">## year makes no sense here so we remove it and keep the other numeric variables</span></a>
-<a class="sourceLine" id="cb194-3" title="3"><span class="st">  </span><span class="kw">scale</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co">## scale the variables</span></a>
-<a class="sourceLine" id="cb194-4" title="4"><span class="st">  </span><span class="kw">prcomp</span>()</a>
-<a class="sourceLine" id="cb194-5" title="5"><span class="co">## print out a summary</span></a>
-<a class="sourceLine" id="cb194-6" title="6"><span class="kw">summary</span>(pca)</a></code></pre></div>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb193-1" title="1">pca &lt;-<span class="st"> </span>penguins_nafree <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb193-2" title="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="kw">where</span>(is.numeric), <span class="op">-</span>year) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">## year makes no sense here so we remove it and keep the other numeric variables</span></a>
+<a class="sourceLine" id="cb193-3" title="3"><span class="st">  </span><span class="kw">scale</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co">## scale the variables</span></a>
+<a class="sourceLine" id="cb193-4" title="4"><span class="st">  </span><span class="kw">prcomp</span>()</a>
+<a class="sourceLine" id="cb193-5" title="5"><span class="co">## print out a summary</span></a>
+<a class="sourceLine" id="cb193-6" title="6"><span class="kw">summary</span>(pca)</a></code></pre></div>
 <pre><code>## Importance of components:
 ##                           PC1    PC2     PC3     PC4
 ## Standard deviation     1.6569 0.8821 0.60716 0.32846
@@ -385,7 +377,7 @@ results from the two analyses will usually be very different</p>
 </ul>
 <p>From the <code>Cumulative Proportion</code> row we see that by knowing the position of a sample in relation to just <code>PC1</code> and <code>PC2</code> we can get a pretty accurate view on where it stands in relation to other samples, as just <code>PC1</code> and <code>PC2</code> explain 88% of the variance.</p>
 <p>The <strong>loadings</strong> (<em>relationship</em>) between the initial variables and the principal components are stored in <code>pca$rotation</code>:</p>
-<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb196-1" title="1">pca<span class="op">$</span>rotation</a></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb195-1" title="1">pca<span class="op">$</span>rotation</a></code></pre></div>
 <pre><code>##                          PC1         PC2        PC3        PC4
 ## bill_length_mm     0.4537532 -0.60019490 -0.6424951  0.1451695
 ## bill_depth_mm     -0.3990472 -0.79616951  0.4258004 -0.1599044
@@ -395,44 +387,44 @@ results from the two analyses will usually be very different</p>
 <p>Plotting this we get</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-93-1.png" width="672" /></p>
 <p>The new variables (PCs) are stored in <code>pca$x</code>, lets plot some of them alongside the loadings using a <em>biplot</em>. For <code>PC1</code> vs <code>PC2</code>:</p>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb198-1" title="1"><span class="kw">library</span>(factoextra) <span class="co">## install this package first</span></a>
-<a class="sourceLine" id="cb198-2" title="2"><span class="kw">fviz_pca_biplot</span>(pca, <span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb198-3" title="3"><span class="st">      </span><span class="kw">geom_point</span> (<span class="dt">alpha =</span> <span class="fl">0.2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb197-1" title="1"><span class="kw">library</span>(factoextra) <span class="co">## install this package first</span></a>
+<a class="sourceLine" id="cb197-2" title="2"><span class="kw">fviz_pca_biplot</span>(pca, <span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb197-3" title="3"><span class="st">      </span><span class="kw">geom_point</span> (<span class="dt">alpha =</span> <span class="fl">0.2</span>)</a></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-94-1.png" width="672" /></p>
 <p>Now for <code>PC2</code> vs <code>PC3</code></p>
-<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb199-1" title="1"><span class="kw">fviz_pca_biplot</span>(pca, <span class="dt">axes =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>),<span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb199-2" title="2"><span class="st">      </span><span class="kw">geom_point</span> (<span class="dt">alpha =</span> <span class="fl">0.2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb198-1" title="1"><span class="kw">fviz_pca_biplot</span>(pca, <span class="dt">axes =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>),<span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb198-2" title="2"><span class="st">      </span><span class="kw">geom_point</span> (<span class="dt">alpha =</span> <span class="fl">0.2</span>)</a></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-95-1.png" width="672" /></p>
 <p><strong>But how many PCs (new variables) do we keep?</strong> The whole point of this exercise is to <strong>reduce</strong> the number of variables we need to explain the variation in our data. So how many of these new variables (PCs) do we keep?</p>
 <p>To assess this we can use the information printed above alongside a <em>screeplot</em>:</p>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb200-1" title="1"><span class="kw">fviz_screeplot</span>(pca)</a></code></pre></div>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb199-1" title="1"><span class="kw">fviz_screeplot</span>(pca)</a></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-96-1.png" width="672" /></p>
 <p><strong>Principal components from the original variables</strong></p>
 <p>Recall that the principal components are a linear combination of the (statndardised) variables. So for PC1</p>
-<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb201-1" title="1">loadings1 &lt;-<span class="st"> </span>pca<span class="op">$</span>rotation[,<span class="dv">1</span>]</a>
-<a class="sourceLine" id="cb201-2" title="2">loadings1</a></code></pre></div>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb200-1" title="1">loadings1 &lt;-<span class="st"> </span>pca<span class="op">$</span>rotation[,<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb200-2" title="2">loadings1</a></code></pre></div>
 <pre><code>##    bill_length_mm     bill_depth_mm flipper_length_mm       body_mass_g 
 ##         0.4537532        -0.3990472         0.5768250         0.5496747</code></pre>
 <p>Therefore, the first Principle Component will be <span class="math inline">\(0.454\times Z1 -0.399 \times Z2 + 0.5768 \times Z3 + 0.5497 \times Z3\)</span> where <span class="math inline">\(Z1\)</span>, <span class="math inline">\(Z2\)</span>, <span class="math inline">\(Z3\)</span>. and <span class="math inline">\(Z4\)</span> are the scaled numerical variables form the penguins dataset (i.e., bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g). To compute this we use <code>R</code>:</p>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb203-1" title="1">scaled_vars &lt;-<span class="st"> </span>penguins_nafree <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb203-2" title="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="kw">where</span>(is.numeric), <span class="op">-</span>year) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb203-3" title="3"><span class="st">  </span><span class="kw">scale</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb203-4" title="4"><span class="st">  </span><span class="kw">as_tibble</span>()</a>
-<a class="sourceLine" id="cb203-5" title="5"><span class="co">## By &quot;Hand&quot;</span></a>
-<a class="sourceLine" id="cb203-6" title="6">by_hand &lt;-<span class="st"> </span>loadings1[<span class="dv">1</span>]<span class="op">*</span>scaled_vars<span class="op">$</span><span class="st">&quot;bill_length_mm&quot;</span> <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb203-7" title="7"><span class="st">  </span>loadings1[<span class="dv">2</span>]<span class="op">*</span>scaled_vars<span class="op">$</span><span class="st">&quot;bill_depth_mm&quot;</span> <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb203-8" title="8"><span class="st">  </span>loadings1[<span class="dv">3</span>]<span class="op">*</span>scaled_vars<span class="op">$</span><span class="st">&quot;flipper_length_mm&quot;</span> <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb203-9" title="9"><span class="st">  </span>loadings1[<span class="dv">4</span>]<span class="op">*</span>scaled_vars<span class="op">$</span><span class="st">&quot;body_mass_g&quot;</span></a>
-<a class="sourceLine" id="cb203-10" title="10"><span class="co">## From PCA</span></a>
-<a class="sourceLine" id="cb203-11" title="11">pc1 &lt;-<span class="st"> </span>pca<span class="op">$</span>x[,<span class="dv">1</span>]</a>
-<a class="sourceLine" id="cb203-12" title="12"><span class="kw">plot</span>(by_hand,pc1)</a></code></pre></div>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb202-1" title="1">scaled_vars &lt;-<span class="st"> </span>penguins_nafree <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb202-2" title="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="kw">where</span>(is.numeric), <span class="op">-</span>year) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb202-3" title="3"><span class="st">  </span><span class="kw">scale</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb202-4" title="4"><span class="st">  </span><span class="kw">as_tibble</span>()</a>
+<a class="sourceLine" id="cb202-5" title="5"><span class="co">## By &quot;Hand&quot;</span></a>
+<a class="sourceLine" id="cb202-6" title="6">by_hand &lt;-<span class="st"> </span>loadings1[<span class="dv">1</span>]<span class="op">*</span>scaled_vars<span class="op">$</span><span class="st">&quot;bill_length_mm&quot;</span> <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb202-7" title="7"><span class="st">  </span>loadings1[<span class="dv">2</span>]<span class="op">*</span>scaled_vars<span class="op">$</span><span class="st">&quot;bill_depth_mm&quot;</span> <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb202-8" title="8"><span class="st">  </span>loadings1[<span class="dv">3</span>]<span class="op">*</span>scaled_vars<span class="op">$</span><span class="st">&quot;flipper_length_mm&quot;</span> <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb202-9" title="9"><span class="st">  </span>loadings1[<span class="dv">4</span>]<span class="op">*</span>scaled_vars<span class="op">$</span><span class="st">&quot;body_mass_g&quot;</span></a>
+<a class="sourceLine" id="cb202-10" title="10"><span class="co">## From PCA</span></a>
+<a class="sourceLine" id="cb202-11" title="11">pc1 &lt;-<span class="st"> </span>pca<span class="op">$</span>x[,<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb202-12" title="12"><span class="kw">plot</span>(by_hand,pc1)</a></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-98-1.png" width="672" /></p>
 </div>
 <div id="athletes" class="section level4">
 <h4>Athletes</h4>
 <p>You’ll find the <code>athletes.csv</code> file on CANVAS.</p>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb204-1" title="1">athletes &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;athletes.csv&quot;</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb205-1" title="1">athletes</a></code></pre></div>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb203-1" title="1">athletes &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;athletes.csv&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb204-1" title="1">athletes</a></code></pre></div>
 <pre><code>## # A tibble: 33 × 10
 ##     m100  long weight highj  m400  m110  disc  pole javel m1500
 ##    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -447,15 +439,15 @@ results from the two analyses will usually be very different</p>
 ##  9  11.2  7.12   14.5  2.03  49.2  14.7  42.4   4.9  66.5  270.
 ## 10  11.2  7.28   15.2  1.97  48.6  14.8  48.0   5.2  59.5  292.
 ## # … with 23 more rows</code></pre>
-<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb207-1" title="1">athletes <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb207-2" title="2"><span class="st">  </span><span class="kw">ggpairs</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb206-1" title="1">athletes <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb206-2" title="2"><span class="st">  </span><span class="kw">ggpairs</span>()</a></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-101-1.png" width="672" /></p>
-<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb208-1" title="1">corrplot<span class="op">::</span><span class="kw">corrplot</span>(<span class="kw">cor</span>(athletes), <span class="dt">method =</span> <span class="st">&quot;ellipse&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;upper&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb207-1" title="1">corrplot<span class="op">::</span><span class="kw">corrplot</span>(<span class="kw">cor</span>(athletes), <span class="dt">method =</span> <span class="st">&quot;ellipse&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;upper&quot;</span>)</a></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-101-2.png" width="672" /></p>
-<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb209-1" title="1">pca &lt;-<span class="st"> </span>athletes <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb209-2" title="2"><span class="st">  </span><span class="kw">scale</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb209-3" title="3"><span class="st">  </span><span class="kw">prcomp</span>()</a>
-<a class="sourceLine" id="cb209-4" title="4"><span class="kw">summary</span>(pca)</a></code></pre></div>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb208-1" title="1">pca &lt;-<span class="st"> </span>athletes <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb208-2" title="2"><span class="st">  </span><span class="kw">scale</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb208-3" title="3"><span class="st">  </span><span class="kw">prcomp</span>()</a>
+<a class="sourceLine" id="cb208-4" title="4"><span class="kw">summary</span>(pca)</a></code></pre></div>
 <pre><code>## Importance of components:
 ##                           PC1    PC2     PC3    PC4     PC5     PC6     PC7
 ## Standard deviation     1.8488 1.6144 0.97123 0.9370 0.74607 0.70088 0.65620
@@ -465,21 +457,21 @@ results from the two analyses will usually be very different</p>
 ## Standard deviation     0.55389 0.51667 0.31915
 ## Proportion of Variance 0.03068 0.02669 0.01019
 ## Cumulative Proportion  0.96312 0.98981 1.00000</code></pre>
-<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb211-1" title="1"><span class="co">## standard deviations of newly rotated variables</span></a>
-<a class="sourceLine" id="cb211-2" title="2">pca<span class="op">$</span>sdev</a></code></pre></div>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb210-1" title="1"><span class="co">## standard deviations of newly rotated variables</span></a>
+<a class="sourceLine" id="cb210-2" title="2">pca<span class="op">$</span>sdev</a></code></pre></div>
 <pre><code>##  [1] 1.8488478 1.6144328 0.9712345 0.9370279 0.7460742 0.7008762 0.6561975
 ##  [8] 0.5538936 0.5166715 0.3191460</code></pre>
-<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb213-1" title="1"><span class="co">## p = 10 variables</span></a>
-<a class="sourceLine" id="cb213-2" title="2"><span class="kw">sum</span>(pca<span class="op">$</span>sdev<span class="op">^</span><span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb212-1" title="1"><span class="co">## p = 10 variables</span></a>
+<a class="sourceLine" id="cb212-2" title="2"><span class="kw">sum</span>(pca<span class="op">$</span>sdev<span class="op">^</span><span class="dv">2</span>)</a></code></pre></div>
 <pre><code>## [1] 10</code></pre>
 <p><strong>screeplot</strong></p>
-<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb215-1" title="1"><span class="co">## screeplot of sdev^2</span></a>
-<a class="sourceLine" id="cb215-2" title="2"><span class="kw">fviz_screeplot</span>(pca, <span class="dt">choice =</span> <span class="st">&quot;eigenvalue&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb215-3" title="3"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb214-1" title="1"><span class="co">## screeplot of sdev^2</span></a>
+<a class="sourceLine" id="cb214-2" title="2"><span class="kw">fviz_screeplot</span>(pca, <span class="dt">choice =</span> <span class="st">&quot;eigenvalue&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb214-3" title="3"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">1</span>)</a></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-103-1.png" width="672" /></p>
 <p><strong>biplots</strong></p>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb216-1" title="1"><span class="kw">fviz_pca_biplot</span>(pca,<span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb216-2" title="2"><span class="st">      </span><span class="kw">geom_point</span> (<span class="dt">alpha =</span> <span class="fl">0.2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb215-1" title="1"><span class="kw">fviz_pca_biplot</span>(pca,<span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb215-2" title="2"><span class="st">      </span><span class="kw">geom_point</span> (<span class="dt">alpha =</span> <span class="fl">0.2</span>)</a></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-104-1.png" width="672" /></p>
 <ul>
 <li>discus, shot, &amp; javelin more strongly correlated with one another</li>
@@ -487,7 +479,7 @@ results from the two analyses will usually be very different</p>
 <li>could think of PC1 as a <em>fieldness</em> variable (i.e., strong +ve loadings from field events and -ve loadings from track events)</li>
 </ul>
 <p><strong>Finding correlation</strong> between a PC and the original variable:</p>
-<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb217-1" title="1">pca<span class="op">$</span>rotation <span class="op">%*%</span><span class="st"> </span><span class="kw">diag</span>(pca<span class="op">$</span>sdev)</a></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb216-1" title="1">pca<span class="op">$</span>rotation <span class="op">%*%</span><span class="st"> </span><span class="kw">diag</span>(pca<span class="op">$</span>sdev)</a></code></pre></div>
 <pre><code>##              [,1]        [,2]        [,3]        [,4]         [,5]        [,6]
 ## m100   -0.7689031  0.24024073 -0.25977801  0.08276995 -0.329999387  0.02152557
 ## long    0.7285412 -0.24552536 -0.16408953  0.22886871  0.275237129 -0.06572987
@@ -521,51 +513,51 @@ results from the two analyses will usually be very different</p>
 <pre><code>## 
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb222-1" title="1">ants &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;pitfalls.csv&quot;</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb223-1" title="1"><span class="co">## choose numeric variables only and transform</span></a>
-<a class="sourceLine" id="cb223-2" title="2">ants_numeric &lt;-<span class="st"> </span>ants <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb223-3" title="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="kw">where</span>(is.numeric), <span class="op">-</span>Month) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb223-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(</a>
-<a class="sourceLine" id="cb223-5" title="5">  <span class="dt">Nyl =</span> <span class="kw">log</span>(Nyl <span class="op">+</span><span class="st"> </span><span class="dv">1</span>),</a>
-<a class="sourceLine" id="cb223-6" title="6">  <span class="dt">Phe =</span> <span class="kw">log</span>(Phe <span class="op">+</span><span class="st"> </span><span class="dv">1</span>),</a>
-<a class="sourceLine" id="cb223-7" title="7">  <span class="dt">Tet =</span> <span class="kw">log</span>(Tet <span class="op">+</span><span class="st"> </span><span class="dv">1</span>),</a>
-<a class="sourceLine" id="cb223-8" title="8">  <span class="dt">Pac =</span> <span class="kw">log</span>(Pac <span class="op">+</span><span class="st"> </span><span class="dv">1</span>))</a>
-<a class="sourceLine" id="cb223-9" title="9"></a>
-<a class="sourceLine" id="cb223-10" title="10"></a>
-<a class="sourceLine" id="cb223-11" title="11">corrplot<span class="op">::</span><span class="kw">corrplot</span>(<span class="kw">cor</span>(ants_numeric), <span class="dt">method =</span> <span class="st">&quot;ellipse&quot;</span>,<span class="dt">type =</span> <span class="st">&quot;upper&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb221-1" title="1">ants &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;pitfalls.csv&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb222-1" title="1"><span class="co">## choose numeric variables only and transform</span></a>
+<a class="sourceLine" id="cb222-2" title="2">ants_numeric &lt;-<span class="st"> </span>ants <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb222-3" title="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="kw">where</span>(is.numeric), <span class="op">-</span>Month) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb222-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(</a>
+<a class="sourceLine" id="cb222-5" title="5">  <span class="dt">Nyl =</span> <span class="kw">log</span>(Nyl <span class="op">+</span><span class="st"> </span><span class="dv">1</span>),</a>
+<a class="sourceLine" id="cb222-6" title="6">  <span class="dt">Phe =</span> <span class="kw">log</span>(Phe <span class="op">+</span><span class="st"> </span><span class="dv">1</span>),</a>
+<a class="sourceLine" id="cb222-7" title="7">  <span class="dt">Tet =</span> <span class="kw">log</span>(Tet <span class="op">+</span><span class="st"> </span><span class="dv">1</span>),</a>
+<a class="sourceLine" id="cb222-8" title="8">  <span class="dt">Pac =</span> <span class="kw">log</span>(Pac <span class="op">+</span><span class="st"> </span><span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb222-9" title="9"></a>
+<a class="sourceLine" id="cb222-10" title="10"></a>
+<a class="sourceLine" id="cb222-11" title="11">corrplot<span class="op">::</span><span class="kw">corrplot</span>(<span class="kw">cor</span>(ants_numeric), <span class="dt">method =</span> <span class="st">&quot;ellipse&quot;</span>,<span class="dt">type =</span> <span class="st">&quot;upper&quot;</span>)</a></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-108-1.png" width="672" /></p>
-<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb224-1" title="1">pca &lt;-<span class="st"> </span>ants_numeric <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb224-2" title="2"><span class="st">  </span><span class="kw">scale</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb224-3" title="3"><span class="st">  </span><span class="kw">prcomp</span>()</a>
-<a class="sourceLine" id="cb224-4" title="4"><span class="kw">summary</span>(pca)</a></code></pre></div>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb223-1" title="1">pca &lt;-<span class="st"> </span>ants_numeric <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb223-2" title="2"><span class="st">  </span><span class="kw">scale</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb223-3" title="3"><span class="st">  </span><span class="kw">prcomp</span>()</a>
+<a class="sourceLine" id="cb223-4" title="4"><span class="kw">summary</span>(pca)</a></code></pre></div>
 <pre><code>## Importance of components:
 ##                           PC1    PC2    PC3     PC4
 ## Standard deviation     1.5517 0.8361 0.7611 0.56041
 ## Proportion of Variance 0.6019 0.1747 0.1448 0.07852
 ## Cumulative Proportion  0.6019 0.7767 0.9215 1.00000</code></pre>
-<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb226-1" title="1"><span class="co">## screeplot of sdev^2</span></a>
-<a class="sourceLine" id="cb226-2" title="2"><span class="kw">fviz_screeplot</span>(pca, <span class="dt">choice =</span> <span class="st">&quot;eigenvalue&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb226-3" title="3"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb225-1" title="1"><span class="co">## screeplot of sdev^2</span></a>
+<a class="sourceLine" id="cb225-2" title="2"><span class="kw">fviz_screeplot</span>(pca, <span class="dt">choice =</span> <span class="st">&quot;eigenvalue&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb225-3" title="3"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">1</span>)</a></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-109-1.png" width="672" /></p>
-<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb227-1" title="1"><span class="co">## reduced space plot (biplot)</span></a>
-<a class="sourceLine" id="cb227-2" title="2"><span class="kw">fviz_pca_biplot</span>(pca,<span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb227-3" title="3"><span class="st">      </span><span class="kw">geom_point</span> (<span class="dt">alpha =</span> <span class="fl">0.2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb226-1" title="1"><span class="co">## reduced space plot (biplot)</span></a>
+<a class="sourceLine" id="cb226-2" title="2"><span class="kw">fviz_pca_biplot</span>(pca,<span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb226-3" title="3"><span class="st">      </span><span class="kw">geom_point</span> (<span class="dt">alpha =</span> <span class="fl">0.2</span>)</a></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-109-2.png" width="672" /></p>
 <ul>
 <li><code>Phe</code> and <code>Nyl</code> strongly positively correlated</li>
 <li>PC2 has a large contribution from <code>Tet</code></li>
 </ul>
 <p><strong>Additional information</strong></p>
-<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb228-1" title="1"><span class="kw">fviz_pca_biplot</span>(pca,<span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>,<span class="dt">alpha =</span> <span class="fl">0.2</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb228-2" title="2"><span class="st">      </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> ants<span class="op">$</span>Location)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb228-3" title="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">color =</span> <span class="st">&quot;Location&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb227-1" title="1"><span class="kw">fviz_pca_biplot</span>(pca,<span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>,<span class="dt">alpha =</span> <span class="fl">0.2</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb227-2" title="2"><span class="st">      </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> ants<span class="op">$</span>Location)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb227-3" title="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">color =</span> <span class="st">&quot;Location&quot;</span>)</a></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-110-1.png" width="672" /></p>
 <ul>
 <li>Central different from North and West?</li>
 </ul>
-<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb229-1" title="1"><span class="kw">fviz_pca_biplot</span>(pca,<span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>,<span class="dt">alpha =</span> <span class="fl">0.2</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb229-2" title="2"><span class="st">      </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> ants<span class="op">$</span>Habitat)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb229-3" title="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">color =</span> <span class="st">&quot;Habitat&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb228-1" title="1"><span class="kw">fviz_pca_biplot</span>(pca,<span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>,<span class="dt">alpha =</span> <span class="fl">0.2</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb228-2" title="2"><span class="st">      </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> ants<span class="op">$</span>Habitat)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb228-3" title="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">color =</span> <span class="st">&quot;Habitat&quot;</span>)</a></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-111-1.png" width="672" /></p>
 <ul>
 <li>Grass and Scrub intermediate?</li>
@@ -574,13 +566,13 @@ results from the two analyses will usually be very different</p>
 </div>
 <div id="reality-check-reducing-noise" class="section level3">
 <h3>Reality check: reducing noise…</h3>
-<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb230-1" title="1"><span class="kw">set.seed</span>(<span class="dv">1234</span>) <span class="co">## just for reproduciblity</span></a>
-<a class="sourceLine" id="cb230-2" title="2">noise &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(<span class="kw">replicate</span>(<span class="dv">10</span>,<span class="kw">rnorm</span>(<span class="dv">200</span>, <span class="dt">mean =</span> <span class="dv">50</span>, <span class="dt">sd =</span> <span class="dv">10</span>)))</a></code></pre></div>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb229-1" title="1"><span class="kw">set.seed</span>(<span class="dv">1234</span>) <span class="co">## just for reproduciblity</span></a>
+<a class="sourceLine" id="cb229-2" title="2">noise &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(<span class="kw">replicate</span>(<span class="dv">10</span>,<span class="kw">rnorm</span>(<span class="dv">200</span>, <span class="dt">mean =</span> <span class="dv">50</span>, <span class="dt">sd =</span> <span class="dv">10</span>)))</a></code></pre></div>
 <pre><code>## Warning: The `x` argument of `as_tibble.matrix()` must have unique column names if `.name_repair` is omitted as of tibble 2.0.0.
 ## Using compatibility `.name_repair`.
 ## This warning is displayed once every 8 hours.
 ## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</code></pre>
-<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb232-1" title="1">noise</a></code></pre></div>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb231-1" title="1">noise</a></code></pre></div>
 <pre><code>## # A tibble: 200 × 10
 ##       V1    V2    V3    V4    V5    V6    V7    V8    V9   V10
 ##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -595,12 +587,12 @@ results from the two analyses will usually be very different</p>
 ##  9  44.4  50.3  44.8  38.5  55.7  43.3  51.4  52.0  36.3  54.1
 ## 10  41.1  38.9  49.3  60.1  46.5  54.5  56.2  56.8  40.7  42.8
 ## # … with 190 more rows</code></pre>
-<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb234-1" title="1">corrplot<span class="op">::</span><span class="kw">corrplot</span>(<span class="kw">cor</span>(noise), <span class="dt">method =</span> <span class="st">&quot;ellipse&quot;</span>,<span class="dt">type =</span> <span class="st">&quot;upper&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb233-1" title="1">corrplot<span class="op">::</span><span class="kw">corrplot</span>(<span class="kw">cor</span>(noise), <span class="dt">method =</span> <span class="st">&quot;ellipse&quot;</span>,<span class="dt">type =</span> <span class="st">&quot;upper&quot;</span>)</a></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-112-1.png" width="672" /></p>
-<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb235-1" title="1">pca &lt;-<span class="st"> </span>noise <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb235-2" title="2"><span class="st">  </span><span class="kw">scale</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb235-3" title="3"><span class="st">  </span><span class="kw">prcomp</span>()</a>
-<a class="sourceLine" id="cb235-4" title="4"><span class="kw">summary</span>(pca)</a></code></pre></div>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb234-1" title="1">pca &lt;-<span class="st"> </span>noise <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb234-2" title="2"><span class="st">  </span><span class="kw">scale</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb234-3" title="3"><span class="st">  </span><span class="kw">prcomp</span>()</a>
+<a class="sourceLine" id="cb234-4" title="4"><span class="kw">summary</span>(pca)</a></code></pre></div>
 <pre><code>## Importance of components:
 ##                           PC1    PC2    PC3    PC4    PC5     PC6     PC7
 ## Standard deviation     1.1890 1.1331 1.0936 1.0281 1.0075 0.96654 0.94742
@@ -610,8 +602,8 @@ results from the two analyses will usually be very different</p>
 ## Standard deviation     0.90017 0.85665 0.81141
 ## Proportion of Variance 0.08103 0.07339 0.06584
 ## Cumulative Proportion  0.86078 0.93416 1.00000</code></pre>
-<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb237-1" title="1"><span class="kw">fviz_screeplot</span>(pca, <span class="dt">choice =</span> <span class="st">&quot;eigenvalue&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb237-2" title="2"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb236-1" title="1"><span class="kw">fviz_screeplot</span>(pca, <span class="dt">choice =</span> <span class="st">&quot;eigenvalue&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb236-2" title="2"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">1</span>)</a></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-114-1.png" width="672" /></p>
 
 </div>

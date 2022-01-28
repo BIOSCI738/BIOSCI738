@@ -132,7 +132,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Nau mai haere mai welcome to BIOSCI 738</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Nau mai, haere mai. Welcome to BIOSCI 738</a></li>
 <li class="chapter" data-level="" data-path="useful-information-to-set-you-up-for-your-semester.html"><a href="useful-information-to-set-you-up-for-your-semester.html"><i class="fa fa-check"></i>Useful information to set you up for your semester</a><ul>
 <li class="chapter" data-level="" data-path="useful-information-to-set-you-up-for-your-semester.html"><a href="useful-information-to-set-you-up-for-your-semester.html#course-outline"><i class="fa fa-check"></i>Course outline</a></li>
 <li class="chapter" data-level="" data-path="useful-information-to-set-you-up-for-your-semester.html"><a href="useful-information-to-set-you-up-for-your-semester.html#learning-outcomes"><i class="fa fa-check"></i>Learning Outcomes</a></li>
@@ -140,20 +140,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="" data-path="module-1.html"><a href="module-1.html"><i class="fa fa-check"></i>Module 1</a><ul>
 <li><a href="r-and-rstudio.html#r-and-rstudio"><code>R</code> and <code>RStudio</code></a><ul>
-<li><a href="r-and-rstudio.html#intro-to-r-rstudio">Intro to <code>R</code> &amp; <code>RStudio</code></a></li>
-<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html"><i class="fa fa-check"></i>Why?</a></li>
-<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#installing-r-and-rstudio"><i class="fa fa-check"></i>Installing R and RStudio</a></li>
+<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html"><i class="fa fa-check"></i>Installing R and RStudio</a></li>
 <li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#getting-started"><i class="fa fa-check"></i>Getting started</a></li>
-<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#r-errors"><i class="fa fa-check"></i>R errors 😱</a></li>
-<li><a href="r-and-rstudio.html#r-scripts-a-.r-file">R <em>Script</em>s (a <code>.r</code> file)</a></li>
-<li><a href="r-and-rstudio.html#writing-comments">Writing <em>Comments</em></a></li>
-<li><a href="r-and-rstudio.html#change-the-rstudio-appearance-up-to-your-taste">Change the <code>RStudio</code> appearance up to your taste</a></li>
-<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#reproducible-research"><i class="fa fa-check"></i>Reproducible research</a></li>
-<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#good-practice"><i class="fa fa-check"></i>Good practice</a></li>
 </ul></li>
-<li><a href="version-control-with-git-and-github.html#version-control-with-git-and-github">Version control with <code>git</code> and GitHub</a><ul>
-<li class="chapter" data-level="" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html"><i class="fa fa-check"></i>Setup TL;DR</a></li>
-<li><a href="version-control-with-git-and-github.html#cloning-a-repository-from-github-using-rstudio">Cloning a repository from <code>GitHub</code> using <code>RStudio</code></a></li>
+<li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html"><i class="fa fa-check"></i>Reproducible research</a><ul>
+<li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html#project-oriented-workflow-good-practice"><i class="fa fa-check"></i>Project-oriented workflow: good practice</a></li>
+<li><a href="reproducible-research.html#version-control-with-git-and-github">Version control with <code>git</code> and GitHub</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html"><i class="fa fa-check"></i>Exploratory Data Analysis</a><ul>
 <li><a href="exploratory-data-analysis.html#starting-out-with-tidyverse">Starting out with <code>tidyverse</code></a></li>
@@ -305,7 +297,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="linear-regression" class="section level2">
 <h2>Linear regression</h2>
-<p><img src="https://raw.githubusercontent.com/cmjt/statbiscuits/master/figs_n_gifs/lm.gif" /></p>
 <div id="some-mathematical-notation" class="section level3">
 <h3>Some mathematical notation</h3>
 <p>Let’s consider a linear regression with a simple explanatory variable:</p>
@@ -334,16 +325,16 @@ where</p>
 <li>The residuals have <strong>constant variance</strong></li>
 <li>The <strong>residuals</strong> are normally distributed</li>
 </ul>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb118-1" title="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb118-2" title="2"><span class="kw">library</span>(palmerpenguins)</a>
-<a class="sourceLine" id="cb118-3" title="3">penguins_nafree &lt;-<span class="st"> </span>penguins <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">drop_na</span>()</a></code></pre></div>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" title="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> penguins_nafree, <span class="kw">aes</span>(<span class="dt">x =</span> bill_depth_mm)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb119-2" title="2"><span class="st">  </span><span class="kw">geom_histogram</span>() <span class="op">+</span><span class="st"> </span><span class="kw">theme_classic</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb119-3" title="3"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Bill depth (mm)&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" title="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb117-2" title="2"><span class="kw">library</span>(palmerpenguins)</a>
+<a class="sourceLine" id="cb117-3" title="3">penguins_nafree &lt;-<span class="st"> </span>penguins <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">drop_na</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb118-1" title="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> penguins_nafree, <span class="kw">aes</span>(<span class="dt">x =</span> bill_depth_mm)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb118-2" title="2"><span class="st">  </span><span class="kw">geom_histogram</span>() <span class="op">+</span><span class="st"> </span><span class="kw">theme_classic</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb118-3" title="3"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Bill depth (mm)&quot;</span>)</a></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
 <p>First off let’s fit a null (intercept only) model. This in <em>old money</em> would be called a one sample t-test.</p>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" title="1">slm_null &lt;-<span class="st"> </span><span class="kw">lm</span>(bill_depth_mm <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> penguins_nafree)</a>
-<a class="sourceLine" id="cb120-2" title="2"><span class="kw">summary</span>(slm_null)<span class="op">$</span>coef</a></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" title="1">slm_null &lt;-<span class="st"> </span><span class="kw">lm</span>(bill_depth_mm <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> penguins_nafree)</a>
+<a class="sourceLine" id="cb119-2" title="2"><span class="kw">summary</span>(slm_null)<span class="op">$</span>coef</a></code></pre></div>
 <pre><code>##             Estimate Std. Error  t value      Pr(&gt;|t|)
 ## (Intercept) 17.16486  0.1079134 159.0614 1.965076e-315</code></pre>
 <p><strong>Model formula</strong></p>
@@ -351,7 +342,7 @@ where</p>
 <p>Here for observation <span class="math inline">\(i\)</span> <span class="math inline">\(Y_i\)</span> is the value of the response (<code>bill_depth_mm</code>) and <span class="math inline">\(\alpha\)</span> is a parameter to be estimated (typically called the intercept).</p>
 <p><strong>Inference</strong></p>
 <p>The <code>(Intercept)</code> term, 17.1648649, tells us the (estimated) average value of the response (<code>bill_depth_mm</code>), see</p>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" title="1">penguins_nafree <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">average_bill_depth =</span> <span class="kw">mean</span>(bill_depth_mm))</a></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" title="1">penguins_nafree <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">average_bill_depth =</span> <span class="kw">mean</span>(bill_depth_mm))</a></code></pre></div>
 <pre><code>## # A tibble: 1 × 1
 ##   average_bill_depth
 ##                &lt;dbl&gt;
@@ -365,12 +356,12 @@ where</p>
 <div id="single-continuous-variable" class="section level3">
 <h3>Single continuous variable</h3>
 <p><strong>Does <code>bill_length_mm</code> help explain some of the variation in <code>bill_depth_mm</code>?</strong></p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb124-1" title="1">p1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> penguins_nafree, <span class="kw">aes</span>(<span class="dt">x =</span> bill_length_mm, <span class="dt">y =</span> bill_depth_mm)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb124-2" title="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Bill depth (mm)&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb124-3" title="3"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Bill length (mm)&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_classic</span>()</a>
-<a class="sourceLine" id="cb124-4" title="4">p1</a></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" title="1">p1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> penguins_nafree, <span class="kw">aes</span>(<span class="dt">x =</span> bill_length_mm, <span class="dt">y =</span> bill_depth_mm)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb123-2" title="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Bill depth (mm)&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb123-3" title="3"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Bill length (mm)&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_classic</span>()</a>
+<a class="sourceLine" id="cb123-4" title="4">p1</a></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" title="1">slm &lt;-<span class="st"> </span><span class="kw">lm</span>(bill_depth_mm <span class="op">~</span><span class="st"> </span>bill_length_mm, <span class="dt">data =</span> penguins_nafree)</a></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb124-1" title="1">slm &lt;-<span class="st"> </span><span class="kw">lm</span>(bill_depth_mm <span class="op">~</span><span class="st"> </span>bill_length_mm, <span class="dt">data =</span> penguins_nafree)</a></code></pre></div>
 <p><strong>Model formula</strong></p>
 <p>This model is simply <span class="math display">\[Y_i = \alpha + \beta_1x_i + \epsilon_i\]</span> where for observation <span class="math inline">\(i\)</span> <span class="math inline">\(Y_i\)</span> is the value of the response (<code>bill_depth_mm</code>) and <span class="math inline">\(x_i\)</span> is the value of the explanatory variable (<code>bill_length_mm</code>); As above <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta_1\)</span> are parameters to be estimated. We could also write this model as</p>
 <p><span class="math display">\[
@@ -380,31 +371,31 @@ where</p>
 \]</span></p>
 <p><strong>Fitted model</strong></p>
 <p>As before we can get out estimated parameters (here <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta_1\)</span>) using</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb126-1" title="1"><span class="kw">summary</span>(slm)<span class="op">$</span>coef</a></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" title="1"><span class="kw">summary</span>(slm)<span class="op">$</span>coef</a></code></pre></div>
 <pre><code>##                   Estimate Std. Error   t value     Pr(&gt;|t|)
 ## (Intercept)    20.78664867 0.85417308 24.335406 1.026904e-75
 ## bill_length_mm -0.08232675 0.01926835 -4.272642 2.528290e-05</code></pre>
 <p>Here, the <code>(Intercept)</code>: <code>Estimate</code> (<span class="math inline">\(\alpha\)</span> above) gives us the estimated average bill depth (mm) <strong>given the estimated relationship</strong> bill length (mm) and bill length.</p>
 <p>The <code>bill_length_mm</code> : <code>Estimate</code> (<span class="math inline">\(\beta_1\)</span> above) is the slope associated with bill length (mm). So, here for every 1mm increase in bill length we estimated a 0.082mm decrease (or a -0.082mm increase) in bill depth.</p>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb128-1" title="1"><span class="co">## calculate predicted values</span></a>
-<a class="sourceLine" id="cb128-2" title="2">penguins_nafree<span class="op">$</span>pred_vals &lt;-<span class="st"> </span><span class="kw">predict</span>(slm)</a>
-<a class="sourceLine" id="cb128-3" title="3"><span class="co">## plot</span></a>
-<a class="sourceLine" id="cb128-4" title="4"><span class="kw">ggplot</span>(<span class="dt">data =</span> penguins_nafree, <span class="kw">aes</span>(<span class="dt">x =</span> bill_length_mm, <span class="dt">y =</span> bill_depth_mm)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb128-5" title="5"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Bill depth (mm)&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb128-6" title="6"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Bill length (mm)&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_classic</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb128-7" title="7"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y =</span> pred_vals))</a></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb127-1" title="1"><span class="co">## calculate predicted values</span></a>
+<a class="sourceLine" id="cb127-2" title="2">penguins_nafree<span class="op">$</span>pred_vals &lt;-<span class="st"> </span><span class="kw">predict</span>(slm)</a>
+<a class="sourceLine" id="cb127-3" title="3"><span class="co">## plot</span></a>
+<a class="sourceLine" id="cb127-4" title="4"><span class="kw">ggplot</span>(<span class="dt">data =</span> penguins_nafree, <span class="kw">aes</span>(<span class="dt">x =</span> bill_length_mm, <span class="dt">y =</span> bill_depth_mm)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb127-5" title="5"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Bill depth (mm)&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb127-6" title="6"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Bill length (mm)&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_classic</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb127-7" title="7"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y =</span> pred_vals))</a></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
 </div>
 <div id="one-factor-and-a-continous-variable" class="section level3">
 <h3>One factor and a continous variable</h3>
 <p><strong>Adding</strong> <code>species</code>; remember <code>species</code> is a factor variable!</p>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb129-1" title="1">p2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> penguins_nafree,</a>
-<a class="sourceLine" id="cb129-2" title="2">             <span class="kw">aes</span>(<span class="dt">y =</span> bill_depth_mm, <span class="dt">x =</span> bill_length_mm, <span class="dt">color =</span> species)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb129-3" title="3"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Bill depth (mm)&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb129-4" title="4"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Bill length (mm)&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_classic</span>()</a>
-<a class="sourceLine" id="cb129-5" title="5">p2</a></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb128-1" title="1">p2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> penguins_nafree,</a>
+<a class="sourceLine" id="cb128-2" title="2">             <span class="kw">aes</span>(<span class="dt">y =</span> bill_depth_mm, <span class="dt">x =</span> bill_length_mm, <span class="dt">color =</span> species)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb128-3" title="3"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Bill depth (mm)&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb128-4" title="4"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Bill length (mm)&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_classic</span>()</a>
+<a class="sourceLine" id="cb128-5" title="5">p2</a></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb130-1" title="1">slm_sp &lt;-<span class="st"> </span><span class="kw">lm</span>(bill_depth_mm <span class="op">~</span><span class="st"> </span>bill_length_mm <span class="op">+</span><span class="st"> </span>species, <span class="dt">data =</span> penguins_nafree)</a></code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb129-1" title="1">slm_sp &lt;-<span class="st"> </span><span class="kw">lm</span>(bill_depth_mm <span class="op">~</span><span class="st"> </span>bill_length_mm <span class="op">+</span><span class="st"> </span>species, <span class="dt">data =</span> penguins_nafree)</a></code></pre></div>
 <p><strong>Model formula</strong></p>
 <p>Now we have two explanatory variables, so our model formula becomes</p>
 <p><span class="math display">\[Y_i = \beta_0 + \beta_1z_i + \beta_2x_i + \epsilon_i\]</span>
@@ -426,7 +417,7 @@ where</p>
 \end{aligned}
 \]</span></p>
 <p><strong>Fitted model</strong></p>
-<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb131-1" title="1"><span class="kw">summary</span>(slm_sp)<span class="op">$</span>coef</a></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb130-1" title="1"><span class="kw">summary</span>(slm_sp)<span class="op">$</span>coef</a></code></pre></div>
 <pre><code>##                    Estimate Std. Error    t value     Pr(&gt;|t|)
 ## (Intercept)      10.5652616 0.69092642  15.291442 2.977289e-40
 ## bill_length_mm    0.2004431 0.01767974  11.337449 2.258955e-25
@@ -436,13 +427,13 @@ where</p>
 <p>Here, the <code>(Intercept)</code>: <code>Estimate</code> gives us the estimated average bill depth (mm) of the <strong>Adelie</strong> penguins <strong>given the estimated relationship</strong> between bill length and bill depth. Technically, this is the estimated bill depth (mm) for Adelie penguins with zero bill length. That is clearly a nonsense way to interpret this as that would be an impossible situation in practice! I would recommend as thinking of this as the y-shift (i.e., height) of the fitted line.</p>
 <p>The <code>bill_length_mm</code> : <code>Estimate</code> (<span class="math inline">\(\beta_1\)</span> above) is the slope associated with bill length (mm). So, here for every 1mm increase in bill length we estimated a 0.2mm increase in bill depth.</p>
 <p>What about the coefficient of the other species levels? Look at the plot below, these values give the shift (up or down) of the <strong>parallel</strong> lines from the <strong>Adelie</strong> level. So given the estimated relationship between bill depth and bill length these coefficients are the estimated change from the baseline.</p>
-<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb133-1" title="1"><span class="co">## calculate predicted values</span></a>
-<a class="sourceLine" id="cb133-2" title="2">penguins_nafree<span class="op">$</span>pred_vals &lt;-<span class="st"> </span><span class="kw">predict</span>(slm_sp)</a>
-<a class="sourceLine" id="cb133-3" title="3"><span class="co">## plot</span></a>
-<a class="sourceLine" id="cb133-4" title="4"><span class="kw">ggplot</span>(<span class="dt">data =</span> penguins_nafree, <span class="kw">aes</span>(<span class="dt">y =</span> bill_depth_mm, <span class="dt">x =</span> bill_length_mm, <span class="dt">color =</span> species)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb133-5" title="5"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Bill depth (mm)&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb133-6" title="6"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Bill length (mm)&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_classic</span>()  <span class="op">+</span></a>
-<a class="sourceLine" id="cb133-7" title="7"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y =</span> pred_vals))</a></code></pre></div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb132-1" title="1"><span class="co">## calculate predicted values</span></a>
+<a class="sourceLine" id="cb132-2" title="2">penguins_nafree<span class="op">$</span>pred_vals &lt;-<span class="st"> </span><span class="kw">predict</span>(slm_sp)</a>
+<a class="sourceLine" id="cb132-3" title="3"><span class="co">## plot</span></a>
+<a class="sourceLine" id="cb132-4" title="4"><span class="kw">ggplot</span>(<span class="dt">data =</span> penguins_nafree, <span class="kw">aes</span>(<span class="dt">y =</span> bill_depth_mm, <span class="dt">x =</span> bill_length_mm, <span class="dt">color =</span> species)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb132-5" title="5"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Bill depth (mm)&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb132-6" title="6"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Bill length (mm)&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_classic</span>()  <span class="op">+</span></a>
+<a class="sourceLine" id="cb132-7" title="7"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y =</span> pred_vals))</a></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
 </div>
 <div id="interactions" class="section level3">
@@ -457,7 +448,7 @@ where</p>
 <li><p><code>*</code> means to include all main effects and interactions, so <code>a*b</code> is the same as <code>a + b + a:b</code>.</p></li>
 </ul>
 <p>To specify a model with additive and interaction effects we use</p>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb134-1" title="1">slm_int &lt;-<span class="st"> </span><span class="kw">lm</span>(bill_depth_mm <span class="op">~</span><span class="st"> </span>bill_length_mm<span class="op">*</span>species, <span class="dt">data =</span> penguins_nafree)</a></code></pre></div>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb133-1" title="1">slm_int &lt;-<span class="st"> </span><span class="kw">lm</span>(bill_depth_mm <span class="op">~</span><span class="st"> </span>bill_length_mm<span class="op">*</span>species, <span class="dt">data =</span> penguins_nafree)</a></code></pre></div>
 <p><strong>Model formula</strong></p>
 <p>The model formula is then</p>
 <p><span class="math display">\[
@@ -467,7 +458,7 @@ where</p>
 \end{aligned}
 \]</span></p>
 <p><strong>Fitted model</strong></p>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb135-1" title="1"><span class="kw">summary</span>(slm_int)<span class="op">$</span>coef</a></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb134-1" title="1"><span class="kw">summary</span>(slm_int)<span class="op">$</span>coef</a></code></pre></div>
 <pre><code>##                                    Estimate Std. Error    t value     Pr(&gt;|t|)
 ## (Intercept)                     11.48770713 1.15987305  9.9042797 2.135979e-20
 ## bill_length_mm                   0.17668344 0.02980564  5.9278518 7.793199e-09

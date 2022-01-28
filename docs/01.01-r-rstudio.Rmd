@@ -1,14 +1,10 @@
 ## `R` and `RStudio`
 
+> "If R were an airplane, RStudio would be the airport..." `r tufte::quote_footer('--- Julie Lowndes, Introduction to RStudio Awesomeness')`
 
-### Intro to `R` & `RStudio`
-
-**R is the pheromone to RStudio's PDA**
+Alternatively, `R` is the pheromone to `RStudio`'s PDA.
 
 ![](img/r-rstudio-pda.jpg)
-
-`R` is the pheromone to `RStudio`'s PDA.
-
 
 `R` is a language, specifically, a programming language; it's the way you can speak to your computer to ask it to carry out certain computations.
 
@@ -16,10 +12,7 @@
 
 **Note** `R` and `RStudio` are two **different** pieces of software; for this course you are expected to download both. As you'd expect, the PDA depends on the pheromones (i.e., `RStudio` depends on `R`) so you have to download `R` to use `RStudio`! 
 
-
-### Why?
-
-`R`
+**Why use** `R`
 
 + It's free
 + It's [open source](https://opensource.com/resources/what-open-source)
@@ -30,12 +23,9 @@
 + It's extremely flexible; if you can code it you can do it! 15,000+ packages available!
 + ...
 
-`RStudio`
+**Why use** `RStudio`
 
-> "If R were an airplane, RStudio would be the airport..." `r tufte::quote_footer('--- Julie Lowndes, Introduction to RStudio Awesomeness')`
-
- 
-+ Speaks nicely to `R`
++ It speaks nicely to `R`
 + Tab completion
 + Debugging capabilities
 + There is a huge online support network
@@ -75,7 +65,7 @@ Some terminology
 + *Script*: a text file containing a set of commands and comments.
 + *Comments*: notes written within a *Script* to better document/explain what's happening
 
-### R errors  `r emo::ji('scream')`
+#### R errors  `r emo::ji('scream')`
 
 ```{r errors, echo = TRUE, error = TRUE}
 data <- read.csv("data_file_not_in_my_working_directory.csv")
@@ -86,18 +76,18 @@ an_object_I_have_not_created
 
 **What do you think the issues are here** `r emo::ji("wink")`
 
-### R *Script*s (a `.r` file)
+#### R *Script*s (a `.r` file)
 
 Go **File** > **New File** > **R Script** to open up a new *Script*
 
 If you had only three panes showing before, a new (fourth) pane should open up in the top left of `RStudio`. This file will have a `.r` extension and is where you can write, edit, and save the `R` commands you write. It's a dedicated text editor for your `R` code (very useful if you want to save your code to run at a later date). The main difference between typing your code into a *Script* vs *Console* is that you edit it and save it for later! Remember though the *Console* is the pane where you communicate with your computer so all code you write will have to be *Run* here. There are two ways of *running* a line of code you've written in your *Script*
 
- + Ensure your cursor is on the line of code you want to run, hold down **Ctrl** and press **Enter**.
- + Ensure your cursor is on the line of code you want to run, then use your mouse to click the Run button (it has a green arrow next to it) on the top right of the *Script* pane.
+ 1. Ensure your cursor is on the line of code you want to run, hold down **Ctrl** and press **Enter**.
+ 2. Ensure your cursor is on the line of code you want to run, then use your mouse to click the Run button (it has a green arrow next to it) on the top right of the *Script* pane.
 
-Type `1:10` in your *Script* and practise *running* this line of code using both methods above. Not that if you've *Run* the code successfully then your computer will speak back to you each time via the *Console*
+Type `1:10` in your *Script* and practise *running* this line of code using both methods above. Note that if you've *Run* the code successfully then your computer will speak back to you each time via the *Console*
 
-### Writing *Comments*
+#### Writing *Comments*
 
 *Comments* are notes to yourself (future or present) or to someone else and are, typically, written interspersed in your code. Now, the comments you write will typically be in a language your computer doesn't understand (e.g., English). So that you can write yourself notes in your *Script* you need to tell your computer using the `R` language to ignore them. To do this precede any note you write with \#, see below. The \# is `R` for *ignore anything after this character*.
 
@@ -115,59 +105,79 @@ Type `1:10` in your *Script* and practise *running* this line of code using both
 Now remember when you want to leave your `R` session you'll need to **Save** your *Script* to use it again. To do this go **File** > **Save As** and name your file what you wish (remember too to choose a relevant folder on your computer, or as recommended use the `.Rproj` set-up as above).
 
 
-### Change the `RStudio` appearance up to your taste
+#### Change `RStudio`'s appearance 
 
 Go to **Tools** > **Global Options** > **Apperance**
 
-![](https://support.rstudio.com/hc/article_attachments/115020425168/Screen_Shot_2017-08-24_at_1.14.19_PM.png)
+![](https://support.rstudio.com/hc/article_attachments/115020425168/Screen_Shot_2017-08-24_at_1.14.19_PM.png){width="20%"}
 
 
 
-### Reproducible research
+## Reproducible research
 
- + Keep all similar files for the same analysis in the same place 
+> "Reproducibility, also known as replicability and repeatability, is a major principle underpinning the scientific method. For the findings of a study to be reproducible means that results obtained by an experiment or an observational study or in a statistical analysis of a data set should be achieved again with a high degree of reliability when the study is replicated. ... With a narrower scope, reproducibility has been introduced in computational sciences: Any results should be documented by making all data and code available in such a way that the computations can be executed again with identical results." `r tufte::quote_footer('--- Reprodicibility, Wikipedia')`
 
- + **NEVER** change raw data
 
-### Good practice
+### Project-oriented workflow: good practice
+
+Properly managing data and other research outputs should starts at the beginning of your project. It should then and continue throughout!
+
+To setup an RStudio `.RProj` project go to **Project** (top right) > **New Project** > **Create Project** 
+
+**Best-practice tips**
+
+ + Be organised: set up each each assignment/university course as a *project*
+ + Ensure your project is self-contained. A *project* is a folder that should contain all the relevant files and all paths should be relative to that *project*
+ + Always apply the 5 Cs: be **C**lear, **C**oncise, **C**onsistent, **C**orrect, and **C**onformant.
+ + Naming files should be descriptive and consistent! 
+ + Include a README file that summarises your project's structure
+ + Provide a detailed description of the data, data source(s), and how it will be used.
+ + Describe all the steps of data preprocessing.
+ + Provide a description and information about each new version of the data.
+ + Provide details about the software/code that is used for preprocessing the data.
+ + Include brief examples of how your code works. 
+ + Generate a list of all scripts, how to run them, and in what order.
+ + When structuring your project directory consider the following:
+   + Put code and data in separate subdirectories.
+   + Plan to separate raw data from processed data.
+   + An example of a well-structured directory  
+      + ProjectName/
+         + README.MD
+         + Dataset/
+             + Raw Data/
+             + Processed Data/
+         + Analysis (or Code or Scripts)/
+             + Data cleaning/
+             + Data preprocessing/
+         + Output/
+             + Graphs
+             + Tables
 
 **Always start with a clean workspace** **Why?** *So your ex (code) can't come and mess up your life!*
 
-![](https://memegenerator.net/img/instances/57296391/when-your-ex-texts-you-after-months-hey-whats-up-not-today-satan-not-today.jpg) 
+![](https://memegenerator.net/img/instances/57296391/when-your-ex-texts-you-after-months-hey-whats-up-not-today-satan-not-today.jpg){width="20%"}
 
 
-Go to **Tools** > **Global Options**
+To ensure this go to **Tools** > **Global Options** and uncheck the highlighted options.
 
-![](https://miro.medium.com/max/2784/1*dUNl71Jic2zYhYS2hxOBZA.png)
-
-
-**Project-oriented workflow**. Recommended: `.Rproj`
-
-+ **Organised** Set up each Each assignment/university course as a *project*
-+ **Self-contained** a *project* is a folder that contains all relevant files
-   + All paths can then be relative to that *project*
-+ **Reproducible** the *project* should just work on a different computer
-
-Got to **Project** (top right) > **New Project** > **Create Project** ![](https://stats220.earo.me/img/rstudio-proj.png)
-
-**Project set-up**
-
-![](https://raw.githubusercontent.com/martinctc/blog/master/images/RPROJECT_2000dpi.png){width=30%}
+![](https://miro.medium.com/max/2784/1*dUNl71Jic2zYhYS2hxOBZA.png){width="20%"}
 
 
 **`r emo::ji("warning")`Warning`r emo::ji("warning")`**
 
-[Jenny Bryan will set your computer on fire](https://www.tidyverse.org/blog/2017/12/workflow-vs-script/) `r emo::ji("fire")` if you start your script like this
+> If the first line of your R script is
+> `setwd("C:\Users\jenny\path\that\only\I\have")`
+> I will come into your office and SET YOUR COMPUTER ON FIRE 🔥.
+> If the first line of your R script is
+> `rm(list = ls())`
+> I will come into your office and SET YOUR COMPUTER ON FIRE 🔥. `r tufte::quote_footer('--- Jenny Bryan, Tidyverse blog, workflow vs script')`
 
-```{r fire, echo = TRUE, eval = FALSE}
-rm(list = ls())
-```
+**Why?** Because, this
 
-This
-
-+ does **NOT** create a fresh `R` process
-+ it makes your script vulnerable
-+ it **will** come back to bite you
+  + is not reproducible
+  + does **NOT** create a fresh `R` process
+  + it makes your script vulnerable
+  + it **will** come back to bite you
 
 
 

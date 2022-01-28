@@ -1,7 +1,10 @@
 # Module 4
 
-+ maximum likelihood vs bayes
+**Learning objectives**
 
-### Extra materials
 
-[An Introduction to Bayesian Thinking](https://statswithr.github.io/book/the-basics-of-bayesian-statistics.html)
+**Other resources**
+
+ + [An Introduction to Bayesian Thinking](https://statswithr.github.io/book/the-basics-of-bayesian-statistics.html)
+
+ + [Bayesian statistics with R](https://oliviergimenez.github.io/bayesian-stats-with-R/)

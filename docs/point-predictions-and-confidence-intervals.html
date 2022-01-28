@@ -132,7 +132,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Nau mai haere mai welcome to BIOSCI 738</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Nau mai, haere mai. Welcome to BIOSCI 738</a></li>
 <li class="chapter" data-level="" data-path="useful-information-to-set-you-up-for-your-semester.html"><a href="useful-information-to-set-you-up-for-your-semester.html"><i class="fa fa-check"></i>Useful information to set you up for your semester</a><ul>
 <li class="chapter" data-level="" data-path="useful-information-to-set-you-up-for-your-semester.html"><a href="useful-information-to-set-you-up-for-your-semester.html#course-outline"><i class="fa fa-check"></i>Course outline</a></li>
 <li class="chapter" data-level="" data-path="useful-information-to-set-you-up-for-your-semester.html"><a href="useful-information-to-set-you-up-for-your-semester.html#learning-outcomes"><i class="fa fa-check"></i>Learning Outcomes</a></li>
@@ -140,20 +140,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="" data-path="module-1.html"><a href="module-1.html"><i class="fa fa-check"></i>Module 1</a><ul>
 <li><a href="r-and-rstudio.html#r-and-rstudio"><code>R</code> and <code>RStudio</code></a><ul>
-<li><a href="r-and-rstudio.html#intro-to-r-rstudio">Intro to <code>R</code> &amp; <code>RStudio</code></a></li>
-<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html"><i class="fa fa-check"></i>Why?</a></li>
-<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#installing-r-and-rstudio"><i class="fa fa-check"></i>Installing R and RStudio</a></li>
+<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html"><i class="fa fa-check"></i>Installing R and RStudio</a></li>
 <li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#getting-started"><i class="fa fa-check"></i>Getting started</a></li>
-<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#r-errors"><i class="fa fa-check"></i>R errors 😱</a></li>
-<li><a href="r-and-rstudio.html#r-scripts-a-.r-file">R <em>Script</em>s (a <code>.r</code> file)</a></li>
-<li><a href="r-and-rstudio.html#writing-comments">Writing <em>Comments</em></a></li>
-<li><a href="r-and-rstudio.html#change-the-rstudio-appearance-up-to-your-taste">Change the <code>RStudio</code> appearance up to your taste</a></li>
-<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#reproducible-research"><i class="fa fa-check"></i>Reproducible research</a></li>
-<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#good-practice"><i class="fa fa-check"></i>Good practice</a></li>
 </ul></li>
-<li><a href="version-control-with-git-and-github.html#version-control-with-git-and-github">Version control with <code>git</code> and GitHub</a><ul>
-<li class="chapter" data-level="" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html"><i class="fa fa-check"></i>Setup TL;DR</a></li>
-<li><a href="version-control-with-git-and-github.html#cloning-a-repository-from-github-using-rstudio">Cloning a repository from <code>GitHub</code> using <code>RStudio</code></a></li>
+<li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html"><i class="fa fa-check"></i>Reproducible research</a><ul>
+<li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html#project-oriented-workflow-good-practice"><i class="fa fa-check"></i>Project-oriented workflow: good practice</a></li>
+<li><a href="reproducible-research.html#version-control-with-git-and-github">Version control with <code>git</code> and GitHub</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html"><i class="fa fa-check"></i>Exploratory Data Analysis</a><ul>
 <li><a href="exploratory-data-analysis.html#starting-out-with-tidyverse">Starting out with <code>tidyverse</code></a></li>
@@ -309,8 +301,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="confidence-intervals-for-parameters" class="section level3">
 <h3>Confidence intervals for parameters</h3>
 <p>For the <em>chosen</em> <code>slm_sp</code> model we can get these simply by using</p>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb145-1" title="1">cis &lt;-<span class="st"> </span><span class="kw">confint</span>(slm_sp)</a>
-<a class="sourceLine" id="cb145-2" title="2">cis</a></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb144-1" title="1">cis &lt;-<span class="st"> </span><span class="kw">confint</span>(slm_sp)</a>
+<a class="sourceLine" id="cb144-2" title="2">cis</a></code></pre></div>
 <pre><code>##                       2.5 %     97.5 %
 ## (Intercept)       9.2060707 11.9244526
 ## bill_length_mm    0.1656635  0.2352227
@@ -343,11 +335,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="math display">\[\downarrow\]</span></p>
 <p><span class="math display">\[15.47\text{mm}\]</span></p>
 <p>Rather than <em>by hand</em> we can do this easily in <code>R</code></p>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb147-1" title="1"><span class="co">## create new data frame with data we want to predict to</span></a>
-<a class="sourceLine" id="cb147-2" title="2"><span class="co">## the names have to match those in our original data frame</span></a>
-<a class="sourceLine" id="cb147-3" title="3">newdata &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">species =</span> <span class="st">&quot;Gentoo&quot;</span>,<span class="dt">bill_length_mm =</span> <span class="dv">50</span>)</a>
-<a class="sourceLine" id="cb147-4" title="4"><span class="co">## use predict() function</span></a>
-<a class="sourceLine" id="cb147-5" title="5"><span class="kw">predict</span>(slm_sp, <span class="dt">newdata =</span> newdata) <span class="co">## more accurate than our by hand version!</span></a></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb146-1" title="1"><span class="co">## create new data frame with data we want to predict to</span></a>
+<a class="sourceLine" id="cb146-2" title="2"><span class="co">## the names have to match those in our original data frame</span></a>
+<a class="sourceLine" id="cb146-3" title="3">newdata &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">species =</span> <span class="st">&quot;Gentoo&quot;</span>,<span class="dt">bill_length_mm =</span> <span class="dv">50</span>)</a>
+<a class="sourceLine" id="cb146-4" title="4"><span class="co">## use predict() function</span></a>
+<a class="sourceLine" id="cb146-5" title="5"><span class="kw">predict</span>(slm_sp, <span class="dt">newdata =</span> newdata) <span class="co">## more accurate than our by hand version!</span></a></code></pre></div>
 <pre><code>##       1 
 ## 15.4841</code></pre>
 <p>What does this look like on a plot</p>

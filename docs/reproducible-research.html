@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Data Viz | Advanced Biological Data Analysis</title>
-  <meta name="description" content="Data Viz | Advanced Biological Data Analysis" />
+  <title>Reproducible research | Advanced Biological Data Analysis</title>
+  <meta name="description" content="Reproducible research | Advanced Biological Data Analysis" />
   <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Data Viz | Advanced Biological Data Analysis" />
+  <meta property="og:title" content="Reproducible research | Advanced Biological Data Analysis" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Data Viz | Advanced Biological Data Analysis" />
+  <meta name="twitter:title" content="Reproducible research | Advanced Biological Data Analysis" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="data-wrangling.html"/>
-<link rel="next" href="module-2.html"/>
+<link rel="prev" href="r-and-rstudio.html"/>
+<link rel="next" href="exploratory-data-analysis.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -295,185 +295,133 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="data-viz" class="section level2">
-<h2>Data Viz</h2>
+<div id="reproducible-research" class="section level2">
+<h2>Reproducible research</h2>
 <blockquote>
-“…have obligations in that we have a great deal of power over how people ultimately make use of data, both in the patterns they see and the conclusions they draw.”
+“Reproducibility, also known as replicability and repeatability, is a major principle underpinning the scientific method. For the findings of a study to be reproducible means that results obtained by an experiment or an observational study or in a statistical analysis of a data set should be achieved again with a high degree of reliability when the study is replicated. … With a narrower scope, reproducibility has been introduced in computational sciences: Any results should be documented by making all data and code available in such a way that the computations can be executed again with identical results.”
 <footer>
-— Michael Correll, Ethical Dimensions of Visualization Research
+— Reprodicibility, Wikipedia
 </footer>
 </blockquote>
-<blockquote>
-“Clutter and confusion are not attributes of data - they are shortcomings of design.”
-<footer>
-— Edward Tufte
-</footer>
-</blockquote>
-<div id="exploratory-and-explanatory-plots" class="section level3">
-<h3>Exploratory and explanatory plots</h3>
-<ol style="list-style-type: decimal">
-<li><strong>Exploratory plots</strong> (<em>for you</em>)</li>
-</ol>
+<div id="project-oriented-workflow-good-practice" class="section level3">
+<h3>Project-oriented workflow: good practice</h3>
+<p>Properly managing data and other research outputs should starts at the beginning of your project. It should then and continue throughout!</p>
+<p>To setup an RStudio <code>.RProj</code> project go to <strong>Project</strong> (top right) &gt; <strong>New Project</strong> &gt; <strong>Create Project</strong></p>
+<p><strong>Best-practice tips</strong></p>
 <ul>
-<li>data exploration</li>
-<li>doesn’t have to look pretty</li>
-<li>just needs to get to the point</li>
-<li>explore and discover new data facets</li>
-<li>formulate new questions</li>
-</ul>
-<p>For example,</p>
-<p><img src="_main_files/figure-html/example,%20me-1.png" width="672" /><img src="_main_files/figure-html/example,%20me-2.png" width="672" /></p>
-<ol start="2" style="list-style-type: decimal">
-<li><strong>Explanatory plots</strong> (<em>for others</em>), most common kind of graph used in
-scientific publications</li>
-</ol>
+<li>Be organised: set up each each assignment/university course as a <em>project</em></li>
+<li>Ensure your project is self-contained. A <em>project</em> is a folder that should contain all the relevant files and all paths should be relative to that <em>project</em></li>
+<li>Always apply the 5 Cs: be <strong>C</strong>lear, <strong>C</strong>oncise, <strong>C</strong>onsistent, <strong>C</strong>orrect, and <strong>C</strong>onformant.</li>
+<li>Naming files should be descriptive and consistent!</li>
+<li>Include a README file that summarises your project’s structure</li>
+<li>Provide a detailed description of the data, data source(s), and how it will be used.</li>
+<li>Describe all the steps of data preprocessing.</li>
+<li>Provide a description and information about each new version of the data.</li>
+<li>Provide details about the software/code that is used for preprocessing the data.</li>
+<li>Include brief examples of how your code works.</li>
+<li>Generate a list of all scripts, how to run them, and in what order.</li>
+<li>When structuring your project directory consider the following:
 <ul>
-<li>clear purpose</li>
-<li>designed for the audience</li>
-<li>make it easy to read (<em>this covers a lot of things</em>)</li>
-<li>do not distort</li>
-<li>guide the reader to a particular conclusion</li>
-<li>answer a specific question</li>
-<li>support a decision</li>
-</ul>
-<p>For example,</p>
-<p><img src="https://jimgruman.netlify.app/post/variableimportance/2020_31_PalmerPenguins.png" /></p>
-<p>Plots by Cedric Scherer and mentioned on <a href="https://jimgruman.netlify.app/post/variableimportance/">this blog</a></p>
-</div>
-<div id="ten-simple-rules-for-better-figures" class="section level3">
-<h3>Ten Simple Rules for Better Figures</h3>
-<blockquote>
-“Scientific visualization is classically defined as the process of graphically displaying scientific data. However, this process is far from direct or automatic. There are so many different ways to represent the same data: scatter plots, linear plots, bar plots, and pie charts, to name just a few. Furthermore, the same data, using the same type of plot, may be perceived very differently depending on who is looking at the figure. A more accurate definition for scientific visualization would be a graphical interface between people and data.”
-<footer>
-— Nicolas P. Rougier, Michael Droettboom, Philip E. Bourne, Ten Simple Rules for Better Figures
-</footer>
-</blockquote>
+<li>Put code and data in separate subdirectories.</li>
+<li>Plan to separate raw data from processed data.</li>
+<li>An example of a well-structured directory
 <ul>
-<li><p><strong>Know</strong> Your Audience</p></li>
-<li><p><strong>Identify</strong> Your Message</p></li>
-<li><p><strong>Adapt</strong> the Figure to the Support Medium</p></li>
-<li><p><strong>Captions</strong> Are Not Optional</p></li>
-<li><p><strong>Do Not</strong> Trust the Defaults</p></li>
-<li><p>Use <strong>Color</strong> Effectively</p></li>
-<li><p><strong>Do Not Mislead</strong> the Reader</p>
+<li>ProjectName/
 <ul>
-<li><a href="https://en.wikipedia.org/wiki/Misleading_graph">There are formulas to measure how misleading a graph is!</a></li>
+<li>README.MD</li>
+<li>Dataset/
+<ul>
+<li>Raw Data/</li>
+<li>Processed Data/</li>
 </ul></li>
-<li><p><strong>Avoid</strong> <em>Chartjunk</em></p></li>
-<li><p><strong>Message</strong> Trumps Beauty</p></li>
-</ul>
-<blockquote>
-“message and readability of the figure is the most important aspect while beauty is only an option”
-<footer>
-— Nicolas P. Rougier, Michael Droettboom, Philip E. Bourne, Ten Simple Rules for Better Figures
-</footer>
-</blockquote>
+<li>Analysis (or Code or Scripts)/
 <ul>
-<li><p>Get the Right <strong>Tool</strong></p>
+<li>Data cleaning/</li>
+<li>Data preprocessing/</li>
+</ul></li>
+<li>Output/
 <ul>
-<li>I’m an advocate for <code>R</code> 😉</li>
+<li>Graphs</li>
+<li>Tables</li>
+</ul></li>
+</ul></li>
+</ul></li>
 </ul></li>
 </ul>
-</div>
-<div id="ggplot2" class="section level3">
-<h3><code>ggplot2</code></h3>
-<p><code>ggplot2</code> is an <code>R</code> package for producing statistical, or data, graphics; it has an underlying grammar based on the <a href="https://www.amazon.com/Grammar-Graphics-Statistics-Computing/dp/0387245448">Grammar of Graphics</a></p>
-<p>Every <code>ggplot2</code> plot has three key components:</p>
+<p><strong>Always start with a clean workspace</strong> <strong>Why?</strong> <em>So your ex (code) can’t come and mess up your life!</em></p>
+<p><img src="https://memegenerator.net/img/instances/57296391/when-your-ex-texts-you-after-months-hey-whats-up-not-today-satan-not-today.jpg" style="width:20.0%" /></p>
+<p>To ensure this go to <strong>Tools</strong> &gt; <strong>Global Options</strong> and uncheck the highlighted options.</p>
+<p><img src="https://miro.medium.com/max/2784/1*dUNl71Jic2zYhYS2hxOBZA.png" style="width:20.0%" /></p>
+<p><strong>⚠️Warning⚠️</strong></p>
+<blockquote>
+If the first line of your R script is
+<code>setwd("C:\Users\jenny\path\that\only\I\have")</code>
+I will come into your office and SET YOUR COMPUTER ON FIRE 🔥.
+If the first line of your R script is
+<code>rm(list = ls())</code>
+I will come into your office and SET YOUR COMPUTER ON FIRE 🔥.
+<footer>
+— Jenny Bryan, Tidyverse blog, workflow vs script
+</footer>
+</blockquote>
+<p><strong>Why?</strong> Because, this</p>
 <ul>
-<li><p><code>data</code>,</p></li>
-<li><p>A set of <code>aes</code>thetic mappings between variables in the data and visual properties, and</p></li>
-<li><p>At least one layer which describes how to render each observation. Layers are usually created with a <code>geom</code> function.</p></li>
+<li>is not reproducible</li>
+<li>does <strong>NOT</strong> create a fresh <code>R</code> process</li>
+<li>it makes your script vulnerable</li>
+<li>it <strong>will</strong> come back to bite you</li>
 </ul>
-<div id="ggplot2-layers" class="section level4">
-<h4><code>ggplot2</code> layers</h4>
-<p><img src="img/ggplot.png" /></p>
+
 </div>
-<div id="examples" class="section level4">
-<h4>Examples</h4>
-<p><strong>Scatter plot</strong> using <code>geom_point()</code></p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" title="1"><span class="kw">ggplot</span>(penguins,<span class="kw">aes</span>(<span class="dt">x =</span> body_mass_g, <span class="dt">y =</span> flipper_length_mm)) <span class="op">+</span><span class="st"> </span><span class="co">## data &amp; aesthetics</span></a>
-<a class="sourceLine" id="cb42-2" title="2"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="co">## geom</span></a>
-<a class="sourceLine" id="cb42-3" title="3"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="co">## statistics (linear regression line)</span></a></code></pre></div>
-<p><img src="_main_files/figure-html/flippoint-1.png" width="672" /></p>
-<p><strong>Boxplot</strong> using <code>geom_boxplot()</code></p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" title="1"><span class="kw">ggplot</span>(penguins,<span class="kw">aes</span>(<span class="dt">x =</span> species, <span class="dt">y =</span> flipper_length_mm)) <span class="op">+</span><span class="st"> </span><span class="co">## data &amp; aesthetics</span></a>
-<a class="sourceLine" id="cb43-2" title="2"><span class="st">    </span><span class="kw">geom_boxplot</span>()  <span class="op">+</span><span class="st"> </span><span class="co">## geom</span></a>
-<a class="sourceLine" id="cb43-3" title="3"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Flipper length (mm) by species&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb43-4" title="4"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Flipper length (mm)&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb43-5" title="5"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Species&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb43-6" title="6"><span class="st">  </span><span class="kw">theme_dark</span>() <span class="co">## theme</span></a></code></pre></div>
-<p><img src="_main_files/figure-html/flipbox2-1.png" width="672" /></p>
-<p><strong>Scatter plot</strong> specifying <code>color</code> using <code>geom_point()</code></p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" title="1"><span class="kw">ggplot</span>(penguins,<span class="kw">aes</span>(<span class="dt">x =</span> body_mass_g, <span class="dt">y =</span> flipper_length_mm, <span class="dt">color =</span> species)) <span class="op">+</span><span class="st"> </span><span class="co">## data and aesthetics</span></a>
-<a class="sourceLine" id="cb44-2" title="2"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="co">## geom</span></a>
-<a class="sourceLine" id="cb44-3" title="3"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="co">## statistic (linear regression line without intervals)</span></a></code></pre></div>
-<p><img src="_main_files/figure-html/flippoint2-1.png" width="672" /></p>
+<div id="version-control-with-git-and-github" class="section level3">
+<h3>Version control with <code>git</code> and GitHub</h3>
+<p><img src="https://images3.memedroid.com/images/UPLOADED29/5b7d571106c71.jpeg" style="width:30.0%" /></p>
+<p>Git is a version control system that manages the evolution of a set of files, called a repository (repo), in a structured way (Think of Word’s Track Changes). With Git you can track the changes you make to your project/code. You will <strong>always</strong> have a record of what you’ve worked on and can easily revert back to an older version if you make a mistake. GitHub is a hosting service that provides a home for your Git-based projects on the internet (think of Dropbox). In addition, GitHub offers functionality to use Git online via an easy-to-use interface. Both Git and GitHub can very easily be configured to work with RStudio.</p>
+<p>Below are some key terms you will undoubtedly hear when delving into the git–GitHub world.</p>
+<p><strong>Repository</strong> (already mentioned) This where the work happens–think of it as your project folder. It should contain all of your project’s files etc.</p>
+<p><strong>Cloning</strong> A repository on GitHub is stored remotely in the cloud. To create a local copy of this repository you can clone it and use Git to sync the two.</p>
+<p><strong>Committing</strong> and <strong>pushing</strong> are how you can add the changes you made on your local machine to the remote repository in GitHub. You can make a commit when you have made milestone worthy changes to your project. You should also add a helpful commit message to remind future you, or your teammates, what the changes you made were (e.g., fixed the bug in my_function).</p>
+<div id="setting-up" class="section level4">
+<h4>Setting up</h4>
+<ul>
+<li>Register an account with GitHub <a href="https://github.com">https://github.com</a>. I would recommend choosing the free option!</li>
+<li>Make sure you’ve got the latest version of <code>R</code></li>
+</ul>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">R.version.string</a></code></pre></div>
+<pre><code>## [1] &quot;R version 4.1.2 (2021-11-01)&quot;</code></pre>
+<ul>
+<li>Upgrade <code>RStudio</code> to the <a href="https://rstudio.com/products/rstudio/download/preview/">new preview version</a> (<em>optional</em>)</li>
+<li>Install git: follow <a href="https://happygitwithr.com/install-git.html">these instructions</a></li>
+<li><a href="https://happygitwithr.com/hello-git.html">Get started</a></li>
+</ul>
+<div id="cloning-a-repository-from-github-using-rstudio" class="section level5">
+<h5>Cloning a repository from <code>GitHub</code> using <code>RStudio</code></h5>
+<p>In <code>GitHub</code>, navigate to the Code tab of the repository</p>
+<p>On the right side of the screen, click <code>Clone or download</code></p>
+<p>Click the <code>Copy to clipboard</code> icon to the right of the repository URL</p>
+<p><img src="img/gh_code.png" style="width:20.0%" />
+Open <code>RStudio</code> in your local environment</p>
+<p>Click <code>File</code>, <code>New Project</code>, <code>Version Control</code>, <code>Git</code></p>
+<p><img src="img/rstudio_new_project.png" style="width:20.0%" /><img src="img/rstudio_git.png" style="width:20.0%" /></p>
+<p>Paste the repository URL and enter TAB to move to the <code>Project directory name</code> field. I’ve chosen to store this folder on my Desktop, obviously put it wherever you wish :-)</p>
+<p><img src="img/rstudio_clone.png" style="width:20.0%" /></p>
+<p>Click <code>Create Project</code>. Your <em>Files</em> pane should now look similar to this</p>
+<p><img src="img/files.png" style="width:20.0%" /></p>
 </div>
-<div id="the-good-the-bad-and-the-ugly" class="section level4">
-<h4>The Good, the Bad, and the Ugly…</h4>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1">box &lt;-<span class="st"> </span><span class="kw">ggplot</span>(penguins,<span class="kw">aes</span>(<span class="dt">x =</span> species, <span class="dt">y =</span> flipper_length_mm)) <span class="op">+</span><span class="st"> </span><span class="co">## data &amp; aesthetics</span></a>
-<a class="sourceLine" id="cb45-2" title="2"><span class="st">    </span><span class="kw">geom_boxplot</span>()  <span class="op">+</span><span class="st"> </span><span class="co">## geom</span></a>
-<a class="sourceLine" id="cb45-3" title="3"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Flipper length (mm) by species&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb45-4" title="4"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Flipper length (mm)&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb45-5" title="5"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Species&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb45-6" title="6"><span class="st">  </span><span class="kw">theme_dark</span>() <span class="co">## theme</span></a>
-<a class="sourceLine" id="cb45-7" title="7">box</a>
-<a class="sourceLine" id="cb45-8" title="8">jitter &lt;-<span class="st"> </span><span class="kw">ggplot</span>(penguins,<span class="kw">aes</span>(<span class="dt">x =</span> species, <span class="dt">y =</span> flipper_length_mm)) <span class="op">+</span><span class="st"> </span><span class="co">## data &amp; aesthetics</span></a>
-<a class="sourceLine" id="cb45-9" title="9"><span class="st">    </span><span class="kw">geom_jitter</span>()  <span class="op">+</span><span class="st"> </span><span class="co">## geom</span></a>
-<a class="sourceLine" id="cb45-10" title="10"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Flipper length (mm) by species&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb45-11" title="11"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Flipper length (mm)&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb45-12" title="12"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Species&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb45-13" title="13"><span class="st">  </span><span class="kw">theme_dark</span>() <span class="co">## theme</span></a>
-<a class="sourceLine" id="cb45-14" title="14">jitter</a>
-<a class="sourceLine" id="cb45-15" title="15">violin &lt;-<span class="st"> </span><span class="kw">ggplot</span>(penguins,<span class="kw">aes</span>(<span class="dt">x =</span> species, <span class="dt">y =</span> flipper_length_mm)) <span class="op">+</span><span class="st"> </span><span class="co">## data &amp; aesthetics</span></a>
-<a class="sourceLine" id="cb45-16" title="16"><span class="st">    </span><span class="kw">geom_violin</span>()  <span class="op">+</span><span class="st"> </span><span class="co">## geom</span></a>
-<a class="sourceLine" id="cb45-17" title="17"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Flipper length (mm) by species&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb45-18" title="18"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Flipper length (mm)&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb45-19" title="19"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Species&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb45-20" title="20"><span class="st">  </span><span class="kw">theme_dark</span>() <span class="co">## theme</span></a>
-<a class="sourceLine" id="cb45-21" title="21">violin</a></code></pre></div>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" title="1"><span class="kw">ggplot</span>(penguins, <span class="kw">aes</span>(<span class="dt">x =</span> body_mass_g, <span class="dt">y =</span> flipper_length_mm)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb46-2" title="2"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb46-3" title="3"><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
-<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="_main_files/figure-html/simple-1.png" width="672" /></p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" title="1"><span class="kw">ggplot</span>(penguins, <span class="kw">aes</span>(<span class="dt">x =</span> body_mass_g, <span class="dt">y =</span> flipper_length_mm, </a>
-<a class="sourceLine" id="cb48-2" title="2">                         <span class="dt">col =</span> species)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb48-3" title="3"><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb48-4" title="4"><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb48-5" title="5"><span class="st">    </span><span class="kw">facet_grid</span>(<span class="op">~</span><span class="st"> </span>sex) <span class="op">+</span></a>
-<a class="sourceLine" id="cb48-6" title="6"><span class="st">    </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb48-7" title="7"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Flipper Length and Body Mass, by Sex &amp; Species&quot;</span>,</a>
-<a class="sourceLine" id="cb48-8" title="8">         <span class="dt">subtitle =</span> <span class="kw">paste0</span>(<span class="kw">nrow</span>(penguins), <span class="st">&quot; of the Palmer Penguins&quot;</span>),</a>
-<a class="sourceLine" id="cb48-9" title="9">         <span class="dt">x =</span> <span class="st">&quot;Body Mass (g)&quot;</span>, </a>
-<a class="sourceLine" id="cb48-10" title="10">         <span class="dt">y =</span> <span class="st">&quot;Flipper Length (mm)&quot;</span>)</a></code></pre></div>
-<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="_main_files/figure-html/facet-1.png" width="672" /></p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" title="1">penguins_nafree &lt;-<span class="st"> </span>penguins <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">drop_na</span>()</a>
-<a class="sourceLine" id="cb50-2" title="2"><span class="kw">ggplot</span>(penguins_nafree, <span class="kw">aes</span>(<span class="dt">x =</span> body_mass_g, <span class="dt">y =</span> flipper_length_mm, </a>
-<a class="sourceLine" id="cb50-3" title="3">                         <span class="dt">col =</span> species)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb50-4" title="4"><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb50-5" title="5"><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb50-6" title="6"><span class="st">    </span><span class="kw">facet_grid</span>(<span class="op">~</span><span class="st"> </span>sex) <span class="op">+</span></a>
-<a class="sourceLine" id="cb50-7" title="7"><span class="st">    </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb50-8" title="8"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Flipper Length and Body Mass, by Sex &amp; Species&quot;</span>,</a>
-<a class="sourceLine" id="cb50-9" title="9">         <span class="dt">subtitle =</span> <span class="kw">paste0</span>(<span class="kw">nrow</span>(penguins_nafree), <span class="st">&quot; of the Palmer Penguins&quot;</span>),</a>
-<a class="sourceLine" id="cb50-10" title="10">         <span class="dt">x =</span> <span class="st">&quot;Body Mass (g)&quot;</span>, </a>
-<a class="sourceLine" id="cb50-11" title="11">         <span class="dt">y =</span> <span class="st">&quot;Flipper Length (mm)&quot;</span>)</a></code></pre></div>
-<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="_main_files/figure-html/facetna-1.png" width="672" /></p>
+<div id="commiting-and-pushing-changes" class="section level5">
+<h5>Commiting and pushing changes</h5>
 
 </div>
 </div>
 </div>
-<!-- </div> -->
+</div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="data-wrangling.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="module-2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="r-and-rstudio.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="exploratory-data-analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

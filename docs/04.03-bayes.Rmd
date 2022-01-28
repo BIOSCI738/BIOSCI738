@@ -1,7 +1,83 @@
-## Bayesian
+## Introduction to Bayesian statistics
+
+> “Critical thinking is an active and ongoing process. It requires that we all think like Bayesians, updating our knowledge as new information comes in.” `r tufte::quote_footer('---  Daniel J. Levitin, A Field Guide to Lies: Critical Thinking in the Information Age')`
+
+![The Reverend Thomas Bayes](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Thomas_Bayes.gif/220px-Thomas_Bayes.gif)
+
+### Conditional probability
+
+
+
+The probability of the event $A$ occuring given that the event $B$ has already occured is $$P(A∣B) = \frac{P(A \:\text{and}\: B)}{P(B)}$$. This is called a conditional probability. Note that $P(A∣B)$ is not hte same as $P(B∣A)$ 
+
+**An example**
+
+Rapid antigen (lateral flow) tests 
+
+In summary, the lateral flow test can show a positive ($+$) or a negative ($-$) result. The person taking the test either has (infected) or does not have Covid (not infected).
+
+[It is reported](https://doi.org/10.1186/s12879-021-06528-3) that the average **sensitivity** of the Innova lateral flow tests is $\sim 0.787$. Breaking this down means that given you have SARS-CoV-2 (Covid19) the chance of a positive lateral flow test is 0.787. 
+
+It was also reported that the **specificity** of this test was 0.997. That is, the chance of a negative test given that you do not have Covid is 0.997. 
+
+This can be summarised as $P( + | \text{infected}) = 0.787$ and $P( -| \text{not infected}) = 0.997$
+
+What you would probably like to know is given that the test is positive, what is the probability that you have Covid? $P( \text{infected}| +) = ?$
+
+Let's assume that people in the population with Covid is 10% (not far off the estimated \% with Omicron in London a few weeks ago); that is, $P(\text{infected}) = 0.1$.
+
+But, what about $P( \text{infected}| +) ?$ Recall, $$P(A∣B) = \frac{P(A \:\text{and}\: B)}{P(B)}$$. So,
+
+$$P( \text{infected}| +) = \frac{P(\text{infected} \:\text{and}\: +)}{P(+)}.$$
+
+We have, $P(\text{infected} \:\text{and}\: +) = P(\text{infected})\times P( + | \text{infected}) = 0.1 \times 0.787 = `r 0.1*0.787`.$
+
+So, $P(+) = P(\text{infected} \:\text{and}\: +) + P(\text{clear} \:\text{and}\: +) = `r 0.1*0.787` + ( 0.9 \times (1 - 0.997)) = `r 0.1*0.787` + ( 0.9 \times  `r (1 - 0.997)`) = `r 0.1*0.787` + `r 0.9*(1 - 0.997)` = `r (0.1*0.787) +  0.9*(1 - 0.997)`.$
+
+Therefore, $P( \text{infected}| +) = \frac{ `r 0.1*0.787`}{`r (0.1*0.787) +  0.9*(1 - 0.997)`} = `r (0.1*0.787)/((0.1*0.787) +  0.9*(1 - 0.997))`.$
+
+Rearranging,
+
+$$P( \text{infected}| +) = \frac{P( + | \text{infected})P(\text{infected})}{P(+)}.$$
 
 ### Bayes' rule
 
-The conditional probability of the event \(A\) conditional on the event \(B\) is given by
+$$P(B|A) = \frac{P(A|B)P(B)}{P(A)}$$
 
-P(A∣B)=P(A&B)P(B).
+Let's think of this in terms of our data and hypothesis:
+
+$$P(\text{hypothesis}∣\text{data}) = \frac{P(\text{data} | \text{hypothesis} )P(\text{hypothesis})}{P(\text{data})}$$
+
+The “hypothesis” is typically something unobserved or unknown. It’s what you
+want to learn about using the data.
+• For regression models, the “hypothesis” is a parameter (intercept, slopes or error
+terms).
+• Bayes theorem tells you the probability of the hypothesis given the data?
+How plausible is some hypothesis given the data?
+
+Typical stats problems involve estimating parameter θ with available data.
+• The frequentist approach (maximum likelihood estimation – MLE) assumes that
+the parameters are fixed, but have unknown values to be estimated.
+• Classical estimates generally provide a point estimate of the parameter of interest.
+• The Bayesian approach assumes that the parameters are not fixed but have some
+fixed unknown distribution - a distribution for the parameter.
+The approach is based upon the idea that the experimenter begins with some prior
+beliefs about the system.
+• And then updates these beliefs on the basis of observed data.
+• This updating procedure is based upon the Bayes’ Theorem:
+
+$$P(B|A) = \frac{P(A|B)P(B)}{P(A)}$$
+
+Schematically if A = θ and B = data, then the above translates to
+
+$$P(\theta∣\text{data}) = \frac{P(\text{data} | \theta )P(\theta)}{P(\text{data})}$$
+
+where $P(\theta∣\text{data})$ represents what you know after having seen the data. This is called he **posterior distribution** and is the basis for inference, a distribution, possibly multivariate if more than one parameter
+($\theta$). $\frac{P(\text{data} | \theta )$ is the **likelihood**, think back to the previous section. $P(\text{data})$ is called the **prior distribution** and represents what you know before seeing the data. The source of much discussion about the Bayesian approach. Now.
+
+$$P(\text{data}) = \int P(\text{data}|\theta)P(\theta)d\theta$$
+is typically a high-dimensional integral, difficult if not impossible to calculate. 
+
+**A simple example**
+
+

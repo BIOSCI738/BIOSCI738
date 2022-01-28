@@ -132,7 +132,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Nau mai haere mai welcome to BIOSCI 738</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Nau mai, haere mai. Welcome to BIOSCI 738</a></li>
 <li class="chapter" data-level="" data-path="useful-information-to-set-you-up-for-your-semester.html"><a href="useful-information-to-set-you-up-for-your-semester.html"><i class="fa fa-check"></i>Useful information to set you up for your semester</a><ul>
 <li class="chapter" data-level="" data-path="useful-information-to-set-you-up-for-your-semester.html"><a href="useful-information-to-set-you-up-for-your-semester.html#course-outline"><i class="fa fa-check"></i>Course outline</a></li>
 <li class="chapter" data-level="" data-path="useful-information-to-set-you-up-for-your-semester.html"><a href="useful-information-to-set-you-up-for-your-semester.html#learning-outcomes"><i class="fa fa-check"></i>Learning Outcomes</a></li>
@@ -140,20 +140,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="" data-path="module-1.html"><a href="module-1.html"><i class="fa fa-check"></i>Module 1</a><ul>
 <li><a href="r-and-rstudio.html#r-and-rstudio"><code>R</code> and <code>RStudio</code></a><ul>
-<li><a href="r-and-rstudio.html#intro-to-r-rstudio">Intro to <code>R</code> &amp; <code>RStudio</code></a></li>
-<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html"><i class="fa fa-check"></i>Why?</a></li>
-<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#installing-r-and-rstudio"><i class="fa fa-check"></i>Installing R and RStudio</a></li>
+<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html"><i class="fa fa-check"></i>Installing R and RStudio</a></li>
 <li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#getting-started"><i class="fa fa-check"></i>Getting started</a></li>
-<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#r-errors"><i class="fa fa-check"></i>R errors 😱</a></li>
-<li><a href="r-and-rstudio.html#r-scripts-a-.r-file">R <em>Script</em>s (a <code>.r</code> file)</a></li>
-<li><a href="r-and-rstudio.html#writing-comments">Writing <em>Comments</em></a></li>
-<li><a href="r-and-rstudio.html#change-the-rstudio-appearance-up-to-your-taste">Change the <code>RStudio</code> appearance up to your taste</a></li>
-<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#reproducible-research"><i class="fa fa-check"></i>Reproducible research</a></li>
-<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#good-practice"><i class="fa fa-check"></i>Good practice</a></li>
 </ul></li>
-<li><a href="version-control-with-git-and-github.html#version-control-with-git-and-github">Version control with <code>git</code> and GitHub</a><ul>
-<li class="chapter" data-level="" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html"><i class="fa fa-check"></i>Setup TL;DR</a></li>
-<li><a href="version-control-with-git-and-github.html#cloning-a-repository-from-github-using-rstudio">Cloning a repository from <code>GitHub</code> using <code>RStudio</code></a></li>
+<li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html"><i class="fa fa-check"></i>Reproducible research</a><ul>
+<li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html#project-oriented-workflow-good-practice"><i class="fa fa-check"></i>Project-oriented workflow: good practice</a></li>
+<li><a href="reproducible-research.html#version-control-with-git-and-github">Version control with <code>git</code> and GitHub</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html"><i class="fa fa-check"></i>Exploratory Data Analysis</a><ul>
 <li><a href="exploratory-data-analysis.html#starting-out-with-tidyverse">Starting out with <code>tidyverse</code></a></li>
@@ -437,16 +429,16 @@ recognised from the shape of the scatter diagram of the fitted distances against
 <pre><code>## 
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb242-1" title="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb242-2" title="2">ni &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;north_islands_distances.csv&quot;</span>)[<span class="dv">1</span>,<span class="op">-</span>]</a></code></pre></div>
-<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb243-1" title="1"><span class="kw">library</span>(pheatmap)</a>
-<a class="sourceLine" id="cb243-2" title="2"><span class="kw">pheatmap</span>(ni, <span class="dt">cluster_rows =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb243-3" title="3">         <span class="dt">treeheight_row =</span> <span class="dv">2</span>, <span class="dt">treeheight_col =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb243-4" title="4">         <span class="dt">fontsize_row =</span> <span class="dv">12</span>, <span class="dt">fontsize_col =</span> <span class="dv">12</span>,</a>
-<a class="sourceLine" id="cb243-5" title="5">         <span class="dt">cellwidth =</span> <span class="dv">26</span>, <span class="dt">cellheight =</span> <span class="dv">26</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb241-1" title="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb241-2" title="2">ni &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;north_islands_distances.csv&quot;</span>)[<span class="dv">1</span>,<span class="op">-</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb242-1" title="1"><span class="kw">library</span>(pheatmap)</a>
+<a class="sourceLine" id="cb242-2" title="2"><span class="kw">pheatmap</span>(ni, <span class="dt">cluster_rows =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb242-3" title="3">         <span class="dt">treeheight_row =</span> <span class="dv">2</span>, <span class="dt">treeheight_col =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb242-4" title="4">         <span class="dt">fontsize_row =</span> <span class="dv">12</span>, <span class="dt">fontsize_col =</span> <span class="dv">12</span>,</a>
+<a class="sourceLine" id="cb242-5" title="5">         <span class="dt">cellwidth =</span> <span class="dv">26</span>, <span class="dt">cellheight =</span> <span class="dv">26</span>)</a></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-117-1.png" width="672" /></p>
-<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb244-1" title="1">mds &lt;-<span class="st"> </span><span class="kw">cmdscale</span>(ni, <span class="dt">eig =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb244-2" title="2">mds</a></code></pre></div>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb243-1" title="1">mds &lt;-<span class="st"> </span><span class="kw">cmdscale</span>(ni, <span class="dt">eig =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb243-2" title="2">mds</a></code></pre></div>
 <pre><code>## $points
 ##             [,1]       [,2]
 ##  [1,]  259.23245   67.43013
@@ -500,28 +492,28 @@ recognised from the shape of the scatter diagram of the fitted distances against
 ## 3 0.58  0.50  0.00  0.19  0.53
 ## 4 0.58  0.56  0.19  0.00  0.46
 ## 5 0.82  0.78  0.53  0.46  0.00</code></pre>
-<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb250-1" title="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb250-2" title="2">ekman &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;ekman.csv&quot;</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb251-1" title="1">ekman.mds &lt;-<span class="st"> </span><span class="kw">cmdscale</span>(ekman, <span class="dt">eig =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb251-2" title="2">ekman.mds</a>
-<a class="sourceLine" id="cb251-3" title="3"><span class="kw">round</span>(ekman.mds<span class="op">$</span>eig,<span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb251-4" title="4"><span class="kw">autoplot</span>(ekman.mds)</a></code></pre></div>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb249-1" title="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb249-2" title="2">ekman &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;ekman.csv&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb250-1" title="1">ekman.mds &lt;-<span class="st"> </span><span class="kw">cmdscale</span>(ekman, <span class="dt">eig =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb250-2" title="2">ekman.mds</a>
+<a class="sourceLine" id="cb250-3" title="3"><span class="kw">round</span>(ekman.mds<span class="op">$</span>eig,<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb250-4" title="4"><span class="kw">autoplot</span>(ekman.mds)</a></code></pre></div>
 <p><strong>Distances (in km) between 21 cities in Europe</strong></p>
-<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb252-1" title="1"><span class="kw">library</span>(ggfortify)</a>
-<a class="sourceLine" id="cb252-2" title="2"><span class="co">## Plotting Multidimensional Scaling (for interest)</span></a>
-<a class="sourceLine" id="cb252-3" title="3"><span class="co">## stats::cmdscale performs Classical MDS</span></a>
-<a class="sourceLine" id="cb252-4" title="4"><span class="kw">data</span>(<span class="st">&quot;eurodist&quot;</span>) <span class="co">## road distances (in km) between 21 cities in Europe.</span></a>
-<a class="sourceLine" id="cb252-5" title="5"><span class="kw">autoplot</span>(eurodist)</a>
-<a class="sourceLine" id="cb252-6" title="6"><span class="co">## Plotting Classical (Metric) Multidimensional Scaling</span></a>
-<a class="sourceLine" id="cb252-7" title="7"><span class="kw">autoplot</span>(<span class="kw">cmdscale</span>(eurodist, <span class="dt">eig =</span> <span class="ot">TRUE</span>))</a>
-<a class="sourceLine" id="cb252-8" title="8"><span class="kw">autoplot</span>(<span class="kw">cmdscale</span>(eurodist, <span class="dt">eig =</span> <span class="ot">TRUE</span>), <span class="dt">label =</span> <span class="ot">TRUE</span>, <span class="dt">shape =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb252-9" title="9">         <span class="dt">label.size =</span> <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb252-10" title="10"><span class="co">## Plotting Non-metric Multidimensional Scaling</span></a>
-<a class="sourceLine" id="cb252-11" title="11"><span class="co">## MASS::isoMDS and MASS::sammon perform Non-metric MDS</span></a>
-<a class="sourceLine" id="cb252-12" title="12"><span class="kw">library</span>(MASS)</a>
-<a class="sourceLine" id="cb252-13" title="13"><span class="kw">autoplot</span>(<span class="kw">sammon</span>(eurodist))</a>
-<a class="sourceLine" id="cb252-14" title="14"><span class="kw">autoplot</span>(<span class="kw">sammon</span>(eurodist), <span class="dt">shape =</span> <span class="ot">FALSE</span>, <span class="dt">label =</span> <span class="ot">TRUE</span>,<span class="dt">label.size =</span> <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb252-15" title="15"><span class="co">## Have a go at interpreting these plots based on the geography of the cities :-)</span></a></code></pre></div>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb251-1" title="1"><span class="kw">library</span>(ggfortify)</a>
+<a class="sourceLine" id="cb251-2" title="2"><span class="co">## Plotting Multidimensional Scaling (for interest)</span></a>
+<a class="sourceLine" id="cb251-3" title="3"><span class="co">## stats::cmdscale performs Classical MDS</span></a>
+<a class="sourceLine" id="cb251-4" title="4"><span class="kw">data</span>(<span class="st">&quot;eurodist&quot;</span>) <span class="co">## road distances (in km) between 21 cities in Europe.</span></a>
+<a class="sourceLine" id="cb251-5" title="5"><span class="kw">autoplot</span>(eurodist)</a>
+<a class="sourceLine" id="cb251-6" title="6"><span class="co">## Plotting Classical (Metric) Multidimensional Scaling</span></a>
+<a class="sourceLine" id="cb251-7" title="7"><span class="kw">autoplot</span>(<span class="kw">cmdscale</span>(eurodist, <span class="dt">eig =</span> <span class="ot">TRUE</span>))</a>
+<a class="sourceLine" id="cb251-8" title="8"><span class="kw">autoplot</span>(<span class="kw">cmdscale</span>(eurodist, <span class="dt">eig =</span> <span class="ot">TRUE</span>), <span class="dt">label =</span> <span class="ot">TRUE</span>, <span class="dt">shape =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb251-9" title="9">         <span class="dt">label.size =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb251-10" title="10"><span class="co">## Plotting Non-metric Multidimensional Scaling</span></a>
+<a class="sourceLine" id="cb251-11" title="11"><span class="co">## MASS::isoMDS and MASS::sammon perform Non-metric MDS</span></a>
+<a class="sourceLine" id="cb251-12" title="12"><span class="kw">library</span>(MASS)</a>
+<a class="sourceLine" id="cb251-13" title="13"><span class="kw">autoplot</span>(<span class="kw">sammon</span>(eurodist))</a>
+<a class="sourceLine" id="cb251-14" title="14"><span class="kw">autoplot</span>(<span class="kw">sammon</span>(eurodist), <span class="dt">shape =</span> <span class="ot">FALSE</span>, <span class="dt">label =</span> <span class="ot">TRUE</span>,<span class="dt">label.size =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb251-15" title="15"><span class="co">## Have a go at interpreting these plots based on the geography of the cities :-)</span></a></code></pre></div>
 </div>
 </div>
             </section>

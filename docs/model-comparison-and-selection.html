@@ -132,7 +132,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Nau mai haere mai welcome to BIOSCI 738</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Nau mai, haere mai. Welcome to BIOSCI 738</a></li>
 <li class="chapter" data-level="" data-path="useful-information-to-set-you-up-for-your-semester.html"><a href="useful-information-to-set-you-up-for-your-semester.html"><i class="fa fa-check"></i>Useful information to set you up for your semester</a><ul>
 <li class="chapter" data-level="" data-path="useful-information-to-set-you-up-for-your-semester.html"><a href="useful-information-to-set-you-up-for-your-semester.html#course-outline"><i class="fa fa-check"></i>Course outline</a></li>
 <li class="chapter" data-level="" data-path="useful-information-to-set-you-up-for-your-semester.html"><a href="useful-information-to-set-you-up-for-your-semester.html#learning-outcomes"><i class="fa fa-check"></i>Learning Outcomes</a></li>
@@ -140,20 +140,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="" data-path="module-1.html"><a href="module-1.html"><i class="fa fa-check"></i>Module 1</a><ul>
 <li><a href="r-and-rstudio.html#r-and-rstudio"><code>R</code> and <code>RStudio</code></a><ul>
-<li><a href="r-and-rstudio.html#intro-to-r-rstudio">Intro to <code>R</code> &amp; <code>RStudio</code></a></li>
-<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html"><i class="fa fa-check"></i>Why?</a></li>
-<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#installing-r-and-rstudio"><i class="fa fa-check"></i>Installing R and RStudio</a></li>
+<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html"><i class="fa fa-check"></i>Installing R and RStudio</a></li>
 <li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#getting-started"><i class="fa fa-check"></i>Getting started</a></li>
-<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#r-errors"><i class="fa fa-check"></i>R errors 😱</a></li>
-<li><a href="r-and-rstudio.html#r-scripts-a-.r-file">R <em>Script</em>s (a <code>.r</code> file)</a></li>
-<li><a href="r-and-rstudio.html#writing-comments">Writing <em>Comments</em></a></li>
-<li><a href="r-and-rstudio.html#change-the-rstudio-appearance-up-to-your-taste">Change the <code>RStudio</code> appearance up to your taste</a></li>
-<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#reproducible-research"><i class="fa fa-check"></i>Reproducible research</a></li>
-<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#good-practice"><i class="fa fa-check"></i>Good practice</a></li>
 </ul></li>
-<li><a href="version-control-with-git-and-github.html#version-control-with-git-and-github">Version control with <code>git</code> and GitHub</a><ul>
-<li class="chapter" data-level="" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html"><i class="fa fa-check"></i>Setup TL;DR</a></li>
-<li><a href="version-control-with-git-and-github.html#cloning-a-repository-from-github-using-rstudio">Cloning a repository from <code>GitHub</code> using <code>RStudio</code></a></li>
+<li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html"><i class="fa fa-check"></i>Reproducible research</a><ul>
+<li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html#project-oriented-workflow-good-practice"><i class="fa fa-check"></i>Project-oriented workflow: good practice</a></li>
+<li><a href="reproducible-research.html#version-control-with-git-and-github">Version control with <code>git</code> and GitHub</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="exploratory-data-analysis.html"><a href="exploratory-data-analysis.html"><i class="fa fa-check"></i>Exploratory Data Analysis</a><ul>
 <li><a href="exploratory-data-analysis.html#starting-out-with-tidyverse">Starting out with <code>tidyverse</code></a></li>
@@ -311,7 +303,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>normality of residuals.</p></li>
 </ul>
 <p>Let’s look at the fit of the <code>slm</code> model (single continuous explanatory variable)</p>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb137-1" title="1">gglm<span class="op">::</span><span class="kw">gglm</span>(slm) <span class="co"># Plot the four main diagnostic plots</span></a></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb136-1" title="1">gglm<span class="op">::</span><span class="kw">gglm</span>(slm) <span class="co"># Plot the four main diagnostic plots</span></a></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-48-1.png" width="672" /></p>
 <p>Do you think the residuals are Normally distributed (look at the QQ plot)? Think of what this model is, do you think it’s the best we can do?</p>
 <div id="model-comparison-and-selection-1" class="section level3">
@@ -323,7 +315,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>is a nested version of</p>
 <p><span class="math display">\[Y_i = \beta_0 + \beta_1z_i + \beta_2x_i + \epsilon_i\]</span> where <span class="math inline">\(\beta_2\)</span> has been fixed to zero.</p>
 <p>As an example consider testing the single explanatory variable model <code>slm</code> against the same model with species included as a variable <code>slm_sp</code>. To carry out the appropriate hypothesis test in <code>R</code> we can run</p>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb138-1" title="1"><span class="kw">anova</span>(slm,slm_sp)</a></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb137-1" title="1"><span class="kw">anova</span>(slm,slm_sp)</a></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Model 1: bill_depth_mm ~ bill_length_mm
@@ -336,7 +328,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>As you’ll see the <code>anova()</code> function takes the two model objects (<code>slm</code> and <code>slm_sp</code>) each as arguments. It returns an ANOVA testing whether the more complex model (<code>slm_sp</code>) is just as good at capturing the variation in the data as the simpler model (<code>slm</code>). The returned p-value should be interpreted as in any other hypothesis test. i.e., the probability of observing a statistic as least as extreme under our null hypothesis (here that each model is as good at capturing the variation in the data).</p>
 <p>What would we conclude here? I’d say we have pretty strong evidence against the models being equally good! I’d definitely plump for <code>slm_sp</code> over <code>slm</code>, looking back at the plots above does this make sense?</p>
 <p>Now what about <code>slm_int</code> vs <code>slm_sp</code>?</p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb140-1" title="1"><span class="kw">anova</span>(slm_sp,slm_int)</a></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb139-1" title="1"><span class="kw">anova</span>(slm_sp,slm_int)</a></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Model 1: bill_depth_mm ~ bill_length_mm + species
@@ -347,14 +339,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>So it seems both models are just as good at capturing the variation in our data: we’re happy with the parallel lines!</p>
 <p>Another way we might compare models is by using the Akaike information criterion (AIC) (you’ll see more of this later in the course). AIC is an estimator of out-of-sample prediction error and can be used as a metric to choose between competing models. Between nested models we’re looking for the smallest AIC (i.e., smallest out-of-sample prediction error). Typically, a difference of 4 or more is considered to indicate an improvement; this should not be taken as writ however, using multiple comparison techniques is advised.</p>
 <p><code>R</code> already has an <code>AIC()</code> function that can be used directly on your <code>lm()</code> model object(s). For example,</p>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb142-1" title="1"><span class="kw">AIC</span>(slm,slm_sp,slm_int)</a></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb141-1" title="1"><span class="kw">AIC</span>(slm,slm_sp,slm_int)</a></code></pre></div>
 <pre><code>##         df       AIC
 ## slm      3 1383.4462
 ## slm_sp   5  919.8347
 ## slm_int  7  922.7294</code></pre>
 <p>This backs up what our ANOVA suggested model <code>slm_sp</code> as that preferred! As always it’s important to do a sanity check! Does this make sense? Have a look at the outputs from these models and see what you think.</p>
 <p>Just because we’ve chosen a model (<em>the best of a bad bunch</em> perhaps) this doesn’t let us off the hook. We should check our assumptions</p>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb144-1" title="1">gglm<span class="op">::</span><span class="kw">gglm</span>(slm_sp) <span class="co"># Plot the four main diagnostic plots</span></a></code></pre></div>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" title="1">gglm<span class="op">::</span><span class="kw">gglm</span>(slm_sp) <span class="co"># Plot the four main diagnostic plots</span></a></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-52-1.png" width="672" /></p>
 <p><strong>Residuals vs Fitted</strong> plot: equal spread? Doesn’t look too trumpety!</p>
 <p><strong>Normal quantile-quantile (QQ)</strong> plot: skewed? Maybe slightly right skewed (deviation upwards from the right tail)</p>
