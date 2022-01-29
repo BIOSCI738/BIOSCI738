@@ -4,7 +4,6 @@ author: "University of Auckland"
 date: "Lecturer: Dr. C. M. Jones-Todd"
 output: 
   bookdown::gitbook:
-    css: "src/my-style.css"
     toc_depth: 3
     split_by: section
     number_sections: false
