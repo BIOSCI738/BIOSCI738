@@ -1,0 +1,14 @@
+## Linear mixed-effect models (LMMs)
+
+**Fixed effects:** terms (parameters) in a statistical model which are fixed, or non-random, quantities (e.g., *treatment* group's mean response). For the same *treatment*, we expect this quantity to be the same from experiment to experiment.
+**Random effects:** terms (parameters) in a statistical model which are considered as random quantities or variables (e.g., block id). Specifically, terms whose levels are a representative sample from a population, and where the variance of the population is of interest should be allocated as random. Setting a block as a random effect allows us to infer variation between blocks as well as the variation between experimental units within blocks.
+
+
+```{r, echo = FALSE}
+rats <- read_csv("../data/rcbd.csv")
+knitr::kable(rats)
+rats %>%
+  ggplot(aes(x = Surgery, y = logAUC8)) +
+  geom_boxplot()
+lmer <- lmer(logAUC8 ~ Surgery + (1|Run), data = rats)
+```

@@ -57,6 +57,28 @@ Equivalently,
   
   $$Y_i \sim \text{Poisson}(\mu_i)$$
 
+
+#### Interpreting Poisson regression
+
+Recall, for a linear regression model $\mu = \alpha + \beta_1x$,  when $x=0$  $y = \alpha$ and for every one-unit increase in $x$, $y$ increases by amount $\beta_1$.
+
+For a Poisson regression model we have $\text{log}(\mu) = \alpha + \beta_1 x.$ 
+
+ We can interpret this in the same way! That is, when $x$ is zero, the log of the expected value of the response equals $\alpha$ and for every one-unit increase in $x$, the log of the expected value of the response increases by amount $\beta_1$. But interpreting the effect of $x$ on the log of the expected value is not straightforward.
+ 
+Now, we have
+
+$$\mu = \text{e}^{ \alpha + \beta_1 x} = \text{e}^{ \alpha}(\text{e}^{\beta_1})^{ x}.$$ 
+This implies that
+
+ + when $x = 0$ $\mu = \text{e}^{ \alpha}(\text{e}^{\beta_1})^{0} \text{e}^{ \alpha}\times 1 = \text{e}^{ \alpha},$
+ +  when  $x = 1$ $\mu = \text{e}^{ \alpha}(\text{e}^{\beta_1})^{1} = \text{e}^{ \alpha}\text{e}^{\beta_1} = \text{e}^{ \alpha + \beta_1},$
+ + when  $x = 2$ $\mu = \text{e}^{ \alpha}(\text{e}^{\beta_1})^{2} = \text{e}^{ \alpha}\text{e}^{\beta_1} \text{e}^{\beta_1} = \text{e}^{ \alpha + \beta_1 + \beta_1},$
+ + when  $x = 3$ $\mu = \text{e}^{ \alpha}(\text{e}^{\beta_1})^{3} = \text{e}^{ \alpha}\text{e}^{\beta_1} \text{e}^{\beta_1}\text{e}^{\beta_1}  = \text{e}^{ \alpha + \beta_1 + \beta_1 + \beta_1},$ and
+ + so on ...
+ 
+Therefore, for every n-unit increase in x, the expected value of the response is **multiplied** by $\text{e}^{n\beta_1}.$
+ 
 ### An example: bird abundance
 
 
@@ -79,14 +101,48 @@ birds %>%
   theme_linedraw() + geom_jitter(alpha = 0.5) + scale_fill_brewer(type = "div", palette = "Set2") +
   theme(legend.position = "none")
 ```
-Fitting a binomial model again we specify `family = "poisson"` in a call to `glm()`. Note that the default link function for `family = "poisson"` is the log link; we could also use the equivalent syntax `poisson(link = log)` to specify this model.  Or, we could change the link function to something else (e.g., `poisson(link = identity)`) that makes sense.
+
+Fitting a poisson model we specify `family = "poisson"` in a call to `glm()`. Note that the default link function for `family = "poisson"` is the log link; we could also use the equivalent syntax `poisson(link = log)` to specify this model.  Or, we could change the link function to something else (e.g., `poisson(link = identity)`) that makes sense.
 
 
 ```{r}
 glm_bird <- glm(Count ~ Species, data = birds, family = "poisson")
 summary(glm_bird)
-
 ```
+
+The fitted model is therefore
+
+```{r}
+equatiomatic::extract_eq(glm_bird, use_coefs = TRUE, coef_digits = 2)
+```
+
+
+#### Interpreting the coefficients
+
+Interpreting the coefficients above we estimate that the expected average number of *Phylloscopus collybita* is `r round(exp(coef(glm_bird)[1]), 2)` and the expected average number of *Turdus merula* is `r round(exp(coef(glm_bird)[1] + coef(glm_bird)[2]), 2)`.
+
+Using confidence intervals:
+
+```{r, message=FALSE}
+confint <- exp(confint(glm_bird)[1,])
+confint
+```
+Therefore, we estimate that the expected average number of *Phylloscopus collybita* is between `r round(confint[1], 2)` and  `r round(confint[2], 2)`.
+
+For a **multiplicative interpretation** of the effect use $\text{exp}(\beta_1)$; therefore, we estimate that the expected number of *Turdus merula* is  `r round(exp(coef(glm_bird)[2]), 2)` $\times$ greater than *Phylloscopus collybita*.
+
+For a **percentage-change interpretation** use $100 \times \left (\text{exp}(\beta_1)−1 \right )$; therefore, we estimate that expected number of *Turdus merula* is  `r round(100*(exp(coef(glm_bird)[2]) - 1), 2)`\% greater than *Phylloscopus collybita*.
+
+
+Using confidence intervals:
+
+```{r, message=FALSE}
+confint <- 100*(exp(confint(glm_bird)[2, ]) - 1)
+confint
+```
+So, we estimate that expected number of *Turdus merula* is  between `r round(confint[1], 2)`\% and  `r round(confint[2], 2)`\% greater than *Phylloscopus collybita*.
+
+
 ```{r,echo = FALSE, warning = FALSE, message=FALSE}
 coefs <- coef(glm_bird)
 birds %>%
@@ -120,6 +176,39 @@ $$\text{logit}(p_i) = \text{log}\left (\frac{p_i}{1 - p_i}\right ) = \alpha + \b
     
   $$Y_i \sim \text{Binomial}(n_i, p_i)$$
   
+#### Interpreting Logistic regression
+
+Recap, for probability $p$ the **odds** are $\frac{p}{1-p}$ and the **log-odds** are $\text{log}\left (\frac{p}{1-p}\right )$:
+
+ + when $p=0.5$ the **odds** $=1$ and the **log-odds** $= 0$
+ + when $p=1$ the **odds** $\infty$ and the **log-odds** $= \infty$
+ + when $p=0$ the **odds** $=0$ and the **log-odds** $= -\infty$
+
+Recall, for a linear regression model $\mu = \alpha + \beta_1x$,  when $x=0$  $y = \alpha$ and for every one-unit increase in $x$, $y$ increases by amount $\beta_1$.
+
+For a logistic regression model we have 
+$$\begin{array}{rl}
+\text{logit}(p) = \alpha + \beta_1 x \\
+\text{log}\left (\frac{p}{1-p}\right ) = \alpha + \beta_1 x \\
+\text{log}\left (\text{odds}\right ) = \alpha + \beta_1 x \\
+\end{array}$$ 
+
+We can interpret this as when $x = 0$, the log-odds of success are equal to $\alpha$ and that for every one-unit increase in $x$ the log-odds of success increase by $\beta_1$.  But, interpreting the effect of $x$ on the log-odds of success is not straightforward.
+
+Now, we have
+
+$$\text{odds} = \text{e}^{ \alpha + \beta_1 x} = \text{e}^{ \alpha}(\text{e}^{\beta_1})^{ x}.$$ 
+This implies that
+
+ + when $x = 0$ $\text{odds} = \text{e}^{ \alpha}(\text{e}^{\beta_1})^{0} \text{e}^{ \alpha}\times 1 = \text{e}^{ \alpha},$
+ +  when  $x = 1$ $\text{odds} = \text{e}^{ \alpha}(\text{e}^{\beta_1})^{1} = \text{e}^{ \alpha}\text{e}^{\beta_1} = \text{e}^{ \alpha + \beta_1},$
+ + when  $x = 2$ $\text{odds} = \text{e}^{ \alpha}(\text{e}^{\beta_1})^{2} = \text{e}^{ \alpha}\text{e}^{\beta_1} \text{e}^{\beta_1} = \text{e}^{ \alpha + \beta_1 + \beta_1},$
+ + when  $x = 3$ $\text{odds} = \text{e}^{ \alpha}(\text{e}^{\beta_1})^{3} = \text{e}^{ \alpha}\text{e}^{\beta_1} \text{e}^{\beta_1}\text{e}^{\beta_1}  = \text{e}^{ \alpha + \beta_1 + \beta_1 + \beta_1},$ and
+ + so on ...
+ 
+ Therefore, for every n-unit increase in $x$, the odds of success are **multiplied** by $\text{e}^{n\beta_1}$.
+
+
 ### An example: lobsters
 
 Let us, again, consider data from the published article [Influence of predator identity on the strength of predator avoidance responses in lobsters.](https://www.sciencedirect.com/science/article/pii/S0022098115000039).
@@ -140,6 +229,12 @@ Fitting a binomial model we specify `family = "binomial"` in our `glm` call. Not
 ```{r}
 glm_mod_ug <- glm(survived ~ size, family = "binomial", data = data)
 summary(glm_mod_ug)
+```
+
+The fitted model is therefore
+
+```{r, echo = FALSE}
+equatiomatic::extract_eq(glm_mod_ug, use_coefs = TRUE, coef_digits = 2)
 ```
 
 
@@ -187,6 +282,10 @@ Fitting a binomial model again we specify `family = "binomial"` in our `glm` cal
 glm_mod_gr <- glm(cbind(y, n - y) ~ size, family = "binomial", data = grouped)
 summary(glm_mod_gr)
 ```
+
+
+#### Interpreting the coefficients
+
 
 ```{r, echo = FALSE, warning = FALSE, message = FALSE}
 ggplot(grouped, aes(x = size, y = p)) + 

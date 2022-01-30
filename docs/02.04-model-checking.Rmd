@@ -1,6 +1,4 @@
-
-## Model comparison and selection
-
+## Model diagnostocs
 
 Remember that it is always is imperative that we **check the underlying assumptions** of our model! If our assumptions are not met then basically the maths falls over and we can't reliably draw inference from the model (e.g., can't trust the parameter estimates etc.). Two of the most important assumption are:
 
@@ -11,12 +9,36 @@ Remember that it is always is imperative that we **check the underlying assumpti
 Let's look at the fit of the `slm` model (single continuous explanatory variable)
 
 ```{r}
-gglm::gglm(slm) # Plot the four main diagnostic plots
+gglm::gglm(slm_sp) # Plot the four main diagnostic plots
 ```
 
 Do you think the residuals are Normally distributed (look at the QQ plot)? Think of what this model is, do you think it's the best we can do? 
 
-### Model comparison and selection
+### Marginal predictions
+
+If the residuals do not show a violation of our model assumptions (let's just pretend the plots above don't show anything for concern) we can produce margins plots, which show the marginal effect of a predictor, holding other variables constant.
+
+The `ggpredict()` function from the `ggeffects` package can be used for this:
+
+```{r}
+ggeffects::ggpredict(slm_sp, terms = "species")
+```
+
+We can even plot the marginal effects:
+
+```{r}
+ggeffects::ggpredict(slm_sp, terms = "species") %>% 
+  ggplot(aes(x = x, y = predicted, label = round(predicted, 3))) +
+  geom_point() +
+  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = .5) +
+  geom_text(hjust = -.2) +
+  ylab( "Predicted bill depth (mm)") + xlab("") +
+  ggtitle("Fitted means for each species with 95% CIs", subtitle = "Adjusted for bill_length_mm = 43.99") +
+  theme_classic()
+
+```
+
+### Model selection
 
 **Are the non-parallel lines non-parallel enough to reject the parallel line model?** 
 
