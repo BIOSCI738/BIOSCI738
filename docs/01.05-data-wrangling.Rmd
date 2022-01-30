@@ -112,9 +112,23 @@ penguins_nafree %>%
 
 We can also group by multiple factors, for example, 
 
-
 ```{r}
 penguins_nafree %>% 
   group_by(island,species) %>% 
   summarise(avgerage_bill_length = mean(bill_length_mm))
 ```
+
+**What about getting more complicated?**
+
+I suggest you run the code below one pipe at a time to work out what each function is doing and data it is acting on.
+
+```{r, message = FALSE, warning = FALSE}
+penguins_nafree %>%
+  filter(., sex != "male") %>%
+  select(c("species", "island", "body_mass_g")) %>%
+  group_by(species, island) %>%
+  summarise(total_mass_g = sum(body_mass_g)) %>%
+  pivot_wider(names_from = c(island), values_from = total_mass_g)
+```
+
+

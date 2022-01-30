@@ -1,3 +1,32 @@
+## Key satistical concepts
+
+**Statistical inference**  is the process 
+of deducing properties of an underlying distribution by analysis of data. The word **inference** means *conclusions* or *decisions*. Statistical inference is about drawing conclusions and making decisions based on observed data.
+
+Data, or observations, typically arise from some underlying process. It is the underlying process  we are interested in, not the observations themselves.  Sometimes we call the underlying process the population or mechanism of interest.  
+
+The data are only a sample from this population or mechanism.  We cannot possibly observe every outcome of the process, so we have to make do with the sample that we have observed.
+
+The data give us imperfect insight into the population of interest. The role of statistical inference is to use this imperfect data to draw conclusions about the population of interest, while simultaneously giving an honest reflection of the uncertainty in our conclusions.
+
+##### Hypothesis testing:
+I toss a coin ten times and get nine heads.  How unlikely is that?  Can we continue to believe that the coin is fair when it produces nine heads out of ten tosses?
+
+
+#### Likelihood and estimation:
+
+Suppose we know that our random variable is (say) $\text{Binomial}(10, p)$, for some $p$, but we don't know the value of $p$.  We will see how to estimate the value of $p$ using maximum likelihood estimation in a later module..
+
+#### Expectation and variance of a random variable:
+
+The **expectation** of a random variable is the value it takes on **average**. The  **variance** of a random variable measures how much the random variable **varies about its average.**
+
+These are used to report how accurate and reliable our estimation procedure is. Does it give the right answer on average?  How much does it  vary about its average?
+
+#### Modelling:
+
+We have a situation in real life that we know is random. But what does the randomness  look like?   Is it highly variable, or little variability?   Does it sometimes give results much higher than average, but never give results much  lower (long-tailed distribution)?  We will see how different probability distributions are suitable for different circumstances. Choosing a probability distribution to fit a situation  is called  modelling.
+
 ## Permutation tests
 
 The basic approach to permutation tests is straightforward:
@@ -26,7 +55,7 @@ Remember the Pāua data from [Chapter 1](https://stats-uoa.github.io/BIOSCI738/r
 **Test statistic**: Difference of sample means
 
 
-```{r violen}
+```{r violn}
 means <- paua %>% group_by(Species) %>% summarise(means = mean(Length))
 ggplot(paua,aes(x = Species, y = Length)) + 
   geom_violin() +
@@ -177,7 +206,6 @@ In brief,
 
 ```{r,message = FALSE, warning = FALSE}
 library(tidyverse)
-MASS::geyser
 ggplot(data = MASS::geyser, aes(x = duration)) +
   geom_histogram() +
   xlab("Duration of eruptions (m)")

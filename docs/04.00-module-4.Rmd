@@ -5,6 +5,8 @@
 
 **Other resources**
 
- + [An Introduction to Bayesian Thinking](https://statswithr.github.io/book/the-basics-of-bayesian-statistics.html)
+ + [Basic differentiation rules](https://libraryguides.centennialcollege.ca/c.php?g=717032&p=5123102)
+ + [Basic matrix operations](https://www.georgebrown.ca/sites/default/files/uploadedfiles/tlc/_documents/Basic_Matrix_Operations.pdf)
+ + [An introduction to Bayesian thinking](https://statswithr.github.io/book/the-basics-of-bayesian-statistics.html)
 
  + [Bayesian statistics with R](https://oliviergimenez.github.io/bayesian-stats-with-R/)

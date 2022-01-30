@@ -287,7 +287,12 @@ There are assorted methodologies to identify the appropriate $k$. Tests range fr
 
 #### With ants
 
-The data `pitfalls.csv` is available on CANVAS
+Let us again consider ants data:
+
+```{r, message = FALSE, warnings = FALSE}
+library(tidyverse)
+data <- read_csv("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/pitfalls.csv")
+```
 
 Data were collected on the distribution of ant species at 30 sites across the Auckland region using pitfall traps. 
 

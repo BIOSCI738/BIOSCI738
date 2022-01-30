@@ -17,16 +17,14 @@ Here for observation $i$
   + $\alpha$ is the intercept term (a parameter to be estimated), and 
   + $\beta_1$ is the slope: coefficient of the explanatory variable (a parameter to be estimated)
 
-Does this remind you of anything?
 
-![](https://memegenerator.net/img/instances/63099571/one-does-not-simply-forget-ymxc.jpg)
 
 
 ### Modeling Bill Depth 
 
 **Remember the penguins from [Chapter 2](https://stats-uoa.github.io/BIOSCI220/data-exploration-and-visualization.html#data-wrangling-and-manipulation)**?
 
-![](https://cran.r-project.org/web/packages/palmerpenguins/readme/man/figures/culmen_depth.png)
+![](https://cran.r-project.org/web/packages/palmerpenguins/readme/man/figures/culmen_depth.png){width=30%}
 
 **Key assumptions**
 

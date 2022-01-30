@@ -6,38 +6,34 @@
 This section is a recap only, if you need a more in-depth overiew of matrix algebra then use the extra materials provided at the start of this module.
 
 
-Matrices are commonly written in box brackets or parentheses and are typically denoted by upper case bold letters (e.g., A) with elements represented by the corresponding lower case indexed letters:
+Matrices are commonly written in box brackets or parentheses and are typically denoted by upper case bold letters (e.g., **A**) with elements represented by the corresponding lower case indexed letters:
 
-A=\mathbf {A} ={\begin{bmatrix}a_{11}&a_{12}&\cdots &a_{1n}\\a_{21}&a_{22}&\cdots &a_{2n}\\\vdots &\vdots &\ddots &\vdots \\a_{m1}&a_{m2}&\cdots &a_{mn}\end{bmatrix}}={\begin{pmatrix}a_{11}&a_{12}&\cdots &a_{1n}\\a_{21}&a_{22}&\cdots &a_{2n}\\\vdots &\vdots &\ddots &\vdots \\a_{m1}&a_{m2}&\cdots &a_{mn}\end{pmatrix}}=\left(a_{ij}\right)\in \mathbb {R} ^{m\times n}.}
+$$\mathbf {A} = \begin{bmatrix}a_{11}&a_{12}&\cdots &a_{1n}\\a_{21}&a_{22}&\cdots &a_{2n}\\\vdots &\vdots &\ddots &\vdots \\a_{m1}&a_{m2}&\cdots &a_{mn}\end{bmatrix}$$
 
-The entry in the i-th row and j-th column of a matrix A is sometimes referred to as the i,j, (i,j), or (i,j)th entry of the matrix, and most commonly denoted as ai,j, or aij. Alternative notations for that entry are A[i,j] or Ai,j. For example, the (1,3) entry of the following matrix A is 5 (also denoted a13, a1,3, A[1,3] or A1,3):
+The entry in the $i^{th}$ row and $j^{th}$ column of a matrix **A** is often referred to as the $(i,j)^{th}$ entry of the matrix, and most commonly denoted as $a_{i,j}$, or $a_{ij}$. 
 
-A=\displaystyle \mathbf {A} ={\begin{bmatrix}4&-7&\color {red}{5}&0\\-2&0&11&8\\19&1&-3&12\end{bmatrix}}}
+**Matrix addition**	
 
-##### Matrix addition	
+The sum **A** + **B** of two m-by-n matrices **A** and **B**:
+ $$\mathbf {A} + \mathbf {B} = \begin{bmatrix}a_{11}&a_{12}&\cdots &a_{1n}\\a_{21}&a_{22}&\cdots &a_{2n}\\\vdots &\vdots &\ddots &\vdots \\a_{m1}&a_{m2}&\cdots &a_{mn}\end{bmatrix} +  \begin{bmatrix}b_{11}&b_{12}&\cdots &b_{1n}\\b_{21}&b_{22}&\cdots &b_{2n}\\\vdots &\vdots &\ddots &\vdots \\b_{m1}&b_{m2}&\cdots &b_{mn}\end{bmatrix} =  \begin{bmatrix}a_{11} +b_{11}&a_{12}+b_{12}&\cdots &a_{1n}+b_{1n}\\a_{21}+b_{21}&a_{22}+b_{22}&\cdots &a_{2n}+b_{2n}\\\vdots &\vdots &\ddots &\vdots \\a_{m1}+b_{m1}&a_{m2}+b_{m2}&\cdots &a_{mn}+b_{mn}\end{bmatrix}$$
 
-The sum A+B of two m-by-n matrices A and B is calculated entrywise:
-(A + B)i,j = Ai,j + Bi,j, where 1 ≤ i ≤ m and 1 ≤ j ≤ n.
-{\displaystyle {\begin{bmatrix}1&3&1\\1&0&0\end{bmatrix}}+{\begin{bmatrix}0&0&5\\7&5&0\end{bmatrix}}={\begin{bmatrix}1+0&3+0&1+5\\1+7&0+5&0+0\end{bmatrix}}={\begin{bmatrix}1&3&6\\8&5&0\end{bmatrix}}}{\displaystyle {\begin{bmatrix}1&3&1\\1&0&0\end{bmatrix}}+{\begin{bmatrix}0&0&5\\7&5&0\end{bmatrix}}={\begin{bmatrix}1+0&3+0&1+5\\1+7&0+5&0+0\end{bmatrix}}={\begin{bmatrix}1&3&6\\8&5&0\end{bmatrix}}}
+**Scalar multiplication**
 
-##### Scalar multiplication	The product cA of a number c (also called a scalar in the parlance of abstract algebra) and a matrix A is computed by multiplying every entry of A by c:
-(cA)i,j = c · Ai,j.
-This operation is called scalar multiplication, but its result is not named "scalar product" to avoid confusion, since "scalar product" is sometimes used as a synonym for "inner product".
+The product c**A** of a number c and a matrix **A**:
 
-{\displaystyle 2\cdot {\begin{bmatrix}1&8&-3\\4&-2&5\end{bmatrix}}={\begin{bmatrix}2\cdot 1&2\cdot 8&2\cdot -3\\2\cdot 4&2\cdot -2&2\cdot 5\end{bmatrix}}={\begin{bmatrix}2&16&-6\\8&-4&10\end{bmatrix}}}{\displaystyle 2\cdot {\begin{bmatrix}1&8&-3\\4&-2&5\end{bmatrix}}={\begin{bmatrix}2\cdot 1&2\cdot 8&2\cdot -3\\2\cdot 4&2\cdot -2&2\cdot 5\end{bmatrix}}={\begin{bmatrix}2&16&-6\\8&-4&10\end{bmatrix}}}
+$$c\times \mathbf {A} = \begin{bmatrix}c\times a_{11}&c\times a_{12}&\cdots &c\times a_{1n}\\c\times a_{21}&c\times a_{22}&\cdots &c\times a_{2n}\\\vdots &\vdots &\ddots &\vdots \\c\times a_{m1}&c\times a_{m2}&\cdots &c\times a_{mn}\end{bmatrix}$$
 
-##### Matrix transposition	
+**Matrix transposition**
 
-The transpose of an m-by-n matrix A is the n-by-m matrix AT (also denoted Atr or tA) formed by turning rows into columns and vice versa:
-(AT)i,j = Aj,i.
-{\displaystyle {\begin{bmatrix}1&2&3\\0&-6&7\end{bmatrix}}^{\mathrm {T} }={\begin{bmatrix}1&0\\2&-6\\3&7\end{bmatrix}}}{\displaystyle {\begin{bmatrix}1&2&3\\0&-6&7\end{bmatrix}}^{\mathrm {T} }={\begin{bmatrix}1&0\\2&-6\\3&7\end{bmatrix}}}
+The transpose of an m-by-n matrix **A** is the n-by-m matrix **A**^T:
 
+$$\mathbf {A}^\text{T} = \begin{bmatrix}a_{11}&a_{12}&\cdots &a_{1n}\\a_{21}&a_{22}&\cdots &a_{2n}\\\vdots &\vdots &\ddots &\vdots \\a_{m1}&a_{m2}&\cdots &a_{mn}\end{bmatrix}^\text{T} = \begin{bmatrix}a_{11}&a_{21}&\cdots &a_{m1}\\a_{12}&a_{22}&\cdots &a_{m2}\\\vdots &\vdots &\ddots &\vdots \\a_{1n}&a_{2n}&\cdots &a_{mn}\end{bmatrix}$$
 
-##### Matrix multiplication
+**Matrix multiplication**
 
-Multiplication of two matrices is defined if and only if the number of columns of the left matrix is the same as the number of rows of the right matrix. If A is an m-by-n matrix and B is an n-by-p matrix, then their matrix product AB is the m-by-p matrix whose entries are given by dot product of the corresponding row of A and the corresponding column of B:[11]
+Multiplication of two matrices is defined if and only if ($iif$) the number of columns of the left matrix is the same as the number of rows of the right matrix. If **A** is an m-by-n matrix and **B** is an n-by-p matrix, then their matrix product **AB** is the m-by-p matrix whose entries are given by dot product of the corresponding row of **A** and the corresponding column of **B**:
 
-[AB]i,j=ai,1b1,j+ai,2b2,j+⋯+ai,nbn,j=∑r=1nai,rbr,j,{\displaystyle [\mathbf {AB} ]_{i,j}=a_{i,1}b_{1,j}+a_{i,2}b_{2,j}+\cdots +a_{i,n}b_{n,j}=\sum _{r=1}^{n}a_{i,r}b_{r,j},}
+$$[\mathbf {AB} ]_{i,j}=a_{i,1}b_{1,j}+a_{i,2}b_{2,j}+\cdots +a_{i,n}b_{n,j}=\sum _{r=1}^{n}a_{i,r}b_{r,j}$$
 
 **Note** Matrix multiplication satisfies the rules (AB)C = A(BC) (associativity), and (A + B)C = AC + BC as well as C(A + B) = CA + CB (left and right distributivity), whenever the size of the matrices is such that the various products are defined.[13] The product AB may be defined without BA being defined, namely if A and B are m-by-n and n-by-k matrices, respectively, and m ≠ k. Even if both products are defined, they generally need not be equal, that is: AB ≠ BA.
 

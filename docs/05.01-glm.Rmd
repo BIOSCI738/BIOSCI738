@@ -1,0 +1,266 @@
+## Introduction to generalised linear models (GLMs)
+
+Recall, the simple linear regression model from module 2:
+  
+$$Y_i = \alpha + \beta_1x_i + \epsilon_i$$
+where
+
+$$\epsilon_i \sim \text{Normal}(0,\sigma^2).$$
+
+Here for observation $i$
+
+  + $Y_i$ is the value of the response 
+  + $x_i$ is the value of the explanatory variable 
+  + $\epsilon_i$ is the error term: the difference between $Y_i$ and its expected value
+  + $\alpha$ is the intercept term (a parameter to be estimated), and 
+  + $\beta_1$ is the slope: coefficient of the explanatory variable (a parameter to be estimated)
+  
+We also saw a different specification of this model in module 3:
+
+ There is an alternative, equivalent way of specifying the linear regression model which attributes the randomness directly to the response variable rather than the error $\epsilon_i$:
+  
+
+  $$Y_i \sim \text{Normal}(\alpha + \beta_1 x_i, \sigma^2).$$
+  
+That is, we assume the $i^{th}$ observation's response, $Y_i$, comes from a normal distribution with mean $\mu_i = \alpha + \beta_1 x_i$ and variance $\sigma^2$.
+
+In this case we assume that
+
+  + the $i^{th}$ observation's response, $Y_i$, comes from a normal distribution,
+  + the mean of $Y_i$ is a **linear** combination of the explanatory terms,
+  + the variance of $Y_i$, $\sigma^2$, is the **same** for all observations, and
+  + that each observation's response is **independent** of all others.
+
+
+But, what if we want to be a little more flexible and move away from some of these assumptions?
+
+
+
+## Poisson regression
+
+We saw the Poisson distribution in module 4. There, we talked about it in terms of rates. Additionally, it is commonly used as a  distribution for counts. 
+
+In summary, the Poisson distribution is a discrete distribution (of positive values only) and has  $\text{Var}(Y_i) = \mu_i$ (i.e., we expect the variance to increase with the mean).
+
+If we were to assume (as previously) that $\mu_i = \alpha + \beta_1 x_i$ then we would be allowing $\mu < 0$, which is not supported by the Poisson distribution. So, we use a link function to map between $\mu_i$ and the real number line:
+  
+$$\text{log}(\mu_i) = \alpha + \beta_1 x_i.$$
+  
+So, $\mu_i  \geq 0$ and $-\infty < \text{log}(\mu_i) < \infty$; however negative the linear predictor $\alpha + \beta_1 x_i$ gets $\mu_i$ will always be positive.
+
+  
+
+Equivalently,
+  $$ \mu_i = \text{exp}(\alpha + \beta_1 x_i)$$
+  
+  and
+  
+  $$Y_i \sim \text{Poisson}(\mu_i)$$
+
+### An example: bird abundance
+
+
+A recent publication [Partitioning beta diversity to untangle mechanisms underlying the assembly of bird communities in Mediterranean olive groves](https://onlinelibrary.wiley.com/doi/10.1111/ddi.13445) investigates bird abundance data for a number of olive farms. Each farm is catalogued according to the level of landscape complexity (high; intermediate; low) and the type of management of the ground cover (extensive or intensive).
+
+
+```{r, message = FALSE, warnings = FALSE}
+library(tidyverse)
+data <- read_delim("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/bird_abundance.csv")
+birds <- data %>%
+  select(c("OliveFarm","Management","Turdus_merula","Phylloscopus_collybita")) %>%
+  pivot_longer(., c(-OliveFarm, -Management), "Species", values_to = "Count") 
+birds
+```
+
+```{r, echo = FALSE}
+birds %>%
+  ggplot(., aes(x = Species, y = Count, fill = Species)) +
+  geom_violin() + xlab("") + ggtitle("Bird abundance by species ") +
+  theme_linedraw() + geom_jitter(alpha = 0.5) + scale_fill_brewer(type = "div", palette = "Set2") +
+  theme(legend.position = "none")
+```
+Fitting a binomial model again we specify `family = "poisson"` in a call to `glm()`. Note that the default link function for `family = "poisson"` is the log link; we could also use the equivalent syntax `poisson(link = log)` to specify this model.  Or, we could change the link function to something else (e.g., `poisson(link = identity)`) that makes sense.
+
+
+```{r}
+glm_bird <- glm(Count ~ Species, data = birds, family = "poisson")
+summary(glm_bird)
+
+```
+```{r,echo = FALSE, warning = FALSE, message=FALSE}
+coefs <- coef(glm_bird)
+birds %>%
+  ggplot(., aes(x = Species, y = Count, fill = Species)) +
+  geom_violin(alpha = 0.5) + xlab("") + ggtitle("Fitted bird abundance model") +
+  theme_linedraw() + geom_jitter(alpha = 0.5) + 
+  theme(legend.position = "none") + geom_hline(yintercept = exp(coefs[1]), size = 2, col = "#66C2A5") +
+  geom_hline(yintercept = exp(coefs[2] + coefs[1]), size = 2, col = "#FC8D62") +
+  annotate(geom = "text", x = 1, y = 110, 
+           label = bquote(hat(mu)["Phylloscopus collybita"] ==  ~hat(alpha) == ~.(exp(coefs[1]))), 
+           col = "#66C2A5") + scale_fill_brewer(type = "div", palette = "Set2") +
+  theme(legend.position = "none") +
+  annotate(geom = "text", x = 1, y = 125, 
+           label = bquote(hat(mu)["Turdus_merula"] ==  ~hat(alpha) + hat(beta[1])== ~.(exp(coefs[1] + coefs[2]))), 
+           col = "#FC8D62")
+```
+
+## Logistic regression
+  
+We saw the Binomial distribution in module 4.  We define a random variable, $Y_i$, to have a binomial distribution if it is the number of successes from a number of **independent** trials, $n$, each with the same probability of success, $p$. It is a discrete distribution, which notes that the number of successes associated with the $i^{th}$ observation must be an integer between $0$ and $n_i$. In addition, it builds in the non-constant variance of $Y_i$ and $\frac{Y_i}{n_i}$:
+ 
+   + $\text{Var}(Y_i)=n_ip_i(1−p_i)$
+   + $\text{Var}(\frac{Y_i}{n_i}) = \frac{p_i(1−p_i)}{n_i}$
+   
+  
+If we were to assume a linear relationship (as previously) that $p_i = \alpha + \beta_1 x_i$ then we would be allowing $p < 0$ and $p>1$, which is not supported by the binomial distribution. So, we use a link function to map between $p$ and the real number line:
+ 
+$$\text{logit}(p_i) = \text{log}\left (\frac{p_i}{1 - p_i}\right ) = \alpha + \beta_1x_i.$$ This leads to
+ $$p_i = \frac{\exp(\alpha + \beta_1x_i)}{1 + \exp(\alpha + \beta_1x_i)}.$$
+  and 
+    
+  $$Y_i \sim \text{Binomial}(n_i, p_i)$$
+  
+### An example: lobsters
+
+Let us, again, consider data from the published article [Influence of predator identity on the strength of predator avoidance responses in lobsters.](https://www.sciencedirect.com/science/article/pii/S0022098115000039).
+
+The authors were interested in how a juvenile lobster's size was related to its vulnerability to predation. In total, 159 juvenile lobsters were collected from their natural habitat in the Gulf of Maine, USA, and the length of each lobster's carapace (upper shell) was measured to the nearest 3 mm, `size`. The lobsters were then tethered to the ocean floor for 24 hours. Any missing lobsters were assumed to have been consumed by a predator, while the surviving lobsters were released (i.e., `survived` = 1 if lobster survived, 0 otherwise).
+
+```{r, message = FALSE, warnings = FALSE}
+library(tidyverse)
+data <- read_csv("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/lobster.csv")
+data 
+```
+
+#### Ungrouped model
+
+Fitting a binomial model we specify `family = "binomial"` in our `glm` call. Note that the default link function for `family = "binomial"` is the logit link; we could also use the equivalent syntax `binomial(link = logit)`to specify this model.
+
+
+```{r}
+glm_mod_ug <- glm(survived ~ size, family = "binomial", data = data)
+summary(glm_mod_ug)
+```
+
+
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+ggplot(data, aes(x = size, y = survived)) + 
+  geom_point(alpha = .5) +
+  stat_smooth(method="glm", se = FALSE, method.args = list(family=binomial), col = "#782c26") + 
+  xlab("Carapace length (mm)") +
+  ylab("Juvenile lobster survival") + ggtitle("Fitted logistic regression model") +
+  theme_classic()
+```
+
+
+
+#### Grouped model
+
+The data are currently ungrouped, despite many lobsters sharing the same carapace size. Therefore, we rearrange the data set so that it is grouped:
+
+```{r}
+grouped <- data %>%
+  group_by(size) %>%
+  summarise(y = sum(survived), n = length(survived), p = mean(survived))
+grouped
+```
+
+Where,
+
+  + `size` is as above,
+  + `y` is the number of lobsters of each size that survived,
+  + `t` is the total number of lobsters of each size, and
+  + `p`is the proportion of lobsters of each size that survived.
+
+
+```{r, echo = FALSE}
+grouped %>%
+  ggplot(., aes(x = size, y = p)) +
+  geom_point() + xlab("Carapace length (mm)") +
+  ylab("Proportion survived") + ggtitle("Survival rates of juvenile lobsters") +
+  theme_classic()
+```
+
+Fitting a binomial model again we specify `family = "binomial"` in our `glm` call and specify our response as `cbind(y, n - y)`:
+
+```{r}
+glm_mod_gr <- glm(cbind(y, n - y) ~ size, family = "binomial", data = grouped)
+summary(glm_mod_gr)
+```
+
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+ggplot(grouped, aes(x = size, y = p)) + 
+  geom_point(alpha = .5) +
+  stat_smooth(method = "glm", se = FALSE,
+              method.args = list(family=binomial), 
+              col = "#782c26") + 
+  xlab("Carapace length (mm)") +
+  ylab("Proportion survived") + ggtitle("Fitted logistic regression model") +
+  theme_classic()
+```
+
+## A summary of GLMs
+  
+The three distributions we've covered are given below.
+
+<p align="center">  **Linear regression:** $Y_i \sim \text{Normal}(\mu_i, \sigma^2)$ where $\mu_i = \alpha + \beta_1 x_i$</p>
+
+<p align="center">**Poisson regression:** $Y_i \sim \text{Poisson}(\mu_i)$ where $\text{log}(\mu_i) = \alpha + \beta_1 x_i$ </p>
+  
+<p align="center">**Logistic regression:** $Y_i \sim \text{Binomial}(n_i, p_i)$ where $\text{logit}(p_i) = \alpha + \beta_1 x_i$ </p>
+
+What would happen if we wanted to add extra explanatory terms (e.g., $z_i$)? Then,
+
+<p align="center">**Linear regression:** $Y_i \sim \text{Normal}(\mu_i, \sigma^2)$ where $\mu_i = \alpha + \beta_1 x_i + \beta_2 z_i$</p>
+  
+<p align="center">**Poisson regression:** $Y_i \sim \text{Poisson}(\mu_i)$ where $\text{log}(\mu_i) = \alpha + \beta_1 x_i+ \beta_2 z_i$ </p>
+
+<p align="center">**Logistic regression:** $Y_i \sim \text{Binomial}(n_i, p_i)$ where $\text{logit}(p_i) = \alpha + \beta_1 x_i+ \beta_2 z_i$</p>
+
+What about interactions (e.g., $x_iz_i$)? then,
+
+<p align="center"> **Linear regression:** $Y_i \sim \text{Normal}(\mu_i, \sigma^2)$ where $\mu_i = \alpha + \beta_1 x_i + \beta_2 z_i + \beta_3 x_iz_i$</p>
+  
+<p align="center">**Poisson regression:** $Y_i \sim \text{Poisson}(\mu_i)$ where $\text{log}(\mu_i) = \alpha + \beta_1 x_i+ \beta_2 z_i + \beta_3 x_iz_i$ </p>
+
+<p align="center">**Logistic regression:** $Y_i \sim \text{Binomial}(n_i, p_i)$ where $\text{logit}(p_i) = \alpha + \beta_1 x_i+ \beta_2 z_i + \beta_3 x_iz_i$</p>
+
+
+
+**An example**
+
+```{r, echo = FALSE}
+birds %>%
+  ggplot(., aes(x = Species, y = Count, fill = Management)) +
+  geom_violin() + xlab("") + ggtitle("Bird abundance by species and farm management") +
+  theme_linedraw() + scale_fill_brewer(type = "div", palette = "Set2")
+```
+
+
+```{r}
+glm_bird_int <- glm(Count ~ Species*Management, data = birds, family =  "poisson")
+summary(glm_bird_int)
+```
+
+
+
+**Building a GLM**
+
+Assume the observations are independent of one another, then,
+
+  1. Choose a distribution for the response. For example, <span style="color:red">Normal</span>, <span style="color:green">Poisson</span>, or <span style="color:blue">Binomial</span>.
+    
+  2. Choose a parameter to relate to explanatory terms. For example, <span style="color:red">$\mu_i$</span>, <span style="color:green">$\mu_i$</span>, or <span style="color:blue">$p_i$</span>.
+    
+  3. Choose a link function. For example, <span style="color:red">identity</span>, <span style="color:green">log</span>, or <span style="color:blue">logit</span>.
+    
+  4. Choose explanatory terms 
+  
+  5. Estimate additional parameters. For example, <span style="color:red">$\sigma^2$</span>.
+  
+We are not restricted to the three distributions above. Many others exist:
+  
+  + Gamma and inverse-Gaussian, for continuous responses on the interval $[0,\infty)$ 
+  + Beta, for continuous responses on the interval $[0,1]$ 
+  + Negative binomial, for discrete responses on $(0,1,2,\cdots)$, with $\text{Var}(Y) \geq E(Y)$ 
+  + ...
