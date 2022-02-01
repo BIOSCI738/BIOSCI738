@@ -12,6 +12,24 @@ Let's look at the fit of the `slm` model (single continuous explanatory variable
 gglm::gglm(slm_sp) # Plot the four main diagnostic plots
 ```
 
+**Residuals vs Fitted** plot
+
+You are basically looking for no pattern or structure in your residuals (e.g., a "starry" night). You definitely don't want to see is the scatter increasing around the zero line (dashed line) as the fitted values get bigger (e.g., think of a trumpet, a wedge of cheese, or even a slice of pizza) which would indicate unequal variances (heteroscedacity). 
+
+**Normal quantile-quantile (QQ)** plot
+
+This plot shows the sorted residuals versus expected order statistics from a standard normal distribution. Samples should be close to a line; points moving away from 45 degree line at the tails suggest the data are from a skewed distribution.
+
+
+**Scale-Location** plot ($\sqrt{\text{|standardized residuals vs Fitted|}}$)
+
+Another way to check the homoskedasticity (constant-variance) assumption. We want the  line to be roughly horizontal. If this is the case then the average magnitude of the standardized residuals isn't changing much as a function of the fitted values. We'd also like the spread around the  line not to vary much with the fitted values; then the variability of magnitudes doesn't vary much as a function of the fitted values.
+
+**Residuals vs Leverage** plot (standardized residuals vs Leverage)
+
+This can help detect outliers in a linear regression model. For linear regression model leverage measures how sensitive a fitted value is to a change in the true response. We're looking at how the spread of standardized residuals changes as the leverage. This can also be used to detect heteroskedasticity and non-linearity: the spread of standardized residuals shouldn't change as a function of leverage. In addition, points with high leverage may be influential: that is, deleting them would change the model a lot. 
+
+
 Do you think the residuals are Normally distributed (look at the QQ plot)? Think of what this model is, do you think it's the best we can do? 
 
 ### Marginal predictions

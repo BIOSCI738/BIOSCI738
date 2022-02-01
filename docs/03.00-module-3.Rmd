@@ -15,13 +15,30 @@
    + **Interpret** and **discuss** a given *p-value* in the context of a stated hypothesis test
    + **Explain** between group and within group variation
    + **Communicate** statistical concepts and experimental outcomes clearly using language appropriate for both a **scientific** and **non-scientific** audience
+   + **Describe** a Completely Randomised (experimental) Design 
+   + **Carry** out linear regression in `R` with one categorical explanatory variable (one-way ANOVA) and **draw** the appropriate inference
+   + **Communicate** statistical concepts and experimental outcomes clearly using language appropriate for both a **scientific** and **non-scientific** audience
+   + **Describe** and **discuss** factorial experiments with both equal and unequal replication
+   + **Carry** out linear regression in `R` with two categorical explanatory variables and an interaction (two-way ANOVA with interaction) and **draw** the appropriate inference
+   + **Calculate** the marginal means for a balanced and unbalanced design
+   + **Describe** a Randomized Complete Block Design (RCBD)
+   + **Describe** a Split-plot Design (RCBD)
+   + **Carry** out analysis of a RCBD in `R` using `aov()`, `lm()`, and `lmer()` and **discuss** and **compare** the three
+   + **Define** a fixed and random effect in the context of experimental design
+   + **Describe** and **discuss** split-plot experimental design
+   + **Describe** and **discuss** repeated measures experiments
+   + **Write** `R` code to **visualise** repeated measures data 
+   + **Carry** out appropriate analysis in `R` and **draw** the appropriate inference
+   + **Discuss** and **critique** methods for controlling errors in hypothesis testing, for example Fisher’s LSD and the Bonferroni Correction
+   + **Detail** and **draw** inference form multiple comparison procedures such as Tukey’s HSD and Dunnett's test
+   + **Describe** the family wise error rate (FWER) and false discover rate (FDR) in the context of multiple comparisons
+   + **Calculate** the marginal means for a balanced and unbalanced design
+   + **Communicate** statistical concepts and experimental outcomes clearly using language appropriate for both a **scientific** and **non-scientific** audience
+   
+ 
 
 **Other resources**
 
 + [Glass, David J. Experimental Design for Biologists. Second ed. 2014. Print.](https://catalogue.library.auckland.ac.nz/primo-explore/fulldisplay?docid=uoa_alma21237737730002091&search_scope=Combined_Local&tab=books&vid=NEWUI&context=L)
 + [Welham, S. J. Statistical Methods in Biology : Design and Analysis of Experiments and Regression. 2015. Print.](https://catalogue.library.auckland.ac.nz/primo-explore/fulldisplay?docid=uoa_alma21237737830002091&search_scope=Combined_Local&tab=books&vid=NEWUI&context=L)
 + [Fisher, Ronald Aylmer. The Design of Experiments. 8th ed. Edinburgh: Oliver & Boyd, 1966. Print. O & B Paperbacks.](https://catalogue.library.auckland.ac.nz/primo-explore/fulldisplay?docid=uoa_alma21198532990002091&context=L&vid=NEWUI&lang=en_US&search_scope=Combined_Local&adaptor=Local%20Search%20Engine&isFrbr=true&tab=books&query=any,contains,The_Design_of_Experiments&sortby=date&facet=frbrgroupid,include,627497507&offset=0)
-
-
-+ experimantal design
-+ lme4 & lmer etc.

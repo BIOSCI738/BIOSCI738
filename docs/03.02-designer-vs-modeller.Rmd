@@ -1,4 +1,4 @@
-## Modler v. designer: the maths
+## Modler v. designer
 
 ### A completely randomised design (CRD)
 
@@ -44,4 +44,260 @@ ggplot(data.frame(x = c(-4, 17)), aes(x)) +
 
 
 
+### Analysis of a Completely Randomised Design in `R`
+
+Here we consider a CRD ... data available:
+
+```{r data, message = FALSE, eval = FALSE}
+library(tidyverse)
+rats <- read_csv("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/crd_rats_data.csv")
+rats
+```
+
+```{r means}
+means <- rats %>%
+  group_by(Surgery) %>%
+  summarise(avg = mean(logAUC))
+means
+```
+
+**Using `aov()`**
+
+```{r aov}
+rats_aov <- aov(logAUC ~ Surgery, data = rats)
+summary(rats_aov)
+```
+
+**Inference**
+
+```{r lm-quiet, echo = FALSE}
+rats_lm <- lm(logAUC ~ Surgery, data = rats)
+```
+
+Hypothesis: We test the Null hypothesis, $H_0$, population (`Surgery`) means are the same on average verses the alternative hypothesis, $H_1$, that **at least one** differs from the others!
+
+Probability of getting an **F-statistic** at least as extreme as the one we observe (think of the area under the tails of the curve below) **p-value** Pr(>F)= `r round(anova(rats_lm)$"Pr(>F)"[1],4)` tells us we have sufficient evidence to reject $H_0$ at the 1% level of significance
+
+
+```{r f, echo = FALSE}
+stats_df <- data.frame(Fs = summary(rats_aov)[[1]][[4]][[1]])
+crit_df <- as.data.frame(apply(stats_df,2,rep,each = 100))
+crit_df$Fs <- c(sapply(stats_df$Fs, function(x) seq(x,20, length.out = 100)))
+crit_df$y <- df(crit_df$Fs,df1 = 2,df2 = 9) ## corresponding F val
+ggplot(stats_df,aes(x = Fs)) +
+  geom_vline(aes(xintercept = Fs)) +
+    geom_line(data = data.frame(x = seq(0,20,.1),
+                              y  = df(seq(0,20,.1),df1 = 2,df2 = 9)),
+              aes(x = x,y = y), alpha = 0.7) +
+    theme(legend.position = "none") +
+    ylab("density") +
+    xlab("F-value") +
+    geom_area(data = crit_df,mapping = aes(x = Fs,y = y),fill = "blue") +
+  geom_line(data = crit_df,mapping = aes(x = Fs,y = y),color = "blue") +
+  geom_text(aes(4, 1,label = paste("F-statistic:", format(round(Fs, 2), nsmall = 2))),
+              size = 4, hjust = 0, color = "black")  +
+  geom_text(aes(4, 0.95,label = paste("p-value:", format(round(pf(Fs,2,9,lower.tail = FALSE),4), 
+                                                         nsmall = 2))),
+              size = 4, hjust = 0, color = "blue") 
+
+```
+### `lm()`
+
+`lm()`
+
+```{r lm}
+rats_lm <- lm(logAUC ~ Surgery, data = rats)
+```
+
+
+**Inference**
+
+```{r lmsum}
+summary(rats_lm)$coef
+```
+
+
+```{r, echo = FALSE}
+means$base <- summary(rats_lm)$coef[1,1]
+ggplot(rats, aes(x = Surgery, y = logAUC)) + 
+    geom_violin()  + 
+  ylab("logAUC") +
+  xlab("Treatment") +
+  geom_point(data = means, aes(x = Surgery, y = avg, color = Surgery), size = 2) +
+  geom_text(data = means, aes(x = Surgery, y = avg + 0.25, color = Surgery, label = paste0("Treatment mean = ",round(avg,3)))) +
+  geom_hline(data = means, aes(yintercept = avg, color = Surgery), alpha = 0.3, lty = 2) +
+  geom_segment(data = means[2:3,], aes(x = Surgery, y = avg, xend = Surgery, yend = base,color = Surgery), size = 1) +
+  geom_text(data = means[2:3,], aes(x = Surgery, y = base - 0.25, color = Surgery, label = paste0("diff to baseline = ",round(avg - base,3)))) +
+  geom_hline(data = means[1,], aes(yintercept = avg, color = Surgery)) +
+  geom_text(data = means[1,],aes(x = Surgery, y = base - 0.25, color = Surgery, label = paste0("Baseline = ",round(avg,3))))
+  
+```
+
+Which pairs of means are different?
+
+ + Pair-wise comparisons of means
+  	+ Use two-sample t-tests
+ 	+ We need to calculate our **observed**  t-value where
+$\text{t-value} = \frac{\text{Sample Difference}_{ij} - \text{Difference assuming } H_0 \text{ is true}_{ij}}{\text{SE of } \text{Sample Difference}_{ij}}$
+ where
+   $\text{Sample Difference}_{ij}$ = Difference between pair of sample means
+ + Compute the p-value for observed t-value
+
+
+(Intercept) = $\text{mean}_C$ = `r summary(rats_lm)$coef[1,1]`
+
+SE of (Intercept) = SE of $\text{mean}_C$ = SEM = `r summary(rats_lm)$coef[1,2]`
+
+$\text{Surgery}_P$ = $\text{mean}_P$ – $\text{mean}_C$ = `r summary(rats_lm)$coef[2,1]`
+
+SE of $\text{Surgery}_P$ = SE of ($\text{mean}_P$ - $\text{mean}_C$ ) = SED = `r summary(rats_lm)$coef[2,2]`
+
+
+**Hypotheses being tested**
+
++ The t value and Pr (>|t|) are the t - and p-value for testing the null hypotheses:
+	+ Mean abundance is zero for C population
+	+ No difference between the population means of P and C
+	+ No difference between the population means of S and C
+
+We're interested in 2 and 3, but not necessarily 1!
+
+ Two-sample t -tests for pairwise comparisons of means
+ 
++ SurgeryP : t value = Estimate ÷ Std.Error =  0.8446; Pr (>|t|) =  0.4202
+
+**F-test:**
+
+```{r lmsum2}
+anova(rats_lm)
+```
+	
+**The same as `aov()`** in fact `aov()` is calling `lm()` in the background.
+
+#### Diagnostic plots
+
+Carrying out any linear regression we have some **key assumptions**
+
++ **Independence** 
++ There is a **linear relationship** between the response and the explanatory variables
++ The residuals have **constant variance**
++ The **residuals** are normally distributed
+
+```{r,echo = FALSE}
+options(warn=-1)
+```
+
+```{r qqnorm, warning=FALSE, message=FALSE}
+gglm::gglm(rats_lm) # Plot the four main diagnostic plots
+```
+
+What do you think?
+
+## Factorial experiments
+
+![](https://magoosh.com/statistics/files/2018/04/297r7s.jpg)
+
+   
+## Factorial design (as a CRD)
+
+**Example**
+
+*Scientific Objective* Global metabolic profiling and comparison of relative abundances of proteins in the inner and outer left ventricle wall of diabetic and healthy male Wistar rats.
+
+![](img/factorial_crd.png)
+   
+### Equal replications (balanced design)
+
+**Analysis** using `lm()`
+
+
+```{r, echo = FALSE, message = FALSE}
+library(tidyverse)
+factorial <-  read_csv("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/factorial_expt.csv")
+```
+
+**Fitting models with interaction terms**
+
+```{r}
+glimpse(factorial)
+## change to factors (saves errors with predictmeans)
+factorial$Disease <- as.factor(factorial$Disease)
+factorial$Organ <- as.factor(factorial$Organ)
+## shorthand version
+fac_lm <- lm(logAUC ~ Disease*Organ, data = factorial)
+## longhand version
+fac_lm_lh <- lm(logAUC ~ Disease + Organ +Disease:Organ, data = factorial)
+## both are the SAME
+cbind("short hand" = coef(fac_lm),"long hand" = coef(fac_lm_lh))
+```
+
+So the full model is
+
+```{r, echo = FALSE, results='asis'}
+equatiomatic::extract_eq(fac_lm, wrap = TRUE)
+```
+
+And the **gobal** null hypotheses being tested are:
+
++ $H_0: \hat{\mu}_{\text{Diabetic}} = \hat{\mu}_{\text{Healthy}}$
++ $H_0: \hat{\mu}_{\text{innerLV}} = \hat{\mu}_{\text{outerLV}}$
++ $H_0: \hat{\mu}_{\text{Diabetic,innerLV}} = \hat{\mu}_{\text{Diabetic,outerLV}} = \hat{\mu}_{\text{Healthy,innerLV}} = \hat{\mu}_{\text{Healthy,outerLV}}$
+
+```{r}
+anova(fac_lm)
+```
+
+Plotting the fitted model
+
+```{r, echo = FALSE}
+ggplot(data = factorial, aes(x = Disease, y = logAUC, color = Organ)) +
+   geom_point() 
+```
+
+**Note** with a balanced design ordering of term doesn't matter. For example,
+
+```{r}
+fac_lm <- lm(logAUC ~ Disease*Organ, data = factorial)
+anova(fac_lm)
+fac_lm_2 <- lm(logAUC ~ Organ*Disease, data = factorial)
+anova(fac_lm_2)
+```
+
+**Inference** using `predictmeans`
+
+```{r}
+interaction <- predictmeans::predictmeans(fac_lm, modelterm = "Disease:Organ", pairwise = TRUE)
+interaction$`Predicted Means`
+interaction$`Standard Error of Means`
+interaction$`Pairwise LSDs`
+## plot
+print(interaction$predictmeansPlot)
+```
+
+
+### Unqual replications (unbalanced design)
+
+As per lecture slides let's set `logAUC` obvservations 1,2,3, 10 to `NA`
+
+```{r}
+unbalanced <- factorial
+unbalanced$logAUC[c(1:3,10)] <- NA
+unbalanced
+unbalanced_nafree <- unbalanced %>% drop_na()
+unbalanced_nafree
+```
+
+```{r}
+unbalanced_nafree %>% group_by(Disease, Organ) %>% tally()
+```
+**Analysis** using `lm()`
+
+**Note**: order matters. For example,
+
+```{r}
+fac_lm <- lm(logAUC ~ Disease*Organ, data = unbalanced_nafree)
+anova(fac_lm)
+fac_lm_2 <- lm(logAUC ~ Organ*Disease, data = unbalanced_nafree)
+anova(fac_lm_2)
+```
 

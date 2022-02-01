@@ -5,13 +5,13 @@
 
 ### Conditional probability
 
-The probability of the event $A$ occuring given that the event $B$ has already occured is $$P(A∣B) = \frac{P(A \:\text{and}\: B)}{P(B)}$$. This is called a conditional probability. Note that $P(A∣B)$ is not the same as $P(B∣A)$ 
+The probability of the event $A$ occurring given that the event $B$ has already occurred is $$P(A∣B) = \frac{P(A \:\text{and}\: B)}{P(B)}$$. This is called a conditional probability. Note that $P(A∣B)$ is not the same as $P(B∣A)$ 
 
 **An example**
 
 Rapid antigen (lateral flow) tests are rapid antigen tests used to detect SARS-COV-2 infection (COVID-19). They are very easy to use and a lot less uncomfortable than having a swab for a PCR taken!
 
-<p align="center">![](https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/COVID-19_rapid_test.jpg/800px-COVID-19_rapid_test.jpg){width=20%}</p>
+<p align="center">![A rapid antigen test of mine, taken Jan 2022](img/lateral_flow.jpg){width=30%}</p>
 
 In summary, the lateral flow test can show a positive ($+$) or a negative ($-$) result. The person taking the test either has (infected) or does not have COVID-19 (not infected).
 

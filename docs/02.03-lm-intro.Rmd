@@ -378,19 +378,38 @@ AABBCC
 Note that models III and V are forced to have the same intercept for both levels of $f$. In addition, when you have no main effect of $x$, models IV and V, then the model is forced to have no effect of $x$ for the baseline level of $f$ (in this case $A$).
 
 
-## TL;DR `lm()`
+## Model formula syntax in `R`
 
-**[Artwork by \@allison_horst](https://github.com/allisonhorst/stats-illustrations)**
+In `R` to specify the model you want to fit you typically create a model formula object; this is usually then passed as the first argument to the model fitting function (e.g., `lm()`).
 
-![Meet your MLR teaching assistants](https://github.com/allisonhorst/stats-illustrations/blob/master/other-stats-artwork/dragons.png?raw=true)
+Some notes on syntax:
 
-![Interpret coefficients for categorical predictor variables](https://github.com/allisonhorst/stats-illustrations/blob/master/other-stats-artwork/dragon_regression.png?raw=true)
+Consider the model formula example `y ~ x + z + x:z`. There is a lot going on here:
 
-![Interpret coefficients for continuous predictor variables](https://github.com/allisonhorst/stats-illustrations/blob/master/other-stats-artwork/dragons_continuous.png?raw=true)
+ + The variable to the left of `~` specifies the response, everything to the right specify the explanatory variables
+ + `+` indicated to include the variable to the left of it and to the right of it (it does **not** mean they should be summed)
+ + `:` denotes the interaction of the variables to its left and right
+ 
+Additional, some other symbols have special meanings in model formula:
 
-![Make predictions using the regression model](https://github.com/allisonhorst/stats-illustrations/blob/master/other-stats-artwork/dragon_predict_mlr.png?raw=true)
+ + `*` means to include all main effects and interactions, so `a*b` is the same as `a + b + a:b`
+ 
+ + `^` is used to include main effects and interactions up to a specified level. For example, `(a + b + c)^2` is equivalent to `a + b + c + a:b + a:c + b:c` (note `(a + b + c)^3` would also add `a:b:c`)
+ + `-` excludes terms that might otherwise be included. For example, `-1` excludes the intercept otherwise included by default, and `a*b - b` would produce `a + a:b`
+ 
+Mathematical functions can also be directly used in the model formula to transform a variable directly (e.g., `y ~ exp(x) + log(z) + x:z`). One thing that may seem counter intuitive is in creating polynomial expressions (e.g., x2). Here the expression `y ~ x^2` does **not** relate to squaring the explanatory variable x (this is to do with the syntax `^` you see above. To include x2 as a term in our model we have to use the `I()` (the "as-is" operator). For example, `y ~ I(x^2) `).
 
-![Residuals](https://github.com/allisonhorst/stats-illustrations/blob/master/other-stats-artwork/dragon_residual.png?raw=true)
 
-![Check residuals for normality](https://github.com/allisonhorst/stats-illustrations/blob/master/other-stats-artwork/dragon_residual_distribution.png?raw=true)
+<p align="center">![](https://pbs.twimg.com/media/EeMWb7QWsAIGftR?format=jpg&name=small){width=50%}</p>
+
+
+
+| Traditional name    | Model formula  | R code  |
+| ------------------- |:--------------:| -------:|
+| Simple regression   | $Y \sim X_{continuous}$ | `lm(Y ~ X)` |
+| One-way ANOVA       | $Y \sim X_{categorical}$      |   `lm(Y ~ X)` |
+| Two-way ANOVA       | $Y \sim X1_{categorical} + X2_{categorical}$| `lm(Y ~ X1 + X2)` |
+| ANCOVA              | $Y \sim X1_{continuous} + X2_{categorical}$ |`lm(Y ~ X1 + X2)` |
+| Multiple regression | $Y \sim X1_{continuous} + X2_{continuous}$ | `lm(Y ~ X1 + X2)` |
+| Factorial ANOVA     | $Y \sim X1_{categorical} * X2_{categorical}$|   `lm(Y ~ X1 * X2)` or `lm(Y ~ X1 + X2 + X1:X2)` |
 

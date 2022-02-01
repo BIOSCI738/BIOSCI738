@@ -1,5 +1,9 @@
 ## Introduction to generalised linear models (GLMs)
 
+> "Ecology has increasingly become a data- and model-centric discipline..." `r tufte::quote_footer('---  Trends in ecology and conservation over eight decades')`
+
+<p align="center">![[Figure 5: Data analysis, statistical methods, and genetics n-grams from 1930 to 2010](https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/fee.2320#.YQfyCkjJsto.twitter)](https://esajournals.onlinelibrary.wiley.com/cms/asset/b3db55eb-1087-451a-8c4e-179d95e0d269/fee2320-fig-0005-m.jpg){width=50%}</p>
+
 Recall, the simple linear regression model from module 2:
   
 $$Y_i = \alpha + \beta_1x_i + \epsilon_i$$
@@ -58,7 +62,7 @@ Equivalently,
   $$Y_i \sim \text{Poisson}(\mu_i)$$
 
 
-#### Interpreting Poisson regression
+#### Interpreting coefficients
 
 Recall, for a linear regression model $\mu = \alpha + \beta_1x$,  when $x=0$  $y = \alpha$ and for every one-unit increase in $x$, $y$ increases by amount $\beta_1$.
 
@@ -71,13 +75,40 @@ Now, we have
 $$\mu = \text{e}^{ \alpha + \beta_1 x} = \text{e}^{ \alpha}(\text{e}^{\beta_1})^{ x}.$$ 
 This implies that
 
- + when $x = 0$ $\mu = \text{e}^{ \alpha}(\text{e}^{\beta_1})^{0} \text{e}^{ \alpha}\times 1 = \text{e}^{ \alpha},$
+ + when $x = 0$ $\mu = \text{e}^{ \alpha}(\text{e}^{\beta_1})^{0} =  \text{e}^{ \alpha}\times 1 = \text{e}^{ \alpha},$
  +  when  $x = 1$ $\mu = \text{e}^{ \alpha}(\text{e}^{\beta_1})^{1} = \text{e}^{ \alpha}\text{e}^{\beta_1} = \text{e}^{ \alpha + \beta_1},$
  + when  $x = 2$ $\mu = \text{e}^{ \alpha}(\text{e}^{\beta_1})^{2} = \text{e}^{ \alpha}\text{e}^{\beta_1} \text{e}^{\beta_1} = \text{e}^{ \alpha + \beta_1 + \beta_1},$
  + when  $x = 3$ $\mu = \text{e}^{ \alpha}(\text{e}^{\beta_1})^{3} = \text{e}^{ \alpha}\text{e}^{\beta_1} \text{e}^{\beta_1}\text{e}^{\beta_1}  = \text{e}^{ \alpha + \beta_1 + \beta_1 + \beta_1},$ and
  + so on ...
  
 Therefore, for every n-unit increase in x, the expected value of the response is **multiplied** by $\text{e}^{n\beta_1}.$
+
+#### Goodness-of-fit
+
+Typically, we use Poisson regression to
+
+ 1. ensure the expected value is $>0$,
+ 2. account for non-constant variance, and
+ 3. assume a discrete distribution for a discrete response.
+ 
+But, how do we assess if our choice was appropriate? *Use the **deviance**!*
+
+For a fitted Poisson regression the deviance, $D$, is 
+
+$$D = 2 \sum^{n}_{i=1} \{ Y_{i} \log(Y_{i}/\mu_{i}) - (Y_{i}-\mu_{i}) \}$$
+
+where if $Y_i=0$, the $Y_{i} \log(Y_{i}/\mu_{i})$ term is taken to be zero, and $\mu_{i} = \exp(\hat{\beta}_{0} + \hat{\beta}_{1}X_{1} + ... + \hat{\beta}_{p} X_{p})$ is the predicted mean for observation $i$ based on the estimated model parameters. 
+
+The deviance is a measure of how well the model fits the data. That is, if the model fits well, the observed values $Y_{i}$ will be close to their predicted means $\mu_{i}$, causing both of the terms in $D$ to be small, and so the deviance to be small. The flip side of this is that a large deviance indicates a bad fitting model.
+
+Formally, we can test the null hypothesis that the model is correct by calculating a p-value using
+$$ p = \Pr(\chi^2_{n - k} > D).$$
+
+**Conditions of the chi-squared approximation**
+  
+The distribution of the deviance under the null hypothesis is approximately chi-squared if the response of each observation is well approximated by a normal distribution. This holds for Poisson random variables with $\mu_i > 5$.
+
+However, if our chi-squared approximation assumptions are not met we should find another way. See the example below for a simulation based approach.
  
 ### An example: bird abundance
 
@@ -113,13 +144,23 @@ summary(glm_bird)
 The fitted model is therefore
 
 ```{r}
-equatiomatic::extract_eq(glm_bird, use_coefs = TRUE, coef_digits = 2)
+equatiomatic::extract_eq(glm_bird, use_coefs = TRUE, coef_digits = 3)
 ```
 
 
 #### Interpreting the coefficients
 
-Interpreting the coefficients above we estimate that the expected average number of *Phylloscopus collybita* is `r round(exp(coef(glm_bird)[1]), 2)` and the expected average number of *Turdus merula* is `r round(exp(coef(glm_bird)[1] + coef(glm_bird)[2]), 2)`.
+
+
+Interpreting the coefficients above  we estimate that the **log** of the expected number of *Phylloscopus collybita* is `r round(coef(glm_bird)[1], 2)` and the **log** of the expected number of *Turdus merula* is `r round(coef(glm_bird)[1] + coef(glm_bird)[2], 2)`.
+
+But what about the expected number?
+
+```{r}
+exp(coef(glm_bird))
+```
+
+Therefore, we estimate that the expected average number of *Phylloscopus collybita* is `r round(exp(coef(glm_bird)[1]), 2)` and the expected average number of *Turdus merula* is `r round(exp(coef(glm_bird)[1] + coef(glm_bird)[2]), 2)`.
 
 Using confidence intervals:
 
@@ -127,19 +168,33 @@ Using confidence intervals:
 confint <- exp(confint(glm_bird)[1,])
 confint
 ```
+
 Therefore, we estimate that the expected average number of *Phylloscopus collybita* is between `r round(confint[1], 2)` and  `r round(confint[2], 2)`.
 
-For a **multiplicative interpretation** of the effect use $\text{exp}(\beta_1)$; therefore, we estimate that the expected number of *Turdus merula* is  `r round(exp(coef(glm_bird)[2]), 2)` $\times$ greater than *Phylloscopus collybita*.
+For a **multiplicative interpretation** of the effect use $\text{exp}(\beta_1)$
 
-For a **percentage-change interpretation** use $100 \times \left (\text{exp}(\beta_1)−1 \right )$; therefore, we estimate that expected number of *Turdus merula* is  `r round(100*(exp(coef(glm_bird)[2]) - 1), 2)`\% greater than *Phylloscopus collybita*.
+```{r, message=FALSE}
+exp(coef(glm_bird)[2])
+```
+
+Therefore, we estimate that the expected number of *Turdus merula* is  `r round(exp(coef(glm_bird)[2]), 2)` $\times$ greater than *Phylloscopus collybita*.
+
+For a **percentage-change interpretation** use $100 \times \left (\text{exp}(\beta_1)−1 \right )$:
+
+```{r, message=FALSE}
+100*(exp(coef(glm_bird)[2]) - 1)
+```
+
+Therefore, we estimate that expected number of *Turdus merula* is  `r round(100*(exp(coef(glm_bird)[2]) - 1), 2)`\% greater than *Phylloscopus collybita*.
 
 
-Using confidence intervals:
+Using 95\% **confidence intervals**:
 
 ```{r, message=FALSE}
 confint <- 100*(exp(confint(glm_bird)[2, ]) - 1)
 confint
 ```
+
 So, we estimate that expected number of *Turdus merula* is  between `r round(confint[1], 2)`\% and  `r round(confint[2], 2)`\% greater than *Phylloscopus collybita*.
 
 
@@ -160,6 +215,34 @@ birds %>%
            col = "#FC8D62")
 ```
 
+
+#### Deviance
+
+##### Chi-squared approach
+
+Luckily no manual calculations are required, our `glm()` call returns the values we need directly: 
+
+```{r}
+## extract the residual deviance
+D <- glm_bird$deviance
+D
+## extract the residual degrees of freedom (n-k)
+df <- glm_bird$df.residual
+df
+```
+
+Therefore, to test the relevant null hypothesis (that the model is correct) we use
+
+```{r}
+1 - pchisq(D, df)
+```
+
+We have strong evidence to reject the null hypothesis; suggesting a lack of fit!
+
+##### Simulation based approach
+
+Are our chi-squared approximation assumptions met?
+
 ## Logistic regression
   
 We saw the Binomial distribution in module 4.  We define a random variable, $Y_i$, to have a binomial distribution if it is the number of successes from a number of **independent** trials, $n$, each with the same probability of success, $p$. It is a discrete distribution, which notes that the number of successes associated with the $i^{th}$ observation must be an integer between $0$ and $n_i$. In addition, it builds in the non-constant variance of $Y_i$ and $\frac{Y_i}{n_i}$:
@@ -176,7 +259,7 @@ $$\text{logit}(p_i) = \text{log}\left (\frac{p_i}{1 - p_i}\right ) = \alpha + \b
     
   $$Y_i \sim \text{Binomial}(n_i, p_i)$$
   
-#### Interpreting Logistic regression
+#### Interpreting coefficients
 
 Recap, for probability $p$ the **odds** are $\frac{p}{1-p}$ and the **log-odds** are $\text{log}\left (\frac{p}{1-p}\right )$:
 
@@ -206,8 +289,21 @@ This implies that
  + when  $x = 3$ $\text{odds} = \text{e}^{ \alpha}(\text{e}^{\beta_1})^{3} = \text{e}^{ \alpha}\text{e}^{\beta_1} \text{e}^{\beta_1}\text{e}^{\beta_1}  = \text{e}^{ \alpha + \beta_1 + \beta_1 + \beta_1},$ and
  + so on ...
  
- Therefore, for every n-unit increase in $x$, the odds of success are **multiplied** by $\text{e}^{n\beta_1}$.
+ 
+#### Goodnes-of-fit
 
+Typically, we use logistic regression to model if we have a binary, or proportional response (e.g., success vs. failure). But, how do we assess if our choice was appropriate? *Using the **deviance**?* 
+
+Formally, we can test the null hypothesis that the model is correct by calculating a p-value using
+$$ p = \Pr(\chi^2_{n - k} > D).$$
+
+**Conditions of the chi-squared approximation**
+  
+The distribution of the deviance under the null hypothesis is approximately chi-squared if the response of each observation is well approximated by a normal distribution. This holds for binomial random variables if the number of trials, $n_i$, is large enough:
+       + when $p_i$ is close to 0.5, $n_i \geq 5$ is probably sufficient,
+       + but if $p_i$ is close to 0 or 1, $n_i$ must be much larger.
+
+However, if our chi-squared approximation assumptions are not met we should find another way. See the example below for a simulation based approach.
 
 ### An example: lobsters
 
@@ -234,7 +330,7 @@ summary(glm_mod_ug)
 The fitted model is therefore
 
 ```{r, echo = FALSE}
-equatiomatic::extract_eq(glm_mod_ug, use_coefs = TRUE, coef_digits = 2)
+equatiomatic::extract_eq(glm_mod_ug, use_coefs = TRUE, coef_digits = 3)
 ```
 
 
@@ -283,8 +379,56 @@ glm_mod_gr <- glm(cbind(y, n - y) ~ size, family = "binomial", data = grouped)
 summary(glm_mod_gr)
 ```
 
+The fitted model is again
+
+```{r, echo = FALSE}
+equatiomatic::extract_eq(glm_mod_ug, use_coefs = TRUE, coef_digits = 3)
+```
 
 #### Interpreting the coefficients
+
+
+Interpreting the coefficients above we estimate that the log-odds of a juvenile lobster surviving are `r round(coef(glm_mod_gr)[1],)` (use your common sense to ascertain if interpreting the intercept is sensible). 
+
+We estimate that for every 1mm increase in  carapace length the log-odds of a juvenile lobster surviving **increase** by `r round(coef(glm_mod_gr)[2],3)`. 
+
+What about the odds?
+
+```{r}
+exp(coef(glm_mod_gr))
+```
+
+Therefore, we estimate that the odds of a juvenile lobster surviving are `r round(exp(coef(glm_mod_gr)[1]),6)` (use your common sense to ascertain if interpreting the intercept is sensible). 
+
+We estimate that for every 1mm increase in  carapace length the odds of a juvenile lobster surviving are **multiplied** by `r round(exp(coef(glm_mod_gr)[2]),2)`. 
+
+What about for a 5mm increase in carapace length?
+
+```{r}
+exp(5*coef(glm_mod_gr)[2])
+```
+
+Therefore, we estimate that for every 5mm increase in  carapace length the odds of a juvenile lobster surviving are **multiplied** by `r round(exp(5*coef(glm_mod_gr)[2]),2)`. 
+
+
+Using 95\% **confidence intervals**:
+
+```{r, message = FALSE}
+ci <- exp(5*confint(glm_mod_gr)[2,])
+ci
+```
+
+Therefore, we estimate that for every 5mm increase in  carapace length the odds of a juvenile lobster surviving are **multiplied** by between `r round(ci[1],2)` and `r round(ci[2],2)`. 
+
+For a **percentage-change** interpretation we use $100 \times \left (\text{exp}(x\beta_1)−1 \right )$:
+
+```{r, message = FALSE}
+100*(exp(5*coef(glm_mod_gr)[2]) - 1)
+confint <- 100*(exp(5*confint(glm_mod_gr)[2, ]) - 1)
+confint
+```
+
+We estimate that for every 5mm increase in  carapace length the **odds** of a juvenile lobster surviving **increase** by `r round(100*(exp(5*coef(glm_mod_gr)[2]) - 1),2)`\%. We estimate that for every 5mm increase in  carapace length the odds of a juvenile lobster surviving **increase** between `r round(100*(exp(5*confint(glm_mod_gr)[2, 1]) - 1),2)`\% and `r round(100*(exp(5*confint(glm_mod_gr)[2, 2]) - 1),2)`\%.
 
 
 ```{r, echo = FALSE, warning = FALSE, message = FALSE}
@@ -297,6 +441,34 @@ ggplot(grouped, aes(x = size, y = p)) +
   ylab("Proportion survived") + ggtitle("Fitted logistic regression model") +
   theme_classic()
 ```
+
+#### Deviance
+
+##### Chi-squared approach
+
+Luckily no manual calculations are required, our `glm()` call returns the values we need directly: 
+
+```{r}
+## extract the residual deviance
+D <- glm_mod_gr$deviance
+D
+## extract the residual degrees of freedom (n-k)
+df <- glm_mod_gr$df.residual
+df
+```
+
+Therefore, to test the relevant null hypothesis (that the model is correct) we use
+
+```{r}
+1 - pchisq(D, df)
+```
+
+Here, we have no evidence to against our model being "correct".
+
+##### Simulation based approach
+
+Are our chi-squared approximation assumptions met?
+
 
 ## A summary of GLMs
   

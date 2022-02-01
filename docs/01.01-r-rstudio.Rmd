@@ -4,7 +4,7 @@
 
 Alternatively, `R` is the pheromone to `RStudio`'s PDA.
 
-![](img/r-rstudio-pda.jpg)
+<p align="center">![](img/r-rstudio-pda.jpg)</>
 
 `R` is a language, specifically, a programming language; it's the way you can speak to your computer to ask it to carry out certain computations.
 
@@ -85,7 +85,7 @@ If you had only three panes showing before, a new (fourth) pane should open up i
  1. Ensure your cursor is on the line of code you want to run, hold down **Ctrl** and press **Enter**.
  2. Ensure your cursor is on the line of code you want to run, then use your mouse to click the Run button (it has a green arrow next to it) on the top right of the *Script* pane.
 
-Type `1:10` in your *Script* and practise *running* this line of code using both methods above. Note that if you've *Run* the code successfully then your computer will speak back to you each time via the *Console*
+Type `1:10` in your *Script* and practice *running* this line of code using both methods above. Note that if you've *Run* the code successfully then your computer will speak back to you each time via the *Console*
 
 #### Writing *Comments*
 
@@ -107,77 +107,9 @@ Now remember when you want to leave your `R` session you'll need to **Save** you
 
 #### Change `RStudio`'s appearance 
 
-Go to **Tools** > **Global Options** > **Apperance**
+Go to **Tools** > **Global Options** > **Appearance**
 
-![](https://support.rstudio.com/hc/article_attachments/115020425168/Screen_Shot_2017-08-24_at_1.14.19_PM.png){width="20%"}
-
-
-
-## Reproducible research
-
-> "Reproducibility, also known as replicability and repeatability, is a major principle underpinning the scientific method. For the findings of a study to be reproducible means that results obtained by an experiment or an observational study or in a statistical analysis of a data set should be achieved again with a high degree of reliability when the study is replicated. ... With a narrower scope, reproducibility has been introduced in computational sciences: Any results should be documented by making all data and code available in such a way that the computations can be executed again with identical results." `r tufte::quote_footer('--- Reprodicibility, Wikipedia')`
-
-
-### Project-oriented workflow: good practice
-
-Properly managing data and other research outputs should starts at the beginning of your project. It should then and continue throughout!
-
-To setup an RStudio `.RProj` project go to **Project** (top right) > **New Project** > **Create Project** 
-
-**Best-practice tips**
-
- + Be organised: set up each each assignment/university course as a *project*
- + Ensure your project is self-contained. A *project* is a folder that should contain all the relevant files and all paths should be relative to that *project*
- + Always apply the 5 Cs: be **C**lear, **C**oncise, **C**onsistent, **C**orrect, and **C**onformant.
- + Naming files should be descriptive and consistent! 
- + Include a README file that summarises your project's structure
- + Provide a detailed description of the data, data source(s), and how it will be used.
- + Describe all the steps of data preprocessing.
- + Provide a description and information about each new version of the data.
- + Provide details about the software/code that is used for preprocessing the data.
- + Include brief examples of how your code works. 
- + Generate a list of all scripts, how to run them, and in what order.
- + When structuring your project directory consider the following:
-   + Put code and data in separate subdirectories.
-   + Plan to separate raw data from processed data.
-   + An example of a well-structured directory  
-      + ProjectName/
-         + README.MD
-         + Dataset/
-             + Raw Data/
-             + Processed Data/
-         + Analysis (or Code or Scripts)/
-             + Data cleaning/
-             + Data preprocessing/
-         + Output/
-             + Graphs
-             + Tables
-
-**Always start with a clean workspace** **Why?** *So your ex (code) can't come and mess up your life!*
-
-![](https://memegenerator.net/img/instances/57296391/when-your-ex-texts-you-after-months-hey-whats-up-not-today-satan-not-today.jpg){width="20%"}
-
-
-To ensure this go to **Tools** > **Global Options** and uncheck the highlighted options.
-
-![](https://miro.medium.com/max/2784/1*dUNl71Jic2zYhYS2hxOBZA.png){width="20%"}
-
-
-**`r emo::ji("warning")`Warning`r emo::ji("warning")`**
-
-> If the first line of your R script is
-> `setwd("C:\Users\jenny\path\that\only\I\have")`
-> I will come into your office and SET YOUR COMPUTER ON FIRE 🔥.
-> If the first line of your R script is
-> `rm(list = ls())`
-> I will come into your office and SET YOUR COMPUTER ON FIRE 🔥. `r tufte::quote_footer('--- Jenny Bryan, Tidyverse blog, workflow vs script')`
-
-**Why?** Because, this
-
-  + is not reproducible
-  + does **NOT** create a fresh `R` process
-  + it makes your script vulnerable
-  + it **will** come back to bite you
+<p align="center">![](https://support.rstudio.com/hc/article_attachments/115020425168/Screen_Shot_2017-08-24_at_1.14.19_PM.png){width="30%"}</p>
 
 
 

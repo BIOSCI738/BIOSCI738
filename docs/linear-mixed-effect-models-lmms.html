@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Linear mixed-effect models (LMMs) | Advanced Biological Data Analysis</title>
+  <meta name="description" content="Linear mixed-effect models (LMMs) | Advanced Biological Data Analysis" />
+  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Linear mixed-effect models (LMMs) | Advanced Biological Data Analysis" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Linear mixed-effect models (LMMs) | Advanced Biological Data Analysis" />
+  
+  
+  
+
+<meta name="author" content="University of Auckland" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="multiple-comparisons.html"/>
+<link rel="next" href="split-plot-and-repeated-measures-designs.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Nau mai, haere mai. Welcome to BIOSCI 738</a></li>
+<li class="chapter" data-level="" data-path="useful-information-to-set-you-up-for-your-semester.html"><a href="useful-information-to-set-you-up-for-your-semester.html"><i class="fa fa-check"></i>Useful information to set you up for your semester</a><ul>
+<li class="chapter" data-level="" data-path="useful-information-to-set-you-up-for-your-semester.html"><a href="useful-information-to-set-you-up-for-your-semester.html#course-outline"><i class="fa fa-check"></i>Course outline</a></li>
+<li class="chapter" data-level="" data-path="useful-information-to-set-you-up-for-your-semester.html"><a href="useful-information-to-set-you-up-for-your-semester.html#learning-outcomes"><i class="fa fa-check"></i>Learning Outcomes</a></li>
+<li class="chapter" data-level="" data-path="useful-information-to-set-you-up-for-your-semester.html"><a href="useful-information-to-set-you-up-for-your-semester.html#course-summary"><i class="fa fa-check"></i>Course summary</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-1.html"><a href="module-1.html"><i class="fa fa-check"></i>Module 1</a><ul>
+<li><a href="r-and-rstudio.html#r-and-rstudio"><code>R</code> and <code>RStudio</code></a><ul>
+<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html"><i class="fa fa-check"></i>Installing R and RStudio</a></li>
+<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#getting-started"><i class="fa fa-check"></i>Getting started</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html"><i class="fa fa-check"></i>Reproducible research</a><ul>
+<li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html#project-oriented-workflow-good-practice"><i class="fa fa-check"></i>Project-oriented workflow: good practice</a></li>
+<li><a href="reproducible-research.html#version-control-with-git-and-github">Version control with <code>git</code> and GitHub</a></li>
+</ul></li>
+<li><a href="your-data-and-r.html#your-data-and-r">Your data and <code>R</code></a><ul>
+<li><a href="your-data-and-r.html#reading-in-data-from-a-.csv-file">Reading in data from a <code>.csv</code> file</a></li>
+<li class="chapter" data-level="" data-path="your-data-and-r.html"><a href="your-data-and-r.html"><i class="fa fa-check"></i>Explore your data</a></li>
+<li><a href="your-data-and-r.html#the-pipe-operator">The pipe operator <code>%&gt;%</code></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-wrangling.html"><a href="data-wrangling.html"><i class="fa fa-check"></i>Data wrangling</a><ul>
+<li><a href="data-wrangling.html#introuducing-the-palmer-penguins">Introuducing the <span>Palmer penguins</span></a></li>
+<li><a href="data-wrangling.html#common-dataframe-manipulations-in-the-tidyverse-using-dplyr-and-tidyr">Common dataframe manipulations in the <code>tidyverse</code>, using <code>dplyr</code> and <code>tidyr</code></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html"><i class="fa fa-check"></i>Data visualiation (data viz)</a><ul>
+<li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html#exploratory-and-explanatory-plots"><i class="fa fa-check"></i>Exploratory and explanatory plots</a></li>
+<li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html#ten-simple-rules-for-better-figures"><i class="fa fa-check"></i>Ten Simple Rules for Better Figures</a></li>
+<li><a href="data-visualiation-data-viz.html#ggplot2"><code>ggplot2</code></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="māori-data-sovereignty-principles.html"><a href="māori-data-sovereignty-principles.html"><i class="fa fa-check"></i>Māori Data Sovereignty principles</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-2.html"><a href="module-2.html"><i class="fa fa-check"></i>Module 2</a><ul>
+<li class="chapter" data-level="" data-path="key-satistical-concepts.html"><a href="key-satistical-concepts.html"><i class="fa fa-check"></i>Key satistical concepts</a></li>
+<li class="chapter" data-level="" data-path="bootstrap-resampling.html"><a href="bootstrap-resampling.html"><i class="fa fa-check"></i>Bootstrap resampling</a><ul>
+<li class="chapter" data-level="" data-path="bootstrap-resampling.html"><a href="bootstrap-resampling.html#example-constructing-bootstrap-confidence-intervals"><i class="fa fa-check"></i>Example: constructing bootstrap confidence intervals</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="permutation-tests.html"><a href="permutation-tests.html"><i class="fa fa-check"></i>Permutation tests</a><ul>
+<li><a href="permutation-tests.html#significance-testing-using-permutation-randomisation-tests">Significance testing using permutation (<em>randomisation</em>) tests</a></li>
+<li class="chapter" data-level="" data-path="permutation-tests.html"><a href="permutation-tests.html#differences"><i class="fa fa-check"></i>Differences</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="p-values.html"><a href="p-values.html"><i class="fa fa-check"></i>😱 p-values 😱</a><ul>
+<li class="chapter" data-level="" data-path="p-values.html"><a href="p-values.html#p-values-from-permutation-tests"><i class="fa fa-check"></i>P-values from permutation tests</a></li>
+<li class="chapter" data-level="" data-path="p-values.html"><a href="p-values.html#asa-statement-on-p-values"><i class="fa fa-check"></i>ASA Statement on p-Values</a></li>
+<li class="chapter" data-level="" data-path="p-values.html"><a href="p-values.html#type-i-and-type-ii-errors"><i class="fa fa-check"></i>Type I and Type II errors</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="one-and-two-sample-tests.html"><a href="one-and-two-sample-tests.html"><i class="fa fa-check"></i>One and two sample tests</a><ul>
+<li class="chapter" data-level="" data-path="one-and-two-sample-tests.html"><a href="one-and-two-sample-tests.html#one-sample-t-test"><i class="fa fa-check"></i>One-Sample t-test</a></li>
+<li class="chapter" data-level="" data-path="one-and-two-sample-tests.html"><a href="one-and-two-sample-tests.html#differences-between-two-means"><i class="fa fa-check"></i>Differences between two means</a></li>
+<li class="chapter" data-level="" data-path="one-and-two-sample-tests.html"><a href="one-and-two-sample-tests.html#one-way-analysis-of-variance-anova"><i class="fa fa-check"></i>One-Way Analysis of Variance (ANOVA)</a></li>
+<li class="chapter" data-level="" data-path="one-and-two-sample-tests.html"><a href="one-and-two-sample-tests.html#between-group-ss-ssb"><i class="fa fa-check"></i>Between group SS (SSB)</a></li>
+<li class="chapter" data-level="" data-path="one-and-two-sample-tests.html"><a href="one-and-two-sample-tests.html#within-group-ss-ssw"><i class="fa fa-check"></i>Within group SS (SSW)</a></li>
+<li class="chapter" data-level="" data-path="one-and-two-sample-tests.html"><a href="one-and-two-sample-tests.html#f-statistic"><i class="fa fa-check"></i>F-statistic</a></li>
+<li class="chapter" data-level="" data-path="one-and-two-sample-tests.html"><a href="one-and-two-sample-tests.html#degrees-of-freedom-df"><i class="fa fa-check"></i>Degrees of freedom (DF)</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i>Linear regression</a><ul>
+<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#some-mathematical-notation"><i class="fa fa-check"></i>Some mathematical notation</a></li>
+<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#modeling-bill-depth"><i class="fa fa-check"></i>Modeling Bill Depth</a></li>
+<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#single-continuous-variable"><i class="fa fa-check"></i>Single continuous variable</a></li>
+<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#one-factor-and-a-continous-variable"><i class="fa fa-check"></i>One factor and a continous variable</a></li>
+<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#interactions"><i class="fa fa-check"></i>Interactions</a></li>
+<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#other-possible-models"><i class="fa fa-check"></i>Other possible models</a></li>
+</ul></li>
+<li><a href="model-formula-syntax-in-r.html#model-formula-syntax-in-r">Model formula syntax in <code>R</code></a></li>
+<li class="chapter" data-level="" data-path="model-diagnostocs.html"><a href="model-diagnostocs.html"><i class="fa fa-check"></i>Model diagnostocs</a><ul>
+<li class="chapter" data-level="" data-path="model-diagnostocs.html"><a href="model-diagnostocs.html#marginal-predictions"><i class="fa fa-check"></i>Marginal predictions</a></li>
+<li class="chapter" data-level="" data-path="model-diagnostocs.html"><a href="model-diagnostocs.html#model-selection"><i class="fa fa-check"></i>Model selection</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="point-predictions-and-confidence-intervals.html"><a href="point-predictions-and-confidence-intervals.html"><i class="fa fa-check"></i>Point predictions and confidence intervals</a><ul>
+<li class="chapter" data-level="" data-path="point-predictions-and-confidence-intervals.html"><a href="point-predictions-and-confidence-intervals.html#confidence-intervals-for-parameters"><i class="fa fa-check"></i>Confidence intervals for parameters</a></li>
+<li class="chapter" data-level="" data-path="point-predictions-and-confidence-intervals.html"><a href="point-predictions-and-confidence-intervals.html#point-prediction"><i class="fa fa-check"></i>Point prediction</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-3.html"><a href="module-3.html"><i class="fa fa-check"></i>Module 3</a><ul>
+<li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html"><i class="fa fa-check"></i>Introduction to the design and analysis of experiments</a><ul>
+<li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#key-phrases"><i class="fa fa-check"></i>Key phrases</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#the-three-key-principles"><i class="fa fa-check"></i>The three key principles:</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#replication"><i class="fa fa-check"></i>Replication</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#randomization"><i class="fa fa-check"></i>Randomization</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#blocking"><i class="fa fa-check"></i>Blocking</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#setting-up-an-experiment"><i class="fa fa-check"></i>Setting up an experiment</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html"><i class="fa fa-check"></i>Some basic experimental designs</a><ul>
+<li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html#completely-randomised-design-crd"><i class="fa fa-check"></i>Completely randomised design (CRD)</a></li>
+<li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html#randomised-complete-block-design-rcbd"><i class="fa fa-check"></i>Randomised complete block design (RCBD)</a></li>
+<li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html#factorial-design"><i class="fa fa-check"></i>Factorial design</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="modler-v.-designer.html"><a href="modler-v.-designer.html"><i class="fa fa-check"></i>Modler v. designer</a><ul>
+<li class="chapter" data-level="" data-path="modler-v.-designer.html"><a href="modler-v.-designer.html#a-completely-randomised-design-crd"><i class="fa fa-check"></i>A completely randomised design (CRD)</a></li>
+<li><a href="modler-v.-designer.html#analysis-of-a-completely-randomised-design-in-r">Analysis of a Completely Randomised Design in <code>R</code></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="factorial-experiments.html"><a href="factorial-experiments.html"><i class="fa fa-check"></i>Factorial experiments</a></li>
+<li class="chapter" data-level="" data-path="factorial-design-as-a-crd.html"><a href="factorial-design-as-a-crd.html"><i class="fa fa-check"></i>Factorial design (as a CRD)</a><ul>
+<li class="chapter" data-level="" data-path="factorial-design-as-a-crd.html"><a href="factorial-design-as-a-crd.html#equal-replications-balanced-design"><i class="fa fa-check"></i>Equal replications (balanced design)</a></li>
+<li class="chapter" data-level="" data-path="factorial-design-as-a-crd.html"><a href="factorial-design-as-a-crd.html#unqual-replications-unbalanced-design"><i class="fa fa-check"></i>Unqual replications (unbalanced design)</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html"><i class="fa fa-check"></i>Multiple comparisons</a><ul>
+<li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html#classification-of-multiple-hypothesis-tests"><i class="fa fa-check"></i>Classification of multiple hypothesis tests</a></li>
+<li><a href="multiple-comparisons.html#using-the-predictmeans-package">Using the <code>predictmeans</code> package</a></li>
+<li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html#multiple-comparison-procedures"><i class="fa fa-check"></i>Multiple comparison procedures</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html"><i class="fa fa-check"></i>Linear mixed-effect models (LMMs)</a><ul>
+<li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html#fixed-or-random-effects"><i class="fa fa-check"></i>Fixed or Random effects???</a></li>
+<li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html#a-randomised-controlled-block-design-rcbd"><i class="fa fa-check"></i>A Randomised Controlled Block Design (RCBD)</a></li>
+<li><a href="linear-mixed-effect-models-lmms.html#analysis-using-lmer-from-lme4">Analysis using <code>lmer()</code> from <code>lme4</code></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="split-plot-and-repeated-measures-designs.html"><a href="split-plot-and-repeated-measures-designs.html"><i class="fa fa-check"></i>Split-plot and repeated measures designs</a><ul>
+<li><a href="split-plot-and-repeated-measures-designs.html#using-aov">Using <code>aov()</code></a></li>
+<li><a href="split-plot-and-repeated-measures-designs.html#using-lmer-from-lmetest-and-lmer4-and-predictmeans">Using <code>lmer()</code> (from <code>lmeTest</code> and <code>lmer4</code>) and <code>predictmeans()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="analysis-of-a-repeated-measures-design.html"><a href="analysis-of-a-repeated-measures-design.html"><i class="fa fa-check"></i>Analysis of a repeated measures design</a><ul>
+<li class="chapter" data-level="" data-path="analysis-of-a-repeated-measures-design.html"><a href="analysis-of-a-repeated-measures-design.html#the-data"><i class="fa fa-check"></i>The data</a></li>
+<li class="chapter" data-level="" data-path="analysis-of-a-repeated-measures-design.html"><a href="analysis-of-a-repeated-measures-design.html#visualise"><i class="fa fa-check"></i>Visualise</a></li>
+<li><a href="analysis-of-a-repeated-measures-design.html#using-aov-1">Using <code>aov()</code></a></li>
+<li><a href="analysis-of-a-repeated-measures-design.html#using-lmer-from-lmertest-and-lme4-and-predictmeans">Using <code>lmer()</code> (from <code>lmerTest</code> and <code>lme4</code>) and <code>predictmeans()</code></a></li>
+</ul></li>
+<li><a href="repeated-measures-designs-as-split-plots-in-time.html#repeated-measures-designs-as-split-plots-in-time">Repeated measures designs as <em>split-plots in time</em></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-4.html"><a href="module-4.html"><i class="fa fa-check"></i>Module 4</a><ul>
+<li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html"><i class="fa fa-check"></i>Least Squares Estimation</a><ul>
+<li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html#some-basic-matrix-algebra"><i class="fa fa-check"></i>Some basic matrix algebra</a></li>
+<li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html#matrix-representation-of-a-crd"><i class="fa fa-check"></i>Matrix representation of a CRD</a></li>
+<li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html#a-numeric-example"><i class="fa fa-check"></i>A numeric example</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="maximum-likelkihood-estimation.html"><a href="maximum-likelkihood-estimation.html"><i class="fa fa-check"></i>Maximum likelkihood estimation</a><ul>
+<li class="chapter" data-level="" data-path="maximum-likelkihood-estimation.html"><a href="maximum-likelkihood-estimation.html#differeniation-rules"><i class="fa fa-check"></i>Differeniation rules</a></li>
+<li class="chapter" data-level="" data-path="maximum-likelkihood-estimation.html"><a href="maximum-likelkihood-estimation.html#logarithn-rules"><i class="fa fa-check"></i>Logarithn rules</a></li>
+<li class="chapter" data-level="" data-path="maximum-likelkihood-estimation.html"><a href="maximum-likelkihood-estimation.html#maximum-likelihood"><i class="fa fa-check"></i>Maximum likelihood</a></li>
+<li class="chapter" data-level="" data-path="maximum-likelkihood-estimation.html"><a href="maximum-likelkihood-estimation.html#the-likelihood"><i class="fa fa-check"></i>The Likelihood</a></li>
+<li class="chapter" data-level="" data-path="maximum-likelkihood-estimation.html"><a href="maximum-likelkihood-estimation.html#maximum-likelihood-for-a-crd"><i class="fa fa-check"></i>Maximum likelihood for a CRD</a></li>
+<li class="chapter" data-level="" data-path="maximum-likelkihood-estimation.html"><a href="maximum-likelkihood-estimation.html#maximising-the-log-likelihood"><i class="fa fa-check"></i>Maximising the log-likelihood</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="maximum-likelihood-estimation-for-a-poisson-distribution.html"><a href="maximum-likelihood-estimation-for-a-poisson-distribution.html"><i class="fa fa-check"></i>Maximum likelihood estimation for a Poisson distribution</a><ul>
+<li class="chapter" data-level="" data-path="maximum-likelihood-estimation-for-a-poisson-distribution.html"><a href="maximum-likelihood-estimation-for-a-poisson-distribution.html#maximising-the-likelihood"><i class="fa fa-check"></i>Maximising the Likelihood</a></li>
+<li class="chapter" data-level="" data-path="maximum-likelihood-estimation-for-a-poisson-distribution.html"><a href="maximum-likelihood-estimation-for-a-poisson-distribution.html#maximising-the-log-likelihood-function"><i class="fa fa-check"></i>Maximising the log-likelihood function</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="example-for-a-continuous-random-variable.html"><a href="example-for-a-continuous-random-variable.html"><i class="fa fa-check"></i>Example for a continuous random variable</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html"><i class="fa fa-check"></i>Introduction to Bayesian statistics</a><ul>
+<li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html#conditional-probability"><i class="fa fa-check"></i>Conditional probability</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html#bayes-rule"><i class="fa fa-check"></i>Bayes’ rule</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-5.html"><a href="module-5.html"><i class="fa fa-check"></i>Module 5</a><ul>
+<li class="chapter" data-level="" data-path="beyond-linear-models-to-generalised-linear-models-glms.html"><a href="beyond-linear-models-to-generalised-linear-models-glms.html"><i class="fa fa-check"></i>Beyond Linear Models to Generalised Linear Models (GLMs)</a><ul>
+<li class="chapter" data-level="" data-path="beyond-linear-models-to-generalised-linear-models-glms.html"><a href="beyond-linear-models-to-generalised-linear-models-glms.html#counting-animals"><i class="fa fa-check"></i>Counting animals…</a></li>
+<li class="chapter" data-level="" data-path="beyond-linear-models-to-generalised-linear-models-glms.html"><a href="beyond-linear-models-to-generalised-linear-models-glms.html#other-modelling-approaches-not-examinable"><i class="fa fa-check"></i>Other modelling approaches (not examinable)</a></li>
+<li><a href="beyond-linear-models-to-generalised-linear-models-glms.html#model-formula-syntax"><strong>Model formula</strong> syntax</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="introduction-to-generalised-linear-models-glms.html"><a href="introduction-to-generalised-linear-models-glms.html"><i class="fa fa-check"></i>Introduction to generalised linear models (GLMs)</a></li>
+<li class="chapter" data-level="" data-path="poisson-regression.html"><a href="poisson-regression.html"><i class="fa fa-check"></i>Poisson regression</a><ul>
+<li class="chapter" data-level="" data-path="poisson-regression.html"><a href="poisson-regression.html#an-example-bird-abundance"><i class="fa fa-check"></i>An example: bird abundance</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i>Logistic regression</a><ul>
+<li class="chapter" data-level="" data-path="logistic-regression.html"><a href="logistic-regression.html#an-example-lobsters"><i class="fa fa-check"></i>An example: lobsters</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="a-summary-of-glms.html"><a href="a-summary-of-glms.html"><i class="fa fa-check"></i>A summary of GLMs</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-generalised-linear-mixed-effects-models-glmmms.html"><a href="introduction-to-generalised-linear-mixed-effects-models-glmmms.html"><i class="fa fa-check"></i>Introduction to generalised linear mixed-effects models (GLMMMs)</a><ul>
+<li class="chapter" data-level="" data-path="introduction-to-generalised-linear-mixed-effects-models-glmmms.html"><a href="introduction-to-generalised-linear-mixed-effects-models-glmmms.html#fitting-a-glmm"><i class="fa fa-check"></i>Fitting a GLMM</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-6.html"><a href="module-6.html"><i class="fa fa-check"></i>Module 6</a><ul>
+<li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i>Clustering</a><ul>
+<li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#partitioning-methods."><i class="fa fa-check"></i>Partitioning methods.</a></li>
+<li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#hierarchical-methods."><i class="fa fa-check"></i>Hierarchical methods.</a></li>
+<li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#hierarchical-agglomerative-clustering."><i class="fa fa-check"></i>Hierarchical agglomerative clustering.</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tldr.html"><a href="tldr.html"><i class="fa fa-check"></i>TL;DR</a><ul>
+<li class="chapter" data-level="" data-path="tldr.html"><a href="tldr.html#clustering-algorithms"><i class="fa fa-check"></i>Clustering algorithms</a></li>
+<li><a href="tldr.html#k-means-using-the-palmerpenguins-data">k-means using the <code>palmerpenguins</code> data</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="tldr-k-means-clustering.html"><a href="tldr-k-means-clustering.html"><i class="fa fa-check"></i>TL;DR k-means clustering</a></li>
+<li class="chapter" data-level="" data-path="dimension-reduction.html"><a href="dimension-reduction.html"><i class="fa fa-check"></i>Dimension reduction</a><ul>
+<li class="chapter" data-level="" data-path="dimension-reduction.html"><a href="dimension-reduction.html#pca"><i class="fa fa-check"></i>PCA</a></li>
+<li class="chapter" data-level="" data-path="dimension-reduction.html"><a href="dimension-reduction.html#reality-check-reducing-noise"><i class="fa fa-check"></i>Reality check: reducing noise…</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html"><i class="fa fa-check"></i>Multidimensional Scaling (MDS)</a><ul>
+<li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html#principal-coordinates."><i class="fa fa-check"></i>Principal Coordinates.</a></li>
+<li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html#metric-scaling."><i class="fa fa-check"></i>Metric Scaling.</a></li>
+<li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html#non-metric-scaling."><i class="fa fa-check"></i>Non-metric scaling.</a></li>
+<li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html#which-to-use-metric-or-non-metric"><i class="fa fa-check"></i>Which to use: metric or non-metric?</a></li>
+<li><a href="multidimensional-scaling-mds.html#examples-in-r">Examples in <code>R</code></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="non-metric-multidimensional-scaling.html"><a href="non-metric-multidimensional-scaling.html"><i class="fa fa-check"></i>Non-metric Multidimensional Scaling</a><ul>
+<li><a href="non-metric-multidimensional-scaling.html#examples-in-r-1">Examples in <code>R</code></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="correspondence-analysis-ca.html"><a href="correspondence-analysis-ca.html"><i class="fa fa-check"></i>Correspondence Analysis (CA)</a></li>
+<li class="chapter" data-level="" data-path="mds-summary.html"><a href="mds-summary.html"><i class="fa fa-check"></i>MDS summary</a></li>
+<li class="chapter" data-level="" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html"><i class="fa fa-check"></i>Linear Discriminant Analysis (LDA)</a><ul>
+<li><a href="linear-discriminant-analysis-lda.html#example-in-r">Example in <code>R</code></a></li>
+<li class="chapter" data-level="" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html#prediction"><i class="fa fa-check"></i>Prediction</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Advanced Biological Data Analysis</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="linear-mixed-effect-models-lmms" class="section level2">
+<h2>Linear mixed-effect models (LMMs)</h2>
+<p><strong>Recall:</strong> Blocking helps control variability by making treatment groups more alike. Experimental units are divided into subsets (called blocks) so that units within the same block are more similar than units from different subsets or blocks. Blocking is a technique for dealing with nuisance factors. A nuisance factor is a factor that has some effect on the response, but is of no interest (e.g., age class).</p>
+<p><strong>Fixed effects</strong> are terms (parameters) in a statistical model which are fixed, or non-random, quantities (e.g., <em>treatment</em> group’s mean response). For the same <em>treatment</em>, we expect this quantity to be the same from experiment to experiment.</p>
+<p><strong>Random effects</strong> are terms (parameters) in a statistical model which are considered as random quantities or variables (e.g., block id). Specifically, terms whose levels are a representative sample from a population, and where the variance of the population is of interest should be allocated as random. Setting a block as a random effect allows us to infer variation between blocks as well as the variation between experimental units within blocks.</p>
+<p><strong>Key idea:</strong> Partition known sources of variation which are unimportant to key scientific question(s) to improve precision of comparisons between treatment means.</p>
+<div id="fixed-or-random-effects" class="section level3">
+<h3>Fixed or Random effects???</h3>
+<p><img src="https://1.bp.blogspot.com/-9PUW42GjR0U/WX1PQagQNXI/AAAAAAAAIoo/sIs8WyGSNFg0PbV_koT9Bgery_7VuKIPgCLcBGAs/s1600/1taixn.jpg" /></p>
+</div>
+<div id="a-randomised-controlled-block-design-rcbd" class="section level3">
+<h3>A Randomised Controlled Block Design (RCBD)</h3>
+<p><img src="img/rcbd.png" /></p>
+<div id="ignoring-an-effect" class="section level4">
+<h4>Ignoring an effect</h4>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb199-1" title="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb199-2" title="2">rcbd &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/rcbd.csv&quot;</span>)</a></code></pre></div>
+<pre><code>## Rows: 12 Columns: 5</code></pre>
+<pre><code>## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (1): Surgery
+## dbl (4): Run, Rat, logAUC8, logAUC4</code></pre>
+<pre><code>## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb203-1" title="1"><span class="co">## Note: Run should be a factor</span></a>
+<a class="sourceLine" id="cb203-2" title="2">rcbd<span class="op">$</span>Run &lt;-<span class="st"> </span><span class="kw">as.factor</span>(rcbd<span class="op">$</span>Run)</a>
+<a class="sourceLine" id="cb203-3" title="3">rcbd</a></code></pre></div>
+<pre><code>## # A tibble: 12 × 5
+##    Run   Surgery   Rat logAUC8 logAUC4
+##    &lt;fct&gt; &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+##  1 1     C           1    9.24    7.55
+##  2 1     P           2    8.81    9.34
+##  3 1     S           3   10.8    12.4 
+##  4 2     C           4    3.89    6.59
+##  5 2     P           5    8.62    7.94
+##  6 2     S           6   10.2     8.56
+##  7 3     C           7    8.42    7.32
+##  8 3     P           8    9.93    8.37
+##  9 3     S           9   11.7     7.27
+## 10 4     C          10    8.77    8.24
+## 11 4     P          11   10.9    10.8 
+## 12 4     S          12   13.0    12.1</code></pre>
+<p><strong>One-way vs two-way…</strong></p>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb205-1" title="1"><span class="kw">anova</span>(<span class="kw">lm</span>(logAUC4 <span class="op">~</span><span class="st"> </span>Surgery, <span class="dt">data =</span> rcbd))</a></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: logAUC4
+##           Df Sum Sq Mean Sq F value Pr(&gt;F)
+## Surgery    2 14.662  7.3308  2.5034 0.1366
+## Residuals  9 26.355  2.9284</code></pre>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb207-1" title="1">lm2 &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC4 <span class="op">~</span><span class="st"> </span>Run <span class="op">+</span><span class="st"> </span>Surgery, <span class="dt">data =</span> rcbd)</a>
+<a class="sourceLine" id="cb207-2" title="2"><span class="kw">anova</span>(lm2)</a></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: logAUC4
+##           Df  Sum Sq Mean Sq F value  Pr(&gt;F)  
+## Run        3 18.1317  6.0439  4.4097 0.05812 .
+## Surgery    2 14.6617  7.3308  5.3487 0.04640 *
+## Residuals  6  8.2235  1.3706                  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p><strong>Always check assumptions</strong></p>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb209-1" title="1">gglm<span class="op">::</span><span class="kw">gglm</span>(lm2)</a></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-93-1.png" width="672" /></p>
+</div>
+</div>
+<div id="analysis-using-lmer-from-lme4" class="section level3">
+<h3>Analysis using <code>lmer()</code> from <code>lme4</code></h3>
+<p><img src="_main_files/figure-html/unnamed-chunk-94-1.png" width="672" /></p>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb210-1" title="1">lmer_mod &lt;-<span class="st"> </span>lmerTest<span class="op">::</span><span class="kw">lmer</span>(logAUC8 <span class="op">~</span><span class="st"> </span>Surgery <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span><span class="op">|</span>Run), <span class="dt">data =</span> rcbd)</a>
+<a class="sourceLine" id="cb210-2" title="2"><span class="kw">summary</span>(lmer_mod)</a></code></pre></div>
+<pre><code>## Linear mixed model fit by REML. t-tests use Satterthwaite&#39;s method [
+## lmerModLmerTest]
+## Formula: logAUC8 ~ Surgery + (1 | Run)
+##    Data: rcbd
+## 
+## REML criterion at convergence: 37.2
+## 
+## Scaled residuals: 
+##     Min      1Q  Median      3Q     Max 
+## -1.8525 -0.2273  0.1772  0.4036  1.3309 
+## 
+## Random effects:
+##  Groups   Name        Variance Std.Dev.
+##  Run      (Intercept) 1.479    1.216   
+##  Residual             1.447    1.203   
+## Number of obs: 12, groups:  Run, 4
+## 
+## Fixed effects:
+##             Estimate Std. Error     df t value Pr(&gt;|t|)    
+## (Intercept)   7.5800     0.8552 5.9567   8.863 0.000119 ***
+## SurgeryP      1.9750     0.8506 6.0000   2.322 0.059293 .  
+## SurgeryS      3.8500     0.8506 6.0000   4.526 0.003991 ** 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Correlation of Fixed Effects:
+##          (Intr) SrgryP
+## SurgeryP -0.497       
+## SurgeryS -0.497  0.500</code></pre>
+<p>Now what about the <em>Random effects</em></p>
+<p>We have two variance components</p>
+<ul>
+<li>Between Groups (Runs) <span class="math inline">\(\hat{\sigma^2}_{\text{Run}}\)</span> = 1.479
+<ul>
+<li>Within Runs (between observations) <span class="math inline">\(\hat{\sigma_2}\)</span> = 1.447</li>
+</ul></li>
+</ul>
+<p>Note that <code>aov()</code> presents the same information, but in a different way:</p>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb212-1" title="1"><span class="kw">summary</span>(<span class="kw">aov</span>(logAUC8 <span class="op">~</span><span class="st"> </span>Surgery <span class="op">+</span><span class="st"> </span><span class="kw">Error</span>(Run), <span class="dt">data =</span> rcbd))</a></code></pre></div>
+<pre><code>## 
+## Error: Run
+##           Df Sum Sq Mean Sq F value Pr(&gt;F)
+## Residuals  3  17.65   5.883               
+## 
+## Error: Within
+##           Df Sum Sq Mean Sq F value Pr(&gt;F)  
+## Surgery    2 29.652  14.826   10.25 0.0116 *
+## Residuals  6  8.682   1.447                 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<ul>
+<li>Within Runs (Residuals) <span class="math inline">\(\hat{\sigma}_2\)</span> = 1.447 (<em>same as <code>lmer</code></em>)</li>
+<li>Between Run variance = <span class="math inline">\(\hat{\sigma}^2\)</span> + <span class="math inline">\(3\:\hat{\sigma}^2_{\text{Run}}\)</span> so <span class="math inline">\(\hat{\sigma}^2_{\text{Run}} = \frac{5.883 - \hat{\sigma}^2 }{3} = \frac{5.883 - 1.447}{3} = 1.479\)</span></li>
+</ul>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="multiple-comparisons.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="split-plot-and-repeated-measures-designs.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "lunr",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

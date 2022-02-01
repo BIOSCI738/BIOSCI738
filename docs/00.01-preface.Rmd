@@ -28,9 +28,10 @@ By the end of this course you will be able to:
 ##### Each week some lecture material will be recorded and uploaded to CANVAS. It is expected that you will have watched these prior to coming along to the in-person lecture {-}
 
 
-![](img/assessment.png)
+<p align="center">![](img/assessment.png)</p>
 
-![](img/timetable.png)
+
+<p align="center">![](img/timetable.png){width=200%}</p>
 
 
 
