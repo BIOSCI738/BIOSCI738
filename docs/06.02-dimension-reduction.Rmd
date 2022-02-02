@@ -1,4 +1,4 @@
-## Dimension reduction
+## Principal Component Analysis (PCA)
 
 Reduction of dimensions is needed when there are far too many features in a dataset, making it hard to distinguish between the important ones that are relevant to the output and the redundant or not-so important ones. Reducing the dimensions of data is called **dimensionality reduction.**
 
@@ -11,7 +11,8 @@ aim was to identify gradients in species composition in the field. For this reas
 reduce the quadrat × species (observations × variables) data matrix to a single ordering (hence
 ordination) of the quadrats which they hoped would reflect the underlying ecological gradient.
 
-One way is termed Principal Component Analysis (PCA). PCA is a **feature extraction** method that **reduces the dimensionality of the data** (number of variables) by creating new uncorrelated variables while minimizing loss of information on the original variables.
+One way is termed Principal Component Analysis (PCA). PCA is a **feature extraction** method that **reduces the dimensionality of the data** (number of variables) by creating new uncorrelated variables while minimizing loss of information on the original variables. It is a technique for the analysis of an unstructured sample of multivariate data. Its aim is to display the relative positions of the observations in the data cloud in fewer dimensions (while losing as little information as possible) and to help give insight into the way the observations vary. It is not a hypothesis testing technique (like t-test or Analysis of Variance); it is an exploratory, hypothesis generating tool that describes patterns of variation, and suggests relationships that should be investigated further.
+
 
 **Think of a baguette.** The baguette pictured here represents two data dimensions: 1) the length of the bread and 2) the height of the bread (we'll ignore depth of bread for now). Think of the baguette as your data; when we carry out PCA we're rotating our original axes (*x- and y-coordinates*) to capture as much of the variation in our data as possible. This results in **new** uncorrelated variables that each explain a \% of variation in our data; the procedure is designed so that the first new variable (PC1) explains the most, the second (PC2) the second most and so on.
 
@@ -24,37 +25,25 @@ Now rather than a baguette think of data; the baguette above represent the *shap
 
 Luckily we can do this all in `R`!
 
-### PCA  
-
-
-Principal Component Analysis (PCA) is a technique for the analysis of an unstructured sample of
-multivariate data. Its aim is to display the relative positions of the observations in the data cloud in
-fewer dimensions (while losing as little information as possible) and to help give insight into the
-way the observations vary. It is not a hypothesis testing technique (like t-test or Analysis of
-Variance); it is an exploratory, hypothesis generating tool that describes patterns of variation, and
-suggests relationships that should be investigated further.
 
 
 
-#### Sacling for PCA
-
-A major problem with PCA is that the components are not scale invariant. That means if we change
+One problem with PCA is that the components are not scale invariant. That means if we change
 the units in which our variables are expressed, we change the components; and not in any simple
 way either. So, every scaling or adjustment of the variables in preparation for the analysis could
-(and usually does ) produce a separate component structure. As I showed in section 4 sensible pre-
-treatment of the data by standardisation or transformation can often increase the interpretability and
-biological relevance of the results. It is therefore important to choose a standardisation or
-transformation carefully. In particular PCA will give different results depending on whether we
+(and usually does ) produce a separate component structure. It is therefore important to choose a standardisation or transformation carefully: PCA will give different results depending on whether we
 analyse the covariance matrix, where the data have merely been centred (corrected for the column,
 variable, mean), or the correlation matrix, where the data have been standardised to z -scores
 (centred and converted into standard deviation units). This is particularly important, as many
 computer programs to do PCA automatically analyse the correlation matrix . If you do not want that
 standardisation; you may have to explicitly ask for the covariance matrix. As you would expect, the
-results from the two analyses will usually be very different
+results from the two analyses will usually be very different, see below.
 
 
 
-#### Using the `palmerpenguins` data
+### Examples in `R` 
+
+#### The `palmerpenguins` data
 
 ```{r}
 ## getting rid of NAs
@@ -180,126 +169,8 @@ pc1 <- pca$x[,1]
 plot(by_hand,pc1)
 ```
 
-#### Athletes
 
-```{r, echo = FALSE, message = FALSE}
-athletes <- read_csv("../data/athletes.csv")
-```
-
-You'll find the `athletes.csv` file on CANVAS.
-
-```{r, eval = FALSE}
-athletes <- read_csv("athletes.csv")
-```
-
-```{r}
-athletes
-athletes %>%
-  ggpairs()
-corrplot::corrplot(cor(athletes), method = "ellipse", type = "upper")
-```
-
-```{r}
-pca <- athletes %>%
-  scale() %>%
-  prcomp()
-summary(pca)
-## standard deviations of newly rotated variables
-pca$sdev
-## p = 10 variables
-sum(pca$sdev^2)
-```
-
-**screeplot**
-
-```{r, message = FALSE}
-## screeplot of sdev^2
-fviz_screeplot(pca, choice = "eigenvalue") +
-  geom_hline(yintercept = 1)
-```
-
-**biplots**
-
-```{r}
-fviz_pca_biplot(pca,geom = "point") +
-      geom_point (alpha = 0.2)
-```
-
- + discus, shot, & javelin more strongly correlated with one another
- + running events more strongly correlated to one another
- + could think of PC1 as a *fieldness* variable (i.e., strong +ve loadings from field events and -ve loadings from track events)
- 
-**Finding correlation** between a PC and the original variable:
- 
-```{r}
-pca$rotation %*% diag(pca$sdev)
-```
-
-
-
-#### Ants 
-
-
-```{r, echo = FALSE}
-ants <- read_csv("../data/pitfalls.csv")
-```
-
-```{r, eval = FALSE}
-ants <- read_csv("pitfalls.csv")
-```
-
-```{r}
-## choose numeric variables only and transform
-ants_numeric <- ants %>%
-  dplyr::select(where(is.numeric), -Month) %>%
-  mutate(
-  Nyl = log(Nyl + 1),
-  Phe = log(Phe + 1),
-  Tet = log(Tet + 1),
-  Pac = log(Pac + 1))
-
-
-corrplot::corrplot(cor(ants_numeric), method = "ellipse",type = "upper")
-```
-
-```{r}
-pca <- ants_numeric %>%
-  scale() %>%
-  prcomp()
-summary(pca)
-## screeplot of sdev^2
-fviz_screeplot(pca, choice = "eigenvalue") +
-  geom_hline(yintercept = 1)
-## reduced space plot (biplot)
-fviz_pca_biplot(pca,geom = "point") +
-      geom_point (alpha = 0.2)
-```
-
-
-+ `Phe` and `Nyl` strongly positively correlated
-+ PC2 has a large contribution from `Tet`
-
-**Additional information**
-
-```{r}
-fviz_pca_biplot(pca,geom = "point",alpha = 0.2) +
-      geom_point(aes(color = ants$Location)) +
-  labs(color = "Location")
-```
-
-
-+ Central different from North and West?
-
-
-```{r}
-fviz_pca_biplot(pca,geom = "point",alpha = 0.2) +
-      geom_point(aes(color = ants$Habitat)) +
-  labs(color = "Habitat")
-```
-
-+ Grass and Scrub intermediate?
-
-### Reality check: reducing noise...
+#### Reality check: reducing white noise...
 
 ```{r}
 set.seed(1234) ## just for reproduciblity
@@ -319,3 +190,5 @@ summary(pca)
 fviz_screeplot(pca, choice = "eigenvalue") +
   geom_hline(yintercept = 1)
 ```
+
+What does this show? 

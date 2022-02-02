@@ -2,17 +2,15 @@
 
 **Learning objectives**
 
-+ Explain the aims and motivation behind cluster analysis and its relevance in biology
-+ Write `R` code to carry out hierarchical and k-means cluster analysis
-+ Interpret `R` output from hierarchical and k-means cluster analysis
-+ Interpret and communicate, to both a statistical and non-statistical audience, clustering techniques, specifically,
++ **Explain&& the aims and motivation behind cluster analysis and its relevance in biology
++ **Write** `R` code to **carry out** hierarchical and k-means cluster analysis
++ **Interpret** `R` output from hierarchical and k-means cluster analysis
++ **Interpret** and **communicate**, to both a statistical and non-statistical audience, clustering techniques, specifically,
     + *Divisive methods*, nonparametric algorithms such as k-means 
     + *Agglomerative methods*, clustering cases and/or variables into a hierarchy of sets (i.e., hierarchical clustering)
-+ Explain the aims and motivation behind Principal Component Analysis (PCA) and its relevance in biology
-+ Write `R` code to carry out PCA
-+ Interpret principal component scores and describe a subject with a high or low score
-+ Interpret `R` output from PCA 
-+ Interpret and communicate, to both a statistical and non-statistical audience, dimaension reduction techniques
++ **Explain** the aims and motivation behind Principal Component Analysis (PCA) and its relevance in biology
++ **Write** `R` code to carry out PCA
++ **Interpret** and **communicate**, to both a statistical and non-statistical audience, dimaension reduction techniques
 
 
 
@@ -21,10 +19,6 @@
 + [Eigenfaces](https://cmjt.github.io/statbiscuits/eigenfaces.html)
 + [ClusterDucks](https://cmjt.github.io/statbiscuits/clusterducks.html)
 + [K-means cluster analysis](https://uc-r.github.io/kmeans_clustering)
-+ [Little book for Multivariate Analysis](https://little-book-of-r-for-multivariate-analysis.readthedocs.io/en/latest/index.html)
-+ ['explor' is an R package to allow interactive exploration of multivariate analysis results](https://juba.github.io/explor/)
-+ [The Mathematics Behind Principal Component Analysis (6 min read)](https://towardsdatascience.com/the-mathematics-behind-principal-component-analysis-fff2d7f4b643)
-+ [ClusterDucks](https://cmjt.github.io/statbiscuits/clusterducks.html)
 + [Little book for Multivariate Analysis](https://little-book-of-r-for-multivariate-analysis.readthedocs.io/en/latest/index.html)
 + ['explor' is an R package to allow interactive exploration of multivariate analysis results](https://juba.github.io/explor/)
 + [The Mathematics Behind Principal Component Analysis (6 min read)](https://towardsdatascience.com/the-mathematics-behind-principal-component-analysis-fff2d7f4b643)

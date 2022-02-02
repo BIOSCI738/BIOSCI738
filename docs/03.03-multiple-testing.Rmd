@@ -10,13 +10,14 @@ When we have **multiple comparisons** to make we should then control the **Type 
 | $H_0$ is true |  `r emo::ji("check")` | Type I error  |
 | $H_0$ is false  | Type II error  | `r emo::ji("check")` |
 
-or...
-
-![](https://miro.medium.com/max/924/0*8P474MYDyFZZBdVQ.png)
 
 The **familywise error rate (FWER)** is the risk of making at least one **Type I** error among the family of comparisons in the experiment. Now let's consider carrying out $m$ independent t-tests and let for any single test, let Pr(commit a Type 1 error) $= \alpha_c$ be the **per comparison error rate (PCER)**. So for a single test the probability a correct decision is made is $1 - \alpha_c$. Therefore for $m$ **independent** t-tests the probability of committing no Type I errors is $(1 - \alpha_c)^m$ and the probability of committing at least one Type I error is $1 -(1 - \alpha_c)^m = \alpha_F$ which is the upper limit of the FWER.
 
-```{r alp, echo = FALSE, message=FALSE}
+The **False Discovert Rate (FDR)** controls the expected (mean) proportion of false discoveries amongst the $R$ (out of $m$) hypotheses declared significant.
+
+Consider testing $m$ null hypotheses with corresponding p-values $P_1, P_2,...,P_m$; we then order then so that  $P_{(1)} < P_{(2)} <...<P_{(m)}$ (where $P_{(i)}$ is the $i^{th}$ largest $i=1,...,m$). The $i^{th}$ ordered p-value is calculated as  $\frac{i}{m}q^*$ and the $i^{th}$ null hypothesis is rejected if $P_i \leq \frac{i}{m}q^*$
+
+```{r alp, echo = FALSE, message=FALSE, fig.align='center', fig.width=10, fig.height=5}
 library(ggplot2)
 m <- data.frame(m = rep(1:10,3))
 m$alpha <- rep(c(0.01,0.05,0.2),each = 10)
@@ -26,14 +27,14 @@ require(patchwork)
 p <- ggplot(data = m, aes(x = as.factor(m), y = pcer, 
                           color = as.factor(alpha), group = as.factor(alpha) )) +
   geom_point() + geom_line() + xlab("Number of comparisons, m") +
-  labs(colour = "alpha") +
+  labs(colour = expression(alpha)) +
   ylab("Per comparison error rate") + 
   theme_classic() + geom_hline(yintercept = 0.0005) 
 f <- ggplot(data = m, aes(x = as.factor(m), y = fwer, color = as.factor(alpha),
                           group = as.factor(alpha))) +
   geom_point()  + geom_line() + xlab("Number of comparisons, m") +
   ylab("Family wise comparison error rate") + 
-  labs(colour = "alpha") +
+  labs(colour = expression(alpha)) +
   theme_classic()
 f + p
 ```
@@ -59,73 +60,68 @@ Suppose we have a number $m$ of null hypotheses, $H_1, H_2, ..., H_m$. Using the
 + $R=V+S$ is the number of rejected null hypotheses (also called *discoveries*, either true or false)
 
 
-### Using the `predictmeans` package
+### Multiple comparison procedures using `predictmeans` 
+
 
 ```{r,echo = FALSE}
 options(warn=-1)
 ```
 
+Recall the data from module 2:
 
 ```{r, message = FALSE, echo = FALSE}
 library(tidyverse)
 rats <-  read_csv("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/crd_rats_data.csv")
 rats$Surgery <- as_factor(rats$Surgery)
+kableExtra::kable(rats) %>%
+  kableExtra::kable_classic(full_width = FALSE, html_font = "Cambria")
 ```
 
-Recall,
+
+Fitting a linear model using `lm()`:
+
 
 ```{r}
 rats_lm <- lm(logAUC ~ Surgery, data = rats)
 coef(rats_lm)
 ```
 
+Our fitted model is therefore
 
 ```{r, echo = FALSE, results='asis'}
 library(equatiomatic)
-extract_eq(rats_lm, wrap = TRUE)
+extract_eq(rats_lm, wrap = TRUE, use_coefs = TRUE)
 ```
 
-Using the `predictmeans` package
-
-```{r predmeans, message=FALSE, warnings = FALSE}
-# Load predictmeans (assumes already installed)
-library(predictmeans)
-```
-
- + **Fisher’s, Least Significant Difference (LSD)**
+#### Fisher’s, Least Significant Difference (LSD)
 
 Carry out post-hoc tests only if the ANOVA F-test is *significant*. If so declare significant $100\alpha\%$ any pairwise difference > LSD. This does **not** control the FWER.
 
-```{r, eval = FALSE}
-tukey <- predictmeans(rats_lm , modelterm = "Surgery", adj = "tukey",pairwise = TRUE)
+```{r}
+tukey <- predictmeans::predictmeans(rats_lm , modelterm = "Surgery", adj = "tukey",pairwise = TRUE)
+tukey$mean_table
 ```
 
- + **Bonferroni correction**
+#### Bonferroni correction
 
 We reject the $H_0$ for which the p-value, *p-val*, is *p-val* $< \alpha_c = \frac{\alpha_f}{n_c}$ where $\alpha_f$ is the FWER and $n_c$ is the number of pairwise comparisons. Howerer, this makes **no** assumptions about independence between tests.
 
 
-```{r, eval = FALSE}
-bonferroni <- predictmeans(rats_lm , modelterm = "Surgery", adj = "bonferroni",pairwise = TRUE)
+```{r}
+bonferroni <-  predictmeans::predictmeans(rats_lm , modelterm = "Surgery", adj = "bonferroni",pairwise = TRUE)
+bonferroni$mean_table
 ``` 
 
-
-### Multiple comparison procedures
-
- + **Tukey’s Honest Significant Difference (HSD)**
+#### Tukey’s Honest Significant Difference (HSD)
 
 This compares the mean of every treatment with the mean of every other treatmen and uses a *studentized range* distribution compated with a t-distribution for Fisher's LSD and the Bonferroni correction.
 
 Here Tukey's *studentixed range* (TSR) $=q_{m,df}(1 - \frac{\alpha}{2})\sqrt{2\times \frac{\text{residual MS}}{\text{# reps}}}$
 
 ```{r}
-TukeyHSD(aov(logAUC~Surgery, data = rats))
+TukeyHSD(aov(logAUC~Surgery, data = rats))$Surgery
 ```
-+ **False Discovert Rate (FDR)**
 
-The FDR controls the expected (mean) proportion of false discoveries amongst the $R$ (out of $m$) hypotheses declared significant.
-
-Consider testing $m$ null hypotheses with corresponding p-values $P_1, P_2,...,P_m$; we then order then so that  $P_{(1)} < P_{(2)} <...<P_{(m)}$ (where $P_{(i)}$ is the $i^{th}$ largest $i=1,...,m$). The $i^{th}$ ordered p-value is calculated as  $\frac{i}{m}q^*$ and the $i^{th}$ null hypothesis is rejected if $P_i \leq \frac{i}{m}q^*$
 
  
 

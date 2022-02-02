@@ -1,34 +1,18 @@
-## `r emo::ji('scream')` p-values `r emo::ji('scream')`
+## Hypothesis testing: key terms 
 
-### P-values from permutation tests
-
-+ In experimental situations a large p-value (large tail proportion) means that the luck of the randomisation quite often produces group differences as large or even larger than what we've got in our data.
-   + A small p-value means that the luck of the randomisation draw hardly ever produces group differences as large as we've got in our data.
-   + **Statistical significance does not imply practical significance.**
-   + **Statistical significance says nothing about the size of treatment differences.** To estimate the sizes of differences you need confidence intervals.
-   
-### ASA Statement on p-Values
-
-**[The ASA Statement on p-Values: Context, Process, and Purpose](https://www.tandfonline.com/doi/full/10.1080/00031305.2016.1154108)**
+### `r emo::ji('scream')` p-values `r emo::ji('scream')`
 
 > "Good statistical practice, as an essential component of good scientific practice, emphasizes principles of good study design and conduct, a variety of numerical and graphical summaries of data, understanding of the phenomenon under study, interpretation of results in context, complete reporting and proper logical and quantitative understanding of what data summaries mean. No single index should substitute for scientific reasoning." `r tufte::quote_footer('--- ASA Statement on p-Values')`
 
+In experimental situations a **large tail proportion** ( large p-value means that the luck of the randomisation quite often produces test statistics **as large** or **even larger** than what we've got in our data.
+  
+A **small tail proportion** (small p-value) means that the luck of the randomisation draw **hardly ever produces** test statistics as large as we've got in our data.
 
 **What is a p-Value?**
 
-Informally, a p-value is the probability under a specified statistical model that a statistical summary of the data (e.g., the sample mean difference between two compared groups) would be equal to or more extreme than its observed value
+Informally, a p-value is the probability under a specified statistical model that a statistical summary of the data (e.g., the sample mean difference between two compared groups) would be equal to or more extreme than its observed value.
 
-+ **p-values** can indicate how incompatible the data are with a specified statistical model
-
-+ p-values **do not** measure the probability that the studied hypothesis is true, or the probability that the data were produced by random chance alone
-
-+ Scientific conclusions and business or policy decisions **should not** be based only on whether a p-value passes a specific threshold
-
-+ Proper inference requires **full** reporting and transparency
-
-+ A p-value, or statistical significance, does **not** measure the size of an effect or the importance of a result
-
-+ By itself, a p-value does **not** provide a good measure of evidence regarding a model or hypothesis
+**P-values** can indicate how incompatible the data are with a specified statistical model, but they **do not** measure the probability that the studied hypothesis is true, or the probability that the data were produced by random chance alone. Scientific conclusions and business or policy decisions **should not** be based only on whether a p-value passes a specific threshold. A p-value, or statistical significance, does **not** measure the size of an effect or the importance of a result. **Statistical significance does not imply practical significance.** **Statistical significance says nothing about the size of treatment differences.** By itself, a p-value does **not** provide a good measure of evidence regarding a model or hypothesis
 
 
 ### Type I and Type II errors
@@ -36,18 +20,24 @@ Informally, a p-value is the probability under a specified statistical model tha
 > "Type I Zoom error: you think people can hear you, but you’re actually on mute.  Type II Zoom error: you think your muted, but actually people can hear you." `r tufte::quote_footer('--- @CynPeacock, Twitter')`
 
 
-**Type I** error (false positive): declare a difference (i.e., reject $H_0$) when there is no difference (i.e. $H_0$ is true). Risk of the Type I error is determined by the *level of significance* (which we set!) (i.e., $\alpha =\text{ P(Type I error)} = \text{P(false positive)}$.
+#### Type I
+
+A **Type I** error (false positive): declare a difference (i.e., reject $H_0$) when there is no difference (i.e. $H_0$ is true). Risk of the Type I error is determined by the *level of significance* (which we set!) (i.e., $\alpha =\text{ P(Type I error)} = \text{P(false positive)}$.
 
 <p align="center">![](https://raw.githubusercontent.com/allisonhorst/stats-illustrations/master/other-stats-artwork/type_1_errors.png)</p>
 
-**Type II** error (false negative): difference not declared (i.e., $H_0$ not rejected) when there is a difference (i.e., $H_0$ is false). Let $\beta =$ P(do not reject $H_0$ when $H_0$ is false); so, $1-\beta$ = P(reject $H_0$ when $H_0$ is false) = P(a true positive), which is the statistical **power** of the test.
+
+#### Type II
+
+A **Type II** error (false negative): difference not declared (i.e., $H_0$ not rejected) when there is a difference (i.e., $H_0$ is false). Let $\beta =$ P(do not reject $H_0$ when $H_0$ is false); so, $1-\beta$ = P(reject $H_0$ when $H_0$ is false) = P(a true positive), which is the statistical **power** of the test.
 
 <p align="center">![](https://raw.githubusercontent.com/allisonhorst/stats-illustrations/master/other-stats-artwork/type_2_errors.png)</p>
 
+#### Family-Wise Error Rate (FWER)
 
 **Each** time we carry out a hypothesis test the probability we get a false positive result (type I error) is given by $\alpha$ (the *level of significance* we choose).
 
-When we have **multiple comparisons** to make we should then control the **Type I** error rate across the entire *family* of tests under consideration, i.e., control the Family-Wise Error Rate (FWER); this ensures that the risk of making at least one **Type I** error among the family of comparisons in the experiment is $\alpha$.
+When we have **multiple comparisons** to make we should then control the **Type I** error rate across the entire *family* of tests under consideration, i.e., control the **Family-Wise Error Rate (FWER)**; this ensures that the risk of making at least one **Type I** error among the family of comparisons in the experiment is $\alpha$. More on this in later chapters.
 
 
 |State of Nature  | Don't reject $H_0$ | reject $H_0$ |
@@ -55,10 +45,11 @@ When we have **multiple comparisons** to make we should then control the **Type 
 | $H_0$ is true |  `r emo::ji("check")` | Type I error  |
 | $H_0$ is false  | Type II error  | `r emo::ji("check")` |
 
+<p align="center">![](https://miro.medium.com/max/924/0*8P474MYDyFZZBdVQ.png)</p>
 
 ## Parametric hypothesis tests
 
-Again, using the `paua.csv` data from the previous section. Recall that the P$\overline{\text{a}}$ua dataset contains the following variables
+Recall, the P$\overline{\text{a}}$ua dataset. It contains the following variables
 
  + `Age` of  P$\overline{\text{a}}$ua in years (calculated from counting rings in the cone) 
  + `Length` of  P$\overline{\text{a}}$ua shell in centimeters
@@ -87,13 +78,16 @@ paua %>% summarise(average_length = mean(Length))
 ## violin plot with transparent points
 os <- ggplot(paua,aes(x = 1,y = Length)) + 
   geom_violin() +
-  geom_point(alpha = 0.4) +
-  ylab("Length (cms)") + xlab("") +
-  theme_classic() +
+  geom_jitter(alpha = 0.4) +
+  ylab("Shell length (cms)") + xlab("") +
+  theme_linedraw() +
   geom_point(aes(x = 1, y = mean(Length)), size = 2) +
-  geom_hline(aes( yintercept = mean(Length)), lty = 2, alpha = 0.5) +
+  geom_hline(aes( yintercept = mean(Length)), lty = 2, alpha = 0.5,
+             col = "brown", size = 2) +
   theme(legend.position = "none") +
-  geom_text(aes(x = 1, y = mean(Length) + 0.5, label = paste0("Averege = ",round(mean(Length),3)))) +
+  geom_text(aes(x = 1, y = mean(Length) + 0.5, 
+                label = paste0("Averege = ",round(mean(Length),3), "cm")),
+            col = "brown", size = 5) +
   theme(axis.title.x=element_blank(),
         axis.text.x=element_blank(),
         axis.ticks.x=element_blank())
@@ -103,14 +97,16 @@ os
 
 What about drawing inference? Do we believe that the average length of P$\overline{\text{a}}$ua shells is, say, 5cm? We know our sample average, but can we make any claims based on this one number?
 
-How do we reflect our uncertainty about the population mean? (*remember it's the population we want to make inference on based on our sample!*) Enter the Standard Error of the Mean, **SEM**,  $= \frac{\sigma}{\sqrt{n}}$; where $\sigma = \sqrt{\frac{\Sigma_{i = 1}^n(x_i - \bar{x})^2}{n-1}}$ ($i = 1,...,n$) is the standard deviation (SD) of the sample, $n$ is the sample size, and $\bar{x}$ is the sample mean.
+How do we reflect our uncertainty about the population mean? **Remember, it's the population we want to make inference on based on our sample!** 
+
+Enter the Standard Error of the Mean (SEM),  $$\text{SEM} = \frac{\sigma}{\sqrt{n}}, $$ where $\sigma = \sqrt{\frac{\Sigma_{i = 1}^n(x_i - \bar{x})^2}{n-1}}$ ($i = 1,...,n$) is the standard deviation (SD) of the sample, $n$ is the sample size, and $\bar{x}$ is the sample mean.
 
 
 **Calculating $\Sigma_{i = 1}^n(x_i - \bar{x})^2, i = 1,...,n$ by hand**.
 
-It's the sum squared differences of the distances between the $i^{th}$ observation and the sample mean $\bar{x}$ (denoted $\mu_x$ in the GIF below)
+In, relatively, plain English this sum is the sum squared differences of the distances between the $i^{th}$ observation and the sample mean $\bar{x}$ (denoted $\mu_x$ in the GIF below)
 
-![](https://raw.githubusercontent.com/cmjt/statbiscuits/master/figs_n_gifs/var.gif)
+<p align="center>![](https://raw.githubusercontent.com/cmjt/statbiscuits/master/figs_n_gifs/var.gif)</p>
 
 So using the example values in the GIF
 
@@ -129,6 +125,7 @@ squared_distance_from_mean
 ## sum of the squared distances
 sum(squared_distance_from_mean)
 ```
+
 **Calculating SD and SEM**
 
 Now what about the **SD**? Remember it's the $\sqrt{\frac{\Sigma_{i = 1}^n(x_i - \bar{x})^2}{n-1}}$ so = $\sqrt{\frac{`r sum(squared_distance_from_mean)`}{n-1}}$ = $\sqrt{\frac{`r sum(squared_distance_from_mean)`}{`r length(x)`-1}}$ = $\sqrt{\frac{`r sum(squared_distance_from_mean)`}{`r length(x)-1`}}$ = `r sqrt(sum(squared_distance_from_mean)/(length(x) - 1))`.
@@ -161,8 +158,10 @@ sem
 Recall that the SEM is a measure of uncertainty about the mean. So we can use it to express our uncertainty visually. Typically $\pm$ twice the SEM is the interval used:
 
 ```{r vizun, echo = FALSE}
-os + geom_hline(data = sem, aes(yintercept = mean + 2*sem), lty = 3, alpha = 0.5) +
-  geom_hline(data = sem, aes(yintercept = mean - 2*sem), lty = 3, alpha = 0.5)
+os + geom_hline(data = sem, aes(yintercept = mean + 2*sem), lty = 3, alpha = 0.5, 
+                col = "brown", size = 2) +
+  geom_hline(data = sem, aes(yintercept = mean - 2*sem), lty = 3, alpha = 0.5,
+             col = "brown", size = 2)
 ```
 
 **Why error bars that are $\pm$ twice the SEM?**
@@ -237,12 +236,14 @@ t.test(paua$Length, mu = 5 )
 
 Recall, that the p-value gives the probability that under our null hypothesis we observe anything as least as extreme as what we did (hence the $\times 2$, think of the grey shaded area in the graph). This probability is $\sim$ 22%. Do you think what we've observed is likely under the null hypothesis?
 
-Does this plot help? The proposed mean is shown by the red horizontal line; the dashed line shows the sample mean and the dotted lines $\pm$ the SEM.
+Does this plot help? The proposed mean is shown by the blue horizontal line; the dashed line shows the sample mean and the dotted lines $\pm$ the SEM.
 
 ```{r vizunmu, echo  = FALSE}
-os + geom_hline(data = sem, aes(yintercept = mean + 2*sem), lty = 3, alpha = 0.5) +
-  geom_hline(data = sem, aes(yintercept = mean - 2*sem), lty = 3, alpha = 0.5) +
-  geom_hline(aes(yintercept = 5), color = "red")
+os + geom_hline(data = sem, aes(yintercept = mean + 2*sem), lty = 3, alpha = 0.5,
+                col = "brown", size = 2) +
+  geom_hline(data = sem, aes(yintercept = mean - 2*sem), lty = 3, alpha = 0.5,
+             col = "brown", size = 2) +
+  geom_hline(aes(yintercept = 5), color = "blue", size = 2)
 ```
 
 ### Differences between two means
@@ -250,9 +251,9 @@ os + geom_hline(data = sem, aes(yintercept = mean + 2*sem), lty = 3, alpha = 0.5
 ```{r vio, echo = FALSE}
 means <- paua %>% group_by(Species) %>% summarise(means = mean(Length))
 ## violin plot with transparent points
-a <- ggplot(paua,aes(x = Species, y = Length)) + 
+a <- ggplot(paua,aes(x = Species, y = Length, col = Species)) + 
   geom_violin() +
-  geom_point(alpha = 0.4) +
+  geom_jitter(alpha = 0.4) +
   ylab("Length (cm)") + xlab("") +
   theme_classic() +
   geom_point(data = means, aes(x = Species, y = means, color = Species), size = 2) +
@@ -278,13 +279,9 @@ As above the average values are all well and good, but what about **variation?**
    
    + **Null hypothesis**: On average the species' shells are the same length
    + **Alternative hypothesis**: they aren't!
-   + **Notationally**: $H_0: \mu_{\text{Haliotis iris}} - \mu_{\text{Haliotis australis}} = 0$ vs $H_1: \mu_{\text{Haliotis iris}} \neq \mu_{\text{Haliotis australis}}$
-   
-    + $\mu_{j}$ is the average length for species $j =$ (*Haliotis iris*, *Haliotis australis*), 
+   + **Notationally**: $H_0: \mu_{\text{Haliotis iris}} - \mu_{\text{Haliotis australis}} = 0$ vs $H_1: \mu_{\text{Haliotis iris}} \neq \mu_{\text{Haliotis australis}},$ where $\mu_{j}$ is the average length for species $j =$ (*Haliotis iris*, *Haliotis australis*).
 
-**Calculate the test statistic:** t-statistic = $\frac{\bar{x}_{\text{difference}} - \mu}{\text{SED}}$ = $\frac{\bar{x}_{\text{difference}} - 0}{\text{SED}}$
-
-   + where $\bar{x}_{\text{difference}}$ is the differences between the species` averages. 
+Let us now **calculate the test statistic:** t-statistic = $\frac{\bar{x}_{\text{difference}} - \mu}{\text{SED}}$ = $\frac{\bar{x}_{\text{difference}} - 0}{\text{SED}}n$ where $\bar{x}_{\text{difference}}$ is the differences between the species` averages. 
 
 Calculations area a little bit more tricky here so let's use `R`:
 
@@ -296,18 +293,24 @@ test$p.value
 
 ```
 
-Listed are the t-statistic, `t` = `r test$statistic` and the p-value, `p-value` = `r test$p.value` for the hypothesis test outlined above. What would you conclude?
+Listed are the t-statistic, `t` = `r test$statistic` and the p-value, `p-value` = `r round(test$p.value,6)` for the hypothesis test outlined above. What would you conclude?
 
 
 ### One-Way Analysis of Variance (ANOVA)
+
+What if we had more than two groups?
+
+In this section we consider the following data of the calculated logAUC for 12 rats subjected to three different treatments (`Surgery`), `C`, `P`, and `S`, 
 
 ```{r data-quiet, message = FALSE, echo = FALSE}
 library(tidyverse)
 rats <- read_csv("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/crd_rats_data.csv")
 rats$Surgery <- as_factor(rats$Surgery)
+kableExtra::kable(rats) %>%
+  kableExtra::kable_classic(full_width = FALSE, html_font = "Cambria")
 ```
 
-### Between group SS (SSB)
+##### Between group SS (SSB)
 
 **The idea**: Assess **distances** between treatment (*surgical condition*) means relative to our uncertainty about the actual (*true*) treatment means.
 
@@ -360,7 +363,7 @@ So the Between group SS (SSB) = `r sum(4*((means$avg - mean)^2))`
 
 So we have only 2 bits of **unique** information; **SSB degrees of freedom** = 2
 
-### Within group SS (SSW)
+##### Within group SS (SSW)
 
 The **Within group SS (SSW)** arises from the same idea:
 
@@ -398,7 +401,7 @@ ggplot() +
     theme(legend.position = "none")
 ```
 
-### F-statistic
+##### F-statistic
 
 Recall the Between group SS (**SSB**) = `r sum(4*((means$avg - mean)^2))`
 
@@ -416,8 +419,53 @@ Consider the ratio ${\frac{{\text{variation due to treatments}}}{{\text{unexplai
 
 This is the **F-statistic!**
 
-### Degrees of freedom (DF)
+##### Degrees of freedom (DF)
 
-Essentially *statistical currency* (i.e., **unique** bits of information). So in the example above we have 3 treatment groups and if we know the mean of two we know the third (i.e., 2 *unique* bits of info) so SSB df = 2. Now, for SSW df. We have 12 observations (4 in each group); we know the treatment means so if we have three of those observed values in each group we know the fourth: 12 - 3 = 9 (i.e., number of observations - number of df lost due to knowing the cell means).
+Essentially *statistical currency* (i.e., **unique** bits of information). So in the example above we have 3 treatment groups and if we know the mean of two we know the third (i.e., 2 *unique* bits of info) so SSB df = 2. 
+
+Now, for SSW df We have 12 observations (4 in each group); we know the treatment means so if we have three of those observed values in each group we know the fourth: 12 - 3 = 9 (i.e., number of observations - number of df lost due to knowing the cell means).
+
+##### Inference
+
+Hypothesis: We test the Null hypothesis, $H_0$, population (`Surgery`) means are the same on average verses the alternative hypothesis, $H_1$, that **at least one** differs from the others!
+
+Under our null hypothesis the distribution of the F-statistic is as below. The value calculated from our hypothesis test was  16.359. This observed test statistic is shown by the vertical line. To calculate the relevant p-value we can use
+
+```{r}
+(1 - pf(q  = 16.351,df1 = 2, df2 = 9))
+```
+
+Thus, the probability of getting an **F-statistic** at least as extreme as the one we observe (think of the area under the tails of the curve below) **p-value** Pr(>F)= `r round((1 - pf(q  = 16.351,df1 = 2, df2 = 9)),4)` tells us we have sufficient evidence to reject $H_0$ at the 1% level of significance.
 
 
+
+```{r, echo = FALSE}
+rats_aov <- aov(logAUC ~ Surgery, data = rats)
+stats_df <- data.frame(Fs = summary(rats_aov)[[1]][[4]][[1]])
+crit_df <- as.data.frame(apply(stats_df,2,rep,each = 100))
+crit_df$Fs <- c(sapply(stats_df$Fs, function(x) seq(x,20, length.out = 100)))
+crit_df$y <- df(crit_df$Fs,df1 = 2,df2 = 9) ## corresponding F val
+ggplot(stats_df,aes(x = Fs)) +
+  geom_vline(aes(xintercept = Fs), color = "cyan4" , size = 2) +
+    geom_line(data = data.frame(x = seq(0,20,.1),
+                              y  = df(seq(0,20,.1),df1 = 2,df2 = 9)),
+              aes(x = x,y = y), alpha = 0.7, size = 2) +
+  theme_classic() +
+  ylab("density") +
+  xlab("F-statistic") +
+  geom_line(data = crit_df,mapping = aes(x = Fs,y = y),color = "darkred", size = 2) +
+  geom_text(aes(4, 1,label = paste("F-statistic =", format(round(Fs, 2), nsmall = 2))),
+              size = 4, hjust = 0, color = "cyan4")  +
+  geom_text(aes(4, 0.95,label = paste("p-value =", format(round(pf(Fs,2,9,lower.tail = FALSE),4), 
+                                                         nsmall = 2))),
+              size = 4, hjust = 0, color = "darkred") 
+  
+
+```
+
+
+Alternatively, we could do this in one step **using `aov()`:**
+
+```{r}
+summary(aov(logAUC ~ Surgery, data = rats))
+```

@@ -44,7 +44,7 @@ This section is a recap only, if you need a more in-depth overview of log rules 
  + **Log reciprocal:**	$\text{log}(1/x)=−\text{log}(x)$
   + **Diffrentiating a log:** $\frac{\delta \text{log}(y)}{\delta x} = \frac{1}{y}\frac{\delta y}{\delta x}.$
 
-### Maximum likelihood
+### Maximum likelihood estimation for a Binomial distribution
 
 The process of using observations to suggest a value for a parameter is called estimation. The value suggested is called the **estimate** of the parameter.
 
@@ -72,7 +72,7 @@ $$\theta = \alpha + \beta \times (\text{lobster species}).$$
 
 How would we estimate the unknown intercept $\alpha$ and slope(s) $\beta$, assuming we had information on lobster species etc. For this we need a general framework for estimation that can be applied to any situation. The most useful and general method of obtaining parameter estimates is the method of **maximum likelihood estimation**. I mean the title of this section was a bit of a giveaway!
 
-### The Likelihood
+#### The Likelihood
 
 The likelihood function, $L(\theta ; x)$ is a function of the parameter(s) $\theta$ for fixed data $x$ and it gives the probability of a fixed observation $x$ for every possible value of the parameter(s) $theta$, $P(X = x)$.
 
@@ -134,7 +134,7 @@ data.frame(p = p, Likelihood =  dbinom(x = 79, size = 159, p)) %>%
            label = expression(paste(frac("d log(L)","dx"), " = 0")), col = "#26733a")
 ```
 
-### Maximum likelihood for a CRD
+### Maximum likelihood estimation for a CRD
 
 Recall the following CRD equation
 
@@ -198,7 +198,7 @@ data.frame(p = p, loglikelihood =  dbinom(x = 79, size = 159, p, log = TRUE)) %>
 ```
 
 
-## Maximum likelihood estimation for a Poisson distribution
+### Maximum likelihood estimation for a Poisson distribution
 
 The Poisson process counts the number of events occurring in a fixed time or space, when events occur independently and at a constant average rate, $\lambda$.
 
@@ -208,7 +208,7 @@ $$f_X(x) = P(X=x)=\frac{\lambda^x}{x!}e^{-\lambda}$$
 
 for  $x = 0,1,2,\dots$
 
-### Maximising the Likelihood
+#### Maximising the Likelihood
 
 Suppose that $x_1, \ldots, x_n$ are iid observations from a Poisson distribution with unknown parameter $\lambda$:
 
@@ -234,7 +234,7 @@ So the maximum likelihood estimator is $$ \hat{\lambda} = \overline{x}  = \frac{
 \;.$$
 
 
-### Maximising the log-likelihood function
+#### Maximising the log-likelihood function
 
 As above, 
 
@@ -259,7 +259,7 @@ assuming a unique maximum in $0 < \lambda < \infty$ the MLE is $\hat{\lambda} = 
 
 
 
-## Example for a continuous random variable
+###  Maximum likelihood estimation for a continuous random variable
 
 Let $X$ be a continuous random variable with  probability density function 
 $$f_X(x) = 

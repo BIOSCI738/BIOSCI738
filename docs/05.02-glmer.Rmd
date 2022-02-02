@@ -1,4 +1,4 @@
-## Introduction to generalised linear mixed-effects models (GLMMMs)
+## Generalised linear mixed-effects models (GLMMMs)
 
 Recall module 3 when we covered fitting linear models with random effects (`lmer`). The fixed effects and random effects were specified via the model formula. Now we've covered GLMs we can include random effects here too and fit GLMMs!
 

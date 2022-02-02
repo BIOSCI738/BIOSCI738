@@ -7,15 +7,15 @@
 + **List** the aims, **write out** the appropriate null and alternative hypothesis using statistical notation for a bootstrap procedure 
 + **Write** `R` code to carry out bootstapping
 + **Carry out** and **interpret** tests for the existence of relationships between explanatory variables and the response in a linear model
-+ **Write** R code to fit a linear model with a single continuous explanatory variable
-+ **Write** R code to fit a linear model with a continuous explanatory variable and a factor explanatory variable
++ **Write** `R` code to fit a linear model with a single continuous explanatory variable
++ **Write** `R` code to fit a linear model with a continuous explanatory variable and a factor explanatory variable
 **Interpret** estimated effects with reference to confidence intervals from linear regression models. Specifically the interpretation of
    + the intercept
    + the effect of a factor
    + the effect of a one-unit increase in a numeric variable
    + the effect of an x-unit increase in a numeric variable
 + **Make** a point prediction of the response for a new observation
-+ **Write** R code to fit a linear model with interaction terms in the explanatory variables
++ **Write** `R` code to fit a linear model with interaction terms in the explanatory variables
 + **Interpret** estimated effects with reference to confidence intervals from linear regression models. Specifically the interpretation of
     + main effects in a model with an interaction
     + the effect of one variable when others are included in the model
@@ -25,14 +25,6 @@
 
 + [Exploring interactions with continuous predictors in regression models](https://interactions.jacob-long.com/articles/interactions.html)
 + [The ASA Statement on p-Values: Context, Process, and Purpose](https://www.tandfonline.com/doi/full/10.1080/00031305.2016.1154108)
-
-| Traditional name    | Model formula  | R code  |
-| ------------------- |:--------------:| -------:|
-| Simple regression   | $Y \sim X_{continuous}$ | `lm(Y ~ X)` |
-| One-way ANOVA       | $Y \sim X_{categorical}$      |   `lm(Y ~ X)` |
-| Two-way ANOVA       | $Y \sim X1_{categorical} + X2_{categorical}$| `lm(Y ~ X1 + X2)` |
-| ANCOVA              | $Y \sim X1_{continuous} + X2_{categorical}$ |`lm(Y ~ X1 + X2)` |
-| Multiple regression | $Y \sim X1_{continuous} + X2_{continuous}$ | `lm(Y ~ X1 + X2)` |
-| Factorial ANOVA     | $Y \sim X1_{categorical} * X2_{categorical}$|   `lm(Y ~ X1 * X2)` or `lm(Y ~ X1 + X2 + X1:X2)` |
++ [Power Analysis | Introduction in R](https://newpblog.netlify.app/2021-11-19-bit-by-bit-power-analysis/)
 
 

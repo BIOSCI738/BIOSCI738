@@ -176,14 +176,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="p-values.html"><a href="p-values.html#asa-statement-on-p-values"><i class="fa fa-check"></i>ASA Statement on p-Values</a></li>
 <li class="chapter" data-level="" data-path="p-values.html"><a href="p-values.html#type-i-and-type-ii-errors"><i class="fa fa-check"></i>Type I and Type II errors</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="one-and-two-sample-tests.html"><a href="one-and-two-sample-tests.html"><i class="fa fa-check"></i>One and two sample tests</a><ul>
-<li class="chapter" data-level="" data-path="one-and-two-sample-tests.html"><a href="one-and-two-sample-tests.html#one-sample-t-test"><i class="fa fa-check"></i>One-Sample t-test</a></li>
-<li class="chapter" data-level="" data-path="one-and-two-sample-tests.html"><a href="one-and-two-sample-tests.html#differences-between-two-means"><i class="fa fa-check"></i>Differences between two means</a></li>
-<li class="chapter" data-level="" data-path="one-and-two-sample-tests.html"><a href="one-and-two-sample-tests.html#one-way-analysis-of-variance-anova"><i class="fa fa-check"></i>One-Way Analysis of Variance (ANOVA)</a></li>
-<li class="chapter" data-level="" data-path="one-and-two-sample-tests.html"><a href="one-and-two-sample-tests.html#between-group-ss-ssb"><i class="fa fa-check"></i>Between group SS (SSB)</a></li>
-<li class="chapter" data-level="" data-path="one-and-two-sample-tests.html"><a href="one-and-two-sample-tests.html#within-group-ss-ssw"><i class="fa fa-check"></i>Within group SS (SSW)</a></li>
-<li class="chapter" data-level="" data-path="one-and-two-sample-tests.html"><a href="one-and-two-sample-tests.html#f-statistic"><i class="fa fa-check"></i>F-statistic</a></li>
-<li class="chapter" data-level="" data-path="one-and-two-sample-tests.html"><a href="one-and-two-sample-tests.html#degrees-of-freedom-df"><i class="fa fa-check"></i>Degrees of freedom (DF)</a></li>
+<li class="chapter" data-level="" data-path="parametric-hypothesis-tests.html"><a href="parametric-hypothesis-tests.html"><i class="fa fa-check"></i>Parametric hypothesis tests</a><ul>
+<li class="chapter" data-level="" data-path="parametric-hypothesis-tests.html"><a href="parametric-hypothesis-tests.html#one-sample-t-test"><i class="fa fa-check"></i>One-Sample t-test</a></li>
+<li class="chapter" data-level="" data-path="parametric-hypothesis-tests.html"><a href="parametric-hypothesis-tests.html#differences-between-two-means"><i class="fa fa-check"></i>Differences between two means</a></li>
+<li class="chapter" data-level="" data-path="parametric-hypothesis-tests.html"><a href="parametric-hypothesis-tests.html#one-way-analysis-of-variance-anova"><i class="fa fa-check"></i>One-Way Analysis of Variance (ANOVA)</a></li>
+<li class="chapter" data-level="" data-path="parametric-hypothesis-tests.html"><a href="parametric-hypothesis-tests.html#between-group-ss-ssb"><i class="fa fa-check"></i>Between group SS (SSB)</a></li>
+<li class="chapter" data-level="" data-path="parametric-hypothesis-tests.html"><a href="parametric-hypothesis-tests.html#within-group-ss-ssw"><i class="fa fa-check"></i>Within group SS (SSW)</a></li>
+<li class="chapter" data-level="" data-path="parametric-hypothesis-tests.html"><a href="parametric-hypothesis-tests.html#f-statistic"><i class="fa fa-check"></i>F-statistic</a></li>
+<li class="chapter" data-level="" data-path="parametric-hypothesis-tests.html"><a href="parametric-hypothesis-tests.html#degrees-of-freedom-df"><i class="fa fa-check"></i>Degrees of freedom (DF)</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i>Linear regression</a><ul>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#some-mathematical-notation"><i class="fa fa-check"></i>Some mathematical notation</a></li>
@@ -367,103 +367,91 @@ the distribution under the <em>Null</em> hypothesis, <span class="math inline">\
 <div id="pāua-shell-lengths" class="section level5">
 <h5>Pāua shell lengths</h5>
 <p>Remember the Pāua data from <a href="https://stats-uoa.github.io/BIOSCI738/r-rstudio-and-git.html#exploratory-data-analysis">Chapter 1</a> One question we may want to ask is if on average the shell length differs between Species?</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" title="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb68-2" title="2">paua &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/paua.csv&quot;</span>)</a></code></pre></div>
 <p><strong>Scientific question</strong>: Are the shell lengths of shells the same in both species?
 <strong>Null hypothesis</strong>: The distribution of shell lengths in <em>Haliotis iris</em> the same as in <em>Haliotis australis</em>
 <strong>Test statistic</strong>: Difference of sample means</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" title="1">means &lt;-<span class="st"> </span>paua <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(Species) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">means =</span> <span class="kw">mean</span>(Length))</a>
-<a class="sourceLine" id="cb68-2" title="2"><span class="kw">ggplot</span>(paua,<span class="kw">aes</span>(<span class="dt">x =</span> Species, <span class="dt">y =</span> Length)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb68-3" title="3"><span class="st">  </span><span class="kw">geom_violin</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb68-4" title="4"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.4</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb68-5" title="5"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Length (cms)&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb68-6" title="6"><span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb68-7" title="7"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">data =</span> means, <span class="kw">aes</span>(<span class="dt">x =</span> Species, <span class="dt">y =</span> means, <span class="dt">color =</span> Species), <span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb68-8" title="8"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">data =</span> means, <span class="kw">aes</span>(<span class="dt">yintercept =</span> means, <span class="dt">color =</span> Species), <span class="dt">lty =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb68-9" title="9"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb68-10" title="10"><span class="st">  </span><span class="kw">geom_text</span>(<span class="dt">data =</span> means, <span class="kw">aes</span>(<span class="dt">x =</span> Species, <span class="dt">y =</span> means <span class="op">+</span><span class="st"> </span><span class="fl">0.3</span>, <span class="dt">label =</span> <span class="kw">paste0</span>(<span class="st">&quot;Species averege = &quot;</span>,<span class="kw">round</span>(means,<span class="dv">3</span>)), <span class="dt">color =</span> Species))</a></code></pre></div>
-<p><img src="_main_files/figure-html/violn-1.png" width="672" /></p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" title="1"><span class="kw">ggplot</span>(paua,<span class="kw">aes</span>(<span class="dt">x =</span> Length, <span class="dt">fill =</span> Species)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb69-2" title="2"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">position =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb69-3" title="3"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Length (cms)&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb69-4" title="4"><span class="st">  </span><span class="kw">theme_classic</span>()</a></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="_main_files/figure-html/violn-2.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-22-2.png" width="672" /></p>
 <p>But because the data are skewed and we’ve likely got non-constant variances we may be better off adopting a randomization test, rather than a parametric t-test</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" title="1"><span class="co">## observed differences in means</span></a>
-<a class="sourceLine" id="cb71-2" title="2">diff_in_means &lt;-<span class="st"> </span>(paua <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(Species) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb71-3" title="3"><span class="st">                    </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(Length)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb71-4" title="4"><span class="st">                    </span><span class="kw">summarise</span>(<span class="dt">diff =</span> <span class="kw">diff</span>(mean)))<span class="op">$</span>diff</a>
-<a class="sourceLine" id="cb71-5" title="5">diff_in_means</a></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" title="1"><span class="co">## observed differences in means</span></a>
+<a class="sourceLine" id="cb70-2" title="2">diff_in_means &lt;-<span class="st"> </span>(paua <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(Species) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb70-3" title="3"><span class="st">                    </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(Length)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb70-4" title="4"><span class="st">                    </span><span class="kw">summarise</span>(<span class="dt">diff =</span> <span class="kw">diff</span>(mean)))<span class="op">$</span>diff</a>
+<a class="sourceLine" id="cb70-5" title="5">diff_in_means</a></code></pre></div>
 <pre><code>## [1] -0.9569444</code></pre>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" title="1"><span class="co">## Number of times I want to randomise</span></a>
-<a class="sourceLine" id="cb73-2" title="2">nreps &lt;-<span class="st"> </span><span class="dv">1000</span>   </a>
-<a class="sourceLine" id="cb73-3" title="3"><span class="co">## initialize empty array to hold results</span></a>
-<a class="sourceLine" id="cb73-4" title="4">randomisation_difference_mean &lt;-<span class="st"> </span><span class="kw">numeric</span>(nreps)</a>
-<a class="sourceLine" id="cb73-5" title="5"><span class="kw">set.seed</span>(<span class="dv">1234</span>) <span class="co">## *****Remove this line for actual analyses*****</span></a>
-<a class="sourceLine" id="cb73-6" title="6"><span class="co">## This means that each run with produce the same results and</span></a>
-<a class="sourceLine" id="cb73-7" title="7"><span class="co">## agree with the printout that I show.</span></a>
-<a class="sourceLine" id="cb73-8" title="8"></a>
-<a class="sourceLine" id="cb73-9" title="9"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>nreps) {</a>
-<a class="sourceLine" id="cb73-10" title="10">  <span class="co">## the observations</span></a>
-<a class="sourceLine" id="cb73-11" title="11">  data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">value =</span> paua<span class="op">$</span>Length)</a>
-<a class="sourceLine" id="cb73-12" title="12">  <span class="co">##  randomise labels</span></a>
-<a class="sourceLine" id="cb73-13" title="13">  data<span class="op">$</span>random_labels &lt;-<span class="kw">sample</span>(paua<span class="op">$</span>Species, <span class="dt">replace =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb73-14" title="14">  <span class="co">## randomised differences in mean</span></a>
-<a class="sourceLine" id="cb73-15" title="15">  randomisation_difference_mean[i] &lt;-<span class="st"> </span>(data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(random_labels) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(value)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">diff =</span> <span class="kw">diff</span>(mean)))<span class="op">$</span>diff</a>
-<a class="sourceLine" id="cb73-16" title="16">}</a>
-<a class="sourceLine" id="cb73-17" title="17"><span class="co">## results</span></a>
-<a class="sourceLine" id="cb73-18" title="18">results &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">randomisation_difference_mean =</span> randomisation_difference_mean)</a></code></pre></div>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" title="1"><span class="co">## How many randomised differences in means are as least as extreme as the one we observed</span></a>
-<a class="sourceLine" id="cb74-2" title="2"><span class="co">## absolute value as dealing with two tailed</span></a>
-<a class="sourceLine" id="cb74-3" title="3">n_exceed &lt;-<span class="st"> </span><span class="kw">sum</span>(<span class="kw">abs</span>(results<span class="op">$</span>randomisation_difference_mean) <span class="op">&gt;=</span><span class="st"> </span><span class="kw">abs</span>(diff_in_means))</a>
-<a class="sourceLine" id="cb74-4" title="4">n_exceed</a></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" title="1"><span class="co">## Number of times I want to randomise</span></a>
+<a class="sourceLine" id="cb72-2" title="2">nreps &lt;-<span class="st"> </span><span class="dv">1000</span>   </a>
+<a class="sourceLine" id="cb72-3" title="3"><span class="co">## initialize empty array to hold results</span></a>
+<a class="sourceLine" id="cb72-4" title="4">randomisation_difference_mean &lt;-<span class="st"> </span><span class="kw">numeric</span>(nreps)</a>
+<a class="sourceLine" id="cb72-5" title="5"><span class="kw">set.seed</span>(<span class="dv">1234</span>) <span class="co">## *****Remove this line for actual analyses*****</span></a>
+<a class="sourceLine" id="cb72-6" title="6"><span class="co">## This means that each run with produce the same results and</span></a>
+<a class="sourceLine" id="cb72-7" title="7"><span class="co">## agree with the printout that I show.</span></a>
+<a class="sourceLine" id="cb72-8" title="8"></a>
+<a class="sourceLine" id="cb72-9" title="9"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>nreps) {</a>
+<a class="sourceLine" id="cb72-10" title="10">  <span class="co">## the observations</span></a>
+<a class="sourceLine" id="cb72-11" title="11">  data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">value =</span> paua<span class="op">$</span>Length)</a>
+<a class="sourceLine" id="cb72-12" title="12">  <span class="co">##  randomise labels</span></a>
+<a class="sourceLine" id="cb72-13" title="13">  data<span class="op">$</span>random_labels &lt;-<span class="kw">sample</span>(paua<span class="op">$</span>Species, <span class="dt">replace =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb72-14" title="14">  <span class="co">## randomised differences in mean</span></a>
+<a class="sourceLine" id="cb72-15" title="15">  randomisation_difference_mean[i] &lt;-<span class="st"> </span>(data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(random_labels) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(value)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">diff =</span> <span class="kw">diff</span>(mean)))<span class="op">$</span>diff</a>
+<a class="sourceLine" id="cb72-16" title="16">}</a>
+<a class="sourceLine" id="cb72-17" title="17"><span class="co">## results</span></a>
+<a class="sourceLine" id="cb72-18" title="18">results &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">randomisation_difference_mean =</span> randomisation_difference_mean)</a></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" title="1"><span class="co">## How many randomised differences in means are as least as extreme as the one we observed</span></a>
+<a class="sourceLine" id="cb73-2" title="2"><span class="co">## absolute value as dealing with two tailed</span></a>
+<a class="sourceLine" id="cb73-3" title="3">n_exceed &lt;-<span class="st"> </span><span class="kw">sum</span>(<span class="kw">abs</span>(results<span class="op">$</span>randomisation_difference_mean) <span class="op">&gt;=</span><span class="st"> </span><span class="kw">abs</span>(diff_in_means))</a>
+<a class="sourceLine" id="cb73-4" title="4">n_exceed</a></code></pre></div>
 <pre><code>## [1] 1</code></pre>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" title="1"><span class="co">## proportion</span></a>
-<a class="sourceLine" id="cb76-2" title="2">n_exceed<span class="op">/</span>nreps</a></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" title="1"><span class="co">## proportion</span></a>
+<a class="sourceLine" id="cb75-2" title="2">n_exceed<span class="op">/</span>nreps</a></code></pre></div>
 <pre><code>## [1] 0.001</code></pre>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" title="1"><span class="kw">ggplot</span>(results, <span class="kw">aes</span>(<span class="dt">x =</span> randomisation_difference_mean)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb78-2" title="2"><span class="st">  </span><span class="kw">geom_histogram</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb78-3" title="3"><span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;Differences between randomised group means&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb78-4" title="4"><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> diff_in_means, <span class="dt">col =</span> <span class="st">&quot;cyan4&quot;</span>, <span class="dt">size =</span> <span class="dv">1</span>,<span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb78-5" title="5"><span class="st">  </span><span class="kw">annotate</span>(<span class="dt">geom =</span> <span class="st">&#39;text&#39;</span>, <span class="dt">label =</span> <span class="st">&quot;Observed difference between means&quot;</span> , </a>
-<a class="sourceLine" id="cb78-6" title="6">           <span class="dt">x =</span> <span class="op">-</span><span class="ot">Inf</span>, <span class="dt">y =</span> <span class="ot">Inf</span>, <span class="dt">hjust =</span> <span class="dv">0</span>, <span class="dt">vjust =</span> <span class="fl">1.5</span>, <span class="dt">color =</span> <span class="st">&quot;cyan4&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" title="1"><span class="kw">ggplot</span>(results, <span class="kw">aes</span>(<span class="dt">x =</span> randomisation_difference_mean)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb77-2" title="2"><span class="st">  </span><span class="kw">geom_histogram</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb77-3" title="3"><span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;Differences between randomised group means&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb77-4" title="4"><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> diff_in_means, <span class="dt">col =</span> <span class="st">&quot;cyan4&quot;</span>, <span class="dt">size =</span> <span class="dv">1</span>,<span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb77-5" title="5"><span class="st">  </span><span class="kw">annotate</span>(<span class="dt">geom =</span> <span class="st">&#39;text&#39;</span>, <span class="dt">label =</span> <span class="st">&quot;Observed difference between means&quot;</span> , </a>
+<a class="sourceLine" id="cb77-6" title="6">           <span class="dt">x =</span> <span class="op">-</span><span class="ot">Inf</span>, <span class="dt">y =</span> <span class="ot">Inf</span>, <span class="dt">hjust =</span> <span class="dv">0</span>, <span class="dt">vjust =</span> <span class="fl">1.5</span>, <span class="dt">color =</span> <span class="st">&quot;cyan4&quot;</span>)</a></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="_main_files/figure-html/hist-1.png" width="672" /></p>
 </div>
 <div id="jackal-mandible-lengths" class="section level5">
 <h5>Jackal mandible lengths</h5>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb80-1" title="1"><span class="co">## Mandible lengths (mm) for  golden jackals (Canis aureus) of each sex from the British Museum</span></a>
-<a class="sourceLine" id="cb80-2" title="2">jackal &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">mandible_length_mm =</span> <span class="kw">c</span>(<span class="dv">120</span>, <span class="dv">107</span>, <span class="dv">110</span>, <span class="dv">116</span>, <span class="dv">114</span>, <span class="dv">111</span>, <span class="dv">113</span>, <span class="dv">117</span>, <span class="dv">114</span>, <span class="dv">112</span>,</a>
-<a class="sourceLine" id="cb80-3" title="3">                                            <span class="dv">110</span>, <span class="dv">111</span>, <span class="dv">107</span>, <span class="dv">108</span>, <span class="dv">110</span>, <span class="dv">105</span>, <span class="dv">107</span>, <span class="dv">106</span>, <span class="dv">111</span>, <span class="dv">111</span>),</a>
-<a class="sourceLine" id="cb80-4" title="4">                     <span class="dt">sex =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;Male&quot;</span>,<span class="st">&quot;Female&quot;</span>), <span class="dt">each =</span> <span class="dv">10</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb79-1" title="1"><span class="co">## Mandible lengths (mm) for  golden jackals (Canis aureus) of each sex from the British Museum</span></a>
+<a class="sourceLine" id="cb79-2" title="2">jackal &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">mandible_length_mm =</span> <span class="kw">c</span>(<span class="dv">120</span>, <span class="dv">107</span>, <span class="dv">110</span>, <span class="dv">116</span>, <span class="dv">114</span>, <span class="dv">111</span>, <span class="dv">113</span>, <span class="dv">117</span>, <span class="dv">114</span>, <span class="dv">112</span>,</a>
+<a class="sourceLine" id="cb79-3" title="3">                                            <span class="dv">110</span>, <span class="dv">111</span>, <span class="dv">107</span>, <span class="dv">108</span>, <span class="dv">110</span>, <span class="dv">105</span>, <span class="dv">107</span>, <span class="dv">106</span>, <span class="dv">111</span>, <span class="dv">111</span>),</a>
+<a class="sourceLine" id="cb79-4" title="4">                     <span class="dt">sex =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;Male&quot;</span>,<span class="st">&quot;Female&quot;</span>), <span class="dt">each =</span> <span class="dv">10</span>))</a></code></pre></div>
 <p><strong>Scientific question</strong>: Are the jaw lengths of jackals the same in both sexes?
 <strong>Null hypothesis</strong>: The distribution of jaw lengths in male jackals the same as in in females
 <strong>Test statistic</strong>: Difference of sample means</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
 <p>Rather than a <em>for loop</em> let’s try this another way.</p>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" title="1"><span class="co">## observed statistic</span></a>
-<a class="sourceLine" id="cb81-2" title="2">jackal_mean_diff &lt;-<span class="st"> </span>(jackal <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb81-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(sex) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb81-4" title="4"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(mandible_length_mm)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb81-5" title="5"><span class="st">    </span><span class="kw">summarise</span>(<span class="dt">diff =</span> <span class="kw">diff</span>(mean)))<span class="op">$</span>diff</a>
-<a class="sourceLine" id="cb81-6" title="6"><span class="co">## Generate all possible combinations</span></a>
-<a class="sourceLine" id="cb81-7" title="7"><span class="co">## This time we&#39;re doing ALL possble ones</span></a>
-<a class="sourceLine" id="cb81-8" title="8"><span class="co">## rather than a rendom 1000</span></a>
-<a class="sourceLine" id="cb81-9" title="9">combinations &lt;-<span class="st"> </span><span class="kw">combn</span>(<span class="dv">20</span>,<span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb81-10" title="10"><span class="co">## Do the permutations</span></a>
-<a class="sourceLine" id="cb81-11" title="11">permtest_combinations &lt;-<span class="st"> </span><span class="kw">apply</span>(combinations, <span class="dv">2</span>, <span class="cf">function</span>(x)</a>
-<a class="sourceLine" id="cb81-12" title="12">  <span class="kw">mean</span>(jackal<span class="op">$</span>mandible_length_mm[x]) <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(jackal<span class="op">$</span>mandible_length_mm[<span class="op">-</span>x]))</a>
-<a class="sourceLine" id="cb81-13" title="13"><span class="co">## Full Permutation test p.value</span></a>
-<a class="sourceLine" id="cb81-14" title="14"><span class="kw">length</span>(permtest_combinations[<span class="kw">abs</span>(permtest_combinations) <span class="op">&gt;=</span><span class="st"> </span>jackal_mean_diff]) <span class="op">/</span><span class="st"> </span><span class="kw">choose</span>(<span class="dv">20</span>,<span class="dv">10</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb80-1" title="1"><span class="co">## observed statistic</span></a>
+<a class="sourceLine" id="cb80-2" title="2">jackal_mean_diff &lt;-<span class="st"> </span>(jackal <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb80-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(sex) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb80-4" title="4"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(mandible_length_mm)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb80-5" title="5"><span class="st">    </span><span class="kw">summarise</span>(<span class="dt">diff =</span> <span class="kw">diff</span>(mean)))<span class="op">$</span>diff</a>
+<a class="sourceLine" id="cb80-6" title="6"><span class="co">## Generate all possible combinations</span></a>
+<a class="sourceLine" id="cb80-7" title="7"><span class="co">## This time we&#39;re doing ALL possble ones</span></a>
+<a class="sourceLine" id="cb80-8" title="8"><span class="co">## rather than a rendom 1000</span></a>
+<a class="sourceLine" id="cb80-9" title="9">combinations &lt;-<span class="st"> </span><span class="kw">combn</span>(<span class="dv">20</span>,<span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb80-10" title="10"><span class="co">## Do the permutations</span></a>
+<a class="sourceLine" id="cb80-11" title="11">permtest_combinations &lt;-<span class="st"> </span><span class="kw">apply</span>(combinations, <span class="dv">2</span>, <span class="cf">function</span>(x)</a>
+<a class="sourceLine" id="cb80-12" title="12">  <span class="kw">mean</span>(jackal<span class="op">$</span>mandible_length_mm[x]) <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(jackal<span class="op">$</span>mandible_length_mm[<span class="op">-</span>x]))</a>
+<a class="sourceLine" id="cb80-13" title="13"><span class="co">## Full Permutation test p.value</span></a>
+<a class="sourceLine" id="cb80-14" title="14"><span class="kw">length</span>(permtest_combinations[<span class="kw">abs</span>(permtest_combinations) <span class="op">&gt;=</span><span class="st"> </span>jackal_mean_diff]) <span class="op">/</span><span class="st"> </span><span class="kw">choose</span>(<span class="dv">20</span>,<span class="dv">10</span>)</a></code></pre></div>
 <pre><code>## [1] 0.003334127</code></pre>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb83-1" title="1"><span class="co">## Now let&#39;s use 10000 random permutations, sample without replacement</span></a>
-<a class="sourceLine" id="cb83-2" title="2"><span class="co">## set up matrix</span></a>
-<a class="sourceLine" id="cb83-3" title="3">random_perm &lt;-<span class="st"> </span><span class="kw">apply</span>(<span class="kw">matrix</span>(<span class="dv">0</span>, <span class="dt">nrow =</span> <span class="dv">10000</span>, <span class="dt">ncol =</span> <span class="dv">1</span>), <span class="dv">1</span>, <span class="cf">function</span>(x) <span class="kw">sample</span>(<span class="dv">20</span>))</a>
-<a class="sourceLine" id="cb83-4" title="4">random_mean_diff &lt;-<span class="st"> </span><span class="kw">apply</span>(random_perm, <span class="dv">2</span>, <span class="cf">function</span>(x){</a>
-<a class="sourceLine" id="cb83-5" title="5">  z &lt;-<span class="st"> </span>jackal<span class="op">$</span>mandible_length_mm[x]</a>
-<a class="sourceLine" id="cb83-6" title="6">  <span class="kw">mean</span>(z[jackal<span class="op">$</span>sex <span class="op">==</span><span class="st"> &quot;Male&quot;</span>]) <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(z[jackal<span class="op">$</span>sex <span class="op">==</span><span class="st"> &quot;Female&quot;</span>])</a>
-<a class="sourceLine" id="cb83-7" title="7">})</a>
-<a class="sourceLine" id="cb83-8" title="8">random_p.value &lt;-<span class="st"> </span><span class="kw">length</span>(random_mean_diff [<span class="kw">abs</span>(random_mean_diff) <span class="op">&gt;=</span><span class="st"> </span>jackal_mean_diff]) <span class="op">/</span><span class="st"> </span><span class="dv">10000</span> <span class="co">## note the abs()</span></a>
-<a class="sourceLine" id="cb83-9" title="9">random_p.value</a></code></pre></div>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb82-1" title="1"><span class="co">## Now let&#39;s use 10000 random permutations, sample without replacement</span></a>
+<a class="sourceLine" id="cb82-2" title="2"><span class="co">## set up matrix</span></a>
+<a class="sourceLine" id="cb82-3" title="3">random_perm &lt;-<span class="st"> </span><span class="kw">apply</span>(<span class="kw">matrix</span>(<span class="dv">0</span>, <span class="dt">nrow =</span> <span class="dv">10000</span>, <span class="dt">ncol =</span> <span class="dv">1</span>), <span class="dv">1</span>, <span class="cf">function</span>(x) <span class="kw">sample</span>(<span class="dv">20</span>))</a>
+<a class="sourceLine" id="cb82-4" title="4">random_mean_diff &lt;-<span class="st"> </span><span class="kw">apply</span>(random_perm, <span class="dv">2</span>, <span class="cf">function</span>(x){</a>
+<a class="sourceLine" id="cb82-5" title="5">  z &lt;-<span class="st"> </span>jackal<span class="op">$</span>mandible_length_mm[x]</a>
+<a class="sourceLine" id="cb82-6" title="6">  <span class="kw">mean</span>(z[jackal<span class="op">$</span>sex <span class="op">==</span><span class="st"> &quot;Male&quot;</span>]) <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(z[jackal<span class="op">$</span>sex <span class="op">==</span><span class="st"> &quot;Female&quot;</span>])</a>
+<a class="sourceLine" id="cb82-7" title="7">})</a>
+<a class="sourceLine" id="cb82-8" title="8">random_p.value &lt;-<span class="st"> </span><span class="kw">length</span>(random_mean_diff [<span class="kw">abs</span>(random_mean_diff) <span class="op">&gt;=</span><span class="st"> </span>jackal_mean_diff]) <span class="op">/</span><span class="st"> </span><span class="dv">10000</span> <span class="co">## note the abs()</span></a>
+<a class="sourceLine" id="cb82-9" title="9">random_p.value</a></code></pre></div>
 <pre><code>## [1] 0.0029</code></pre>
 <p><strong>NOTE: We can extend the randomization test to make inference about any sample statistic (not just the mean)</strong></p>
 </div>

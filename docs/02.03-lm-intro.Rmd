@@ -283,9 +283,32 @@ ggplot(data = penguins_nafree, aes(y = bill_depth_mm, x = bill_length_mm, color 
 
 ```
 
+
+## Model formula syntax in `R`
+
+In `R` to specify the model you want to fit you typically create a model formula object; this is usually then passed as the first argument to the model fitting function (e.g., `lm()`).
+
+Some notes on syntax:
+
+Consider the model formula example `y ~ x + z + x:z`. There is a lot going on here:
+
+ + The variable to the left of `~` specifies the response, everything to the right specify the explanatory variables
+ + `+` indicated to include the variable to the left of it and to the right of it (it does **not** mean they should be summed)
+ + `:` denotes the interaction of the variables to its left and right
+ 
+Additional, some other symbols have special meanings in model formula:
+
+ + `*` means to include all main effects and interactions, so `a*b` is the same as `a + b + a:b`
+ 
+ + `^` is used to include main effects and interactions up to a specified level. For example, `(a + b + c)^2` is equivalent to `a + b + c + a:b + a:c + b:c` (note `(a + b + c)^3` would also add `a:b:c`)
+ + `-` excludes terms that might otherwise be included. For example, `-1` excludes the intercept otherwise included by default, and `a*b - b` would produce `a + a:b`
+ 
+Mathematical functions can also be directly used in the model formula to transform a variable directly (e.g., `y ~ exp(x) + log(z) + x:z`). One thing that may seem counter intuitive is in creating polynomial expressions (e.g., x2). Here the expression `y ~ x^2` does **not** relate to squaring the explanatory variable x (this is to do with the syntax `^` you see above. To include x2 as a term in our model we have to use the `I()` (the "as-is" operator). For example, `y ~ I(x^2) `).
+
+
 ### Other possible models
 
-Let's assume that we have the same data types as above, specifically, a continuous response ($y$) and one factor ($f$, with two levels $A$ and $B$) and one continuous ($x$) explanatory variable. Assuming that $A$ is the baseline for $f$ the possible models are depicted below.
+Let's assume that we have the same data types as in the previous section, specifically, a continuous response ($y$) and one factor ($f$, with two levels $A$ and $B$) and one continuous ($x$) explanatory variable. Assuming that $A$ is the baseline for $f$ the possible models are depicted below.
 
 ```{r, echo = FALSE, fig.height = 6, fig.width = 10}
 library(patchwork)
@@ -376,29 +399,6 @@ AABBCC
 ```
 
 Note that models III and V are forced to have the same intercept for both levels of $f$. In addition, when you have no main effect of $x$, models IV and V, then the model is forced to have no effect of $x$ for the baseline level of $f$ (in this case $A$).
-
-
-## Model formula syntax in `R`
-
-In `R` to specify the model you want to fit you typically create a model formula object; this is usually then passed as the first argument to the model fitting function (e.g., `lm()`).
-
-Some notes on syntax:
-
-Consider the model formula example `y ~ x + z + x:z`. There is a lot going on here:
-
- + The variable to the left of `~` specifies the response, everything to the right specify the explanatory variables
- + `+` indicated to include the variable to the left of it and to the right of it (it does **not** mean they should be summed)
- + `:` denotes the interaction of the variables to its left and right
- 
-Additional, some other symbols have special meanings in model formula:
-
- + `*` means to include all main effects and interactions, so `a*b` is the same as `a + b + a:b`
- 
- + `^` is used to include main effects and interactions up to a specified level. For example, `(a + b + c)^2` is equivalent to `a + b + c + a:b + a:c + b:c` (note `(a + b + c)^3` would also add `a:b:c`)
- + `-` excludes terms that might otherwise be included. For example, `-1` excludes the intercept otherwise included by default, and `a*b - b` would produce `a + a:b`
- 
-Mathematical functions can also be directly used in the model formula to transform a variable directly (e.g., `y ~ exp(x) + log(z) + x:z`). One thing that may seem counter intuitive is in creating polynomial expressions (e.g., x2). Here the expression `y ~ x^2` does **not** relate to squaring the explanatory variable x (this is to do with the syntax `^` you see above. To include x2 as a term in our model we have to use the `I()` (the "as-is" operator). For example, `y ~ I(x^2) `).
-
 
 <p align="center">![](https://pbs.twimg.com/media/EeMWb7QWsAIGftR?format=jpg&name=small){width=50%}</p>
 

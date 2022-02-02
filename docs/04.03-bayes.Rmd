@@ -64,7 +64,7 @@ Taking an MLE approach assumes that the parameters are fixed (i.e., they have on
 
 $$P(B|A) = \frac{P(A|B)P(B)}{P(A)}$$
 
-Schematically if $A = \theta$ and $B = \text{data}$, then the above translates to
+Let $A = \theta$ and $B = \text{data}$, then the above translates to
 
 $$P(\theta∣\text{data}) = \frac{P(\text{data} | \theta )P(\theta)}{P(\text{data})}$$
 
@@ -94,7 +94,8 @@ lobsters <- data %>%
 ```
 
 ```{r, echo = FALSE}
-knitr::kable(lobsters)  
+kableExtra::kable(lobsters) %>%
+  kableExtra::kable_classic(full_width = FALSE, html_font = "Cambria")
 ```
 
 So, as before, 23 of the small juvenile lobsters survived predation from a total of 80. We are interested in the probability of survival, $\theta$, for the general population of small lobsters. The obvious estimate is simply to take the ratio,  $\frac{23}{80} = `r 23/80`$ . But, what are the implied stats behind our *common sense* estimate?

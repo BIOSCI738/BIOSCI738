@@ -2,13 +2,11 @@
 
 **Learning objectives**
 
- + **Identify** the following
-      + experimental unit
-      + observational units
+   + **Identify** the experimental unit(s) and the observational unit(s) for a given experimental design
    + **List** and **describe** the three main principals of experimental design
-       + Randomization
-       + Replication
-       + Blocking
+       + randomization
+       + replication
+       + blocking
    + **Calculate** Sums of Squares (between and within groups) given the observations 
    + **Define** and **state** the appropriate degrees of freedom in a one-way ANOVA scenario
    + **Calculate** the F-statistics given the appropriate Sums of Squares and degrees of freedom
@@ -21,9 +19,8 @@
    + **Describe** and **discuss** factorial experiments with both equal and unequal replication
    + **Carry** out linear regression in `R` with two categorical explanatory variables and an interaction (two-way ANOVA with interaction) and **draw** the appropriate inference
    + **Calculate** the marginal means for a balanced and unbalanced design
-   + **Describe** a Randomized Complete Block Design (RCBD)
-   + **Describe** a Split-plot Design (RCBD)
-   + **Carry** out analysis of a RCBD in `R` using `aov()`, `lm()`, and `lmer()` and **discuss** and **compare** the three
+   + **Describe** a Randomized Complete Block Design (RCBD) and a Split-plot Design 
+   + **Carry** out analysis of the above designs in `R` using `aov()`, `lm()`, and `lmer()` and **discuss** and **compare** the three
    + **Define** a fixed and random effect in the context of experimental design
    + **Describe** and **discuss** split-plot experimental design
    + **Describe** and **discuss** repeated measures experiments

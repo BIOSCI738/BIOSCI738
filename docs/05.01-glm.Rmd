@@ -36,8 +36,7 @@ In this case we assume that
   + that each observation's response is **independent** of all others.
 
 
-But, what if we want to be a little more flexible and move away from some of these assumptions?
-
+But, what if we want to be a little more flexible and move away from some of these assumptions? What if we want to rid ourselves from a model with normal errors? The answer, **Generalised Linear Models** (GLMs).
 
 
 ## Poisson regression
@@ -245,10 +244,7 @@ Are our chi-squared approximation assumptions met?
 
 ## Logistic regression
   
-We saw the Binomial distribution in module 4.  We define a random variable, $Y_i$, to have a binomial distribution if it is the number of successes from a number of **independent** trials, $n$, each with the same probability of success, $p$. It is a discrete distribution, which notes that the number of successes associated with the $i^{th}$ observation must be an integer between $0$ and $n_i$. In addition, it builds in the non-constant variance of $Y_i$ and $\frac{Y_i}{n_i}$:
- 
-   + $\text{Var}(Y_i)=n_ip_i(1−p_i)$
-   + $\text{Var}(\frac{Y_i}{n_i}) = \frac{p_i(1−p_i)}{n_i}$
+We saw the Binomial distribution in module 4.  We define a random variable, $Y_i$, to have a binomial distribution if it is the number of successes from a number of **independent** trials, $n$, each with the same probability of success, $p$. It is a discrete distribution, which notes that the number of successes associated with the $i^{th}$ observation must be an integer between $0$ and $n_i$. In addition, it builds in the non-constant variance of $Y_i$ and $\frac{Y_i}{n_i}$: $\text{Var}(Y_i)=n_ip_i(1−p_i)$ and $\text{Var}(\frac{Y_i}{n_i}) = \frac{p_i(1−p_i)}{n_i}$.
    
   
 If we were to assume a linear relationship (as previously) that $p_i = \alpha + \beta_1 x_i$ then we would be allowing $p < 0$ and $p>1$, which is not supported by the binomial distribution. So, we use a link function to map between $p$ and the real number line:
@@ -498,23 +494,6 @@ What about interactions (e.g., $x_iz_i$)? then,
 
 
 
-**An example**
-
-```{r, echo = FALSE}
-birds %>%
-  ggplot(., aes(x = Species, y = Count, fill = Management)) +
-  geom_violin() + xlab("") + ggtitle("Bird abundance by species and farm management") +
-  theme_linedraw() + scale_fill_brewer(type = "div", palette = "Set2")
-```
-
-
-```{r}
-glm_bird_int <- glm(Count ~ Species*Management, data = birds, family =  "poisson")
-summary(glm_bird_int)
-```
-
-
-
 **Building a GLM**
 
 Assume the observations are independent of one another, then,
@@ -535,3 +514,11 @@ We are not restricted to the three distributions above. Many others exist:
   + Beta, for continuous responses on the interval $[0,1]$ 
   + Negative binomial, for discrete responses on $(0,1,2,\cdots)$, with $\text{Var}(Y) \geq E(Y)$ 
   + ...
+
+#### Other modelling approaches (not examinable)
+
+| `R` function    | Use                    | 
+| --------------- |------------------------|
+| `gam()`         | Fit a generalised additive model. The R package `mgcv` must be loaded |
+| `nlme()`        | Fit linear and non-linear mixed effects models. The R package `nlme` must be loaded 
+| `gls()`         | Fit generalised least squares models. The R package `nlme` must be loaded |
