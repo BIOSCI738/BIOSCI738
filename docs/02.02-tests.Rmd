@@ -4,7 +4,7 @@
 
 > "Good statistical practice, as an essential component of good scientific practice, emphasizes principles of good study design and conduct, a variety of numerical and graphical summaries of data, understanding of the phenomenon under study, interpretation of results in context, complete reporting and proper logical and quantitative understanding of what data summaries mean. No single index should substitute for scientific reasoning." `r tufte::quote_footer('--- ASA Statement on p-Values')`
 
-In experimental situations a **large tail proportion** ( large p-value means that the luck of the randomisation quite often produces test statistics **as large** or **even larger** than what we've got in our data.
+In experimental situations a **large tail proportion** (large p-value) means that the luck of the randomisation quite often produces test statistics **as large** or **even larger** than what we've got in our data.
   
 A **small tail proportion** (small p-value) means that the luck of the randomisation draw **hardly ever produces** test statistics as large as we've got in our data.
 
@@ -273,13 +273,13 @@ As above the average values are all well and good, but what about **variation?**
 
 #### Independent samples t-test using `t.test()`
 
-**Question:** Do we believe that on average the length of P$\overline{\text{a}}$ua shells are equal between species
+**Question:** Do we believe that on average the length of P$\overline{\text{a}}$ua shells are equal between species?
 
 **Formalizing into a hypothesis test:**
    
    + **Null hypothesis**: On average the species' shells are the same length
    + **Alternative hypothesis**: they aren't!
-   + **Notationally**: $H_0: \mu_{\text{Haliotis iris}} - \mu_{\text{Haliotis australis}} = 0$ vs $H_1: \mu_{\text{Haliotis iris}} \neq \mu_{\text{Haliotis australis}},$ where $\mu_{j}$ is the average length for species $j =$ (*Haliotis iris*, *Haliotis australis*).
+   + **Notationally**: $H_0: \mu_{\text{Haliotis iris}} - \mu_{\text{Haliotis australis}} = 0$ vs $H_1: \mu_{\text{Haliotis iris}} \neq \mu_{\text{Haliotis australis}},$ where $\mu_{j}$ is the average length for species, $j =$ (*Haliotis iris*, *Haliotis australis*).
 
 Let us now **calculate the test statistic:** t-statistic = $\frac{\bar{x}_{\text{difference}} - \mu}{\text{SED}}$ = $\frac{\bar{x}_{\text{difference}} - 0}{\text{SED}}n$ where $\bar{x}_{\text{difference}}$ is the differences between the species` averages. 
 
