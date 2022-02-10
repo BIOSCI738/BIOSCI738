@@ -118,12 +118,12 @@ There are three interrelated rules which make a dataset `tidy`:
  3. Each value must have its own cell
 
 
-Why ensure that your data is `tidy`?  1) **Consistency:** using a consistent format aids learning and reproducibility 2), **Simplicity:** it's a format that is well understood by `R`.
+Why ensure that your data is `tidy`?  1) **Consistency:** using a consistent format aids learning and reproducibility, and 2) **simplicity:** it's a format that is well understood by `R`!
  
 ### Introuducing the [Palmer penguins](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0090081)
 
 
-```{r embed, out.extra='style="border: none;"', out.width='40%', echo = FALSE}
+```{r embed, out.extra='style="border: none;"', out.width='40%', echo = FALSE, fig.align='center'}
 knitr::include_url('https://giphy.com/embed/3og0IO5z8Rd30ktV6g')
 ```
 
@@ -232,19 +232,19 @@ penguins_nafree %>%
 > "Clutter and confusion are not attributes of data - they are shortcomings of design." `r tufte::quote_footer('--- Edward Tufte')`
 
 
-### Exploratory and explanatory plots
+### Exploratory plots
 
-1. **Exploratory plots** (*for you*)
+Exploratory plots are just *for you*, they
 
-  + data exploration
-  + doesn't have to look pretty
-  + just needs to get to the point
-  + explore and discover new data facets
-  + formulate new questions
+  + focus solely on data exploration,
+  + don't have to look pretty,
+  + just needs to get to the point,
+  + explore and discover new data facets, and
+  + help formulate new questions.
   
 For example,
   
-```{r example, me, echo = FALSE, fig.cap="", warning = FALSE, message = FALSE}
+```{r example, me, echo = FALSE, fig.cap="", warning = FALSE, message = FALSE, fig.align='center'}
 library(palmerpenguins)
 penguins_nafree <- penguins %>% drop_na()
 ## scatter
@@ -256,28 +256,30 @@ ggplot(data = penguins, aes(x = bill_length_mm)) +
 ```
 
 
- 2. **Explanatory plots** (*for others*), most common kind of graph used in
-scientific publications
+### Explanatory plots
 
-   + clear purpose
-   + designed for the audience
-   + make it easy to read (*this covers a lot of things*)
-   + do not distort
-   + guide the reader to a particular conclusion 
-   + answer a specific question
-   + support a decision
+Explanatory plots are mainly *for others*. These are the most common kind of graph used in scientific publications. They should
+
+   + have a clear purpose,
+   + be designed for the audience,
+   + be easy to read (*this covers a lot of things*),
+   + not distort the data,
+   + help guide the reader to a particular conclusion, 
+   + answer a specific question, and
+   + support an outlined  decision.
    
 For example,
 
 <p align="center">![](https://jimgruman.netlify.app/post/variableimportance/2020_31_PalmerPenguins.png)</p>
-
-Plots by Cedric Scherer and mentioned on [this blog](https://jimgruman.netlify.app/post/variableimportance/)
+<p align="center">Plots by Cedric Scherer and mentioned on [this blog](https://jimgruman.netlify.app/post/variableimportance/)</p>
 
 
 
 ### Ten Simple Rules for Better Figures 
 
 > "Scientific visualization is classically defined as the process of graphically displaying scientific data. However, this process is far from direct or automatic. There are so many different ways to represent the same data: scatter plots, linear plots, bar plots, and pie charts, to name just a few. Furthermore, the same data, using the same type of plot, may be perceived very differently depending on who is looking at the figure. A more accurate definition for scientific visualization would be a graphical interface between people and data." `r tufte::quote_footer('--- Nicolas P. Rougier, Michael Droettboom, Philip E. Bourne, Ten Simple Rules for Better Figures ')`
+
+> "message and readability of the figure is the most important aspect while beauty is only an option" `r tufte::quote_footer('--- Nicolas P. Rougier, Michael Droettboom, Philip E. Bourne, Ten Simple Rules for Better Figures ')`
 
   + **Know** Your Audience
  
@@ -298,8 +300,6 @@ Plots by Cedric Scherer and mentioned on [this blog](https://jimgruman.netlify.a
  + **Avoid** *Chartjunk*
  
  + **Message** Trumps Beauty
- 
-> "message and readability of the figure is the most important aspect while beauty is only an option" `r tufte::quote_footer('--- Nicolas P. Rougier, Michael Droettboom, Philip E. Bourne, Ten Simple Rules for Better Figures ')`
 
  + Get the Right **Tool**
  
@@ -356,7 +356,7 @@ ggplot(penguins,aes(x = body_mass_g, y = flipper_length_mm, color = species)) + 
 
 #### The Good, the Bad, and the Ugly...
 
-```{r boxesc, eval = FALSE}
+```{r boxesc, eval = TRUE}
 box <- ggplot(penguins,aes(x = species, y = flipper_length_mm)) + ## data & aesthetics
     geom_boxplot()  + ## geom
   ggtitle("Flipper length (mm) by species") +
