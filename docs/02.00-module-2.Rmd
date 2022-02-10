@@ -9,7 +9,7 @@
 + **Carry out** and **interpret** tests for the existence of relationships between explanatory variables and the response in a linear model
 + **Write** `R` code to fit a linear model with a single continuous explanatory variable
 + **Write** `R` code to fit a linear model with a continuous explanatory variable and a factor explanatory variable
-**Interpret** estimated effects with reference to confidence intervals from linear regression models. Specifically the interpretation of
++ **Interpret** estimated effects with reference to confidence intervals from linear regression models. Specifically the interpretation of
    + the intercept
    + the effect of a factor
    + the effect of a one-unit increase in a numeric variable
