@@ -8,11 +8,11 @@
 + **Use** the appropriate `R` function to read in a data file
 + **Explain** the importance of reproducibility in terms of scientific research
 + **Use** the functionality offered by git and GitHub through `RStudio`
-+ **Define** and **discuss** Māori Data Sovereignty principles
-+ **Define** data sovereignty and explain this in relation to a researcher's obligation when collecting, displaying, and analysing data
 + Carry out and **interpret** the outputs of basic exploratory data analysis using in-built R functions
 + **Create** and **communicate** informative data visualisations using `R`
 + **Discuss** and **critique** data visualisations
++ **Define** and **discuss** Māori Data Sovereignty principles
++ **Define** data sovereignty and **explain** this in relation to a researcher's obligation when collecting, displaying, and analysing data
 
 **Other resources**
 
