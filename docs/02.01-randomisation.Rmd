@@ -156,7 +156,7 @@ ggplot(data = results, aes(x = bootstrap_means)) +
   geom_histogram() +
   geom_vline(xintercept = as.numeric(mean)) +
   ggtitle("Sampling distribution of the mean") +
-  xlab("Bootsrap means")  + ylab("") + theme_classic()
+  xlab("Bootstrap means")  + ylab("") + theme_classic()
 ```
 
 
@@ -180,7 +180,7 @@ sd(results$bootstrap_means)
   summarise(sem = sd(duration)/sqrt(length(duration)))
 ```
 
-  3. A **Bootstrap $t$ confidence interval.** If, for a sample of size $n$ the boostrap distribution is approximately Normal and the estimate of bias is small then an approximate $C$ confidence for the parameter corresponding to the statistic is:
+  3. A **Bootstrap $t$ confidence interval.** If, for a sample of size $n$, the boostrap distribution is approximately Normal and the estimate of bias is small then an approximate $C$ confidence for the parameter corresponding to the statistic is:
 
 $$\text{statistic} \pm t^* \text{SE}_\text{bootstrap}$$ where $t*$ is the critical value of the $t_{n-1}$ distribution with area $C$ between $-t^*$ and $t^*$. 
 
