@@ -1,4 +1,4 @@
-## Model diagnostocs for a linear model
+## Model diagnostics for a linear model
 
 Remember that it is always is imperative that we **check the underlying assumptions** of our model! If our assumptions are not met then basically the maths falls over and we can't reliably draw inference from the model (e.g., can't trust the parameter estimates etc.). Two of the most important assumption are:
 
