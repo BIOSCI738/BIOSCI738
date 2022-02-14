@@ -1,5 +1,5 @@
-require(tidyverse)
-require(palmerpenguins)
+library(tidyverse)
+library(palmerpenguins)
 ## getting rid of NAs
 penguins_nafree <- penguins %>% drop_na()
 ## correlation
@@ -8,7 +8,7 @@ pen_num <- penguins_nafree %>%
                    dplyr::select(where(is.numeric),- year)
 corrplot::corrplot(cor(pen_num), method = "ellipse", type = "upper")
 ## pairs plot
-require(GGally)
+library(GGally)
 pen_num %>%
   ggpairs(columns = c("flipper_length_mm", "body_mass_g", 
                       "bill_length_mm", "bill_depth_mm"))
@@ -18,7 +18,7 @@ pca <-pen_num %>%
   prcomp()
 summary(pca)
 ## summary
-require(factoextra)
+library(factoextra)
 fviz_pca_biplot(pca, geom = "point") +
     geom_point (alpha = 0.2)
 ## other info

@@ -192,7 +192,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html"><i class="fa fa-check"></i>Modelling experimental data</a><ul>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-completely-randomised-design-crd-as-a-linear-model"><i class="fa fa-check"></i>A completely randomised design (CRD) as a linear model</a></li>
 <li><a href="modelling-experimental-data.html#analysis-of-a-crd-in-r">Analysis of a CRD in <code>R</code></a></li>
-<li><a href="modelling-experimental-data.html#using-lm">Using <code>lm()</code></a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-factorial-experiment-as-a-crd"><i class="fa fa-check"></i>A Factorial experiment (as a CRD)</a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#unqual-replications-unbalanced-design"><i class="fa fa-check"></i>Unqual replications (unbalanced design)</a></li>
 </ul></li>
@@ -306,13 +305,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## getting rid of NAs
 penguins_nafree &lt;-<span class="st"> </span>penguins <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">drop_na</span>()</code></pre></div>
 <p>When carrying out PCA we're only interested in numeric variables, so let's just plot those. We can use the piping operator <code>%&gt;%</code> to do this with out creating a new data frame</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(GGally)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(GGally)
 penguins_nafree <span class="op">%&gt;%</span>
 <span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(species, <span class="kw">where</span>(is.numeric)) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">ggpairs</span>(<span class="kw">aes</span>(<span class="dt">color =</span> species),
         <span class="dt">columns =</span> <span class="kw">c</span>(<span class="st">&quot;flipper_length_mm&quot;</span>, <span class="st">&quot;body_mass_g&quot;</span>, 
                      <span class="st">&quot;bill_length_mm&quot;</span>, <span class="st">&quot;bill_depth_mm&quot;</span>)) </code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-182-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-189-1.png" width="672" /></p>
 <p><strong>Using <code>prcomp()</code></strong></p>
 <p>There are three basic types of information we obtain from Principal Component Analysis:</p>
 <ul>
@@ -349,20 +348,20 @@ penguins_nafree <span class="op">%&gt;%</span>
 ## body_mass_g        0.5496747 -0.07646366  0.5917374  0.5846861</code></pre>
 <p>Here we can see that <code>bill_length_mm</code> has a strong positive relationship with <code>PC1</code>, whereas <code>bill_depth_mm</code> has a strong negative relationship. Both <code>fliper_length_mm</code> and <code>body_mass_g</code> also have a strong positive relationship with <code>PC1</code>.</p>
 <p>Plotting this we get</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-185-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-192-1.png" width="672" /></p>
 <p>The new variables (PCs) are stored in <code>pca$x</code>, lets plot some of them alongside the loadings using a <em>biplot</em>. For <code>PC1</code> vs <code>PC2</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(factoextra) ## install this package first
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(factoextra) ## install this package first
 <span class="kw">fviz_pca_biplot</span>(pca, <span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>) <span class="op">+</span>
 <span class="st">      </span><span class="kw">geom_point</span> (<span class="dt">alpha =</span> <span class="fl">0.2</span>)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-186-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-193-1.png" width="672" /></p>
 <p>Now for <code>PC2</code> vs <code>PC3</code></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fviz_pca_biplot</span>(pca, <span class="dt">axes =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>),<span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>) <span class="op">+</span>
 <span class="st">      </span><span class="kw">geom_point</span> (<span class="dt">alpha =</span> <span class="fl">0.2</span>)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-187-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-194-1.png" width="672" /></p>
 <p><strong>But how many PCs (new variables) do we keep?</strong> The whole point of this exercise is to <strong>reduce</strong> the number of variables we need to explain the variation in our data. So how many of these new variables (PCs) do we keep?</p>
 <p>To assess this we can use the information printed above alongside a <em>screeplot</em>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fviz_screeplot</span>(pca)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-188-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-195-1.png" width="672" /></p>
 <p><strong>Principal components from the original variables</strong></p>
 <p>Recall that the principal components are a linear combination of the (statndardised) variables. So for PC1</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">loadings1 &lt;-<span class="st"> </span>pca<span class="op">$</span>rotation[,<span class="dv">1</span>]
@@ -382,7 +381,7 @@ by_hand &lt;-<span class="st"> </span>loadings1[<span class="dv">1</span>]<span 
 ## From PCA
 pc1 &lt;-<span class="st"> </span>pca<span class="op">$</span>x[,<span class="dv">1</span>]
 <span class="kw">plot</span>(by_hand,pc1)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-190-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-197-1.png" width="672" /></p>
 </div>
 <div id="reality-check-reducing-white-noise..." class="section level4">
 <h4>Reality check: reducing white noise...</h4>
@@ -404,7 +403,7 @@ noise</code></pre></div>
 ## 10  41.1  38.9  49.3  60.1  46.5  54.5  56.2  56.8  40.7  42.8
 ## # … with 190 more rows</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">corrplot<span class="op">::</span><span class="kw">corrplot</span>(<span class="kw">cor</span>(noise), <span class="dt">method =</span> <span class="st">&quot;ellipse&quot;</span>,<span class="dt">type =</span> <span class="st">&quot;upper&quot;</span>)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-191-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-198-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pca &lt;-<span class="st"> </span>noise <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">scale</span>() <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">prcomp</span>()
@@ -420,7 +419,7 @@ noise</code></pre></div>
 ## Cumulative Proportion  0.86078 0.93416 1.00000</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fviz_screeplot</span>(pca, <span class="dt">choice =</span> <span class="st">&quot;eigenvalue&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">1</span>)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-193-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-200-1.png" width="672" /></p>
 <p>What does this show?</p>
 
 </div>

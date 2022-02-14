@@ -23,13 +23,13 @@ Consider data which are not represented as points in a feature space:
 ##### Distances (in km) between North Island cities
 
 ```{r}
-require(tidyverse)
+library(tidyverse)
 ni <- read_csv("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/north_islands_distances.csv")
 ni <- ni %>% column_to_rownames(var = "...1")
 ```
 
 ```{r}
-require(pheatmap)
+library(pheatmap)
 pheatmap(ni, cluster_rows = TRUE,
          treeheight_row = 2, treeheight_col = 2,
          fontsize_row = 12, fontsize_col = 12,
@@ -55,7 +55,7 @@ Data may from objects for which we have similarities but no underlying (geometri
 
 
 ```{r}
-require(tidyverse)
+library(tidyverse)
 ekman <- read_csv("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/ekman.csv")
 ```
 
@@ -70,7 +70,7 @@ autoplot(ekman.mds)
 ##### Distances (in km) between 21 cities in Europe
 
 ```{r,eval = FALSE}
-require(ggfortify)
+library(ggfortify)
 ## Plotting Multidimensional Scaling (for interest)
 ## stats::cmdscale performs Classical MDS
 data("eurodist") ## road distances (in km) between 21 cities in Europe.
@@ -81,7 +81,7 @@ autoplot(cmdscale(eurodist, eig = TRUE), label = TRUE, shape = FALSE,
          label.size = 3)
 ## Plotting Non-metric Multidimensional Scaling
 ## MASS::isoMDS and MASS::sammon perform Non-metric MDS
-require(MASS)
+library(MASS)
 autoplot(sammon(eurodist))
 autoplot(sammon(eurodist), shape = FALSE, label = TRUE,label.size = 3)
 ## Have a go at interpreting these plots based on the geography of the cities :-)
@@ -99,12 +99,12 @@ chisq.test(HC.df)
 ```
 
 ```{r}
-require(ade4)
+library(ade4)
 coaHC <- dudi.coa(HC.df, scannf = FALSE, nf = 2)
 ```
 
 ```{r, echo = FALSE}
-require(factoextra)
+library(factoextra)
 fviz_ca_biplot(coaHC, repel = TRUE, col.col = "brown", col.row = "purple",
                labelsize = 5, pointsize = 5) + ggtitle("") +
   theme(legend.text = element_text(size = 25),
@@ -146,7 +146,7 @@ NMDS is not sequential:
 + optimization is run to maximize the reconstruction of the distances in k dimensions.
 + there is no notion of percentage of variation explained by individual axes as provided in PCA.
 + as for kmeans Make a screeplot for $k = 1,2,3,...$ and looking at how well the STRESS drops.
-+ because each calculation of a NMDS result requires a new optimization that is both random and dependent on the value of k, we repeat the process M times
++ because each calculation of a NMDS result librarys a new optimization that is both random and dependent on the value of k, we repeat the process M times
 
 
 ### Examples in `R`
@@ -157,7 +157,7 @@ that the configurations are easier to interpret.
 **Illustration with k = 2**
 
 ```{r, message = FALSE, results='hide'}
-require(vegan)
+library(vegan)
 nMDS.2 <- replicate(100, metaMDS(ekman, k = 2, autotransform = FALSE)) 
 ```
 

@@ -22,8 +22,8 @@ The data give us imperfect insight into the population of interest. The role of 
 ###### Possible outcomes
 
 ```{r, echo = FALSE, fig.align='center', fig.height = 8, fig.width = 8, message = FALSE}
-require(png)
-require(animation)
+library(png)
+library(animation)
 pngs <- list.files("img/","coin",full = TRUE)
 imgs <- lapply(pngs,png::readPNG)
 num <- seq(0,40,4)
@@ -111,7 +111,7 @@ The original sample represents the **distribution of the population** from which
 **Old faithful** is a gyser located in Yellowstone National Park, Wyoming. Below is a histogram of the durations of 299 consecutive eruptions. Clearly the distribution is bimodal (has two modes)!
 
 ```{r,message = FALSE, warning = FALSE}
-require(tidyverse)
+library(tidyverse)
 ggplot(data = MASS::geyser, aes(x = duration)) +
   geom_histogram() +
   xlab("Duration of eruptions (m)") +
@@ -319,7 +319,7 @@ Remember the Pāua data from the previous module? The dataset contains the follo
 One question we may want to ask is if on average the shell length differs between Species? 
 
 ```{r, echo = TRUE, message = FALSE}
-require(tidyverse)
+library(tidyverse)
 paua <- read_csv("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/paua.csv")
 ```
 
@@ -374,7 +374,7 @@ results <- data.frame(results = c(randomisation_difference_mean, diff_in_means))
 ```
 
 
-Let's calculate how many randomised differences in means are *as least as extreme* as the one we observed. Note that we require the absolute value as dealing with a two tailed test.
+Let's calculate how many randomised differences in means are *as least as extreme* as the one we observed. Note that we library the absolute value as dealing with a two tailed test.
 
 ```{r pval}
 n_exceed <- sum(abs(results$results) >= abs(diff_in_means))
@@ -413,7 +413,7 @@ Resampling methods are any of a variety of methods for doing one of the followin
 
 + A bootstrap estimates the probability mechanism that generated the samples under the null hypothesis.
 
-+ A bootstrap does **not** require any special symmetry or assumption or exchangability.
++ A bootstrap does **not** library any special symmetry or assumption or exchangability.
 
 
 

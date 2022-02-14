@@ -46,6 +46,8 @@ for (i in pkgs){
     }
 }
 options(warn = 0)
+## so students see library()
+library <- require
 ```
 
 

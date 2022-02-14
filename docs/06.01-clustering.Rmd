@@ -42,7 +42,7 @@ There are assorted methodologies to identify the appropriate $k$. Tests range fr
 
 ```{r}
 
-require(palmerpenguins)
+library(palmerpenguins)
 ## getting rid of NAs
 penguins_nafree <- penguins %>% drop_na()
 ```
@@ -50,7 +50,7 @@ penguins_nafree <- penguins %>% drop_na()
 ```{r}
 ## introducing a new package GGally, please install
 ## using install.packages("GGally")
-require(GGally)
+library(GGally)
 penguins_nafree %>%
   dplyr::select(species, where(is.numeric)) %>% 
   ggpairs(columns = c("flipper_length_mm", "body_mass_g", 
@@ -103,7 +103,7 @@ We have an idea there may be 3 clusters, perhaps, but how do we know this is the
 **Visual inspection** method
 
 ```{r}
-require(factoextra) ## a new package for kmeans viz, please install
+library(factoextra) ## a new package for kmeans viz, please install
 p1 <- fviz_cluster(k1, data = df)
 p2 <- fviz_cluster(k2, data = df)
 p3 <- fviz_cluster(k3, data = df)
@@ -111,7 +111,7 @@ p4 <- fviz_cluster(k4, data = df)
 p5 <- fviz_cluster(k5, data = df)
 
 ## for arranging plots
-require(patchwork) 
+library(patchwork) 
 (p1| p2| p3)/ (p4 | p5)
 ```
 
@@ -163,7 +163,7 @@ fviz_nbclust(df, kmeans, nstart = 25,  method = "gap_stat", nboot = 50)+
 
 ```{r}
 ## Trying all the cluster indecies AHHHHH
-require(NbClust)
+library(NbClust)
 cluster_30_indexes <- NbClust(data = df, distance = "euclidean", min.nc = 2, max.nc = 9, method = "complete", index ="all")
 fviz_nbclust(cluster_30_indexes) +
       theme_minimal() +
@@ -251,7 +251,7 @@ of clusters. Its chief flaw is a tendency to form clusters of equal size, regard
 Data were collected on the distribution of ant species at 30 sites across the Auckland region using pitfall traps.  Twenty pitfall traps at each site were left open for ten days and the number of individuals captured counted for the four most abundant species: *Nylanderia spp*, *Pheidole rugosula*, *Tetramorium grassii*, and *Pachycondyla sp*. 
 
 ```{r, message = FALSE, warnings = FALSE}
-require(tidyverse)
+library(tidyverse)
 ants <- read_csv("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/pitfalls.csv")
 ants
 ```
@@ -308,7 +308,7 @@ Using the function `cutree()` to split into clusters and plot:
 
 ```{r}
 ants$clust4 <- cutree(ward, k = 4)
-require(ape)   ## install
+library(ape)   ## install
 pitfall.phylo <- as.phylo(ward)
 pitfall.phylo$tip.label <- ants$Site
 ## Set colours 

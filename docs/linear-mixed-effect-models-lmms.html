@@ -192,7 +192,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html"><i class="fa fa-check"></i>Modelling experimental data</a><ul>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-completely-randomised-design-crd-as-a-linear-model"><i class="fa fa-check"></i>A completely randomised design (CRD) as a linear model</a></li>
 <li><a href="modelling-experimental-data.html#analysis-of-a-crd-in-r">Analysis of a CRD in <code>R</code></a></li>
-<li><a href="modelling-experimental-data.html#using-lm">Using <code>lm()</code></a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-factorial-experiment-as-a-crd"><i class="fa fa-check"></i>A Factorial experiment (as a CRD)</a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#unqual-replications-unbalanced-design"><i class="fa fa-check"></i>Unqual replications (unbalanced design)</a></li>
 </ul></li>
@@ -852,11 +851,11 @@ liver</code></pre></div>
 ##  9 Control2 Control   5        0.64
 ## 10 Control2 Control   10       0.7 
 ## # … with 200 more rows</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-110-1.png" width="672" /><img src="_main_files/figure-html/unnamed-chunk-110-2.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-117-1.png" width="672" /><img src="_main_files/figure-html/unnamed-chunk-117-2.png" width="672" /></p>
 </div>
 <div id="animal-as-a-random-effect-in-linear-regression" class="section level3">
 <h3><code>Animal</code> as a random effect in linear regression</h3>
-<p><img src="_main_files/figure-html/unnamed-chunk-111-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-118-1.png" width="672" /></p>
 <p><strong>Using <code>aov()</code></strong></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">re_aov &lt;-<span class="st"> </span><span class="kw">aov</span>(Glucose <span class="op">~</span><span class="st"> </span>Treatment<span class="op">*</span>Time <span class="op">+</span><span class="st"> </span><span class="kw">Error</span>(Animal),<span class="dt">data =</span> liver)
 <span class="kw">summary</span>(re_aov)</code></pre></div>

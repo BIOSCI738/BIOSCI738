@@ -18,12 +18,12 @@ The **False Discovert Rate (FDR)** controls the expected (mean) proportion of fa
 Consider testing $m$ null hypotheses with corresponding p-values $P_1, P_2,...,P_m$; we then order then so that  $P_{(1)} < P_{(2)} <...<P_{(m)}$ (where $P_{(i)}$ is the $i^{th}$ largest $i=1,...,m$). The $i^{th}$ ordered p-value is calculated as  $\frac{i}{m}q^*$ and the $i^{th}$ null hypothesis is rejected if $P_i \leq \frac{i}{m}q^*$
 
 ```{r alp, echo = FALSE, message=FALSE, fig.align='center', fig.width=10, fig.height=5}
-require(ggplot2)
+library(ggplot2)
 m <- data.frame(m = rep(1:10,3))
 m$alpha <- rep(c(0.01,0.05,0.2),each = 10)
 m$fwer <- 1 - (1 - m$alpha)^m$m 
 m$pcer <- 1 - (1 - m$alpha)^(1/m$m) 
-require(patchwork)
+library(patchwork)
 p <- ggplot(data = m, aes(x = as.factor(m), y = pcer, 
                           color = as.factor(alpha), group = as.factor(alpha) )) +
   geom_point() + geom_line() + xlab("Number of comparisons, m") +
@@ -67,10 +67,10 @@ Suppose we have a number $m$ of null hypotheses, $H_1, H_2, ..., H_m$. Using the
 options(warn=-1)
 ```
 
-Recall the data from module 2:
+Recall the `rats` data
 
 ```{r, message = FALSE, echo = FALSE}
-require(tidyverse)
+library(tidyverse)
 rats <-  read_csv("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/crd_rats_data.csv")
 rats$Surgery <- as_factor(rats$Surgery)
 kableExtra::kable(rats) %>%
@@ -78,7 +78,7 @@ kableExtra::kable(rats) %>%
 ```
 
 
-Fitting a linear model using `lm()`:
+We can fit a linear model using `lm()`:
 
 
 ```{r}
@@ -89,7 +89,7 @@ coef(rats_lm)
 Our fitted model is therefore
 
 ```{r, echo = FALSE, results='asis'}
-require(equatiomatic)
+library(equatiomatic)
 extract_eq(rats_lm, wrap = TRUE, use_coefs = TRUE)
 ```
 

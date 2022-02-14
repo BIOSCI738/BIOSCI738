@@ -192,7 +192,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html"><i class="fa fa-check"></i>Modelling experimental data</a><ul>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-completely-randomised-design-crd-as-a-linear-model"><i class="fa fa-check"></i>A completely randomised design (CRD) as a linear model</a></li>
 <li><a href="modelling-experimental-data.html#analysis-of-a-crd-in-r">Analysis of a CRD in <code>R</code></a></li>
-<li><a href="modelling-experimental-data.html#using-lm">Using <code>lm()</code></a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-factorial-experiment-as-a-crd"><i class="fa fa-check"></i>A Factorial experiment (as a CRD)</a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#unqual-replications-unbalanced-design"><i class="fa fa-check"></i>Unqual replications (unbalanced design)</a></li>
 </ul></li>
@@ -355,7 +354,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="multiple-comparison-procedures-using-predictmeans" class="section level3">
 <h3>Multiple comparison procedures using <code>predictmeans</code></h3>
-<p>Recall the data from module 2:</p>
+<p>Recall the <code>rats</code> data</p>
 <table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -505,7 +504,7 @@ S
 </tr>
 </tbody>
 </table>
-<p>Fitting a linear model using <code>lm()</code>:</p>
+<p>We can fit a linear model using <code>lm()</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rats_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC <span class="op">~</span><span class="st"> </span>Surgery, <span class="dt">data =</span> rats)
 <span class="kw">coef</span>(rats_lm)</code></pre></div>
 <pre><code>## (Intercept)    SurgeryP    SurgeryS 

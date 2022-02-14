@@ -192,7 +192,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html"><i class="fa fa-check"></i>Modelling experimental data</a><ul>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-completely-randomised-design-crd-as-a-linear-model"><i class="fa fa-check"></i>A completely randomised design (CRD) as a linear model</a></li>
 <li><a href="modelling-experimental-data.html#analysis-of-a-crd-in-r">Analysis of a CRD in <code>R</code></a></li>
-<li><a href="modelling-experimental-data.html#using-lm">Using <code>lm()</code></a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-factorial-experiment-as-a-crd"><i class="fa fa-check"></i>A Factorial experiment (as a CRD)</a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#unqual-replications-unbalanced-design"><i class="fa fa-check"></i>Unqual replications (unbalanced design)</a></li>
 </ul></li>
@@ -295,15 +294,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul>
 <div id="distances-in-km-between-north-island-cities" class="section level5">
 <h5>Distances (in km) between North Island cities</h5>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(tidyverse)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
 ni &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/north_islands_distances.csv&quot;</span>)
 ni &lt;-<span class="st"> </span>ni <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">column_to_rownames</span>(<span class="dt">var =</span> <span class="st">&quot;...1&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(pheatmap)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(pheatmap)
 <span class="kw">pheatmap</span>(ni, <span class="dt">cluster_rows =</span> <span class="ot">TRUE</span>,
          <span class="dt">treeheight_row =</span> <span class="dv">2</span>, <span class="dt">treeheight_col =</span> <span class="dv">2</span>,
          <span class="dt">fontsize_row =</span> <span class="dv">12</span>, <span class="dt">fontsize_col =</span> <span class="dv">12</span>,
          <span class="dt">cellwidth =</span> <span class="dv">26</span>, <span class="dt">cellheight =</span> <span class="dv">26</span>)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-195-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-202-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mds &lt;-<span class="st"> </span><span class="kw">cmdscale</span>(ni, <span class="dt">eig =</span> <span class="ot">TRUE</span>)
 mds</code></pre></div>
 <pre><code>## $points
@@ -345,7 +344,7 @@ mds</code></pre></div>
 </ul></li>
 <li>After averaging over 31 raters the similarities were divided by 4 such that they are within the unit interval.</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(tidyverse)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
 ekman &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/ekman.csv&quot;</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ekman.mds &lt;-<span class="st"> </span><span class="kw">cmdscale</span>(ekman, <span class="dt">eig =</span> <span class="ot">TRUE</span>)
 ekman.mds
@@ -354,7 +353,7 @@ ekman.mds
 </div>
 <div id="distances-in-km-between-21-cities-in-europe" class="section level5">
 <h5>Distances (in km) between 21 cities in Europe</h5>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(ggfortify)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggfortify)
 ## Plotting Multidimensional Scaling (for interest)
 ## stats::cmdscale performs Classical MDS
 <span class="kw">data</span>(<span class="st">&quot;eurodist&quot;</span>) ## road distances (in km) between 21 cities in Europe.
@@ -365,7 +364,7 @@ ekman.mds
          <span class="dt">label.size =</span> <span class="dv">3</span>)
 ## Plotting Non-metric Multidimensional Scaling
 ## MASS::isoMDS and MASS::sammon perform Non-metric MDS
-<span class="kw">require</span>(MASS)
+<span class="kw">library</span>(MASS)
 <span class="kw">autoplot</span>(<span class="kw">sammon</span>(eurodist))
 <span class="kw">autoplot</span>(<span class="kw">sammon</span>(eurodist), <span class="dt">shape =</span> <span class="ot">FALSE</span>, <span class="dt">label =</span> <span class="ot">TRUE</span>,<span class="dt">label.size =</span> <span class="dv">3</span>)
 ## Have a go at interpreting these plots based on the geography of the cities :-)</code></pre></div>
@@ -406,9 +405,9 @@ HC.df</code></pre></div>
 ## 
 ## data:  HC.df
 ## X-squared = 106.66, df = 9, p-value &lt; 2.2e-16</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(ade4)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ade4)
 coaHC &lt;-<span class="st"> </span><span class="kw">dudi.coa</span>(HC.df, <span class="dt">scannf =</span> <span class="ot">FALSE</span>, <span class="dt">nf =</span> <span class="dv">2</span>)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-202-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-209-1.png" width="672" /></p>
 <p>The first axis shows a contrast between black haired and blonde haired students, mirrored by the brown eye, blue eye contrast. In CA the two categories, rows and columns play symmetric roles and we interpret the proximity of Blue eyes and Blond hair as showing strong co-occurence of these categories.</p>
 <p><strong>Biplot barycentric scaling</strong></p>
 <ul>

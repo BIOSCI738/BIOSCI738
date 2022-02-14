@@ -16,7 +16,7 @@
 
 **Other resources**
 
- + [Basic differentiation rules](https://requireguides.centennialcollege.ca/c.php?g=717032&p=5123102)
+ + [Basic differentiation rules](https://libraryguides.centennialcollege.ca/c.php?g=717032&p=5123102)
  + [Basic matrix operations](https://www.georgebrown.ca/sites/default/files/uploadedfiles/tlc/_documents/Basic_Matrix_Operations.pdf)
  + [An introduction to Bayesian thinking](https://statswithr.github.io/book/the-basics-of-bayesian-statistics.html)
  + [Beginner's Guide To Maximum Likelihood Estimation](https://www.aptech.com/blog/beginners-guide-to-maximum-likelihood-estimation-in-gauss/)

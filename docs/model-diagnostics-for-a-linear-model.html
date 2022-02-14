@@ -192,7 +192,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html"><i class="fa fa-check"></i>Modelling experimental data</a><ul>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-completely-randomised-design-crd-as-a-linear-model"><i class="fa fa-check"></i>A completely randomised design (CRD) as a linear model</a></li>
 <li><a href="modelling-experimental-data.html#analysis-of-a-crd-in-r">Analysis of a CRD in <code>R</code></a></li>
-<li><a href="modelling-experimental-data.html#using-lm">Using <code>lm()</code></a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-factorial-experiment-as-a-crd"><i class="fa fa-check"></i>A Factorial experiment (as a CRD)</a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#unqual-replications-unbalanced-design"><i class="fa fa-check"></i>Unqual replications (unbalanced design)</a></li>
 </ul></li>
@@ -289,7 +288,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul>
 <p>Let's look at the fit of the <code>slm</code> model (single continuous explanatory variable)</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gglm<span class="op">::</span><span class="kw">gglm</span>(slm_sp) <span class="co"># Plot the four main diagnostic plots</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-65-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-66-1.png" width="672" /></p>
 <p><strong>Residuals vs Fitted</strong> plot</p>
 <p>You are basically looking for no pattern or structure in your residuals (e.g., a &quot;starry&quot; night). You definitely don't want to see is the scatter increasing around the zero line (dashed line) as the fitted values get bigger (e.g., think of a trumpet, a wedge of cheese, or even a slice of pizza) which would indicate unequal variances (heteroscedacity).</p>
 <p><strong>Normal quantile-quantile (QQ)</strong> plot</p>
@@ -323,7 +322,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="st">  </span><span class="kw">ylab</span>( <span class="st">&quot;Predicted bill depth (mm)&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Fitted means for each species with 95% CIs&quot;</span>, <span class="dt">subtitle =</span> <span class="st">&quot;Adjusted for bill_length_mm = 43.99&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_classic</span>()</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-67-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-68-1.png" width="672" /></p>
 </div>
 <div id="model-selection" class="section level3">
 <h3>Model selection</h3>
@@ -366,7 +365,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>This backs up what our ANOVA suggested model <code>slm_sp</code> as that preferred! As always it's important to do a sanity check! Does this make sense? Have a look at the outputs from these models and see what you think.</p>
 <p>Just because we've chosen a model (<em>the best of a bad bunch</em> perhaps) this doesn't let us off the hook. We should check our assumptions</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gglm<span class="op">::</span><span class="kw">gglm</span>(slm_sp) <span class="co"># Plot the four main diagnostic plots</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-71-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-72-1.png" width="672" /></p>
 <p><strong>Residuals vs Fitted</strong> plot: equal spread? Doesn't look too trumpety!</p>
 <p><strong>Normal quantile-quantile (QQ)</strong> plot: skewed? Maybe slightly right skewed (deviation upwards from the right tail)</p>
 <p><strong>Scale-Location</strong> plot: equal spared? I'd say so.</p>

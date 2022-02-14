@@ -192,7 +192,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html"><i class="fa fa-check"></i>Modelling experimental data</a><ul>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-completely-randomised-design-crd-as-a-linear-model"><i class="fa fa-check"></i>A completely randomised design (CRD) as a linear model</a></li>
 <li><a href="modelling-experimental-data.html#analysis-of-a-crd-in-r">Analysis of a CRD in <code>R</code></a></li>
-<li><a href="modelling-experimental-data.html#using-lm">Using <code>lm()</code></a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-factorial-experiment-as-a-crd"><i class="fa fa-check"></i>A Factorial experiment (as a CRD)</a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#unqual-replications-unbalanced-design"><i class="fa fa-check"></i>Unqual replications (unbalanced design)</a></li>
 </ul></li>
@@ -291,12 +290,16 @@ Artwork by <a href="https://github.com/allisonhorst/">@allison_horst</a>
 </p>
 <p><a href="https://www.tidyverse.org/">'tidyverse'</a> is a collection of <code>R</code> packages that all share underlying design philosophy, grammar, and data structures. They are specifically designed to make data wrangling, manipulation, visualisation, and analysis simpler.</p>
 <p>To install <strong>all</strong> the packages that belong to the <code>tidyverse</code> run</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## request (download) the tidyverse packages from the centralised require
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## request (download) the tidyverse packages from the centralised library
 ## you only need to do this once per computer :-)
 <span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</code></pre></div>
 <p>To tell your computer to access the <code>tidyverse</code> functionality in your session run (<strong>Note</strong> you'll have to do this each time you start up an <code>R</code> session):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Get the tidyverse packages from our local require
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Get the tidyverse packages from our local library
+<span class="kw">library</span>(tidyverse)
+## alternatively (does essentially the same thing, 
+## but checks if the package is already loaded first)
 <span class="kw">require</span>(tidyverse)</code></pre></div>
+<p><strong>Note:</strong> If you want to call a function from a specific package then you can use the syntax <code>package_name::function_name</code>. Here the <code>::</code> specifically tells your computer to use the function <code>function_name</code> from the package <code>package_name</code>. This is useful if you only want to use a single function from a package (i.e., you don't want to load them all), or want to explicitly tell your computer which package to load the function from if there are multiple functions with the same name. See <code>readr::read_csv</code> below for an example of using this syntax. You will also see this in a few places throughout the rest of the notes.</p>
 <div id="reading-in-data-from-a-.csv-file" class="section level3">
 <h3>Reading in data from a <code>.csv</code> file</h3>
 <p>In this section we will be using dataset referring to the age and shell lengths of different P<span class="math inline">\(\overline{\text{a}}\)</span>ua. The dataset contains the following variables</p>

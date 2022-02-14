@@ -1,6 +1,6 @@
 ## Introduction to Bayesian statistics
 
-> “Critical thinking is an active and ongoing process. It requires that we all think like Bayesians, updating our knowledge as new information comes in.” `r tufte::quote_footer('---  Daniel J. Levitin, A Field Guide to Lies: Critical Thinking in the Information Age')`
+> “Critical thinking is an active and ongoing process. It librarys that we all think like Bayesians, updating our knowledge as new information comes in.” `r tufte::quote_footer('---  Daniel J. Levitin, A Field Guide to Lies: Critical Thinking in the Information Age')`
 
 
 ### Conditional probability
@@ -60,7 +60,7 @@ $$P(\text{hypothesis}∣\text{data}) = \frac{P(\text{data} | \text{hypothesis} )
 Recall from the previous sections that our hypotheses relate to estimating **parameter** values (e.g., intercepts, differences in means, slopes etc ). The formula above (Bayes' theorem) calculates the probability of the parameter(s), say $\theta$, values given the data. 
 
 But what is the difference here to maximum likelihood estimation (i.e., MLE, the frequentist approach)? 
-Taking an MLE approach assumes that the parameters are fixed (i.e., they have one *true* value); the parameters are unknown and are to be estimated. Using this approach we typically estimate a point estimate of the parameter of interest. Taking a Bayesian approach assumes that the parameters are not fixed. Instead, parameters are assumed to come from some fixed unknown distribution (i;e., a range of plausible values). This approach requires that we have some prior beliefs about the data (even if these beliefs are uninformative). This information is introduces *a priori* to the modelling framework.
+Taking an MLE approach assumes that the parameters are fixed (i.e., they have one *true* value); the parameters are unknown and are to be estimated. Using this approach we typically estimate a point estimate of the parameter of interest. Taking a Bayesian approach assumes that the parameters are not fixed. Instead, parameters are assumed to come from some fixed unknown distribution (i;e., a range of plausible values). This approach librarys that we have some prior beliefs about the data (even if these beliefs are uninformative). This information is introduces *a priori* to the modelling framework.
 
 $$P(B|A) = \frac{P(A|B)P(B)}{P(A)}$$
 
@@ -83,7 +83,7 @@ Recall that the authors were interested in how a juvenile lobster's size was rel
  We define large juvenile's as those with carapace $\geq$ 40 mm, and otherwise we class them as small. 
 
 ```{r, message = FALSE, warnings = FALSE}
-require(tidyverse)
+library(tidyverse)
 data <- read_csv("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/lobster.csv")
 lobsters <- data %>%
   mutate(size = ifelse(size >= 40, "large", "small")) %>%
@@ -172,7 +172,7 @@ Prior choice and sensitivity is beyond the scope of this course; however, I woul
 What would happen to our posterior distribution, above, if we were to choose a different prior?
 
 ```{r, echo = FALSE, eval = TRUE, message = FALSE}
-require(patchwork)
+library(patchwork)
 x <- seq(0, 1, length = 1000)
 beta_dist <- data.frame(cbind(x, dbeta(x,1,4), dbeta(x,24,58)))
 colnames(beta_dist) <- c("x","Prior: Beta(1, 4)", "Posterior: Beta(27, 61)")

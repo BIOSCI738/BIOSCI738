@@ -69,7 +69,7 @@ Some terminology
 
 ```{r errors, echo = TRUE, error = TRUE}
 data <- read.csv("data_file_not_in_my_working_directory.csv")
-require(some_require_I_have_not_installed)
+library(some_library_I_have_not_installed)
 some_function_I_spelled_worng(x = x)
 an_object_I_have_not_created
 ```

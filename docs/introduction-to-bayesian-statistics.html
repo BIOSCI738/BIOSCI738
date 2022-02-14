@@ -192,7 +192,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html"><i class="fa fa-check"></i>Modelling experimental data</a><ul>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-completely-randomised-design-crd-as-a-linear-model"><i class="fa fa-check"></i>A completely randomised design (CRD) as a linear model</a></li>
 <li><a href="modelling-experimental-data.html#analysis-of-a-crd-in-r">Analysis of a CRD in <code>R</code></a></li>
-<li><a href="modelling-experimental-data.html#using-lm">Using <code>lm()</code></a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-factorial-experiment-as-a-crd"><i class="fa fa-check"></i>A Factorial experiment (as a CRD)</a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#unqual-replications-unbalanced-design"><i class="fa fa-check"></i>Unqual replications (unbalanced design)</a></li>
 </ul></li>
@@ -283,7 +282,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="introduction-to-bayesian-statistics" class="section level2">
 <h2>Introduction to Bayesian statistics</h2>
 <blockquote>
-“Critical thinking is an active and ongoing process. It requires that we all think like Bayesians, updating our knowledge as new information comes in.”
+“Critical thinking is an active and ongoing process. It librarys that we all think like Bayesians, updating our knowledge as new information comes in.”
 <footer>
 --- Daniel J. Levitin, A Field Guide to Lies: Critical Thinking in the Information Age
 </footer>
@@ -322,7 +321,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Let's think of this in terms of our data and hypothesis:</p>
 <p><span class="math display">\[P(\text{hypothesis}∣\text{data}) = \frac{P(\text{data} | \text{hypothesis} )P(\text{hypothesis})}{P(\text{data})}\]</span></p>
 <p>Recall from the previous sections that our hypotheses relate to estimating <strong>parameter</strong> values (e.g., intercepts, differences in means, slopes etc ). The formula above (Bayes' theorem) calculates the probability of the parameter(s), say <span class="math inline">\(\theta\)</span>, values given the data.</p>
-<p>But what is the difference here to maximum likelihood estimation (i.e., MLE, the frequentist approach)? Taking an MLE approach assumes that the parameters are fixed (i.e., they have one <em>true</em> value); the parameters are unknown and are to be estimated. Using this approach we typically estimate a point estimate of the parameter of interest. Taking a Bayesian approach assumes that the parameters are not fixed. Instead, parameters are assumed to come from some fixed unknown distribution (i;e., a range of plausible values). This approach requires that we have some prior beliefs about the data (even if these beliefs are uninformative). This information is introduces <em>a priori</em> to the modelling framework.</p>
+<p>But what is the difference here to maximum likelihood estimation (i.e., MLE, the frequentist approach)? Taking an MLE approach assumes that the parameters are fixed (i.e., they have one <em>true</em> value); the parameters are unknown and are to be estimated. Using this approach we typically estimate a point estimate of the parameter of interest. Taking a Bayesian approach assumes that the parameters are not fixed. Instead, parameters are assumed to come from some fixed unknown distribution (i;e., a range of plausible values). This approach librarys that we have some prior beliefs about the data (even if these beliefs are uninformative). This information is introduces <em>a priori</em> to the modelling framework.</p>
 <p><span class="math display">\[P(B|A) = \frac{P(A|B)P(B)}{P(A)}\]</span></p>
 <p>Let <span class="math inline">\(A = \theta\)</span> and <span class="math inline">\(B = \text{data}\)</span>, then the above translates to</p>
 <p><span class="math display">\[P(\theta∣\text{data}) = \frac{P(\text{data} | \theta )P(\theta)}{P(\text{data})}\]</span></p>
@@ -332,7 +331,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Again we consider data from the published article <a href="https://www.sciencedirect.com/science/article/pii/S0022098115000039">Influence of predator identity on the strength of predator avoidance responses in lobsters.</a>.</p>
 <p>Recall that the authors were interested in how a juvenile lobster's size was related to its vulnerability to predation. In total, 159 juvenile lobsters were collected from their natural habitat in the Gulf of Maine, USA, and the length of each lobster's carapace (upper shell) was measured to the nearest 3 mm. The lobsters were then tethered to the ocean floor for 24 hours. Any missing lobsters were assumed to have been consumed by a predator, while the surviving lobsters were released.</p>
 <p>We define large juvenile's as those with carapace <span class="math inline">\(\geq\)</span> 40 mm, and otherwise we class them as small.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(tidyverse)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
 data &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/lobster.csv&quot;</span>)
 lobsters &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">size =</span> <span class="kw">ifelse</span>(size <span class="op">&gt;=</span><span class="st"> </span><span class="dv">40</span>, <span class="st">&quot;large&quot;</span>, <span class="st">&quot;small&quot;</span>)) <span class="op">%&gt;%</span>
@@ -385,7 +384,7 @@ small
 <p>A frequentist approach would be to maximise the likelihood with respect to <span class="math inline">\(\theta\)</span>, see the previous section. This would result in the maximum likelihood estimate (MLE) of <span class="math inline">\(\hat{\theta} = \frac{23}{80} = 0.2875\)</span></p>
 <p>Using a Bayesian approach we first need to start off with a prior distribution. This should reflect our <em>prior</em> beliefs about the parameter(s) of interest. We know <span class="math inline">\(\theta\)</span> is a probability, so it is a continuous random variable and that lies between zero and one.</p>
 <p>A suitable prior distribution might be the Beta defined on the interval [0, 1]. Therefore, we assume <em>a priori</em> <span class="math inline">\(\theta \sim \text{Beta(a, b)}\)</span> so that <span class="math inline">\(P(\theta) = \theta^{a−1}(1 − \theta)^{b−1}\)</span>. See the plot below for the range of shapes a Beta distribution takes with different parameter values.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-128-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-135-1.png" width="672" /></p>
 <p>Recall from above that</p>
 <p><span class="math display">\[P(\theta∣\text{data}) = \frac{P(\text{data} | \theta )P(\theta)}{P(\text{data})},\]</span> which can be written as</p>
 <p><span class="math display">\[P(\theta∣\text{data}) \propto P(\text{data} | \theta )P(\theta).\]</span> The <span class="math inline">\(\propto\)</span> means <em>proportional to</em>; basically this means we can ignore any terms not containing the parameters. Therefore,</p>
@@ -403,13 +402,13 @@ Typically, Bayesian and frequentist estimates will always agree if there is suff
 --- Olivier Gimenez, Bayesian statistics with R
 </footer>
 </blockquote>
-<p><img src="_main_files/figure-html/unnamed-chunk-129-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-136-1.png" width="672" /></p>
 <div id="prior-sensitivity" class="section level4">
 <h4>Prior sensitivity</h4>
 <p>When choosing a prior distribution you should focus on what that prior means in the context of the research problem. Prior choice will influence the posterior distribution. Uninformative priors can be chosen if we wish to rely only on the likelihood (i.e., let the data speak for itself), which is itself subjective based on how/where data were collected. However, uninformative priors are in general unrealistic as equal weight is given to all values!</p>
 <p>Prior choice and sensitivity is beyond the scope of this course; however, I would strongly encourage you to read the linked materials at the start of this module.</p>
 <p>What would happen to our posterior distribution, above, if we were to choose a different prior?</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-130-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-137-1.png" width="672" /></p>
 
 </div>
 </div>

@@ -1,4 +1,4 @@
-require(tidyverse)
+library(tidyverse)
 factorial <- read_csv("factorial_expt.csv")
 glimpse(factorial)
 ## change to factors (saves errors with predictmeans and as we saw before with lm)

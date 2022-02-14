@@ -192,7 +192,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html"><i class="fa fa-check"></i>Modelling experimental data</a><ul>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-completely-randomised-design-crd-as-a-linear-model"><i class="fa fa-check"></i>A completely randomised design (CRD) as a linear model</a></li>
 <li><a href="modelling-experimental-data.html#analysis-of-a-crd-in-r">Analysis of a CRD in <code>R</code></a></li>
-<li><a href="modelling-experimental-data.html#using-lm">Using <code>lm()</code></a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-factorial-experiment-as-a-crd"><i class="fa fa-check"></i>A Factorial experiment (as a CRD)</a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#unqual-replications-unbalanced-design"><i class="fa fa-check"></i>Unqual replications (unbalanced design)</a></li>
 </ul></li>
@@ -291,13 +290,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>optimization is run to maximize the reconstruction of the distances in k dimensions.</li>
 <li>there is no notion of percentage of variation explained by individual axes as provided in PCA.</li>
 <li>as for kmeans Make a screeplot for <span class="math inline">\(k = 1,2,3,...\)</span> and looking at how well the STRESS drops.</li>
-<li>because each calculation of a NMDS result requires a new optimization that is both random and dependent on the value of k, we repeat the process M times</li>
+<li>because each calculation of a NMDS result librarys a new optimization that is both random and dependent on the value of k, we repeat the process M times</li>
 </ul>
 <div id="examples-in-r-2" class="section level3">
 <h3>Examples in <code>R</code></h3>
 <p>Use the function <code>metaMDS</code> from the <code>vegan</code> package; <code>metaMDS</code> performs NMDS, and tries to find a stable solution using several random starts. In addition, it standardizes the scaling in the result, so that the configurations are easier to interpret.</p>
 <p><strong>Illustration with k = 2</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(vegan)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(vegan)
 nMDS<span class="fl">.2</span> &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="dv">100</span>, <span class="kw">metaMDS</span>(ekman, <span class="dt">k =</span> <span class="dv">2</span>, <span class="dt">autotransform =</span> <span class="ot">FALSE</span>)) </code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">stressplot</span>(<span class="kw">metaMDS</span>(ekman, <span class="dt">k =</span> <span class="dv">2</span>, <span class="dt">autotransform =</span> <span class="ot">FALSE</span>), <span class="dt">pch =</span> <span class="dv">20</span>, <span class="dt">cex =</span> <span class="dv">2</span>)</code></pre></div>
 <pre><code>## Run 0 stress 0.2705898 
@@ -329,7 +328,7 @@ nMDS<span class="fl">.2</span> &lt;-<span class="st"> </span><span class="kw">re
 ## *** No convergence -- monoMDS stopping criteria:
 ##     19: stress ratio &gt; sratmax
 ##      1: scale factor of the gradient &lt; sfgrmin</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-204-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-211-1.png" width="672" /></p>
 
 </div>
 </div>

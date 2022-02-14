@@ -192,7 +192,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html"><i class="fa fa-check"></i>Modelling experimental data</a><ul>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-completely-randomised-design-crd-as-a-linear-model"><i class="fa fa-check"></i>A completely randomised design (CRD) as a linear model</a></li>
 <li><a href="modelling-experimental-data.html#analysis-of-a-crd-in-r">Analysis of a CRD in <code>R</code></a></li>
-<li><a href="modelling-experimental-data.html#using-lm">Using <code>lm()</code></a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-factorial-experiment-as-a-crd"><i class="fa fa-check"></i>A Factorial experiment (as a CRD)</a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#unqual-replications-unbalanced-design"><i class="fa fa-check"></i>Unqual replications (unbalanced design)</a></li>
 </ul></li>
@@ -323,7 +322,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h3>An example: lobsters</h3>
 <p>Let us, again, consider data from the published article <a href="https://www.sciencedirect.com/science/article/pii/S0022098115000039">Influence of predator identity on the strength of predator avoidance responses in lobsters.</a>.</p>
 <p>The authors were interested in how a juvenile lobster's size was related to its vulnerability to predation. In total, 159 juvenile lobsters were collected from their natural habitat in the Gulf of Maine, USA, and the length of each lobster's carapace (upper shell) was measured to the nearest 3 mm, <code>size</code>. The lobsters were then tethered to the ocean floor for 24 hours. Any missing lobsters were assumed to have been consumed by a predator, while the surviving lobsters were released (i.e., <code>survived</code> = 1 if lobster survived, 0 otherwise).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(tidyverse)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
 data &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/lobster.csv&quot;</span>)
 data </code></pre></div>
 <pre><code>## # A tibble: 159 × 2
@@ -371,7 +370,7 @@ data </code></pre></div>
 <p><span class="math display">\[
 \log\left[ \frac { \widehat{P( \operatorname{survived} = \operatorname{1} )} }{ 1 - \widehat{P( \operatorname{survived} = \operatorname{1} )} } \right] = -7.896 + 0.196(\operatorname{size})
 \]</span></p>
-<p><img src="_main_files/figure-html/unnamed-chunk-146-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-153-1.png" width="672" /></p>
 </div>
 <div id="grouped-model" class="section level4">
 <h4>Grouped model</h4>
@@ -401,7 +400,7 @@ grouped</code></pre></div>
 <li><code>t</code> is the total number of lobsters of each size, and</li>
 <li><code>p</code>is the proportion of lobsters of each size that survived.</li>
 </ul>
-<p><img src="_main_files/figure-html/unnamed-chunk-148-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-155-1.png" width="672" /></p>
 <p>Fitting a binomial model again we specify <code>family = &quot;binomial&quot;</code> in our <code>glm</code> call and specify our response as <code>cbind(y, n - y)</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">glm_mod_gr &lt;-<span class="st"> </span><span class="kw">glm</span>(<span class="kw">cbind</span>(y, n <span class="op">-</span><span class="st"> </span>y) <span class="op">~</span><span class="st"> </span>size, <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>, <span class="dt">data =</span> grouped)
 <span class="kw">summary</span>(glm_mod_gr)</code></pre></div>
@@ -462,13 +461,13 @@ confint</code></pre></div>
 <pre><code>##     2.5 %    97.5 % 
 ##  94.44778 281.11670</code></pre>
 <p>We estimate that for every 5mm increase in carapace length the <strong>odds</strong> of a juvenile lobster surviving <strong>increase</strong> by 166.26%. We estimate that for every 5mm increase in carapace length the odds of a juvenile lobster surviving <strong>increase</strong> between 94.45% and 281.12%.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-155-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-162-1.png" width="672" /></p>
 </div>
 <div id="deviance-1" class="section level4">
 <h4>Deviance</h4>
 <div id="chi-squared-approach-1" class="section level5">
 <h5>Chi-squared approach</h5>
-<p>Luckily no manual calculations are required, our <code>glm()</code> call returns the values we need directly:</p>
+<p>Luckily no manual calculations are libraryd, our <code>glm()</code> call returns the values we need directly:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## extract the residual deviance
 D &lt;-<span class="st"> </span>glm_mod_gr<span class="op">$</span>deviance
 D</code></pre></div>

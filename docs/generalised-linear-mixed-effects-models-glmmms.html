@@ -192,7 +192,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html"><i class="fa fa-check"></i>Modelling experimental data</a><ul>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-completely-randomised-design-crd-as-a-linear-model"><i class="fa fa-check"></i>A completely randomised design (CRD) as a linear model</a></li>
 <li><a href="modelling-experimental-data.html#analysis-of-a-crd-in-r">Analysis of a CRD in <code>R</code></a></li>
-<li><a href="modelling-experimental-data.html#using-lm">Using <code>lm()</code></a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-factorial-experiment-as-a-crd"><i class="fa fa-check"></i>A Factorial experiment (as a CRD)</a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#unqual-replications-unbalanced-design"><i class="fa fa-check"></i>Unqual replications (unbalanced design)</a></li>
 </ul></li>
@@ -291,7 +290,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="fitting-a-glmm" class="section level3">
 <h3>Fitting a GLMM</h3>
 <p>The authors of <a href="https://pubmed.ncbi.nlm.nih.gov/31150625/">this paper</a> transplanted gut microbiota from human donors with Autism Spectrum Disorder (ASD) or typically developing (TD) controls into germ-free mice. Faecal samples were collected from three TD and five ASD donors and were used to colonise GF male and female mice from strain C57BL/6LJ. Individuals colonized by the same donor were allowed to breed. Adult offspring mice were behavior tested; tests included marble burying (MB), open-field testing (OFT), and ultrasonic vocalization (USV).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(tidyverse)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
 data &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/autism.csv&quot;</span>)
 data</code></pre></div>
 <pre><code>## # A tibble: 206 × 3
@@ -339,7 +338,7 @@ car<span class="op">::</span><span class="kw">Anova</span>(lmer, <span class="dt
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>But is the constant error variance appropriate? Below we plot the model residuals.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-161-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-168-1.png" width="672" /></p>
 <div id="using-glmer" class="section level4">
 <h4>Using <code>glmer</code></h4>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">glmer &lt;-<span class="st"> </span>lme4<span class="op">::</span><span class="kw">glmer</span>(MB_buried <span class="op">~</span><span class="st"> </span>Sex <span class="op">*</span><span class="st"> </span>Diagnosis <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span><span class="op">|</span>Donor), <span class="dt">data =</span> mice, <span class="dt">family =</span> <span class="kw">poisson</span>(<span class="dt">link =</span> <span class="st">&quot;log&quot;</span>))
@@ -353,7 +352,7 @@ car<span class="op">::</span><span class="kw">Anova</span>(glmer, <span class="d
 ## Sex:Diagnosis 12.5904  1  0.0003877 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-163-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-170-1.png" width="672" /></p>
 
 </div>
 </div>

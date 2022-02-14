@@ -6,7 +6,7 @@ LDA is a supervised learning technique: The main goal is to predict some feature
 ### Example in `R`
 
 ```{r}
-require(tidyverse)
+library(tidyverse)
 diabetes <- read_csv("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/diabetes.csv")
 ```
 
@@ -44,7 +44,7 @@ ggplot(diabetes, mapping = aes(x = insulin, y = glutest)) +
 **Some similarity to regression**
 
 ```{r}
-require(MASS)
+library(MASS)
 diabetes_lda  <-  lda(group ~ insulin + glutest, data = diabetes)
 diabetes_lda
 ```

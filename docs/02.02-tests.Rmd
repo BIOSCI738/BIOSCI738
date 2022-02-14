@@ -57,7 +57,7 @@ Recall, the P$\overline{\text{a}}$ua dataset. It contains the following variable
 *Haliotis australis* (less commonly found in NZ) 
 
 ```{r, echo = TRUE, message = FALSE}
-require(tidyverse)
+library(tidyverse)
 paua <- read_csv("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/paua.csv")
 ```
 
@@ -300,14 +300,20 @@ Listed are the t-statistic, `t` = `r test$statistic` and the p-value, `p-value` 
 
 What if we had more than two groups?
 
-In this section we consider the following data of the calculated logAUC for 12 rats subjected to three different treatments (`Surgery`), `C`, `P`, and `S`, 
+In this section we consider the following data of the calculated logAUC for 12 rats subjected to three different treatments (`Surgery`), `C`, `P`, and `S`: 
 
 ```{r data-quiet, message = FALSE, echo = FALSE}
-require(tidyverse)
+library(tidyverse)
 rats <- read_csv("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/crd_rats_data.csv")
 rats$Surgery <- as_factor(rats$Surgery)
 kableExtra::kable(rats) %>%
   kableExtra::kable_classic(full_width = FALSE, html_font = "Cambria")
+```
+
+To read the data directly into `R` you can use
+
+```{r, eval = FALSE}
+readr::read_csv("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/crd_rats_data.csv")
 ```
 
 ##### Between group SS (SSB)
@@ -336,7 +342,7 @@ ggplot(rats, aes(x = Surgery, y = logAUC)) +
 ```
 
 
-**add up the differences:** `r round(means$avg[1] - mean,3)` + `r round(means$avg[2] - mean,3)` + `r round(means$avg[3] - mean,3)` = `r round(sum(means$avg - mean),3)`. **This is always the case!**
+**Add up the differences:** `r round(means$avg[1] - mean,3)` + `r round(means$avg[2] - mean,3)` + `r round(means$avg[3] - mean,3)` = `r round(sum(means$avg - mean),3)`. **This is always the case!**
 
 **So adding up the differences:** `r round(means$avg[1] - mean,3)` + `r round(means$avg[2] - mean,3)` + `r round(means$avg[3] - mean,3)` = `r round(sum(means$avg - mean),3)`. **Not a great way to measure distances!**
 

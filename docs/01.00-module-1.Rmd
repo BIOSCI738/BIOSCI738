@@ -4,7 +4,7 @@
 
 + **Define** the difference between `R` and `RStudio`
 + **Explain** what an `R` function is; describe what an argument to an `R` function is
-+ **Explain** what an `R` package is; distinguish between the functions `install.packages()` and `require()`
++ **Explain** what an `R` package is; distinguish between the functions `install.packages()` and `library()`
 + **Use** the appropriate `R` function to read in a data file
 + **Explain** the importance of reproducibility in terms of scientific research
 + **Use** the functionality offered by git and GitHub through `RStudio`
@@ -20,7 +20,7 @@
 + [R for Beginners](https://t.co/oPXfmhsY6N)
 + [Happy Git and GitHub for the useR](https://happygitwithr.com/)
 + [Why data sovereignty matters](https://www.onenet.co.nz/our-resources/why-data-sovereignty-matters/)
-+ [Indigenous Data Sovereignty and Policy](https://require.oapen.org/handle/20.500.12657/42782)
++ [Indigenous Data Sovereignty and Policy](https://library.oapen.org/handle/20.500.12657/42782)
 + [Principles of Māori Data Sovereignty](https://cdn.auckland.ac.nz/assets/psych/about/our-research/documents/TMR%2BM%C4%81ori%2BData%2BSovereignty%2BPrinciples%2BOct%2B2018.pdf)
 + [Good data practices for Indigenous data sovereignty and governance.](https://researchcommons.waikato.ac.nz/bitstream/handle/10289/12919/data%20practices.pdf?sequence=5&isAllowed=y)
 + [Ten Simple Rules for Better Figures](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003833)

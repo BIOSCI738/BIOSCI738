@@ -192,7 +192,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html"><i class="fa fa-check"></i>Modelling experimental data</a><ul>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-completely-randomised-design-crd-as-a-linear-model"><i class="fa fa-check"></i>A completely randomised design (CRD) as a linear model</a></li>
 <li><a href="modelling-experimental-data.html#analysis-of-a-crd-in-r">Analysis of a CRD in <code>R</code></a></li>
-<li><a href="modelling-experimental-data.html#using-lm">Using <code>lm()</code></a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-factorial-experiment-as-a-crd"><i class="fa fa-check"></i>A Factorial experiment (as a CRD)</a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#unqual-replications-unbalanced-design"><i class="fa fa-check"></i>Unqual replications (unbalanced design)</a></li>
 </ul></li>
@@ -320,17 +319,17 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="k-means-an-example-using-the-palmerpenguins-data" class="section level3">
 <h3>K-means: an example using the <code>palmerpenguins</code> data</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(palmerpenguins)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(palmerpenguins)
 ## getting rid of NAs
 penguins_nafree &lt;-<span class="st"> </span>penguins <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">drop_na</span>()</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## introducing a new package GGally, please install
 ## using install.packages(&quot;GGally&quot;)
-<span class="kw">require</span>(GGally)
+<span class="kw">library</span>(GGally)
 penguins_nafree <span class="op">%&gt;%</span>
 <span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(species, <span class="kw">where</span>(is.numeric)) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">ggpairs</span>(<span class="dt">columns =</span> <span class="kw">c</span>(<span class="st">&quot;flipper_length_mm&quot;</span>, <span class="st">&quot;body_mass_g&quot;</span>, 
                      <span class="st">&quot;bill_length_mm&quot;</span>, <span class="st">&quot;bill_depth_mm&quot;</span>)) </code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-165-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-172-1.png" width="672" /></p>
 <p>We see that a lot of these variables (e.g., <code>flipper_length_mm</code>, <code>body_mass_g</code>, and <code>bill_length_mm</code>) are relatively strongly (positively) related to one another. Could they actually be telling us the same information? Combined we could think of these three variables all telling us a little about <em>bigness</em> of penguin. Is there a way we could reduce these three variables, into say 1, to represent the <em>bigness</em> of a penguin. We may not need <em>all</em> the information (variation) captured by these variables, but could get away with fewer <em>new uncorrelated</em> variables that represent basically the same information (e.g., penguin <em>bigness</em>), thereby, <strong>reducing the dimensionality of the data</strong> (more on this later).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## create a data frame of what we&#39;re interested in
 df &lt;-<span class="st"> </span>penguins_nafree <span class="op">%&gt;%</span>
@@ -363,7 +362,7 @@ k5 &lt;-<span class="st"> </span><span class="kw">kmeans</span>(df, <span class=
 <h4>Choosing the number of clusters</h4>
 <p>We have an idea there may be 3 clusters, perhaps, but how do we know this is the best fit? Remember it's a <strong>subjective choice</strong> and we'll be looking at a few pointers</p>
 <p><strong>Visual inspection</strong> method</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(factoextra) ## a new package for kmeans viz, please install
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(factoextra) ## a new package for kmeans viz, please install
 p1 &lt;-<span class="st"> </span><span class="kw">fviz_cluster</span>(k1, <span class="dt">data =</span> df)
 p2 &lt;-<span class="st"> </span><span class="kw">fviz_cluster</span>(k2, <span class="dt">data =</span> df)
 p3 &lt;-<span class="st"> </span><span class="kw">fviz_cluster</span>(k3, <span class="dt">data =</span> df)
@@ -371,46 +370,46 @@ p4 &lt;-<span class="st"> </span><span class="kw">fviz_cluster</span>(k4, <span 
 p5 &lt;-<span class="st"> </span><span class="kw">fviz_cluster</span>(k5, <span class="dt">data =</span> df)
 
 ## for arranging plots
-<span class="kw">require</span>(patchwork) 
+<span class="kw">library</span>(patchwork) 
 (p1<span class="op">|</span><span class="st"> </span>p2<span class="op">|</span><span class="st"> </span>p3)<span class="op">/</span><span class="st"> </span>(p4 <span class="op">|</span><span class="st"> </span>p5)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-168-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-175-1.png" width="672" /></p>
 <p>Alternatively, you can use standard pairwise scatter plots to illustrate the clusters compared to the original variables.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">cluster =</span> k3<span class="op">$</span>cluster,
          <span class="dt">species =</span> penguins_nafree<span class="op">$</span>species) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(flipper_length_mm, bill_depth_mm, <span class="dt">color =</span> <span class="kw">factor</span>(cluster), <span class="dt">label =</span> species)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_text</span>()</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-169-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-176-1.png" width="672" /></p>
 <p><strong>Elbow</strong> method</p>
 <p>Optimal clusters are at the point in which the knee &quot;bends&quot; or in mathematical terms when the marginal total within sum of squares (<code>tot.withinss</code>) for an additional cluster begins to decrease at a linear rate</p>
 <p>This is easier to see via a plot:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fviz_nbclust</span>(df, kmeans, <span class="dt">method =</span> <span class="st">&quot;wss&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">subtitle =</span> <span class="st">&quot;Elbow method&quot;</span>)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-170-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-177-1.png" width="672" /></p>
 <p>There is a pretty obvious inflection (elbow) at 2 clusters, but maybe at 3 too. We can rule out an optimal number of clusters above 3 as there is then only a minimal marginal reduction in total within sum of squares. However, the model is ambiguous on whether 2 or 3 clusters is optimal...</p>
 <p><strong>Silhouette</strong> method</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Silhouette method</span>
 <span class="kw">fviz_nbclust</span>(df, kmeans, <span class="dt">method =</span> <span class="st">&quot;silhouette&quot;</span>)<span class="op">+</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">subtitle =</span> <span class="st">&quot;Silhouette method&quot;</span>)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-171-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-178-1.png" width="672" /></p>
 <p><strong>Gap</strong> method</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Gap statistic</span>
 <span class="co"># recommended value: nboot = 500 for your analysis (it will take a while)</span>
 <span class="kw">set.seed</span>(<span class="dv">123</span>) ## remove this
 <span class="kw">fviz_nbclust</span>(df, kmeans, <span class="dt">nstart =</span> <span class="dv">25</span>,  <span class="dt">method =</span> <span class="st">&quot;gap_stat&quot;</span>, <span class="dt">nboot =</span> <span class="dv">50</span>)<span class="op">+</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">subtitle =</span> <span class="st">&quot;Gap statistic method&quot;</span>)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-172-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-179-1.png" width="672" /></p>
 <p><strong>Basically it's up to you to collate all the suggestions and make and informed decision</strong></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Trying all the cluster indecies AHHHHH
-<span class="kw">require</span>(NbClust)
+<span class="kw">library</span>(NbClust)
 cluster_<span class="dv">30</span>_indexes &lt;-<span class="st"> </span><span class="kw">NbClust</span>(<span class="dt">data =</span> df, <span class="dt">distance =</span> <span class="st">&quot;euclidean&quot;</span>, <span class="dt">min.nc =</span> <span class="dv">2</span>, <span class="dt">max.nc =</span> <span class="dv">9</span>, <span class="dt">method =</span> <span class="st">&quot;complete&quot;</span>, <span class="dt">index =</span><span class="st">&quot;all&quot;</span>)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-173-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-180-1.png" width="672" /></p>
 <pre><code>## *** : The Hubert index is a graphical method of determining the number of clusters.
 ##                 In the plot of Hubert index, we seek a significant knee that corresponds to a 
 ##                 significant increase of the value of the measure i.e the significant peak in Hubert
 ##                 index second differences plot. 
 ## </code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-173-2.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-180-2.png" width="672" /></p>
 <pre><code>## *** : The D index is a graphical method of determining the number of clusters. 
 ##                 In the plot of D index, we seek a significant knee (the significant peak in Dindex
 ##                 second differences plot) that corresponds to a significant increase of the value of
@@ -449,7 +448,7 @@ cluster_<span class="dv">30</span>_indexes &lt;-<span class="st"> </span><span c
 ## Conclusion
 ## =========================
 ## * According to the majority rule, the best number of clusters is  3 .</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-173-3.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-180-3.png" width="672" /></p>
 <p>Not obvious, basically still undecided between 2 and 3, but according to the absolute majority rule the &quot;best&quot; number is 3</p>
 </div>
 </div>
@@ -545,7 +544,7 @@ cluster_<span class="dv">30</span>_indexes &lt;-<span class="st"> </span><span c
 <div id="ants" class="section level4">
 <h4>Ants</h4>
 <p>Data were collected on the distribution of ant species at 30 sites across the Auckland region using pitfall traps. Twenty pitfall traps at each site were left open for ten days and the number of individuals captured counted for the four most abundant species: <em>Nylanderia spp</em>, <em>Pheidole rugosula</em>, <em>Tetramorium grassii</em>, and <em>Pachycondyla sp</em>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(tidyverse)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
 ants &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/pitfalls.csv&quot;</span>)
 ants</code></pre></div>
 <pre><code>## # A tibble: 30 × 8
@@ -565,7 +564,7 @@ ants</code></pre></div>
 <p>Data are species counts, so we will use Bray Curtis measure:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pitfall.dist &lt;-<span class="st"> </span>vegan<span class="op">::</span><span class="kw">vegdist</span>(ants[,<span class="dv">5</span><span class="op">:</span><span class="dv">8</span>], <span class="dt">method =</span> <span class="st">&quot;bray&quot;</span>, <span class="dt">binary =</span> <span class="ot">FALSE</span>)
 factoextra<span class="op">::</span><span class="kw">fviz_dist</span>(pitfall.dist)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-175-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-182-1.png" width="672" /></p>
 </div>
 <div id="single-linkage" class="section level4">
 <h4>Single-linkage</h4>
@@ -573,7 +572,7 @@ factoextra<span class="op">::</span><span class="kw">fviz_dist</span>(pitfall.di
 <span class="st">  </span>vegan<span class="op">::</span><span class="kw">vegdist</span>(., <span class="dt">method =</span> <span class="st">&quot;bray&quot;</span>, <span class="dt">binary =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">hclust</span>(<span class="dt">method =</span> <span class="st">&quot;single&quot;</span>)
 <span class="kw">plot</span>(single, <span class="dt">labels =</span> ants<span class="op">$</span>Site)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-176-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-183-1.png" width="672" /></p>
 </div>
 <div id="maximum-linkage" class="section level4">
 <h4>Maximum linkage</h4>
@@ -581,7 +580,7 @@ factoextra<span class="op">::</span><span class="kw">fviz_dist</span>(pitfall.di
 <span class="st">  </span>vegan<span class="op">::</span><span class="kw">vegdist</span>(., <span class="dt">method =</span> <span class="st">&quot;bray&quot;</span>, <span class="dt">binary =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">hclust</span>(<span class="dt">method =</span> <span class="st">&quot;complete&quot;</span>)
 <span class="kw">plot</span>(complete, <span class="dt">labels =</span> ants<span class="op">$</span>Site)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-177-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-184-1.png" width="672" /></p>
 </div>
 <div id="average-linkage-upgma" class="section level4">
 <h4>Average linkage (UPGMA)</h4>
@@ -589,7 +588,7 @@ factoextra<span class="op">::</span><span class="kw">fviz_dist</span>(pitfall.di
 <span class="st">  </span>vegan<span class="op">::</span><span class="kw">vegdist</span>(., <span class="dt">method =</span> <span class="st">&quot;bray&quot;</span>, <span class="dt">binary =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">hclust</span>(<span class="dt">method =</span> <span class="st">&quot;average&quot;</span>)
 <span class="kw">plot</span>(average, <span class="dt">labels =</span> ants<span class="op">$</span>Site)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-178-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-185-1.png" width="672" /></p>
 </div>
 <div id="wards-method" class="section level4">
 <h4>Ward’s method</h4>
@@ -597,19 +596,19 @@ factoextra<span class="op">::</span><span class="kw">fviz_dist</span>(pitfall.di
 <span class="st">  </span>vegan<span class="op">::</span><span class="kw">vegdist</span>(., <span class="dt">method =</span> <span class="st">&quot;bray&quot;</span>, <span class="dt">binary =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">hclust</span>(<span class="dt">method =</span> <span class="st">&quot;ward.D&quot;</span>)
 <span class="kw">plot</span>(ward, <span class="dt">labels =</span> ants<span class="op">$</span>Site)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-179-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-186-1.png" width="672" /></p>
 </div>
 <div id="what-are-dendrograms-good-for-suggesting-clusters-for-further-study..." class="section level4">
 <h4>WHAT ARE DENDROGRAMS GOOD FOR? <em>Suggesting clusters for further study...</em></h4>
 <p>Using the function <code>cutree()</code> to split into clusters and plot:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ants<span class="op">$</span>clust4 &lt;-<span class="st"> </span><span class="kw">cutree</span>(ward, <span class="dt">k =</span> <span class="dv">4</span>)
-<span class="kw">require</span>(ape)   ## install
+<span class="kw">library</span>(ape)   ## install
 pitfall.phylo &lt;-<span class="st"> </span><span class="kw">as.phylo</span>(ward)
 pitfall.phylo<span class="op">$</span>tip.label &lt;-<span class="st"> </span>ants<span class="op">$</span>Site
 ## Set colours 
 colours  &lt;-<span class="st">  </span><span class="kw">c</span>(<span class="st">&quot;red&quot;</span>,<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;green&quot;</span>,<span class="st">&quot;black&quot;</span>)
 <span class="kw">plot</span>(pitfall.phylo, <span class="dt">cex =</span> <span class="fl">0.6</span>, <span class="dt">tip.color =</span> colours[ants<span class="op">$</span>clust4], <span class="dt">label.offset =</span> <span class="fl">0.05</span>) </code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-180-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-187-1.png" width="672" /></p>
 
 </div>
 </div>

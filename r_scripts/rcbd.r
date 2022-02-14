@@ -1,5 +1,5 @@
-require(tidyverse)
-require(lme4)
+library(tidyverse)
+library(lme4)
 rcbd <- read_csv("rcbd.csv")
 glimpse(rcbd)
 ## Note: Run should be a factor otherwise some functions have a tantrum

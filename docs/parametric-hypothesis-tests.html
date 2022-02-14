@@ -192,7 +192,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html"><i class="fa fa-check"></i>Modelling experimental data</a><ul>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-completely-randomised-design-crd-as-a-linear-model"><i class="fa fa-check"></i>A completely randomised design (CRD) as a linear model</a></li>
 <li><a href="modelling-experimental-data.html#analysis-of-a-crd-in-r">Analysis of a CRD in <code>R</code></a></li>
-<li><a href="modelling-experimental-data.html#using-lm">Using <code>lm()</code></a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-factorial-experiment-as-a-crd"><i class="fa fa-check"></i>A Factorial experiment (as a CRD)</a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#unqual-replications-unbalanced-design"><i class="fa fa-check"></i>Unqual replications (unbalanced design)</a></li>
 </ul></li>
@@ -288,7 +287,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><code>Length</code> of P<span class="math inline">\(\overline{\text{a}}\)</span>ua shell in centimeters</li>
 <li><code>Species</code> of P<span class="math inline">\(\overline{\text{a}}\)</span>ua: <em>Haliotis iris</em> (typically found in NZ) and <em>Haliotis australis</em> (less commonly found in NZ)</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(tidyverse)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
 paua &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/paua.csv&quot;</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glimpse</span>(paua)</code></pre></div>
 <pre><code>## Rows: 60
@@ -438,7 +437,7 @@ test</code></pre></div>
 <div id="one-way-analysis-of-variance-anova" class="section level3">
 <h3>One-Way Analysis of Variance (ANOVA)</h3>
 <p>What if we had more than two groups?</p>
-<p>In this section we consider the following data of the calculated logAUC for 12 rats subjected to three different treatments (<code>Surgery</code>), <code>C</code>, <code>P</code>, and <code>S</code>,</p>
+<p>In this section we consider the following data of the calculated logAUC for 12 rats subjected to three different treatments (<code>Surgery</code>), <code>C</code>, <code>P</code>, and <code>S</code>:</p>
 <table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -588,11 +587,13 @@ S
 </tr>
 </tbody>
 </table>
+<p>To read the data directly into <code>R</code> you can use</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/crd_rats_data.csv&quot;</span>)</code></pre></div>
 <div id="between-group-ss-ssb" class="section level5">
 <h5>Between group SS (SSB)</h5>
 <p><strong>The idea</strong>: Assess <strong>distances</strong> between treatment (<em>surgical condition</em>) means relative to our uncertainty about the actual (<em>true</em>) treatment means.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
-<p><strong>add up the differences:</strong> -1.192 + -0.703 + 1.895 = 0. <strong>This is always the case!</strong></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
+<p><strong>Add up the differences:</strong> -1.192 + -0.703 + 1.895 = 0. <strong>This is always the case!</strong></p>
 <p><strong>So adding up the differences:</strong> -1.192 + -0.703 + 1.895 = 0. <strong>Not a great way to measure distances!</strong></p>
 <p><strong>Sums of Squares?</strong></p>
 <p>-1.192^2 + -0.703^2 + 1.895^2</p>
@@ -615,7 +616,7 @@ S
 <li>Add them up!</li>
 </ul>
 <p><strong>Within group SS (SSW)</strong> <em>unexplained variance</em></p>
-<p><img src="_main_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
 </div>
 <div id="f-statistic" class="section level5">
 <h5>F-statistic</h5>
@@ -639,7 +640,7 @@ S
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pf</span>(<span class="dt">q  =</span> <span class="fl">16.351</span>,<span class="dt">df1 =</span> <span class="dv">2</span>, <span class="dt">df2 =</span> <span class="dv">9</span>))</code></pre></div>
 <pre><code>## [1] 0.001007825</code></pre>
 <p>Thus, the probability of getting an <strong>F-statistic</strong> at least as extreme as the one we observe (think of the area under the tails of the curve below) <strong>p-value</strong> Pr(&gt;F)= 0.001 tells us we have sufficient evidence to reject <span class="math inline">\(H_0\)</span> at the 1% level of significance.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-46-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
 <p>Alternatively, we could do this in one step <strong>using <code>aov()</code>:</strong></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(<span class="kw">aov</span>(logAUC <span class="op">~</span><span class="st"> </span>Surgery, <span class="dt">data =</span> rats))</code></pre></div>
 <pre><code>##             Df Sum Sq Mean Sq F value  Pr(&gt;F)   

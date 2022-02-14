@@ -1,4 +1,4 @@
-require(tidyverse) ## load packages
+library(tidyverse) ## load packages
 rats <- read_csv("rats_crd_AUC.csv") ## read in data
 ## need to have surgery as a factor
 rats$Surgery <- as.factor(rats$Surgery)
@@ -25,7 +25,7 @@ rats_aov
 summary(rats_lm)$coef
 
 ####**** Using predictmeans****####
-require(predictmeans)
+library(predictmeans)
 ## print out to console (by default also produces plot)
 predictmeans(rats_lm, modelterm = "Surgery",  pairwise = TRUE)
 
@@ -34,7 +34,7 @@ raw <- ggplot(data = rats, aes(x = Surgery, y = AUC)) +
   geom_violin()
 log <- ggplot(data = rats, aes(x = Surgery, y = logAUC)) +
   geom_violin()
-require(patchwork) ## nice package for combining ggplots
+library(patchwork) ## nice package for combining ggplots
 raw | log
 ## see the difference!
 

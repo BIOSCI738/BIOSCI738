@@ -19,7 +19,7 @@ $$Y_{ik} = \mu_k + \epsilon_{ik}$$
 where $Y_{ik}$ is the response (i.e., observed coffee opacity) for the $i^{th}$ experimental unit (i.e., coffee cup) subjected to the $k^{th}$ level of the treatment factor (i.e., coffee type).  Here $\mu_k$ are the different (cell) means for each level of the treatment factor. See below for an illustration of this for three factor treatment levels (as in the coffee example above).
 
 ```{r, echo = FALSE, fig.height=5}
-require(tidyverse)
+library(tidyverse)
 ggplot(data.frame(x = c(-4, 17)), aes(x)) + 
   stat_function(fun = dnorm, args = list(mean = 0, sd = 1)) +
   stat_function(fun = dnorm, args = list(mean = 5, sd = 1))+
@@ -33,18 +33,24 @@ ggplot(data.frame(x = c(-4, 17)), aes(x)) +
 
 ### Analysis of a CRD in `R`
 
-Let us again consider the data containing logAUC for 12 rats subjected to three different treatments (`Surgery`), `C`, `P`, and `S` we saw in module 2.
+In this section we again consider the data containing logAUC values for 12 rats subjected to three different treatments (`Surgery`), `C`, `P`, and `S`:
 
 ```{r, message = FALSE, echo = FALSE}
-require(tidyverse)
+library(tidyverse)
 rats <- read_csv("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/crd_rats_data.csv")
 rats$Surgery <- as_factor(rats$Surgery)
 kableExtra::kable(rats) %>%
   kableExtra::kable_classic(full_width = FALSE, html_font = "Cambria")
 ```
 
+To read the data directly into `R` you can use
 
-**Using `aov()`** (as we did in module 2)
+```{r, eval = FALSE}
+readr::read_csv("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/crd_rats_data.csv")
+```
+
+
+We could analyse these data **using `aov()`**:
 
 ```{r aov}
 rats_aov <- aov(logAUC ~ Surgery, data = rats)
@@ -60,7 +66,7 @@ Hypothesis: We test the Null hypothesis, $H_0$, population (`Surgery`) means are
 Probability of getting an **F-statistic** at least as extreme as the one we observe (think of the area under the tails of the curve below) **p-value** Pr(>F)= `r round(anova(rats_lm)$"Pr(>F)"[1],4)` tells us we have sufficient evidence to reject $H_0$ at the 1% level of significance
 
 
-### Using `lm()`
+Alternatively, we could **use `lm()`**:
 
 ```{r lm}
 rats_lm <- lm(logAUC ~ Surgery, data = rats)
@@ -68,7 +74,9 @@ summary(rats_lm)$coef
 ```
 
 
-So, which pairs of means are different? To carry out a pair-wise comparisons of means we can use two-sample t-tests, calculating our **observed**  t-value where
+So, what does this tell us about which pairs of means are different? 
+
+To carry out a pair-wise comparisons of means we can use two-sample t-tests, calculating our **observed**  t-value where
 $\text{t-value} = \frac{\text{Sample Difference}_{ij} - \text{Difference assuming } H_0 \text{ is true}_{ij}}{\text{SE of } \text{Sample Difference}_{ij}}$. Here, $\text{Sample Difference}_{ij}$ = Difference between pair of sample means. We can then compute the p-value for observed t-value.
 
 The output above has already done this for us:
@@ -82,6 +90,7 @@ $\text{Surgery}_P$ = $\text{mean}_P$ – $\text{mean}_C$ = `r summary(rats_lm)$c
 SE of $\text{Surgery}_P$ = SE of ($\text{mean}_P$ - $\text{mean}_C$ ) = SED = `r summary(rats_lm)$coef[2,2]`
 
 ```{r, echo = FALSE}
+means <- rats %>% group_by(Surgery) %>% summarise(avg = mean(logAUC))
 means$base <- summary(rats_lm)$coef[1,1]
 ggplot(rats, aes(x = Surgery, y = logAUC)) + 
     geom_violin()  + 
@@ -100,16 +109,12 @@ ggplot(rats, aes(x = Surgery, y = logAUC)) +
 
 **Hypotheses being tested**
 
-+ The t value and Pr (>|t|) are the t - and p-value for testing the null hypotheses:
-	+ Mean abundance is zero for C population
-	+ No difference between the population means of P and C
-	+ No difference between the population means of S and C
+The `t` value and `Pr (>|t|)` are the t-statistic and p-value for testing the null hypotheses listed below
+	1. Mean abundance is zero for `C` population
+	2. No difference between the population means of `P` and `C`
+	3. No difference between the population means of `S` and `C`
 
 We're interested in 2 and 3, but not necessarily 1!
-
- Two-sample t -tests for pairwise comparisons of means
- 
-+ SurgeryP : t value = Estimate ÷ Std.Error =  0.8446; Pr (>|t|) =  0.4202
 
 **F-test:**
 
@@ -145,11 +150,15 @@ What do you think? Look back at module 2.
 
 #### Equal replications (balanced design)
 
-**Data** Global metabolic profiling and comparison of relative abundances of proteins (`logAUC`) in the inner and outer left ventricle (`innerLV` and `outerLV`) wall of diabetic and healthy male Wistar rats.
+**Data** Global metabolic profiling and comparison of relative abundances of proteins (`logAUC`) in the inner and outer left ventricle (`innerLV` and `outerLV`) wall of diabetic and healthy male Wistar rats. To read the data directly into `R` you can use
+
+```{r, eval = FALSE}
+readr::read_csv("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/factorial_expt.csv")
+```
 
 
 ```{r, echo = FALSE, message = FALSE}
-require(tidyverse)
+library(tidyverse)
 factorial <-  read_csv("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/factorial_expt.csv")
 factorial %>%
   dplyr::select(c(Disease, Organ)) %>%
@@ -232,10 +241,99 @@ fac_lm_2 <- lm(logAUC ~ Organ*Disease, data = unbalanced_nafree)
 anova(fac_lm_2)
 ```
 
-The three **global** null hypotheses being tested are the same
+The three **global** null hypotheses being tested are (essentially) the same
 
   1. $H_0: \hat{\mu}_{\text{Diabetic}} = \hat{\mu}_{\text{Healthy}}$
   2. $H_0: \hat{\mu}_{\text{innerLV}} = \hat{\mu}_{\text{outerLV}}$
   3. $H_0: \hat{\mu}_{\text{Diabetic,innerLV}} = \hat{\mu}_{\text{Diabetic,outerLV}} = \hat{\mu}_{\text{Healthy,innerLV}} = \hat{\mu}_{\text{Healthy,outerLV}}$
   
-However, now the **order the terms affects** the estimation. Why?
+However, now the **order the terms affects** the estimation. Look carefully at the `anova()` outputs above; what to you notice about the sums of squares (`Sum Sq`) values?
+
+For a **balanced**  two-factor experiment (e.g., in the previous section) partitioning of the sums of squares ($SS$) is additive:
+
+ $$SS_\text{Treatment} = SS_\text{Disease} + SS_\text{Organ} + SS_\text{Disease:Organ}.$$
+
+The order in which the main effects are added to the model does not matter. **However**, for an **unbalanced design** this is not the case as the sums of squares are calculated **sequentially**. Note that sequentially calculated $SS$ are known as Type I $SS$.
+
+#### Sums of squares ($SS$)
+
+**Sequential (Type I $SS$)**
+
+As a term enters the model its $SS$ is calculated, which is then subtracted from the total $SS$. This then reduces the available $SS$ for the next term entering the model. When treatment combinations in a factorial experiment are unequally replicated, their effects are not mutually independent, so that the order in which terms enter the model matters.
+
+Considering the data above if we include `Disease` as a main effect first (i.e., `Disease*Organ`) then the $SS_\text{Disease}$ is calculated first **ignoring** the `Organ` main effect. Here, some `Organ` information is confounded with `Disease` information  (i.e., variation due to `Organ` confounded by the variation due to `Disease`). Then $SS_\text{Organ}$ are calculated having been adjusted for the `Diease` main effect. This now only contains `Organ` information (i.e., variation due to `Organ` effect) since all the `Disease` information was eliminated in previous step. Finally, $SS_\text{Disease:Organ}$ are calculated adjusted for both $SS_\text{Disease}$ and $SS_\text{Organ}$. Here, there is no information left relating to `Disease` or `Organ` main effects.
+
+What does this look like?
+
+For `Disease*Organ` we calculate $SS_\text{Disease}$ ignoring any `Organ` effect (if you are unsure what each line of code is doing I suggest you run it line by line to see what's being done at each step). 
+
+```{r}
+unbalanced_nafree %>% 
+  mutate(grand_mean = mean(logAUC)) %>%
+  group_by(Disease) %>%
+  summarise(n = n(),
+         treatment_mean = mean(logAUC),
+         grand_mean = mean(grand_mean)) %>%
+  mutate(ss_disease = n * (treatment_mean - grand_mean)^2) %>%
+  pull(ss_disease) %>%
+  sum()
+```
+
+This matches, as we'd expect, $SS_\text{Disease}$ calculated from the `Disease*Organ` model above. 
+
+
+But, that about the sequential $SS$, a simple way to think about this is in terms of sequential models:  
+
+
+
+```{r}
+## Null model.
+fit.null <- lm(logAUC ~ 1,  data = unbalanced_nafree)
+## Only Factor Disease.
+fit.a <- lm(logAUC ~ Disease,  data = unbalanced_nafree)
+## Factors Disease and Organ.
+fit.ab <- lm(logAUC ~ Disease + Organ,  data = unbalanced_nafree)
+## Factors Disease and Organ with interaction.
+fit.abi <- lm(logAUC ~ Disease*Organ,  data = unbalanced_nafree)
+## ANOVA table, as above
+anova(fit.abi)
+
+## First line.
+sum(residuals(fit.null)^2) - sum(residuals(fit.a)^2)
+## Second line.
+sum(residuals(fit.a)^2) - sum(residuals(fit.ab)^2)
+## Third line.
+sum(residuals(fit.ab)^2) - sum(residuals(fit.abi)^2)
+## Final line.
+sum(residuals(fit.abi)^2)
+```
+
+
+
+**Type II $SS$**
+
+Rather than calculating $SS$ sequentially we can calculate the $SS$ for a given effect adjusting for all other effects listed in the model. This means that the $SS_\text{A}$ and $SS_\text{B}$ main effects will both be adjusted for each other (since neither contains the other), but will not be adjusted for $SS_\text{A:B}$ (since it contains both A and B). $SS_\text{A:B}$ will be adjusted for both main effects.
+
+In our example above $SS_\text{Disease}$ and $SS_\text{Organ}$ main effects will both be adjusted for each other, but will not be adjusted for $SS_\text{A:B}$ and $SS_\text{Disease:Organ}$ will be adjusted for both main effects.
+
+We can calculate the Type II $SS$ table in `R` buy either 
+
+1) Extracting the main effect rows that have been adjusted for the other model terms from two Type I $SS$ tables (each one haveing the terms specifed in a different order):
+
+```{r}
+## Type II Organ SS
+anova(fac_lm)[2, ]
+## Type II Disease SS
+anova(fac_lm_2)[2, ]
+## Type II Organ:Disease/Disease:Organ
+anova(fac_lm_2)[3, ]
+```
+
+
+or,
+
+2) Using an inbuilt `R` function (does not matter which order the model has the terms specified):
+
+```{r}
+car::Anova(fac_lm, type = 2)
+```

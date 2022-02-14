@@ -47,7 +47,7 @@ New Zealand develops world-leading linked administrative data resources." `r tuf
 **Kotahitanga**, collective benefit
 
   + Data ecosystems shall be designed and function in ways that enable Māori to derive individual and collective benefit.
-  + Build capacity. Māori Data Sovereignty requires the development of a Māori workforce to enable the creation, collection, management, security, governance and application of data.
+  + Build capacity. Māori Data Sovereignty librarys the development of a Māori workforce to enable the creation, collection, management, security, governance and application of data.
   + Connections between Māori and other Indigenous peoples shall be supported to enable the sharing of strategies, resources and ideas in relation to data, and the attainment of common goals.
   
  **Manaakitanga**, reciprocity

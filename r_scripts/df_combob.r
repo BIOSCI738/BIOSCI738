@@ -1,4 +1,4 @@
-require(tidyverse)
+library(tidyverse)
 data <- read_csv("split_plot.csv")
 ## DO NOT FORGET THIS
 data$Animal <- as.factor(data$Animal)

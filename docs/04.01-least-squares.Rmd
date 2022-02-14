@@ -66,7 +66,7 @@ The method of **least squares** estimation works by minimising the distances bet
 
 
 ```{r, echo = FALSE, message = FALSE}
-require(tidyverse)
+library(tidyverse)
 set.seed(12346)
 x <- rnorm(30, 3, 4)
 y <- x + rnorm(30, 0 , 2)
