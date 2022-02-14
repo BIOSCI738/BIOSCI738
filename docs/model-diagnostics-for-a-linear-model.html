@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Māori Data Sovereignty principles | Advanced Biological Data Analysis</title>
-  <meta name="description" content="Māori Data Sovereignty principles | Advanced Biological Data Analysis" />
+  <title>Model diagnostics for a linear model | Advanced Biological Data Analysis</title>
+  <meta name="description" content="Model diagnostics for a linear model | Advanced Biological Data Analysis" />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Māori Data Sovereignty principles | Advanced Biological Data Analysis" />
+  <meta property="og:title" content="Model diagnostics for a linear model | Advanced Biological Data Analysis" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Māori Data Sovereignty principles | Advanced Biological Data Analysis" />
+  <meta name="twitter:title" content="Model diagnostics for a linear model | Advanced Biological Data Analysis" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="data-visualiation-data-viz.html"/>
-<link rel="next" href="module-2.html"/>
+<link rel="prev" href="model-formula-syntax-in-r.html"/>
+<link rel="next" href="inference-for-a-linear-model.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -280,90 +280,107 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="māori-data-sovereignty-principles" class="section level2">
-<h2>Māori Data Sovereignty principles</h2>
-<p><a href="https://en.wikipedia.org/wiki/Data_sovereignty">''<strong>Data sovereignty</strong> is the idea that data are subject to the laws and governance structures within the nation it is collected''</a></p>
-<blockquote>
-&quot;Māori Data Sovereignty has emerged as a critical policy issue as Aotearoa New Zealand develops world-leading linked administrative data resources.&quot;
-<footer>
---- Andrew Sporle, Maui Hudson, Kiri West. Chapter 5, Indigenous Data Sovereignty and Policy
-</footer>
-</blockquote>
-<blockquote>
-&quot;For Indigenous peoples, historical encounters with statistics have been fraught, and none more so than when involving official data produced as part of colonial attempts at statecraft.&quot;
-<footer>
---- Lovett, R., Lee, V., Kukutai, T., Cormack, D., Rainie, S.C. and Walker, J., 2019. Good data practices for Indigenous data sovereignty and governance. Good data, pp.26-36.
-</footer>
-</blockquote>
-<blockquote>
-&quot;Māori Data Sovereignty has emerged as a critical policy issue as Aotearoa New Zealand develops world-leading linked administrative data resources.&quot;
-<footer>
---- Andrew Sporle, Maui Hudson, Kiri West. Chapter 5, Indigenous Data Sovereignty and Policy
-</footer>
-</blockquote>
-<blockquote>
-“Māori data refers to data produced by Māori or that is about Māori and the environments we have relationships with.&quot;
-<footer>
---- Te Mana Raraunga Charter
-</footer>
-</blockquote>
-<blockquote>
-Data is a “potential taonga, something precious that needs to be maintained, in relation to its utility”
-<footer>
---- Dr W. Edwards, TMR website
-</footer>
-</blockquote>
-<p><a href="https://nzhistory.govt.nz/politics/treaty/read-the-Treaty/differences-between-the-texts">Te Tiriti o Waitangi/Treaty of Waitangi</a> obliges the Government to actively protect <a href="https://maoridictionary.co.nz/search?keywords=taonga">taonga</a>, consult with Māori in respect of taonga, give effect to the principle of partnership and recognize Māori rangatiratanga over taonga. Factors that relate to how communities might recognize the taonga nature of any dataset include</p>
+<div id="model-diagnostics-for-a-linear-model" class="section level2">
+<h2>Model diagnostics for a linear model</h2>
+<p>Remember that it is always is imperative that we <strong>check the underlying assumptions</strong> of our model! If our assumptions are not met then basically the maths falls over and we can't reliably draw inference from the model (e.g., can't trust the parameter estimates etc.). Two of the most important assumption are:</p>
 <ul>
-<li>provenance of the data: does the dataset come from a significant Māori source?</li>
-<li>opportunity for the data: could the dataset support Māori aspirations for their people or their whenua (land)?</li>
-<li>utility of the data: does the dataset have multiple uses?</li>
+<li><p>equal variances (homogeneity of variance), and</p></li>
+<li><p>normality of residuals.</p></li>
 </ul>
-<p><strong>Māori Data Sovereignty principles</strong> to inform the recognition of Māori rights and interests in data, and the ethical use of data to enhance Māori well-being:</p>
-<p><strong>Rangatiratanga</strong>, authority</p>
-<ul>
-<li>Māori have an inherent right to exercise control over Māori data and Māori data ecosystems. This right includes, but is not limited to, the creation, collection, access, analysis, interpretation, management, security, dissemination, use and reuse of Māori data.</li>
-<li>Decisions about the physical and virtual storage of Māori data shall enhance control for current and future generations. Whenever possible, Māori data shall be stored in Aotearoa New Zealand.</li>
-<li>Māori have the right to data that is relevant and empowers sustainable self-determination and effective self-governance</li>
-</ul>
-<p><strong>Whakapapa</strong>, relationships</p>
-<ul>
-<li>All data has a whakapapa (genealogy). Accurate metadata should, at minimum, provide information about the provenance of the data, the purpose(s) for its collection, the context of its collection, and the parties involved.</li>
-<li>The ability to disaggregate Māori data increases its relevance for Māori communities and iwi. Māori data shall be collected and coded using categories that prioritise Māori needs and aspirations.</li>
-<li>Current decision-making over data can have long-term consequences, good and bad, for future generations of Māori. A key goal of Māori data governance should be to protect against future harm.</li>
-</ul>
-<p><strong>Whanaungatanga</strong>, obligations</p>
-<ul>
-<li>Individuals’ rights (including privacy rights), risks and benefits in relation to data need to be balanced with those of the groups of which they are a part. In some contexts, collective Māori rights will prevail over those of individuals.</li>
-<li>Individuals and organisations responsible for the creation, collection, analysis, management, access, security or dissemination of Māori data are accountable to the communities, groups and individuals from whom the data derive</li>
-</ul>
-<p><strong>Kotahitanga</strong>, collective benefit</p>
-<ul>
-<li>Data ecosystems shall be designed and function in ways that enable Māori to derive individual and collective benefit.</li>
-<li>Build capacity. Māori Data Sovereignty requires the development of a Māori workforce to enable the creation, collection, management, security, governance and application of data.</li>
-<li>Connections between Māori and other Indigenous peoples shall be supported to enable the sharing of strategies, resources and ideas in relation to data, and the attainment of common goals.</li>
-</ul>
-<p><strong>Manaakitanga</strong>, reciprocity</p>
-<ul>
-<li>The collection, use and interpretation of data shall uphold the dignity of Māori communities, groups and individuals. Data analysis that stigmatises or blames Māori can result in collective and individual harm and should be actively avoided.</li>
-<li>Free, prior and informed consent shall underpin the collection and use of all data from or about Māori. Less defined types of consent shall be balanced by stronger governance arrangements.</li>
-</ul>
-<p><strong>Kaitiakitanga</strong>, guardianship</p>
-<ul>
-<li>Māori data shall be stored and transferred in such a way that it enables and reinforces the capacity of Māori to exercise kaitiakitanga over Māori data.</li>
-<li>Ethics. Tikanga, kawa (protocols) and mātauranga (knowledge) shall underpin the protection, access and use of Māori data.</li>
-<li>Māori shall decide which Māori data shall be controlled (tapu) or open (noa) access.</li>
-</ul>
+<p>Let's look at the fit of the <code>slm</code> model (single continuous explanatory variable)</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gglm<span class="op">::</span><span class="kw">gglm</span>(slm_sp) <span class="co"># Plot the four main diagnostic plots</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-65-1.png" width="672" /></p>
+<p><strong>Residuals vs Fitted</strong> plot</p>
+<p>You are basically looking for no pattern or structure in your residuals (e.g., a &quot;starry&quot; night). You definitely don't want to see is the scatter increasing around the zero line (dashed line) as the fitted values get bigger (e.g., think of a trumpet, a wedge of cheese, or even a slice of pizza) which would indicate unequal variances (heteroscedacity).</p>
+<p><strong>Normal quantile-quantile (QQ)</strong> plot</p>
+<p>This plot shows the sorted residuals versus expected order statistics from a standard normal distribution. Samples should be close to a line; points moving away from 45 degree line at the tails suggest the data are from a skewed distribution.</p>
+<p><strong>Scale-Location</strong> plot (<span class="math inline">\(\sqrt{\text{|standardized residuals vs Fitted|}}\)</span>)</p>
+<p>Another way to check the homoskedasticity (constant-variance) assumption. We want the line to be roughly horizontal. If this is the case then the average magnitude of the standardized residuals isn't changing much as a function of the fitted values. We'd also like the spread around the line not to vary much with the fitted values; then the variability of magnitudes doesn't vary much as a function of the fitted values.</p>
+<p><strong>Residuals vs Leverage</strong> plot (standardized residuals vs Leverage)</p>
+<p>This can help detect outliers in a linear regression model. For linear regression model leverage measures how sensitive a fitted value is to a change in the true response. We're looking at how the spread of standardized residuals changes as the leverage. This can also be used to detect heteroskedasticity and non-linearity: the spread of standardized residuals shouldn't change as a function of leverage. In addition, points with high leverage may be influential: that is, deleting them would change the model a lot.</p>
+<p>Do you think the residuals are Normally distributed (look at the QQ plot)? Think of what this model is, do you think it's the best we can do?</p>
+<div id="marginal-predictions" class="section level3">
+<h3>Marginal predictions</h3>
+<p>If the residuals do not show a violation of our model assumptions (let's just pretend the plots above don't show anything for concern) we can produce margins plots, which show the marginal effect of a predictor, holding other variables constant.</p>
+<p>The <code>ggpredict()</code> function from the <code>ggeffects</code> package can be used for this:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ggeffects<span class="op">::</span><span class="kw">ggpredict</span>(slm_sp, <span class="dt">terms =</span> <span class="st">&quot;species&quot;</span>)</code></pre></div>
+<pre><code>## # Predicted values of bill_depth_mm
+## 
+## species   | Predicted |         95% CI
+## --------------------------------------
+## Adelie    |     19.38 | [19.15, 19.62]
+## Chinstrap |     17.45 | [17.17, 17.73]
+## Gentoo    |     14.28 | [14.07, 14.49]
+## 
+## Adjusted for:
+## * bill_length_mm = 43.99</code></pre>
+<p>We can even plot the marginal effects:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ggeffects<span class="op">::</span><span class="kw">ggpredict</span>(slm_sp, <span class="dt">terms =</span> <span class="st">&quot;species&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> predicted, <span class="dt">label =</span> <span class="kw">round</span>(predicted, <span class="dv">3</span>))) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> conf.low, <span class="dt">ymax =</span> conf.high), <span class="dt">width =</span> <span class="fl">.5</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_text</span>(<span class="dt">hjust =</span> <span class="fl">-.2</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">ylab</span>( <span class="st">&quot;Predicted bill depth (mm)&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Fitted means for each species with 95% CIs&quot;</span>, <span class="dt">subtitle =</span> <span class="st">&quot;Adjusted for bill_length_mm = 43.99&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_classic</span>()</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-67-1.png" width="672" /></p>
+</div>
+<div id="model-selection" class="section level3">
+<h3>Model selection</h3>
+<p><strong>Are the non-parallel lines non-parallel enough to reject the parallel line model?</strong></p>
+<p>Now we can compare <strong>nested</strong> linear models by hypothesis testing. Luckily the <code>R</code> function <code>anova()</code> automates this. Yes the same idea as we've previously learnt about ANOVA! We essentially perform an F-ratio test between the nested models!</p>
+<p>By <strong>nested</strong> we mean that one model is a subset of the other (i.e., where some coefficients have been fixed at zero). For example,</p>
+<p><span class="math display">\[Y_i = \beta_0 + \beta_1z_i + \epsilon_i\]</span></p>
+<p>is a nested version of</p>
+<p><span class="math display">\[Y_i = \beta_0 + \beta_1z_i + \beta_2x_i + \epsilon_i\]</span> where <span class="math inline">\(\beta_2\)</span> has been fixed to zero.</p>
+<p>As an example consider testing the single explanatory variable model <code>slm</code> against the same model with species included as a variable <code>slm_sp</code>. To carry out the appropriate hypothesis test in <code>R</code> we can run</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anova</span>(slm,slm_sp)</code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Model 1: bill_depth_mm ~ bill_length_mm
+## Model 2: bill_depth_mm ~ bill_length_mm + species
+##   Res.Df     RSS Df Sum of Sq      F    Pr(&gt;F)    
+## 1    331 1220.16                                  
+## 2    329  299.62  2    920.55 505.41 &lt; 2.2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>As you'll see the <code>anova()</code> function takes the two model objects (<code>slm</code> and <code>slm_sp</code>) each as arguments. It returns an ANOVA testing whether the more complex model (<code>slm_sp</code>) is just as good at capturing the variation in the data as the simpler model (<code>slm</code>). The returned p-value should be interpreted as in any other hypothesis test. i.e., the probability of observing a statistic as least as extreme under our null hypothesis (here that each model is as good at capturing the variation in the data).</p>
+<p>What would we conclude here? I'd say we have pretty strong evidence against the models being equally good! I'd definitely plump for <code>slm_sp</code> over <code>slm</code>, looking back at the plots above does this make sense?</p>
+<p>Now what about <code>slm_int</code> vs <code>slm_sp</code>?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anova</span>(slm_sp,slm_int)</code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Model 1: bill_depth_mm ~ bill_length_mm + species
+## Model 2: bill_depth_mm ~ bill_length_mm * species
+##   Res.Df    RSS Df Sum of Sq      F Pr(&gt;F)
+## 1    329 299.62                           
+## 2    327 298.62  2   0.99284 0.5436 0.5812</code></pre>
+<p>So it seems both models are just as good at capturing the variation in our data: we're happy with the parallel lines!</p>
+<p>Another way we might compare models is by using the Akaike information criterion (AIC) (you'll see more of this later in the course). AIC is an estimator of out-of-sample prediction error and can be used as a metric to choose between competing models. Between nested models we're looking for the smallest AIC (i.e., smallest out-of-sample prediction error). Typically, a difference of 4 or more is considered to indicate an improvement; this should not be taken as writ however, using multiple comparison techniques is advised.</p>
+<p><code>R</code> already has an <code>AIC()</code> function that can be used directly on your <code>lm()</code> model object(s). For example,</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">AIC</span>(slm,slm_sp,slm_int)</code></pre></div>
+<pre><code>##         df       AIC
+## slm      3 1383.4462
+## slm_sp   5  919.8347
+## slm_int  7  922.7294</code></pre>
+<p>This backs up what our ANOVA suggested model <code>slm_sp</code> as that preferred! As always it's important to do a sanity check! Does this make sense? Have a look at the outputs from these models and see what you think.</p>
+<p>Just because we've chosen a model (<em>the best of a bad bunch</em> perhaps) this doesn't let us off the hook. We should check our assumptions</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gglm<span class="op">::</span><span class="kw">gglm</span>(slm_sp) <span class="co"># Plot the four main diagnostic plots</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-71-1.png" width="672" /></p>
+<p><strong>Residuals vs Fitted</strong> plot: equal spread? Doesn't look too trumpety!</p>
+<p><strong>Normal quantile-quantile (QQ)</strong> plot: skewed? Maybe slightly right skewed (deviation upwards from the right tail)</p>
+<p><strong>Scale-Location</strong> plot: equal spared? I'd say so.</p>
+<p><strong>Residuals vs Leverage</strong>: ? Maybe a couple of points with high leverage.</p>
 
 </div>
-<!-- </div> -->
+</div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="data-visualiation-data-viz.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="module-2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="model-formula-syntax-in-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="inference-for-a-linear-model.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

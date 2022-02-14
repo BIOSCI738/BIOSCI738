@@ -16,7 +16,7 @@ library(tidyverse)
 rcbd <- read_csv("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/rcbd.csv")
 ## Note: Run should be a factor
 rcbd$Run <- as.factor(rcbd$Run)
-rcbd %>% select(-logAUC4) %>%
+rcbd %>% dplyr::select(-logAUC4) %>%
   kableExtra::kable(.) %>%
   kableExtra::kable_classic(full_width = FALSE, html_font = "Cambria")
 ```

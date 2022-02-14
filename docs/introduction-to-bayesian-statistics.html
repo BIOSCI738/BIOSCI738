@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Introduction to Bayesian statistics | Advanced Biological Data Analysis</title>
   <meta name="description" content="Introduction to Bayesian statistics | Advanced Biological Data Analysis" />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Introduction to Bayesian statistics | Advanced Biological Data Analysis" />
   <meta property="og:type" content="book" />
@@ -32,7 +32,7 @@
   
 <link rel="prev" href="maximum-likelkihood-estimation.html"/>
 <link rel="next" href="module-5.html"/>
-<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -56,66 +56,41 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
 
@@ -152,11 +127,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="your-data-and-r.html#the-pipe-operator">The pipe operator <code>%&gt;%</code></a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="data-wrangling.html"><a href="data-wrangling.html"><i class="fa fa-check"></i>Data wrangling</a><ul>
-<li><a href="data-wrangling.html#introuducing-the-palmer-penguins">Introuducing the <span>Palmer penguins</span></a></li>
+<li><a href="data-wrangling.html#introuducing-the-palmer-penguins">Introuducing the <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0090081">Palmer penguins</a></a></li>
 <li><a href="data-wrangling.html#common-dataframe-manipulations-in-the-tidyverse-using-dplyr-and-tidyr">Common dataframe manipulations in the <code>tidyverse</code>, using <code>dplyr</code> and <code>tidyr</code></a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html"><i class="fa fa-check"></i>Data visualiation (data viz)</a><ul>
-<li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html#exploratory-and-explanatory-plots"><i class="fa fa-check"></i>Exploratory and explanatory plots</a></li>
+<li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html#exploratory-plots"><i class="fa fa-check"></i>Exploratory plots</a></li>
+<li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html#explanatory-plots"><i class="fa fa-check"></i>Explanatory plots</a></li>
 <li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html#ten-simple-rules-for-better-figures"><i class="fa fa-check"></i>Ten Simple Rules for Better Figures</a></li>
 <li><a href="data-visualiation-data-viz.html#ggplot2"><code>ggplot2</code></a></li>
 </ul></li>
@@ -190,9 +166,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="model-formula-syntax-in-r.html#model-formula-syntax-in-r">Model formula syntax in <code>R</code></a><ul>
 <li class="chapter" data-level="" data-path="model-formula-syntax-in-r.html"><a href="model-formula-syntax-in-r.html"><i class="fa fa-check"></i>Other possible models</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="model-diagnostocs-for-a-linear-model.html"><a href="model-diagnostocs-for-a-linear-model.html"><i class="fa fa-check"></i>Model diagnostocs for a linear model</a><ul>
-<li class="chapter" data-level="" data-path="model-diagnostocs-for-a-linear-model.html"><a href="model-diagnostocs-for-a-linear-model.html#marginal-predictions"><i class="fa fa-check"></i>Marginal predictions</a></li>
-<li class="chapter" data-level="" data-path="model-diagnostocs-for-a-linear-model.html"><a href="model-diagnostocs-for-a-linear-model.html#model-selection"><i class="fa fa-check"></i>Model selection</a></li>
+<li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html"><i class="fa fa-check"></i>Model diagnostics for a linear model</a><ul>
+<li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html#marginal-predictions"><i class="fa fa-check"></i>Marginal predictions</a></li>
+<li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html#model-selection"><i class="fa fa-check"></i>Model selection</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="inference-for-a-linear-model.html"><a href="inference-for-a-linear-model.html"><i class="fa fa-check"></i>Inference for a linear model</a><ul>
 <li class="chapter" data-level="" data-path="inference-for-a-linear-model.html"><a href="inference-for-a-linear-model.html#point-prediction"><i class="fa fa-check"></i>Point prediction</a></li>
@@ -213,12 +189,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html#randomised-complete-block-design-rcbd"><i class="fa fa-check"></i>Randomised complete block design (RCBD)</a></li>
 <li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html#factorial-design"><i class="fa fa-check"></i>Factorial design</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="modlling-experimental-data.html"><a href="modlling-experimental-data.html"><i class="fa fa-check"></i>Modlling experimental data</a><ul>
-<li class="chapter" data-level="" data-path="modlling-experimental-data.html"><a href="modlling-experimental-data.html#a-completely-randomised-design-crd-as-a-linear-model"><i class="fa fa-check"></i>A completely randomised design (CRD) as a linear model</a></li>
-<li><a href="modlling-experimental-data.html#analysis-of-a-crd-in-r">Analysis of a CRD in <code>R</code></a></li>
-<li><a href="modlling-experimental-data.html#using-lm">Using <code>lm()</code></a></li>
-<li class="chapter" data-level="" data-path="modlling-experimental-data.html"><a href="modlling-experimental-data.html#a-factorial-experiment-as-a-crd"><i class="fa fa-check"></i>A Factorial experiment (as a CRD)</a></li>
-<li class="chapter" data-level="" data-path="modlling-experimental-data.html"><a href="modlling-experimental-data.html#unqual-replications-unbalanced-design"><i class="fa fa-check"></i>Unqual replications (unbalanced design)</a></li>
+<li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html"><i class="fa fa-check"></i>Modelling experimental data</a><ul>
+<li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-completely-randomised-design-crd-as-a-linear-model"><i class="fa fa-check"></i>A completely randomised design (CRD) as a linear model</a></li>
+<li><a href="modelling-experimental-data.html#analysis-of-a-crd-in-r">Analysis of a CRD in <code>R</code></a></li>
+<li><a href="modelling-experimental-data.html#using-lm">Using <code>lm()</code></a></li>
+<li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-factorial-experiment-as-a-crd"><i class="fa fa-check"></i>A Factorial experiment (as a CRD)</a></li>
+<li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#unqual-replications-unbalanced-design"><i class="fa fa-check"></i>Unqual replications (unbalanced design)</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html"><i class="fa fa-check"></i>Multiple comparisons</a><ul>
 <li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html#classification-of-multiple-hypothesis-tests"><i class="fa fa-check"></i>Classification of multiple hypothesis tests</a></li>
@@ -249,7 +225,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html"><i class="fa fa-check"></i>Introduction to Bayesian statistics</a><ul>
 <li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html#conditional-probability"><i class="fa fa-check"></i>Conditional probability</a></li>
-<li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html#bayes-rule"><i class="fa fa-check"></i>Bayes’ rule</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html#bayes-rule"><i class="fa fa-check"></i>Bayes' rule</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="module-5.html"><a href="module-5.html"><i class="fa fa-check"></i>Module 5</a><ul>
@@ -309,7 +285,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <blockquote>
 “Critical thinking is an active and ongoing process. It requires that we all think like Bayesians, updating our knowledge as new information comes in.”
 <footer>
-— Daniel J. Levitin, A Field Guide to Lies: Critical Thinking in the Information Age
+--- Daniel J. Levitin, A Field Guide to Lies: Critical Thinking in the Information Age
 </footer>
 </blockquote>
 <div id="conditional-probability" class="section level3">
@@ -325,7 +301,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>It was also reported that the <strong>specificity</strong> of this test was 0.997. That is, the chance of a negative test given that you do not have COVID-19 is 0.997.</p>
 <p>This can be summarised as <span class="math inline">\(P( + | \text{infected}) = 0.787\)</span> and <span class="math inline">\(P( -| \text{not infected}) = 0.997\)</span></p>
 <p>What you would probably like to know is given that the test is positive, what is the probability that you have COVID-19? <span class="math inline">\(P( \text{infected}| +) = ?\)</span></p>
-<p>Let’s assume that people in the population with COVID-19 is 10% (not far off the estimated % with Omicron in London a few weeks ago); that is, <span class="math inline">\(P(\text{infected}) = 0.1\)</span>.</p>
+<p>Let's assume that people in the population with COVID-19 is 10% (not far off the estimated % with Omicron in London a few weeks ago); that is, <span class="math inline">\(P(\text{infected}) = 0.1\)</span>.</p>
 <p>But, what about <span class="math inline">\(P( \text{infected}| +) ?\)</span></p>
 <p>Recall, <span class="math display">\[P(A∣B) = \frac{P(A \:\text{and}\: B)}{P(B)}.\]</span> So,</p>
 <p><span class="math display">\[P( \text{infected}| +) = \frac{P(\text{infected} \:\text{and}\: +)}{P(+)}.\]</span></p>
@@ -336,37 +312,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><span class="math display">\[P( \text{infected}| +) = \frac{P( + | \text{infected})P(\text{infected})}{P(+)}.\]</span></p>
 </div>
 <div id="bayes-rule" class="section level3">
-<h3>Bayes’ rule</h3>
-<p>Bayes’ theorem, named after British mathematician Reverend Thomas Bayes, is a mathematical formula for determining conditional probability. His work and theorems were presented in <a href="https://en.wikipedia.org/wiki/An_Essay_towards_solving_a_Problem_in_the_Doctrine_of_Chances">An Essay towards solving a Problem in the Doctrine of Chances</a>, this was read to the Royal Society in 1763 after his death.</p>
+<h3>Bayes' rule</h3>
+<p>Bayes' theorem, named after British mathematician Reverend Thomas Bayes, is a mathematical formula for determining conditional probability. His work and theorems were presented in <a href="https://en.wikipedia.org/wiki/An_Essay_towards_solving_a_Problem_in_the_Doctrine_of_Chances">An Essay towards solving a Problem in the Doctrine of Chances</a>, this was read to the Royal Society in 1763 after his death.</p>
 <p align="center">
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Thomas_Bayes.gif/220px-Thomas_Bayes.gif" alt="The Reverend Thomas Bayes" />
 </p>
-<p><strong>Theorem, Bayes’ rule</strong> The conditional probability of the event <span class="math inline">\(A\)</span> conditional on the event <span class="math inline">\(B\)</span> is given by</p>
+<p><strong>Theorem, Bayes' rule</strong> The conditional probability of the event <span class="math inline">\(A\)</span> conditional on the event <span class="math inline">\(B\)</span> is given by</p>
 <p><span class="math display">\[P(B|A) = \frac{P(A|B)P(B)}{P(A)}\]</span></p>
-<p>Let’s think of this in terms of our data and hypothesis:</p>
+<p>Let's think of this in terms of our data and hypothesis:</p>
 <p><span class="math display">\[P(\text{hypothesis}∣\text{data}) = \frac{P(\text{data} | \text{hypothesis} )P(\text{hypothesis})}{P(\text{data})}\]</span></p>
-<p>Recall from the previous sections that our hypotheses relate to estimating <strong>parameter</strong> values (e.g., intercepts, differences in means, slopes etc ). The formula above (Bayes’ theorem) calculates the probability of the parameter(s), say <span class="math inline">\(\theta\)</span>, values given the data.</p>
-<p>But what is the difference here to maximum likelihood estimation (i.e., MLE, the frequentist approach)?
-Taking an MLE approach assumes that the parameters are fixed (i.e., they have one <em>true</em> value); the parameters are unknown and are to be estimated. Using this approach we typically estimate a point estimate of the parameter of interest. Taking a Bayesian approach assumes that the parameters are not fixed. Instead, parameters are assumed to come from some fixed unknown distribution (i;e., a range of plausible values). This approach requires that we have some prior beliefs about the data (even if these beliefs are uninformative). This information is introduces <em>a priori</em> to the modelling framework.</p>
+<p>Recall from the previous sections that our hypotheses relate to estimating <strong>parameter</strong> values (e.g., intercepts, differences in means, slopes etc ). The formula above (Bayes' theorem) calculates the probability of the parameter(s), say <span class="math inline">\(\theta\)</span>, values given the data.</p>
+<p>But what is the difference here to maximum likelihood estimation (i.e., MLE, the frequentist approach)? Taking an MLE approach assumes that the parameters are fixed (i.e., they have one <em>true</em> value); the parameters are unknown and are to be estimated. Using this approach we typically estimate a point estimate of the parameter of interest. Taking a Bayesian approach assumes that the parameters are not fixed. Instead, parameters are assumed to come from some fixed unknown distribution (i;e., a range of plausible values). This approach requires that we have some prior beliefs about the data (even if these beliefs are uninformative). This information is introduces <em>a priori</em> to the modelling framework.</p>
 <p><span class="math display">\[P(B|A) = \frac{P(A|B)P(B)}{P(A)}\]</span></p>
 <p>Let <span class="math inline">\(A = \theta\)</span> and <span class="math inline">\(B = \text{data}\)</span>, then the above translates to</p>
 <p><span class="math display">\[P(\theta∣\text{data}) = \frac{P(\text{data} | \theta )P(\theta)}{P(\text{data})}\]</span></p>
-<p>where <span class="math inline">\(P(\theta∣\text{data})\)</span> represents what you know after having seen the data. This is called he <strong>posterior distribution</strong> and is the basis for inference, a distribution, possibly multivariate if more than one parameter
-(<span class="math inline">\(\theta\)</span>). <span class="math inline">\(\frac{P(\text{data} | \theta )\)</span> is the <strong>likelihood</strong>, think back to the previous section. <span class="math inline">\(P(\text{data})\)</span> is called the <strong>prior distribution</strong> and represents what you know before seeing the data. The source of much discussion about the Bayesian approach. Now.</p>
-<p><span class="math display">\[P(\text{data}) = \int P(\text{data}|\theta)P(\theta)d\theta\]</span>
-is typically a high-dimensional integral, difficult if not impossible to calculate.</p>
+<p>where <span class="math inline">\(P(\theta∣\text{data})\)</span> represents what you know after having seen the data. This is called he <strong>posterior distribution</strong> and is the basis for inference, a distribution, possibly multivariate if more than one parameter (<span class="math inline">\(\theta\)</span>). <span class="math inline">\(\frac{P(\text{data} | \theta )\)</span> is the <strong>likelihood</strong>, think back to the previous section. <span class="math inline">\(P(\text{data})\)</span> is called the <strong>prior distribution</strong> and represents what you know before seeing the data. The source of much discussion about the Bayesian approach. Now.</p>
+<p><span class="math display">\[P(\text{data}) = \int P(\text{data}|\theta)P(\theta)d\theta\]</span> is typically a high-dimensional integral, difficult if not impossible to calculate.</p>
 <p><strong>A simple example:</strong> lobsters</p>
 <p>Again we consider data from the published article <a href="https://www.sciencedirect.com/science/article/pii/S0022098115000039">Influence of predator identity on the strength of predator avoidance responses in lobsters.</a>.</p>
-<p>Recall that the authors were interested in how a juvenile lobster’s size was related to its vulnerability to predation. In total, 159 juvenile lobsters were collected from their natural habitat in the Gulf of Maine, USA, and the length of each lobster’s carapace (upper shell) was measured to the nearest 3 mm. The lobsters were then tethered to the ocean floor for 24 hours. Any missing lobsters were assumed to have been consumed by a predator, while the surviving lobsters were released.</p>
-<p>We define large juvenile’s as those with carapace <span class="math inline">\(\geq\)</span> 40 mm, and otherwise we class them as small.</p>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb204-1" title="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb204-2" title="2">data &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/lobster.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb204-3" title="3">lobsters &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb204-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">size =</span> <span class="kw">ifelse</span>(size <span class="op">&gt;=</span><span class="st"> </span><span class="dv">40</span>, <span class="st">&quot;large&quot;</span>, <span class="st">&quot;small&quot;</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb204-5" title="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">survived =</span> <span class="kw">ifelse</span>(survived <span class="op">==</span><span class="st"> </span><span class="dv">0</span>, <span class="st">&quot;consumed&quot;</span>, <span class="st">&quot;alive&quot;</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb204-6" title="6"><span class="st">  </span><span class="kw">group_by</span>(size, survived) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb204-7" title="7"><span class="st">  </span><span class="kw">tally</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb204-8" title="8"><span class="st">  </span><span class="kw">pivot_wider</span>(<span class="dt">names_from =</span> <span class="kw">c</span>(survived), <span class="dt">values_from =</span> n)</a></code></pre></div>
+<p>Recall that the authors were interested in how a juvenile lobster's size was related to its vulnerability to predation. In total, 159 juvenile lobsters were collected from their natural habitat in the Gulf of Maine, USA, and the length of each lobster's carapace (upper shell) was measured to the nearest 3 mm. The lobsters were then tethered to the ocean floor for 24 hours. Any missing lobsters were assumed to have been consumed by a predator, while the surviving lobsters were released.</p>
+<p>We define large juvenile's as those with carapace <span class="math inline">\(\geq\)</span> 40 mm, and otherwise we class them as small.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+data &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/lobster.csv&quot;</span>)
+lobsters &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">size =</span> <span class="kw">ifelse</span>(size <span class="op">&gt;=</span><span class="st"> </span><span class="dv">40</span>, <span class="st">&quot;large&quot;</span>, <span class="st">&quot;small&quot;</span>)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">survived =</span> <span class="kw">ifelse</span>(survived <span class="op">==</span><span class="st"> </span><span class="dv">0</span>, <span class="st">&quot;consumed&quot;</span>, <span class="st">&quot;alive&quot;</span>)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(size, survived) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">tally</span>() <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">pivot_wider</span>(<span class="dt">names_from =</span> <span class="kw">c</span>(survived), <span class="dt">values_from =</span> n)</code></pre></div>
 <table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -412,33 +385,31 @@ small
 <p>A frequentist approach would be to maximise the likelihood with respect to <span class="math inline">\(\theta\)</span>, see the previous section. This would result in the maximum likelihood estimate (MLE) of <span class="math inline">\(\hat{\theta} = \frac{23}{80} = 0.2875\)</span></p>
 <p>Using a Bayesian approach we first need to start off with a prior distribution. This should reflect our <em>prior</em> beliefs about the parameter(s) of interest. We know <span class="math inline">\(\theta\)</span> is a probability, so it is a continuous random variable and that lies between zero and one.</p>
 <p>A suitable prior distribution might be the Beta defined on the interval [0, 1]. Therefore, we assume <em>a priori</em> <span class="math inline">\(\theta \sim \text{Beta(a, b)}\)</span> so that <span class="math inline">\(P(\theta) = \theta^{a−1}(1 − \theta)^{b−1}\)</span>. See the plot below for the range of shapes a Beta distribution takes with different parameter values.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-127-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-128-1.png" width="672" /></p>
 <p>Recall from above that</p>
-<p><span class="math display">\[P(\theta∣\text{data}) = \frac{P(\text{data} | \theta )P(\theta)}{P(\text{data})},\]</span>
-which can be written as</p>
-<p><span class="math display">\[P(\theta∣\text{data}) \propto P(\text{data} | \theta )P(\theta).\]</span>
-The <span class="math inline">\(\propto\)</span> means <em>proportional to</em>; basically this means we can ignore any terms not containing the parameters. Therefore,</p>
+<p><span class="math display">\[P(\theta∣\text{data}) = \frac{P(\text{data} | \theta )P(\theta)}{P(\text{data})},\]</span> which can be written as</p>
+<p><span class="math display">\[P(\theta∣\text{data}) \propto P(\text{data} | \theta )P(\theta).\]</span> The <span class="math inline">\(\propto\)</span> means <em>proportional to</em>; basically this means we can ignore any terms not containing the parameters. Therefore,</p>
 <p><span class="math display">\[\begin{array}{rl}
  P(\theta∣s)  &amp; \propto {n \choose s} \theta^s (1 - \theta)^{n-s}\theta^{a−1}(1 − \theta)^{b-1} \\
    &amp; \propto  \theta^{(a+s)−1}(1 − \theta)^{(b+n−s)−1}
  \end{array}.\]</span></p>
 <p>So the posterior distribution for survival is <span class="math inline">\(\theta | s \sim \text{Beta}(a + s, b + n - s).\)</span></p>
-<p>We’re going to choose an <strong>uninformative prior</strong> (i.e., <span class="math inline">\(\text{Beta}(1, 1)\)</span> above). So <span class="math inline">\(\theta_{\text{small}} \sim \text{Beta}(1 + 23, 1 + 80 - 23) = \text{Beta}(24, 58).\)</span> We want the expected value of this, which already has an explicit form:</p>
+<p>We're going to choose an <strong>uninformative prior</strong> (i.e., <span class="math inline">\(\text{Beta}(1, 1)\)</span> above). So <span class="math inline">\(\theta_{\text{small}} \sim \text{Beta}(1 + 23, 1 + 80 - 23) = \text{Beta}(24, 58).\)</span> We want the expected value of this, which already has an explicit form:</p>
 <p><span class="math display">\[\mathbb{E}[\text{Beta}(a, b)] = \frac{a}{a + b} = \frac{24}{82}.\]</span></p>
 <p>How does this compare to our MLE estimate from above?</p>
 <blockquote>
 Typically, Bayesian and frequentist estimates will always agree if there is sufficient data, so long as the likelihood is not explicitly ruled out by the prior.
 <footer>
-— Olivier Gimenez, Bayesian statistics with R
+--- Olivier Gimenez, Bayesian statistics with R
 </footer>
 </blockquote>
-<p><img src="_main_files/figure-html/unnamed-chunk-128-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-129-1.png" width="672" /></p>
 <div id="prior-sensitivity" class="section level4">
 <h4>Prior sensitivity</h4>
 <p>When choosing a prior distribution you should focus on what that prior means in the context of the research problem. Prior choice will influence the posterior distribution. Uninformative priors can be chosen if we wish to rely only on the likelihood (i.e., let the data speak for itself), which is itself subjective based on how/where data were collected. However, uninformative priors are in general unrealistic as equal weight is given to all values!</p>
 <p>Prior choice and sensitivity is beyond the scope of this course; however, I would strongly encourage you to read the linked materials at the start of this module.</p>
 <p>What would happen to our posterior distribution, above, if we were to choose a different prior?</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-129-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-130-1.png" width="672" /></p>
 
 </div>
 </div>
@@ -494,10 +465,6 @@ gitbook.start({
 "text": null
 },
 "download": null,
-"search": {
-"engine": "lunr",
-"options": null
-},
 "toc": {
 "collapse": "subsection"
 }
@@ -510,7 +477,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "true";
+    var src = "";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))

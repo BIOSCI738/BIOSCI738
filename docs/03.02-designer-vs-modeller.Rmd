@@ -1,4 +1,4 @@
-## Modlling experimental data
+## Modelling experimental data
 
 ### A completely randomised design (CRD) as a linear model
 
@@ -152,7 +152,7 @@ What do you think? Look back at module 2.
 library(tidyverse)
 factorial <-  read_csv("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/factorial_expt.csv")
 factorial %>%
-  select(c(Disease, Organ)) %>%
+  dplyr::select(c(Disease, Organ)) %>%
   group_by(Disease, Organ) %>%
   tally() %>%
   mutate(n = paste("n =", n)) %>%
@@ -210,7 +210,7 @@ unbalanced <- factorial
 unbalanced$logAUC[c(1:3,10)] <- NA
 unbalanced_nafree <- unbalanced %>% drop_na()
 unbalanced_nafree %>%
-select(c(Disease, Organ)) %>%
+	dplyr::select(c(Disease, Organ)) %>%
   group_by(Disease, Organ) %>%
   tally() %>%
   mutate(n = paste("n =", n)) %>%
@@ -221,7 +221,7 @@ kableExtra::kable(unbalanced_nafree) %>%
   kableExtra::kable_classic(full_width = FALSE, html_font = "Cambria")
 ```
 
-**Fitting models with interactiona using `lm()`**
+**Fitting models with interactions using `lm()`**
 
 **Note**: order matters. For example,
 
@@ -232,7 +232,7 @@ fac_lm_2 <- lm(logAUC ~ Organ*Disease, data = unbalanced_nafree)
 anova(fac_lm_2)
 ```
 
-The three **gobal** null hypotheses being tested are the same
+The three **global** null hypotheses being tested are the same
 
   1. $H_0: \hat{\mu}_{\text{Diabetic}} = \hat{\mu}_{\text{Healthy}}$
   2. $H_0: \hat{\mu}_{\text{innerLV}} = \hat{\mu}_{\text{outerLV}}$

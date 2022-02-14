@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Principal Component Analysis (PCA) | Advanced Biological Data Analysis</title>
   <meta name="description" content="Principal Component Analysis (PCA) | Advanced Biological Data Analysis" />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Principal Component Analysis (PCA) | Advanced Biological Data Analysis" />
   <meta property="og:type" content="book" />
@@ -32,7 +32,7 @@
   
 <link rel="prev" href="clustering.html"/>
 <link rel="next" href="multidimensional-scaling-mds.html"/>
-<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -56,66 +56,41 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
 
@@ -152,11 +127,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="your-data-and-r.html#the-pipe-operator">The pipe operator <code>%&gt;%</code></a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="data-wrangling.html"><a href="data-wrangling.html"><i class="fa fa-check"></i>Data wrangling</a><ul>
-<li><a href="data-wrangling.html#introuducing-the-palmer-penguins">Introuducing the <span>Palmer penguins</span></a></li>
+<li><a href="data-wrangling.html#introuducing-the-palmer-penguins">Introuducing the <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0090081">Palmer penguins</a></a></li>
 <li><a href="data-wrangling.html#common-dataframe-manipulations-in-the-tidyverse-using-dplyr-and-tidyr">Common dataframe manipulations in the <code>tidyverse</code>, using <code>dplyr</code> and <code>tidyr</code></a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html"><i class="fa fa-check"></i>Data visualiation (data viz)</a><ul>
-<li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html#exploratory-and-explanatory-plots"><i class="fa fa-check"></i>Exploratory and explanatory plots</a></li>
+<li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html#exploratory-plots"><i class="fa fa-check"></i>Exploratory plots</a></li>
+<li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html#explanatory-plots"><i class="fa fa-check"></i>Explanatory plots</a></li>
 <li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html#ten-simple-rules-for-better-figures"><i class="fa fa-check"></i>Ten Simple Rules for Better Figures</a></li>
 <li><a href="data-visualiation-data-viz.html#ggplot2"><code>ggplot2</code></a></li>
 </ul></li>
@@ -190,9 +166,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="model-formula-syntax-in-r.html#model-formula-syntax-in-r">Model formula syntax in <code>R</code></a><ul>
 <li class="chapter" data-level="" data-path="model-formula-syntax-in-r.html"><a href="model-formula-syntax-in-r.html"><i class="fa fa-check"></i>Other possible models</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="model-diagnostocs-for-a-linear-model.html"><a href="model-diagnostocs-for-a-linear-model.html"><i class="fa fa-check"></i>Model diagnostocs for a linear model</a><ul>
-<li class="chapter" data-level="" data-path="model-diagnostocs-for-a-linear-model.html"><a href="model-diagnostocs-for-a-linear-model.html#marginal-predictions"><i class="fa fa-check"></i>Marginal predictions</a></li>
-<li class="chapter" data-level="" data-path="model-diagnostocs-for-a-linear-model.html"><a href="model-diagnostocs-for-a-linear-model.html#model-selection"><i class="fa fa-check"></i>Model selection</a></li>
+<li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html"><i class="fa fa-check"></i>Model diagnostics for a linear model</a><ul>
+<li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html#marginal-predictions"><i class="fa fa-check"></i>Marginal predictions</a></li>
+<li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html#model-selection"><i class="fa fa-check"></i>Model selection</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="inference-for-a-linear-model.html"><a href="inference-for-a-linear-model.html"><i class="fa fa-check"></i>Inference for a linear model</a><ul>
 <li class="chapter" data-level="" data-path="inference-for-a-linear-model.html"><a href="inference-for-a-linear-model.html#point-prediction"><i class="fa fa-check"></i>Point prediction</a></li>
@@ -213,12 +189,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html#randomised-complete-block-design-rcbd"><i class="fa fa-check"></i>Randomised complete block design (RCBD)</a></li>
 <li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html#factorial-design"><i class="fa fa-check"></i>Factorial design</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="modlling-experimental-data.html"><a href="modlling-experimental-data.html"><i class="fa fa-check"></i>Modlling experimental data</a><ul>
-<li class="chapter" data-level="" data-path="modlling-experimental-data.html"><a href="modlling-experimental-data.html#a-completely-randomised-design-crd-as-a-linear-model"><i class="fa fa-check"></i>A completely randomised design (CRD) as a linear model</a></li>
-<li><a href="modlling-experimental-data.html#analysis-of-a-crd-in-r">Analysis of a CRD in <code>R</code></a></li>
-<li><a href="modlling-experimental-data.html#using-lm">Using <code>lm()</code></a></li>
-<li class="chapter" data-level="" data-path="modlling-experimental-data.html"><a href="modlling-experimental-data.html#a-factorial-experiment-as-a-crd"><i class="fa fa-check"></i>A Factorial experiment (as a CRD)</a></li>
-<li class="chapter" data-level="" data-path="modlling-experimental-data.html"><a href="modlling-experimental-data.html#unqual-replications-unbalanced-design"><i class="fa fa-check"></i>Unqual replications (unbalanced design)</a></li>
+<li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html"><i class="fa fa-check"></i>Modelling experimental data</a><ul>
+<li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-completely-randomised-design-crd-as-a-linear-model"><i class="fa fa-check"></i>A completely randomised design (CRD) as a linear model</a></li>
+<li><a href="modelling-experimental-data.html#analysis-of-a-crd-in-r">Analysis of a CRD in <code>R</code></a></li>
+<li><a href="modelling-experimental-data.html#using-lm">Using <code>lm()</code></a></li>
+<li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-factorial-experiment-as-a-crd"><i class="fa fa-check"></i>A Factorial experiment (as a CRD)</a></li>
+<li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#unqual-replications-unbalanced-design"><i class="fa fa-check"></i>Unqual replications (unbalanced design)</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html"><i class="fa fa-check"></i>Multiple comparisons</a><ul>
 <li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html#classification-of-multiple-hypothesis-tests"><i class="fa fa-check"></i>Classification of multiple hypothesis tests</a></li>
@@ -249,7 +225,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html"><i class="fa fa-check"></i>Introduction to Bayesian statistics</a><ul>
 <li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html#conditional-probability"><i class="fa fa-check"></i>Conditional probability</a></li>
-<li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html#bayes-rule"><i class="fa fa-check"></i>Bayes’ rule</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html#bayes-rule"><i class="fa fa-check"></i>Bayes' rule</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="module-5.html"><a href="module-5.html"><i class="fa fa-check"></i>Module 5</a><ul>
@@ -309,56 +285,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Reduction of dimensions is needed when there are far too many features in a dataset, making it hard to distinguish between the important ones that are relevant to the output and the redundant or not-so important ones. Reducing the dimensions of data is called <strong>dimensionality reduction.</strong></p>
 <p>So the aim is to <strong>find the best low-dimensional representation of the variation</strong> in a multivariate (lots and lots of variables) data set, but how do we do this?</p>
 <p>PCA is a member of a family of techniques for dimension reduction (ordination).</p>
-<p>The word ordination was applied to dimension reduction techniques by botanical ecologists whose
-aim was to identify gradients in species composition in the field. For this reason they wanted to
-reduce the quadrat × species (observations × variables) data matrix to a single ordering (hence
-ordination) of the quadrats which they hoped would reflect the underlying ecological gradient.</p>
+<p>The word ordination was applied to dimension reduction techniques by botanical ecologists whose aim was to identify gradients in species composition in the field. For this reason they wanted to reduce the quadrat × species (observations × variables) data matrix to a single ordering (hence ordination) of the quadrats which they hoped would reflect the underlying ecological gradient.</p>
 <p>One way is termed Principal Component Analysis (PCA). PCA is a <strong>feature extraction</strong> method that <strong>reduces the dimensionality of the data</strong> (number of variables) by creating new uncorrelated variables while minimizing loss of information on the original variables. It is a technique for the analysis of an unstructured sample of multivariate data. Its aim is to display the relative positions of the observations in the data cloud in fewer dimensions (while losing as little information as possible) and to help give insight into the way the observations vary. It is not a hypothesis testing technique (like t-test or Analysis of Variance); it is an exploratory, hypothesis generating tool that describes patterns of variation, and suggests relationships that should be investigated further.</p>
-<p><strong>Think of a baguette.</strong> The baguette pictured here represents two data dimensions: 1) the length of the bread and 2) the height of the bread (we’ll ignore depth of bread for now). Think of the baguette as your data; when we carry out PCA we’re rotating our original axes (<em>x- and y-coordinates</em>) to capture as much of the variation in our data as possible. This results in <strong>new</strong> uncorrelated variables that each explain a % of variation in our data; the procedure is designed so that the first new variable (PC1) explains the most, the second (PC2) the second most and so on.</p>
-<p><img src="https://raw.githubusercontent.com/cmjt/statbiscuits/master/figs_n_gifs/pca.gif" /></p>
-<p>Now rather than a baguette think of data; the baguette above represent the <em>shape</em> of the scatter between the two variables plotted below. The rotating grey axes represent the PCA procedure, essentially searching for the <em>best</em> rotation of the original axes to represent the variation in the data as best it can. Mathematically the Euclidean distance (e.g., the distance between points <span class="math inline">\(p\)</span> and <span class="math inline">\(q\)</span> in Euclidean space, <span class="math inline">\(\sqrt{(p-q)^2}\)</span>) between the points and the rotating axes is being minimized (i.e., the shortest possible across all points), see the blue lines. Once this distance is minimized across all points we “settle” on our new axes (the black tiled axes).</p>
-<p><img src="https://raw.githubusercontent.com/cmjt/statbiscuits/master/figs_n_gifs/perp.gif" /></p>
+<p><strong>Think of a baguette.</strong> The baguette pictured here represents two data dimensions: 1) the length of the bread and 2) the height of the bread (we'll ignore depth of bread for now). Think of the baguette as your data; when we carry out PCA we're rotating our original axes (<em>x- and y-coordinates</em>) to capture as much of the variation in our data as possible. This results in <strong>new</strong> uncorrelated variables that each explain a % of variation in our data; the procedure is designed so that the first new variable (PC1) explains the most, the second (PC2) the second most and so on.</p>
+<div class="figure">
+<img src="https://raw.githubusercontent.com/cmjt/statbiscuits/master/figs_n_gifs/pca.gif" />
+
+</div>
+<p>Now rather than a baguette think of data; the baguette above represent the <em>shape</em> of the scatter between the two variables plotted below. The rotating grey axes represent the PCA procedure, essentially searching for the <em>best</em> rotation of the original axes to represent the variation in the data as best it can. Mathematically the Euclidean distance (e.g., the distance between points <span class="math inline">\(p\)</span> and <span class="math inline">\(q\)</span> in Euclidean space, <span class="math inline">\(\sqrt{(p-q)^2}\)</span>) between the points and the rotating axes is being minimized (i.e., the shortest possible across all points), see the blue lines. Once this distance is minimized across all points we &quot;settle&quot; on our new axes (the black tiled axes).</p>
+<div class="figure">
+<img src="https://raw.githubusercontent.com/cmjt/statbiscuits/master/figs_n_gifs/perp.gif" />
+
+</div>
 <p>Luckily we can do this all in <code>R</code>!</p>
-<p>One problem with PCA is that the components are not scale invariant. That means if we change
-the units in which our variables are expressed, we change the components; and not in any simple
-way either. So, every scaling or adjustment of the variables in preparation for the analysis could
-(and usually does ) produce a separate component structure. It is therefore important to choose a standardisation or transformation carefully: PCA will give different results depending on whether we
-analyse the covariance matrix, where the data have merely been centred (corrected for the column,
-variable, mean), or the correlation matrix, where the data have been standardised to z -scores
-(centred and converted into standard deviation units). This is particularly important, as many
-computer programs to do PCA automatically analyse the correlation matrix . If you do not want that
-standardisation; you may have to explicitly ask for the covariance matrix. As you would expect, the
-results from the two analyses will usually be very different, see below.</p>
+<p>One problem with PCA is that the components are not scale invariant. That means if we change the units in which our variables are expressed, we change the components; and not in any simple way either. So, every scaling or adjustment of the variables in preparation for the analysis could (and usually does ) produce a separate component structure. It is therefore important to choose a standardisation or transformation carefully: PCA will give different results depending on whether we analyse the covariance matrix, where the data have merely been centred (corrected for the column, variable, mean), or the correlation matrix, where the data have been standardised to z -scores (centred and converted into standard deviation units). This is particularly important, as many computer programs to do PCA automatically analyse the correlation matrix . If you do not want that standardisation; you may have to explicitly ask for the covariance matrix. As you would expect, the results from the two analyses will usually be very different, see below.</p>
 <div id="examples-in-r" class="section level3">
 <h3>Examples in <code>R</code></h3>
 <div id="the-palmerpenguins-data" class="section level4">
 <h4>The <code>palmerpenguins</code> data</h4>
-<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb280-1" title="1"><span class="co">## getting rid of NAs</span></a>
-<a class="sourceLine" id="cb280-2" title="2">penguins_nafree &lt;-<span class="st"> </span>penguins <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">drop_na</span>()</a></code></pre></div>
-<p>When carrying out PCA we’re only interested in numeric variables, so let’s just plot those. We can use the piping operator <code>%&gt;%</code> to do this with out creating a new data frame</p>
-<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb281-1" title="1"><span class="kw">library</span>(GGally)</a>
-<a class="sourceLine" id="cb281-2" title="2">penguins_nafree <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb281-3" title="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(species, <span class="kw">where</span>(is.numeric)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb281-4" title="4"><span class="st">  </span><span class="kw">ggpairs</span>(<span class="kw">aes</span>(<span class="dt">color =</span> species),</a>
-<a class="sourceLine" id="cb281-5" title="5">        <span class="dt">columns =</span> <span class="kw">c</span>(<span class="st">&quot;flipper_length_mm&quot;</span>, <span class="st">&quot;body_mass_g&quot;</span>, </a>
-<a class="sourceLine" id="cb281-6" title="6">                     <span class="st">&quot;bill_length_mm&quot;</span>, <span class="st">&quot;bill_depth_mm&quot;</span>)) </a></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-181-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## getting rid of NAs
+penguins_nafree &lt;-<span class="st"> </span>penguins <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">drop_na</span>()</code></pre></div>
+<p>When carrying out PCA we're only interested in numeric variables, so let's just plot those. We can use the piping operator <code>%&gt;%</code> to do this with out creating a new data frame</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(GGally)
+penguins_nafree <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(species, <span class="kw">where</span>(is.numeric)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggpairs</span>(<span class="kw">aes</span>(<span class="dt">color =</span> species),
+        <span class="dt">columns =</span> <span class="kw">c</span>(<span class="st">&quot;flipper_length_mm&quot;</span>, <span class="st">&quot;body_mass_g&quot;</span>, 
+                     <span class="st">&quot;bill_length_mm&quot;</span>, <span class="st">&quot;bill_depth_mm&quot;</span>)) </code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-182-1.png" width="672" /></p>
 <p><strong>Using <code>prcomp()</code></strong></p>
 <p>There are three basic types of information we obtain from Principal Component Analysis:</p>
 <ul>
-<li><p><strong>PC scores:</strong> the coordinates of our samples on the new PC axis: the new uncorrelated variables (stored in <code>pca$x</code>)</p>
-<ul>
+<li><p><strong>PC scores:</strong> the coordinates of our samples on the new PC axis: the new uncorrelated variables (stored in <code>pca$x</code>)</p></li>
 <li><p><strong>Eigenvalues:</strong> (see above) represent the variance explained by each PC; we can use these to calculate the proportion of variance in the original data that each axis explains</p></li>
 <li><p><strong>Variable loadings</strong> (eigenvectors): these reflect the weight that each variable has on a particular PC and can be thought of as the correlation between the PC and the original variable</p></li>
-</ul></li>
 </ul>
 <p>Before we carry out PCA we <strong>should</strong> scale out data. <strong>WHY?</strong></p>
-<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb282-1" title="1">pca &lt;-<span class="st"> </span>penguins_nafree <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb282-2" title="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="kw">where</span>(is.numeric), <span class="op">-</span>year) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">## year makes no sense here so we remove it and keep the other numeric variables</span></a>
-<a class="sourceLine" id="cb282-3" title="3"><span class="st">  </span><span class="kw">scale</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co">## scale the variables</span></a>
-<a class="sourceLine" id="cb282-4" title="4"><span class="st">  </span><span class="kw">prcomp</span>()</a>
-<a class="sourceLine" id="cb282-5" title="5"><span class="co">## print out a summary</span></a>
-<a class="sourceLine" id="cb282-6" title="6"><span class="kw">summary</span>(pca)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pca &lt;-<span class="st"> </span>penguins_nafree <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="kw">where</span>(is.numeric), <span class="op">-</span>year) <span class="op">%&gt;%</span><span class="st"> </span>## year makes no sense here so we remove it and keep the other numeric variables
+<span class="st">  </span><span class="kw">scale</span>() <span class="op">%&gt;%</span><span class="st"> </span>## scale the variables
+<span class="st">  </span><span class="kw">prcomp</span>()
+## print out a summary
+<span class="kw">summary</span>(pca)</code></pre></div>
 <pre><code>## Importance of components:
 ##                           PC1    PC2     PC3     PC4
 ## Standard deviation     1.6569 0.8821 0.60716 0.32846
@@ -366,15 +334,14 @@ results from the two analyses will usually be very different, see below.</p>
 ## Cumulative Proportion  0.6863 0.8809 0.97303 1.00000</code></pre>
 <p>This output tells us that we obtain 4 principal components, which are called <code>PC1</code> <code>PC2</code>, <code>PC3</code>, and <code>PC4</code> (this is as expected because we used the 4 original numeric variables!). Each of these <code>PC</code>s explains a percentage of the total variation (<code>Proportion of Variance</code>) in the dataset:</p>
 <ul>
-<li><code>PC1</code> explains <span class="math inline">\(\sim\)</span> 68% of the total variance, which means that just over half of the information in the dataset
-(5 variables) can be encapsulated by just that one Principal Component.</li>
+<li><code>PC1</code> explains <span class="math inline">\(\sim\)</span> 68% of the total variance, which means that just over half of the information in the dataset (5 variables) can be encapsulated by just that one Principal Component.</li>
 <li><code>PC2</code> explains <span class="math inline">\(\sim\)</span> 19% of the variance.</li>
 <li><code>PC3</code> explains <span class="math inline">\(\sim\)</span> 9% of the variance.</li>
 <li><code>PC4</code> explains <span class="math inline">\(\sim\)</span> 2% of the variance.</li>
 </ul>
 <p>From the <code>Cumulative Proportion</code> row we see that by knowing the position of a sample in relation to just <code>PC1</code> and <code>PC2</code> we can get a pretty accurate view on where it stands in relation to other samples, as just <code>PC1</code> and <code>PC2</code> explain 88% of the variance.</p>
 <p>The <strong>loadings</strong> (<em>relationship</em>) between the initial variables and the principal components are stored in <code>pca$rotation</code>:</p>
-<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb284-1" title="1">pca<span class="op">$</span>rotation</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pca<span class="op">$</span>rotation</code></pre></div>
 <pre><code>##                          PC1         PC2        PC3        PC4
 ## bill_length_mm     0.4537532 -0.60019490 -0.6424951  0.1451695
 ## bill_depth_mm     -0.3990472 -0.79616951  0.4258004 -0.1599044
@@ -382,46 +349,46 @@ results from the two analyses will usually be very different, see below.</p>
 ## body_mass_g        0.5496747 -0.07646366  0.5917374  0.5846861</code></pre>
 <p>Here we can see that <code>bill_length_mm</code> has a strong positive relationship with <code>PC1</code>, whereas <code>bill_depth_mm</code> has a strong negative relationship. Both <code>fliper_length_mm</code> and <code>body_mass_g</code> also have a strong positive relationship with <code>PC1</code>.</p>
 <p>Plotting this we get</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-184-1.png" width="672" /></p>
-<p>The new variables (PCs) are stored in <code>pca$x</code>, lets plot some of them alongside the loadings using a <em>biplot</em>. For <code>PC1</code> vs <code>PC2</code>:</p>
-<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb286-1" title="1"><span class="kw">library</span>(factoextra) <span class="co">## install this package first</span></a>
-<a class="sourceLine" id="cb286-2" title="2"><span class="kw">fviz_pca_biplot</span>(pca, <span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb286-3" title="3"><span class="st">      </span><span class="kw">geom_point</span> (<span class="dt">alpha =</span> <span class="fl">0.2</span>)</a></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-185-1.png" width="672" /></p>
-<p>Now for <code>PC2</code> vs <code>PC3</code></p>
-<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb287-1" title="1"><span class="kw">fviz_pca_biplot</span>(pca, <span class="dt">axes =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>),<span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb287-2" title="2"><span class="st">      </span><span class="kw">geom_point</span> (<span class="dt">alpha =</span> <span class="fl">0.2</span>)</a></code></pre></div>
+<p>The new variables (PCs) are stored in <code>pca$x</code>, lets plot some of them alongside the loadings using a <em>biplot</em>. For <code>PC1</code> vs <code>PC2</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(factoextra) ## install this package first
+<span class="kw">fviz_pca_biplot</span>(pca, <span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>) <span class="op">+</span>
+<span class="st">      </span><span class="kw">geom_point</span> (<span class="dt">alpha =</span> <span class="fl">0.2</span>)</code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-186-1.png" width="672" /></p>
+<p>Now for <code>PC2</code> vs <code>PC3</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fviz_pca_biplot</span>(pca, <span class="dt">axes =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>),<span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>) <span class="op">+</span>
+<span class="st">      </span><span class="kw">geom_point</span> (<span class="dt">alpha =</span> <span class="fl">0.2</span>)</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-187-1.png" width="672" /></p>
 <p><strong>But how many PCs (new variables) do we keep?</strong> The whole point of this exercise is to <strong>reduce</strong> the number of variables we need to explain the variation in our data. So how many of these new variables (PCs) do we keep?</p>
 <p>To assess this we can use the information printed above alongside a <em>screeplot</em>:</p>
-<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb288-1" title="1"><span class="kw">fviz_screeplot</span>(pca)</a></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-187-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fviz_screeplot</span>(pca)</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-188-1.png" width="672" /></p>
 <p><strong>Principal components from the original variables</strong></p>
 <p>Recall that the principal components are a linear combination of the (statndardised) variables. So for PC1</p>
-<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb289-1" title="1">loadings1 &lt;-<span class="st"> </span>pca<span class="op">$</span>rotation[,<span class="dv">1</span>]</a>
-<a class="sourceLine" id="cb289-2" title="2">loadings1</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">loadings1 &lt;-<span class="st"> </span>pca<span class="op">$</span>rotation[,<span class="dv">1</span>]
+loadings1</code></pre></div>
 <pre><code>##    bill_length_mm     bill_depth_mm flipper_length_mm       body_mass_g 
 ##         0.4537532        -0.3990472         0.5768250         0.5496747</code></pre>
 <p>Therefore, the first Principle Component will be <span class="math inline">\(0.454\times Z1 -0.399 \times Z2 + 0.5768 \times Z3 + 0.5497 \times Z3\)</span> where <span class="math inline">\(Z1\)</span>, <span class="math inline">\(Z2\)</span>, <span class="math inline">\(Z3\)</span>. and <span class="math inline">\(Z4\)</span> are the scaled numerical variables form the penguins dataset (i.e., bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g). To compute this we use <code>R</code>:</p>
-<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb291-1" title="1">scaled_vars &lt;-<span class="st"> </span>penguins_nafree <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb291-2" title="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="kw">where</span>(is.numeric), <span class="op">-</span>year) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb291-3" title="3"><span class="st">  </span><span class="kw">scale</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb291-4" title="4"><span class="st">  </span><span class="kw">as_tibble</span>()</a>
-<a class="sourceLine" id="cb291-5" title="5"><span class="co">## By &quot;Hand&quot;</span></a>
-<a class="sourceLine" id="cb291-6" title="6">by_hand &lt;-<span class="st"> </span>loadings1[<span class="dv">1</span>]<span class="op">*</span>scaled_vars<span class="op">$</span><span class="st">&quot;bill_length_mm&quot;</span> <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb291-7" title="7"><span class="st">  </span>loadings1[<span class="dv">2</span>]<span class="op">*</span>scaled_vars<span class="op">$</span><span class="st">&quot;bill_depth_mm&quot;</span> <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb291-8" title="8"><span class="st">  </span>loadings1[<span class="dv">3</span>]<span class="op">*</span>scaled_vars<span class="op">$</span><span class="st">&quot;flipper_length_mm&quot;</span> <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb291-9" title="9"><span class="st">  </span>loadings1[<span class="dv">4</span>]<span class="op">*</span>scaled_vars<span class="op">$</span><span class="st">&quot;body_mass_g&quot;</span></a>
-<a class="sourceLine" id="cb291-10" title="10"><span class="co">## From PCA</span></a>
-<a class="sourceLine" id="cb291-11" title="11">pc1 &lt;-<span class="st"> </span>pca<span class="op">$</span>x[,<span class="dv">1</span>]</a>
-<a class="sourceLine" id="cb291-12" title="12"><span class="kw">plot</span>(by_hand,pc1)</a></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-189-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">scaled_vars &lt;-<span class="st"> </span>penguins_nafree <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="kw">where</span>(is.numeric), <span class="op">-</span>year) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">scale</span>() <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">as_tibble</span>()
+## By &quot;Hand&quot;
+by_hand &lt;-<span class="st"> </span>loadings1[<span class="dv">1</span>]<span class="op">*</span>scaled_vars<span class="op">$</span><span class="st">&quot;bill_length_mm&quot;</span> <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span>loadings1[<span class="dv">2</span>]<span class="op">*</span>scaled_vars<span class="op">$</span><span class="st">&quot;bill_depth_mm&quot;</span> <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span>loadings1[<span class="dv">3</span>]<span class="op">*</span>scaled_vars<span class="op">$</span><span class="st">&quot;flipper_length_mm&quot;</span> <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span>loadings1[<span class="dv">4</span>]<span class="op">*</span>scaled_vars<span class="op">$</span><span class="st">&quot;body_mass_g&quot;</span>
+## From PCA
+pc1 &lt;-<span class="st"> </span>pca<span class="op">$</span>x[,<span class="dv">1</span>]
+<span class="kw">plot</span>(by_hand,pc1)</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-190-1.png" width="672" /></p>
 </div>
-<div id="reality-check-reducing-white-noise" class="section level4">
-<h4>Reality check: reducing white noise…</h4>
-<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb292-1" title="1"><span class="kw">set.seed</span>(<span class="dv">1234</span>) <span class="co">## just for reproduciblity</span></a>
-<a class="sourceLine" id="cb292-2" title="2">noise &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(<span class="kw">replicate</span>(<span class="dv">10</span>,<span class="kw">rnorm</span>(<span class="dv">200</span>, <span class="dt">mean =</span> <span class="dv">50</span>, <span class="dt">sd =</span> <span class="dv">10</span>)))</a>
-<a class="sourceLine" id="cb292-3" title="3">noise</a></code></pre></div>
+<div id="reality-check-reducing-white-noise..." class="section level4">
+<h4>Reality check: reducing white noise...</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">1234</span>) ## just for reproduciblity
+noise &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(<span class="kw">replicate</span>(<span class="dv">10</span>,<span class="kw">rnorm</span>(<span class="dv">200</span>, <span class="dt">mean =</span> <span class="dv">50</span>, <span class="dt">sd =</span> <span class="dv">10</span>)))
+noise</code></pre></div>
 <pre><code>## # A tibble: 200 × 10
 ##       V1    V2    V3    V4    V5    V6    V7    V8    V9   V10
 ##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -436,12 +403,12 @@ results from the two analyses will usually be very different, see below.</p>
 ##  9  44.4  50.3  44.8  38.5  55.7  43.3  51.4  52.0  36.3  54.1
 ## 10  41.1  38.9  49.3  60.1  46.5  54.5  56.2  56.8  40.7  42.8
 ## # … with 190 more rows</code></pre>
-<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb294-1" title="1">corrplot<span class="op">::</span><span class="kw">corrplot</span>(<span class="kw">cor</span>(noise), <span class="dt">method =</span> <span class="st">&quot;ellipse&quot;</span>,<span class="dt">type =</span> <span class="st">&quot;upper&quot;</span>)</a></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-190-1.png" width="672" /></p>
-<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb295-1" title="1">pca &lt;-<span class="st"> </span>noise <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb295-2" title="2"><span class="st">  </span><span class="kw">scale</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb295-3" title="3"><span class="st">  </span><span class="kw">prcomp</span>()</a>
-<a class="sourceLine" id="cb295-4" title="4"><span class="kw">summary</span>(pca)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">corrplot<span class="op">::</span><span class="kw">corrplot</span>(<span class="kw">cor</span>(noise), <span class="dt">method =</span> <span class="st">&quot;ellipse&quot;</span>,<span class="dt">type =</span> <span class="st">&quot;upper&quot;</span>)</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-191-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pca &lt;-<span class="st"> </span>noise <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">scale</span>() <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">prcomp</span>()
+<span class="kw">summary</span>(pca)</code></pre></div>
 <pre><code>## Importance of components:
 ##                           PC1    PC2    PC3    PC4    PC5     PC6     PC7
 ## Standard deviation     1.1890 1.1331 1.0936 1.0281 1.0075 0.96654 0.94742
@@ -451,9 +418,9 @@ results from the two analyses will usually be very different, see below.</p>
 ## Standard deviation     0.90017 0.85665 0.81141
 ## Proportion of Variance 0.08103 0.07339 0.06584
 ## Cumulative Proportion  0.86078 0.93416 1.00000</code></pre>
-<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb297-1" title="1"><span class="kw">fviz_screeplot</span>(pca, <span class="dt">choice =</span> <span class="st">&quot;eigenvalue&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb297-2" title="2"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">1</span>)</a></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-192-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fviz_screeplot</span>(pca, <span class="dt">choice =</span> <span class="st">&quot;eigenvalue&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">1</span>)</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-193-1.png" width="672" /></p>
 <p>What does this show?</p>
 
 </div>
@@ -509,10 +476,6 @@ gitbook.start({
 "text": null
 },
 "download": null,
-"search": {
-"engine": "lunr",
-"options": null
-},
 "toc": {
 "collapse": "subsection"
 }
@@ -525,7 +488,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "true";
+    var src = "";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))

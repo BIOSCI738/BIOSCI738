@@ -119,7 +119,7 @@ A recent publication [Partitioning beta diversity to untangle mechanisms underly
 library(tidyverse)
 data <- read_delim("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/bird_abundance.csv")
 birds <- data %>%
-  select(c("OliveFarm","Management","Turdus_merula","Phylloscopus_collybita")) %>%
+  dplyr::select(c("OliveFarm","Management","Turdus_merula","Phylloscopus_collybita")) %>%
   pivot_longer(., c(-OliveFarm, -Management), "Species", values_to = "Count") 
 birds
 ```

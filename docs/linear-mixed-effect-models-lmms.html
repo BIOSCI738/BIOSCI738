@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Linear mixed-effect models (LMMs) | Advanced Biological Data Analysis</title>
   <meta name="description" content="Linear mixed-effect models (LMMs) | Advanced Biological Data Analysis" />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Linear mixed-effect models (LMMs) | Advanced Biological Data Analysis" />
   <meta property="og:type" content="book" />
@@ -32,7 +32,7 @@
   
 <link rel="prev" href="multiple-comparisons.html"/>
 <link rel="next" href="module-4.html"/>
-<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -56,66 +56,41 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
 
@@ -152,11 +127,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="your-data-and-r.html#the-pipe-operator">The pipe operator <code>%&gt;%</code></a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="data-wrangling.html"><a href="data-wrangling.html"><i class="fa fa-check"></i>Data wrangling</a><ul>
-<li><a href="data-wrangling.html#introuducing-the-palmer-penguins">Introuducing the <span>Palmer penguins</span></a></li>
+<li><a href="data-wrangling.html#introuducing-the-palmer-penguins">Introuducing the <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0090081">Palmer penguins</a></a></li>
 <li><a href="data-wrangling.html#common-dataframe-manipulations-in-the-tidyverse-using-dplyr-and-tidyr">Common dataframe manipulations in the <code>tidyverse</code>, using <code>dplyr</code> and <code>tidyr</code></a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html"><i class="fa fa-check"></i>Data visualiation (data viz)</a><ul>
-<li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html#exploratory-and-explanatory-plots"><i class="fa fa-check"></i>Exploratory and explanatory plots</a></li>
+<li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html#exploratory-plots"><i class="fa fa-check"></i>Exploratory plots</a></li>
+<li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html#explanatory-plots"><i class="fa fa-check"></i>Explanatory plots</a></li>
 <li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html#ten-simple-rules-for-better-figures"><i class="fa fa-check"></i>Ten Simple Rules for Better Figures</a></li>
 <li><a href="data-visualiation-data-viz.html#ggplot2"><code>ggplot2</code></a></li>
 </ul></li>
@@ -190,9 +166,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="model-formula-syntax-in-r.html#model-formula-syntax-in-r">Model formula syntax in <code>R</code></a><ul>
 <li class="chapter" data-level="" data-path="model-formula-syntax-in-r.html"><a href="model-formula-syntax-in-r.html"><i class="fa fa-check"></i>Other possible models</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="model-diagnostocs-for-a-linear-model.html"><a href="model-diagnostocs-for-a-linear-model.html"><i class="fa fa-check"></i>Model diagnostocs for a linear model</a><ul>
-<li class="chapter" data-level="" data-path="model-diagnostocs-for-a-linear-model.html"><a href="model-diagnostocs-for-a-linear-model.html#marginal-predictions"><i class="fa fa-check"></i>Marginal predictions</a></li>
-<li class="chapter" data-level="" data-path="model-diagnostocs-for-a-linear-model.html"><a href="model-diagnostocs-for-a-linear-model.html#model-selection"><i class="fa fa-check"></i>Model selection</a></li>
+<li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html"><i class="fa fa-check"></i>Model diagnostics for a linear model</a><ul>
+<li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html#marginal-predictions"><i class="fa fa-check"></i>Marginal predictions</a></li>
+<li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html#model-selection"><i class="fa fa-check"></i>Model selection</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="inference-for-a-linear-model.html"><a href="inference-for-a-linear-model.html"><i class="fa fa-check"></i>Inference for a linear model</a><ul>
 <li class="chapter" data-level="" data-path="inference-for-a-linear-model.html"><a href="inference-for-a-linear-model.html#point-prediction"><i class="fa fa-check"></i>Point prediction</a></li>
@@ -213,12 +189,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html#randomised-complete-block-design-rcbd"><i class="fa fa-check"></i>Randomised complete block design (RCBD)</a></li>
 <li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html#factorial-design"><i class="fa fa-check"></i>Factorial design</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="modlling-experimental-data.html"><a href="modlling-experimental-data.html"><i class="fa fa-check"></i>Modlling experimental data</a><ul>
-<li class="chapter" data-level="" data-path="modlling-experimental-data.html"><a href="modlling-experimental-data.html#a-completely-randomised-design-crd-as-a-linear-model"><i class="fa fa-check"></i>A completely randomised design (CRD) as a linear model</a></li>
-<li><a href="modlling-experimental-data.html#analysis-of-a-crd-in-r">Analysis of a CRD in <code>R</code></a></li>
-<li><a href="modlling-experimental-data.html#using-lm">Using <code>lm()</code></a></li>
-<li class="chapter" data-level="" data-path="modlling-experimental-data.html"><a href="modlling-experimental-data.html#a-factorial-experiment-as-a-crd"><i class="fa fa-check"></i>A Factorial experiment (as a CRD)</a></li>
-<li class="chapter" data-level="" data-path="modlling-experimental-data.html"><a href="modlling-experimental-data.html#unqual-replications-unbalanced-design"><i class="fa fa-check"></i>Unqual replications (unbalanced design)</a></li>
+<li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html"><i class="fa fa-check"></i>Modelling experimental data</a><ul>
+<li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-completely-randomised-design-crd-as-a-linear-model"><i class="fa fa-check"></i>A completely randomised design (CRD) as a linear model</a></li>
+<li><a href="modelling-experimental-data.html#analysis-of-a-crd-in-r">Analysis of a CRD in <code>R</code></a></li>
+<li><a href="modelling-experimental-data.html#using-lm">Using <code>lm()</code></a></li>
+<li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-factorial-experiment-as-a-crd"><i class="fa fa-check"></i>A Factorial experiment (as a CRD)</a></li>
+<li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#unqual-replications-unbalanced-design"><i class="fa fa-check"></i>Unqual replications (unbalanced design)</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html"><i class="fa fa-check"></i>Multiple comparisons</a><ul>
 <li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html#classification-of-multiple-hypothesis-tests"><i class="fa fa-check"></i>Classification of multiple hypothesis tests</a></li>
@@ -249,7 +225,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html"><i class="fa fa-check"></i>Introduction to Bayesian statistics</a><ul>
 <li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html#conditional-probability"><i class="fa fa-check"></i>Conditional probability</a></li>
-<li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html#bayes-rule"><i class="fa fa-check"></i>Bayes’ rule</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html#bayes-rule"><i class="fa fa-check"></i>Bayes' rule</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="module-5.html"><a href="module-5.html"><i class="fa fa-check"></i>Module 5</a><ul>
@@ -307,7 +283,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="linear-mixed-effect-models-lmms" class="section level2">
 <h2>Linear mixed-effect models (LMMs)</h2>
 <p><strong>Recall:</strong> Blocking helps control variability by making treatment groups more alike. Experimental units are divided into subsets (called blocks) so that units within the same block are more similar than units from different subsets or blocks. Blocking is a technique for dealing with nuisance factors. A nuisance factor is a factor that has some effect on the response, but is of no interest (e.g., age class).</p>
-<p><strong>Fixed effects</strong> are terms (parameters) in a statistical model which are fixed, or non-random, quantities (e.g., <em>treatment</em> group’s mean response). For the same <em>treatment</em>, we expect this quantity to be the same from experiment to experiment.</p>
+<p><strong>Fixed effects</strong> are terms (parameters) in a statistical model which are fixed, or non-random, quantities (e.g., <em>treatment</em> group's mean response). For the same <em>treatment</em>, we expect this quantity to be the same from experiment to experiment.</p>
 <p><strong>Random effects</strong> are terms (parameters) in a statistical model which are considered as random quantities or variables (e.g., block id). Specifically, terms whose levels are a representative sample from a population, and where the variance of the population is of interest should be allocated as random. Setting a block as a random effect allows us to infer variation between blocks as well as the variation between experimental units within blocks.</p>
 <p><strong>Key idea:</strong> Partition known sources of variation which are unimportant to key scientific question(s) to improve precision of comparisons between treatment means.</p>
 <div id="a-randomised-controlled-block-design-rcbd" class="section level3">
@@ -502,8 +478,8 @@ S
 </table>
 <div id="run-as-a-fixed-effect" class="section level4">
 <h4><code>Run</code> as a fixed effect</h4>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb176-1" title="1">lm &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC8 <span class="op">~</span><span class="st"> </span>Run <span class="op">+</span><span class="st"> </span>Surgery, <span class="dt">data =</span> rcbd)</a>
-<a class="sourceLine" id="cb176-2" title="2"><span class="kw">summary</span>(lm)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lm &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC8 <span class="op">~</span><span class="st"> </span>Run <span class="op">+</span><span class="st"> </span>Surgery, <span class="dt">data =</span> rcbd)
+<span class="kw">summary</span>(lm)</code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = logAUC8 ~ Run + Surgery, data = rcbd)
@@ -529,8 +505,8 @@ S
 </div>
 <div id="run-as-a-random-effect" class="section level4">
 <h4><code>Run</code> as a random effect</h4>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb178-1" title="1">lmer_mod &lt;-<span class="st"> </span>lmerTest<span class="op">::</span><span class="kw">lmer</span>(logAUC8 <span class="op">~</span><span class="st"> </span>Surgery <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span><span class="op">|</span>Run), <span class="dt">data =</span> rcbd)</a>
-<a class="sourceLine" id="cb178-2" title="2"><span class="kw">summary</span>(lmer_mod)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lmer_mod &lt;-<span class="st"> </span>lmerTest<span class="op">::</span><span class="kw">lmer</span>(logAUC8 <span class="op">~</span><span class="st"> </span>Surgery <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span><span class="op">|</span>Run), <span class="dt">data =</span> rcbd)
+<span class="kw">summary</span>(lmer_mod)</code></pre></div>
 <pre><code>## Linear mixed model fit by REML. t-tests use Satterthwaite&#39;s method [
 ## lmerModLmerTest]
 ## Formula: logAUC8 ~ Surgery + (1 | Run)
@@ -564,13 +540,11 @@ S
 <h5>Inference about the <em>Random effects</em></h5>
 <p>We have two variance components</p>
 <ul>
-<li>Between Groups (Runs) <span class="math inline">\(\hat{\sigma^2}_{\text{Run}}\)</span> = 1.479
-<ul>
+<li>Between Groups (Runs) <span class="math inline">\(\hat{\sigma^2}_{\text{Run}}\)</span> = 1.479</li>
 <li>Within Runs (between observations) <span class="math inline">\(\hat{\sigma_2}\)</span> = 1.447</li>
-</ul></li>
 </ul>
 <p>Note that <code>aov()</code> presents the same information, but in a different way:</p>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb180-1" title="1"><span class="kw">summary</span>(<span class="kw">aov</span>(logAUC8 <span class="op">~</span><span class="st"> </span>Surgery <span class="op">+</span><span class="st"> </span><span class="kw">Error</span>(Run), <span class="dt">data =</span> rcbd))</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(<span class="kw">aov</span>(logAUC8 <span class="op">~</span><span class="st"> </span>Surgery <span class="op">+</span><span class="st"> </span><span class="kw">Error</span>(Run), <span class="dt">data =</span> rcbd))</code></pre></div>
 <pre><code>## 
 ## Error: Run
 ##           Df Sum Sq Mean Sq F value Pr(&gt;F)
@@ -821,8 +795,8 @@ outerLV
 <div id="animal-as-a-random-effect" class="section level4">
 <h4><code>Animal</code> as a random effect</h4>
 <p><strong>Using <code>aov()</code></strong></p>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb182-1" title="1">sp_aov &lt;-<span class="st"> </span><span class="kw">aov</span>(logAUC <span class="op">~</span><span class="st"> </span>Disease<span class="op">*</span>Organ <span class="op">+</span><span class="st"> </span><span class="kw">Error</span>(Animal), <span class="dt">data =</span> split_plot)</a>
-<a class="sourceLine" id="cb182-2" title="2"><span class="kw">summary</span>(sp_aov)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sp_aov &lt;-<span class="st"> </span><span class="kw">aov</span>(logAUC <span class="op">~</span><span class="st"> </span>Disease<span class="op">*</span>Organ <span class="op">+</span><span class="st"> </span><span class="kw">Error</span>(Animal), <span class="dt">data =</span> split_plot)
+<span class="kw">summary</span>(sp_aov)</code></pre></div>
 <pre><code>## 
 ## Error: Animal
 ##           Df Sum Sq Mean Sq F value Pr(&gt;F)
@@ -837,9 +811,9 @@ outerLV
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p><strong>Using <code>lmer()</code> (from <code>lmeTest</code> and <code>lmer4</code>)</strong></p>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb184-1" title="1">sp_lmer &lt;-<span class="st"> </span>lmerTest<span class="op">::</span><span class="kw">lmer</span>(logAUC <span class="op">~</span><span class="st"> </span>Disease<span class="op">*</span>Organ <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span><span class="op">|</span>Animal), </a>
-<a class="sourceLine" id="cb184-2" title="2">                          <span class="dt">data =</span> split_plot) <span class="co">## MUST SPECIFY WHICH PACKAGE</span></a>
-<a class="sourceLine" id="cb184-3" title="3"><span class="kw">anova</span>(sp_lmer,<span class="dt">type =</span> <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sp_lmer &lt;-<span class="st"> </span>lmerTest<span class="op">::</span><span class="kw">lmer</span>(logAUC <span class="op">~</span><span class="st"> </span>Disease<span class="op">*</span>Organ <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span><span class="op">|</span>Animal), 
+                          <span class="dt">data =</span> split_plot) ## MUST SPECIFY WHICH PACKAGE
+<span class="kw">anova</span>(sp_lmer,<span class="dt">type =</span> <span class="dv">2</span>)</code></pre></div>
 <pre><code>## Type II Analysis of Variance Table with Satterthwaite&#39;s method
 ##               Sum Sq Mean Sq NumDF DenDF F value  Pr(&gt;F)  
 ## Disease       0.6513  0.6513     1     4  2.1866 0.21329  
@@ -847,9 +821,9 @@ outerLV
 ## Disease:Organ 2.5392  2.5392     1     4  8.5246 0.04326 *
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb186-1" title="1">sp_lmer4 &lt;-<span class="st"> </span>lme4<span class="op">::</span><span class="kw">lmer</span>(logAUC <span class="op">~</span><span class="st"> </span>Disease<span class="op">*</span>Organ <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span><span class="op">|</span>Animal), <span class="dt">data =</span> split_plot) <span class="co">## MUST SPECIFY WHICH PACKAGE</span></a>
-<a class="sourceLine" id="cb186-2" title="2">predmeans &lt;-<span class="st"> </span>predictmeans<span class="op">::</span><span class="kw">predictmeans</span>(<span class="dt">model =</span> sp_lmer4 ,<span class="dt">modelterm =</span> <span class="st">&quot;Disease:Organ&quot;</span>)</a>
-<a class="sourceLine" id="cb186-3" title="3">predmeans<span class="op">$</span>mean_table</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sp_lmer4 &lt;-<span class="st"> </span>lme4<span class="op">::</span><span class="kw">lmer</span>(logAUC <span class="op">~</span><span class="st"> </span>Disease<span class="op">*</span>Organ <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span><span class="op">|</span>Animal), <span class="dt">data =</span> split_plot) ## MUST SPECIFY WHICH PACKAGE
+predmeans &lt;-<span class="st"> </span>predictmeans<span class="op">::</span><span class="kw">predictmeans</span>(<span class="dt">model =</span> sp_lmer4 ,<span class="dt">modelterm =</span> <span class="st">&quot;Disease:Organ&quot;</span>)
+predmeans<span class="op">$</span>mean_table</code></pre></div>
 <pre><code>##    Disease   Organ Predicted means Standard error Df LL of 95% CI UL of 95% CI
 ## 1 Diabetic innerLV        7.873333      0.5405835  4     6.372433     9.374234
 ## 2 Diabetic outerLV        9.990000      0.5405835  4     8.489099    11.490901
@@ -859,11 +833,11 @@ outerLV
 </div>
 <div id="a-repeated-measures-design-time-points-as-factors" class="section level3">
 <h3>A repeated measures design (time points as factors)</h3>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb188-1" title="1">liver &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/repeated_measures_liver.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb188-2" title="2"><span class="co">## change time to factor</span></a>
-<a class="sourceLine" id="cb188-3" title="3">liver<span class="op">$</span>Time &lt;-<span class="st"> </span><span class="kw">as.factor</span>(liver<span class="op">$</span>Time) <span class="co">## this is important</span></a>
-<a class="sourceLine" id="cb188-4" title="4">liver<span class="op">$</span>Treatment &lt;-<span class="st"> </span><span class="kw">as.factor</span>(liver<span class="op">$</span>Treatment)</a>
-<a class="sourceLine" id="cb188-5" title="5">liver</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">liver &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/repeated_measures_liver.csv&quot;</span>)
+## change time to factor
+liver<span class="op">$</span>Time &lt;-<span class="st"> </span><span class="kw">as.factor</span>(liver<span class="op">$</span>Time) ## this is important
+liver<span class="op">$</span>Treatment &lt;-<span class="st"> </span><span class="kw">as.factor</span>(liver<span class="op">$</span>Treatment)
+liver</code></pre></div>
 <pre><code>## # A tibble: 210 × 4
 ##    Animal   Treatment Time  Glucose
 ##    &lt;chr&gt;    &lt;fct&gt;     &lt;fct&gt;   &lt;dbl&gt;
@@ -878,14 +852,14 @@ outerLV
 ##  9 Control2 Control   5        0.64
 ## 10 Control2 Control   10       0.7 
 ## # … with 200 more rows</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-109-1.png" width="672" /><img src="_main_files/figure-html/unnamed-chunk-109-2.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-110-1.png" width="672" /><img src="_main_files/figure-html/unnamed-chunk-110-2.png" width="672" /></p>
 </div>
 <div id="animal-as-a-random-effect-in-linear-regression" class="section level3">
 <h3><code>Animal</code> as a random effect in linear regression</h3>
-<p><img src="_main_files/figure-html/unnamed-chunk-110-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-111-1.png" width="672" /></p>
 <p><strong>Using <code>aov()</code></strong></p>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb190-1" title="1">re_aov &lt;-<span class="st"> </span><span class="kw">aov</span>(Glucose <span class="op">~</span><span class="st"> </span>Treatment<span class="op">*</span>Time <span class="op">+</span><span class="st"> </span><span class="kw">Error</span>(Animal),<span class="dt">data =</span> liver)</a>
-<a class="sourceLine" id="cb190-2" title="2"><span class="kw">summary</span>(re_aov)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">re_aov &lt;-<span class="st"> </span><span class="kw">aov</span>(Glucose <span class="op">~</span><span class="st"> </span>Treatment<span class="op">*</span>Time <span class="op">+</span><span class="st"> </span><span class="kw">Error</span>(Animal),<span class="dt">data =</span> liver)
+<span class="kw">summary</span>(re_aov)</code></pre></div>
 <pre><code>## 
 ## Error: Animal
 ##           Df Sum Sq Mean Sq F value Pr(&gt;F)
@@ -900,8 +874,8 @@ outerLV
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p><strong>Using <code>lmer()</code> (from <code>lmerTest</code> and <code>lme4</code>)</strong></p>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb192-1" title="1">re_lmer &lt;-<span class="st"> </span>lmerTest<span class="op">::</span><span class="kw">lmer</span>(Glucose <span class="op">~</span><span class="st"> </span>Treatment<span class="op">*</span>Time <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span><span class="op">|</span>Animal), <span class="dt">data =</span> liver) <span class="co">## MUST SPECIFY WHICH PACKAGE</span></a>
-<a class="sourceLine" id="cb192-2" title="2"><span class="kw">anova</span>(re_lmer,<span class="dt">type =</span> <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">re_lmer &lt;-<span class="st"> </span>lmerTest<span class="op">::</span><span class="kw">lmer</span>(Glucose <span class="op">~</span><span class="st"> </span>Treatment<span class="op">*</span>Time <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span><span class="op">|</span>Animal), <span class="dt">data =</span> liver) ## MUST SPECIFY WHICH PACKAGE
+<span class="kw">anova</span>(re_lmer,<span class="dt">type =</span> <span class="dv">2</span>)</code></pre></div>
 <pre><code>## Type II Analysis of Variance Table with Satterthwaite&#39;s method
 ##                 Sum Sq  Mean Sq NumDF DenDF F value        Pr(&gt;F)    
 ## Treatment      0.06423 0.021409     3    26  1.4068        0.2632    
@@ -909,9 +883,9 @@ outerLV
 ## Treatment:Time 0.25390 0.014105    18   156  0.9269        0.5474    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb194-1" title="1">re_lmer4 &lt;-<span class="st"> </span>lme4<span class="op">::</span><span class="kw">lmer</span>(Glucose <span class="op">~</span><span class="st"> </span>Treatment<span class="op">*</span>Time <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span><span class="op">|</span>Animal),<span class="dt">data =</span> liver) <span class="co">## MUST SPECIFY WHICH PACKAGE</span></a>
-<a class="sourceLine" id="cb194-2" title="2">predmeans &lt;-<span class="st"> </span>predictmeans<span class="op">::</span><span class="kw">predictmeans</span>(<span class="dt">model =</span> re_lmer4 ,<span class="dt">modelterm =</span> <span class="st">&quot;Treatment:Time&quot;</span>)</a>
-<a class="sourceLine" id="cb194-3" title="3">predmeans<span class="op">$</span>mean_table</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">re_lmer4 &lt;-<span class="st"> </span>lme4<span class="op">::</span><span class="kw">lmer</span>(Glucose <span class="op">~</span><span class="st"> </span>Treatment<span class="op">*</span>Time <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span><span class="op">|</span>Animal),<span class="dt">data =</span> liver) ## MUST SPECIFY WHICH PACKAGE
+predmeans &lt;-<span class="st"> </span>predictmeans<span class="op">::</span><span class="kw">predictmeans</span>(<span class="dt">model =</span> re_lmer4 ,<span class="dt">modelterm =</span> <span class="st">&quot;Treatment:Time&quot;</span>)
+predmeans<span class="op">$</span>mean_table</code></pre></div>
 <pre><code>##    Treatment Time Predicted means Standard error  Df LL of 95% CI UL of 95% CI
 ## 1    Control    0       0.6493750     0.09834458 156    0.4551162    0.8436338
 ## 2    Control    5       0.5495000     0.09834458 156    0.3552412    0.7437588
@@ -995,10 +969,6 @@ gitbook.start({
 "text": null
 },
 "download": null,
-"search": {
-"engine": "lunr",
-"options": null
-},
 "toc": {
 "collapse": "subsection"
 }
@@ -1011,7 +981,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "true";
+    var src = "";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))

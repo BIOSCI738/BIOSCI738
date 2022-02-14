@@ -27,7 +27,7 @@ library(tidyverse)
 
 ### Reading in data from a `.csv` file
 
-In this section we will be using dataset refering to the age and shell lengths of different P$\overline{\text{a}}$ua. The dataset contains the following variables
+In this section we will be using dataset referring to the age and shell lengths of different P$\overline{\text{a}}$ua. The dataset contains the following variables
 
  + `Age` of  P$\overline{\text{a}}$ua in years (calculated from counting rings in the cone) 
  + `Length` of  P$\overline{\text{a}}$ua shell in centimeters
@@ -218,7 +218,7 @@ I suggest you run the code below one pipe at a time to work out what each functi
 ```{r, message = FALSE, warning = FALSE}
 penguins_nafree %>%
   filter(., sex != "male") %>%
-  select(c("species", "island", "body_mass_g")) %>%
+  dplyr::select(c("species", "island", "body_mass_g")) %>%
   group_by(species, island) %>%
   summarise(total_mass_g = sum(body_mass_g)) %>%
   pivot_wider(names_from = c(island), values_from = total_mass_g)

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Multiple comparisons | Advanced Biological Data Analysis</title>
   <meta name="description" content="Multiple comparisons | Advanced Biological Data Analysis" />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Multiple comparisons | Advanced Biological Data Analysis" />
   <meta property="og:type" content="book" />
@@ -30,9 +30,9 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="modlling-experimental-data.html"/>
+<link rel="prev" href="modelling-experimental-data.html"/>
 <link rel="next" href="linear-mixed-effect-models-lmms.html"/>
-<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -56,66 +56,41 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
 
@@ -152,11 +127,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="your-data-and-r.html#the-pipe-operator">The pipe operator <code>%&gt;%</code></a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="data-wrangling.html"><a href="data-wrangling.html"><i class="fa fa-check"></i>Data wrangling</a><ul>
-<li><a href="data-wrangling.html#introuducing-the-palmer-penguins">Introuducing the <span>Palmer penguins</span></a></li>
+<li><a href="data-wrangling.html#introuducing-the-palmer-penguins">Introuducing the <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0090081">Palmer penguins</a></a></li>
 <li><a href="data-wrangling.html#common-dataframe-manipulations-in-the-tidyverse-using-dplyr-and-tidyr">Common dataframe manipulations in the <code>tidyverse</code>, using <code>dplyr</code> and <code>tidyr</code></a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html"><i class="fa fa-check"></i>Data visualiation (data viz)</a><ul>
-<li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html#exploratory-and-explanatory-plots"><i class="fa fa-check"></i>Exploratory and explanatory plots</a></li>
+<li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html#exploratory-plots"><i class="fa fa-check"></i>Exploratory plots</a></li>
+<li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html#explanatory-plots"><i class="fa fa-check"></i>Explanatory plots</a></li>
 <li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html#ten-simple-rules-for-better-figures"><i class="fa fa-check"></i>Ten Simple Rules for Better Figures</a></li>
 <li><a href="data-visualiation-data-viz.html#ggplot2"><code>ggplot2</code></a></li>
 </ul></li>
@@ -190,9 +166,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="model-formula-syntax-in-r.html#model-formula-syntax-in-r">Model formula syntax in <code>R</code></a><ul>
 <li class="chapter" data-level="" data-path="model-formula-syntax-in-r.html"><a href="model-formula-syntax-in-r.html"><i class="fa fa-check"></i>Other possible models</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="model-diagnostocs-for-a-linear-model.html"><a href="model-diagnostocs-for-a-linear-model.html"><i class="fa fa-check"></i>Model diagnostocs for a linear model</a><ul>
-<li class="chapter" data-level="" data-path="model-diagnostocs-for-a-linear-model.html"><a href="model-diagnostocs-for-a-linear-model.html#marginal-predictions"><i class="fa fa-check"></i>Marginal predictions</a></li>
-<li class="chapter" data-level="" data-path="model-diagnostocs-for-a-linear-model.html"><a href="model-diagnostocs-for-a-linear-model.html#model-selection"><i class="fa fa-check"></i>Model selection</a></li>
+<li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html"><i class="fa fa-check"></i>Model diagnostics for a linear model</a><ul>
+<li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html#marginal-predictions"><i class="fa fa-check"></i>Marginal predictions</a></li>
+<li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html#model-selection"><i class="fa fa-check"></i>Model selection</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="inference-for-a-linear-model.html"><a href="inference-for-a-linear-model.html"><i class="fa fa-check"></i>Inference for a linear model</a><ul>
 <li class="chapter" data-level="" data-path="inference-for-a-linear-model.html"><a href="inference-for-a-linear-model.html#point-prediction"><i class="fa fa-check"></i>Point prediction</a></li>
@@ -213,12 +189,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html#randomised-complete-block-design-rcbd"><i class="fa fa-check"></i>Randomised complete block design (RCBD)</a></li>
 <li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html#factorial-design"><i class="fa fa-check"></i>Factorial design</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="modlling-experimental-data.html"><a href="modlling-experimental-data.html"><i class="fa fa-check"></i>Modlling experimental data</a><ul>
-<li class="chapter" data-level="" data-path="modlling-experimental-data.html"><a href="modlling-experimental-data.html#a-completely-randomised-design-crd-as-a-linear-model"><i class="fa fa-check"></i>A completely randomised design (CRD) as a linear model</a></li>
-<li><a href="modlling-experimental-data.html#analysis-of-a-crd-in-r">Analysis of a CRD in <code>R</code></a></li>
-<li><a href="modlling-experimental-data.html#using-lm">Using <code>lm()</code></a></li>
-<li class="chapter" data-level="" data-path="modlling-experimental-data.html"><a href="modlling-experimental-data.html#a-factorial-experiment-as-a-crd"><i class="fa fa-check"></i>A Factorial experiment (as a CRD)</a></li>
-<li class="chapter" data-level="" data-path="modlling-experimental-data.html"><a href="modlling-experimental-data.html#unqual-replications-unbalanced-design"><i class="fa fa-check"></i>Unqual replications (unbalanced design)</a></li>
+<li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html"><i class="fa fa-check"></i>Modelling experimental data</a><ul>
+<li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-completely-randomised-design-crd-as-a-linear-model"><i class="fa fa-check"></i>A completely randomised design (CRD) as a linear model</a></li>
+<li><a href="modelling-experimental-data.html#analysis-of-a-crd-in-r">Analysis of a CRD in <code>R</code></a></li>
+<li><a href="modelling-experimental-data.html#using-lm">Using <code>lm()</code></a></li>
+<li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-factorial-experiment-as-a-crd"><i class="fa fa-check"></i>A Factorial experiment (as a CRD)</a></li>
+<li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#unqual-replications-unbalanced-design"><i class="fa fa-check"></i>Unqual replications (unbalanced design)</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html"><i class="fa fa-check"></i>Multiple comparisons</a><ul>
 <li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html#classification-of-multiple-hypothesis-tests"><i class="fa fa-check"></i>Classification of multiple hypothesis tests</a></li>
@@ -249,7 +225,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html"><i class="fa fa-check"></i>Introduction to Bayesian statistics</a><ul>
 <li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html#conditional-probability"><i class="fa fa-check"></i>Conditional probability</a></li>
-<li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html#bayes-rule"><i class="fa fa-check"></i>Bayes’ rule</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html#bayes-rule"><i class="fa fa-check"></i>Bayes' rule</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="module-5.html"><a href="module-5.html"><i class="fa fa-check"></i>Module 5</a><ul>
@@ -312,7 +288,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <thead>
 <tr class="header">
 <th>State of Nature</th>
-<th>Don’t reject <span class="math inline">\(H_0\)</span></th>
+<th>Don't reject <span class="math inline">\(H_0\)</span></th>
 <th>reject <span class="math inline">\(H_0\)</span></th>
 </tr>
 </thead>
@@ -329,7 +305,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
-<p>The <strong>familywise error rate (FWER)</strong> is the risk of making at least one <strong>Type I</strong> error among the family of comparisons in the experiment. Now let’s consider carrying out <span class="math inline">\(m\)</span> independent t-tests and let for any single test, let Pr(commit a Type 1 error) <span class="math inline">\(= \alpha_c\)</span> be the <strong>per comparison error rate (PCER)</strong>. So for a single test the probability a correct decision is made is <span class="math inline">\(1 - \alpha_c\)</span>. Therefore for <span class="math inline">\(m\)</span> <strong>independent</strong> t-tests the probability of committing no Type I errors is <span class="math inline">\((1 - \alpha_c)^m\)</span> and the probability of committing at least one Type I error is <span class="math inline">\(1 -(1 - \alpha_c)^m = \alpha_F\)</span> which is the upper limit of the FWER.</p>
+<p>The <strong>familywise error rate (FWER)</strong> is the risk of making at least one <strong>Type I</strong> error among the family of comparisons in the experiment. Now let's consider carrying out <span class="math inline">\(m\)</span> independent t-tests and let for any single test, let Pr(commit a Type 1 error) <span class="math inline">\(= \alpha_c\)</span> be the <strong>per comparison error rate (PCER)</strong>. So for a single test the probability a correct decision is made is <span class="math inline">\(1 - \alpha_c\)</span>. Therefore for <span class="math inline">\(m\)</span> <strong>independent</strong> t-tests the probability of committing no Type I errors is <span class="math inline">\((1 - \alpha_c)^m\)</span> and the probability of committing at least one Type I error is <span class="math inline">\(1 -(1 - \alpha_c)^m = \alpha_F\)</span> which is the upper limit of the FWER.</p>
 <p>The <strong>False Discovert Rate (FDR)</strong> controls the expected (mean) proportion of false discoveries amongst the <span class="math inline">\(R\)</span> (out of <span class="math inline">\(m\)</span>) hypotheses declared significant.</p>
 <p>Consider testing <span class="math inline">\(m\)</span> null hypotheses with corresponding p-values <span class="math inline">\(P_1, P_2,...,P_m\)</span>; we then order then so that <span class="math inline">\(P_{(1)} &lt; P_{(2)} &lt;...&lt;P_{(m)}\)</span> (where <span class="math inline">\(P_{(i)}\)</span> is the <span class="math inline">\(i^{th}\)</span> largest <span class="math inline">\(i=1,...,m\)</span>). The <span class="math inline">\(i^{th}\)</span> ordered p-value is calculated as <span class="math inline">\(\frac{i}{m}q^*\)</span> and the <span class="math inline">\(i^{th}\)</span> null hypothesis is rejected if <span class="math inline">\(P_i \leq \frac{i}{m}q^*\)</span></p>
 <p><img src="_main_files/figure-html/alp-1.png" width="960" style="display: block; margin: auto;" /></p>
@@ -530,8 +506,8 @@ S
 </tbody>
 </table>
 <p>Fitting a linear model using <code>lm()</code>:</p>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb168-1" title="1">rats_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC <span class="op">~</span><span class="st"> </span>Surgery, <span class="dt">data =</span> rats)</a>
-<a class="sourceLine" id="cb168-2" title="2"><span class="kw">coef</span>(rats_lm)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rats_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC <span class="op">~</span><span class="st"> </span>Surgery, <span class="dt">data =</span> rats)
+<span class="kw">coef</span>(rats_lm)</code></pre></div>
 <pre><code>## (Intercept)    SurgeryP    SurgeryS 
 ##      8.4600      0.4900      3.0875</code></pre>
 <p>Our fitted model is therefore</p>
@@ -543,8 +519,8 @@ S
 <div id="fishers-least-significant-difference-lsd" class="section level4">
 <h4>Fisher’s, Least Significant Difference (LSD)</h4>
 <p>Carry out post-hoc tests only if the ANOVA F-test is <em>significant</em>. If so declare significant <span class="math inline">\(100\alpha\%\)</span> any pairwise difference &gt; LSD. This does <strong>not</strong> control the FWER.</p>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb170-1" title="1">tukey &lt;-<span class="st"> </span>predictmeans<span class="op">::</span><span class="kw">predictmeans</span>(rats_lm , <span class="dt">modelterm =</span> <span class="st">&quot;Surgery&quot;</span>, <span class="dt">adj =</span> <span class="st">&quot;tukey&quot;</span>,<span class="dt">pairwise =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb170-2" title="2">tukey<span class="op">$</span>mean_table</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tukey &lt;-<span class="st"> </span>predictmeans<span class="op">::</span><span class="kw">predictmeans</span>(rats_lm , <span class="dt">modelterm =</span> <span class="st">&quot;Surgery&quot;</span>, <span class="dt">adj =</span> <span class="st">&quot;tukey&quot;</span>,<span class="dt">pairwise =</span> <span class="ot">TRUE</span>)
+tukey<span class="op">$</span>mean_table</code></pre></div>
 <pre><code>##   Surgery Predicted means Standard error Df LL of 95% CI UL of 95% CI LetterGrp
 ## 1       C          8.4600      0.4102531  9     7.531943     9.388057        A 
 ## 2       P          8.9500      0.4102531  9     8.021943     9.878057        A 
@@ -553,8 +529,8 @@ S
 <div id="bonferroni-correction" class="section level4">
 <h4>Bonferroni correction</h4>
 <p>We reject the <span class="math inline">\(H_0\)</span> for which the p-value, <em>p-val</em>, is <em>p-val</em> <span class="math inline">\(&lt; \alpha_c = \frac{\alpha_f}{n_c}\)</span> where <span class="math inline">\(\alpha_f\)</span> is the FWER and <span class="math inline">\(n_c\)</span> is the number of pairwise comparisons. Howerer, this makes <strong>no</strong> assumptions about independence between tests.</p>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb172-1" title="1">bonferroni &lt;-<span class="st">  </span>predictmeans<span class="op">::</span><span class="kw">predictmeans</span>(rats_lm , <span class="dt">modelterm =</span> <span class="st">&quot;Surgery&quot;</span>, <span class="dt">adj =</span> <span class="st">&quot;bonferroni&quot;</span>,<span class="dt">pairwise =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb172-2" title="2">bonferroni<span class="op">$</span>mean_table</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">bonferroni &lt;-<span class="st">  </span>predictmeans<span class="op">::</span><span class="kw">predictmeans</span>(rats_lm , <span class="dt">modelterm =</span> <span class="st">&quot;Surgery&quot;</span>, <span class="dt">adj =</span> <span class="st">&quot;bonferroni&quot;</span>,<span class="dt">pairwise =</span> <span class="ot">TRUE</span>)
+bonferroni<span class="op">$</span>mean_table</code></pre></div>
 <pre><code>##   Surgery Predicted means Standard error Df LL of 95% CI UL of 95% CI LetterGrp
 ## 1       C          8.4600      0.4102531  9     7.531943     9.388057        A 
 ## 2       P          8.9500      0.4102531  9     8.021943     9.878057        A 
@@ -562,9 +538,9 @@ S
 </div>
 <div id="tukeys-honest-significant-difference-hsd" class="section level4">
 <h4>Tukey’s Honest Significant Difference (HSD)</h4>
-<p>This compares the mean of every treatment with the mean of every other treatmen and uses a <em>studentized range</em> distribution compated with a t-distribution for Fisher’s LSD and the Bonferroni correction.</p>
-<p>Here Tukey’s <em>studentixed range</em> (TSR) <span class="math inline">\(=q_{m,df}(1 - \frac{\alpha}{2})\sqrt{2\times \frac{\text{residual MS}}{\text{# reps}}}\)</span></p>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb174-1" title="1"><span class="kw">TukeyHSD</span>(<span class="kw">aov</span>(logAUC<span class="op">~</span>Surgery, <span class="dt">data =</span> rats))<span class="op">$</span>Surgery</a></code></pre></div>
+<p>This compares the mean of every treatment with the mean of every other treatmen and uses a <em>studentized range</em> distribution compated with a t-distribution for Fisher's LSD and the Bonferroni correction.</p>
+<p>Here Tukey's <em>studentixed range</em> (TSR) <span class="math inline">\(=q_{m,df}(1 - \frac{\alpha}{2})\sqrt{2\times \frac{\text{residual MS}}{\text{# reps}}}\)</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">TukeyHSD</span>(<span class="kw">aov</span>(logAUC<span class="op">~</span>Surgery, <span class="dt">data =</span> rats))<span class="op">$</span>Surgery</code></pre></div>
 <pre><code>##       diff        lwr      upr       p adj
 ## P-C 0.4900 -1.1298813 2.109881 0.686326705
 ## S-C 3.0875  1.4676187 4.707381 0.001247880
@@ -578,7 +554,7 @@ S
           </div>
         </div>
       </div>
-<a href="modlling-experimental-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="modelling-experimental-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="linear-mixed-effect-models-lmms.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
@@ -623,10 +599,6 @@ gitbook.start({
 "text": null
 },
 "download": null,
-"search": {
-"engine": "lunr",
-"options": null
-},
 "toc": {
 "collapse": "subsection"
 }
@@ -639,7 +611,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "true";
+    var src = "";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))

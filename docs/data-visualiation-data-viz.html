@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Data visualiation (data viz) | Advanced Biological Data Analysis</title>
   <meta name="description" content="Data visualiation (data viz) | Advanced Biological Data Analysis" />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Data visualiation (data viz) | Advanced Biological Data Analysis" />
   <meta property="og:type" content="book" />
@@ -32,7 +32,7 @@
   
 <link rel="prev" href="data-wrangling.html"/>
 <link rel="next" href="māori-data-sovereignty-principles.html"/>
-<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -56,66 +56,41 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
 
@@ -152,11 +127,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="your-data-and-r.html#the-pipe-operator">The pipe operator <code>%&gt;%</code></a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="data-wrangling.html"><a href="data-wrangling.html"><i class="fa fa-check"></i>Data wrangling</a><ul>
-<li><a href="data-wrangling.html#introuducing-the-palmer-penguins">Introuducing the <span>Palmer penguins</span></a></li>
+<li><a href="data-wrangling.html#introuducing-the-palmer-penguins">Introuducing the <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0090081">Palmer penguins</a></a></li>
 <li><a href="data-wrangling.html#common-dataframe-manipulations-in-the-tidyverse-using-dplyr-and-tidyr">Common dataframe manipulations in the <code>tidyverse</code>, using <code>dplyr</code> and <code>tidyr</code></a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html"><i class="fa fa-check"></i>Data visualiation (data viz)</a><ul>
-<li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html#exploratory-and-explanatory-plots"><i class="fa fa-check"></i>Exploratory and explanatory plots</a></li>
+<li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html#exploratory-plots"><i class="fa fa-check"></i>Exploratory plots</a></li>
+<li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html#explanatory-plots"><i class="fa fa-check"></i>Explanatory plots</a></li>
 <li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html#ten-simple-rules-for-better-figures"><i class="fa fa-check"></i>Ten Simple Rules for Better Figures</a></li>
 <li><a href="data-visualiation-data-viz.html#ggplot2"><code>ggplot2</code></a></li>
 </ul></li>
@@ -190,9 +166,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="model-formula-syntax-in-r.html#model-formula-syntax-in-r">Model formula syntax in <code>R</code></a><ul>
 <li class="chapter" data-level="" data-path="model-formula-syntax-in-r.html"><a href="model-formula-syntax-in-r.html"><i class="fa fa-check"></i>Other possible models</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="model-diagnostocs-for-a-linear-model.html"><a href="model-diagnostocs-for-a-linear-model.html"><i class="fa fa-check"></i>Model diagnostocs for a linear model</a><ul>
-<li class="chapter" data-level="" data-path="model-diagnostocs-for-a-linear-model.html"><a href="model-diagnostocs-for-a-linear-model.html#marginal-predictions"><i class="fa fa-check"></i>Marginal predictions</a></li>
-<li class="chapter" data-level="" data-path="model-diagnostocs-for-a-linear-model.html"><a href="model-diagnostocs-for-a-linear-model.html#model-selection"><i class="fa fa-check"></i>Model selection</a></li>
+<li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html"><i class="fa fa-check"></i>Model diagnostics for a linear model</a><ul>
+<li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html#marginal-predictions"><i class="fa fa-check"></i>Marginal predictions</a></li>
+<li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html#model-selection"><i class="fa fa-check"></i>Model selection</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="inference-for-a-linear-model.html"><a href="inference-for-a-linear-model.html"><i class="fa fa-check"></i>Inference for a linear model</a><ul>
 <li class="chapter" data-level="" data-path="inference-for-a-linear-model.html"><a href="inference-for-a-linear-model.html#point-prediction"><i class="fa fa-check"></i>Point prediction</a></li>
@@ -213,12 +189,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html#randomised-complete-block-design-rcbd"><i class="fa fa-check"></i>Randomised complete block design (RCBD)</a></li>
 <li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html#factorial-design"><i class="fa fa-check"></i>Factorial design</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="modlling-experimental-data.html"><a href="modlling-experimental-data.html"><i class="fa fa-check"></i>Modlling experimental data</a><ul>
-<li class="chapter" data-level="" data-path="modlling-experimental-data.html"><a href="modlling-experimental-data.html#a-completely-randomised-design-crd-as-a-linear-model"><i class="fa fa-check"></i>A completely randomised design (CRD) as a linear model</a></li>
-<li><a href="modlling-experimental-data.html#analysis-of-a-crd-in-r">Analysis of a CRD in <code>R</code></a></li>
-<li><a href="modlling-experimental-data.html#using-lm">Using <code>lm()</code></a></li>
-<li class="chapter" data-level="" data-path="modlling-experimental-data.html"><a href="modlling-experimental-data.html#a-factorial-experiment-as-a-crd"><i class="fa fa-check"></i>A Factorial experiment (as a CRD)</a></li>
-<li class="chapter" data-level="" data-path="modlling-experimental-data.html"><a href="modlling-experimental-data.html#unqual-replications-unbalanced-design"><i class="fa fa-check"></i>Unqual replications (unbalanced design)</a></li>
+<li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html"><i class="fa fa-check"></i>Modelling experimental data</a><ul>
+<li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-completely-randomised-design-crd-as-a-linear-model"><i class="fa fa-check"></i>A completely randomised design (CRD) as a linear model</a></li>
+<li><a href="modelling-experimental-data.html#analysis-of-a-crd-in-r">Analysis of a CRD in <code>R</code></a></li>
+<li><a href="modelling-experimental-data.html#using-lm">Using <code>lm()</code></a></li>
+<li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-factorial-experiment-as-a-crd"><i class="fa fa-check"></i>A Factorial experiment (as a CRD)</a></li>
+<li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#unqual-replications-unbalanced-design"><i class="fa fa-check"></i>Unqual replications (unbalanced design)</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html"><i class="fa fa-check"></i>Multiple comparisons</a><ul>
 <li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html#classification-of-multiple-hypothesis-tests"><i class="fa fa-check"></i>Classification of multiple hypothesis tests</a></li>
@@ -249,7 +225,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html"><i class="fa fa-check"></i>Introduction to Bayesian statistics</a><ul>
 <li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html#conditional-probability"><i class="fa fa-check"></i>Conditional probability</a></li>
-<li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html#bayes-rule"><i class="fa fa-check"></i>Bayes’ rule</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html#bayes-rule"><i class="fa fa-check"></i>Bayes' rule</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="module-5.html"><a href="module-5.html"><i class="fa fa-check"></i>Module 5</a><ul>
@@ -307,56 +283,62 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="data-visualiation-data-viz" class="section level2">
 <h2>Data visualiation (data viz)</h2>
 <blockquote>
-“…have obligations in that we have a great deal of power over how people ultimately make use of data, both in the patterns they see and the conclusions they draw.”
+&quot;...have obligations in that we have a great deal of power over how people ultimately make use of data, both in the patterns they see and the conclusions they draw.&quot;
 <footer>
-— Michael Correll, Ethical Dimensions of Visualization Research
+--- Michael Correll, Ethical Dimensions of Visualization Research
 </footer>
 </blockquote>
 <blockquote>
-“Clutter and confusion are not attributes of data - they are shortcomings of design.”
+&quot;Clutter and confusion are not attributes of data - they are shortcomings of design.&quot;
 <footer>
-— Edward Tufte
+--- Edward Tufte
 </footer>
 </blockquote>
-<div id="exploratory-and-explanatory-plots" class="section level3">
-<h3>Exploratory and explanatory plots</h3>
-<ol style="list-style-type: decimal">
-<li><strong>Exploratory plots</strong> (<em>for you</em>)</li>
-</ol>
+<div id="exploratory-plots" class="section level3">
+<h3>Exploratory plots</h3>
+<p>Exploratory plots are just <em>for you</em>, they</p>
 <ul>
-<li>data exploration</li>
-<li>doesn’t have to look pretty</li>
-<li>just needs to get to the point</li>
-<li>explore and discover new data facets</li>
-<li>formulate new questions</li>
+<li>focus solely on data exploration,</li>
+<li>don't have to look pretty,</li>
+<li>just needs to get to the point,</li>
+<li>explore and discover new data facets, and</li>
+<li>help formulate new questions.</li>
 </ul>
 <p>For example,</p>
-<p><img src="_main_files/figure-html/example,%20me-1.png" width="672" /><img src="_main_files/figure-html/example,%20me-2.png" width="672" /></p>
-<ol start="2" style="list-style-type: decimal">
-<li><strong>Explanatory plots</strong> (<em>for others</em>), most common kind of graph used in
-scientific publications</li>
-</ol>
+<p><img src="_main_files/figure-html/example,%20me-1.png" width="672" style="display: block; margin: auto;" /><img src="_main_files/figure-html/example,%20me-2.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="explanatory-plots" class="section level3">
+<h3>Explanatory plots</h3>
+<p>Explanatory plots are mainly <em>for others</em>. These are the most common kind of graph used in scientific publications. They should</p>
 <ul>
-<li>clear purpose</li>
-<li>designed for the audience</li>
-<li>make it easy to read (<em>this covers a lot of things</em>)</li>
-<li>do not distort</li>
-<li>guide the reader to a particular conclusion</li>
-<li>answer a specific question</li>
-<li>support a decision</li>
+<li>have a clear purpose,</li>
+<li>be designed for the audience,</li>
+<li>be easy to read (<em>this covers a lot of things</em>),</li>
+<li>not distort the data,</li>
+<li>help guide the reader to a particular conclusion,</li>
+<li>answer a specific question, and</li>
+<li>support an outlined decision.</li>
 </ul>
 <p>For example,</p>
 <p align="center">
 <img src="https://jimgruman.netlify.app/post/variableimportance/2020_31_PalmerPenguins.png" />
 </p>
-<p>Plots by Cedric Scherer and mentioned on <a href="https://jimgruman.netlify.app/post/variableimportance/">this blog</a></p>
+<p align="center">
+Plots by Cedric Scherer and mentioned on <a href="https://jimgruman.netlify.app/post/variableimportance/">this blog</a>
+</p>
 </div>
 <div id="ten-simple-rules-for-better-figures" class="section level3">
 <h3>Ten Simple Rules for Better Figures</h3>
 <blockquote>
-“Scientific visualization is classically defined as the process of graphically displaying scientific data. However, this process is far from direct or automatic. There are so many different ways to represent the same data: scatter plots, linear plots, bar plots, and pie charts, to name just a few. Furthermore, the same data, using the same type of plot, may be perceived very differently depending on who is looking at the figure. A more accurate definition for scientific visualization would be a graphical interface between people and data.”
+&quot;Scientific visualization is classically defined as the process of graphically displaying scientific data. However, this process is far from direct or automatic. There are so many different ways to represent the same data: scatter plots, linear plots, bar plots, and pie charts, to name just a few. Furthermore, the same data, using the same type of plot, may be perceived very differently depending on who is looking at the figure. A more accurate definition for scientific visualization would be a graphical interface between people and data.&quot;
 <footer>
-— Nicolas P. Rougier, Michael Droettboom, Philip E. Bourne, Ten Simple Rules for Better Figures
+--- Nicolas P. Rougier, Michael Droettboom, Philip E. Bourne, Ten Simple Rules for Better Figures
+</footer>
+</blockquote>
+<blockquote>
+&quot;message and readability of the figure is the most important aspect while beauty is only an option&quot;
+<footer>
+--- Nicolas P. Rougier, Michael Droettboom, Philip E. Bourne, Ten Simple Rules for Better Figures
 </footer>
 </blockquote>
 <ul>
@@ -372,17 +354,9 @@ scientific publications</li>
 </ul></li>
 <li><p><strong>Avoid</strong> <em>Chartjunk</em></p></li>
 <li><p><strong>Message</strong> Trumps Beauty</p></li>
-</ul>
-<blockquote>
-“message and readability of the figure is the most important aspect while beauty is only an option”
-<footer>
-— Nicolas P. Rougier, Michael Droettboom, Philip E. Bourne, Ten Simple Rules for Better Figures
-</footer>
-</blockquote>
-<ul>
 <li><p>Get the Right <strong>Tool</strong></p>
 <ul>
-<li>I’m an advocate for <code>R</code> 😉</li>
+<li>I'm an advocate for <code>R</code> 😉</li>
 </ul></li>
 </ul>
 </div>
@@ -401,73 +375,76 @@ scientific publications</li>
 <div id="examples" class="section level4">
 <h4>Examples</h4>
 <p><strong>Scatter plot</strong> using <code>geom_point()</code></p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" title="1"><span class="kw">ggplot</span>(penguins,<span class="kw">aes</span>(<span class="dt">x =</span> body_mass_g, <span class="dt">y =</span> flipper_length_mm)) <span class="op">+</span><span class="st"> </span><span class="co">## data &amp; aesthetics</span></a>
-<a class="sourceLine" id="cb42-2" title="2"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="co">## geom</span></a>
-<a class="sourceLine" id="cb42-3" title="3"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="co">## statistics (linear regression line)</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(penguins,<span class="kw">aes</span>(<span class="dt">x =</span> body_mass_g, <span class="dt">y =</span> flipper_length_mm)) <span class="op">+</span><span class="st"> </span>## data &amp; aesthetics
+<span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span>## geom
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) ## statistics (linear regression line)</code></pre></div>
 <p><img src="_main_files/figure-html/flippoint-1.png" width="672" /></p>
 <p><strong>Boxplot</strong> using <code>geom_boxplot()</code></p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" title="1"><span class="kw">ggplot</span>(penguins,<span class="kw">aes</span>(<span class="dt">x =</span> species, <span class="dt">y =</span> flipper_length_mm)) <span class="op">+</span><span class="st"> </span><span class="co">## data &amp; aesthetics</span></a>
-<a class="sourceLine" id="cb43-2" title="2"><span class="st">    </span><span class="kw">geom_boxplot</span>()  <span class="op">+</span><span class="st"> </span><span class="co">## geom</span></a>
-<a class="sourceLine" id="cb43-3" title="3"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Flipper length (mm) by species&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb43-4" title="4"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Flipper length (mm)&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb43-5" title="5"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Species&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb43-6" title="6"><span class="st">  </span><span class="kw">theme_dark</span>() <span class="co">## theme</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(penguins,<span class="kw">aes</span>(<span class="dt">x =</span> species, <span class="dt">y =</span> flipper_length_mm)) <span class="op">+</span><span class="st"> </span>## data &amp; aesthetics
+<span class="st">    </span><span class="kw">geom_boxplot</span>()  <span class="op">+</span><span class="st"> </span>## geom
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Flipper length (mm) by species&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Flipper length (mm)&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Species&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_dark</span>() ## theme</code></pre></div>
 <p><img src="_main_files/figure-html/flipbox2-1.png" width="672" /></p>
 <p><strong>Scatter plot</strong> specifying <code>color</code> using <code>geom_point()</code></p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" title="1"><span class="kw">ggplot</span>(penguins,<span class="kw">aes</span>(<span class="dt">x =</span> body_mass_g, <span class="dt">y =</span> flipper_length_mm, <span class="dt">color =</span> species)) <span class="op">+</span><span class="st"> </span><span class="co">## data and aesthetics</span></a>
-<a class="sourceLine" id="cb44-2" title="2"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="co">## geom</span></a>
-<a class="sourceLine" id="cb44-3" title="3"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="co">## statistic (linear regression line without intervals)</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(penguins,<span class="kw">aes</span>(<span class="dt">x =</span> body_mass_g, <span class="dt">y =</span> flipper_length_mm, <span class="dt">color =</span> species)) <span class="op">+</span><span class="st"> </span>## data and aesthetics
+<span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span>## geom
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) ## statistic (linear regression line without intervals)</code></pre></div>
 <p><img src="_main_files/figure-html/flippoint2-1.png" width="672" /></p>
 </div>
-<div id="the-good-the-bad-and-the-ugly" class="section level4">
-<h4>The Good, the Bad, and the Ugly…</h4>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1">box &lt;-<span class="st"> </span><span class="kw">ggplot</span>(penguins,<span class="kw">aes</span>(<span class="dt">x =</span> species, <span class="dt">y =</span> flipper_length_mm)) <span class="op">+</span><span class="st"> </span><span class="co">## data &amp; aesthetics</span></a>
-<a class="sourceLine" id="cb45-2" title="2"><span class="st">    </span><span class="kw">geom_boxplot</span>()  <span class="op">+</span><span class="st"> </span><span class="co">## geom</span></a>
-<a class="sourceLine" id="cb45-3" title="3"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Flipper length (mm) by species&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb45-4" title="4"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Flipper length (mm)&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb45-5" title="5"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Species&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb45-6" title="6"><span class="st">  </span><span class="kw">theme_dark</span>() <span class="co">## theme</span></a>
-<a class="sourceLine" id="cb45-7" title="7">box</a>
-<a class="sourceLine" id="cb45-8" title="8">jitter &lt;-<span class="st"> </span><span class="kw">ggplot</span>(penguins,<span class="kw">aes</span>(<span class="dt">x =</span> species, <span class="dt">y =</span> flipper_length_mm)) <span class="op">+</span><span class="st"> </span><span class="co">## data &amp; aesthetics</span></a>
-<a class="sourceLine" id="cb45-9" title="9"><span class="st">    </span><span class="kw">geom_jitter</span>()  <span class="op">+</span><span class="st"> </span><span class="co">## geom</span></a>
-<a class="sourceLine" id="cb45-10" title="10"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Flipper length (mm) by species&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb45-11" title="11"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Flipper length (mm)&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb45-12" title="12"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Species&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb45-13" title="13"><span class="st">  </span><span class="kw">theme_dark</span>() <span class="co">## theme</span></a>
-<a class="sourceLine" id="cb45-14" title="14">jitter</a>
-<a class="sourceLine" id="cb45-15" title="15">violin &lt;-<span class="st"> </span><span class="kw">ggplot</span>(penguins,<span class="kw">aes</span>(<span class="dt">x =</span> species, <span class="dt">y =</span> flipper_length_mm)) <span class="op">+</span><span class="st"> </span><span class="co">## data &amp; aesthetics</span></a>
-<a class="sourceLine" id="cb45-16" title="16"><span class="st">    </span><span class="kw">geom_violin</span>()  <span class="op">+</span><span class="st"> </span><span class="co">## geom</span></a>
-<a class="sourceLine" id="cb45-17" title="17"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Flipper length (mm) by species&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb45-18" title="18"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Flipper length (mm)&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb45-19" title="19"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Species&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb45-20" title="20"><span class="st">  </span><span class="kw">theme_dark</span>() <span class="co">## theme</span></a>
-<a class="sourceLine" id="cb45-21" title="21">violin</a></code></pre></div>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" title="1"><span class="kw">ggplot</span>(penguins, <span class="kw">aes</span>(<span class="dt">x =</span> body_mass_g, <span class="dt">y =</span> flipper_length_mm)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb46-2" title="2"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb46-3" title="3"><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div id="the-good-the-bad-and-the-ugly..." class="section level4">
+<h4>The Good, the Bad, and the Ugly...</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">box &lt;-<span class="st"> </span><span class="kw">ggplot</span>(penguins,<span class="kw">aes</span>(<span class="dt">x =</span> species, <span class="dt">y =</span> flipper_length_mm)) <span class="op">+</span><span class="st"> </span>## data &amp; aesthetics
+<span class="st">    </span><span class="kw">geom_boxplot</span>()  <span class="op">+</span><span class="st"> </span>## geom
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Flipper length (mm) by species&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Flipper length (mm)&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Species&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_dark</span>() ## theme
+box</code></pre></div>
+<p><img src="_main_files/figure-html/boxesc-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">jitter &lt;-<span class="st"> </span><span class="kw">ggplot</span>(penguins,<span class="kw">aes</span>(<span class="dt">x =</span> species, <span class="dt">y =</span> flipper_length_mm)) <span class="op">+</span><span class="st"> </span>## data &amp; aesthetics
+<span class="st">    </span><span class="kw">geom_jitter</span>()  <span class="op">+</span><span class="st"> </span>## geom
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Flipper length (mm) by species&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Flipper length (mm)&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Species&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_dark</span>() ## theme
+jitter</code></pre></div>
+<p><img src="_main_files/figure-html/boxesc-2.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">violin &lt;-<span class="st"> </span><span class="kw">ggplot</span>(penguins,<span class="kw">aes</span>(<span class="dt">x =</span> species, <span class="dt">y =</span> flipper_length_mm)) <span class="op">+</span><span class="st"> </span>## data &amp; aesthetics
+<span class="st">    </span><span class="kw">geom_violin</span>()  <span class="op">+</span><span class="st"> </span>## geom
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Flipper length (mm) by species&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Flipper length (mm)&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Species&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_dark</span>() ## theme
+violin</code></pre></div>
+<p><img src="_main_files/figure-html/boxesc-3.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(penguins, <span class="kw">aes</span>(<span class="dt">x =</span> body_mass_g, <span class="dt">y =</span> flipper_length_mm)) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>)</code></pre></div>
 <p><img src="_main_files/figure-html/simple-1.png" width="672" /></p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" title="1"><span class="kw">ggplot</span>(penguins, <span class="kw">aes</span>(<span class="dt">x =</span> body_mass_g, <span class="dt">y =</span> flipper_length_mm, </a>
-<a class="sourceLine" id="cb47-2" title="2">                         <span class="dt">col =</span> species)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb47-3" title="3"><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb47-4" title="4"><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb47-5" title="5"><span class="st">    </span><span class="kw">facet_grid</span>(<span class="op">~</span><span class="st"> </span>sex) <span class="op">+</span></a>
-<a class="sourceLine" id="cb47-6" title="6"><span class="st">    </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb47-7" title="7"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Flipper Length and Body Mass, by Sex &amp; Species&quot;</span>,</a>
-<a class="sourceLine" id="cb47-8" title="8">         <span class="dt">subtitle =</span> <span class="kw">paste0</span>(<span class="kw">nrow</span>(penguins), <span class="st">&quot; of the Palmer Penguins&quot;</span>),</a>
-<a class="sourceLine" id="cb47-9" title="9">         <span class="dt">x =</span> <span class="st">&quot;Body Mass (g)&quot;</span>, </a>
-<a class="sourceLine" id="cb47-10" title="10">         <span class="dt">y =</span> <span class="st">&quot;Flipper Length (mm)&quot;</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(penguins, <span class="kw">aes</span>(<span class="dt">x =</span> body_mass_g, <span class="dt">y =</span> flipper_length_mm, 
+                         <span class="dt">col =</span> species)) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">facet_grid</span>(<span class="op">~</span><span class="st"> </span>sex) <span class="op">+</span>
+<span class="st">    </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Flipper Length and Body Mass, by Sex &amp; Species&quot;</span>,
+         <span class="dt">subtitle =</span> <span class="kw">paste0</span>(<span class="kw">nrow</span>(penguins), <span class="st">&quot; of the Palmer Penguins&quot;</span>),
+         <span class="dt">x =</span> <span class="st">&quot;Body Mass (g)&quot;</span>, 
+         <span class="dt">y =</span> <span class="st">&quot;Flipper Length (mm)&quot;</span>)</code></pre></div>
 <p><img src="_main_files/figure-html/facet-1.png" width="672" /></p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" title="1">penguins_nafree &lt;-<span class="st"> </span>penguins <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">drop_na</span>()</a>
-<a class="sourceLine" id="cb48-2" title="2"><span class="kw">ggplot</span>(penguins_nafree, <span class="kw">aes</span>(<span class="dt">x =</span> body_mass_g, <span class="dt">y =</span> flipper_length_mm, </a>
-<a class="sourceLine" id="cb48-3" title="3">                         <span class="dt">col =</span> species)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb48-4" title="4"><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb48-5" title="5"><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb48-6" title="6"><span class="st">    </span><span class="kw">facet_grid</span>(<span class="op">~</span><span class="st"> </span>sex) <span class="op">+</span></a>
-<a class="sourceLine" id="cb48-7" title="7"><span class="st">    </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb48-8" title="8"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Flipper Length and Body Mass, by Sex &amp; Species&quot;</span>,</a>
-<a class="sourceLine" id="cb48-9" title="9">         <span class="dt">subtitle =</span> <span class="kw">paste0</span>(<span class="kw">nrow</span>(penguins_nafree), <span class="st">&quot; of the Palmer Penguins&quot;</span>),</a>
-<a class="sourceLine" id="cb48-10" title="10">         <span class="dt">x =</span> <span class="st">&quot;Body Mass (g)&quot;</span>, </a>
-<a class="sourceLine" id="cb48-11" title="11">         <span class="dt">y =</span> <span class="st">&quot;Flipper Length (mm)&quot;</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">penguins_nafree &lt;-<span class="st"> </span>penguins <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">drop_na</span>()
+<span class="kw">ggplot</span>(penguins_nafree, <span class="kw">aes</span>(<span class="dt">x =</span> body_mass_g, <span class="dt">y =</span> flipper_length_mm, 
+                         <span class="dt">col =</span> species)) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">facet_grid</span>(<span class="op">~</span><span class="st"> </span>sex) <span class="op">+</span>
+<span class="st">    </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Flipper Length and Body Mass, by Sex &amp; Species&quot;</span>,
+         <span class="dt">subtitle =</span> <span class="kw">paste0</span>(<span class="kw">nrow</span>(penguins_nafree), <span class="st">&quot; of the Palmer Penguins&quot;</span>),
+         <span class="dt">x =</span> <span class="st">&quot;Body Mass (g)&quot;</span>, 
+         <span class="dt">y =</span> <span class="st">&quot;Flipper Length (mm)&quot;</span>)</code></pre></div>
 <p><img src="_main_files/figure-html/facetna-1.png" width="672" /></p>
 
 </div>
@@ -523,10 +500,6 @@ gitbook.start({
 "text": null
 },
 "download": null,
-"search": {
-"engine": "lunr",
-"options": null
-},
 "toc": {
 "collapse": "subsection"
 }
@@ -539,7 +512,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "true";
+    var src = "";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))

@@ -21,9 +21,9 @@ By the end of this course you will be able to:
 
 ### Course summary {-}
 
-##### Lectures this semester are in weeks (2--11) on **Mondays 2-4pm in MAC1**. Labs are held in **106-014 (Biology Building, Room 014)** on Fridays (weeks 2--11) 2--3pm {-}
+##### Lectures this semester are in weeks (2--11) on **Mondays 2-4pm**. Labs are held on Fridays (weeks 2--11) 2--3pm {-}
 
-##### Office hours: Mondays 12--1pm & Thursdays 2--3pm throughout the semester. Contact me: [c.jonestodd@auckland.ac.nz](mailto:c.jonestodd@auckland.ac.nz) or at science building 303, level 3, office 318 {-}
+##### Office hours: [Book an online one-to-one session](https://calendly.com/cmjonestodd/zoom-office-hours) or contact me directly at [c.jonestodd@auckland.ac.nz](mailto:c.jonestodd@auckland.ac.nz) {-}
 
 ##### Each week some lecture material will be recorded and uploaded to CANVAS. It is expected that you will have watched these prior to coming along to the in-person lecture {-}
 
@@ -34,6 +34,19 @@ By the end of this course you will be able to:
 <p align="center">![](img/timetable.png){width=200%}</p>
 
 
+```{r, echo = FALSE, warning=FALSE, message=FALSE}
+## install packages used in book if not already
+pkgs <- c("tidyverse", "palmerpenguins", "patchwork", "equatiomatic", "vegan",
+          "GGally", "ggeffects", "NbClust", "MASS", "png", "factoextra", "lme4",
+          "pheatmap", "ade4", "ggfortify", "ape")
+options(warn = -1)
+for (i in pkgs){
+    if (!require(i, quietly = TRUE, character.only = TRUE)){
+        install.packages(i)
+    }
+}
+options(warn = 0)
+```
 
 
 {{ if and (not .Params.disable_mathjax) (or (in (string .Content) "\\") (in (string .Content) "$")) }}

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Some basic experimental designs | Advanced Biological Data Analysis</title>
   <meta name="description" content="Some basic experimental designs | Advanced Biological Data Analysis" />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Some basic experimental designs | Advanced Biological Data Analysis" />
   <meta property="og:type" content="book" />
@@ -31,8 +31,8 @@
   
   
 <link rel="prev" href="introduction-to-the-design-and-analysis-of-experiments.html"/>
-<link rel="next" href="modlling-experimental-data.html"/>
-<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link rel="next" href="modelling-experimental-data.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -56,66 +56,41 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
 
@@ -152,11 +127,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="your-data-and-r.html#the-pipe-operator">The pipe operator <code>%&gt;%</code></a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="data-wrangling.html"><a href="data-wrangling.html"><i class="fa fa-check"></i>Data wrangling</a><ul>
-<li><a href="data-wrangling.html#introuducing-the-palmer-penguins">Introuducing the <span>Palmer penguins</span></a></li>
+<li><a href="data-wrangling.html#introuducing-the-palmer-penguins">Introuducing the <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0090081">Palmer penguins</a></a></li>
 <li><a href="data-wrangling.html#common-dataframe-manipulations-in-the-tidyverse-using-dplyr-and-tidyr">Common dataframe manipulations in the <code>tidyverse</code>, using <code>dplyr</code> and <code>tidyr</code></a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html"><i class="fa fa-check"></i>Data visualiation (data viz)</a><ul>
-<li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html#exploratory-and-explanatory-plots"><i class="fa fa-check"></i>Exploratory and explanatory plots</a></li>
+<li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html#exploratory-plots"><i class="fa fa-check"></i>Exploratory plots</a></li>
+<li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html#explanatory-plots"><i class="fa fa-check"></i>Explanatory plots</a></li>
 <li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html#ten-simple-rules-for-better-figures"><i class="fa fa-check"></i>Ten Simple Rules for Better Figures</a></li>
 <li><a href="data-visualiation-data-viz.html#ggplot2"><code>ggplot2</code></a></li>
 </ul></li>
@@ -190,9 +166,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="model-formula-syntax-in-r.html#model-formula-syntax-in-r">Model formula syntax in <code>R</code></a><ul>
 <li class="chapter" data-level="" data-path="model-formula-syntax-in-r.html"><a href="model-formula-syntax-in-r.html"><i class="fa fa-check"></i>Other possible models</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="model-diagnostocs-for-a-linear-model.html"><a href="model-diagnostocs-for-a-linear-model.html"><i class="fa fa-check"></i>Model diagnostocs for a linear model</a><ul>
-<li class="chapter" data-level="" data-path="model-diagnostocs-for-a-linear-model.html"><a href="model-diagnostocs-for-a-linear-model.html#marginal-predictions"><i class="fa fa-check"></i>Marginal predictions</a></li>
-<li class="chapter" data-level="" data-path="model-diagnostocs-for-a-linear-model.html"><a href="model-diagnostocs-for-a-linear-model.html#model-selection"><i class="fa fa-check"></i>Model selection</a></li>
+<li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html"><i class="fa fa-check"></i>Model diagnostics for a linear model</a><ul>
+<li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html#marginal-predictions"><i class="fa fa-check"></i>Marginal predictions</a></li>
+<li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html#model-selection"><i class="fa fa-check"></i>Model selection</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="inference-for-a-linear-model.html"><a href="inference-for-a-linear-model.html"><i class="fa fa-check"></i>Inference for a linear model</a><ul>
 <li class="chapter" data-level="" data-path="inference-for-a-linear-model.html"><a href="inference-for-a-linear-model.html#point-prediction"><i class="fa fa-check"></i>Point prediction</a></li>
@@ -213,12 +189,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html#randomised-complete-block-design-rcbd"><i class="fa fa-check"></i>Randomised complete block design (RCBD)</a></li>
 <li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html#factorial-design"><i class="fa fa-check"></i>Factorial design</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="modlling-experimental-data.html"><a href="modlling-experimental-data.html"><i class="fa fa-check"></i>Modlling experimental data</a><ul>
-<li class="chapter" data-level="" data-path="modlling-experimental-data.html"><a href="modlling-experimental-data.html#a-completely-randomised-design-crd-as-a-linear-model"><i class="fa fa-check"></i>A completely randomised design (CRD) as a linear model</a></li>
-<li><a href="modlling-experimental-data.html#analysis-of-a-crd-in-r">Analysis of a CRD in <code>R</code></a></li>
-<li><a href="modlling-experimental-data.html#using-lm">Using <code>lm()</code></a></li>
-<li class="chapter" data-level="" data-path="modlling-experimental-data.html"><a href="modlling-experimental-data.html#a-factorial-experiment-as-a-crd"><i class="fa fa-check"></i>A Factorial experiment (as a CRD)</a></li>
-<li class="chapter" data-level="" data-path="modlling-experimental-data.html"><a href="modlling-experimental-data.html#unqual-replications-unbalanced-design"><i class="fa fa-check"></i>Unqual replications (unbalanced design)</a></li>
+<li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html"><i class="fa fa-check"></i>Modelling experimental data</a><ul>
+<li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-completely-randomised-design-crd-as-a-linear-model"><i class="fa fa-check"></i>A completely randomised design (CRD) as a linear model</a></li>
+<li><a href="modelling-experimental-data.html#analysis-of-a-crd-in-r">Analysis of a CRD in <code>R</code></a></li>
+<li><a href="modelling-experimental-data.html#using-lm">Using <code>lm()</code></a></li>
+<li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-factorial-experiment-as-a-crd"><i class="fa fa-check"></i>A Factorial experiment (as a CRD)</a></li>
+<li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#unqual-replications-unbalanced-design"><i class="fa fa-check"></i>Unqual replications (unbalanced design)</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html"><i class="fa fa-check"></i>Multiple comparisons</a><ul>
 <li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html#classification-of-multiple-hypothesis-tests"><i class="fa fa-check"></i>Classification of multiple hypothesis tests</a></li>
@@ -249,7 +225,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html"><i class="fa fa-check"></i>Introduction to Bayesian statistics</a><ul>
 <li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html#conditional-probability"><i class="fa fa-check"></i>Conditional probability</a></li>
-<li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html#bayes-rule"><i class="fa fa-check"></i>Bayes’ rule</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html#bayes-rule"><i class="fa fa-check"></i>Bayes' rule</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="module-5.html"><a href="module-5.html"><i class="fa fa-check"></i>Module 5</a><ul>
@@ -308,23 +284,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2>Some basic experimental designs</h2>
 <div id="completely-randomised-design-crd" class="section level3">
 <h3>Completely randomised design (CRD)</h3>
-<p>Let’s consider a completely randomised design with one treatment factor (e.g., coffee bean type). Here, <span class="math inline">\(n\)</span> experimental units (e.g., cups) are divided <strong>randomly</strong> into <span class="math inline">\(t\)</span> groups. Random allocation can be achieved by simply drawing lots from a hat! To be more rigorous, though, we could use <code>R</code>’s <code>sample()</code> function (have a go yourself and see if you can work out how to wield <code>sample()</code>). Each group is then given one treatment level (one of the treatment factors). As we have defined only one treatment factor all other known independent variables are kept constant so as to not bias any effects (e.g., cup type and type in Charlotte’s☕ experiment).</p>
+<p>Let's consider a completely randomised design with one treatment factor (e.g., coffee bean type). Here, <span class="math inline">\(n\)</span> experimental units (e.g., cups) are divided <strong>randomly</strong> into <span class="math inline">\(t\)</span> groups. Random allocation can be achieved by simply drawing lots from a hat! To be more rigorous, though, we could use <code>R</code>'s <code>sample()</code> function (have a go yourself and see if you can work out how to wield <code>sample()</code>). Each group is then given one treatment level (one of the treatment factors). As we have defined only one treatment factor all other known independent variables are kept constant so as to not bias any effects (e.g., cup type and type in Charlotte's☕ experiment).</p>
 <div class="figure">
 <img src="https://github.com/cmjt/ggdesign/raw/main/README_files/figure-markdown_strict/unnamed-chunk-4-1.png" alt="An illustration of a CRD with one tratment factor and three treatment levels (A, B, &amp; C)" />
 <p class="caption">An illustration of a CRD with one tratment factor and three treatment levels (A, B, &amp; C)</p>
 </div>
 <div id="designing-a-crd-using-r" class="section level4">
 <h4>Designing a CRD using <code>R</code></h4>
-<p>Let’s assume you want to set up an experiment similar to the coffee one above using <code>R</code> to do the random allocation of treatments for you.</p>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" title="1"><span class="co">## create a character vector of bean types</span></a>
-<a class="sourceLine" id="cb143-2" title="2">beans &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;Arabica&quot;</span>,<span class="st">&quot;Liberica&quot;</span>, <span class="st">&quot;Robusta&quot;</span>), <span class="dt">each =</span> <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb143-3" title="3">beans</a></code></pre></div>
+<p>Let's assume you want to set up an experiment similar to the coffee one above using <code>R</code> to do the random allocation of treatments for you.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## create a character vector of bean types
+beans &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;Arabica&quot;</span>,<span class="st">&quot;Liberica&quot;</span>, <span class="st">&quot;Robusta&quot;</span>), <span class="dt">each =</span> <span class="dv">4</span>)
+beans</code></pre></div>
 <pre><code>##  [1] &quot;Arabica&quot;  &quot;Arabica&quot;  &quot;Arabica&quot;  &quot;Arabica&quot;  &quot;Liberica&quot; &quot;Liberica&quot;
 ##  [7] &quot;Liberica&quot; &quot;Liberica&quot; &quot;Robusta&quot;  &quot;Robusta&quot;  &quot;Robusta&quot;  &quot;Robusta&quot;</code></pre>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb145-1" title="1"><span class="co">## randomly sample the character vector to give the order of coffees</span></a>
-<a class="sourceLine" id="cb145-2" title="2"><span class="kw">set.seed</span>(<span class="dv">1234</span>) <span class="co">## this is ONLY for consistency, remove if doing this yourself</span></a>
-<a class="sourceLine" id="cb145-3" title="3">allocation &lt;-<span class="st"> </span><span class="kw">sample</span>(beans, <span class="dv">12</span>)</a>
-<a class="sourceLine" id="cb145-4" title="4">allocation</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## randomly sample the character vector to give the order of coffees
+<span class="kw">set.seed</span>(<span class="dv">1234</span>) ## this is ONLY for consistency, remove if doing this yourself
+allocation &lt;-<span class="st"> </span><span class="kw">sample</span>(beans, <span class="dv">12</span>)
+allocation</code></pre></div>
 <pre><code>##  [1] &quot;Robusta&quot;  &quot;Robusta&quot;  &quot;Liberica&quot; &quot;Liberica&quot; &quot;Arabica&quot;  &quot;Liberica&quot;
 ##  [7] &quot;Arabica&quot;  &quot;Robusta&quot;  &quot;Arabica&quot;  &quot;Liberica&quot; &quot;Robusta&quot;  &quot;Arabica&quot;</code></pre>
 <p>Having run the code above your CRD plan is as follows</p>
@@ -442,7 +418,7 @@ Arabica
 </div>
 <div id="randomised-complete-block-design-rcbd" class="section level3">
 <h3>Randomised complete block design (RCBD)</h3>
-<p>Let’s consider a randomised complete block design with one treatment factor (e.g., coffee bean type). If the treatment factor has <span class="math inline">\(t\)</span> levels there will be <span class="math inline">\(b\)</span> blocks that each contain <span class="math inline">\(t\)</span> experimental units resulting in a total of <span class="math inline">\(t\times b\)</span> experimental units. For example, let’s imagine that for the coffee experiment we had two cup types: mugs and heatproof glasses. We might consider the type of receptacle to have an effect on the coffee colour measured, however, we are not interested in this. Therefore, to negate this we block by cup type. This means that any effect due to the blocking factor (cup type) is accounted for by the blocking.</p>
+<p>Let's consider a randomised complete block design with one treatment factor (e.g., coffee bean type). If the treatment factor has <span class="math inline">\(t\)</span> levels there will be <span class="math inline">\(b\)</span> blocks that each contain <span class="math inline">\(t\)</span> experimental units resulting in a total of <span class="math inline">\(t\times b\)</span> experimental units. For example, let's imagine that for the coffee experiment we had two cup types: mugs and heatproof glasses. We might consider the type of receptacle to have an effect on the coffee colour measured, however, we are not interested in this. Therefore, to negate this we block by cup type. This means that any effect due to the blocking factor (cup type) is accounted for by the blocking.</p>
 <p>For a blocked design we want the <span class="math inline">\(t\)</span> experimental units within each block should be as homogeneous as possible (as similar as possible, so that there is unlikely to be unwanted variation coming into the experiment this way). The variation between blocks (the groups of experimental units) should be large enough (i.e., blocking factors different enough) so that conclusions can be drawn. Allocation of treatments to experimental units is done randomly (i.e., treatments are randomly assigned to units) within each block.</p>
 <div class="figure">
 <img src="https://github.com/cmjt/ggdesign/raw/main/README_files/figure-markdown_strict/unnamed-chunk-6-1.png" alt="An illustration of a CRD with one tratment factor, three treatment levels (A, B, &amp; C), and three blocks (rows)" />
@@ -450,14 +426,14 @@ Arabica
 </div>
 <div id="designing-a-rcbd-using-r" class="section level4">
 <h4>Designing a RCBD using <code>R</code></h4>
-<p>Let’s assume you want to set up an experiment similar to the coffee one above; however, now you are in the situation where you have two types of cups (six mugs and six heatproof glasses). Below we use <code>R</code> to do the random allocation of treatments within each block (cup type) for you.</p>
+<p>Let's assume you want to set up an experiment similar to the coffee one above; however, now you are in the situation where you have two types of cups (six mugs and six heatproof glasses). Below we use <code>R</code> to do the random allocation of treatments within each block (cup type) for you.</p>
 <p>Here we have <span class="math inline">\(t = 3\)</span> treatments (bean types) and <span class="math inline">\(b = 2\)</span> blocks (cup types) so we will have <span class="math inline">\(t \times b = 6\)</span> experimental units in total.</p>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb147-1" title="1"><span class="kw">set.seed</span>(<span class="dv">432</span>) <span class="co">## this is ONLY for consistency, remove if doing this yourself</span></a>
-<a class="sourceLine" id="cb147-2" title="2">plan &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Beans =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;Arabica&quot;</span>,<span class="st">&quot;Liberica&quot;</span>, <span class="st">&quot;Robusta&quot;</span>), <span class="dt">times =</span> <span class="dv">2</span>), </a>
-<a class="sourceLine" id="cb147-3" title="3">           <span class="dt">Block =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;Mug&quot;</span>, <span class="st">&quot;Glass&quot;</span>), <span class="dt">each =</span> <span class="dv">3</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">## combine experiment variables</span></a>
-<a class="sourceLine" id="cb147-4" title="4"><span class="st">  </span><span class="kw">group_by</span>(Block) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">## group by blocking factor</span></a>
-<a class="sourceLine" id="cb147-5" title="5"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">sample_n</span>(<span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb147-6" title="6">plan</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">432</span>) ## this is ONLY for consistency, remove if doing this yourself
+plan &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Beans =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;Arabica&quot;</span>,<span class="st">&quot;Liberica&quot;</span>, <span class="st">&quot;Robusta&quot;</span>), <span class="dt">times =</span> <span class="dv">2</span>), 
+           <span class="dt">Block =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;Mug&quot;</span>, <span class="st">&quot;Glass&quot;</span>), <span class="dt">each =</span> <span class="dv">3</span>)) <span class="op">%&gt;%</span><span class="st"> </span>## combine experiment variables
+<span class="st">  </span><span class="kw">group_by</span>(Block) <span class="op">%&gt;%</span><span class="st"> </span>## group by blocking factor
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">sample_n</span>(<span class="dv">3</span>)
+plan</code></pre></div>
 <pre><code>## # A tibble: 6 × 2
 ## # Groups:   Block [2]
 ##   Beans    Block
@@ -587,11 +563,11 @@ Mug
 <p>Note is a factorial design has <strong>equal</strong> numbers of replicates in each group then it is said to be a <strong>balanced</strong> design; if this is not the case then it is <strong>unbalanced</strong>.</p>
 <p>Now, our <strong>question about the colour of coffee</strong> would be <em>Does the colour of the difference in the colour of the coffee between the beans wall depend on the grinder used?</em></p>
 <p><strong>Possible outcomes</strong></p>
-<p><img src="_main_files/figure-html/unnamed-chunk-80-1.png" width="768" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-81-1.png" width="768" /></p>
 <div id="interactions-between-two-factor-treatments" class="section level4">
 <h4>Interactions between two factor treatments</h4>
 <p>If an interaction effect exists the effect of one factor on the response will change depending on the level of the other factor:</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-81-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-82-1.png" width="672" /></p>
 <p>The plot above is called an interaction plot, think back to the previous module. Creating such a plot is often very useful when drawing inference; in this instance we can see that the colour of the coffee changes depending on the type of coffee bean used, however, this relationship differs depending on the type of grinder used. For example, Liberica beans produce darker coffee than the other two beans when the electric grinder is used, but weaker coffee when the manual grinder is used.</p>
 
 </div>
@@ -603,7 +579,7 @@ Mug
         </div>
       </div>
 <a href="introduction-to-the-design-and-analysis-of-experiments.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="modlling-experimental-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="modelling-experimental-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -647,10 +623,6 @@ gitbook.start({
 "text": null
 },
 "download": null,
-"search": {
-"engine": "lunr",
-"options": null
-},
 "toc": {
 "collapse": "subsection"
 }
@@ -663,7 +635,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "true";
+    var src = "";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
