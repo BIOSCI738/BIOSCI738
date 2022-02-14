@@ -83,7 +83,7 @@ Recall that the authors were interested in how a juvenile lobster's size was rel
  We define large juvenile's as those with carapace $\geq$ 40 mm, and otherwise we class them as small. 
 
 ```{r, message = FALSE, warnings = FALSE}
-library(tidyverse)
+require(tidyverse)
 data <- read_csv("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/lobster.csv")
 lobsters <- data %>%
   mutate(size = ifelse(size >= 40, "large", "small")) %>%

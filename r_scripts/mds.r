@@ -1,7 +1,7 @@
-library(tidyverse)
+require(tidyverse)
 ni <- read_csv("north_islands_distances.csv") %>%
     column_to_rownames(., var = "X1")
-library(pheatmap)
+require(pheatmap)
 pheatmap(ni, cluster_rows = TRUE,
          treeheight_row = 2, treeheight_col = 2,
          fontsize_row = 12, fontsize_col = 12,
@@ -47,12 +47,12 @@ ggplot(var, aes(x = x, y = y)) +
 
 
 ### CA
-library(ade4)
-library(factoextra)
+require(ade4)
+require(factoextra)
 
 HC.df <- as.data.frame.matrix(HairEyeColor[ , , 2])
 
-library("gplots")
+require("gplots")
 # 1. convert the data as a table
 dt <- as.table(as.matrix(HC.df))
 # 2. Graph
@@ -62,7 +62,7 @@ balloonplot(t(dt), main ="", xlab ="", ylab="",
 chisq <- chisq.test(dt)
 chisq
 
-library("FactoMineR")
+require("FactoMineR")
 res.ca <- CA(dt, graph = FALSE)
 eig.val <- get_eigenvalue(res.ca)
 eig.val

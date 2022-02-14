@@ -54,7 +54,7 @@ The authors were interested in how a juvenile lobster's size was related to its 
 
 
 ```{r, message = FALSE, warnings = FALSE}
-library(tidyverse)
+require(tidyverse)
 data <- read_csv("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/lobster.csv")
 data %>%
   mutate(survived = ifelse(survived == 0, "consumed", "alive")) %>%
@@ -149,7 +149,7 @@ Under the assumptions of a the CRD (i.e., $\epsilon_{ik} \sim N(0, \sigma^2)$) t
 set.seed(5469)
 type <- factor(rep(paste("Type", 1:3), each = 4))
 df <- data.frame(Mask = type, Droplets = round(c(rnorm(4, 5), rnorm(4, 7), rnorm(4, 9)), 1))
-library(tidyverse)
+require(tidyverse)
 mles <- df %>% group_by(Mask) %>%
   summarise(mle = mean(Droplets)) %>%
   pull(., mle)

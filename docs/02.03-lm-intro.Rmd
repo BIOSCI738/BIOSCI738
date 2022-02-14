@@ -34,8 +34,8 @@ Here for observation $i$
 + The **residuals** are normally distributed
 
 ```{r, message = FALSE, warning=FALSE}
-library(tidyverse)
-library(palmerpenguins)
+require(tidyverse)
+require(palmerpenguins)
 penguins_nafree <- penguins %>% drop_na()
 ```
 
@@ -103,7 +103,7 @@ This model is simply $$Y_i = \alpha + \beta_1x_i + \epsilon_i$$ where for observ
   
   
 ```{r, echo = FALSE, results='asis'}
-library(equatiomatic)
+require(equatiomatic)
 extract_eq(slm, wrap = TRUE)
 ```
 
@@ -311,7 +311,7 @@ Mathematical functions can also be directly used in the model formula to transfo
 Let's assume that we have the same data types as in the previous section, specifically, a continuous response ($y$) and one factor ($f$, with two levels $A$ and $B$) and one continuous ($x$) explanatory variable. Assuming that $A$ is the baseline for $f$ the possible models are depicted below.
 
 ```{r, echo = FALSE, fig.height = 6, fig.width = 10}
-library(patchwork)
+require(patchwork)
 data <- data.frame(group = rep(c("A", "B"), each = 2),
                    x = rep(1:2, times = 2),
                    y = c(0, 1, 1, 2))

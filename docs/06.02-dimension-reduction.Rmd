@@ -53,7 +53,7 @@ penguins_nafree <- penguins %>% drop_na()
 When carrying out PCA we're only interested in numeric variables, so let's just plot those. We can use the piping operator `%>%` to do this with out creating a new data frame
 
 ```{r}
-library(GGally)
+require(GGally)
 penguins_nafree %>%
   dplyr::select(species, where(is.numeric)) %>% 
   ggpairs(aes(color = species),
@@ -122,7 +122,7 @@ pca$rotation %>%
 The new variables (PCs) are stored in `pca$x`, lets plot some of them alongside the loadings using a *biplot*. For `PC1` vs `PC2`:
 
 ```{r}
-library(factoextra) ## install this package first
+require(factoextra) ## install this package first
 fviz_pca_biplot(pca, geom = "point") +
       geom_point (alpha = 0.2)
 ```

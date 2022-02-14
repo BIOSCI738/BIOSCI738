@@ -1,4 +1,4 @@
-library(tidyverse) ## load packages
+require(tidyverse) ## load packages
 rats <- read_csv("crd_rats_data.csv") ## read in data
 ## inspect data
 rats

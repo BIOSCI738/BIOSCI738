@@ -2,7 +2,7 @@
 
 > "Ecology has increasingly become a data- and model-centric discipline..." `r tufte::quote_footer('---  Trends in ecology and conservation over eight decades')`
 
-<p align="center">![[Figure 5: Data analysis, statistical methods, and genetics n-grams from 1930 to 2010](https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/fee.2320#.YQfyCkjJsto.twitter)](https://esajournals.onlinelibrary.wiley.com/cms/asset/b3db55eb-1087-451a-8c4e-179d95e0d269/fee2320-fig-0005-m.jpg){width=50%}</p>
+<p align="center">![[Figure 5: Data analysis, statistical methods, and genetics n-grams from 1930 to 2010](https://esajournals.onlinerequire.wiley.com/doi/full/10.1002/fee.2320#.YQfyCkjJsto.twitter)](https://esajournals.onlinerequire.wiley.com/cms/asset/b3db55eb-1087-451a-8c4e-179d95e0d269/fee2320-fig-0005-m.jpg){width=50%}</p>
 
 Recall, the simple linear regression model from module 2:
   
@@ -112,11 +112,11 @@ However, if our chi-squared approximation assumptions are not met we should find
 ### An example: bird abundance
 
 
-A recent publication [Partitioning beta diversity to untangle mechanisms underlying the assembly of bird communities in Mediterranean olive groves](https://onlinelibrary.wiley.com/doi/10.1111/ddi.13445) investigates bird abundance data for a number of olive farms. Each farm is catalogued according to the level of landscape complexity (high; intermediate; low) and the type of management of the ground cover (extensive or intensive).
+A recent publication [Partitioning beta diversity to untangle mechanisms underlying the assembly of bird communities in Mediterranean olive groves](https://onlinerequire.wiley.com/doi/10.1111/ddi.13445) investigates bird abundance data for a number of olive farms. Each farm is catalogued according to the level of landscape complexity (high; intermediate; low) and the type of management of the ground cover (extensive or intensive).
 
 
 ```{r, message = FALSE, warnings = FALSE}
-library(tidyverse)
+require(tidyverse)
 data <- read_delim("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/bird_abundance.csv")
 birds <- data %>%
   dplyr::select(c("OliveFarm","Management","Turdus_merula","Phylloscopus_collybita")) %>%
@@ -308,7 +308,7 @@ Let us, again, consider data from the published article [Influence of predator i
 The authors were interested in how a juvenile lobster's size was related to its vulnerability to predation. In total, 159 juvenile lobsters were collected from their natural habitat in the Gulf of Maine, USA, and the length of each lobster's carapace (upper shell) was measured to the nearest 3 mm, `size`. The lobsters were then tethered to the ocean floor for 24 hours. Any missing lobsters were assumed to have been consumed by a predator, while the surviving lobsters were released (i.e., `survived` = 1 if lobster survived, 0 otherwise).
 
 ```{r, message = FALSE, warnings = FALSE}
-library(tidyverse)
+require(tidyverse)
 data <- read_csv("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/lobster.csv")
 data 
 ```

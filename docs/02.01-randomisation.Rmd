@@ -22,7 +22,7 @@ The data give us imperfect insight into the population of interest. The role of 
 ###### Possible outcomes
 
 ```{r, echo = FALSE, fig.align='center', fig.height = 8, fig.width = 8, message = FALSE}
-library(png)
+require(png)
 require(animation)
 pngs <- list.files("img/","coin",full = TRUE)
 imgs <- lapply(pngs,png::readPNG)
@@ -111,7 +111,7 @@ The original sample represents the **distribution of the population** from which
 **Old faithful** is a gyser located in Yellowstone National Park, Wyoming. Below is a histogram of the durations of 299 consecutive eruptions. Clearly the distribution is bimodal (has two modes)!
 
 ```{r,message = FALSE, warning = FALSE}
-library(tidyverse)
+require(tidyverse)
 ggplot(data = MASS::geyser, aes(x = duration)) +
   geom_histogram() +
   xlab("Duration of eruptions (m)") +
@@ -319,7 +319,7 @@ Remember the Pāua data from the previous module? The dataset contains the follo
 One question we may want to ask is if on average the shell length differs between Species? 
 
 ```{r, echo = TRUE, message = FALSE}
-library(tidyverse)
+require(tidyverse)
 paua <- read_csv("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/paua.csv")
 ```
 

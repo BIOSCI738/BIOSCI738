@@ -100,7 +100,7 @@ allocation
 Having run the code above your CRD plan is as follows
 
 ```{r, echo = FALSE, results='asis', message = FALSE, warning = FALSE}
-library(tidyverse)
+require(tidyverse)
 kableExtra::kable(data.frame(Cup = 1:12, Bean = allocation)) %>%
   kableExtra::kable_classic(full_width = FALSE, html_font = "Cambria")
 ```

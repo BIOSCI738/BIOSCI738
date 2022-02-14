@@ -57,7 +57,7 @@ Recall, the P$\overline{\text{a}}$ua dataset. It contains the following variable
 *Haliotis australis* (less commonly found in NZ) 
 
 ```{r, echo = TRUE, message = FALSE}
-library(tidyverse)
+require(tidyverse)
 paua <- read_csv("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/paua.csv")
 ```
 
@@ -303,7 +303,7 @@ What if we had more than two groups?
 In this section we consider the following data of the calculated logAUC for 12 rats subjected to three different treatments (`Surgery`), `C`, `P`, and `S`, 
 
 ```{r data-quiet, message = FALSE, echo = FALSE}
-library(tidyverse)
+require(tidyverse)
 rats <- read_csv("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/crd_rats_data.csv")
 rats$Surgery <- as_factor(rats$Surgery)
 kableExtra::kable(rats) %>%

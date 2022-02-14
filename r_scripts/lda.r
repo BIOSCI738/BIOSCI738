@@ -1,5 +1,5 @@
-library(tidyverse)
-library(MASS) ## for LDA
+require(tidyverse)
+require(MASS) ## for LDA
 ## the data
 diabetes <- read_csv("diabetes.csv")
 diabetes$group <- factor(diabetes$group)

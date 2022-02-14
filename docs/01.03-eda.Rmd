@@ -11,17 +11,17 @@
 To install **all** the packages that belong to the `tidyverse` run
 
 ```{r, echo = TRUE, eval = FALSE}
-## request (download) the tidyverse packages from the centralised library
+## request (download) the tidyverse packages from the centralised require
 ## you only need to do this once per computer :-)
 install.packages("tidyverse")
 
 ```
 
-To tell your computer to access the `tidyverse` functionality in your session run `r library(tidyverse)` (**Note** you'll have to do this each time you start up an `R` session):
+To tell your computer to access the `tidyverse` functionality in your session run `r require(tidyverse)` (**Note** you'll have to do this each time you start up an `R` session):
 
 ```{r, echo = TRUE, eval = TRUE}
-## Get the tidyverse packages from our local library
-library(tidyverse)
+## Get the tidyverse packages from our local require
+require(tidyverse)
 
 ```
 
@@ -128,7 +128,7 @@ knitr::include_url('https://giphy.com/embed/3og0IO5z8Rd30ktV6g')
 ```
 
 ```{r}
-library(palmerpenguins) ## contains some nice penguin data
+require(palmerpenguins) ## contains some nice penguin data
 penguins
 ```
 
@@ -152,7 +152,7 @@ Even from these first few rows of data we can see that there are some `NA` value
   + how `R` deals with `logical` values!
 
 ```{r, message = FALSE}
-library(tidyverse)
+require(tidyverse)
 penguins %>% 
   apply(.,2,is.na) %>%
   apply(.,2,sum)
@@ -245,7 +245,7 @@ Exploratory plots are just *for you*, they
 For example,
   
 ```{r example, me, echo = FALSE, fig.cap="", warning = FALSE, message = FALSE, fig.align='center'}
-library(palmerpenguins)
+require(palmerpenguins)
 penguins_nafree <- penguins %>% drop_na()
 ## scatter
 ggplot(data = penguins_nafree, aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +

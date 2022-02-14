@@ -36,7 +36,7 @@ ggplot(data.frame(x = c(-4, 17)), aes(x)) +
 Let us again consider the data containing logAUC for 12 rats subjected to three different treatments (`Surgery`), `C`, `P`, and `S` we saw in module 2.
 
 ```{r, message = FALSE, echo = FALSE}
-library(tidyverse)
+require(tidyverse)
 rats <- read_csv("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/crd_rats_data.csv")
 rats$Surgery <- as_factor(rats$Surgery)
 kableExtra::kable(rats) %>%
@@ -149,7 +149,7 @@ What do you think? Look back at module 2.
 
 
 ```{r, echo = FALSE, message = FALSE}
-library(tidyverse)
+require(tidyverse)
 factorial <-  read_csv("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/factorial_expt.csv")
 factorial %>%
   dplyr::select(c(Disease, Organ)) %>%
