@@ -38,7 +38,7 @@ By the end of this course you will be able to:
 ## install packages used in book if not already
 pkgs <- c("tidyverse", "palmerpenguins", "patchwork", "equatiomatic", "vegan",
           "GGally", "ggeffects", "NbClust", "MASS", "png", "factoextra", "lme4",
-          "pheatmap", "ade4", "ggfortify", "ape")
+          "pheatmap", "ade4", "ggfortify", "ape", "distributional", "emmeans")
 options(warn = -1)
 for (i in pkgs){
     if (!require(i, quietly = TRUE, character.only = TRUE)){

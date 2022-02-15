@@ -194,16 +194,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="modelling-experimental-data.html#analysis-of-a-crd-in-r">Analysis of a CRD in <code>R</code></a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-factorial-experiment-as-a-crd"><i class="fa fa-check"></i>A Factorial experiment (as a CRD)</a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#unqual-replications-unbalanced-design"><i class="fa fa-check"></i>Unqual replications (unbalanced design)</a></li>
+<li><a href="modelling-experimental-data.html#sums-of-squares-ss">Sums of squares (<span class="math inline">\(SS\)</span>)</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html"><i class="fa fa-check"></i>Multiple comparisons</a><ul>
+<li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html#adjustments-for-multiple-testing"><i class="fa fa-check"></i>Adjustments for multiple testing</a></li>
 <li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html#classification-of-multiple-hypothesis-tests"><i class="fa fa-check"></i>Classification of multiple hypothesis tests</a></li>
-<li><a href="multiple-comparisons.html#multiple-comparison-procedures-using-predictmeans">Multiple comparison procedures using <code>predictmeans</code></a></li>
+<li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html#multiple-comparison-procedures"><i class="fa fa-check"></i>Multiple comparison procedures</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html"><i class="fa fa-check"></i>Linear mixed-effect models (LMMs)</a><ul>
 <li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html#a-randomised-controlled-block-design-rcbd"><i class="fa fa-check"></i>A Randomised Controlled Block Design (RCBD)</a></li>
 <li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html#a-split-plot-design"><i class="fa fa-check"></i>A Split-plot design</a></li>
-<li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html#a-repeated-measures-design-time-points-as-factors"><i class="fa fa-check"></i>A repeated measures design (time points as factors)</a></li>
-<li><a href="linear-mixed-effect-models-lmms.html#animal-as-a-random-effect-in-linear-regression"><code>Animal</code> as a random effect in linear regression</a></li>
+<li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html#a-repeated-measures-design"><i class="fa fa-check"></i>A repeated measures design</a></li>
+<li><a href="linear-mixed-effect-models-lmms.html#animal-as-a-random-effect-1"><code>Animal</code> as a random effect</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="module-4.html"><a href="module-4.html"><i class="fa fa-check"></i>Module 4</a><ul>
@@ -370,7 +372,7 @@ data </code></pre></div>
 <p><span class="math display">\[
 \log\left[ \frac { \widehat{P( \operatorname{survived} = \operatorname{1} )} }{ 1 - \widehat{P( \operatorname{survived} = \operatorname{1} )} } \right] = -7.896 + 0.196(\operatorname{size})
 \]</span></p>
-<p><img src="_main_files/figure-html/unnamed-chunk-153-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-192-1.png" width="672" /></p>
 </div>
 <div id="grouped-model" class="section level4">
 <h4>Grouped model</h4>
@@ -400,7 +402,7 @@ grouped</code></pre></div>
 <li><code>t</code> is the total number of lobsters of each size, and</li>
 <li><code>p</code>is the proportion of lobsters of each size that survived.</li>
 </ul>
-<p><img src="_main_files/figure-html/unnamed-chunk-155-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-194-1.png" width="672" /></p>
 <p>Fitting a binomial model again we specify <code>family = &quot;binomial&quot;</code> in our <code>glm</code> call and specify our response as <code>cbind(y, n - y)</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">glm_mod_gr &lt;-<span class="st"> </span><span class="kw">glm</span>(<span class="kw">cbind</span>(y, n <span class="op">-</span><span class="st"> </span>y) <span class="op">~</span><span class="st"> </span>size, <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>, <span class="dt">data =</span> grouped)
 <span class="kw">summary</span>(glm_mod_gr)</code></pre></div>
@@ -461,7 +463,7 @@ confint</code></pre></div>
 <pre><code>##     2.5 %    97.5 % 
 ##  94.44778 281.11670</code></pre>
 <p>We estimate that for every 5mm increase in carapace length the <strong>odds</strong> of a juvenile lobster surviving <strong>increase</strong> by 166.26%. We estimate that for every 5mm increase in carapace length the odds of a juvenile lobster surviving <strong>increase</strong> between 94.45% and 281.12%.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-162-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-201-1.png" width="672" /></p>
 </div>
 <div id="deviance-1" class="section level4">
 <h4>Deviance</h4>

@@ -13,7 +13,7 @@ When we have **multiple comparisons** to make we should then control the **Type 
 
 The **familywise error rate (FWER)** is the risk of making at least one **Type I** error among the family of comparisons in the experiment. Now let's consider carrying out $m$ independent t-tests and let for any single test, let Pr(commit a Type 1 error) $= \alpha_c$ be the **per comparison error rate (PCER)**. So for a single test the probability a correct decision is made is $1 - \alpha_c$. Therefore for $m$ **independent** t-tests the probability of committing no Type I errors is $(1 - \alpha_c)^m$ and the probability of committing at least one Type I error is $1 -(1 - \alpha_c)^m = \alpha_F$ which is the upper limit of the FWER.
 
-The **False Discovert Rate (FDR)** controls the expected (mean) proportion of false discoveries amongst the $R$ (out of $m$) hypotheses declared significant.
+The **False Discovery Rate (FDR)** controls the expected (mean) proportion of false discoveries among the $R$ (out of $m$) hypotheses declared significant.
 
 Consider testing $m$ null hypotheses with corresponding p-values $P_1, P_2,...,P_m$; we then order then so that  $P_{(1)} < P_{(2)} <...<P_{(m)}$ (where $P_{(i)}$ is the $i^{th}$ largest $i=1,...,m$). The $i^{th}$ ordered p-value is calculated as  $\frac{i}{m}q^*$ and the $i^{th}$ null hypothesis is rejected if $P_i \leq \frac{i}{m}q^*$
 
@@ -39,9 +39,87 @@ f <- ggplot(data = m, aes(x = as.factor(m), y = fwer, color = as.factor(alpha),
 f + p
 ```
 
+### Adjustments for multiple testing
+
+Calculating 95\% confidence intervals for pairwise comparisons is similar to the procedure discussed in module 2:
+
+$$\text{95% CI} = \text{estimate} \pm (\text{scale factor} \times \text{standard error}_\text{of estimate}).$$
+For the 95% CI for pairwise comparisons of means this becomes 
+
+$$\text{95% CI} = \text{difference} \pm (\text{scale factor} \times \text{SED}),$$
+where SED is the standard error of the difference (which depends on group replication). The choice of scale factor depends on what adjustments we might want to make. Below we cover three common adjustments. Specifically where (scale factor × SED) is the 1) Fisher correction LSD, 2) Bonferroni correction LSD, and 3) Tukey's HSD.
+
+
+#### Fisher’s Least Significant Difference (LSD)
+
+
+To calculate the LSD the $t$-distribution is used, specifically the 
+$$t_{\alpha = \frac{\alpha_c}{2}, \text{df} = N - m}$$ distribution, where $N$ is the number of observations and $m$ is the number of treatment groups. To obtain the critical value for $\alpha_c = 0.05 $, $N = 12$ and $m = 3$ the following code can be used in `R`.
+
+```{r}
+qt(p = 0.05/2,df = 12 - 3, lower.tail = FALSE)
+```
+
+
+Fisher's LSD is then $$t_{\alpha = \frac{\alpha_c}{2}, \text{df} = N - m} \times \text{SED}.$$
+
+
+Here we carry out post-hoc tests only if the ANOVA F-test is *significant*. If so declare significant $100\alpha\%$ any pairwise difference > LSD. This does **not** control the FWER. 
+
+#### Bonferroni correction
+
+To calculate Bonferroni correction the $t$-distribution is used, specifically the 
+$$t_{\alpha = \frac{\alpha_c}{2 \times k}, \text{df} = N - m}$$ distribution, where $N$ is the number of observations, $m$ is the number of treatment groups, and $k = {m \choose 2}$ is the number of pairwise comparisons being made.
+
+To obtain the critical value for $\alpha_c = 0.05 $, $N = 12$ and $m = 3$ the following code can be used in `R`.
+
+```{r}
+qt(p = 0.05/(2 * choose(3,2)),df = 12 - 3, lower.tail = FALSE)
+```
+
+Bonferroni's LSD is then $$t_{\alpha = \frac{\alpha_c}{2 \times k}, \text{df} = N - m} \times \text{SED}.$$
+
+Here we reject the $H_0$ for which the p-value, *p-val*, is *p-val* $< \alpha_c = \frac{\alpha_f}{n_c}$ where $\alpha_f$ is the FWER and $n_c$ is the number of pairwise comparisons. However, this makes **no** assumptions about independence between tests.
+
+#### Tukey’s Honest Significant Difference (HSD)
+
+This compares the mean of every treatment with the mean of every other treatment and uses a *studentised range* distribution compared with a $t$-distribution for Fisher's LSD and the Bonferroni correction. Therefore to calculate the HSD the *studentised range* distribution is used, specifically the $$q_{ 1- \alpha_c, m, \text{df} = N - m}$$ distribution, where $N$ is the number of observations, $m$ is the number of treatment groups, and $q_{\alpha,m,\text{df}}$ quantile of the studendised distribution.
+
+
+
+To obtain the critical value for $\alpha_c = 0.05 $, $N = 12$ and $m = 3$ the following code can be used in `R`.
+
+```{r}
+1 - qtukey(p = 1 - 0.05, nmeans = 3, df = 12 - 3)
+```
+
+Tukey's HSD is given by $$\frac{q_{ 1 - \alpha_c, m, \text{df} = N - m}}{\sqrt{2}} \times \sqrt{\frac{2\hat{\sigma}^2}{n}}.$$ Here $\hat{\sigma}^2$ is the Residual Mean Square Error and $n$ is the assumed equal number of replicates in each group.
+
+```{r, echo = FALSE, eval = FALSE}
+## Letting N = 100, alpha_c = 0.05, m = 3
+## for m=2 and 3 the pdf of the studentised Tukey range dist is known:
+## m = 2 --> sqrt(2) * dnorm(x/sqrt(6))
+## m = 2 --> 6*sqrt(2)*dnorm(x/sqrt(2))* (pnorm(x/sqrt(6)) - (1/2))
+tuk_pk2 <- function(x) {sqrt(2) * dnorm(x/sqrt(6))}
+tuk_pk3 <- function(x){6*sqrt(2)*dnorm(x/sqrt(2))* (pnorm(x/sqrt(6)) - (1/2))}
+data.frame(x = seq(-15, 15, length.out = 300)) %>%
+  mutate(t = dt(x, 97), q = tuk_pk2(x)) %>%
+  ggplot(., aes(x = x, y = t)) +
+  geom_line() +
+  geom_line(aes(y = q), col = "red", alpha = 0.5) +
+  ## fisher
+  geom_vline(xintercept = qt(0.025, 97), col = "grey") +  
+  geom_vline(xintercept = -1*qt(0.025, 97), col = "grey") +
+  ## bonferroni
+  geom_vline(xintercept = qt(0.025, 97), col = "purple") +  
+  geom_vline(xintercept = -1*qt(0.025, 97), col = "purple") 
+  
+```
+
+
 ### Classification of multiple hypothesis tests
 
-Suppose we have a number $m$ of null hypotheses, $H_1, H_2, ..., H_m$. Using the traditional parlence we reject the null hypothesis if the test is declared significant and do not reject the null hypothesis if the test is non-significant. Now, summing each type of outcome over all $H_i (i = 1.,..,m)$  yields the following random variables:
+Suppose we have a number $m$ of null hypotheses, $H_1, H_2, ..., H_m$. Using the traditional parlance we reject the null hypothesis if the test is declared significant and have no evidence to reject the null hypothesis if the test is "not significant". Now, summing each type of outcome over all $H_i (i = 1.,..,m)$  yields the following random variables:
 
 |    |Null hypothesis is true (H0)|	Alternative hypothesis is true (HA)	|Total|
 |---|---                          |---                                  |---  | 
@@ -60,21 +138,33 @@ Suppose we have a number $m$ of null hypotheses, $H_1, H_2, ..., H_m$. Using the
 + $R=V+S$ is the number of rejected null hypotheses (also called *discoveries*, either true or false)
 
 
-### Multiple comparison procedures using `predictmeans` 
+### Multiple comparison procedures
 
 
 ```{r,echo = FALSE}
 options(warn=-1)
 ```
 
-Recall the `rats` data
+Recall the CRD `rats` data
 
 ```{r, message = FALSE, echo = FALSE}
 library(tidyverse)
 rats <-  read_csv("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/crd_rats_data.csv")
-rats$Surgery <- as_factor(rats$Surgery)
 kableExtra::kable(rats) %>%
   kableExtra::kable_classic(full_width = FALSE, html_font = "Cambria")
+```
+
+You can read this data directly into `R` using
+
+```{r, eval = FALSE}
+rats <- readr::read_csv("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/crd_rats_data.csv")
+```
+
+To use `predictmeans` later on we have to ensure that the relevant variables are coded as factors:
+
+```{r}
+rats <- rats %>%
+  mutate(Surgery = as.factor(Surgery))
 ```
 
 
@@ -93,39 +183,132 @@ library(equatiomatic)
 extract_eq(rats_lm, wrap = TRUE, use_coefs = TRUE)
 ```
 
-#### Fisher’s, Least Significant Difference (LSD)
+**Using** `predictmeans`
 
-Carry out post-hoc tests only if the ANOVA F-test is *significant*. If so declare significant $100\alpha\%$ any pairwise difference > LSD. This does **not** control the FWER.
+By default Fisher's comparisons are made.
 
 ```{r}
-tukey <- predictmeans::predictmeans(rats_lm , modelterm = "Surgery", adj = "tukey",pairwise = TRUE)
-tukey$mean_table
+pm <- predictmeans::predictmeans(rats_lm , modelterm = "Surgery", 
+                                     pairwise = TRUE, plot = FALSE)
+str(pm)
 ```
+
+Let's look at some of the `pm` elements more closely:
+
+```{r}
+pm$mean_table
+```
+
+This  gives us the estimated group means and associated 95\% CIs. Why are the standard errors all equal?
+
+But, what we'd like is the pairwise comparisons between groups. Information pertaining to this is also returned:
+
+```{r}
+print(pm$`Pairwise p-value`)
+```
+
+This gives us the pairwise comparison statistic (the $t$-statistic in this case) on the upper diagonal and the associated p-value's on the lower diagonal.
+
+What about the 95\%CI for the comparisons? Luckily `predictmeans` also returns the pairwise LSD values (Fisher's by default with $\alpha_c = 0.05$):
+
+```{r}
+pm$`Pairwise LSDs`
+```
+
+Here, the upper diagonal matrix has the pairwise differences and the lower has the LSD values. 
+
+#### Fisher’s LSD
+
+So, we have all the information to construct the Fisher LSD 95\% CIs! You could extract all the information and construct a pairwise comparison table manually, or use a pre-written function (aren't I nice to provide one!):
+
+```{r, message = FALSE}
+url <- "https://gist.github.com/cmjt/72f3941533a6bdad0701928cc2924b90"
+devtools::source_gist(url, quiet = TRUE)
+comparisons(pm)
+```
+
 
 #### Bonferroni correction
 
-We reject the $H_0$ for which the p-value, *p-val*, is *p-val* $< \alpha_c = \frac{\alpha_f}{n_c}$ where $\alpha_f$ is the FWER and $n_c$ is the number of pairwise comparisons. Howerer, this makes **no** assumptions about independence between tests.
-
+To use the Bonferroni correction we must now calculate and specify the adjusted $\alpha_b = \frac{\alpha_b}{n_c}$, in our case this is $\frac{0.05}{{3 \choose 2}}$. We also specify `adj = "bonferroni"`:
 
 ```{r}
-bonferroni <-  predictmeans::predictmeans(rats_lm , modelterm = "Surgery", adj = "bonferroni",pairwise = TRUE)
-bonferroni$mean_table
+alpha.adj <- 0.05/choose(3,2)
+bonferroni <-  predictmeans::predictmeans(rats_lm , 
+                                          modelterm = "Surgery", adj = "bonferroni",
+                                          level = alpha.adj,
+                                          pairwise = TRUE, plot = FALSE)
+comparisons(bonferroni)
 ``` 
 
 #### Tukey’s Honest Significant Difference (HSD)
 
-This compares the mean of every treatment with the mean of every other treatmen and uses a *studentized range* distribution compated with a t-distribution for Fisher's LSD and the Bonferroni correction.
-
-Here Tukey's *studentixed range* (TSR) $=q_{m,df}(1 - \frac{\alpha}{2})\sqrt{2\times \frac{\text{residual MS}}{\text{# reps}}}$
+Things are a bit more cumbersome when it comes to Tukey's HSD. We can specify `adj = "tukey"` in `predictmeans`:
 
 ```{r}
-TukeyHSD(aov(logAUC~Surgery, data = rats))$Surgery
+tukey <-  predictmeans::predictmeans(rats_lm , 
+                                          modelterm = "Surgery", adj = "tukey",
+                                          level = alpha.adj,
+                                          pairwise = TRUE, plot = FALSE)
+names(tukey)
+``` 
+
+However, the HSD values are not returned, so we cannot calculate out pairwise CIs. `R` has an inbuilt function `TukeyHSD` that does this for us, but as we can see below the HSD values are not returned. 
+
+```{r}
+TukeyHSD(aov(logAUC~Surgery, data = rats))
 ```
 
+From above we saw that Tukey's HSD was given by
 
+ $$\frac{q_{1-\alpha_c, m, \text{df} = N - m}}{\sqrt{2}} \times \sqrt{\frac{2\hat{\sigma}^2}{n}}.$$
  
+We can calculate $q_{1 - \alpha_c, m, \text{df} = N - m}$ for our data using 
+ 
+```{r}
+qtukey(p = 1- 0.05, nmeans = 3, df = 12 - 3)
+```
+
+Assuming equal replicates ($n = 4$, with $\hat{\sigma}^2$ as above) we calculate the SED as
+
+```{r}
+sqrt(2 * anova(rats_lm)[2,3] / 4)
+```
+
+Therefore, Tukey's HSD is $\frac{`r qtukey(p = 1- 0.05, nmeans = 3, df = 12 - 3)`}{\sqrt{2}}\times  `r sqrt(2 * anova(rats_lm)[2,3] / 4)` = `r (qtukey(p = 1- 0.05, nmeans = 3, df = 12 - 3)/sqrt(2))*sqrt(2 * anova(rats_lm)[2,3] / 4)`.$
+
+To calculate the CIs we use $\text{difference} \pm \text{HSD}$:
+
+```{r}
+HSD <- (qtukey(p = 1 - 0.05, nmeans = 3, df = 12 - 3)/sqrt(2))*sqrt(2 * anova(rats_lm)[2,3] / 4)
+all_diffs <- outer(tukey$`Predicted Means`, tukey$`Predicted Means`, "-")
+comparison_table <- data.frame(differences = all_diffs[lower.tri(all_diffs)]) %>%
+  mutate(upper = differences + HSD, lower = differences - HSD, HSD = HSD)
+         
+comparison_table
+```
+
+This matches the output from `TukeyHSD()` above!
+
+What about the values returned by `predictmeans()`?
+
+```{r}
+print(tukey$`Pairwise p-value`)
+```
+
+There is an easier way to see the same pairwise contrasts using the `emmeans` function from the package of the same name and the `pairs` function:
 
 
+```{r}
+em <- emmeans::emmeans(rats_lm, specs =  "Surgery")
+pairs(em, adjust = "tukey")
+```
+
+This, gives us the same information as `predictmeans` but in an easier to read format (still no CIs though, we still have to calculate those ourselves!)
 
 
+However, the `emmeans`package facilitates some nice plotting of the pairwise comparisons:
 
+```{r}
+plot(em, comparisons = TRUE) + theme_bw()
+```

@@ -175,7 +175,7 @@ kableExtra::kable(factorial) %>%
 **Fitting models with interactions using `lm()`**
 
 ```{r}
-## change to factors (saves errors with predictmeans)
+## change to factors (saves errors later on)
 factorial$Disease <- as.factor(factorial$Disease)
 factorial$Organ <- as.factor(factorial$Organ)
 fac_lm <- lm(logAUC ~ Disease*Organ, data = factorial)
@@ -255,9 +255,9 @@ For a **balanced**  two-factor experiment (e.g., in the previous section) partit
 
 The order in which the main effects are added to the model does not matter. **However**, for an **unbalanced design** this is not the case as the sums of squares are calculated **sequentially**. Note that sequentially calculated $SS$ are known as Type I $SS$.
 
-#### Sums of squares ($SS$)
+### Sums of squares ($SS$)
 
-**Sequential (Type I $SS$)**
+#### Sequential (Type I $SS$)
 
 As a term enters the model its $SS$ is calculated, which is then subtracted from the total $SS$. This then reduces the available $SS$ for the next term entering the model. When treatment combinations in a factorial experiment are unequally replicated, their effects are not mutually independent, so that the order in which terms enter the model matters.
 
@@ -310,7 +310,7 @@ sum(residuals(fit.abi)^2)
 
 
 
-**Type II $SS$**
+#### Type II $SS$
 
 Rather than calculating $SS$ sequentially we can calculate the $SS$ for a given effect adjusting for all other effects listed in the model. This means that the $SS_\text{A}$ and $SS_\text{B}$ main effects will both be adjusted for each other (since neither contains the other), but will not be adjusted for $SS_\text{A:B}$ (since it contains both A and B). $SS_\text{A:B}$ will be adjusted for both main effects.
 
@@ -318,7 +318,7 @@ In our example above $SS_\text{Disease}$ and $SS_\text{Organ}$ main effects will
 
 We can calculate the Type II $SS$ table in `R` buy either 
 
-1) Extracting the main effect rows that have been adjusted for the other model terms from two Type I $SS$ tables (each one haveing the terms specifed in a different order):
+1) Extracting the main effect rows that have been adjusted for the other model terms from two Type I $SS$ tables (each one having the terms specified in a different order):
 
 ```{r}
 ## Type II Organ SS
@@ -337,3 +337,102 @@ or,
 ```{r}
 car::Anova(fac_lm, type = 2)
 ```
+
+
+**Note:** Type III $SS$ and beyond are not covered in this course but I would recommend reading [this recent paper](https://besjournals.onlinelibrary.wiley.com/doi/10.1111/j.1365-2656.2009.01634.x) for an intuitive overview.
+
+#### Marginal means
+
+**Balanced design**
+
+```{r, echo = FALSE, message = FALSE, warning=FALSE}
+factorial %>%
+  dplyr::select(c(Disease, Organ, logAUC)) %>%
+  kableExtra::kable(., caption = "logAUC data from a balanced design") %>%
+  kableExtra::kable_classic(full_width = FALSE, html_font = "Cambria")
+factorial %>%
+	summarise("Grand mean" = mean(logAUC)) %>%
+   kableExtra::kable(., digits = 3) %>%
+   kableExtra::kable_classic(full_width = FALSE, html_font = "Cambria")
+factorial %>%
+   dplyr::select(c(Disease, Organ, logAUC)) %>%
+   group_by(Disease, Organ) %>%
+	summarise("log AUC mean" = mean(logAUC)) %>%
+   kableExtra::kable(., digits = 3, caption = "Cell means") %>%
+   kableExtra::kable_classic(full_width = FALSE, html_font = "Cambria")
+factorial %>%
+   dplyr::select(c(Organ, logAUC)) %>%
+   group_by(Organ) %>%
+   summarise("log AUC mean" = mean(logAUC)) %>%
+   kableExtra::kable(., digits = 3, caption = "Marginal (organ) mean") %>%
+   kableExtra::kable_classic(full_width = FALSE, html_font = "Cambria")
+
+factorial %>%
+   dplyr::select(c(Disease, logAUC)) %>%
+   group_by(Disease) %>%
+   summarise("log AUC mean" = mean(logAUC)) %>%
+   kableExtra::kable(., digits = 3, caption = "Marginal (disease) mean") %>%
+   kableExtra::kable_classic(full_width = FALSE, html_font = "Cambria")
+
+```
+
+**Unbalanced design** (Unequal replication due to missing data)
+
+```{r, echo = FALSE}
+unbalanced %>%
+  dplyr::select(c(Disease, Organ, logAUC)) %>%
+  kableExtra::kable(., caption = "logAUC data from an unbalanced design") %>%
+  kableExtra::kable_classic(full_width = FALSE, html_font = "Cambria")
+```
+```{r, echo = FALSE}
+unbalanced_nafree %>%
+	summarise("Grand mean" = mean(logAUC)) %>%
+   kableExtra::kable(., digits = 3) %>%
+   kableExtra::kable_classic(full_width = FALSE, html_font = "Cambria")
+```
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+unbalanced_nafree %>%
+   dplyr::select(c(Disease, Organ, logAUC)) %>%
+   group_by(Disease, Organ) %>%
+	 summarise("log AUC mean" = mean(logAUC)) %>%
+   kableExtra::kable(., digits = 3, caption = "Cell means") %>%
+   kableExtra::kable_classic(full_width = FALSE, html_font = "Cambria")
+```
+
+Everything is as we'd expect up until now, but what about the marginal means? The, perhaps, most obvious way would be to do the following (i.e., ignore subgroups, hence give all observations equal weight)?
+
+```{r}
+unbalanced_nafree %>%
+   dplyr::select(c(Disease, logAUC)) %>%
+   group_by(Disease) %>%
+   summarise(Mean = mean(logAUC))
+```
+
+However, as a result of this the means are **biased** towards groups with greater replication! To avoid this we give the subgroups (`Organ`) cell means equal weight (this is sometimes called the *least squares* mean):
+
+```{r, message = FALSE, warning = FALSE}
+unbalanced_nafree %>%
+   dplyr::select(c(Disease, Organ, logAUC)) %>%
+   group_by(Organ, Disease) %>%
+	 mutate(n = n()) %>% ## count observations in each group
+	## then calculate weighted mean based on the no. observations
+   summarise(weighted_mean = weighted.mean(logAUC, w = 1/n)) %>%
+	 group_by(Disease) %>% ## calculate mean of weighted means
+	 summarise(mean = mean(weighted_mean))
+```
+Now see if you can do the same across `Organ` to get
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+unbalanced_nafree %>%
+   dplyr::select(c(Disease, Organ, logAUC)) %>%
+   group_by(Disease, Organ) %>%
+	 mutate(n = n()) %>% 
+   summarise(weighted_mean = weighted.mean(logAUC, w = 1/n)) %>%
+	 group_by(Organ) %>% 
+	 summarise(mean = mean(weighted_mean)) %>%
+   kableExtra::kable(., digits = 3, caption = "Marginal (organ) means") %>%
+   kableExtra::kable_classic(full_width = FALSE, html_font = "Cambria")
+```
+
+**What does all of this tell us?** When calculating marginal means for unbalanced designs we need to be careful! Luckily there are inbuilt functions in `R` that do this correctly for us! See the next section for an example using the `predictmeans` function from the `predictmeans` package.
