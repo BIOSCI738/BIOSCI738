@@ -34,7 +34,7 @@ rcbd <- rcbd %>%
   mutate(Surgery = as.factor(Surgery))
 ```
 
-**`Run` as a fixed effect**
+#### `Run` as a fixed effect
 
 ```{r}
 lm <- lm(logAUC8 ~ Run + Surgery, data = rcbd)
@@ -42,7 +42,7 @@ summary(lm)
 ```
 
 
-**`Run` as a random effect**
+#### `Run` as a random effect
 
 There are, confusingly, two ways of fitting the same model. For inference we require both!
 
@@ -188,7 +188,8 @@ Calling `predictmeans` alone produces plots:
 ```{r, results='hide'}
 lmer <- lme4::lmer(logAUC ~ Disease*Organ + (1|Animal), 
                           data = split_plot)
-predmeans <- predictmeans::predictmeans(model = lmer ,modelterm = "Disease:Organ", pairwise = TRUE)
+predmeans <- predictmeans::predictmeans(model = lmer ,modelterm = "Disease:Organ", 
+                                        pairwise = TRUE)
 ```
 
 ```{r}
@@ -244,7 +245,7 @@ ggplot(liver_means, aes(x = Time, y = Glucose, color = Treatment, group = Treatm
 ```
 
 
-### `Animal` as a random effect 
+#### `Animal` as a random effect 
 
 **Using `aov()`**
 
@@ -291,7 +292,7 @@ We can also use `emmeans` to plot the pairwise comparisons
 
 ```{r}
 em <- emmeans::emmeans(re_lmer4, ~Treatment*Time)
-plot(em, pairwise = TRUE) + theme_bw()
+plot(em, pairwise = TRUE) + theme_bw() + facet_wrap(~Treatment)
 ```
 
 

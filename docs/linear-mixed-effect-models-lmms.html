@@ -205,7 +205,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html#a-randomised-controlled-block-design-rcbd"><i class="fa fa-check"></i>A Randomised Controlled Block Design (RCBD)</a></li>
 <li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html#a-split-plot-design"><i class="fa fa-check"></i>A Split-plot design</a></li>
 <li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html#a-repeated-measures-design"><i class="fa fa-check"></i>A repeated measures design</a></li>
-<li><a href="linear-mixed-effect-models-lmms.html#animal-as-a-random-effect-1"><code>Animal</code> as a random effect</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="module-4.html"><a href="module-4.html"><i class="fa fa-check"></i>Module 4</a><ul>
@@ -483,7 +482,8 @@ S
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rcbd &lt;-<span class="st"> </span>rcbd <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Run =</span> <span class="kw">as.factor</span>(Run)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Surgery =</span> <span class="kw">as.factor</span>(Surgery))</code></pre></div>
-<p><strong><code>Run</code> as a fixed effect</strong></p>
+<div id="run-as-a-fixed-effect" class="section level4">
+<h4><code>Run</code> as a fixed effect</h4>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lm &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC8 <span class="op">~</span><span class="st"> </span>Run <span class="op">+</span><span class="st"> </span>Surgery, <span class="dt">data =</span> rcbd)
 <span class="kw">summary</span>(lm)</code></pre></div>
 <pre><code>## 
@@ -508,7 +508,9 @@ S
 ## Residual standard error: 1.203 on 6 degrees of freedom
 ## Multiple R-squared:  0.8449, Adjusted R-squared:  0.7157 
 ## F-statistic: 6.538 on 5 and 6 DF,  p-value: 0.02034</code></pre>
-<p><strong><code>Run</code> as a random effect</strong></p>
+</div>
+<div id="run-as-a-random-effect" class="section level4">
+<h4><code>Run</code> as a random effect</h4>
 <p>There are, confusingly, two ways of fitting the same model. For inference we require both!</p>
 <p>Option 1 uses the <code>lmer</code> function from the <code>lme4</code> package:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lmer4_mod &lt;-<span class="st"> </span>lme4<span class="op">::</span><span class="kw">lmer</span>(logAUC8 <span class="op">~</span><span class="st"> </span>Surgery <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span><span class="op">|</span>Run), <span class="dt">data =</span> rcbd)
@@ -670,6 +672,7 @@ pm &lt;-<span class="st"> </span><span class="kw">predictmeans</span>(lmer4_mod,
 <p>Have a look at the CIs and p-values. What do you conclude?</p>
 <p>We could also plot the pairwise comparisons:</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-144-1.png" width="672" /></p>
+</div>
 </div>
 <div id="a-split-plot-design" class="section level3">
 <h3>A Split-plot design</h3>
@@ -951,7 +954,8 @@ outerLV
 <p>Calling <code>predictmeans</code> alone produces plots:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lmer &lt;-<span class="st"> </span>lme4<span class="op">::</span><span class="kw">lmer</span>(logAUC <span class="op">~</span><span class="st"> </span>Disease<span class="op">*</span>Organ <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span><span class="op">|</span>Animal), 
                           <span class="dt">data =</span> split_plot)
-predmeans &lt;-<span class="st"> </span>predictmeans<span class="op">::</span><span class="kw">predictmeans</span>(<span class="dt">model =</span> lmer ,<span class="dt">modelterm =</span> <span class="st">&quot;Disease:Organ&quot;</span>, <span class="dt">pairwise =</span> <span class="ot">TRUE</span>)</code></pre></div>
+predmeans &lt;-<span class="st"> </span>predictmeans<span class="op">::</span><span class="kw">predictmeans</span>(<span class="dt">model =</span> lmer ,<span class="dt">modelterm =</span> <span class="st">&quot;Disease:Organ&quot;</span>, 
+                                        <span class="dt">pairwise =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">predmeans<span class="op">$</span>predictmeansPlot</code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-151-1.png" width="672" /></p>
 <p>Recall from previous sections that the LSD vale is essentially the <em>buffer</em> around the point estimate (the radius of the CI if you like), beyond the limit of which we might believe there to be a <em>significant</em> difference (a bit lax with terminology there!).</p>
@@ -1003,9 +1007,8 @@ liver</code></pre></div>
 ## # … with 200 more rows</code></pre>
 <p>Below these data are plotted.</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-155-1.png" width="672" /><img src="_main_files/figure-html/unnamed-chunk-155-2.png" width="672" /></p>
-</div>
-<div id="animal-as-a-random-effect-1" class="section level3">
-<h3><code>Animal</code> as a random effect</h3>
+<div id="animal-as-a-random-effect-1" class="section level4">
+<h4><code>Animal</code> as a random effect</h4>
 <p><strong>Using <code>aov()</code></strong></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">re_aov &lt;-<span class="st"> </span><span class="kw">aov</span>(Glucose <span class="op">~</span><span class="st"> </span>Treatment<span class="op">*</span>Time <span class="op">+</span><span class="st"> </span><span class="kw">Error</span>(Animal),<span class="dt">data =</span> liver)
 <span class="kw">summary</span>(re_aov)</code></pre></div>
@@ -1066,9 +1069,10 @@ predmeans &lt;-<span class="st"> </span>predictmeans<span class="op">::</span><s
 <p>What do the CI coverages indicate?</p>
 <p>We can also use <code>emmeans</code> to plot the pairwise comparisons</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">em &lt;-<span class="st"> </span>emmeans<span class="op">::</span><span class="kw">emmeans</span>(re_lmer4, <span class="op">~</span>Treatment<span class="op">*</span>Time)
-<span class="kw">plot</span>(em, <span class="dt">pairwise =</span> <span class="ot">TRUE</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>()</code></pre></div>
+<span class="kw">plot</span>(em, <span class="dt">pairwise =</span> <span class="ot">TRUE</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span>Treatment)</code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-160-1.png" width="672" /></p>
 
+</div>
 </div>
 </div>
 <!-- </div> -->
