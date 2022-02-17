@@ -32,7 +32,7 @@ In summary, for any functions $f$ and $g$ and any real numbers $a$ and $b$, the 
 $h(x) = a f(x)+bg(x)$ with respect to $x$ is $h'(x)=af'(x) + bg'(x).$
 
 
-### Logarithn rules
+### Logarithm rules
 
 This section is a recap only, if you need a more in-depth overview of log rules then use the extra materials provided at the start of this module.
 
@@ -42,7 +42,7 @@ This section is a recap only, if you need a more in-depth overview of log rules 
  + **Log of e:**	$\text{log}(e)=1$
  + **Log of one:**	$\text{log}(1)=0$
  + **Log reciprocal:**	$\text{log}(1/x)=−\text{log}(x)$
-  + **Diffrentiating a log:** $\frac{\delta \text{log}(y)}{\delta x} = \frac{1}{y}\frac{\delta y}{\delta x}.$
+  + **Differentiating a log:** $\frac{\delta \text{log}(y)}{\delta x} = \frac{1}{y}\frac{\delta y}{\delta x}.$
 
 ### Maximum likelihood estimation for a Binomial distribution
 
@@ -166,7 +166,7 @@ In many situations differentiating the likelihood is tricky. Even the simple bin
  2. When there are observations $x_1, \ldots, x_n$, the likelihood $L$ is a product as $\text{log}(a  b) = \text{log}(a) + \text{log}(b)$, the log-likelihood converts the product into a sum. It is often easier to differentiate a sum than a product, so the log-likelihood is easier to maximize while still giving the same MLE.
  3. If we need to use a computer to calculate and maximize the likelihood,  there will often be numerical problems with computing the likelihood product, whereas the log-likelihood sum can be accurately calculated.
 
-Let's consider the binomial exampe above. We had $L(\theta ; s) = {n \choose s} \theta^s (1 - \theta)^{n-s}.$
+Let's consider the binomial example above. We had $L(\theta ; s) = {n \choose s} \theta^s (1 - \theta)^{n-s}.$
 
 Therefore, $$\begin{array}{cl}
 \text{log}(L(\theta ; s)) &=  \text{log}({n \choose s}) + \text{log}(\theta^s) + \text{log}((1 - \theta)^{n-s})\\

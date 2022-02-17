@@ -2,7 +2,7 @@
 
 **Learning objectives**
 
-+ **Explain&& the aims and motivation behind cluster analysis and its relevance in biology
++ **Explain** the aims and motivation behind cluster analysis and its relevance in biology
 + **Write** `R` code to **carry out** hierarchical and k-means cluster analysis
 + **Interpret** `R` output from hierarchical and k-means cluster analysis
 + **Interpret** and **communicate**, to both a statistical and non-statistical audience, clustering techniques, specifically,
@@ -10,7 +10,7 @@
     + *Agglomerative methods*, clustering cases and/or variables into a hierarchy of sets (i.e., hierarchical clustering)
 + **Explain** the aims and motivation behind Principal Component Analysis (PCA) and its relevance in biology
 + **Write** `R` code to carry out PCA
-+ **Interpret** and **communicate**, to both a statistical and non-statistical audience, dimaension reduction techniques
++ **Interpret** and **communicate**, to both a statistical and non-statistical audience, dimension reduction techniques
 
 
 

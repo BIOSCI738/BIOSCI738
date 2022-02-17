@@ -216,7 +216,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="" data-path="maximum-likelkihood-estimation.html"><a href="maximum-likelkihood-estimation.html"><i class="fa fa-check"></i>Maximum likelkihood estimation</a><ul>
 <li class="chapter" data-level="" data-path="maximum-likelkihood-estimation.html"><a href="maximum-likelkihood-estimation.html#differeniation-rules"><i class="fa fa-check"></i>Differeniation rules</a></li>
-<li class="chapter" data-level="" data-path="maximum-likelkihood-estimation.html"><a href="maximum-likelkihood-estimation.html#logarithn-rules"><i class="fa fa-check"></i>Logarithn rules</a></li>
+<li class="chapter" data-level="" data-path="maximum-likelkihood-estimation.html"><a href="maximum-likelkihood-estimation.html#logarithm-rules"><i class="fa fa-check"></i>Logarithm rules</a></li>
 <li class="chapter" data-level="" data-path="maximum-likelkihood-estimation.html"><a href="maximum-likelkihood-estimation.html#maximum-likelihood-estimation-for-a-binomial-distribution"><i class="fa fa-check"></i>Maximum likelihood estimation for a Binomial distribution</a></li>
 <li class="chapter" data-level="" data-path="maximum-likelkihood-estimation.html"><a href="maximum-likelkihood-estimation.html#maximum-likelihood-estimation-for-a-crd"><i class="fa fa-check"></i>Maximum likelihood estimation for a CRD</a></li>
 <li class="chapter" data-level="" data-path="maximum-likelkihood-estimation.html"><a href="maximum-likelkihood-estimation.html#maximising-the-log-likelihood"><i class="fa fa-check"></i>Maximising the log-likelihood</a></li>
@@ -298,8 +298,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p><span class="math display">\[h&#39;(x)=f&#39;(g(x)\cdot g&#39;(x)\]</span></p>
 <p>In summary, for any functions <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> and any real numbers <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>, the derivative of the function <span class="math inline">\(h(x) = a f(x)+bg(x)\)</span> with respect to <span class="math inline">\(x\)</span> is <span class="math inline">\(h&#39;(x)=af&#39;(x) + bg&#39;(x).\)</span></p>
 </div>
-<div id="logarithn-rules" class="section level3">
-<h3>Logarithn rules</h3>
+<div id="logarithm-rules" class="section level3">
+<h3>Logarithm rules</h3>
 <p>This section is a recap only, if you need a more in-depth overview of log rules then use the extra materials provided at the start of this module.</p>
 <ul>
 <li><strong>Product rule:</strong> <span class="math inline">\(\text{log}(xy) = \text{log}(x) + \text{log}(y)\)</span></li>
@@ -308,7 +308,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><strong>Log of e:</strong> <span class="math inline">\(\text{log}(e)=1\)</span></li>
 <li><strong>Log of one:</strong> <span class="math inline">\(\text{log}(1)=0\)</span></li>
 <li><strong>Log reciprocal:</strong> <span class="math inline">\(\text{log}(1/x)=−\text{log}(x)\)</span></li>
-<li><strong>Diffrentiating a log:</strong> <span class="math inline">\(\frac{\delta \text{log}(y)}{\delta x} = \frac{1}{y}\frac{\delta y}{\delta x}.\)</span></li>
+<li><strong>Differentiating a log:</strong> <span class="math inline">\(\frac{\delta \text{log}(y)}{\delta x} = \frac{1}{y}\frac{\delta y}{\delta x}.\)</span></li>
 </ul>
 </div>
 <div id="maximum-likelihood-estimation-for-a-binomial-distribution" class="section level3">
@@ -387,7 +387,7 @@ likelihood &lt;-<span class="st"> </span><span class="cf">function</span>(theta)
 <li>When there are observations <span class="math inline">\(x_1, \ldots, x_n\)</span>, the likelihood <span class="math inline">\(L\)</span> is a product as <span class="math inline">\(\text{log}(a b) = \text{log}(a) + \text{log}(b)\)</span>, the log-likelihood converts the product into a sum. It is often easier to differentiate a sum than a product, so the log-likelihood is easier to maximize while still giving the same MLE.</li>
 <li>If we need to use a computer to calculate and maximize the likelihood, there will often be numerical problems with computing the likelihood product, whereas the log-likelihood sum can be accurately calculated.</li>
 </ol>
-<p>Let's consider the binomial exampe above. We had <span class="math inline">\(L(\theta ; s) = {n \choose s} \theta^s (1 - \theta)^{n-s}.\)</span></p>
+<p>Let's consider the binomial example above. We had <span class="math inline">\(L(\theta ; s) = {n \choose s} \theta^s (1 - \theta)^{n-s}.\)</span></p>
 <p>Therefore, <span class="math display">\[\begin{array}{cl}
 \text{log}(L(\theta ; s)) &amp;=  \text{log}({n \choose s}) + \text{log}(\theta^s) + \text{log}((1 - \theta)^{n-s})\\
  &amp;=  \text{log}({n \choose s}) + s\text{log}(\theta) + (n-s)\text{log}(1 - \theta).
