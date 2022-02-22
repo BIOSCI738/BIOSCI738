@@ -160,7 +160,7 @@ ggplot(data = results, aes(x = bootstrap_means)) +
 ```
 
 
-**Step 3:** Calculate quantities of interest from the sampling distribution
+**Step 4:** Calculate quantities of interest from the sampling distribution
 
 
    1. The **bootstrap estimate of bias** is the difference between the mean of the boostrap distribution and the value of the statistic in the original sample:
