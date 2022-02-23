@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Maximum likelkihood estimation | Advanced Biological Data Analysis</title>
   <meta name="description" content="Maximum likelkihood estimation | Advanced Biological Data Analysis" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Maximum likelkihood estimation | Advanced Biological Data Analysis" />
   <meta property="og:type" content="book" />
@@ -32,7 +32,8 @@
   
 <link rel="prev" href="least-squares-estimation.html"/>
 <link rel="next" href="introduction-to-bayesian-statistics.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -40,7 +41,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -368,7 +368,7 @@ likelihood &lt;-<span class="st"> </span><span class="cf">function</span>(theta)
 ## 
 ## $objective
 ## [1] 0.06317819</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-167-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-169-1.png" width="672" /></p>
 </div>
 </div>
 <div id="maximum-likelihood-estimation-for-a-crd" class="section level3">
@@ -397,7 +397,7 @@ likelihood &lt;-<span class="st"> </span><span class="cf">function</span>(theta)
  &amp;= \frac{s}{\theta} - \frac{n-s}{1-\theta} \\
  \end{array}\]</span></p>
 <p>Setting this to zero we get <span class="math inline">\(\frac{s}{\theta} = \frac{n-s}{1-\theta} \rightarrow s(1-\theta) = \theta(n-s) \rightarrow s - s\theta = \theta n - s\theta \rightarrow s + (s\theta - s\theta) = \theta n \rightarrow \theta = \frac{s}{n}.\)</span> Therefore, as above <span class="math display">\[\hat{\theta} = \frac{s}{n}.\]</span></p>
-<p><img src="_main_files/figure-html/unnamed-chunk-169-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-171-1.png" width="672" /></p>
 </div>
 <div id="maximum-likelihood-estimation-for-a-poisson-distribution" class="section level3">
 <h3>Maximum likelihood estimation for a Poisson distribution</h3>
@@ -471,7 +471,7 @@ likelihood &lt;-<span class="st"> </span><span class="cf">function</span>(s) (<s
 ## $objective
 ## [1] 0.1666667</code></pre>
 <p>How does this to compare to the exact estimator, <span class="math inline">\(\hat{s} = 2X\)</span>, we found using calculus above? Consider, too, the plot below showing <span class="math inline">\(L(s; X = 3)\)</span>.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-171-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-173-1.png" width="672" /></p>
 
 </div>
 </div>
@@ -485,7 +485,6 @@ likelihood &lt;-<span class="st"> </span><span class="cf">function</span>(s) (<s
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -525,6 +524,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

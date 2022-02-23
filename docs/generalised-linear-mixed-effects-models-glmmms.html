@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Generalised linear mixed-effects models (GLMMMs) | Advanced Biological Data Analysis</title>
   <meta name="description" content="Generalised linear mixed-effects models (GLMMMs) | Advanced Biological Data Analysis" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Generalised linear mixed-effects models (GLMMMs) | Advanced Biological Data Analysis" />
   <meta property="og:type" content="book" />
@@ -32,7 +32,8 @@
   
 <link rel="prev" href="a-summary-of-glms.html"/>
 <link rel="next" href="module-6.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -40,7 +41,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -339,7 +339,7 @@ car<span class="op">::</span><span class="kw">Anova</span>(lmer, <span class="dt
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>But is the constant error variance appropriate? Below we plot the model residuals.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-207-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-209-1.png" width="672" /></p>
 <div id="using-glmer" class="section level4">
 <h4>Using <code>glmer</code></h4>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">glmer &lt;-<span class="st"> </span>lme4<span class="op">::</span><span class="kw">glmer</span>(MB_buried <span class="op">~</span><span class="st"> </span>Sex <span class="op">*</span><span class="st"> </span>Diagnosis <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span><span class="op">|</span>Donor), <span class="dt">data =</span> mice, <span class="dt">family =</span> <span class="kw">poisson</span>(<span class="dt">link =</span> <span class="st">&quot;log&quot;</span>))
@@ -353,7 +353,7 @@ car<span class="op">::</span><span class="kw">Anova</span>(glmer, <span class="d
 ## Sex:Diagnosis 12.5904  1  0.0003877 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-209-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-211-1.png" width="672" /></p>
 
 </div>
 </div>
@@ -369,7 +369,6 @@ car<span class="op">::</span><span class="kw">Anova</span>(glmer, <span class="d
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -409,6 +408,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

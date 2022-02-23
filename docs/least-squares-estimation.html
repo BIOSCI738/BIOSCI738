@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Least Squares Estimation | Advanced Biological Data Analysis</title>
   <meta name="description" content="Least Squares Estimation | Advanced Biological Data Analysis" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Least Squares Estimation | Advanced Biological Data Analysis" />
   <meta property="og:type" content="book" />
@@ -32,7 +32,8 @@
   
 <link rel="prev" href="module-4.html"/>
 <link rel="next" href="maximum-likelkihood-estimation.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -40,7 +41,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -322,7 +322,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Recall, that the Euclidean distance between two points is calculated as</p>
 <p><span class="math display">\[\sqrt{(x_1 - x_2)^2 + (y_1 - y_2)^2}\]</span></p>
 <p>The method of <strong>least squares</strong> estimation works by minimising the distances between each observation and the line of fit (i.e., the residuals). The <em>line-of best</em> fit is the line with the smallest residual sum (i.e., all the possible red lines in the figures)!</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-161-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-163-1.png" width="672" /></p>
 </div>
 <div id="matrix-representation-of-a-crd" class="section level3">
 <h3>Matrix representation of a CRD</h3>
@@ -485,7 +485,6 @@ Type 3
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -525,6 +524,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

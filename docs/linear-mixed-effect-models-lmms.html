@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Linear mixed-effect models (LMMs) | Advanced Biological Data Analysis</title>
   <meta name="description" content="Linear mixed-effect models (LMMs) | Advanced Biological Data Analysis" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Linear mixed-effect models (LMMs) | Advanced Biological Data Analysis" />
   <meta property="og:type" content="book" />
@@ -32,7 +32,8 @@
   
 <link rel="prev" href="multiple-comparisons.html"/>
 <link rel="next" href="module-4.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -40,7 +41,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -671,7 +671,7 @@ pm &lt;-<span class="st"> </span><span class="kw">predictmeans</span>(lmer4_mod,
 ## 3        P-S     -1.875 0.851 2.081 -3.956  0.206 -2.204 0.0697</code></pre>
 <p>Have a look at the CIs and p-values. What do you conclude?</p>
 <p>We could also plot the pairwise comparisons:</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-144-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-146-1.png" width="672" /></p>
 </div>
 </div>
 <div id="a-split-plot-design" class="section level3">
@@ -957,7 +957,7 @@ outerLV
 predmeans &lt;-<span class="st"> </span>predictmeans<span class="op">::</span><span class="kw">predictmeans</span>(<span class="dt">model =</span> lmer ,<span class="dt">modelterm =</span> <span class="st">&quot;Disease:Organ&quot;</span>, 
                                         <span class="dt">pairwise =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">predmeans<span class="op">$</span>predictmeansPlot</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-151-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-153-1.png" width="672" /></p>
 <p>Recall from previous sections that the LSD vale is essentially the <em>buffer</em> around the point estimate (the radius of the CI if you like), beyond the limit of which we might believe there to be a <em>significant</em> difference (a bit lax with terminology there!).</p>
 <p><strong>How</strong> would be interpret the above plot? I would conclude that there is a big difference between Diabetic and Healthy for InnerLV wall, but no difference for the outerLV wall. We can construct the pairwise comparison table:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">comparisons</span>(predmeans)</code></pre></div>
@@ -979,7 +979,7 @@ predmeans &lt;-<span class="st"> </span>predictmeans<span class="op">::</span><s
 <p>We can also use <code>emmeans</code> to plot the pairwise comparisons</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">em &lt;-<span class="st"> </span>emmeans<span class="op">::</span><span class="kw">emmeans</span>(lmer, <span class="op">~</span>Disease<span class="op">*</span>Organ)
 <span class="kw">plot</span>(em, <span class="dt">pairwise =</span> <span class="ot">TRUE</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>()</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-153-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-155-1.png" width="672" /></p>
 <p>From all the output above, what do you conclude about the interaction effect, if any!</p>
 </div>
 </div>
@@ -1006,7 +1006,7 @@ liver</code></pre></div>
 ## 10 Control2 Control   10       0.7 
 ## # … with 200 more rows</code></pre>
 <p>Below these data are plotted.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-155-1.png" width="672" /><img src="_main_files/figure-html/unnamed-chunk-155-2.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-157-1.png" width="672" /><img src="_main_files/figure-html/unnamed-chunk-157-2.png" width="672" /></p>
 <div id="animal-as-a-random-effect-1" class="section level4">
 <h4><code>Animal</code> as a random effect</h4>
 <p><strong>Using <code>aov()</code></strong></p>
@@ -1070,7 +1070,7 @@ predmeans &lt;-<span class="st"> </span>predictmeans<span class="op">::</span><s
 <p>We can also use <code>emmeans</code> to plot the pairwise comparisons</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">em &lt;-<span class="st"> </span>emmeans<span class="op">::</span><span class="kw">emmeans</span>(re_lmer4, <span class="op">~</span>Treatment<span class="op">*</span>Time)
 <span class="kw">plot</span>(em, <span class="dt">pairwise =</span> <span class="ot">TRUE</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span>Treatment)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-160-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-162-1.png" width="672" /></p>
 
 </div>
 </div>
@@ -1086,7 +1086,6 @@ predmeans &lt;-<span class="st"> </span>predictmeans<span class="op">::</span><s
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -1126,6 +1125,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

@@ -22,13 +22,13 @@
 		// For environments that do not have a `window` with a `document`
 		// (such as Node.js), expose a factory as module.exports.
 		// This accentuates the need for the creation of a real `window`.
-		// e.g. var jQuery = library("jquery")(window);
+		// e.g. var jQuery = require("jquery")(window);
 		// See ticket #14549 for more info.
 		module.exports = global.document ?
 			factory( global, true ) :
 			function( w ) {
 				if ( !w.document ) {
-					throw new Error( "jQuery librarys a window with a document" );
+					throw new Error( "jQuery requires a window with a document" );
 				}
 				return factory( w );
 			};
@@ -592,7 +592,7 @@ var i,
 	},
 
 	booleans = "checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|" +
-		"ismap|loop|multiple|open|readonly|libraryd|scoped",
+		"ismap|loop|multiple|open|readonly|required|scoped",
 
 	// Regular expressions
 
@@ -1805,7 +1805,7 @@ Expr = Sizzle.selectors = {
 
 			if ( match[ 1 ].slice( 0, 3 ) === "nth" ) {
 
-				// nth-* librarys argument
+				// nth-* requires argument
 				if ( !match[ 3 ] ) {
 					Sizzle.error( match[ 0 ] );
 				}
@@ -4752,7 +4752,7 @@ function adjustCSS( elem, prop, valueParts, tween ) {
 		initial = currentValue(),
 		unit = valueParts && valueParts[ 3 ] || ( jQuery.cssNumber[ prop ] ? "" : "px" ),
 
-		// Starting value computation is libraryd for potential unit mismatches
+		// Starting value computation is required for potential unit mismatches
 		initialInUnit = elem.nodeType &&
 			( jQuery.cssNumber[ prop ] || unit !== "px" && +initial ) &&
 			rcssNum.exec( jQuery.css( elem, prop ) );
@@ -4847,7 +4847,7 @@ function showHide( elements, show ) {
 		if ( show ) {
 
 			// Since we force visibility upon cascade-hidden elements, an immediate (and slow)
-			// check is libraryd in this first loop unless we have a nonempty display value (either
+			// check is required in this first loop unless we have a nonempty display value (either
 			// inline or about-to-be-restored)
 			if ( display === "none" ) {
 				values[ index ] = dataPriv.get( elem, "display" ) || null;
@@ -4944,7 +4944,7 @@ var wrapMap = {
 
 	// XHTML parsers do not magically insert elements in the
 	// same way that tag soup parsers do. So we cannot shorten
-	// this by omitting <tbody> or other libraryd elements.
+	// this by omitting <tbody> or other required elements.
 	thead: [ 1, "<table>", "</table>" ],
 	col: [ 2, "<table><colgroup>", "</colgroup></table>" ],
 	tr: [ 2, "<table><tbody>", "</tbody></table>" ],
@@ -6434,7 +6434,7 @@ var rboxStyle = new RegExp( cssExpand.join( "|" ), "i" );
 
 ( function() {
 
-	// Executing both pixelPosition & boxSizingReliable tests library only one layout
+	// Executing both pixelPosition & boxSizingReliable tests require only one layout
 	// so they're executed at the same time to save the second computation.
 	function computeStyleTests() {
 
@@ -10836,7 +10836,7 @@ jQuery.trim = function( text ) {
 // Note that for maximum portability, libraries that are not jQuery should
 // declare themselves as anonymous modules, and avoid setting a global if an
 // AMD loader is present. jQuery is a special case. For more information, see
-// https://github.com/jrburke/libraryjs/wiki/Updating-existing-libraries#wiki-anon
+// https://github.com/jrburke/requirejs/wiki/Updating-existing-libraries#wiki-anon
 
 if ( typeof define === "function" && define.amd ) {
 	define( "jquery", [], function() {
