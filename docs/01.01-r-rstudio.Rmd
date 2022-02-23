@@ -35,7 +35,12 @@ Alternatively, `R` is the pheromone to `RStudio`'s PDA.
 
 ### Installing R and RStudio
 
-As mentioned above `RStudio` depends on `R` so there is an order you should follow when you download these software.
+[Software Carpentry install R & RStudio Mac](https://youtu.be/5-ly3kyxwEg) 
+
+
+[Software Carpentry install R & RStudio Windows](https://www.youtube.com/watch?v=q0PjTAylwoU)
+
+**NOTE:** `RStudio` depends on `R` so there is an order you should follow when you download these software!
 
  1. **Download and install `R`** by following [these instructions](https://cloud.r-project.org/). Make sure you choose the correct operating system.
  
@@ -48,16 +53,7 @@ As mentioned above `RStudio` depends on `R` so there is an order you should foll
     + Pay close attention to the notes in the screenshot and familiarise yourself with the terms.
     + Finally, in the *Console* next to the prompt type `1:10` and press enter on your keyboard. Your computer should say something back you (in the *Console*)! What do you think you were asking it to do? Does the output make sense?^[You should have seen the numbers 1 to 10 printed out as a sequence.]
 
-#### Software carpentry installation videos
 
-```{r, echo = FALSE, out.width = "45%"}
-knitr::include_url("https://www.youtube.com/watch?v=5-ly3kyxwEg", height = "200px")
-```
-
-```{r, echo = FALSE, out.width = "45%"}
-knitr::include_url("https://www.youtube.com/watch?v=q0PjTAylwoU", height = "200px")
-
-```
 
 ### Getting started
 

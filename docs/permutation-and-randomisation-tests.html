@@ -479,7 +479,7 @@ Female
 </tr>
 </tbody>
 </table>
-<p><img src="_main_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
 <p><strong>Scientific question</strong>: Are the jaw lengths of jackals the same, on average, in both sexes?</p>
 <p><strong>Null hypothesis</strong>: The average jaw lengths in male jackals the same as for females</p>
 <p><strong>Test statistic</strong>: Difference of sample means</p>
@@ -505,7 +505,7 @@ permtest_combinations &lt;-<span class="st"> </span><span class="kw">apply</span
 p_val &lt;-<span class="st"> </span><span class="kw">length</span>(permtest_combinations[<span class="kw">abs</span>(permtest_combinations) <span class="op">&gt;=</span><span class="st"> </span>jackal_mean_diff]) <span class="op">/</span><span class="st"> </span><span class="kw">choose</span>(<span class="dv">20</span>,<span class="dv">10</span>)
 p_val</code></pre></div>
 <pre><code>## [1] 0.003334127</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
 <p>Rather than considering <strong>all</strong> possible combinations we might rather use 100 random permutations under the null hypothesis. Here, we sample <strong>without</strong> replacement:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## set up matrix
 random_perm &lt;-<span class="st"> </span><span class="kw">apply</span>(<span class="kw">matrix</span>(<span class="dv">0</span>, <span class="dt">nrow =</span> <span class="dv">100</span>, <span class="dt">ncol =</span> <span class="dv">1</span>), <span class="dv">1</span>, <span class="cf">function</span>(x) <span class="kw">sample</span>(<span class="dv">20</span>))
@@ -529,7 +529,7 @@ random_p.value</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
 paua &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/paua.csv&quot;</span>)</code></pre></div>
 <p><strong>Scientific question</strong>: Are the shell lengths of shells the same in both species? <strong>Null hypothesis</strong>: The distribution of shell lengths in <em>Haliotis iris</em> the same as in <em>Haliotis australis</em> <strong>Test statistic</strong>: Difference of sample means</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
 <p>But because the data are skewed and we've likely got non-constant variances we may be better off adopting a randomization test, rather than a parametric t-test</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## observed differences in means
 diff_in_means &lt;-<span class="st"> </span>(paua <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(Species) <span class="op">%&gt;%</span>

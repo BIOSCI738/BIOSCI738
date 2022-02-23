@@ -316,7 +316,7 @@ penguins_nafree &lt;-<span class="st"> </span>penguins <span class="op">%&gt;%</
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> penguins_nafree, <span class="kw">aes</span>(<span class="dt">x =</span> bill_depth_mm)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_histogram</span>() <span class="op">+</span><span class="st"> </span><span class="kw">theme_classic</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Bill depth (mm)&quot;</span>)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-52-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
 <p>First off let's fit a null (intercept only) model. This in <em>old money</em> would be called a one sample t-test.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">slm_null &lt;-<span class="st"> </span><span class="kw">lm</span>(bill_depth_mm <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> penguins_nafree)
 <span class="kw">summary</span>(slm_null)<span class="op">$</span>coef</code></pre></div>
@@ -345,7 +345,7 @@ penguins_nafree &lt;-<span class="st"> </span>penguins <span class="op">%&gt;%</
 <span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Bill depth (mm)&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Bill length (mm)&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_classic</span>()
 p1</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-53-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">slm &lt;-<span class="st"> </span><span class="kw">lm</span>(bill_depth_mm <span class="op">~</span><span class="st"> </span>bill_length_mm, <span class="dt">data =</span> penguins_nafree)</code></pre></div>
 <p><strong>Model formula</strong></p>
 <p>This model is simply <span class="math display">\[Y_i = \alpha + \beta_1x_i + \epsilon_i\]</span> where for observation <span class="math inline">\(i\)</span> <span class="math inline">\(Y_i\)</span> is the value of the response (<code>bill_depth_mm</code>) and <span class="math inline">\(x_i\)</span> is the value of the explanatory variable (<code>bill_length_mm</code>); As above <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta_1\)</span> are parameters to be estimated. We could also write this model as</p>
@@ -369,7 +369,7 @@ penguins_nafree<span class="op">$</span>pred_vals &lt;-<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Bill depth (mm)&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Bill length (mm)&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_classic</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y =</span> pred_vals))</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-56-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-54-1.png" width="672" /></p>
 </div>
 <div id="one-factor-and-a-continous-variable" class="section level3">
 <h3>One factor and a continous variable</h3>
@@ -379,7 +379,7 @@ penguins_nafree<span class="op">$</span>pred_vals &lt;-<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Bill depth (mm)&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Bill length (mm)&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_classic</span>()
 p2</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-57-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-55-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">slm_sp &lt;-<span class="st"> </span><span class="kw">lm</span>(bill_depth_mm <span class="op">~</span><span class="st"> </span>bill_length_mm <span class="op">+</span><span class="st"> </span>species, <span class="dt">data =</span> penguins_nafree)</code></pre></div>
 <p><strong>Model formula</strong></p>
 <p>Now we have two explanatory variables, so our model formula becomes</p>
@@ -418,7 +418,7 @@ penguins_nafree<span class="op">$</span>pred_vals &lt;-<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Bill depth (mm)&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Bill length (mm)&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_classic</span>()  <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y =</span> pred_vals))</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-59-1.png" width="672" /></p>
 </div>
 <div id="interactions" class="section level3">
 <h3>Interactions</h3>
@@ -468,7 +468,7 @@ penguins_nafree<span class="op">$</span>pred_vals &lt;-<span class="st"> </span>
 <p>The estimated Gentoo-specific intercept term (y-axis line height) is therefore <span class="math inline">\(\hat{\alpha} + \hat{\beta_3} = 11.488 + (-6.367) = 5.121.\)</span> The Gentoo-specific bill length (mm) slope is then <span class="math inline">\(\hat{\beta_1} + \hat{\beta_5} = 0.177 + 0.031 = 0.208.\)</span> So, for every 1mm increase in bill length (mm) for the Gentoo penguins we estimate, on average, a 0.208mm increase in bill depth (mm), a slightly steeper slope than for the estimated Adelie relationship (i.e., we estimate that as Gentoo bills get longer their depth increases at a, slightly, greater rate than those of Adelie penguins).</p>
 <p>In summary, the main effect of species (i.e., <code>speciesChinstrap</code>: <code>Estimate</code> and <code>speciesGentoo</code>:<code>Estimate</code> ) again give the shift (up or down) of the lines from the <strong>Adelie</strong> level. However, these lines are no longer parallel (i.e., each species of penguin has a different estimated relationship between bill length and bill depth)!</p>
 <p>But, now we've specified this <em>all singing and dancing</em> interaction model we might ask <strong>are the non-parallel lines non-parallel enough to reject the parallel line model</strong>? Look at the plot below; what do you think?</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-66-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-64-1.png" width="672" /></p>
 </div>
 </div>
             </section>

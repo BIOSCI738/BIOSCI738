@@ -378,7 +378,7 @@ sem</code></pre></div>
 <p>Recall that a p-value is the probability under a specified statistical model that a statistical summary of the data would be equal to or more extreme than its observed value</p>
 <p>So in this case it's the probability, under the null hypothesis (<span class="math inline">\(\mu = 5\)</span>), that we would observe a statistic as least as extreme as we did.</p>
 <p>Under our null hypothesis the distribution of the t-statistic is as below. The one calculated from our hypothesis test was 1.2391. Now, remember that our alternative hypotheses was <span class="math inline">\(H_1: \mu \neq 5\)</span> so we have to consider both sides of the inequality; hence, anything as least as extreme is either <span class="math inline">\(&gt; 1.2391\)</span> or <span class="math inline">\(&lt; -1.2391\)</span> to our observed statistic (vertical lines). Anything as least as extreme is therefore given by the grey shaded areas.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
 <p>We can calculate the p-value using the <code>pt()</code> function (where <code>q</code> is our calculated t-statistic, and <code>df</code> are the degrees of freedom from above):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">2</span><span class="op">*</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pt</span>(<span class="dt">q  =</span> <span class="fl">1.2391</span>,<span class="dt">df =</span> <span class="dv">59</span>))</code></pre></div>
 <pre><code>## [1] 0.2202152</code></pre>
@@ -593,7 +593,7 @@ S
 <div id="between-group-ss-ssb" class="section level5">
 <h5>Between group SS (SSB)</h5>
 <p><strong>The idea</strong>: Assess <strong>distances</strong> between treatment (<em>surgical condition</em>) means relative to our uncertainty about the actual (<em>true</em>) treatment means.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-46-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
 <p><strong>Add up the differences:</strong> -1.192 + -0.703 + 1.895 = 0. <strong>This is always the case!</strong></p>
 <p><strong>So adding up the differences:</strong> -1.192 + -0.703 + 1.895 = 0. <strong>Not a great way to measure distances!</strong></p>
 <p><strong>Sums of Squares?</strong></p>
@@ -617,7 +617,7 @@ S
 <li>Add them up!</li>
 </ul>
 <p><strong>Within group SS (SSW)</strong> <em>unexplained variance</em></p>
-<p><img src="_main_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
 </div>
 <div id="f-statistic" class="section level5">
 <h5>F-statistic</h5>
@@ -641,7 +641,7 @@ S
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pf</span>(<span class="dt">q  =</span> <span class="fl">16.351</span>,<span class="dt">df1 =</span> <span class="dv">2</span>, <span class="dt">df2 =</span> <span class="dv">9</span>))</code></pre></div>
 <pre><code>## [1] 0.001007825</code></pre>
 <p>Thus, the probability of getting an <strong>F-statistic</strong> at least as extreme as the one we observe (think of the area under the tails of the curve below) <strong>p-value</strong> Pr(&gt;F)= 0.001 tells us we have sufficient evidence to reject <span class="math inline">\(H_0\)</span> at the 1% level of significance.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
 <p>Alternatively, we could do this in one step <strong>using <code>aov()</code>:</strong></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(<span class="kw">aov</span>(logAUC <span class="op">~</span><span class="st"> </span>Surgery, <span class="dt">data =</span> rats))</code></pre></div>
 <pre><code>##             Df Sum Sq Mean Sq F value  Pr(&gt;F)   
