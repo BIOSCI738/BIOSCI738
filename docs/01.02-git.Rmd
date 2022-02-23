@@ -41,12 +41,12 @@ To setup an RStudio `.RProj` project go to **Project** (top right) > **New Proje
 
 **Always start with a clean workspace** **Why?** *So your ex (code) can't come and mess up your life!*
 
-<p align="center">![](https://memegenerator.net/img/instances/57296391/when-your-ex-texts-you-after-months-hey-whats-up-not-today-satan-not-today.jpg){width="20%"}</p>
+<p align="center">![](https://memegenerator.net/img/instances/57296391/when-your-ex-texts-you-after-months-hey-whats-up-not-today-satan-not-today.jpg){width="30%"}</p>
 
 
 To ensure this go to **Tools** > **Global Options** and uncheck the highlighted options.
 
-<p align="center">![](https://miro.medium.com/max/2784/1*dUNl71Jic2zYhYS2hxOBZA.png){width="30%"}</p>
+<p align="center">![](https://miro.medium.com/max/2784/1*dUNl71Jic2zYhYS2hxOBZA.png){width="50%"}</p>
 
 
 **`r emo::ji("warning")`Warning`r emo::ji("warning")`**
@@ -64,7 +64,7 @@ To ensure this go to **Tools** > **Global Options** and uncheck the highlighted 
 ### Version control with `git` and GitHub
 
 
-<p align="center">![](https://images3.memedroid.com/images/UPLOADED29/5b7d571106c71.jpeg){width="30%"}</p>
+<p align="center">![](https://images3.memedroid.com/images/UPLOADED29/5b7d571106c71.jpeg){width="40%"}</p>
 
 Git is a version control system that manages the evolution of a set of files, called a repository (repo), in a structured way (think of Word's Track Changes). With Git you can track the changes you make to your project/code. You will **always** have a record of what you've worked on and can easily revert back to an older version if you make a mistake. GitHub is a hosting service that provides a home for your Git-based projects on the internet (think of Dropbox). In addition, GitHub offers functionality to use Git online via an easy-to-use interface. Both Git and GitHub can very easily be configured to work with RStudio.
   
@@ -78,7 +78,7 @@ Below are some key terms you will undoubtedly hear when delving into the git--Gi
 
 #### Setting up
 
- 1.  Register an account with GitHub [https://github.com](https://github.com). I would recommend choosing the free option!
+ 1.  Register an account with GitHub [https://github.com](https://github.com). Choose the free option!
  2.  Make sure you've got the latest version of `R`
 ```{r version}
 R.version.string
@@ -91,37 +91,37 @@ R.version.string
 
   1. In `GitHub`, navigate to the Code tab of the repository and on the right side of the screen, click `Clone or download`.
   2. Click the `Copy to clipboard` icon to the right of the repository URL 
-  <p align="center">![](img/gh_code.png){width="30%"}</p>
+  <p align="center">![](img/gh_code.png){width="50%"}</p>
   
   3. Open `RStudio` in your local environment
   4. Click `File`, `New Project`, `Version Control`, `Git`
-  <p align="center">![](img/rstudio_new_project.png){width="20%"}![](img/rstudio_git.png){width="30%"}</p>
+  <p align="center">![](img/rstudio_new_project.png){width="40%"}![](img/rstudio_git.png){width="40%"}</p>
   
   5. Paste the repository URL and enter TAB to move to the `Project directory name` field.
-  <p align="center">![](img/rstudio_clone.png){width="30%"}</p>
+  <p align="center">![](img/rstudio_clone.png){width="50%"}</p>
   
   6.Click `Create Project`. Your *Files* pane should now look similar to this
-  <p align="center">![](img/files.png){width="30%"}</p>
+  <p align="center">![](img/files.png){width="50%"}</p>
 
 #### Commiting and pushing changes
 
  1. Open a file from your project directory (here I've opened the file `README.md`). Note that the `Git` pane (top right) is empty
  
- <p align="center">![](img/git_push_setup.png){width="30%"}</p>
+ <p align="center">![](img/git_push_setup.png){width="60%"}</p>
  
  2. Make a change to your file and save. Now note that the `Git` pane (top right) is not empty:
  
- <p align="center">![](img/git_staged.png){width="30%"}</p>
+ <p align="center">![](img/git_staged.png){width="50%"}</p>
  
  3. Check this file in the `Git` tab (it is now *staged* for commit).
  
  4. Click the **Commit** button. A new pane will open. Changes made to the file will be highlighted (additions in green and deletions in red). Now write your self an **informative** message in the top right of this pop-up:
  
- <p align="center">![](img/git_commit.png){width="30%"}</p>
+ <p align="center">![](img/git_commit.png){width="60%"}</p>
  
  5. Click the **Commit** button below the message you've just written. A new pop up will let you know how things are going! You can then close both popups.
  
- <p align="center">![](img/git_commit_popup.png){width="30%"}</p>
+ <p align="center">![](img/git_commit_popup.png){width="50%"}</p>
  
  6. Now you'll see RStudio has left you a little message in the `Git` tab, something similar to `Your branch is ahead of origin/master by 1 commit`. This means that you've made and commited your changes locally (i.e., on your computer) but you are yet to **push** these changes to GitHub.
  
@@ -129,7 +129,7 @@ R.version.string
  
  8. A new pop up will let you know how things are going! You can then close this once it gives you the option to.
  
-  <p align="center">![](img/git_push.png){width="30%"}</p>
+  <p align="center">![](img/git_push.png){width="50%"}</p>
  
 
 
