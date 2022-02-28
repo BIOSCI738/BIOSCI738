@@ -306,8 +306,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Why ensure that your data is <code>tidy</code>? 1) <strong>Consistency:</strong> using a consistent format aids learning and reproducibility, and 2) <strong>simplicity:</strong> it's a format that is well understood by <code>R</code>!</p>
 <div id="introuducing-the-palmer-penguins" class="section level3">
 <h3>Introuducing the <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0090081">Palmer penguins</a></h3>
+<p>These data are included in the <code>R</code> package <code>palmerpenguins</code>; to access the data and follow along with this, and following, sections you should first install the package using <code>install.packages(&quot;palmerpenguins&quot;</code>). Then remember to load the package, using <code>library(palmerpenguins)</code>, into your workspace each new <code>R</code> session in which you wish to use these data.</p>
 <iframe src="https://giphy.com/embed/3og0IO5z8Rd30ktV6g" width="40%" height="400px" data-external="1" style="border: none;">
 </iframe>
+<p>Let's first have a look at the data:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(palmerpenguins) ## contains some nice penguin data
 penguins</code></pre></div>
 <pre><code>## # A tibble: 344 × 8

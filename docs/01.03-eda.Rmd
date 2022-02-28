@@ -126,10 +126,14 @@ Why ensure that your data is `tidy`?  1) **Consistency:** using a consistent for
  
 ### Introuducing the [Palmer penguins](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0090081)
 
+These data are included in the `R` package `palmerpenguins`; to access the data and follow along with this, and following, sections you should first install the package using `install.packages("palmerpenguins"`). Then remember to load the package, using `library(palmerpenguins)`, into your workspace each new `R` session in which you wish to use these data.
+
 
 ```{r embed, out.extra='style="border: none;"', out.width='40%', echo = FALSE, fig.align='center'}
 knitr::include_url('https://giphy.com/embed/3og0IO5z8Rd30ktV6g')
 ```
+
+Let's first have a look at the data:
 
 ```{r}
 library(palmerpenguins) ## contains some nice penguin data
