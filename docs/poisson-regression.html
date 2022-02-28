@@ -347,7 +347,7 @@ birds</code></pre></div>
 ##  9 LUNAEXP     extensive  Turdus_merula            103
 ## 10 LUNAEXP     extensive  Phylloscopus_collybita    10
 ## # … with 70 more rows</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-178-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-179-1.png" width="672" /></p>
 <p>Fitting a poisson model we specify <code>family = &quot;poisson&quot;</code> in a call to <code>glm()</code>. Note that the default link function for <code>family = &quot;poisson&quot;</code> is the log link; we could also use the equivalent syntax <code>poisson(link = log)</code> to specify this model. Or, we could change the link function to something else (e.g., <code>poisson(link = identity)</code>) that makes sense.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">glm_bird &lt;-<span class="st"> </span><span class="kw">glm</span>(Count <span class="op">~</span><span class="st"> </span>Species, <span class="dt">data =</span> birds, <span class="dt">family =</span> <span class="st">&quot;poisson&quot;</span>)
 <span class="kw">summary</span>(glm_bird)</code></pre></div>
@@ -408,7 +408,7 @@ confint</code></pre></div>
 <pre><code>##    2.5 %   97.5 % 
 ## 137.9259 178.6742</code></pre>
 <p>So, we estimate that expected number of <em>Turdus merula</em> is between 137.93% and 178.67% greater than <em>Phylloscopus collybita</em>.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-186-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-187-1.png" width="672" /></p>
 </div>
 <div id="deviance" class="section level4">
 <h4>Deviance</h4>

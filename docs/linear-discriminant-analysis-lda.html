@@ -309,7 +309,7 @@ diabetes</code></pre></div>
        <span class="kw">aes</span>(<span class="dt">x =</span> value, <span class="dt">col =</span> group)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_density</span>() <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>( <span class="op">~</span>variable, <span class="dt">ncol =</span> <span class="dv">1</span>, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-253-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-254-1.png" width="672" /></p>
 <p>Possible classification rules?</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(diabetes, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> insulin, <span class="dt">y =</span> glutest)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span>
@@ -317,7 +317,7 @@ diabetes</code></pre></div>
 <span class="st">  </span><span class="kw">labs</span>( <span class="dt">x =</span> <span class="st">&quot;insulin&quot;</span> , <span class="dt">y =</span> <span class="st">&quot;glutest&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.title =</span> <span class="kw">element_text</span>( <span class="dt">size =</span> <span class="dv">16</span>),
         <span class="dt">axis.text  =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">12</span>))</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-254-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-255-1.png" width="672" /></p>
 <div id="carrying-out-lda" class="section level4">
 <h4>Carrying out LDA</h4>
 <p><strong>Some similarity to regression</strong></p>
@@ -357,7 +357,7 @@ diabetes_lda</code></pre></div>
 <ul>
 <li><code>diabetes_lda$mean</code> gives the means of each predictor in each group:</li>
 </ul>
-<p><img src="_main_files/figure-html/unnamed-chunk-257-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-258-1.png" width="672" /></p>
 <ul>
 <li><p><code>Proportion of Trace</code> gives the percentage separation achieved by each discriminant function</p></li>
 <li><p><code>diabetes_lda$scaling</code> contains the linear discriminant functions (i.e., the linear combination of variables giving best separation between groups):</p></li>
@@ -408,7 +408,7 @@ diabetes_lda</code></pre></div>
 <li>Every possible point is classified to one of three groups</li>
 <li>The divisions between groups are linear (<strong>Linear</strong> Discriminant Analysis)</li>
 </ul>
-<p><img src="_main_files/figure-html/unnamed-chunk-262-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-263-1.png" width="672" /></p>
 <p>The three ellipses represent the class centres and the covariance matrix of the LDA model. Note there is only <strong>one</strong> covariance matrix, which is the same for all three classes. This results in</p>
 <ul>
 <li>the sizes and orientations of the ellipses being the same for the three classes (only their centres differ)</li>
@@ -428,7 +428,7 @@ diabetes_lda</code></pre></div>
 <span class="kw">mean</span>(equal.ghat <span class="op">!=</span><span class="st"> </span>diabetes<span class="op">$</span>group)</code></pre></div>
 <pre><code>## [1] 0.1666667</code></pre>
 <p>There are now 8 cases classified as Group 3 with prior weights classified as Group 2 with equal weights <span class="math inline">\(\rightarrow\)</span> bias towards group with larger initial size.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-264-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-265-1.png" width="672" /></p>
 
 </div>
 </div>
