@@ -160,7 +160,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#some-mathematical-notation"><i class="fa fa-check"></i>Some mathematical notation</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#modeling-bill-depth"><i class="fa fa-check"></i>Modeling Bill Depth</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#single-continuous-variable"><i class="fa fa-check"></i>Single continuous variable</a></li>
-<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#one-factor-and-a-continous-variable"><i class="fa fa-check"></i>One factor and a continous variable</a></li>
+<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#one-factor-and-a-continuous-variable"><i class="fa fa-check"></i>One factor and a continuous variable</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#interactions"><i class="fa fa-check"></i>Interactions</a></li>
 </ul></li>
 <li><a href="model-formula-syntax-in-r.html#model-formula-syntax-in-r">Model formula syntax in <code>R</code></a><ul>
@@ -286,7 +286,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>The original sample represents the <strong>distribution of the population</strong> from which it was drawn. Resamples, taken <strong>with replacement</strong> from the original sample are representative of what we would get from drawing many samples from the population (the distribution of the statistics calculated from each resample is known as the <em>bootstrap distribution</em> of the statistic). The bootstrap distribution of a statistic represents that statistic's <strong>sampling distribution</strong>.</p>
 <div id="example-constructing-bootstrap-confidence-intervals" class="section level3">
 <h3>Example: constructing bootstrap confidence intervals</h3>
-<p><strong>Old faithful</strong> is a gyser located in Yellowstone National Park, Wyoming. Below is a histogram of the durations of 299 consecutive eruptions. Clearly the distribution is bimodal (has two modes)!</p>
+<p><strong>Old faithful</strong> is a gyser located in Yellowstone National Park, Wyoming. Below is a histogram of the duration of 299 consecutive eruptions. Clearly the distribution is bimodal (has two modes)!</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
 <span class="kw">ggplot</span>(<span class="dt">data =</span> MASS<span class="op">::</span>geyser, <span class="kw">aes</span>(<span class="dt">x =</span> duration)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_histogram</span>() <span class="op">+</span>
@@ -310,7 +310,7 @@ bootstrap_means &lt;-<span class="st"> </span><span class="kw">numeric</span>(nr
 <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>nreps) {
   ## bootstrap. note with replacement
   bootstrap_sample &lt;-<span class="st"> </span><span class="kw">sample</span>(MASS<span class="op">::</span>geyser<span class="op">$</span>duration, <span class="dt">replace =</span> <span class="ot">TRUE</span>)
-  ##  bootstraped mean resample
+  ##  bootstrapped mean resample
   bootstrap_means[i] &lt;-<span class="st"> </span><span class="kw">mean</span>(bootstrap_sample)
 }</code></pre></div>
 <p><strong>Step 3:</strong> Collate the sampling distribution</p>
@@ -324,7 +324,7 @@ results &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span c
 <p><img src="_main_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
 <p><strong>Step 4:</strong> Calculate quantities of interest from the sampling distribution</p>
 <ol style="list-style-type: decimal">
-<li>The <strong>bootstrap estimate of bias</strong> is the difference between the mean of the boostrap distribution and the value of the statistic in the original sample:</li>
+<li>The <strong>bootstrap estimate of bias</strong> is the difference between the mean of the bootstrap distribution and the value of the statistic in the original sample:</li>
 </ol>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">bias &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(mean) <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(results<span class="op">$</span>bootstrap_means)
 bias</code></pre></div>
@@ -340,7 +340,7 @@ bias</code></pre></div>
 <pre><code>##          sem
 ## 1 0.06638498</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li>A <strong>Bootstrap <span class="math inline">\(t\)</span> confidence interval.</strong> If, for a sample of size <span class="math inline">\(n\)</span>, the boostrap distribution is approximately Normal and the estimate of bias is small then an approximate <span class="math inline">\(C\)</span> confidence for the parameter corresponding to the statistic is:</li>
+<li>A <strong>Bootstrap <span class="math inline">\(t\)</span> confidence interval.</strong> If, for a sample of size <span class="math inline">\(n\)</span>, the bootstrap distribution is approximately Normal and the estimate of bias is small then an approximate <span class="math inline">\(C\)</span> confidence for the parameter corresponding to the statistic is:</li>
 </ol>
 <p><span class="math display">\[\text{statistic} \pm t^* \text{SE}_\text{bootstrap}\]</span> where <span class="math inline">\(t*\)</span> is the critical value of the <span class="math inline">\(t_{n-1}\)</span> distribution with area <span class="math inline">\(C\)</span> between <span class="math inline">\(-t^*\)</span> and <span class="math inline">\(t^*\)</span>.</p>
 <p>For <span class="math inline">\(C = 0.95\)</span>:</p>

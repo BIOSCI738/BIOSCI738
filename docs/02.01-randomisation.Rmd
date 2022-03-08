@@ -108,7 +108,7 @@ The original sample represents the **distribution of the population** from which
 
 ### Example: constructing bootstrap confidence intervals
 
-**Old faithful** is a gyser located in Yellowstone National Park, Wyoming. Below is a histogram of the durations of 299 consecutive eruptions. Clearly the distribution is bimodal (has two modes)!
+**Old faithful** is a gyser located in Yellowstone National Park, Wyoming. Below is a histogram of the duration of 299 consecutive eruptions. Clearly the distribution is bimodal (has two modes)!
 
 ```{r,message = FALSE, warning = FALSE}
 library(tidyverse)
@@ -141,7 +141,7 @@ set.seed(1234) ## *****Remove this line for actual analyses*****
 for (i in 1:nreps) {
   ## bootstrap. note with replacement
   bootstrap_sample <- sample(MASS::geyser$duration, replace = TRUE)
-  ##  bootstraped mean resample
+  ##  bootstrapped mean resample
   bootstrap_means[i] <- mean(bootstrap_sample)
 }
 ```
@@ -163,7 +163,7 @@ ggplot(data = results, aes(x = bootstrap_means)) +
 **Step 4:** Calculate quantities of interest from the sampling distribution
 
 
-   1. The **bootstrap estimate of bias** is the difference between the mean of the boostrap distribution and the value of the statistic in the original sample:
+   1. The **bootstrap estimate of bias** is the difference between the mean of the bootstrap distribution and the value of the statistic in the original sample:
 
 ```{r}
 bias <- as.numeric(mean) - mean(results$bootstrap_means)
@@ -180,7 +180,7 @@ sd(results$bootstrap_means)
   summarise(sem = sd(duration)/sqrt(length(duration)))
 ```
 
-  3. A **Bootstrap $t$ confidence interval.** If, for a sample of size $n$, the boostrap distribution is approximately Normal and the estimate of bias is small then an approximate $C$ confidence for the parameter corresponding to the statistic is:
+  3. A **Bootstrap $t$ confidence interval.** If, for a sample of size $n$, the bootstrap distribution is approximately Normal and the estimate of bias is small then an approximate $C$ confidence for the parameter corresponding to the statistic is:
 
 $$\text{statistic} \pm t^* \text{SE}_\text{bootstrap}$$ where $t*$ is the critical value of the $t_{n-1}$ distribution with area $C$ between $-t^*$ and $t^*$. 
 
@@ -296,18 +296,20 @@ Rather than considering **all** possible combinations we might rather use 100 ra
 
 ```{r}
 ## set up matrix
-random_perm <- apply(matrix(0, nrow = 100, ncol = 1), 1, function(x) sample(20))
+random_perm <- apply(matrix(0, nrow = 99, ncol = 1), 1, function(x) sample(20))
 random_mean_diff <- apply(random_perm, 2, function(x){
   z <- jackal$mandible_length_mm[x]
   mean(z[jackal$sex == "Male"]) - mean(z[jackal$sex == "Female"])
 })
-random_p.value <- length(random_mean_diff [abs(random_mean_diff) >= jackal_mean_diff]) / 100 ## note the abs()
+## add the observed 
+random_mean_diff <- c(random_mean_diff, jackal_mean_diff)
+random_p.value <- length(random_mean_diff[abs(random_mean_diff) >= jackal_mean_diff]) / 100 ## note the abs()
 random_p.value
 ```
 
 How does this compare to the exact (permutation) results above? Try increasing the number of times you randomise? What happens as you increase it?
 
-#### A randomisation test:  Pāua shell lengths
+#### A randomisation test:  Pāua shell length
 
 
 Remember the Pāua data from the previous module? The dataset contains the following variables
@@ -342,7 +344,7 @@ ggplot(paua,aes(x = Species, y = Length)) +
   
 ```
 
-But because the data are skewed and we've likely got non-constant variances we may be better off adopting a randomization test, rather than a parametric t-test
+But because the data are skewed and we've likely got non-constant variances we may be better off adopting a randomization test (this time using a `for` loop!), rather than a parametric t-test
 
 ```{r}
 ## observed differences in means
@@ -369,7 +371,7 @@ for (i in 1:nreps) {
     summarise(diff = diff(mean)) %>%
     as.numeric()
 }
-## results. join with the observed value
+## results, join randomised stats with the observed value
 results <- data.frame(results = c(randomisation_difference_mean, diff_in_means))
 ```
 
@@ -413,7 +415,7 @@ Resampling methods are any of a variety of methods for doing one of the followin
 
 + A bootstrap estimates the probability mechanism that generated the samples under the null hypothesis.
 
-+ A bootstrap does **not** library any special symmetry or assumption or exchangability.
++ A bootstrap does **not** rely on any special symmetry or assumption or exchangeability.
 
 
 

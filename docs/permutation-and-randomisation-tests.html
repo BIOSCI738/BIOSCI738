@@ -160,7 +160,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#some-mathematical-notation"><i class="fa fa-check"></i>Some mathematical notation</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#modeling-bill-depth"><i class="fa fa-check"></i>Modeling Bill Depth</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#single-continuous-variable"><i class="fa fa-check"></i>Single continuous variable</a></li>
-<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#one-factor-and-a-continous-variable"><i class="fa fa-check"></i>One factor and a continous variable</a></li>
+<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#one-factor-and-a-continuous-variable"><i class="fa fa-check"></i>One factor and a continuous variable</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#interactions"><i class="fa fa-check"></i>Interactions</a></li>
 </ul></li>
 <li><a href="model-formula-syntax-in-r.html#model-formula-syntax-in-r">Model formula syntax in <code>R</code></a><ul>
@@ -508,17 +508,19 @@ p_val</code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
 <p>Rather than considering <strong>all</strong> possible combinations we might rather use 100 random permutations under the null hypothesis. Here, we sample <strong>without</strong> replacement:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## set up matrix
-random_perm &lt;-<span class="st"> </span><span class="kw">apply</span>(<span class="kw">matrix</span>(<span class="dv">0</span>, <span class="dt">nrow =</span> <span class="dv">100</span>, <span class="dt">ncol =</span> <span class="dv">1</span>), <span class="dv">1</span>, <span class="cf">function</span>(x) <span class="kw">sample</span>(<span class="dv">20</span>))
+random_perm &lt;-<span class="st"> </span><span class="kw">apply</span>(<span class="kw">matrix</span>(<span class="dv">0</span>, <span class="dt">nrow =</span> <span class="dv">99</span>, <span class="dt">ncol =</span> <span class="dv">1</span>), <span class="dv">1</span>, <span class="cf">function</span>(x) <span class="kw">sample</span>(<span class="dv">20</span>))
 random_mean_diff &lt;-<span class="st"> </span><span class="kw">apply</span>(random_perm, <span class="dv">2</span>, <span class="cf">function</span>(x){
   z &lt;-<span class="st"> </span>jackal<span class="op">$</span>mandible_length_mm[x]
   <span class="kw">mean</span>(z[jackal<span class="op">$</span>sex <span class="op">==</span><span class="st"> &quot;Male&quot;</span>]) <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(z[jackal<span class="op">$</span>sex <span class="op">==</span><span class="st"> &quot;Female&quot;</span>])
 })
-random_p.value &lt;-<span class="st"> </span><span class="kw">length</span>(random_mean_diff [<span class="kw">abs</span>(random_mean_diff) <span class="op">&gt;=</span><span class="st"> </span>jackal_mean_diff]) <span class="op">/</span><span class="st"> </span><span class="dv">100</span> ## note the abs()
+## add the observed 
+random_mean_diff &lt;-<span class="st"> </span><span class="kw">c</span>(random_mean_diff, jackal_mean_diff)
+random_p.value &lt;-<span class="st"> </span><span class="kw">length</span>(random_mean_diff[<span class="kw">abs</span>(random_mean_diff) <span class="op">&gt;=</span><span class="st"> </span>jackal_mean_diff]) <span class="op">/</span><span class="st"> </span><span class="dv">100</span> ## note the abs()
 random_p.value</code></pre></div>
-<pre><code>## [1] 0</code></pre>
+<pre><code>## [1] 0.01</code></pre>
 <p>How does this compare to the exact (permutation) results above? Try increasing the number of times you randomise? What happens as you increase it?</p>
-<div id="a-randomisation-test-pāua-shell-lengths" class="section level4">
-<h4>A randomisation test: Pāua shell lengths</h4>
+<div id="a-randomisation-test-pāua-shell-length" class="section level4">
+<h4>A randomisation test: Pāua shell length</h4>
 <p>Remember the Pāua data from the previous module? The dataset contains the following variables</p>
 <ul>
 <li><code>Age</code> of P<span class="math inline">\(\overline{\text{a}}\)</span>ua in years (calculated from counting rings in the cone)</li>
@@ -530,7 +532,7 @@ random_p.value</code></pre></div>
 paua &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/paua.csv&quot;</span>)</code></pre></div>
 <p><strong>Scientific question</strong>: Are the shell lengths of shells the same in both species? <strong>Null hypothesis</strong>: The distribution of shell lengths in <em>Haliotis iris</em> the same as in <em>Haliotis australis</em> <strong>Test statistic</strong>: Difference of sample means</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
-<p>But because the data are skewed and we've likely got non-constant variances we may be better off adopting a randomization test, rather than a parametric t-test</p>
+<p>But because the data are skewed and we've likely got non-constant variances we may be better off adopting a randomization test (this time using a <code>for</code> loop!), rather than a parametric t-test</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## observed differences in means
 diff_in_means &lt;-<span class="st"> </span>(paua <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(Species) <span class="op">%&gt;%</span>
 <span class="st">                    </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(Length)) <span class="op">%&gt;%</span><span class="st"> </span>
@@ -556,7 +558,7 @@ randomisation_difference_mean &lt;-<span class="st"> </span><span class="kw">num
 <span class="st">    </span><span class="kw">summarise</span>(<span class="dt">diff =</span> <span class="kw">diff</span>(mean)) <span class="op">%&gt;%</span>
 <span class="st">    </span><span class="kw">as.numeric</span>()
 }
-## results. join with the observed value
+## results, join randomised stats with the observed value
 results &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">results =</span> <span class="kw">c</span>(randomisation_difference_mean, diff_in_means))</code></pre></div>
 <p>Let's calculate how many randomised differences in means are <em>as least as extreme</em> as the one we observed. Note that we library the absolute value as dealing with a two tailed test.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n_exceed &lt;-<span class="st"> </span><span class="kw">sum</span>(<span class="kw">abs</span>(results<span class="op">$</span>results) <span class="op">&gt;=</span><span class="st"> </span><span class="kw">abs</span>(diff_in_means))

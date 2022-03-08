@@ -130,7 +130,7 @@ ggplot(data = penguins_nafree, aes(x = bill_length_mm, y = bill_depth_mm)) +
 
 ```
 
-### One factor and a continous variable
+### One factor and a continuous variable
 
 **Adding** `species`; remember `species` is a factor variable!
 
