@@ -316,7 +316,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p><span class="math display">\[\text{95% CI} = \text{difference} \pm (\text{scale factor} \times \text{SED}),\]</span> where SED is the standard error of the difference (which depends on group replication). The choice of scale factor depends on what adjustments we might want to make. Below we cover three common adjustments. Specifically where (scale factor × SED) is the 1) Fisher correction LSD, 2) Bonferroni correction LSD, and 3) Tukey's HSD.</p>
 <div id="fishers-least-significant-difference-lsd" class="section level4">
 <h4>Fisher’s Least Significant Difference (LSD)</h4>
-<p>To calculate the LSD the <span class="math inline">\(t\)</span>-distribution is used, specifically the <span class="math display">\[t_{\alpha = \frac{\alpha_c}{2}, \text{df} = N - m}\]</span> distribution, where <span class="math inline">\(N\)</span> is the number of observations and <span class="math inline">\(m\)</span> is the number of treatment groups. To obtain the critical value for $_c = 0.05 $, <span class="math inline">\(N = 12\)</span> and <span class="math inline">\(m = 3\)</span> the following code can be used in <code>R</code>.</p>
+<p>To calculate the LSD the <span class="math inline">\(t\)</span>-distribution is used, specifically the <span class="math display">\[t_{\alpha = \frac{\alpha_c}{2}, \text{df} = N - m}\]</span> distribution, where <span class="math inline">\(N\)</span> is the number of observations and <span class="math inline">\(m\)</span> is the number of treatment groups. To obtain the critical value for <span class="math inline">\(\alpha_c = 0.05\)</span>, <span class="math inline">\(N = 12\)</span> and <span class="math inline">\(m = 3\)</span> the following code can be used in <code>R</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qt</span>(<span class="dt">p =</span> <span class="fl">0.05</span><span class="op">/</span><span class="dv">2</span>,<span class="dt">df =</span> <span class="dv">12</span> <span class="op">-</span><span class="st"> </span><span class="dv">3</span>, <span class="dt">lower.tail =</span> <span class="ot">FALSE</span>)</code></pre></div>
 <pre><code>## [1] 2.262157</code></pre>
 <p>Fisher's LSD is then <span class="math display">\[t_{\alpha = \frac{\alpha_c}{2}, \text{df} = N - m} \times \text{SED}.\]</span></p>
@@ -325,7 +325,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="bonferroni-correction" class="section level4">
 <h4>Bonferroni correction</h4>
 <p>To calculate Bonferroni correction the <span class="math inline">\(t\)</span>-distribution is used, specifically the <span class="math display">\[t_{\alpha = \frac{\alpha_c}{2 \times k}, \text{df} = N - m}\]</span> distribution, where <span class="math inline">\(N\)</span> is the number of observations, <span class="math inline">\(m\)</span> is the number of treatment groups, and <span class="math inline">\(k = {m \choose 2}\)</span> is the number of pairwise comparisons being made.</p>
-<p>To obtain the critical value for $_c = 0.05 $, <span class="math inline">\(N = 12\)</span> and <span class="math inline">\(m = 3\)</span> the following code can be used in <code>R</code>.</p>
+<p>To obtain the critical value for <span class="math inline">\(\alpha_c = 0.05\)</span>, <span class="math inline">\(N = 12\)</span> and <span class="math inline">\(m = 3\)</span> the following code can be used in <code>R</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qt</span>(<span class="dt">p =</span> <span class="fl">0.05</span><span class="op">/</span>(<span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="kw">choose</span>(<span class="dv">3</span>,<span class="dv">2</span>)),<span class="dt">df =</span> <span class="dv">12</span> <span class="op">-</span><span class="st"> </span><span class="dv">3</span>, <span class="dt">lower.tail =</span> <span class="ot">FALSE</span>)</code></pre></div>
 <pre><code>## [1] 2.933324</code></pre>
 <p>Bonferroni's LSD is then <span class="math display">\[t_{\alpha = \frac{\alpha_c}{2 \times k}, \text{df} = N - m} \times \text{SED}.\]</span></p>
@@ -334,10 +334,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="tukeys-honest-significant-difference-hsd" class="section level4">
 <h4>Tukey’s Honest Significant Difference (HSD)</h4>
 <p>This compares the mean of every treatment with the mean of every other treatment and uses a <em>studentised range</em> distribution compared with a <span class="math inline">\(t\)</span>-distribution for Fisher's LSD and the Bonferroni correction. Therefore to calculate the HSD the <em>studentised range</em> distribution is used, specifically the <span class="math display">\[q_{ 1- \alpha_c, m, \text{df} = N - m}\]</span> distribution, where <span class="math inline">\(N\)</span> is the number of observations, <span class="math inline">\(m\)</span> is the number of treatment groups, and <span class="math inline">\(q_{\alpha,m,\text{df}}\)</span> quantile of the studendised distribution.</p>
-<p>To obtain the critical value for $_c = 0.05 $, <span class="math inline">\(N = 12\)</span> and <span class="math inline">\(m = 3\)</span> the following code can be used in <code>R</code>.</p>
+<p>To obtain the critical value for <span class="math inline">\(\alpha_c = 0.05\)</span>, <span class="math inline">\(N = 12\)</span> and <span class="math inline">\(m = 3\)</span> the following code can be used in <code>R</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">qtukey</span>(<span class="dt">p =</span> <span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.05</span>, <span class="dt">nmeans =</span> <span class="dv">3</span>, <span class="dt">df =</span> <span class="dv">12</span> <span class="op">-</span><span class="st"> </span><span class="dv">3</span>)</code></pre></div>
 <pre><code>## [1] -2.948492</code></pre>
-<p>Tukey's HSD is given by <span class="math display">\[\frac{q_{ 1 - \alpha_c, m, \text{df} = N - m}}{\sqrt{2}} \times \sqrt{\frac{2\hat{\sigma}^2}{n}}.\]</span> Here <span class="math inline">\(\hat{\sigma}^2\)</span> is the Residual Mean Square Error and <span class="math inline">\(n\)</span> is the assumed equal number of replicates in each group.</p>
+<p>Tukey's HSD is given by <span class="math display">\[\frac{q_{ 1 - \alpha_c, m, \text{df} = N - m}}{\sqrt{2}} \times \sqrt{\frac{2\hat{\sigma}^2}{n}}.\]</span> Here <span class="math inline">\(\hat{\sigma}^2\)</span> is the residual mean square error and <span class="math inline">\(n\)</span> is the assumed equal number of replicates in each group.</p>
 </div>
 </div>
 <div id="classification-of-multiple-hypothesis-tests" class="section level3">
@@ -733,7 +733,7 @@ comparison_table</code></pre></div>
 <p>This, gives us the same information as <code>predictmeans</code> but in an easier to read format (still no CIs though, we still have to calculate those ourselves!)</p>
 <p>However, the <code>emmeans</code>package facilitates some nice plotting of the pairwise comparisons:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(em, <span class="dt">comparisons =</span> <span class="ot">TRUE</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>()</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-132-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-133-1.png" width="672" /></p>
 
 </div>
 </div>

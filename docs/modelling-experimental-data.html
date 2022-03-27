@@ -291,7 +291,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Or you might think of the model as</p>
 <p><span class="math display">\[Y_{ik} = \mu_k + \epsilon_{ik}\]</span></p>
 <p>where <span class="math inline">\(Y_{ik}\)</span> is the response (i.e., observed coffee opacity) for the <span class="math inline">\(i^{th}\)</span> experimental unit (i.e., coffee cup) subjected to the <span class="math inline">\(k^{th}\)</span> level of the treatment factor (i.e., coffee type). Here <span class="math inline">\(\mu_k\)</span> are the different (cell) means for each level of the treatment factor. See below for an illustration of this for three factor treatment levels (as in the coffee example above).</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-85-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-86-1.png" width="672" /></p>
 </div>
 <div id="analysis-of-a-crd-in-r" class="section level3">
 <h3>Analysis of a CRD in <code>R</code></h3>
@@ -471,7 +471,7 @@ S
 <p>SE of (Intercept) = SE of <span class="math inline">\(\text{mean}_C\)</span> = SEM = 0.4102531</p>
 <p><span class="math inline">\(\text{Surgery}_P\)</span> = <span class="math inline">\(\text{mean}_P\)</span> – <span class="math inline">\(\text{mean}_C\)</span> = 0.49</p>
 <p>SE of <span class="math inline">\(\text{Surgery}_P\)</span> = SE of (<span class="math inline">\(\text{mean}_P\)</span> - <span class="math inline">\(\text{mean}_C\)</span> ) = SED = 0.5801856</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-88-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-89-1.png" width="672" /></p>
 <p><strong>Hypotheses being tested</strong></p>
 <p>The <code>t</code> value and <code>Pr (&gt;|t|)</code> are the t-statistic and p-value for testing the null hypotheses listed below 1. Mean abundance is zero for <code>C</code> population 2. No difference between the population means of <code>P</code> and <code>C</code> 3. No difference between the population means of <code>S</code> and <code>C</code></p>
 <p>We're interested in 2 and 3, but not necessarily 1!</p>
@@ -1183,7 +1183,7 @@ fit.abi &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC <span cl
 <p><strong>Balanced design</strong></p>
 <table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-102">Table 1: </span>logAUC data from a balanced design
+<span id="tab:unnamed-chunk-103">Table 1: </span>logAUC data from a balanced design
 </caption>
 <thead>
 <tr>
@@ -1351,7 +1351,7 @@ Grand mean
 </table>
 <table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-102">Table 1: </span>Cell means
+<span id="tab:unnamed-chunk-103">Table 1: </span>Cell means
 </caption>
 <thead>
 <tr>
@@ -1415,7 +1415,7 @@ outerLV
 </table>
 <table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-102">Table 1: </span>Marginal (organ) mean
+<span id="tab:unnamed-chunk-103">Table 1: </span>Marginal (organ) mean
 </caption>
 <thead>
 <tr>
@@ -1448,7 +1448,7 @@ outerLV
 </table>
 <table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-102">Table 1: </span>Marginal (disease) mean
+<span id="tab:unnamed-chunk-103">Table 1: </span>Marginal (disease) mean
 </caption>
 <thead>
 <tr>
@@ -1482,7 +1482,7 @@ Healthy
 <p><strong>Unbalanced design</strong> (Unequal replication due to missing data)</p>
 <table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-103">Table 2: </span>logAUC data from an unbalanced design
+<span id="tab:unnamed-chunk-104">Table 2: </span>logAUC data from an unbalanced design
 </caption>
 <thead>
 <tr>
@@ -1650,7 +1650,7 @@ Grand mean
 </table>
 <table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-105">Table 3: </span>Cell means
+<span id="tab:unnamed-chunk-106">Table 3: </span>Cell means
 </caption>
 <thead>
 <tr>
@@ -1739,7 +1739,7 @@ outerLV
 <p>Now see if you can do the same across <code>Organ</code> to get</p>
 <table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-108">Table 4: </span>Marginal (organ) means
+<span id="tab:unnamed-chunk-109">Table 4: </span>Marginal (organ) means
 </caption>
 <thead>
 <tr>

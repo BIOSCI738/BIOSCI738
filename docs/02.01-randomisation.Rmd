@@ -346,12 +346,20 @@ ggplot(paua,aes(x = Species, y = Length)) +
 
 But because the data are skewed and we've likely got non-constant variances we may be better off adopting a randomization test (this time using a `for` loop!), rather than a parametric t-test
 
+#### 1. Choose a statistic that measures the effect of interest (in this case the differences between means).
+
+
 ```{r}
 ## observed differences in means
 diff_in_means <- (paua %>% group_by(Species) %>%
                     summarise(mean = mean(Length)) %>% 
                     summarise(diff = diff(mean)))$diff
 diff_in_means
+```
+
+#### 2. Construct the sampling distribution that this statistic would have if the effect were not present in the population (i.e., the distribution under $H_0$) .
+
+```{r}
 ## Number of times I want to randomise
 nreps <- 999   
 ## initialize empty array to hold results
@@ -374,6 +382,8 @@ for (i in 1:nreps) {
 ## results, join randomised stats with the observed value
 results <- data.frame(results = c(randomisation_difference_mean, diff_in_means))
 ```
+
+#### 3. Locate the observed statistic (i.e., from our observed random sample) in the sampling distribution
 
 
 Let's calculate how many randomised differences in means are *as least as extreme* as the one we observed. Note that we library the absolute value as dealing with a two tailed test.

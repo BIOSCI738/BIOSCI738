@@ -312,7 +312,7 @@ penguins_nafree <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">ggpairs</span>(<span class="kw">aes</span>(<span class="dt">color =</span> species),
         <span class="dt">columns =</span> <span class="kw">c</span>(<span class="st">&quot;flipper_length_mm&quot;</span>, <span class="st">&quot;body_mass_g&quot;</span>, 
                      <span class="st">&quot;bill_length_mm&quot;</span>, <span class="st">&quot;bill_depth_mm&quot;</span>)) </code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-229-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-230-1.png" width="672" /></p>
 <p><strong>Using <code>prcomp()</code></strong></p>
 <p>There are three basic types of information we obtain from Principal Component Analysis:</p>
 <ul>
@@ -349,20 +349,20 @@ penguins_nafree <span class="op">%&gt;%</span>
 ## body_mass_g        0.5496747 -0.07646366  0.5917374  0.5846861</code></pre>
 <p>Here we can see that <code>bill_length_mm</code> has a strong positive relationship with <code>PC1</code>, whereas <code>bill_depth_mm</code> has a strong negative relationship. Both <code>fliper_length_mm</code> and <code>body_mass_g</code> also have a strong positive relationship with <code>PC1</code>.</p>
 <p>Plotting this we get</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-232-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-233-1.png" width="672" /></p>
 <p>The new variables (PCs) are stored in <code>pca$x</code>, lets plot some of them alongside the loadings using a <em>biplot</em>. For <code>PC1</code> vs <code>PC2</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(factoextra) ## install this package first
 <span class="kw">fviz_pca_biplot</span>(pca, <span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>) <span class="op">+</span>
 <span class="st">      </span><span class="kw">geom_point</span> (<span class="dt">alpha =</span> <span class="fl">0.2</span>)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-233-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-234-1.png" width="672" /></p>
 <p>Now for <code>PC2</code> vs <code>PC3</code></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fviz_pca_biplot</span>(pca, <span class="dt">axes =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>),<span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>) <span class="op">+</span>
 <span class="st">      </span><span class="kw">geom_point</span> (<span class="dt">alpha =</span> <span class="fl">0.2</span>)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-234-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-235-1.png" width="672" /></p>
 <p><strong>But how many PCs (new variables) do we keep?</strong> The whole point of this exercise is to <strong>reduce</strong> the number of variables we need to explain the variation in our data. So how many of these new variables (PCs) do we keep?</p>
 <p>To assess this we can use the information printed above alongside a <em>screeplot</em>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fviz_screeplot</span>(pca)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-235-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-236-1.png" width="672" /></p>
 <p><strong>Principal components from the original variables</strong></p>
 <p>Recall that the principal components are a linear combination of the (statndardised) variables. So for PC1</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">loadings1 &lt;-<span class="st"> </span>pca<span class="op">$</span>rotation[,<span class="dv">1</span>]
@@ -382,7 +382,7 @@ by_hand &lt;-<span class="st"> </span>loadings1[<span class="dv">1</span>]<span 
 ## From PCA
 pc1 &lt;-<span class="st"> </span>pca<span class="op">$</span>x[,<span class="dv">1</span>]
 <span class="kw">plot</span>(by_hand,pc1)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-237-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-238-1.png" width="672" /></p>
 </div>
 <div id="reality-check-reducing-white-noise..." class="section level4">
 <h4>Reality check: reducing white noise...</h4>
@@ -404,7 +404,7 @@ noise</code></pre></div>
 ## 10  41.1  38.9  49.3  60.1  46.5  54.5  56.2  56.8  40.7  42.8
 ## # … with 190 more rows</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">corrplot<span class="op">::</span><span class="kw">corrplot</span>(<span class="kw">cor</span>(noise), <span class="dt">method =</span> <span class="st">&quot;ellipse&quot;</span>,<span class="dt">type =</span> <span class="st">&quot;upper&quot;</span>)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-238-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-239-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pca &lt;-<span class="st"> </span>noise <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">scale</span>() <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">prcomp</span>()
@@ -420,7 +420,7 @@ noise</code></pre></div>
 ## Cumulative Proportion  0.86078 0.93416 1.00000</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fviz_screeplot</span>(pca, <span class="dt">choice =</span> <span class="st">&quot;eigenvalue&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">1</span>)</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-240-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-241-1.png" width="672" /></p>
 <p>What does this show?</p>
 
 </div>

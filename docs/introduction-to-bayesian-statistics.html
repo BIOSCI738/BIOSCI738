@@ -385,7 +385,7 @@ small
 <p>A frequentist approach would be to maximise the likelihood with respect to <span class="math inline">\(\theta\)</span>, see the previous section. This would result in the maximum likelihood estimate (MLE) of <span class="math inline">\(\hat{\theta} = \frac{23}{80} = 0.2875\)</span></p>
 <p>Using a Bayesian approach we first need to start off with a prior distribution. This should reflect our <em>prior</em> beliefs about the parameter(s) of interest. We know <span class="math inline">\(\theta\)</span> is a probability, so it is a continuous random variable and that lies between zero and one.</p>
 <p>A suitable prior distribution might be the Beta defined on the interval [0, 1]. Therefore, we assume <em>a priori</em> <span class="math inline">\(\theta \sim \text{Beta(a, b)}\)</span> so that <span class="math inline">\(P(\theta) = \theta^{a−1}(1 − \theta)^{b−1}\)</span>. See the plot below for the range of shapes a Beta distribution takes with different parameter values.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-175-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-176-1.png" width="672" /></p>
 <p>Recall from above that</p>
 <p><span class="math display">\[P(\theta∣\text{data}) = \frac{P(\text{data} | \theta )P(\theta)}{P(\text{data})},\]</span> which can be written as</p>
 <p><span class="math display">\[P(\theta∣\text{data}) \propto P(\text{data} | \theta )P(\theta).\]</span> The <span class="math inline">\(\propto\)</span> means <em>proportional to</em>; basically this means we can ignore any terms not containing the parameters. Therefore,</p>
@@ -403,13 +403,13 @@ Typically, Bayesian and frequentist estimates will always agree if there is suff
 --- Olivier Gimenez, Bayesian statistics with R
 </footer>
 </blockquote>
-<p><img src="_main_files/figure-html/unnamed-chunk-176-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-177-1.png" width="672" /></p>
 <div id="prior-sensitivity" class="section level4">
 <h4>Prior sensitivity</h4>
 <p>When choosing a prior distribution you should focus on what that prior means in the context of the research problem. Prior choice will influence the posterior distribution. Uninformative priors can be chosen if we wish to rely only on the likelihood (i.e., let the data speak for itself), which is itself subjective based on how/where data were collected. However, uninformative priors are in general unrealistic as equal weight is given to all values!</p>
 <p>Prior choice and sensitivity is beyond the scope of this course; however, I would strongly encourage you to read the linked materials at the start of this module.</p>
 <p>What would happen to our posterior distribution, above, if we were to choose a different prior?</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-177-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-178-1.png" width="672" /></p>
 
 </div>
 </div>

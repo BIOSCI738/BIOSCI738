@@ -54,7 +54,7 @@ where SED is the standard error of the difference (which depends on group replic
 
 
 To calculate the LSD the $t$-distribution is used, specifically the 
-$$t_{\alpha = \frac{\alpha_c}{2}, \text{df} = N - m}$$ distribution, where $N$ is the number of observations and $m$ is the number of treatment groups. To obtain the critical value for $\alpha_c = 0.05 $, $N = 12$ and $m = 3$ the following code can be used in `R`.
+$$t_{\alpha = \frac{\alpha_c}{2}, \text{df} = N - m}$$ distribution, where $N$ is the number of observations and $m$ is the number of treatment groups. To obtain the critical value for $\alpha_c = 0.05$, $N = 12$ and $m = 3$ the following code can be used in `R`.
 
 ```{r}
 qt(p = 0.05/2,df = 12 - 3, lower.tail = FALSE)
@@ -71,7 +71,7 @@ Here we carry out post-hoc tests only if the ANOVA F-test is *significant*. If s
 To calculate Bonferroni correction the $t$-distribution is used, specifically the 
 $$t_{\alpha = \frac{\alpha_c}{2 \times k}, \text{df} = N - m}$$ distribution, where $N$ is the number of observations, $m$ is the number of treatment groups, and $k = {m \choose 2}$ is the number of pairwise comparisons being made.
 
-To obtain the critical value for $\alpha_c = 0.05 $, $N = 12$ and $m = 3$ the following code can be used in `R`.
+To obtain the critical value for $\alpha_c = 0.05$, $N = 12$ and $m = 3$ the following code can be used in `R`.
 
 ```{r}
 qt(p = 0.05/(2 * choose(3,2)),df = 12 - 3, lower.tail = FALSE)
@@ -87,13 +87,13 @@ This compares the mean of every treatment with the mean of every other treatment
 
 
 
-To obtain the critical value for $\alpha_c = 0.05 $, $N = 12$ and $m = 3$ the following code can be used in `R`.
+To obtain the critical value for $\alpha_c = 0.05$, $N = 12$ and $m = 3$ the following code can be used in `R`.
 
 ```{r}
 1 - qtukey(p = 1 - 0.05, nmeans = 3, df = 12 - 3)
 ```
 
-Tukey's HSD is given by $$\frac{q_{ 1 - \alpha_c, m, \text{df} = N - m}}{\sqrt{2}} \times \sqrt{\frac{2\hat{\sigma}^2}{n}}.$$ Here $\hat{\sigma}^2$ is the Residual Mean Square Error and $n$ is the assumed equal number of replicates in each group.
+Tukey's HSD is given by $$\frac{q_{ 1 - \alpha_c, m, \text{df} = N - m}}{\sqrt{2}} \times \sqrt{\frac{2\hat{\sigma}^2}{n}}.$$ Here $\hat{\sigma}^2$ is the residual mean square error and $n$ is the assumed equal number of replicates in each group.
 
 ```{r, echo = FALSE, eval = FALSE}
 ## Letting N = 100, alpha_c = 0.05, m = 3

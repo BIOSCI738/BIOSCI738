@@ -533,12 +533,18 @@ paua &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class=
 <p><strong>Scientific question</strong>: Are the shell lengths of shells the same in both species? <strong>Null hypothesis</strong>: The distribution of shell lengths in <em>Haliotis iris</em> the same as in <em>Haliotis australis</em> <strong>Test statistic</strong>: Difference of sample means</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
 <p>But because the data are skewed and we've likely got non-constant variances we may be better off adopting a randomization test (this time using a <code>for</code> loop!), rather than a parametric t-test</p>
+</div>
+<div id="choose-a-statistic-that-measures-the-effect-of-interest-in-this-case-the-differences-between-means." class="section level4">
+<h4>1. Choose a statistic that measures the effect of interest (in this case the differences between means).</h4>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## observed differences in means
 diff_in_means &lt;-<span class="st"> </span>(paua <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(Species) <span class="op">%&gt;%</span>
 <span class="st">                    </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(Length)) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">                    </span><span class="kw">summarise</span>(<span class="dt">diff =</span> <span class="kw">diff</span>(mean)))<span class="op">$</span>diff
 diff_in_means</code></pre></div>
 <pre><code>## [1] -0.9569444</code></pre>
+</div>
+<div id="construct-the-sampling-distribution-that-this-statistic-would-have-if-the-effect-were-not-present-in-the-population-i.e.-the-distribution-under-h_0-." class="section level4">
+<h4>2. Construct the sampling distribution that this statistic would have if the effect were not present in the population (i.e., the distribution under <span class="math inline">\(H_0\)</span>) .</h4>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Number of times I want to randomise
 nreps &lt;-<span class="st"> </span><span class="dv">999</span>   
 ## initialize empty array to hold results
@@ -560,6 +566,9 @@ randomisation_difference_mean &lt;-<span class="st"> </span><span class="kw">num
 }
 ## results, join randomised stats with the observed value
 results &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">results =</span> <span class="kw">c</span>(randomisation_difference_mean, diff_in_means))</code></pre></div>
+</div>
+<div id="locate-the-observed-statistic-i.e.-from-our-observed-random-sample-in-the-sampling-distribution" class="section level4">
+<h4>3. Locate the observed statistic (i.e., from our observed random sample) in the sampling distribution</h4>
 <p>Let's calculate how many randomised differences in means are <em>as least as extreme</em> as the one we observed. Note that we library the absolute value as dealing with a two tailed test.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n_exceed &lt;-<span class="st"> </span><span class="kw">sum</span>(<span class="kw">abs</span>(results<span class="op">$</span>results) <span class="op">&gt;=</span><span class="st"> </span><span class="kw">abs</span>(diff_in_means))
 n_exceed</code></pre></div>
