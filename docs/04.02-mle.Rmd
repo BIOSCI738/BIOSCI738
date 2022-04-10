@@ -74,7 +74,7 @@ How would we estimate the unknown intercept $\alpha$ and slope(s) $\beta$, assum
 
 #### The Likelihood
 
-The likelihood function, $L(\theta ; x)$ is a function of the parameter(s) $\theta$ for fixed data $x$ and it gives the probability of a fixed observation $x$ for every possible value of the parameter(s) $theta$, $P(X = x)$.
+The likelihood function, $L(\theta ; x)$ is a function of the parameter(s) $\theta$ for fixed data $x$ and it gives the probability of a fixed observation $x$ for every possible value of the parameter(s) $\theta$, $P(X = x)$.
 
 From above, letting $S$ be the number of lobsters alive after the 24 hours we can assume a Binomial distribution: 
 
@@ -102,7 +102,7 @@ There are, technically,  three possible solutions to this:
  
 Now, remember $\theta$ is a probability and we are after a maximum likelihood estimate based on the data, so based on the above our *best guess* for $\theta$ is $$\hat{\theta} = \frac{s}{n}.$$ Using this for the lobster data we get $\hat{\theta} = \frac{79}{159}.$ Surprise surprise!!
 
-**Using `R**
+**Using `R`**
 
 ```{r}
 ## define the likelihood as a function of the parameter(s)
@@ -131,7 +131,7 @@ data.frame(p = p, Likelihood =  dbinom(x = 79, size = 159, p)) %>%
   geom_hline(yintercept = dbinom(x = 79, size = 159, 0.49),
              lty = 2, col = "#26733a", size = 1.5 ) +
   annotate(geom = "text", x = 0.1, y = 0.05, 
-           label = expression(paste(frac("d log(L)","dx"), " = 0")), col = "#26733a")
+           label = expression(paste(frac("d L","dx"), " = 0")), col = "#26733a")
 ```
 
 ### Maximum likelihood estimation for a CRD

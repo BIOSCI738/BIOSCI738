@@ -333,7 +333,7 @@ data <span class="op">%&gt;%</span>
 <p>How would we estimate the unknown intercept <span class="math inline">\(\alpha\)</span> and slope(s) <span class="math inline">\(\beta\)</span>, assuming we had information on lobster species etc. For this we need a general framework for estimation that can be applied to any situation. The most useful and general method of obtaining parameter estimates is the method of <strong>maximum likelihood estimation</strong>. I mean the title of this section was a bit of a giveaway!</p>
 <div id="the-likelihood" class="section level4">
 <h4>The Likelihood</h4>
-<p>The likelihood function, <span class="math inline">\(L(\theta ; x)\)</span> is a function of the parameter(s) <span class="math inline">\(\theta\)</span> for fixed data <span class="math inline">\(x\)</span> and it gives the probability of a fixed observation <span class="math inline">\(x\)</span> for every possible value of the parameter(s) <span class="math inline">\(theta\)</span>, <span class="math inline">\(P(X = x)\)</span>.</p>
+<p>The likelihood function, <span class="math inline">\(L(\theta ; x)\)</span> is a function of the parameter(s) <span class="math inline">\(\theta\)</span> for fixed data <span class="math inline">\(x\)</span> and it gives the probability of a fixed observation <span class="math inline">\(x\)</span> for every possible value of the parameter(s) <span class="math inline">\(\theta\)</span>, <span class="math inline">\(P(X = x)\)</span>.</p>
 <p>From above, letting <span class="math inline">\(S\)</span> be the number of lobsters alive after the 24 hours we can assume a Binomial distribution:</p>
 <p><span class="math display">\[L(\theta ; s) = P(S = s) = {n \choose s} \theta^s (1 - \theta)^{n-s}.\]</span></p>
 <p>To obtain the maximum likelihood estimate (i.e., the <em>best guess</em> for <span class="math inline">\(\theta\)</span> given the observed data) we need to differentiate the likelihood. That is, find it's rate of change given data <span class="math inline">\(x\)</span>, <span class="math inline">\(\frac{\delta L}{\delta \theta}\)</span> . We are interested in the <em>best guess</em> for <span class="math inline">\(\theta\)</span>; this occurs at the point when the rate of change of our likelihood is zero (i.e., <span class="math inline">\(\frac{\delta L}{\delta \theta} = 0\)</span>)</p>
@@ -352,7 +352,7 @@ data <span class="op">%&gt;%</span>
 <li>when <span class="math inline">\((1 - \theta)^{n-s-1} \rightarrow\theta = 1\)</span>.</li>
 </ol>
 <p>Now, remember <span class="math inline">\(\theta\)</span> is a probability and we are after a maximum likelihood estimate based on the data, so based on the above our <em>best guess</em> for <span class="math inline">\(\theta\)</span> is <span class="math display">\[\hat{\theta} = \frac{s}{n}.\]</span> Using this for the lobster data we get <span class="math inline">\(\hat{\theta} = \frac{79}{159}.\)</span> Surprise surprise!!</p>
-<p><strong>Using `R</strong></p>
+<p><strong>Using <code>R</code></strong></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## define the likelihood as a function of the parameter(s)
 ## Luckily the Binomial likelihood is already defined in R
 ## as dbinom()
