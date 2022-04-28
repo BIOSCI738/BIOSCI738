@@ -15,11 +15,9 @@
    + **Communicate** statistical concepts and experimental outcomes clearly using language appropriate for both a **scientific** and **non-scientific** audience
    + **Describe** a Completely Randomised (experimental) Design 
    + **Carry** out linear regression in `R` with one categorical explanatory variable (one-way ANOVA) and **draw** the appropriate inference
-   + **Communicate** statistical concepts and experimental outcomes clearly using language appropriate for both a **scientific** and **non-scientific** audience
    + **Describe** and **discuss** factorial experiments with both equal and unequal replication
    + **Carry** out linear regression in `R` with two categorical explanatory variables and an interaction (two-way ANOVA with interaction) and **draw** the appropriate inference
    + **Calculate** the marginal means for a balanced and unbalanced design
-   + **Describe** a Randomized Complete Block Design (RCBD) and a Split-plot Design 
    + **Carry** out analysis of the above designs in `R` using `aov()`, `lm()`, and `lmer()` and **discuss** and **compare** the three
    + **Define** a fixed and random effect in the context of experimental design
    + **Describe** and **discuss** split-plot experimental design
@@ -30,7 +28,6 @@
    + **Detail** and **draw** inference form multiple comparison procedures such as Tukey’s HSD and Dunnett's test
    + **Describe** the family wise error rate (FWER) and false discover rate (FDR) in the context of multiple comparisons
    + **Calculate** the marginal means for a balanced and unbalanced design
-   + **Communicate** statistical concepts and experimental outcomes clearly using language appropriate for both a **scientific** and **non-scientific** audience
    
  
 

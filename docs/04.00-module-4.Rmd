@@ -3,16 +3,16 @@
 **Learning objectives**
 
  + **Define**, **state**, and **critique** the motivation(s) behind the three following estimation techniques
-   + least squares estimation
-   + maximum likelihood estimation
-   + Bayesian inference
+    + least squares estimation
+    + maximum likelihood estimation
+    + Bayesian inference
  + **Carry out** *by-hand* parameter estimation for the three following estimation techniques
-   + least squares estimation
-   + maximum likelihood estimation
-   + Bayesian inference
+    + least squares estimation
+    + maximum likelihood estimation
+    + Bayesian inference
  + **Carry out** parameter estimation in `R` for the following estimation techniques
-   + least squares estimation
-   + maximum likelihood estimation
+    + least squares estimation
+    + maximum likelihood estimation
 
 **Other resources**
 

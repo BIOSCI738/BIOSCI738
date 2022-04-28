@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Generalised linear mixed-effects models (GLMMMs) | Advanced Biological Data Analysis</title>
-  <meta name="description" content="Generalised linear mixed-effects models (GLMMMs) | Advanced Biological Data Analysis" />
+  <title>Maximum likelihood estimation | Advanced Biological Data Analysis</title>
+  <meta name="description" content="Maximum likelihood estimation | Advanced Biological Data Analysis" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Generalised linear mixed-effects models (GLMMMs) | Advanced Biological Data Analysis" />
+  <meta property="og:title" content="Maximum likelihood estimation | Advanced Biological Data Analysis" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Generalised linear mixed-effects models (GLMMMs) | Advanced Biological Data Analysis" />
+  <meta name="twitter:title" content="Maximum likelihood estimation | Advanced Biological Data Analysis" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="a-summary-of-glms.html"/>
-<link rel="next" href="module-6.html"/>
+<link rel="prev" href="least-squares-estimation.html"/>
+<link rel="next" href="introduction-to-bayesian-statistics.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -280,92 +280,208 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="generalised-linear-mixed-effects-models-glmmms" class="section level2">
-<h2>Generalised linear mixed-effects models (GLMMMs)</h2>
-<p>Recall module 3 when we covered fitting linear models with random effects (<code>lmer</code>). The fixed effects and random effects were specified via the model formula. Now we've covered GLMs we can include random effects here too and fit GLMMs!</p>
-<p><strong>Recall</strong></p>
+<div id="maximum-likelihood-estimation" class="section level2">
+<h2>Maximum likelihood estimation</h2>
+<p>Under the assumptions of a linear model then maximum likelihood estimation is equivalent to least squares. However, (as we'll see in a later module) we often need to be more flexible!</p>
+<div id="differeniation-rules" class="section level3">
+<h3>Differeniation rules</h3>
+<p>This section is a recap only, if you need a more in-depth overview of differentiation then use the extra materials provided at the start of this module.</p>
+<p><strong>The constant factor rule</strong></p>
+<p><span class="math display">\[(af(x))&#39;=af&#39;(x)\]</span> <strong>The sum rule</strong></p>
+<p><span class="math display">\[(f(x)+g(x))&#39;=f&#39;(x)+g&#39;(x)\]</span> <strong>The subtraction rule</strong></p>
+<p><span class="math display">\[(f(x) - g(x))&#39;=f&#39;(x) - g&#39;(x)\]</span></p>
+<p><strong>The product rule</strong></p>
+<p>For the functions <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span>, the derivative of the function <span class="math inline">\(h(x) = f(x)g(x)\)</span> with respect to <span class="math inline">\(x\)</span> is</p>
+<p><span class="math display">\[h&#39;(x) = (fg)&#39;(x) = f&#39;(x)g(x) + f(x)g&#39;(x)\]</span></p>
+<p><strong>The chain rule</strong></p>
+<p>The derivative of the function <span class="math inline">\(h(x)=f(g(x))h(x)=f(g(x))\)</span> is</p>
+<p><span class="math display">\[h&#39;(x)=f&#39;(g(x)\cdot g&#39;(x)\]</span></p>
+<p>In summary, for any functions <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> and any real numbers <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>, the derivative of the function <span class="math inline">\(h(x) = a f(x)+bg(x)\)</span> with respect to <span class="math inline">\(x\)</span> is <span class="math inline">\(h&#39;(x)=af&#39;(x) + bg&#39;(x).\)</span></p>
+</div>
+<div id="logarithm-rules" class="section level3">
+<h3>Logarithm rules</h3>
+<p>This section is a recap only, if you need a more in-depth overview of log rules then use the extra materials provided at the start of this module.</p>
 <ul>
-<li><strong>Fixed effects:</strong> terms (parameters) in a statistical model which are fixed, or non-random, quantities (e.g., <em>treatment</em> group's mean response). For the same <em>treatment</em>, we expect this quantity to be the same from experiment to experiment.</li>
-<li><strong>Random effects:</strong> terms (parameters) in a statistical model which are considered as random quantities or variables (e.g., block id). Specifically, terms whose levels are a representative sample from a population, and where the variance of the population is of interest should be allocated as random. Setting a block as a random effect allows us to infer variation between blocks as well as the variation between experimental units within blocks.</li>
+<li><strong>Product rule:</strong> <span class="math inline">\(\text{log}(xy) = \text{log}(x) + \text{log}(y)\)</span></li>
+<li><strong>Quotient rule:</strong> <span class="math inline">\(\text{log}(x/y)=\text{log}(x)−\text{log}(y)\)</span></li>
+<li><strong>Log of power:</strong> <span class="math inline">\(\text{log}(x^y)=y\text{log}(x)\)</span></li>
+<li><strong>Log of e:</strong> <span class="math inline">\(\text{log}(e)=1\)</span></li>
+<li><strong>Log of one:</strong> <span class="math inline">\(\text{log}(1)=0\)</span></li>
+<li><strong>Log reciprocal:</strong> <span class="math inline">\(\text{log}(1/x)=−\text{log}(x)\)</span></li>
+<li><strong>Differentiating a log:</strong> <span class="math inline">\(\frac{\delta \text{log}(y)}{\delta x} = \frac{1}{y}\frac{\delta y}{\delta x}.\)</span></li>
 </ul>
-<div id="fitting-a-glmm" class="section level3">
-<h3>Fitting a GLMM</h3>
-<p>The authors of <a href="https://pubmed.ncbi.nlm.nih.gov/31150625/">this paper</a> transplanted gut microbiota from human donors with Autism Spectrum Disorder (ASD) or typically developing (TD) controls into germ-free mice. Faecal samples were collected from three TD and five ASD donors and were used to colonise GF male and female mice from strain C57BL/6LJ. Individuals colonized by the same donor were allowed to breed. Adult offspring mice were behavior tested; tests included marble burying (MB), open-field testing (OFT), and ultrasonic vocalization (USV).</p>
+</div>
+<div id="maximum-likelihood-estimation-for-a-binomial-distribution" class="section level3">
+<h3>Maximum likelihood estimation for a Binomial distribution</h3>
+<p>The process of using observations to suggest a value for a parameter is called estimation. The value suggested is called the <strong>estimate</strong> of the parameter.</p>
+<p>Let us consider data from the published article <a href="https://www.sciencedirect.com/science/article/pii/S0022098115000039">Influence of predator identity on the strength of predator avoidance responses in lobsters.</a>.</p>
+<p>The authors were interested in how a juvenile lobster's size was related to its vulnerability to predation. In total, 159 juvenile lobsters were collected from their natural habitat in the Gulf of Maine, USA, and the length of each lobster's carapace (upper shell) was measured to the nearest 3 mm. The lobsters were then tethered to the ocean floor for 24 hours. Any missing lobsters were assumed to have been consumed by a predator, while the surviving lobsters were released.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
-data &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/autism.csv&quot;</span>)
-data</code></pre></div>
-<pre><code>## # A tibble: 206 × 3
-##    Donor   Treatment MB_buried
-##    &lt;chr&gt;   &lt;chr&gt;         &lt;dbl&gt;
-##  1 C1      NT Female         3
-##  2 C1      NT Female         8
-##  3 C1      NT Female         1
-##  4 C1      NT Female         3
-##  5 C1      NT Male           2
-##  6 C1      NT Male           6
-##  7 C1      NT Male           4
-##  8 C1      NT Male           2
-##  9 C1      NT Female         9
-## 10 A24-new ASD Male          7
-## # … with 196 more rows</code></pre>
-<p>We should separate out the treatment values:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mice &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">separate</span>(., <span class="dt">col =</span> Treatment, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;Diagnosis&quot;</span>, <span class="st">&quot;Sex&quot;</span>))
-mice</code></pre></div>
-<pre><code>## # A tibble: 206 × 4
-##    Donor   Diagnosis Sex    MB_buried
-##    &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;      &lt;dbl&gt;
-##  1 C1      NT        Female         3
-##  2 C1      NT        Female         8
-##  3 C1      NT        Female         1
-##  4 C1      NT        Female         3
-##  5 C1      NT        Male           2
-##  6 C1      NT        Male           6
-##  7 C1      NT        Male           4
-##  8 C1      NT        Male           2
-##  9 C1      NT        Female         9
-## 10 A24-new ASD       Male           7
-## # … with 196 more rows</code></pre>
-<p><strong>Recall, using <code>lmer</code> to fit a LMM</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lmer &lt;-<span class="st"> </span>lmerTest<span class="op">::</span><span class="kw">lmer</span>(MB_buried <span class="op">~</span><span class="st"> </span>Sex <span class="op">*</span><span class="st"> </span>Diagnosis <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span><span class="op">|</span>Donor), <span class="dt">data =</span> mice)
-car<span class="op">::</span><span class="kw">Anova</span>(lmer, <span class="dt">type =</span> <span class="dv">2</span>)</code></pre></div>
-<pre><code>## Analysis of Deviance Table (Type II Wald chisquare tests)
+data &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/lobster.csv&quot;</span>)
+data <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">survived =</span> <span class="kw">ifelse</span>(survived <span class="op">==</span><span class="st"> </span><span class="dv">0</span>, <span class="st">&quot;consumed&quot;</span>, <span class="st">&quot;alive&quot;</span>)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(survived) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">tally</span>() <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">pivot_wider</span>(<span class="dt">names_from =</span> <span class="kw">c</span>(survived), <span class="dt">values_from =</span> n)</code></pre></div>
+<pre><code>## # A tibble: 1 × 2
+##   alive consumed
+##   &lt;int&gt;    &lt;int&gt;
+## 1    79       80</code></pre>
+<p>So, 79 of the small juvenile lobsters survived predation from a total of 159. We are interested in the probability of survival, <span class="math inline">\(\theta\)</span>, for the general population. The obvious estimate is simply to take the ratio, <span class="math inline">\(\frac{\text{number surviving juveniles}}{\text{total number juveniles}} = \frac{79}{159} = 0.4968553\)</span>!!</p>
+<p>There are, however, many situations where our common sense fails us. For example, what would we do if we had a regression-model situation as in Module 2 and would like to specify an alternative form for <span class="math inline">\(\theta\)</span>, such as</p>
+<p><span class="math display">\[\theta = \alpha + \beta \times (\text{lobster species}).\]</span></p>
+<p>How would we estimate the unknown intercept <span class="math inline">\(\alpha\)</span> and slope(s) <span class="math inline">\(\beta\)</span>, assuming we had information on lobster species etc. For this we need a general framework for estimation that can be applied to any situation. The most useful and general method of obtaining parameter estimates is the method of <strong>maximum likelihood estimation</strong>. I mean the title of this section was a bit of a giveaway!</p>
+<div id="the-likelihood" class="section level4">
+<h4>The Likelihood</h4>
+<p>The likelihood function, <span class="math inline">\(L(\theta ; x)\)</span> is a function of the parameter(s) <span class="math inline">\(\theta\)</span> for fixed data <span class="math inline">\(x\)</span> and it gives the probability of a fixed observation <span class="math inline">\(x\)</span> for every possible value of the parameter(s) <span class="math inline">\(\theta\)</span>, <span class="math inline">\(P(X = x)\)</span>.</p>
+<p>From above, letting <span class="math inline">\(S\)</span> be the number of lobsters alive after the 24 hours we can assume a Binomial distribution:</p>
+<p><span class="math display">\[L(\theta ; s) = P(S = s) = {n \choose s} \theta^s (1 - \theta)^{n-s}.\]</span></p>
+<p>To obtain the maximum likelihood estimate (i.e., the <em>best guess</em> for <span class="math inline">\(\theta\)</span> given the observed data) we need to differentiate the likelihood. That is, find it's rate of change given data <span class="math inline">\(x\)</span>, <span class="math inline">\(\frac{\delta L}{\delta \theta}\)</span> . We are interested in the <em>best guess</em> for <span class="math inline">\(\theta\)</span>; this occurs at the point when the rate of change of our likelihood is zero (i.e., <span class="math inline">\(\frac{\delta L}{\delta \theta} = 0\)</span>)</p>
+<p>Using the product rule we differentiate <span class="math inline">\(L(\theta ; s)\)</span>:</p>
+<p><span class="math display">\[ \begin{array}{cl}
+\frac{\delta L}{\delta \theta} &amp;= {n \choose s}\left( s\theta^{s-1} (1 - \theta)^{n-s} + \theta^s (n-s) (1 - \theta)^{n-s-1}(-1)  \right)\\
+&amp;=  (1 - \theta)^{n-s-1}\theta^{s-1}\{s(1-\theta) - (n-s)\theta\} \\
+&amp;=  (1 - \theta)^{n-s-1}\theta^{s-1}\{s - s\theta - n\theta + s\theta \}\\
+&amp;= (1 - \theta)^{n-s-1}\theta^{s-1}\{s - n\theta \}.
+\end{array}\]</span></p>
+<p>Setting <span class="math inline">\(\frac{\delta L}{\delta \theta} = 0\)</span> and solve for <span class="math inline">\(\theta\)</span>:</p>
+<p><span class="math display">\[\frac{\delta L}{\delta \theta} = (1 - \theta)^{n-s-1}\theta^{s-1}\{s - n\theta \} = 0.\]</span> There are, technically, three possible solutions to this:</p>
+<ol style="list-style-type: decimal">
+<li>when <span class="math inline">\(\theta^{s-1} = 0 \rightarrow \theta = 0\)</span>,</li>
+<li>when <span class="math inline">\(s - n\theta = 0 \rightarrow\theta = \frac{s}{n}\)</span>, or</li>
+<li>when <span class="math inline">\((1 - \theta)^{n-s-1} \rightarrow\theta = 1\)</span>.</li>
+</ol>
+<p>Now, remember <span class="math inline">\(\theta\)</span> is a probability and we are after a maximum likelihood estimate based on the data, so based on the above our <em>best guess</em> for <span class="math inline">\(\theta\)</span> is <span class="math display">\[\hat{\theta} = \frac{s}{n}.\]</span> Using this for the lobster data we get <span class="math inline">\(\hat{\theta} = \frac{79}{159}.\)</span> Surprise surprise!!</p>
+<p><strong>Using <code>R</code></strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## define the likelihood as a function of the parameter(s)
+## Luckily the Binomial likelihood is already defined in R
+## as dbinom()
+likelihood &lt;-<span class="st"> </span><span class="cf">function</span>(theta) <span class="kw">dbinom</span>(<span class="dt">x =</span> <span class="dv">79</span>, <span class="dt">size =</span> <span class="dv">159</span>, <span class="dt">prob =</span> theta)
+## Use the optimise function to optimise!!
+## the second argument specifies the plausible
+## interval for the parameter
+## Note for a number of parameters &gt; 1
+## the optim() function is used
+<span class="kw">optimise</span>(likelihood, <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="dt">maximum =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>## $maximum
+## [1] 0.4968541
 ## 
-## Response: MB_buried
-##                Chisq Df Pr(&gt;Chisq)   
-## Sex           3.6329  1   0.056648 . 
-## Diagnosis     8.6944  1   0.003192 **
-## Sex:Diagnosis 2.9745  1   0.084588 . 
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<p>But is the constant error variance appropriate? Below we plot the model residuals.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-209-1.png" width="672" /></p>
-<div id="using-glmer" class="section level4">
-<h4>Using <code>glmer</code></h4>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">glmer &lt;-<span class="st"> </span>lme4<span class="op">::</span><span class="kw">glmer</span>(MB_buried <span class="op">~</span><span class="st"> </span>Sex <span class="op">*</span><span class="st"> </span>Diagnosis <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span><span class="op">|</span>Donor), <span class="dt">data =</span> mice, <span class="dt">family =</span> <span class="kw">poisson</span>(<span class="dt">link =</span> <span class="st">&quot;log&quot;</span>))
-car<span class="op">::</span><span class="kw">Anova</span>(glmer, <span class="dt">type =</span> <span class="dv">2</span>)</code></pre></div>
-<pre><code>## Analysis of Deviance Table (Type II Wald chisquare tests)
+## $objective
+## [1] 0.06317819</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-169-1.png" width="672" /></p>
+</div>
+</div>
+<div id="maximum-likelihood-estimation-for-a-crd" class="section level3">
+<h3>Maximum likelihood estimation for a CRD</h3>
+<p>Recall the following CRD equation</p>
+<p><span class="math display">\[Y_{ik} = \mu_k + \epsilon_{ik}\]</span></p>
+<p>where <span class="math inline">\(Y_{ik}\)</span> is the response for the <span class="math inline">\(k^{th}\)</span> experimental unit (<span class="math inline">\(k = 1, ..., r_i\)</span>, where <span class="math inline">\(r_i\)</span> is the number of experimental replications in the <span class="math inline">\(i^{th}\)</span> level of the treatment factor) subjected to the <span class="math inline">\(i^{th}\)</span> level of the treatment factor (<span class="math inline">\(i = 1, ..., t\)</span>,). Here <span class="math inline">\(\mu_i\)</span> are the different (cell) means for each level of the treatment factor.</p>
+<p>Under the assumptions of a the CRD (i.e., <span class="math inline">\(\epsilon_{ik} \sim N(0, \sigma^2)\)</span>) then (for equal number of replicates) the estimates of the cell means (<span class="math inline">\(\mu_k\)</span>) are found by minimising the error of the sum of squares <span class="math display">\[SS_{\epsilon} = \Sigma_{i=1}^t \Sigma_{k=1}^{r_i}(y_{ik}-\mu_i)^2.\]</span> Taking the partial derivatives of <span class="math inline">\(SS_{\epsilon}\)</span> with respect to each cell mean, setting to zero, and solving each equation with give us our estimates: <span class="math display">\[\frac{\delta SS_{\epsilon}}{\delta \mu_i} = -2 \Sigma_{i=1}^t \Sigma_{k=1}^{r_i}(y_{ik}-\mu_i) = 0.\]</span> This works out as <span class="math inline">\(\hat{\mu_i} = \overline{y_i.}\)</span></p>
+<p>So in our mask example <span class="math inline">\(\hat{\mu}_{\text{Type 1 }} = 5.7 ,\; \hat{\mu}_{\text{Type 2 }} = 7.125 \; , \&amp;\; \hat{\mu}_{\text{Type 3 }} = 8.8 .\)</span> Compare these estimates to those we obtained via least squares estimation in the previously.</p>
+</div>
+<div id="maximising-the-log-likelihood" class="section level3">
+<h3>Maximising the log-likelihood</h3>
+<p>In many situations differentiating the likelihood is tricky. Even the simple binomial example above was a bit finicky. So. we often deal with the log-likelihood (the log of the likelihood). Why?</p>
+<ol style="list-style-type: decimal">
+<li>The logarithmic function <span class="math inline">\(L \mapsto \text{log}(L)\)</span> is increasing, so the functions <span class="math inline">\(L(\theta)\)</span> and <span class="math inline">\(\text{log}(L(\theta))\)</span> will have the same maximum, <span class="math inline">\(\hat{\theta}\)</span>.</li>
+<li>When there are observations <span class="math inline">\(x_1, \ldots, x_n\)</span>, the likelihood <span class="math inline">\(L\)</span> is a product as <span class="math inline">\(\text{log}(a b) = \text{log}(a) + \text{log}(b)\)</span>, the log-likelihood converts the product into a sum. It is often easier to differentiate a sum than a product, so the log-likelihood is easier to maximize while still giving the same MLE.</li>
+<li>If we need to use a computer to calculate and maximize the likelihood, there will often be numerical problems with computing the likelihood product, whereas the log-likelihood sum can be accurately calculated.</li>
+</ol>
+<p>Let's consider the binomial example above. We had <span class="math inline">\(L(\theta ; s) = {n \choose s} \theta^s (1 - \theta)^{n-s}.\)</span></p>
+<p>Therefore, <span class="math display">\[\begin{array}{cl}
+\text{log}(L(\theta ; s)) &amp;=  \text{log}({n \choose s}) + \text{log}(\theta^s) + \text{log}((1 - \theta)^{n-s})\\
+ &amp;=  \text{log}({n \choose s}) + s\text{log}(\theta) + (n-s)\text{log}(1 - \theta).
+\end{array}\]</span></p>
+<p>Differentiating this: <span class="math display">\[\begin{array}{cl}
+\frac{\delta \text{log}(L(\theta ; s))}{\delta \theta} &amp;=  0 + \frac{s}{\theta} \times 1 + \frac{n-s}{1-\theta}\times (-1)\\
+ &amp;= \frac{s}{\theta} - \frac{n-s}{1-\theta} \\
+ \end{array}\]</span></p>
+<p>Setting this to zero we get <span class="math inline">\(\frac{s}{\theta} = \frac{n-s}{1-\theta} \rightarrow s(1-\theta) = \theta(n-s) \rightarrow s - s\theta = \theta n - s\theta \rightarrow s + (s\theta - s\theta) = \theta n \rightarrow \theta = \frac{s}{n}.\)</span> Therefore, as above <span class="math display">\[\hat{\theta} = \frac{s}{n}.\]</span></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-171-1.png" width="672" /></p>
+</div>
+<div id="maximum-likelihood-estimation-for-a-poisson-distribution" class="section level3">
+<h3>Maximum likelihood estimation for a Poisson distribution</h3>
+<p>The Poisson process counts the number of events occurring in a fixed time or space, when events occur independently and at a constant average rate, <span class="math inline">\(\lambda\)</span>.</p>
+<p>For <span class="math inline">\(X \sim \text{Poisson}(\lambda)\)</span>,</p>
+<p><span class="math display">\[f_X(x) = P(X=x)=\frac{\lambda^x}{x!}e^{-\lambda}\]</span></p>
+<p>for <span class="math inline">\(x = 0,1,2,\dots\)</span></p>
+<div id="maximising-the-likelihood" class="section level4">
+<h4>Maximising the Likelihood</h4>
+<p>Suppose that <span class="math inline">\(x_1, \ldots, x_n\)</span> are iid observations from a Poisson distribution with unknown parameter <span class="math inline">\(\lambda\)</span>:</p>
+<p><span class="math display">\[ L(\lambda\,; x_1, \ldots, x_n) = K e^{-n\lambda} \, \lambda^{n \overline{x}} \,,\]</span></p>
+<p>where <span class="math inline">\(\overline{x} = \frac{1}{n} \sum_{i=1}^n x_i\)</span>, and <span class="math inline">\(K=\prod_{i=1}^n \frac1{x_i\,!}\)</span> is a constant that doesn't depend on <span class="math inline">\(\lambda\)</span>.</p>
+<p>We differentiate <span class="math inline">\(L(\lambda\,; x_1, \ldots, x_n)\)</span> and set to 0 to find the MLE:</p>
+<p><span class="math display">\[\begin{array}{rl}
+0 &amp;= \frac{\delta}{\delta\lambda} L(\lambda\,; x_1, \ldots, x_n) \\
+&amp;= K \left( -n e^{-n\lambda} \, \lambda^{n \overline{x}}   +  n\overline{x}   e^{-n\lambda} \, \lambda^{n \overline{x} - 1} \right)\\
+&amp;=  K e^{-n\lambda} \lambda^{n \overline{x} - 1} \left(- n\lambda + n\overline{x} \right)
+\end{array}\]</span></p>
+<p><span class="math inline">\(\rightarrow \lambda=\infty, \lambda=0, \text{or } \lambda = \overline{x}.\)</span></p>
+<p>If we know that <span class="math inline">\(L(\lambda\,; x_1, \ldots, x_n)\)</span> reaches a unique maximum in <span class="math inline">\(0 &lt; \lambda &lt; \infty\)</span> then the MLE is <span class="math inline">\(\overline{x}\)</span>.</p>
+<p>So the maximum likelihood estimator is <span class="math display">\[ \hat{\lambda} = \overline{x}  = \frac{x_1 + \ldots + x_n}{n}
+\;.\]</span></p>
+</div>
+<div id="maximising-the-log-likelihood-function" class="section level4">
+<h4>Maximising the log-likelihood function</h4>
+<p>As above,</p>
+<p><span class="math display">\[L(\lambda\,; x_1, \ldots, x_n)  = \prod_{i=1}^n \frac{\lambda^{x_i}}{x_i\,!} e^{-\lambda}.\]</span> Therefore,</p>
+<p><span class="math display">\[\begin{array}{rl}\text{log}(L(\lambda\,; x_1, \ldots, x_n)) &amp;= \sum_{i=1}^n \text{log}(\frac{\lambda^{x_i}}{x_i\,!} e^{-\lambda})\\
+&amp;= \sum_{i=1}^n  \text{log}(\frac{1}{x_i\,!}) +  \text{log}(\lambda^{x_i}) + \text{log}(e^{-\lambda}) \\
+&amp;= \sum_{i=1}^n \text{log}(\frac{1}{x_i\,!}) +  x_i \text{log}(\lambda) + (-\lambda) \\
+&amp;= K&#39; + \text{log}(\lambda) \sum_{i=1}^n x_i - n \lambda   \quad \mbox{ where $K&#39;$ is a constant} \\
+&amp;= K&#39; + \text{log}(\lambda) n\overline{x} - n \lambda. \end{array}\]</span></p>
+<p>Differentiate and set to 0 for the MLE:</p>
+<p><span class="math display">\[\begin{array}{rcl}
+0 &amp;=&amp; \frac{\delta}{\delta\lambda} \text{log} (L(\lambda\,; x_1, \ldots, x_n) ) \\
+ &amp;=&amp; \frac{\delta}{\delta\lambda} \left (K&#39; + \text{log}(\lambda) n\overline{x} - n \lambda  \right )\\
+ &amp;=&amp; \frac{n\overline{x}}{\lambda} - n \\
+\end{array}\]</span> assuming a unique maximum in <span class="math inline">\(0 &lt; \lambda &lt; \infty\)</span> the MLE is <span class="math inline">\(\hat{\lambda} = \overline{x}\)</span> as before.</p>
+</div>
+</div>
+<div id="maximum-likelihood-estimation-for-a-continuous-random-variable" class="section level3">
+<h3>Maximum likelihood estimation for a continuous random variable</h3>
+<p>Let <span class="math inline">\(X\)</span> be a continuous random variable with probability density function <span class="math display">\[f_X(x) = 
+ \left\{ \begin{array}{cl}
+\frac{2(s-x)}{s^2} &amp; \mbox{for } 0 &lt; x  &lt; s\,, \\
+0 &amp; \mbox{otherwise}\,. \end{array} \right.\]</span></p>
+<p>Here, <span class="math inline">\(s\)</span> is a parameter to be estimated, where <span class="math inline">\(s\)</span> is the maximum value of <span class="math inline">\(X\)</span> and <span class="math inline">\(s&gt;0\)</span>.</p>
+<p>Assuming a single observation <span class="math inline">\(X=x\)</span> the likelihood function is</p>
+<p><span class="math display">\[ L(s\,;x) = \frac{2(s-x)}{s^2}\]</span> for <span class="math inline">\(\;x &lt; s &lt; \infty.\)</span></p>
+<p>Differentiating this</p>
+<p><span class="math display">\[\begin{array}{rl}
+ \frac{dL}{ds} &amp;= 2 \left(-2 s^{-3}(s-x) + s^{-2}\right ) \\
+&amp;= 2s^{-3} (-2(s-x) + s) \\
+&amp;= \frac{2}{s^3} (2x-s).
+\end{array}\]</span></p>
+<p>At the MLE, <span class="math display">\[ \frac{\delta L}{\delta s} = 0 \implies s=\infty \quad\mbox{ or }\quad s = 2x.\]</span></p>
+<p>Realistically <span class="math inline">\(s=\infty\)</span> is not the maximum (see graph below) so <span class="math inline">\(s = 2x.\)</span> Therefore maximum likelihood <strong>estimator</strong> is <span class="math display">\[\hat{s} = 2X.\]</span></p>
+<p><strong>Using <code>R</code> to get the MLE</strong></p>
+<p>Let's say we observe <span class="math inline">\(X = 3\)</span>, then to find the MLE using <code>R</code> we use</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## define the likelihood as a function of the parameter(s)
+likelihood &lt;-<span class="st"> </span><span class="cf">function</span>(s) (<span class="dv">2</span><span class="op">*</span>(s <span class="op">-</span><span class="st"> </span><span class="dv">3</span>))<span class="op">/</span>s<span class="op">^</span><span class="dv">2</span>
+## Use the optimise function to optimise
+## the second argument specifies the plausible
+## interval for the parameter
+## Note for a number of parameters &gt; 1
+## the optim() function is used
+<span class="kw">optimise</span>(likelihood, <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">8</span>), <span class="dt">maximum =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>## $maximum
+## [1] 6.000018
 ## 
-## Response: MB_buried
-##                 Chisq Df Pr(&gt;Chisq)    
-## Sex            9.9452  1  0.0016127 ** 
-## Diagnosis     10.5836  1  0.0011410 ** 
-## Sex:Diagnosis 12.5904  1  0.0003877 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-211-1.png" width="672" /></p>
+## $objective
+## [1] 0.1666667</code></pre>
+<p>How does this to compare to the exact estimator, <span class="math inline">\(\hat{s} = 2X\)</span>, we found using calculus above? Consider, too, the plot below showing <span class="math inline">\(L(s; X = 3)\)</span>.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-173-1.png" width="672" /></p>
 
 </div>
 </div>
-</div>
-<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="a-summary-of-glms.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="module-6.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="least-squares-estimation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="introduction-to-bayesian-statistics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

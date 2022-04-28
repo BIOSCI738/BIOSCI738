@@ -214,14 +214,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html#matrix-representation-of-a-crd"><i class="fa fa-check"></i>Matrix representation of a CRD</a></li>
 <li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html#a-numeric-example"><i class="fa fa-check"></i>A numeric example</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="maximum-likelkihood-estimation.html"><a href="maximum-likelkihood-estimation.html"><i class="fa fa-check"></i>Maximum likelkihood estimation</a><ul>
-<li class="chapter" data-level="" data-path="maximum-likelkihood-estimation.html"><a href="maximum-likelkihood-estimation.html#differeniation-rules"><i class="fa fa-check"></i>Differeniation rules</a></li>
-<li class="chapter" data-level="" data-path="maximum-likelkihood-estimation.html"><a href="maximum-likelkihood-estimation.html#logarithm-rules"><i class="fa fa-check"></i>Logarithm rules</a></li>
-<li class="chapter" data-level="" data-path="maximum-likelkihood-estimation.html"><a href="maximum-likelkihood-estimation.html#maximum-likelihood-estimation-for-a-binomial-distribution"><i class="fa fa-check"></i>Maximum likelihood estimation for a Binomial distribution</a></li>
-<li class="chapter" data-level="" data-path="maximum-likelkihood-estimation.html"><a href="maximum-likelkihood-estimation.html#maximum-likelihood-estimation-for-a-crd"><i class="fa fa-check"></i>Maximum likelihood estimation for a CRD</a></li>
-<li class="chapter" data-level="" data-path="maximum-likelkihood-estimation.html"><a href="maximum-likelkihood-estimation.html#maximising-the-log-likelihood"><i class="fa fa-check"></i>Maximising the log-likelihood</a></li>
-<li class="chapter" data-level="" data-path="maximum-likelkihood-estimation.html"><a href="maximum-likelkihood-estimation.html#maximum-likelihood-estimation-for-a-poisson-distribution"><i class="fa fa-check"></i>Maximum likelihood estimation for a Poisson distribution</a></li>
-<li class="chapter" data-level="" data-path="maximum-likelkihood-estimation.html"><a href="maximum-likelkihood-estimation.html#maximum-likelihood-estimation-for-a-continuous-random-variable"><i class="fa fa-check"></i>Maximum likelihood estimation for a continuous random variable</a></li>
+<li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html"><i class="fa fa-check"></i>Maximum likelihood estimation</a><ul>
+<li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#differeniation-rules"><i class="fa fa-check"></i>Differeniation rules</a></li>
+<li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#logarithm-rules"><i class="fa fa-check"></i>Logarithm rules</a></li>
+<li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#maximum-likelihood-estimation-for-a-binomial-distribution"><i class="fa fa-check"></i>Maximum likelihood estimation for a Binomial distribution</a></li>
+<li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#maximum-likelihood-estimation-for-a-crd"><i class="fa fa-check"></i>Maximum likelihood estimation for a CRD</a></li>
+<li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#maximising-the-log-likelihood"><i class="fa fa-check"></i>Maximising the log-likelihood</a></li>
+<li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#maximum-likelihood-estimation-for-a-poisson-distribution"><i class="fa fa-check"></i>Maximum likelihood estimation for a Poisson distribution</a></li>
+<li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#maximum-likelihood-estimation-for-a-continuous-random-variable"><i class="fa fa-check"></i>Maximum likelihood estimation for a continuous random variable</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html"><i class="fa fa-check"></i>Introduction to Bayesian statistics</a><ul>
 <li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html#conditional-probability"><i class="fa fa-check"></i>Conditional probability</a></li>
@@ -468,7 +468,7 @@ confint</code></pre></div>
 <h4>Deviance</h4>
 <div id="chi-squared-approach-1" class="section level5">
 <h5>Chi-squared approach</h5>
-<p>Luckily no manual calculations are libraryd, our <code>glm()</code> call returns the values we need directly:</p>
+<p>Luckily no manual calculations are required, our <code>glm()</code> call returns the values we need directly:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## extract the residual deviance
 D &lt;-<span class="st"> </span>glm_mod_gr<span class="op">$</span>deviance
 D</code></pre></div>
@@ -480,11 +480,7 @@ df</code></pre></div>
 <p>Therefore, to test the relevant null hypothesis (that the model is correct) we use</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pchisq</span>(D, df)</code></pre></div>
 <pre><code>## [1] 0.8706732</code></pre>
-<p>Here, we have no evidence to against our model being &quot;correct&quot;.</p>
-</div>
-<div id="simulation-based-approach-1" class="section level5">
-<h5>Simulation based approach</h5>
-<p>Are our chi-squared approximation assumptions met?</p>
+<p>Here, we have no evidence to against our model being &quot;correct&quot;. <strong>BUT</strong> are our chi-squared approximation assumptions met? If not, we might take a <strong>simulation based approach</strong>. This is, however, beyond the scope of this course.</p>
 </div>
 </div>
 </div>

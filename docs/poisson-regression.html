@@ -214,14 +214,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html#matrix-representation-of-a-crd"><i class="fa fa-check"></i>Matrix representation of a CRD</a></li>
 <li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html#a-numeric-example"><i class="fa fa-check"></i>A numeric example</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="maximum-likelkihood-estimation.html"><a href="maximum-likelkihood-estimation.html"><i class="fa fa-check"></i>Maximum likelkihood estimation</a><ul>
-<li class="chapter" data-level="" data-path="maximum-likelkihood-estimation.html"><a href="maximum-likelkihood-estimation.html#differeniation-rules"><i class="fa fa-check"></i>Differeniation rules</a></li>
-<li class="chapter" data-level="" data-path="maximum-likelkihood-estimation.html"><a href="maximum-likelkihood-estimation.html#logarithm-rules"><i class="fa fa-check"></i>Logarithm rules</a></li>
-<li class="chapter" data-level="" data-path="maximum-likelkihood-estimation.html"><a href="maximum-likelkihood-estimation.html#maximum-likelihood-estimation-for-a-binomial-distribution"><i class="fa fa-check"></i>Maximum likelihood estimation for a Binomial distribution</a></li>
-<li class="chapter" data-level="" data-path="maximum-likelkihood-estimation.html"><a href="maximum-likelkihood-estimation.html#maximum-likelihood-estimation-for-a-crd"><i class="fa fa-check"></i>Maximum likelihood estimation for a CRD</a></li>
-<li class="chapter" data-level="" data-path="maximum-likelkihood-estimation.html"><a href="maximum-likelkihood-estimation.html#maximising-the-log-likelihood"><i class="fa fa-check"></i>Maximising the log-likelihood</a></li>
-<li class="chapter" data-level="" data-path="maximum-likelkihood-estimation.html"><a href="maximum-likelkihood-estimation.html#maximum-likelihood-estimation-for-a-poisson-distribution"><i class="fa fa-check"></i>Maximum likelihood estimation for a Poisson distribution</a></li>
-<li class="chapter" data-level="" data-path="maximum-likelkihood-estimation.html"><a href="maximum-likelkihood-estimation.html#maximum-likelihood-estimation-for-a-continuous-random-variable"><i class="fa fa-check"></i>Maximum likelihood estimation for a continuous random variable</a></li>
+<li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html"><i class="fa fa-check"></i>Maximum likelihood estimation</a><ul>
+<li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#differeniation-rules"><i class="fa fa-check"></i>Differeniation rules</a></li>
+<li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#logarithm-rules"><i class="fa fa-check"></i>Logarithm rules</a></li>
+<li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#maximum-likelihood-estimation-for-a-binomial-distribution"><i class="fa fa-check"></i>Maximum likelihood estimation for a Binomial distribution</a></li>
+<li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#maximum-likelihood-estimation-for-a-crd"><i class="fa fa-check"></i>Maximum likelihood estimation for a CRD</a></li>
+<li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#maximising-the-log-likelihood"><i class="fa fa-check"></i>Maximising the log-likelihood</a></li>
+<li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#maximum-likelihood-estimation-for-a-poisson-distribution"><i class="fa fa-check"></i>Maximum likelihood estimation for a Poisson distribution</a></li>
+<li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#maximum-likelihood-estimation-for-a-continuous-random-variable"><i class="fa fa-check"></i>Maximum likelihood estimation for a continuous random variable</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html"><i class="fa fa-check"></i>Introduction to Bayesian statistics</a><ul>
 <li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html#conditional-probability"><i class="fa fa-check"></i>Conditional probability</a></li>
@@ -374,7 +374,6 @@ birds</code></pre></div>
 ## 
 ## Number of Fisher Scoring iterations: 5</code></pre>
 <p>The fitted model is therefore</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">equatiomatic<span class="op">::</span><span class="kw">extract_eq</span>(glm_bird, <span class="dt">use_coefs =</span> <span class="ot">TRUE</span>, <span class="dt">coef_digits =</span> <span class="dv">3</span>)</code></pre></div>
 <p><span class="math display">\[
 \log ({ \widehat{E( \operatorname{Count} )} })  = 3.061 + 0.945(\operatorname{Species}_{\operatorname{Turdus\_merula}})
 \]</span></p>

@@ -142,7 +142,7 @@ summary(glm_bird)
 
 The fitted model is therefore
 
-```{r}
+```{r, echo = FALSE}
 equatiomatic::extract_eq(glm_bird, use_coefs = TRUE, coef_digits = 3)
 ```
 
@@ -442,7 +442,7 @@ ggplot(grouped, aes(x = size, y = p)) +
 
 ##### Chi-squared approach
 
-Luckily no manual calculations are libraryd, our `glm()` call returns the values we need directly: 
+Luckily no manual calculations are required, our `glm()` call returns the values we need directly: 
 
 ```{r}
 ## extract the residual deviance
@@ -459,11 +459,7 @@ Therefore, to test the relevant null hypothesis (that the model is correct) we u
 1 - pchisq(D, df)
 ```
 
-Here, we have no evidence to against our model being "correct".
-
-##### Simulation based approach
-
-Are our chi-squared approximation assumptions met?
+Here, we have no evidence to against our model being "correct". **BUT** are our chi-squared approximation assumptions met? If not, we might take a **simulation based approach**. This is, however, beyond the scope of this course.
 
 
 ## A summary of GLMs

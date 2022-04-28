@@ -1,4 +1,4 @@
-## Maximum likelkihood estimation
+## Maximum likelihood estimation
 
 Under the assumptions of a linear model then maximum likelihood estimation is equivalent to least squares. However, (as we'll see in a later module) we often need to be more flexible!
 
