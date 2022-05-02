@@ -161,7 +161,7 @@ fviz_nbclust(df, kmeans, nstart = 25,  method = "gap_stat", nboot = 50)+
 
 **Basically it's up to you to collate all the suggestions and make and informed decision**
 
-```{r}
+```{r, error = TRUE}
 ## Trying all the cluster indecies AHHHHH
 library(NbClust)
 cluster_30_indexes <- NbClust(data = df, distance = "euclidean", min.nc = 2, max.nc = 9, method = "complete", index ="all")

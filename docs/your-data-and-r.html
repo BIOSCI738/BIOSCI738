@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Your data and R | Advanced Biological Data Analysis</title>
   <meta name="description" content="Your data and R | Advanced Biological Data Analysis" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Your data and R | Advanced Biological Data Analysis" />
   <meta property="og:type" content="book" />
-  
   
   
   
@@ -49,48 +48,76 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -107,76 +134,94 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <ul class="summary">
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Nau mai, haere mai. Welcome to BIOSCI 738</a></li>
-<li class="chapter" data-level="" data-path="useful-information-to-set-you-up-for-your-semester.html"><a href="useful-information-to-set-you-up-for-your-semester.html"><i class="fa fa-check"></i>Useful information to set you up for your semester</a><ul>
+<li class="chapter" data-level="" data-path="useful-information-to-set-you-up-for-your-semester.html"><a href="useful-information-to-set-you-up-for-your-semester.html"><i class="fa fa-check"></i>Useful information to set you up for your semester</a>
+<ul>
 <li class="chapter" data-level="" data-path="useful-information-to-set-you-up-for-your-semester.html"><a href="useful-information-to-set-you-up-for-your-semester.html#course-outline"><i class="fa fa-check"></i>Course outline</a></li>
 <li class="chapter" data-level="" data-path="useful-information-to-set-you-up-for-your-semester.html"><a href="useful-information-to-set-you-up-for-your-semester.html#learning-outcomes"><i class="fa fa-check"></i>Learning Outcomes</a></li>
 <li class="chapter" data-level="" data-path="useful-information-to-set-you-up-for-your-semester.html"><a href="useful-information-to-set-you-up-for-your-semester.html#course-summary"><i class="fa fa-check"></i>Course summary</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-1.html"><a href="module-1.html"><i class="fa fa-check"></i>Module 1</a><ul>
-<li><a href="r-and-rstudio.html#r-and-rstudio"><code>R</code> and <code>RStudio</code></a><ul>
-<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html"><i class="fa fa-check"></i>Installing R and RStudio</a></li>
+<li class="chapter" data-level="" data-path="module-1.html"><a href="module-1.html"><i class="fa fa-check"></i>Module 1</a>
+<ul>
+<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html"><i class="fa fa-check"></i><code>R</code> and <code>RStudio</code></a>
+<ul>
+<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#installing-r-and-rstudio"><i class="fa fa-check"></i>Installing R and RStudio</a></li>
 <li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#getting-started"><i class="fa fa-check"></i>Getting started</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html"><i class="fa fa-check"></i>Reproducible research</a><ul>
+<li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html"><i class="fa fa-check"></i>Reproducible research</a>
+<ul>
 <li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html#project-oriented-workflow-good-practice"><i class="fa fa-check"></i>Project-oriented workflow: good practice</a></li>
-<li><a href="reproducible-research.html#version-control-with-git-and-github">Version control with <code>git</code> and GitHub</a></li>
+<li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html#version-control-with-git-and-github"><i class="fa fa-check"></i>Version control with <code>git</code> and GitHub</a></li>
 </ul></li>
-<li><a href="your-data-and-r.html#your-data-and-r">Your data and <code>R</code></a><ul>
-<li><a href="your-data-and-r.html#reading-in-data-from-a-.csv-file">Reading in data from a <code>.csv</code> file</a></li>
-<li class="chapter" data-level="" data-path="your-data-and-r.html"><a href="your-data-and-r.html"><i class="fa fa-check"></i>Explore your data</a></li>
-<li><a href="your-data-and-r.html#the-pipe-operator">The pipe operator <code>%&gt;%</code></a></li>
+<li class="chapter" data-level="" data-path="your-data-and-r.html"><a href="your-data-and-r.html"><i class="fa fa-check"></i>Your data and <code>R</code></a>
+<ul>
+<li class="chapter" data-level="" data-path="your-data-and-r.html"><a href="your-data-and-r.html#reading-in-data-from-a-.csv-file"><i class="fa fa-check"></i>Reading in data from a <code>.csv</code> file</a></li>
+<li class="chapter" data-level="" data-path="your-data-and-r.html"><a href="your-data-and-r.html#explore-your-data"><i class="fa fa-check"></i>Explore your data</a></li>
+<li class="chapter" data-level="" data-path="your-data-and-r.html"><a href="your-data-and-r.html#the-pipe-operator"><i class="fa fa-check"></i>The pipe operator <code>%&gt;%</code></a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="data-wrangling.html"><a href="data-wrangling.html"><i class="fa fa-check"></i>Data wrangling</a><ul>
-<li><a href="data-wrangling.html#introuducing-the-palmer-penguins">Introuducing the <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0090081">Palmer penguins</a></a></li>
-<li><a href="data-wrangling.html#common-dataframe-manipulations-in-the-tidyverse-using-dplyr-and-tidyr">Common dataframe manipulations in the <code>tidyverse</code>, using <code>dplyr</code> and <code>tidyr</code></a></li>
+<li class="chapter" data-level="" data-path="data-wrangling.html"><a href="data-wrangling.html"><i class="fa fa-check"></i>Data wrangling</a>
+<ul>
+<li class="chapter" data-level="" data-path="data-wrangling.html"><a href="data-wrangling.html#introuducing-the-palmer-penguins"><i class="fa fa-check"></i>Introuducing the <span>Palmer penguins</span></a></li>
+<li class="chapter" data-level="" data-path="data-wrangling.html"><a href="data-wrangling.html#common-dataframe-manipulations-in-the-tidyverse-using-dplyr-and-tidyr"><i class="fa fa-check"></i>Common dataframe manipulations in the <code>tidyverse</code>, using <code>dplyr</code> and <code>tidyr</code></a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html"><i class="fa fa-check"></i>Data visualiation (data viz)</a><ul>
+<li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html"><i class="fa fa-check"></i>Data visualiation (data viz)</a>
+<ul>
 <li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html#exploratory-plots"><i class="fa fa-check"></i>Exploratory plots</a></li>
 <li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html#explanatory-plots"><i class="fa fa-check"></i>Explanatory plots</a></li>
 <li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html#ten-simple-rules-for-better-figures"><i class="fa fa-check"></i>Ten Simple Rules for Better Figures</a></li>
-<li><a href="data-visualiation-data-viz.html#ggplot2"><code>ggplot2</code></a></li>
+<li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html#ggplot2"><i class="fa fa-check"></i><code>ggplot2</code></a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="māori-data-sovereignty-principles.html"><a href="māori-data-sovereignty-principles.html"><i class="fa fa-check"></i>Māori Data Sovereignty principles</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-2.html"><a href="module-2.html"><i class="fa fa-check"></i>Module 2</a><ul>
+<li class="chapter" data-level="" data-path="module-2.html"><a href="module-2.html"><i class="fa fa-check"></i>Module 2</a>
+<ul>
 <li class="chapter" data-level="" data-path="key-satistical-concepts.html"><a href="key-satistical-concepts.html"><i class="fa fa-check"></i>Key satistical concepts</a></li>
-<li class="chapter" data-level="" data-path="bootstrap-resampling.html"><a href="bootstrap-resampling.html"><i class="fa fa-check"></i>Bootstrap resampling</a><ul>
+<li class="chapter" data-level="" data-path="bootstrap-resampling.html"><a href="bootstrap-resampling.html"><i class="fa fa-check"></i>Bootstrap resampling</a>
+<ul>
 <li class="chapter" data-level="" data-path="bootstrap-resampling.html"><a href="bootstrap-resampling.html#example-constructing-bootstrap-confidence-intervals"><i class="fa fa-check"></i>Example: constructing bootstrap confidence intervals</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="permutation-and-randomisation-tests.html"><a href="permutation-and-randomisation-tests.html"><i class="fa fa-check"></i>Permutation and randomisation tests</a><ul>
+<li class="chapter" data-level="" data-path="permutation-and-randomisation-tests.html"><a href="permutation-and-randomisation-tests.html"><i class="fa fa-check"></i>Permutation and randomisation tests</a>
+<ul>
 <li class="chapter" data-level="" data-path="permutation-and-randomisation-tests.html"><a href="permutation-and-randomisation-tests.html#a-permutation-test-jackal-mandible-lengths"><i class="fa fa-check"></i>A permutation test: Jackal mandible lengths</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="resampling-procedures-the-differences.html"><a href="resampling-procedures-the-differences.html"><i class="fa fa-check"></i>Resampling procedures, the differences</a></li>
-<li class="chapter" data-level="" data-path="hypothesis-testing-key-terms.html"><a href="hypothesis-testing-key-terms.html"><i class="fa fa-check"></i>Hypothesis testing: key terms</a><ul>
+<li class="chapter" data-level="" data-path="hypothesis-testing-key-terms.html"><a href="hypothesis-testing-key-terms.html"><i class="fa fa-check"></i>Hypothesis testing: key terms</a>
+<ul>
 <li class="chapter" data-level="" data-path="hypothesis-testing-key-terms.html"><a href="hypothesis-testing-key-terms.html#p-values"><i class="fa fa-check"></i>😱 p-values 😱</a></li>
 <li class="chapter" data-level="" data-path="hypothesis-testing-key-terms.html"><a href="hypothesis-testing-key-terms.html#type-i-and-type-ii-errors"><i class="fa fa-check"></i>Type I and Type II errors</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="parametric-hypothesis-tests.html"><a href="parametric-hypothesis-tests.html"><i class="fa fa-check"></i>Parametric hypothesis tests</a><ul>
+<li class="chapter" data-level="" data-path="parametric-hypothesis-tests.html"><a href="parametric-hypothesis-tests.html"><i class="fa fa-check"></i>Parametric hypothesis tests</a>
+<ul>
 <li class="chapter" data-level="" data-path="parametric-hypothesis-tests.html"><a href="parametric-hypothesis-tests.html#one-sample-t-test"><i class="fa fa-check"></i>One-Sample t-test</a></li>
 <li class="chapter" data-level="" data-path="parametric-hypothesis-tests.html"><a href="parametric-hypothesis-tests.html#differences-between-two-means"><i class="fa fa-check"></i>Differences between two means</a></li>
 <li class="chapter" data-level="" data-path="parametric-hypothesis-tests.html"><a href="parametric-hypothesis-tests.html#one-way-analysis-of-variance-anova"><i class="fa fa-check"></i>One-Way Analysis of Variance (ANOVA)</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i>Linear regression</a><ul>
+<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i>Linear regression</a>
+<ul>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#some-mathematical-notation"><i class="fa fa-check"></i>Some mathematical notation</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#modeling-bill-depth"><i class="fa fa-check"></i>Modeling Bill Depth</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#single-continuous-variable"><i class="fa fa-check"></i>Single continuous variable</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#one-factor-and-a-continuous-variable"><i class="fa fa-check"></i>One factor and a continuous variable</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#interactions"><i class="fa fa-check"></i>Interactions</a></li>
 </ul></li>
-<li><a href="model-formula-syntax-in-r.html#model-formula-syntax-in-r">Model formula syntax in <code>R</code></a><ul>
-<li class="chapter" data-level="" data-path="model-formula-syntax-in-r.html"><a href="model-formula-syntax-in-r.html"><i class="fa fa-check"></i>Other possible models</a></li>
+<li class="chapter" data-level="" data-path="model-formula-syntax-in-r.html"><a href="model-formula-syntax-in-r.html"><i class="fa fa-check"></i>Model formula syntax in <code>R</code></a>
+<ul>
+<li class="chapter" data-level="" data-path="model-formula-syntax-in-r.html"><a href="model-formula-syntax-in-r.html#other-possible-models"><i class="fa fa-check"></i>Other possible models</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html"><i class="fa fa-check"></i>Model diagnostics for a linear model</a><ul>
+<li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html"><i class="fa fa-check"></i>Model diagnostics for a linear model</a>
+<ul>
 <li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html#marginal-predictions"><i class="fa fa-check"></i>Marginal predictions</a></li>
 <li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html#model-selection"><i class="fa fa-check"></i>Model selection</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="inference-for-a-linear-model.html"><a href="inference-for-a-linear-model.html"><i class="fa fa-check"></i>Inference for a linear model</a><ul>
+<li class="chapter" data-level="" data-path="inference-for-a-linear-model.html"><a href="inference-for-a-linear-model.html"><i class="fa fa-check"></i>Inference for a linear model</a>
+<ul>
 <li class="chapter" data-level="" data-path="inference-for-a-linear-model.html"><a href="inference-for-a-linear-model.html#point-prediction"><i class="fa fa-check"></i>Point prediction</a></li>
 <li class="chapter" data-level="" data-path="inference-for-a-linear-model.html"><a href="inference-for-a-linear-model.html#confidence-intervals-for-parameters"><i class="fa fa-check"></i>Confidence intervals for parameters</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-3.html"><a href="module-3.html"><i class="fa fa-check"></i>Module 3</a><ul>
-<li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html"><i class="fa fa-check"></i>Introduction to the design and analysis of experiments</a><ul>
+<li class="chapter" data-level="" data-path="module-3.html"><a href="module-3.html"><i class="fa fa-check"></i>Module 3</a>
+<ul>
+<li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html"><i class="fa fa-check"></i>Introduction to the design and analysis of experiments</a>
+<ul>
 <li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#key-phrases"><i class="fa fa-check"></i>Key phrases</a></li>
 <li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#the-three-key-principles"><i class="fa fa-check"></i>The three key principles:</a></li>
 <li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#replication"><i class="fa fa-check"></i>Replication</a></li>
@@ -184,37 +229,44 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#blocking"><i class="fa fa-check"></i>Blocking</a></li>
 <li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#setting-up-an-experiment"><i class="fa fa-check"></i>Setting up an experiment</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html"><i class="fa fa-check"></i>Some basic experimental designs</a><ul>
+<li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html"><i class="fa fa-check"></i>Some basic experimental designs</a>
+<ul>
 <li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html#completely-randomised-design-crd"><i class="fa fa-check"></i>Completely randomised design (CRD)</a></li>
 <li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html#randomised-complete-block-design-rcbd"><i class="fa fa-check"></i>Randomised complete block design (RCBD)</a></li>
 <li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html#factorial-design"><i class="fa fa-check"></i>Factorial design</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html"><i class="fa fa-check"></i>Modelling experimental data</a><ul>
+<li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html"><i class="fa fa-check"></i>Modelling experimental data</a>
+<ul>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-completely-randomised-design-crd-as-a-linear-model"><i class="fa fa-check"></i>A completely randomised design (CRD) as a linear model</a></li>
-<li><a href="modelling-experimental-data.html#analysis-of-a-crd-in-r">Analysis of a CRD in <code>R</code></a></li>
+<li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#analysis-of-a-crd-in-r"><i class="fa fa-check"></i>Analysis of a CRD in <code>R</code></a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-factorial-experiment-as-a-crd"><i class="fa fa-check"></i>A Factorial experiment (as a CRD)</a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#unqual-replications-unbalanced-design"><i class="fa fa-check"></i>Unqual replications (unbalanced design)</a></li>
-<li><a href="modelling-experimental-data.html#sums-of-squares-ss">Sums of squares (<span class="math inline">\(SS\)</span>)</a></li>
+<li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#sums-of-squares-ss"><i class="fa fa-check"></i>Sums of squares (<span class="math inline">\(SS\)</span>)</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html"><i class="fa fa-check"></i>Multiple comparisons</a><ul>
+<li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html"><i class="fa fa-check"></i>Multiple comparisons</a>
+<ul>
 <li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html#adjustments-for-multiple-testing"><i class="fa fa-check"></i>Adjustments for multiple testing</a></li>
 <li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html#classification-of-multiple-hypothesis-tests"><i class="fa fa-check"></i>Classification of multiple hypothesis tests</a></li>
 <li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html#multiple-comparison-procedures"><i class="fa fa-check"></i>Multiple comparison procedures</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html"><i class="fa fa-check"></i>Linear mixed-effect models (LMMs)</a><ul>
+<li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html"><i class="fa fa-check"></i>Linear mixed-effect models (LMMs)</a>
+<ul>
 <li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html#a-randomised-controlled-block-design-rcbd"><i class="fa fa-check"></i>A Randomised Controlled Block Design (RCBD)</a></li>
 <li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html#a-split-plot-design"><i class="fa fa-check"></i>A Split-plot design</a></li>
 <li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html#a-repeated-measures-design"><i class="fa fa-check"></i>A repeated measures design</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-4.html"><a href="module-4.html"><i class="fa fa-check"></i>Module 4</a><ul>
-<li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html"><i class="fa fa-check"></i>Least Squares Estimation</a><ul>
+<li class="chapter" data-level="" data-path="module-4.html"><a href="module-4.html"><i class="fa fa-check"></i>Module 4</a>
+<ul>
+<li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html"><i class="fa fa-check"></i>Least Squares Estimation</a>
+<ul>
 <li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html#some-basic-matrix-algebra"><i class="fa fa-check"></i>Some basic matrix algebra</a></li>
 <li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html#linear-least-squares"><i class="fa fa-check"></i>Linear least squares</a></li>
 <li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html#matrix-representation-of-a-crd"><i class="fa fa-check"></i>Matrix representation of a CRD</a></li>
 <li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html#a-numeric-example"><i class="fa fa-check"></i>A numeric example</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html"><i class="fa fa-check"></i>Maximum likelihood estimation</a><ul>
+<li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html"><i class="fa fa-check"></i>Maximum likelihood estimation</a>
+<ul>
 <li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#differeniation-rules"><i class="fa fa-check"></i>Differeniation rules</a></li>
 <li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#logarithm-rules"><i class="fa fa-check"></i>Logarithm rules</a></li>
 <li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#maximum-likelihood-estimation-for-a-binomial-distribution"><i class="fa fa-check"></i>Maximum likelihood estimation for a Binomial distribution</a></li>
@@ -223,43 +275,54 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#maximum-likelihood-estimation-for-a-poisson-distribution"><i class="fa fa-check"></i>Maximum likelihood estimation for a Poisson distribution</a></li>
 <li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#maximum-likelihood-estimation-for-a-continuous-random-variable"><i class="fa fa-check"></i>Maximum likelihood estimation for a continuous random variable</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html"><i class="fa fa-check"></i>Introduction to Bayesian statistics</a><ul>
+<li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html"><i class="fa fa-check"></i>Introduction to Bayesian statistics</a>
+<ul>
 <li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html#conditional-probability"><i class="fa fa-check"></i>Conditional probability</a></li>
-<li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html#bayes-rule"><i class="fa fa-check"></i>Bayes' rule</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html#bayes-rule"><i class="fa fa-check"></i>Bayes’ rule</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-5.html"><a href="module-5.html"><i class="fa fa-check"></i>Module 5</a><ul>
+<li class="chapter" data-level="" data-path="module-5.html"><a href="module-5.html"><i class="fa fa-check"></i>Module 5</a>
+<ul>
 <li class="chapter" data-level="" data-path="introduction-to-generalised-linear-models-glms.html"><a href="introduction-to-generalised-linear-models-glms.html"><i class="fa fa-check"></i>Introduction to generalised linear models (GLMs)</a></li>
-<li class="chapter" data-level="" data-path="poisson-regression.html"><a href="poisson-regression.html"><i class="fa fa-check"></i>Poisson regression</a><ul>
+<li class="chapter" data-level="" data-path="poisson-regression.html"><a href="poisson-regression.html"><i class="fa fa-check"></i>Poisson regression</a>
+<ul>
 <li class="chapter" data-level="" data-path="poisson-regression.html"><a href="poisson-regression.html#an-example-bird-abundance"><i class="fa fa-check"></i>An example: bird abundance</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i>Logistic regression</a><ul>
+<li class="chapter" data-level="" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i>Logistic regression</a>
+<ul>
 <li class="chapter" data-level="" data-path="logistic-regression.html"><a href="logistic-regression.html#an-example-lobsters"><i class="fa fa-check"></i>An example: lobsters</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="a-summary-of-glms.html"><a href="a-summary-of-glms.html"><i class="fa fa-check"></i>A summary of GLMs</a></li>
-<li class="chapter" data-level="" data-path="generalised-linear-mixed-effects-models-glmmms.html"><a href="generalised-linear-mixed-effects-models-glmmms.html"><i class="fa fa-check"></i>Generalised linear mixed-effects models (GLMMMs)</a><ul>
+<li class="chapter" data-level="" data-path="generalised-linear-mixed-effects-models-glmmms.html"><a href="generalised-linear-mixed-effects-models-glmmms.html"><i class="fa fa-check"></i>Generalised linear mixed-effects models (GLMMMs)</a>
+<ul>
 <li class="chapter" data-level="" data-path="generalised-linear-mixed-effects-models-glmmms.html"><a href="generalised-linear-mixed-effects-models-glmmms.html#fitting-a-glmm"><i class="fa fa-check"></i>Fitting a GLMM</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-6.html"><a href="module-6.html"><i class="fa fa-check"></i>Module 6</a><ul>
-<li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i>Clustering</a><ul>
+<li class="chapter" data-level="" data-path="module-6.html"><a href="module-6.html"><i class="fa fa-check"></i>Module 6</a>
+<ul>
+<li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i>Clustering</a>
+<ul>
 <li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#divisive-partitioning-methods."><i class="fa fa-check"></i>Divisive (partitioning) methods.</a></li>
-<li><a href="clustering.html#k-means-an-example-using-the-palmerpenguins-data">K-means: an example using the <code>palmerpenguins</code> data</a></li>
+<li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#k-means-an-example-using-the-palmerpenguins-data"><i class="fa fa-check"></i>K-means: an example using the <code>palmerpenguins</code> data</a></li>
 <li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#hierarchical-agglomerative-clustering."><i class="fa fa-check"></i>Hierarchical agglomerative clustering.</a></li>
 <li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#hierarchical-clustering-an-example"><i class="fa fa-check"></i>Hierarchical clustering: an example</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="principal-component-analysis-pca.html"><a href="principal-component-analysis-pca.html"><i class="fa fa-check"></i>Principal Component Analysis (PCA)</a><ul>
-<li><a href="principal-component-analysis-pca.html#examples-in-r">Examples in <code>R</code></a></li>
+<li class="chapter" data-level="" data-path="principal-component-analysis-pca.html"><a href="principal-component-analysis-pca.html"><i class="fa fa-check"></i>Principal Component Analysis (PCA)</a>
+<ul>
+<li class="chapter" data-level="" data-path="principal-component-analysis-pca.html"><a href="principal-component-analysis-pca.html#examples-in-r"><i class="fa fa-check"></i>Examples in <code>R</code></a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html"><i class="fa fa-check"></i>Multidimensional Scaling (MDS)</a><ul>
+<li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html"><i class="fa fa-check"></i>Multidimensional Scaling (MDS)</a>
+<ul>
 <li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html#metric-scaling"><i class="fa fa-check"></i>Metric Scaling</a></li>
 <li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html#correspondence-analysis-ca"><i class="fa fa-check"></i>Correspondence Analysis (CA)</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="non-metric-multidimensional-scaling.html"><a href="non-metric-multidimensional-scaling.html"><i class="fa fa-check"></i>Non-metric Multidimensional Scaling</a><ul>
-<li><a href="non-metric-multidimensional-scaling.html#examples-in-r-2">Examples in <code>R</code></a></li>
+<li class="chapter" data-level="" data-path="non-metric-multidimensional-scaling.html"><a href="non-metric-multidimensional-scaling.html"><i class="fa fa-check"></i>Non-metric Multidimensional Scaling</a>
+<ul>
+<li class="chapter" data-level="" data-path="non-metric-multidimensional-scaling.html"><a href="non-metric-multidimensional-scaling.html#examples-in-r-2"><i class="fa fa-check"></i>Examples in <code>R</code></a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html"><i class="fa fa-check"></i>Linear Discriminant Analysis (LDA)</a><ul>
-<li><a href="linear-discriminant-analysis-lda.html#example-in-r">Example in <code>R</code></a></li>
+<li class="chapter" data-level="" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html"><i class="fa fa-check"></i>Linear Discriminant Analysis (LDA)</a>
+<ul>
+<li class="chapter" data-level="" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html#example-in-r"><i class="fa fa-check"></i>Example in <code>R</code></a></li>
 <li class="chapter" data-level="" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html#prediction"><i class="fa fa-check"></i>Prediction</a></li>
 </ul></li>
 </ul></li>
@@ -280,8 +343,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="your-data-and-r" class="section level2">
-<h2>Your data and <code>R</code></h2>
+<div id="your-data-and-r" class="section level2 hasAnchor">
+<h2>Your data and <code>R</code><a href="your-data-and-r.html#your-data-and-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>Starting out with <code>tidyverse</code></strong></p>
 <p align="center">
 <img src="https://raw.githubusercontent.com/allisonhorst/stats-illustrations/master/rstats-artwork/tidyverse_celestial.png" width="40%">
@@ -289,20 +352,20 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p align="center">
 Artwork by <a href="https://github.com/allisonhorst/">@allison_horst</a>
 </p>
-<p><a href="https://www.tidyverse.org/">'tidyverse'</a> is a collection of <code>R</code> packages that all share underlying design philosophy, grammar, and data structures. They are specifically designed to make data wrangling, manipulation, visualisation, and analysis simpler.</p>
+<p><a href="https://www.tidyverse.org/">‘tidyverse’</a> is a collection of <code>R</code> packages that all share underlying design philosophy, grammar, and data structures. They are specifically designed to make data wrangling, manipulation, visualisation, and analysis simpler.</p>
 <p>To install <strong>all</strong> the packages that belong to the <code>tidyverse</code> run</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## request (download) the tidyverse packages from the centralised library
-## you only need to do this once per computer :-)
-<span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</code></pre></div>
-<p>To tell your computer to access the <code>tidyverse</code> functionality in your session run (<strong>Note</strong> you'll have to do this each time you start up an <code>R</code> session):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Get the tidyverse packages from our local library
-<span class="kw">library</span>(tidyverse)
-## alternatively (does essentially the same thing, 
-## but checks if the package is already loaded first)
-<span class="kw">require</span>(tidyverse)</code></pre></div>
-<p><strong>Note:</strong> If you want to call a function from a specific package then you can use the syntax <code>package_name::function_name</code>. Here the <code>::</code> specifically tells your computer to use the function <code>function_name</code> from the package <code>package_name</code>. This is useful if you only want to use a single function from a package (i.e., you don't want to load them all), or want to explicitly tell your computer which package to load the function from if there are multiple functions with the same name. See <code>readr::read_csv</code> below for an example of using this syntax. You will also see this in a few places throughout the rest of the notes.</p>
-<div id="reading-in-data-from-a-.csv-file" class="section level3">
-<h3>Reading in data from a <code>.csv</code> file</h3>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="your-data-and-r.html#cb12-1"></a><span class="co">## request (download) the tidyverse packages from the centralised library</span></span>
+<span id="cb12-2"><a href="your-data-and-r.html#cb12-2"></a><span class="co">## you only need to do this once per computer :-)</span></span>
+<span id="cb12-3"><a href="your-data-and-r.html#cb12-3"></a><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span></code></pre></div>
+<p>To tell your computer to access the <code>tidyverse</code> functionality in your session run (<strong>Note</strong> you’ll have to do this each time you start up an <code>R</code> session):</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="your-data-and-r.html#cb13-1"></a><span class="co">## Get the tidyverse packages from our local library</span></span>
+<span id="cb13-2"><a href="your-data-and-r.html#cb13-2"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb13-3"><a href="your-data-and-r.html#cb13-3"></a><span class="co">## alternatively (does essentially the same thing, </span></span>
+<span id="cb13-4"><a href="your-data-and-r.html#cb13-4"></a><span class="co">## but checks if the package is already loaded first)</span></span>
+<span id="cb13-5"><a href="your-data-and-r.html#cb13-5"></a><span class="kw">require</span>(tidyverse)</span></code></pre></div>
+<p><strong>Note:</strong> If you want to call a function from a specific package then you can use the syntax <code>package_name::function_name</code>. Here the <code>::</code> specifically tells your computer to use the function <code>function_name</code> from the package <code>package_name</code>. This is useful if you only want to use a single function from a package (i.e., you don’t want to load them all), or want to explicitly tell your computer which package to load the function from if there are multiple functions with the same name. See <code>readr::read_csv</code> below for an example of using this syntax. You will also see this in a few places throughout the rest of the notes.</p>
+<div id="reading-in-data-from-a-.csv-file" class="section level3 hasAnchor">
+<h3>Reading in data from a <code>.csv</code> file<a href="your-data-and-r.html#reading-in-data-from-a-.csv-file" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In this section we will be using dataset referring to the age and shell lengths of different P<span class="math inline">\(\overline{\text{a}}\)</span>ua. The dataset contains the following variables</p>
 <ul>
 <li><code>Age</code> of P<span class="math inline">\(\overline{\text{a}}\)</span>ua in years (calculated from counting rings in the cone)</li>
@@ -314,12 +377,12 @@ Artwork by <a href="https://github.com/allisonhorst/">@allison_horst</a>
 <li><p>Download the <code>paua.csv</code> file from my <a href="https://github.com/STATS-UOA/databunker/blob/master/data/paua.csv">online repository</a> into a folder on your local computer. In the <em>Environment</em> pane click <strong>Import Dataset</strong> &gt; ** From Text (readr)** &gt; <strong>Browse</strong> &gt; <em>Choose your file, remembering which folder you downloaded it to. this is where <code>.Rproj</code> is useful</em> &gt; <em>Another pane should pop up, check the data looks as you might expect</em> &gt; <strong>Import</strong></p></li>
 <li><p>Or, you can download directly using the URL (or a any other given path)</p></li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">paua &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/paua.csv&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="your-data-and-r.html#cb14-1"></a>paua &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/paua.csv&quot;</span>)</span></code></pre></div>
 </div>
-<div id="explore-your-data" class="section level3">
-<h3>Explore your data</h3>
-<p>Let's have a look at your data in the <em>Console</em></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">paua</code></pre></div>
+<div id="explore-your-data" class="section level3 hasAnchor">
+<h3>Explore your data<a href="your-data-and-r.html#explore-your-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let’s have a look at your data in the <em>Console</em></p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="your-data-and-r.html#cb15-1"></a>paua</span></code></pre></div>
 <pre><code>## # A tibble: 60 × 3
 ##    Species            Length   Age
 ##    &lt;chr&gt;               &lt;dbl&gt; &lt;dbl&gt;
@@ -335,15 +398,15 @@ Artwork by <a href="https://github.com/allisonhorst/">@allison_horst</a>
 ## 10 Haliotis iris        4.25  5.50
 ## # … with 50 more rows</code></pre>
 <p>Use the <code>glimpse()</code> command for an alternative view</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glimpse</span>(paua)</code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="your-data-and-r.html#cb17-1"></a><span class="kw">glimpse</span>(paua)</span></code></pre></div>
 <pre><code>## Rows: 60
 ## Columns: 3
 ## $ Species &lt;chr&gt; &quot;Haliotis iris&quot;, &quot;Haliotis australis&quot;, &quot;Haliotis australis&quot;, &quot;…
 ## $ Length  &lt;dbl&gt; 1.80, 5.40, 4.80, 5.75, 5.65, 2.80, 5.90, 3.75, 7.20, 4.25, 6.…
 ## $ Age     &lt;dbl&gt; 1.497884, 11.877010, 5.416991, 4.497799, 5.500789, 2.500972, 6…</code></pre>
 </div>
-<div id="the-pipe-operator" class="section level3">
-<h3>The pipe operator <code>%&gt;%</code></h3>
+<div id="the-pipe-operator" class="section level3 hasAnchor">
+<h3>The pipe operator <code>%&gt;%</code><a href="your-data-and-r.html#the-pipe-operator" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A nifty <code>tidyverse</code> tool is called the pipe operator <code>%&gt;%</code>. The pipe operator allows us to combine multiple operations in <code>R</code> into a single sequential chain of actions.</p>
 <p>Say you would like to perform a hypothetical sequence of operations on a hypothetical data frame x using hypothetical functions f(), g(), and h():</p>
 <ul>
@@ -353,9 +416,9 @@ Artwork by <a href="https://github.com/allisonhorst/">@allison_horst</a>
 <li>Use the output of this as an input to a function <code>h()</code></li>
 </ul>
 <p>So to calculate the mean <strong>Age</strong> of each <strong>Species</strong> in the <code>paua</code> dataset we would use</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">paua <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">group_by</span>(Species) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_age =</span> <span class="kw">mean</span>(Age))</code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="your-data-and-r.html#cb19-1"></a>paua <span class="op">%&gt;%</span></span>
+<span id="cb19-2"><a href="your-data-and-r.html#cb19-2"></a><span class="st">  </span><span class="kw">group_by</span>(Species) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb19-3"><a href="your-data-and-r.html#cb19-3"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_age =</span> <span class="kw">mean</span>(Age))</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 2
 ##   Species            mean_age
 ##   &lt;chr&gt;                 &lt;dbl&gt;
@@ -367,13 +430,13 @@ Artwork by <a href="https://github.com/allisonhorst/">@allison_horst</a>
 <li>Use this and apply the <code>group_by()</code> function to group by <code>Species</code></li>
 <li>Use this output and apply the <code>summarize()</code> function to calculate the mean Age of each group (Species), calling the resulting number <code>mean_age</code></li>
 </ul>
-<p>Or to describe my daily routine...</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">I <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">wake_up</span>(<span class="dt">time =</span> <span class="st">&quot;later than I should&quot;</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">give</span>(<span class="dt">who =</span> <span class="st">&quot;Watson&quot;</span> , <span class="dt">what =</span> <span class="st">&quot;medication&quot;</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">make</span>(<span class="dt">who=</span> <span class="st">&quot;myself&quot;</span>, <span class="dt">what =</span> <span class="st">&quot;coffee&quot;</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">drink</span>() <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">try</span>(<span class="kw">remember_what_I_have_on</span>(<span class="dt">date =</span> <span class="st">&quot;today&quot;</span>))</code></pre></div>
+<p>Or to describe my daily routine…</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="your-data-and-r.html#cb21-1"></a>I <span class="op">%&gt;%</span></span>
+<span id="cb21-2"><a href="your-data-and-r.html#cb21-2"></a><span class="st">  </span><span class="kw">wake_up</span>(<span class="dt">time =</span> <span class="st">&quot;later than I should&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb21-3"><a href="your-data-and-r.html#cb21-3"></a><span class="st">  </span><span class="kw">give</span>(<span class="dt">who =</span> <span class="st">&quot;Watson&quot;</span> , <span class="dt">what =</span> <span class="st">&quot;medication&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb21-4"><a href="your-data-and-r.html#cb21-4"></a><span class="st">  </span><span class="kw">make</span>(<span class="dt">who=</span> <span class="st">&quot;myself&quot;</span>, <span class="dt">what =</span> <span class="st">&quot;coffee&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb21-5"><a href="your-data-and-r.html#cb21-5"></a><span class="st">  </span><span class="kw">drink</span>() <span class="op">%&gt;%</span></span>
+<span id="cb21-6"><a href="your-data-and-r.html#cb21-6"></a><span class="st">  </span><span class="kw">try</span>(<span class="kw">remember_what_I_have_on</span>(<span class="dt">date =</span> <span class="st">&quot;today&quot;</span>))</span></code></pre></div>
 <p><strong>Have a go at writing your own!</strong></p>
 </div>
 </div>
@@ -442,7 +505,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
