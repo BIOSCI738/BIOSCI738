@@ -239,7 +239,7 @@ resids_pearson <- residuals(glm_bird, type = "pearson")
 
 Plotting all three types we can asses how appropriate our chosen model is.
 
-```{r, echo = FALSE, out.width=14}
+```{r, echo = FALSE}
 resids <- data.frame(Fitted = glm_bird$fitted.values,
 										 "Response_residuals" = resids_response,
 										 "Deviance_residuals" = resids_deviance,
@@ -493,7 +493,7 @@ resids_pearson <- residuals(glm_mod_gr, type = "pearson")
 
 Plotting all three types we can asses how appropriate our chosen model is.
 
-```{r, echo = FALSE, out.width=14}
+```{r, echo = FALSE}
 resids <- data.frame(Fitted = glm_mod_gr$fitted.values,
 										 "Response_residuals" = resids_response,
 										 "Deviance_residuals" = resids_deviance,
