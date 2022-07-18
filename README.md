@@ -1,4 +1,4 @@
-# Course materials for BIOSCI738
+# Course materials for BIOSCI738 🐙
 
 #### All source files for the course book are in `docs/`. Course book is hosted @ [https://stats-uoa.github.io/BIOSCI738/](https://stats-uoa.github.io/BIOSCI738/)
 
