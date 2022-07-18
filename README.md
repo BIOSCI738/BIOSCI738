@@ -2,7 +2,7 @@
 
 #### All source files for the course book are in `docs/`. Course book is hosted @ [https://stats-uoa.github.io/BIOSCI738/](https://stats-uoa.github.io/BIOSCI738/)
 
- + To render the coursebook run the bash script `./render.sh -b docs/`
+ + To render the coursebook manually run the bash script `./render.sh -b docs/`
  
 ## Copyright
 
