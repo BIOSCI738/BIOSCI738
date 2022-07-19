@@ -20,9 +20,5 @@ jobs:
       - name: Render Book
         run: ./render.sh -b docs/
       - uses: actions/upload-artifact@v1
-        with:
-          EMAIL: ${{ secrets.EMAIL }}               # must be a verified email
-          GH_TOKEN: ${{ secrets.GH_PAT }} # https://github.com/settings/tokens
-         
     
  
