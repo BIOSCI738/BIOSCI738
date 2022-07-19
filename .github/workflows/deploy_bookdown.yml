@@ -19,7 +19,6 @@ jobs:
         run: Rscript -e 'install.packages(c("rmarkdown","bookdown"))'
       - name: Render Book
         run: render.sh -b docs/
-	shell: bash
       - uses: actions/upload-artifact@v1
         with:
           EMAIL: ${{ secrets.EMAIL }}               # must be a verified email
