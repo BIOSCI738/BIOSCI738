@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Modelling experimental data | Advanced Biological Data Analysis</title>
   <meta name="description" content="Modelling experimental data | Advanced Biological Data Analysis" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Modelling experimental data | Advanced Biological Data Analysis" />
   <meta property="og:type" content="book" />
-  
   
   
   
@@ -49,48 +48,76 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -107,76 +134,97 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <ul class="summary">
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Nau mai, haere mai. Welcome to BIOSCI 738</a></li>
-<li class="chapter" data-level="" data-path="useful-information-to-set-you-up-for-your-semester.html"><a href="useful-information-to-set-you-up-for-your-semester.html"><i class="fa fa-check"></i>Useful information to set you up for your semester</a><ul>
-<li class="chapter" data-level="" data-path="useful-information-to-set-you-up-for-your-semester.html"><a href="useful-information-to-set-you-up-for-your-semester.html#course-outline"><i class="fa fa-check"></i>Course outline</a></li>
-<li class="chapter" data-level="" data-path="useful-information-to-set-you-up-for-your-semester.html"><a href="useful-information-to-set-you-up-for-your-semester.html#learning-outcomes"><i class="fa fa-check"></i>Learning Outcomes</a></li>
-<li class="chapter" data-level="" data-path="useful-information-to-set-you-up-for-your-semester.html"><a href="useful-information-to-set-you-up-for-your-semester.html#course-summary"><i class="fa fa-check"></i>Course summary</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html"><i class="fa fa-check"></i>Syllabus</a>
+<ul>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#course-community"><i class="fa fa-check"></i>Course Community</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#synopsis"><i class="fa fa-check"></i>Synopsis</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#prerequisites"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#course-overview"><i class="fa fa-check"></i>Course overview</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#assessment-summary"><i class="fa fa-check"></i>Assessment summary</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#course-policies"><i class="fa fa-check"></i>Course policies</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-1.html"><a href="module-1.html"><i class="fa fa-check"></i>Module 1</a><ul>
-<li><a href="r-and-rstudio.html#r-and-rstudio"><code>R</code> and <code>RStudio</code></a><ul>
-<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html"><i class="fa fa-check"></i>Installing R and RStudio</a></li>
+<li class="chapter" data-level="" data-path="module-1.html"><a href="module-1.html"><i class="fa fa-check"></i>Module 1</a>
+<ul>
+<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html"><i class="fa fa-check"></i><code>R</code> and <code>RStudio</code></a>
+<ul>
+<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#installing-r-and-rstudio"><i class="fa fa-check"></i>Installing R and RStudio</a></li>
 <li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#getting-started"><i class="fa fa-check"></i>Getting started</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html"><i class="fa fa-check"></i>Reproducible research</a><ul>
+<li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html"><i class="fa fa-check"></i>Reproducible research</a>
+<ul>
 <li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html#project-oriented-workflow-good-practice"><i class="fa fa-check"></i>Project-oriented workflow: good practice</a></li>
-<li><a href="reproducible-research.html#version-control-with-git-and-github">Version control with <code>git</code> and GitHub</a></li>
+<li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html#version-control-with-git-and-github"><i class="fa fa-check"></i>Version control with <code>git</code> and GitHub</a></li>
 </ul></li>
-<li><a href="your-data-and-r.html#your-data-and-r">Your data and <code>R</code></a><ul>
-<li><a href="your-data-and-r.html#reading-in-data-from-a-.csv-file">Reading in data from a <code>.csv</code> file</a></li>
-<li class="chapter" data-level="" data-path="your-data-and-r.html"><a href="your-data-and-r.html"><i class="fa fa-check"></i>Explore your data</a></li>
-<li><a href="your-data-and-r.html#the-pipe-operator">The pipe operator <code>%&gt;%</code></a></li>
+<li class="chapter" data-level="" data-path="your-data-and-r.html"><a href="your-data-and-r.html"><i class="fa fa-check"></i>Your data and <code>R</code></a>
+<ul>
+<li class="chapter" data-level="" data-path="your-data-and-r.html"><a href="your-data-and-r.html#reading-in-data-from-a-.csv-file"><i class="fa fa-check"></i>Reading in data from a <code>.csv</code> file</a></li>
+<li class="chapter" data-level="" data-path="your-data-and-r.html"><a href="your-data-and-r.html#explore-your-data"><i class="fa fa-check"></i>Explore your data</a></li>
+<li class="chapter" data-level="" data-path="your-data-and-r.html"><a href="your-data-and-r.html#the-pipe-operator"><i class="fa fa-check"></i>The pipe operator <code>%&gt;%</code></a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="data-wrangling.html"><a href="data-wrangling.html"><i class="fa fa-check"></i>Data wrangling</a><ul>
-<li><a href="data-wrangling.html#introuducing-the-palmer-penguins">Introuducing the <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0090081">Palmer penguins</a></a></li>
-<li><a href="data-wrangling.html#common-dataframe-manipulations-in-the-tidyverse-using-dplyr-and-tidyr">Common dataframe manipulations in the <code>tidyverse</code>, using <code>dplyr</code> and <code>tidyr</code></a></li>
+<li class="chapter" data-level="" data-path="data-wrangling.html"><a href="data-wrangling.html"><i class="fa fa-check"></i>Data wrangling</a>
+<ul>
+<li class="chapter" data-level="" data-path="data-wrangling.html"><a href="data-wrangling.html#introuducing-the-palmer-penguins"><i class="fa fa-check"></i>Introuducing the <span>Palmer penguins</span></a></li>
+<li class="chapter" data-level="" data-path="data-wrangling.html"><a href="data-wrangling.html#common-dataframe-manipulations-in-the-tidyverse-using-dplyr-and-tidyr"><i class="fa fa-check"></i>Common dataframe manipulations in the <code>tidyverse</code>, using <code>dplyr</code> and <code>tidyr</code></a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html"><i class="fa fa-check"></i>Data visualiation (data viz)</a><ul>
+<li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html"><i class="fa fa-check"></i>Data visualiation (data viz)</a>
+<ul>
 <li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html#exploratory-plots"><i class="fa fa-check"></i>Exploratory plots</a></li>
 <li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html#explanatory-plots"><i class="fa fa-check"></i>Explanatory plots</a></li>
 <li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html#ten-simple-rules-for-better-figures"><i class="fa fa-check"></i>Ten Simple Rules for Better Figures</a></li>
-<li><a href="data-visualiation-data-viz.html#ggplot2"><code>ggplot2</code></a></li>
+<li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html#ggplot2"><i class="fa fa-check"></i><code>ggplot2</code></a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="māori-data-sovereignty-principles.html"><a href="māori-data-sovereignty-principles.html"><i class="fa fa-check"></i>Māori Data Sovereignty principles</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-2.html"><a href="module-2.html"><i class="fa fa-check"></i>Module 2</a><ul>
+<li class="chapter" data-level="" data-path="module-2.html"><a href="module-2.html"><i class="fa fa-check"></i>Module 2</a>
+<ul>
 <li class="chapter" data-level="" data-path="key-satistical-concepts.html"><a href="key-satistical-concepts.html"><i class="fa fa-check"></i>Key satistical concepts</a></li>
-<li class="chapter" data-level="" data-path="bootstrap-resampling.html"><a href="bootstrap-resampling.html"><i class="fa fa-check"></i>Bootstrap resampling</a><ul>
+<li class="chapter" data-level="" data-path="bootstrap-resampling.html"><a href="bootstrap-resampling.html"><i class="fa fa-check"></i>Bootstrap resampling</a>
+<ul>
 <li class="chapter" data-level="" data-path="bootstrap-resampling.html"><a href="bootstrap-resampling.html#example-constructing-bootstrap-confidence-intervals"><i class="fa fa-check"></i>Example: constructing bootstrap confidence intervals</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="permutation-and-randomisation-tests.html"><a href="permutation-and-randomisation-tests.html"><i class="fa fa-check"></i>Permutation and randomisation tests</a><ul>
+<li class="chapter" data-level="" data-path="permutation-and-randomisation-tests.html"><a href="permutation-and-randomisation-tests.html"><i class="fa fa-check"></i>Permutation and randomisation tests</a>
+<ul>
 <li class="chapter" data-level="" data-path="permutation-and-randomisation-tests.html"><a href="permutation-and-randomisation-tests.html#a-permutation-test-jackal-mandible-lengths"><i class="fa fa-check"></i>A permutation test: Jackal mandible lengths</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="resampling-procedures-the-differences.html"><a href="resampling-procedures-the-differences.html"><i class="fa fa-check"></i>Resampling procedures, the differences</a></li>
-<li class="chapter" data-level="" data-path="hypothesis-testing-key-terms.html"><a href="hypothesis-testing-key-terms.html"><i class="fa fa-check"></i>Hypothesis testing: key terms</a><ul>
+<li class="chapter" data-level="" data-path="hypothesis-testing-key-terms.html"><a href="hypothesis-testing-key-terms.html"><i class="fa fa-check"></i>Hypothesis testing: key terms</a>
+<ul>
 <li class="chapter" data-level="" data-path="hypothesis-testing-key-terms.html"><a href="hypothesis-testing-key-terms.html#p-values"><i class="fa fa-check"></i>😱 p-values 😱</a></li>
 <li class="chapter" data-level="" data-path="hypothesis-testing-key-terms.html"><a href="hypothesis-testing-key-terms.html#type-i-and-type-ii-errors"><i class="fa fa-check"></i>Type I and Type II errors</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="parametric-hypothesis-tests.html"><a href="parametric-hypothesis-tests.html"><i class="fa fa-check"></i>Parametric hypothesis tests</a><ul>
+<li class="chapter" data-level="" data-path="parametric-hypothesis-tests.html"><a href="parametric-hypothesis-tests.html"><i class="fa fa-check"></i>Parametric hypothesis tests</a>
+<ul>
 <li class="chapter" data-level="" data-path="parametric-hypothesis-tests.html"><a href="parametric-hypothesis-tests.html#one-sample-t-test"><i class="fa fa-check"></i>One-Sample t-test</a></li>
 <li class="chapter" data-level="" data-path="parametric-hypothesis-tests.html"><a href="parametric-hypothesis-tests.html#differences-between-two-means"><i class="fa fa-check"></i>Differences between two means</a></li>
 <li class="chapter" data-level="" data-path="parametric-hypothesis-tests.html"><a href="parametric-hypothesis-tests.html#one-way-analysis-of-variance-anova"><i class="fa fa-check"></i>One-Way Analysis of Variance (ANOVA)</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i>Linear regression</a><ul>
+<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i>Linear regression</a>
+<ul>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#some-mathematical-notation"><i class="fa fa-check"></i>Some mathematical notation</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#modeling-bill-depth"><i class="fa fa-check"></i>Modeling Bill Depth</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#single-continuous-variable"><i class="fa fa-check"></i>Single continuous variable</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#one-factor-and-a-continuous-variable"><i class="fa fa-check"></i>One factor and a continuous variable</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#interactions"><i class="fa fa-check"></i>Interactions</a></li>
 </ul></li>
-<li><a href="model-formula-syntax-in-r.html#model-formula-syntax-in-r">Model formula syntax in <code>R</code></a><ul>
-<li class="chapter" data-level="" data-path="model-formula-syntax-in-r.html"><a href="model-formula-syntax-in-r.html"><i class="fa fa-check"></i>Other possible models</a></li>
+<li class="chapter" data-level="" data-path="model-formula-syntax-in-r.html"><a href="model-formula-syntax-in-r.html"><i class="fa fa-check"></i>Model formula syntax in <code>R</code></a>
+<ul>
+<li class="chapter" data-level="" data-path="model-formula-syntax-in-r.html"><a href="model-formula-syntax-in-r.html#other-possible-models"><i class="fa fa-check"></i>Other possible models</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html"><i class="fa fa-check"></i>Model diagnostics for a linear model</a><ul>
+<li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html"><i class="fa fa-check"></i>Model diagnostics for a linear model</a>
+<ul>
 <li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html#marginal-predictions"><i class="fa fa-check"></i>Marginal predictions</a></li>
 <li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html#model-selection"><i class="fa fa-check"></i>Model selection</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="inference-for-a-linear-model.html"><a href="inference-for-a-linear-model.html"><i class="fa fa-check"></i>Inference for a linear model</a><ul>
+<li class="chapter" data-level="" data-path="inference-for-a-linear-model.html"><a href="inference-for-a-linear-model.html"><i class="fa fa-check"></i>Inference for a linear model</a>
+<ul>
 <li class="chapter" data-level="" data-path="inference-for-a-linear-model.html"><a href="inference-for-a-linear-model.html#point-prediction"><i class="fa fa-check"></i>Point prediction</a></li>
 <li class="chapter" data-level="" data-path="inference-for-a-linear-model.html"><a href="inference-for-a-linear-model.html#confidence-intervals-for-parameters"><i class="fa fa-check"></i>Confidence intervals for parameters</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-3.html"><a href="module-3.html"><i class="fa fa-check"></i>Module 3</a><ul>
-<li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html"><i class="fa fa-check"></i>Introduction to the design and analysis of experiments</a><ul>
+<li class="chapter" data-level="" data-path="module-3.html"><a href="module-3.html"><i class="fa fa-check"></i>Module 3</a>
+<ul>
+<li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html"><i class="fa fa-check"></i>Introduction to the design and analysis of experiments</a>
+<ul>
 <li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#key-phrases"><i class="fa fa-check"></i>Key phrases</a></li>
 <li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#the-three-key-principles"><i class="fa fa-check"></i>The three key principles:</a></li>
 <li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#replication"><i class="fa fa-check"></i>Replication</a></li>
@@ -184,37 +232,89 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#blocking"><i class="fa fa-check"></i>Blocking</a></li>
 <li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#setting-up-an-experiment"><i class="fa fa-check"></i>Setting up an experiment</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html"><i class="fa fa-check"></i>Some basic experimental designs</a><ul>
+<li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html"><i class="fa fa-check"></i>Some basic experimental designs</a>
+<ul>
 <li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html#completely-randomised-design-crd"><i class="fa fa-check"></i>Completely randomised design (CRD)</a></li>
 <li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html#randomised-complete-block-design-rcbd"><i class="fa fa-check"></i>Randomised complete block design (RCBD)</a></li>
 <li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html#factorial-design"><i class="fa fa-check"></i>Factorial design</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html"><i class="fa fa-check"></i>Modelling experimental data</a><ul>
+<li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html"><i class="fa fa-check"></i>Modelling experimental data</a>
+<ul>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-completely-randomised-design-crd-as-a-linear-model"><i class="fa fa-check"></i>A completely randomised design (CRD) as a linear model</a></li>
-<li><a href="modelling-experimental-data.html#analysis-of-a-crd-in-r">Analysis of a CRD in <code>R</code></a></li>
+<li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#analysis-of-a-crd-in-r"><i class="fa fa-check"></i>Analysis of a CRD in <code>R</code></a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-factorial-experiment-as-a-crd"><i class="fa fa-check"></i>A Factorial experiment (as a CRD)</a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#unqual-replications-unbalanced-design"><i class="fa fa-check"></i>Unqual replications (unbalanced design)</a></li>
-<li><a href="modelling-experimental-data.html#sums-of-squares-ss">Sums of squares (<span class="math inline">\(SS\)</span>)</a></li>
+<li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#sums-of-squares-ss"><i class="fa fa-check"></i>Sums of squares (<span class="math inline">\(SS\)</span>)</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html"><i class="fa fa-check"></i>Multiple comparisons</a><ul>
+<li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html"><i class="fa fa-check"></i>Multiple comparisons</a>
+<ul>
 <li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html#adjustments-for-multiple-testing"><i class="fa fa-check"></i>Adjustments for multiple testing</a></li>
 <li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html#classification-of-multiple-hypothesis-tests"><i class="fa fa-check"></i>Classification of multiple hypothesis tests</a></li>
 <li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html#multiple-comparison-procedures"><i class="fa fa-check"></i>Multiple comparison procedures</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html"><i class="fa fa-check"></i>Linear mixed-effect models (LMMs)</a><ul>
+<li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html"><i class="fa fa-check"></i>Linear mixed-effect models (LMMs)</a>
+<ul>
 <li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html#a-randomised-controlled-block-design-rcbd"><i class="fa fa-check"></i>A Randomised Controlled Block Design (RCBD)</a></li>
 <li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html#a-split-plot-design"><i class="fa fa-check"></i>A Split-plot design</a></li>
 <li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html#a-repeated-measures-design"><i class="fa fa-check"></i>A repeated measures design</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-4.html"><a href="module-4.html"><i class="fa fa-check"></i>Module 4</a><ul>
-<li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html"><i class="fa fa-check"></i>Least Squares Estimation</a><ul>
+<li class="chapter" data-level="" data-path="module-4.html"><a href="module-4.html"><i class="fa fa-check"></i>Module 4</a>
+<ul>
+<li class="chapter" data-level="" data-path="introduction-to-generalised-linear-models-glms.html"><a href="introduction-to-generalised-linear-models-glms.html"><i class="fa fa-check"></i>Introduction to generalised linear models (GLMs)</a></li>
+<li class="chapter" data-level="" data-path="poisson-regression.html"><a href="poisson-regression.html"><i class="fa fa-check"></i>Poisson regression</a>
+<ul>
+<li class="chapter" data-level="" data-path="poisson-regression.html"><a href="poisson-regression.html#an-example-bird-abundance"><i class="fa fa-check"></i>An example: bird abundance</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i>Logistic regression</a>
+<ul>
+<li class="chapter" data-level="" data-path="logistic-regression.html"><a href="logistic-regression.html#an-example-lobsters"><i class="fa fa-check"></i>An example: lobsters</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="a-summary-of-glms.html"><a href="a-summary-of-glms.html"><i class="fa fa-check"></i>A summary of GLMs</a></li>
+<li class="chapter" data-level="" data-path="generalised-linear-mixed-effects-models-glmmms.html"><a href="generalised-linear-mixed-effects-models-glmmms.html"><i class="fa fa-check"></i>Generalised linear mixed-effects models (GLMMMs)</a>
+<ul>
+<li class="chapter" data-level="" data-path="generalised-linear-mixed-effects-models-glmmms.html"><a href="generalised-linear-mixed-effects-models-glmmms.html#fitting-a-glmm"><i class="fa fa-check"></i>Fitting a GLMM</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-5.html"><a href="module-5.html"><i class="fa fa-check"></i>Module 5</a>
+<ul>
+<li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i>Clustering</a>
+<ul>
+<li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#divisive-partitioning-methods."><i class="fa fa-check"></i>Divisive (partitioning) methods.</a></li>
+<li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#k-means-an-example-using-the-palmerpenguins-data"><i class="fa fa-check"></i>K-means: an example using the <code>palmerpenguins</code> data</a></li>
+<li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#hierarchical-agglomerative-clustering."><i class="fa fa-check"></i>Hierarchical agglomerative clustering.</a></li>
+<li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#hierarchical-clustering-an-example"><i class="fa fa-check"></i>Hierarchical clustering: an example</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="principal-component-analysis-pca.html"><a href="principal-component-analysis-pca.html"><i class="fa fa-check"></i>Principal Component Analysis (PCA)</a>
+<ul>
+<li class="chapter" data-level="" data-path="principal-component-analysis-pca.html"><a href="principal-component-analysis-pca.html#examples-in-r"><i class="fa fa-check"></i>Examples in <code>R</code></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html"><i class="fa fa-check"></i>Multidimensional Scaling (MDS)</a>
+<ul>
+<li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html#metric-scaling"><i class="fa fa-check"></i>Metric Scaling</a></li>
+<li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html#correspondence-analysis-ca"><i class="fa fa-check"></i>Correspondence Analysis (CA)</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="non-metric-multidimensional-scaling.html"><a href="non-metric-multidimensional-scaling.html"><i class="fa fa-check"></i>Non-metric Multidimensional Scaling</a>
+<ul>
+<li class="chapter" data-level="" data-path="non-metric-multidimensional-scaling.html"><a href="non-metric-multidimensional-scaling.html#examples-in-r-2"><i class="fa fa-check"></i>Examples in <code>R</code></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html"><i class="fa fa-check"></i>Linear Discriminant Analysis (LDA)</a>
+<ul>
+<li class="chapter" data-level="" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html#example-in-r"><i class="fa fa-check"></i>Example in <code>R</code></a></li>
+<li class="chapter" data-level="" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html#prediction"><i class="fa fa-check"></i>Prediction</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-6.html"><a href="module-6.html"><i class="fa fa-check"></i>Module 6</a>
+<ul>
+<li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html"><i class="fa fa-check"></i>Least Squares Estimation</a>
+<ul>
 <li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html#some-basic-matrix-algebra"><i class="fa fa-check"></i>Some basic matrix algebra</a></li>
 <li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html#linear-least-squares"><i class="fa fa-check"></i>Linear least squares</a></li>
 <li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html#matrix-representation-of-a-crd"><i class="fa fa-check"></i>Matrix representation of a CRD</a></li>
 <li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html#a-numeric-example"><i class="fa fa-check"></i>A numeric example</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html"><i class="fa fa-check"></i>Maximum likelihood estimation</a><ul>
+<li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html"><i class="fa fa-check"></i>Maximum likelihood estimation</a>
+<ul>
 <li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#differeniation-rules"><i class="fa fa-check"></i>Differeniation rules</a></li>
 <li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#logarithm-rules"><i class="fa fa-check"></i>Logarithm rules</a></li>
 <li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#maximum-likelihood-estimation-for-a-binomial-distribution"><i class="fa fa-check"></i>Maximum likelihood estimation for a Binomial distribution</a></li>
@@ -223,44 +323,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#maximum-likelihood-estimation-for-a-poisson-distribution"><i class="fa fa-check"></i>Maximum likelihood estimation for a Poisson distribution</a></li>
 <li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#maximum-likelihood-estimation-for-a-continuous-random-variable"><i class="fa fa-check"></i>Maximum likelihood estimation for a continuous random variable</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html"><i class="fa fa-check"></i>Introduction to Bayesian statistics</a><ul>
+<li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html"><i class="fa fa-check"></i>Introduction to Bayesian statistics</a>
+<ul>
 <li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html#conditional-probability"><i class="fa fa-check"></i>Conditional probability</a></li>
-<li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html#bayes-rule"><i class="fa fa-check"></i>Bayes' rule</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="module-5.html"><a href="module-5.html"><i class="fa fa-check"></i>Module 5</a><ul>
-<li class="chapter" data-level="" data-path="introduction-to-generalised-linear-models-glms.html"><a href="introduction-to-generalised-linear-models-glms.html"><i class="fa fa-check"></i>Introduction to generalised linear models (GLMs)</a></li>
-<li class="chapter" data-level="" data-path="poisson-regression.html"><a href="poisson-regression.html"><i class="fa fa-check"></i>Poisson regression</a><ul>
-<li class="chapter" data-level="" data-path="poisson-regression.html"><a href="poisson-regression.html#an-example-bird-abundance"><i class="fa fa-check"></i>An example: bird abundance</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i>Logistic regression</a><ul>
-<li class="chapter" data-level="" data-path="logistic-regression.html"><a href="logistic-regression.html#an-example-lobsters"><i class="fa fa-check"></i>An example: lobsters</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="a-summary-of-glms.html"><a href="a-summary-of-glms.html"><i class="fa fa-check"></i>A summary of GLMs</a></li>
-<li class="chapter" data-level="" data-path="generalised-linear-mixed-effects-models-glmmms.html"><a href="generalised-linear-mixed-effects-models-glmmms.html"><i class="fa fa-check"></i>Generalised linear mixed-effects models (GLMMMs)</a><ul>
-<li class="chapter" data-level="" data-path="generalised-linear-mixed-effects-models-glmmms.html"><a href="generalised-linear-mixed-effects-models-glmmms.html#fitting-a-glmm"><i class="fa fa-check"></i>Fitting a GLMM</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="module-6.html"><a href="module-6.html"><i class="fa fa-check"></i>Module 6</a><ul>
-<li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i>Clustering</a><ul>
-<li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#divisive-partitioning-methods."><i class="fa fa-check"></i>Divisive (partitioning) methods.</a></li>
-<li><a href="clustering.html#k-means-an-example-using-the-palmerpenguins-data">K-means: an example using the <code>palmerpenguins</code> data</a></li>
-<li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#hierarchical-agglomerative-clustering."><i class="fa fa-check"></i>Hierarchical agglomerative clustering.</a></li>
-<li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#hierarchical-clustering-an-example"><i class="fa fa-check"></i>Hierarchical clustering: an example</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="principal-component-analysis-pca.html"><a href="principal-component-analysis-pca.html"><i class="fa fa-check"></i>Principal Component Analysis (PCA)</a><ul>
-<li><a href="principal-component-analysis-pca.html#examples-in-r">Examples in <code>R</code></a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html"><i class="fa fa-check"></i>Multidimensional Scaling (MDS)</a><ul>
-<li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html#metric-scaling"><i class="fa fa-check"></i>Metric Scaling</a></li>
-<li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html#correspondence-analysis-ca"><i class="fa fa-check"></i>Correspondence Analysis (CA)</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="non-metric-multidimensional-scaling.html"><a href="non-metric-multidimensional-scaling.html"><i class="fa fa-check"></i>Non-metric Multidimensional Scaling</a><ul>
-<li><a href="non-metric-multidimensional-scaling.html#examples-in-r-2">Examples in <code>R</code></a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html"><i class="fa fa-check"></i>Linear Discriminant Analysis (LDA)</a><ul>
-<li><a href="linear-discriminant-analysis-lda.html#example-in-r">Example in <code>R</code></a></li>
-<li class="chapter" data-level="" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html#prediction"><i class="fa fa-check"></i>Prediction</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html#bayes-rule"><i class="fa fa-check"></i>Bayes’ rule</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -280,11 +346,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="modelling-experimental-data" class="section level2">
-<h2>Modelling experimental data</h2>
-<div id="a-completely-randomised-design-crd-as-a-linear-model" class="section level3">
-<h3>A completely randomised design (CRD) as a linear model</h3>
-<p>As we've seen in the previous module that we can write a linear model with a single explanatory variable as</p>
+<div id="modelling-experimental-data" class="section level2 hasAnchor">
+<h2>Modelling experimental data<a href="modelling-experimental-data.html#modelling-experimental-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="a-completely-randomised-design-crd-as-a-linear-model" class="section level3 hasAnchor">
+<h3>A completely randomised design (CRD) as a linear model<a href="modelling-experimental-data.html#a-completely-randomised-design-crd-as-a-linear-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>As we’ve seen in the previous module that we can write a linear model with a single explanatory variable as</p>
 <p><span class="math display">\[Y_i = \alpha + \beta_1x_i + \epsilon_i\]</span></p>
 <p>When dealing with factor variables we use dummy variables and can write the above as</p>
 <p><span class="math display">\[Y_{ik} = \alpha + \tau_k + \epsilon_{ik}\]</span> where <span class="math inline">\(\tau_k\)</span> is called an <em>effect</em> and represents the difference between the overall average, <span class="math inline">\(\alpha\)</span>, and the average at the <span class="math inline">\(k_{th}\)</span> treatment level. The errors <span class="math inline">\(\epsilon_{ik}\)</span> are again assumed to be normally distributed and independent due to the randomisation (i.e., <span class="math inline">\(\epsilon_{ik} \sim N(0, \sigma^2)\)</span>.</p>
@@ -293,8 +359,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>where <span class="math inline">\(Y_{ik}\)</span> is the response (i.e., observed coffee opacity) for the <span class="math inline">\(i^{th}\)</span> experimental unit (i.e., coffee cup) subjected to the <span class="math inline">\(k^{th}\)</span> level of the treatment factor (i.e., coffee type). Here <span class="math inline">\(\mu_k\)</span> are the different (cell) means for each level of the treatment factor. See below for an illustration of this for three factor treatment levels (as in the coffee example above).</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-86-1.png" width="672" /></p>
 </div>
-<div id="analysis-of-a-crd-in-r" class="section level3">
-<h3>Analysis of a CRD in <code>R</code></h3>
+<div id="analysis-of-a-crd-in-r" class="section level3 hasAnchor">
+<h3>Analysis of a CRD in <code>R</code><a href="modelling-experimental-data.html#analysis-of-a-crd-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In this section we again consider the data containing logAUC values for 12 rats subjected to three different treatments (<code>Surgery</code>), <code>C</code>, <code>P</code>, and <code>S</code>:</p>
 <table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
@@ -446,10 +512,10 @@ S
 </tbody>
 </table>
 <p>To read the data directly into <code>R</code> you can use</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/crd_rats_data.csv&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="modelling-experimental-data.html#cb153-1"></a>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/crd_rats_data.csv&quot;</span>)</span></code></pre></div>
 <p>We could analyse these data <strong>using <code>aov()</code></strong>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rats_aov &lt;-<span class="st"> </span><span class="kw">aov</span>(logAUC <span class="op">~</span><span class="st"> </span>Surgery, <span class="dt">data =</span> rats)
-<span class="kw">summary</span>(rats_aov)</code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="modelling-experimental-data.html#cb154-1"></a>rats_aov &lt;-<span class="st"> </span><span class="kw">aov</span>(logAUC <span class="op">~</span><span class="st"> </span>Surgery, <span class="dt">data =</span> rats)</span>
+<span id="cb154-2"><a href="modelling-experimental-data.html#cb154-2"></a><span class="kw">summary</span>(rats_aov)</span></code></pre></div>
 <pre><code>##             Df Sum Sq Mean Sq F value  Pr(&gt;F)   
 ## Surgery      2 22.026  11.013   16.36 0.00101 **
 ## Residuals    9  6.059   0.673                   
@@ -458,14 +524,15 @@ S
 <p>Hypothesis: We test the Null hypothesis, <span class="math inline">\(H_0\)</span>, population (<code>Surgery</code>) means are the same on average verses the alternative hypothesis, <span class="math inline">\(H_1\)</span>, that <strong>at least one</strong> differs from the others!</p>
 <p>Probability of getting an <strong>F-statistic</strong> at least as extreme as the one we observe (think of the area under the tails of the curve below) <strong>p-value</strong> Pr(&gt;F)= 0.001 tells us we have sufficient evidence to reject <span class="math inline">\(H_0\)</span> at the 1% level of significance</p>
 <p>Alternatively, we could <strong>use <code>lm()</code></strong>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rats_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC <span class="op">~</span><span class="st"> </span>Surgery, <span class="dt">data =</span> rats)
-<span class="kw">summary</span>(rats_lm)<span class="op">$</span>coef</code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="modelling-experimental-data.html#cb156-1"></a>rats_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC <span class="op">~</span><span class="st"> </span>Surgery, <span class="dt">data =</span> rats)</span>
+<span id="cb156-2"><a href="modelling-experimental-data.html#cb156-2"></a><span class="kw">summary</span>(rats_lm)<span class="op">$</span>coef</span></code></pre></div>
 <pre><code>##             Estimate Std. Error    t value     Pr(&gt;|t|)
 ## (Intercept)   8.4600  0.4102531 20.6214144 6.930903e-09
 ## SurgeryP      0.4900  0.5801856  0.8445574 4.202408e-01
 ## SurgeryS      3.0875  0.5801856  5.3215734 4.799872e-04</code></pre>
 <p>So, what does this tell us about which pairs of means are different?</p>
-<p>To carry out a pair-wise comparisons of means we can use two-sample t-tests, calculating our <strong>observed</strong> t-value where <span class="math inline">\(\text{t-value} = \frac{\text{Sample Difference}_{ij} - \text{Difference assuming } H_0 \text{ is true}_{ij}}{\text{SE of } \text{Sample Difference}_{ij}}\)</span>. Here, <span class="math inline">\(\text{Sample Difference}_{ij}\)</span> = Difference between pair of sample means. We can then compute the p-value for observed t-value.</p>
+<p>To carry out a pair-wise comparisons of means we can use two-sample t-tests, calculating our <strong>observed</strong> t-value where
+<span class="math inline">\(\text{t-value} = \frac{\text{Sample Difference}_{ij} - \text{Difference assuming } H_0 \text{ is true}_{ij}}{\text{SE of } \text{Sample Difference}_{ij}}\)</span>. Here, <span class="math inline">\(\text{Sample Difference}_{ij}\)</span> = Difference between pair of sample means. We can then compute the p-value for observed t-value.</p>
 <p>The output above has already done this for us:</p>
 <p>(Intercept) = <span class="math inline">\(\text{mean}_C\)</span> = 8.46</p>
 <p>SE of (Intercept) = SE of <span class="math inline">\(\text{mean}_C\)</span> = SEM = 0.4102531</p>
@@ -473,10 +540,13 @@ S
 <p>SE of <span class="math inline">\(\text{Surgery}_P\)</span> = SE of (<span class="math inline">\(\text{mean}_P\)</span> - <span class="math inline">\(\text{mean}_C\)</span> ) = SED = 0.5801856</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-89-1.png" width="672" /></p>
 <p><strong>Hypotheses being tested</strong></p>
-<p>The <code>t</code> value and <code>Pr (&gt;|t|)</code> are the t-statistic and p-value for testing the null hypotheses listed below 1. Mean abundance is zero for <code>C</code> population 2. No difference between the population means of <code>P</code> and <code>C</code> 3. No difference between the population means of <code>S</code> and <code>C</code></p>
-<p>We're interested in 2 and 3, but not necessarily 1!</p>
+<p>The <code>t</code> value and <code>Pr (&gt;|t|)</code> are the t-statistic and p-value for testing the null hypotheses listed below
+1. Mean abundance is zero for <code>C</code> population
+2. No difference between the population means of <code>P</code> and <code>C</code>
+3. No difference between the population means of <code>S</code> and <code>C</code></p>
+<p>We’re interested in 2 and 3, but not necessarily 1!</p>
 <p><strong>F-test:</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anova</span>(rats_lm)</code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="modelling-experimental-data.html#cb158-1"></a><span class="kw">anova</span>(rats_lm)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: logAUC
@@ -486,8 +556,8 @@ S
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p><strong>The same as <code>aov()</code></strong> in fact <code>aov()</code> is calling <code>lm()</code> in the background.</p>
-<div id="diagnostic-plots" class="section level4">
-<h4>Diagnostic plots</h4>
+<div id="diagnostic-plots" class="section level4 hasAnchor">
+<h4>Diagnostic plots<a href="modelling-experimental-data.html#diagnostic-plots" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Carrying out any linear regression recall that we have some <strong>key assumptions</strong></p>
 <ul>
 <li><strong>Independence</strong></li>
@@ -495,20 +565,20 @@ S
 <li>The residuals have <strong>constant variance</strong></li>
 <li>The <strong>residuals</strong> are normally distributed</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gglm<span class="op">::</span><span class="kw">gglm</span>(rats_lm) <span class="co"># Plot the four main diagnostic plots</span></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="modelling-experimental-data.html#cb160-1"></a>gglm<span class="op">::</span><span class="kw">gglm</span>(rats_lm) <span class="co"># Plot the four main diagnostic plots</span></span></code></pre></div>
 <p><img src="_main_files/figure-html/qqnorm-1.png" width="672" /></p>
 <p>What do you think? Look back at module 2.</p>
 </div>
 </div>
-<div id="a-factorial-experiment-as-a-crd" class="section level3">
-<h3>A Factorial experiment (as a CRD)</h3>
+<div id="a-factorial-experiment-as-a-crd" class="section level3 hasAnchor">
+<h3>A Factorial experiment (as a CRD)<a href="modelling-experimental-data.html#a-factorial-experiment-as-a-crd" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p align="center">
 <img src="https://magoosh.com/statistics/files/2018/04/297r7s.jpg" style="width:30.0%" />
 </p>
-<div id="equal-replications-balanced-design" class="section level4">
-<h4>Equal replications (balanced design)</h4>
+<div id="equal-replications-balanced-design" class="section level4 hasAnchor">
+<h4>Equal replications (balanced design)<a href="modelling-experimental-data.html#equal-replications-balanced-design" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><strong>Data</strong> Global metabolic profiling and comparison of relative abundances of proteins (<code>logAUC</code>) in the inner and outer left ventricle (<code>innerLV</code> and <code>outerLV</code>) wall of diabetic and healthy male Wistar rats. To read the data directly into <code>R</code> you can use</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/factorial_expt.csv&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="modelling-experimental-data.html#cb161-1"></a>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/factorial_expt.csv&quot;</span>)</span></code></pre></div>
 <table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -776,11 +846,11 @@ outerLV
 </tbody>
 </table>
 <p><strong>Fitting models with interactions using <code>lm()</code></strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## change to factors (saves errors later on)
-factorial<span class="op">$</span>Disease &lt;-<span class="st"> </span><span class="kw">as.factor</span>(factorial<span class="op">$</span>Disease)
-factorial<span class="op">$</span>Organ &lt;-<span class="st"> </span><span class="kw">as.factor</span>(factorial<span class="op">$</span>Organ)
-fac_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC <span class="op">~</span><span class="st"> </span>Disease<span class="op">*</span>Organ, <span class="dt">data =</span> factorial)
-<span class="kw">summary</span>(fac_lm)<span class="op">$</span>coefficients</code></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="modelling-experimental-data.html#cb162-1"></a><span class="co">## change to factors (saves errors later on)</span></span>
+<span id="cb162-2"><a href="modelling-experimental-data.html#cb162-2"></a>factorial<span class="op">$</span>Disease &lt;-<span class="st"> </span><span class="kw">as.factor</span>(factorial<span class="op">$</span>Disease)</span>
+<span id="cb162-3"><a href="modelling-experimental-data.html#cb162-3"></a>factorial<span class="op">$</span>Organ &lt;-<span class="st"> </span><span class="kw">as.factor</span>(factorial<span class="op">$</span>Organ)</span>
+<span id="cb162-4"><a href="modelling-experimental-data.html#cb162-4"></a>fac_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC <span class="op">~</span><span class="st"> </span>Disease<span class="op">*</span>Organ, <span class="dt">data =</span> factorial)</span>
+<span id="cb162-5"><a href="modelling-experimental-data.html#cb162-5"></a><span class="kw">summary</span>(fac_lm)<span class="op">$</span>coefficients</span></code></pre></div>
 <pre><code>##                              Estimate Std. Error   t value     Pr(&gt;|t|)
 ## (Intercept)                  7.873333  0.5405835 14.564508 4.841215e-07
 ## DiseaseHealthy               1.950000  0.7645006  2.550685 3.413826e-02
@@ -798,7 +868,7 @@ fac_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC <span cla
 <li><span class="math inline">\(H_0: \hat{\mu}_{\text{innerLV}} = \hat{\mu}_{\text{outerLV}}\)</span></li>
 <li><span class="math inline">\(H_0: \hat{\mu}_{\text{Diabetic,innerLV}} = \hat{\mu}_{\text{Diabetic,outerLV}} = \hat{\mu}_{\text{Healthy,innerLV}} = \hat{\mu}_{\text{Healthy,outerLV}}\)</span></li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anova</span>(fac_lm)</code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="modelling-experimental-data.html#cb164-1"></a><span class="kw">anova</span>(fac_lm)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: logAUC
@@ -810,9 +880,9 @@ fac_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC <span cla
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>What conclusions do you draw?</p>
-<p><strong>Note</strong> with a balanced design ordering of term doesn't matter. For example,</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fac_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC <span class="op">~</span><span class="st"> </span>Disease<span class="op">*</span>Organ, <span class="dt">data =</span> factorial)
-<span class="kw">anova</span>(fac_lm)</code></pre></div>
+<p><strong>Note</strong> with a balanced design ordering of term doesn’t matter. For example,</p>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="modelling-experimental-data.html#cb166-1"></a>fac_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC <span class="op">~</span><span class="st"> </span>Disease<span class="op">*</span>Organ, <span class="dt">data =</span> factorial)</span>
+<span id="cb166-2"><a href="modelling-experimental-data.html#cb166-2"></a><span class="kw">anova</span>(fac_lm)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: logAUC
@@ -823,8 +893,8 @@ fac_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC <span cla
 ## Residuals      8 7.0135  0.8767                  
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fac_lm_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC <span class="op">~</span><span class="st"> </span>Organ<span class="op">*</span>Disease, <span class="dt">data =</span> factorial)
-<span class="kw">anova</span>(fac_lm_<span class="dv">2</span>)</code></pre></div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="modelling-experimental-data.html#cb168-1"></a>fac_lm_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC <span class="op">~</span><span class="st"> </span>Organ<span class="op">*</span>Disease, <span class="dt">data =</span> factorial)</span>
+<span id="cb168-2"><a href="modelling-experimental-data.html#cb168-2"></a><span class="kw">anova</span>(fac_lm_<span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: logAUC
@@ -837,8 +907,8 @@ fac_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC <span cla
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 </div>
 </div>
-<div id="unqual-replications-unbalanced-design" class="section level3">
-<h3>Unqual replications (unbalanced design)</h3>
+<div id="unqual-replications-unbalanced-design" class="section level3 hasAnchor">
+<h3>Unqual replications (unbalanced design)<a href="modelling-experimental-data.html#unqual-replications-unbalanced-design" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Here, we consider a subset of the data above.</p>
 <table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
@@ -1040,8 +1110,8 @@ outerLV
 </table>
 <p><strong>Fitting models with interactions using <code>lm()</code></strong></p>
 <p><strong>Note</strong>: order matters. For example,</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fac_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC <span class="op">~</span><span class="st"> </span>Disease<span class="op">*</span>Organ, <span class="dt">data =</span> unbalanced_nafree)
-<span class="kw">anova</span>(fac_lm)</code></pre></div>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="modelling-experimental-data.html#cb170-1"></a>fac_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC <span class="op">~</span><span class="st"> </span>Disease<span class="op">*</span>Organ, <span class="dt">data =</span> unbalanced_nafree)</span>
+<span id="cb170-2"><a href="modelling-experimental-data.html#cb170-2"></a><span class="kw">anova</span>(fac_lm)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: logAUC
@@ -1052,8 +1122,8 @@ outerLV
 ## Residuals      4 1.5377  0.3844                  
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fac_lm_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC <span class="op">~</span><span class="st"> </span>Organ<span class="op">*</span>Disease, <span class="dt">data =</span> unbalanced_nafree)
-<span class="kw">anova</span>(fac_lm_<span class="dv">2</span>)</code></pre></div>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="modelling-experimental-data.html#cb172-1"></a>fac_lm_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC <span class="op">~</span><span class="st"> </span>Organ<span class="op">*</span>Disease, <span class="dt">data =</span> unbalanced_nafree)</span>
+<span id="cb172-2"><a href="modelling-experimental-data.html#cb172-2"></a><span class="kw">anova</span>(fac_lm_<span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: logAUC
@@ -1075,36 +1145,36 @@ outerLV
 <p><span class="math display">\[SS_\text{Treatment} = SS_\text{Disease} + SS_\text{Organ} + SS_\text{Disease:Organ}.\]</span></p>
 <p>The order in which the main effects are added to the model does not matter. <strong>However</strong>, for an <strong>unbalanced design</strong> this is not the case as the sums of squares are calculated <strong>sequentially</strong>. Note that sequentially calculated <span class="math inline">\(SS\)</span> are known as Type I <span class="math inline">\(SS\)</span>.</p>
 </div>
-<div id="sums-of-squares-ss" class="section level3">
-<h3>Sums of squares (<span class="math inline">\(SS\)</span>)</h3>
-<div id="sequential-type-i-ss" class="section level4">
-<h4>Sequential (Type I <span class="math inline">\(SS\)</span>)</h4>
+<div id="sums-of-squares-ss" class="section level3 hasAnchor">
+<h3>Sums of squares (<span class="math inline">\(SS\)</span>)<a href="modelling-experimental-data.html#sums-of-squares-ss" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="sequential-type-i-ss" class="section level4 hasAnchor">
+<h4>Sequential (Type I <span class="math inline">\(SS\)</span>)<a href="modelling-experimental-data.html#sequential-type-i-ss" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>As a term enters the model its <span class="math inline">\(SS\)</span> is calculated, which is then subtracted from the total <span class="math inline">\(SS\)</span>. This then reduces the available <span class="math inline">\(SS\)</span> for the next term entering the model. When treatment combinations in a factorial experiment are unequally replicated, their effects are not mutually independent, so that the order in which terms enter the model matters.</p>
 <p>Considering the data above if we include <code>Disease</code> as a main effect first (i.e., <code>Disease*Organ</code>) then the <span class="math inline">\(SS_\text{Disease}\)</span> is calculated first <strong>ignoring</strong> the <code>Organ</code> main effect. Here, some <code>Organ</code> information is confounded with <code>Disease</code> information (i.e., variation due to <code>Organ</code> confounded by the variation due to <code>Disease</code>). Then <span class="math inline">\(SS_\text{Organ}\)</span> are calculated having been adjusted for the <code>Diease</code> main effect. This now only contains <code>Organ</code> information (i.e., variation due to <code>Organ</code> effect) since all the <code>Disease</code> information was eliminated in previous step. Finally, <span class="math inline">\(SS_\text{Disease:Organ}\)</span> are calculated adjusted for both <span class="math inline">\(SS_\text{Disease}\)</span> and <span class="math inline">\(SS_\text{Organ}\)</span>. Here, there is no information left relating to <code>Disease</code> or <code>Organ</code> main effects.</p>
 <p>What does this look like?</p>
-<p>For <code>Disease*Organ</code> we calculate <span class="math inline">\(SS_\text{Disease}\)</span> ignoring any <code>Organ</code> effect (if you are unsure what each line of code is doing I suggest you run it line by line to see what's being done at each step).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">unbalanced_nafree <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">grand_mean =</span> <span class="kw">mean</span>(logAUC)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">group_by</span>(Disease) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>(),
-         <span class="dt">treatment_mean =</span> <span class="kw">mean</span>(logAUC),
-         <span class="dt">grand_mean =</span> <span class="kw">mean</span>(grand_mean)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">ss_disease =</span> n <span class="op">*</span><span class="st"> </span>(treatment_mean <span class="op">-</span><span class="st"> </span>grand_mean)<span class="op">^</span><span class="dv">2</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">pull</span>(ss_disease) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">sum</span>()</code></pre></div>
+<p>For <code>Disease*Organ</code> we calculate <span class="math inline">\(SS_\text{Disease}\)</span> ignoring any <code>Organ</code> effect (if you are unsure what each line of code is doing I suggest you run it line by line to see what’s being done at each step).</p>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="modelling-experimental-data.html#cb174-1"></a>unbalanced_nafree <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb174-2"><a href="modelling-experimental-data.html#cb174-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">grand_mean =</span> <span class="kw">mean</span>(logAUC)) <span class="op">%&gt;%</span></span>
+<span id="cb174-3"><a href="modelling-experimental-data.html#cb174-3"></a><span class="st">  </span><span class="kw">group_by</span>(Disease) <span class="op">%&gt;%</span></span>
+<span id="cb174-4"><a href="modelling-experimental-data.html#cb174-4"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>(),</span>
+<span id="cb174-5"><a href="modelling-experimental-data.html#cb174-5"></a>         <span class="dt">treatment_mean =</span> <span class="kw">mean</span>(logAUC),</span>
+<span id="cb174-6"><a href="modelling-experimental-data.html#cb174-6"></a>         <span class="dt">grand_mean =</span> <span class="kw">mean</span>(grand_mean)) <span class="op">%&gt;%</span></span>
+<span id="cb174-7"><a href="modelling-experimental-data.html#cb174-7"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">ss_disease =</span> n <span class="op">*</span><span class="st"> </span>(treatment_mean <span class="op">-</span><span class="st"> </span>grand_mean)<span class="op">^</span><span class="dv">2</span>) <span class="op">%&gt;%</span></span>
+<span id="cb174-8"><a href="modelling-experimental-data.html#cb174-8"></a><span class="st">  </span><span class="kw">pull</span>(ss_disease) <span class="op">%&gt;%</span></span>
+<span id="cb174-9"><a href="modelling-experimental-data.html#cb174-9"></a><span class="st">  </span><span class="kw">sum</span>()</span></code></pre></div>
 <pre><code>## [1] 7.110201</code></pre>
-<p>This matches, as we'd expect, <span class="math inline">\(SS_\text{Disease}\)</span> calculated from the <code>Disease*Organ</code> model above.</p>
+<p>This matches, as we’d expect, <span class="math inline">\(SS_\text{Disease}\)</span> calculated from the <code>Disease*Organ</code> model above.</p>
 <p>But, that about the sequential <span class="math inline">\(SS\)</span>, a simple way to think about this is in terms of sequential models:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Null model.
-fit.null &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC <span class="op">~</span><span class="st"> </span><span class="dv">1</span>,  <span class="dt">data =</span> unbalanced_nafree)
-## Only Factor Disease.
-fit.a &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC <span class="op">~</span><span class="st"> </span>Disease,  <span class="dt">data =</span> unbalanced_nafree)
-## Factors Disease and Organ.
-fit.ab &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC <span class="op">~</span><span class="st"> </span>Disease <span class="op">+</span><span class="st"> </span>Organ,  <span class="dt">data =</span> unbalanced_nafree)
-## Factors Disease and Organ with interaction.
-fit.abi &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC <span class="op">~</span><span class="st"> </span>Disease<span class="op">*</span>Organ,  <span class="dt">data =</span> unbalanced_nafree)
-## ANOVA table, as above
-<span class="kw">anova</span>(fit.abi)</code></pre></div>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="modelling-experimental-data.html#cb176-1"></a><span class="co">## Null model.</span></span>
+<span id="cb176-2"><a href="modelling-experimental-data.html#cb176-2"></a>fit.null &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC <span class="op">~</span><span class="st"> </span><span class="dv">1</span>,  <span class="dt">data =</span> unbalanced_nafree)</span>
+<span id="cb176-3"><a href="modelling-experimental-data.html#cb176-3"></a><span class="co">## Only Factor Disease.</span></span>
+<span id="cb176-4"><a href="modelling-experimental-data.html#cb176-4"></a>fit.a &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC <span class="op">~</span><span class="st"> </span>Disease,  <span class="dt">data =</span> unbalanced_nafree)</span>
+<span id="cb176-5"><a href="modelling-experimental-data.html#cb176-5"></a><span class="co">## Factors Disease and Organ.</span></span>
+<span id="cb176-6"><a href="modelling-experimental-data.html#cb176-6"></a>fit.ab &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC <span class="op">~</span><span class="st"> </span>Disease <span class="op">+</span><span class="st"> </span>Organ,  <span class="dt">data =</span> unbalanced_nafree)</span>
+<span id="cb176-7"><a href="modelling-experimental-data.html#cb176-7"></a><span class="co">## Factors Disease and Organ with interaction.</span></span>
+<span id="cb176-8"><a href="modelling-experimental-data.html#cb176-8"></a>fit.abi &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC <span class="op">~</span><span class="st"> </span>Disease<span class="op">*</span>Organ,  <span class="dt">data =</span> unbalanced_nafree)</span>
+<span id="cb176-9"><a href="modelling-experimental-data.html#cb176-9"></a><span class="co">## ANOVA table, as above</span></span>
+<span id="cb176-10"><a href="modelling-experimental-data.html#cb176-10"></a><span class="kw">anova</span>(fit.abi)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: logAUC
@@ -1115,29 +1185,29 @@ fit.abi &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC <span cl
 ## Residuals      4 1.5377  0.3844                  
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## First line.
-<span class="kw">sum</span>(<span class="kw">residuals</span>(fit.null)<span class="op">^</span><span class="dv">2</span>) <span class="op">-</span><span class="st"> </span><span class="kw">sum</span>(<span class="kw">residuals</span>(fit.a)<span class="op">^</span><span class="dv">2</span>)</code></pre></div>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="modelling-experimental-data.html#cb178-1"></a><span class="co">## First line.</span></span>
+<span id="cb178-2"><a href="modelling-experimental-data.html#cb178-2"></a><span class="kw">sum</span>(<span class="kw">residuals</span>(fit.null)<span class="op">^</span><span class="dv">2</span>) <span class="op">-</span><span class="st"> </span><span class="kw">sum</span>(<span class="kw">residuals</span>(fit.a)<span class="op">^</span><span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 7.110201</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Second line.
-<span class="kw">sum</span>(<span class="kw">residuals</span>(fit.a)<span class="op">^</span><span class="dv">2</span>) <span class="op">-</span><span class="st"> </span><span class="kw">sum</span>(<span class="kw">residuals</span>(fit.ab)<span class="op">^</span><span class="dv">2</span>)</code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="modelling-experimental-data.html#cb180-1"></a><span class="co">## Second line.</span></span>
+<span id="cb180-2"><a href="modelling-experimental-data.html#cb180-2"></a><span class="kw">sum</span>(<span class="kw">residuals</span>(fit.a)<span class="op">^</span><span class="dv">2</span>) <span class="op">-</span><span class="st"> </span><span class="kw">sum</span>(<span class="kw">residuals</span>(fit.ab)<span class="op">^</span><span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 3.114926</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Third line.
-<span class="kw">sum</span>(<span class="kw">residuals</span>(fit.ab)<span class="op">^</span><span class="dv">2</span>) <span class="op">-</span><span class="st"> </span><span class="kw">sum</span>(<span class="kw">residuals</span>(fit.abi)<span class="op">^</span><span class="dv">2</span>)</code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="modelling-experimental-data.html#cb182-1"></a><span class="co">## Third line.</span></span>
+<span id="cb182-2"><a href="modelling-experimental-data.html#cb182-2"></a><span class="kw">sum</span>(<span class="kw">residuals</span>(fit.ab)<span class="op">^</span><span class="dv">2</span>) <span class="op">-</span><span class="st"> </span><span class="kw">sum</span>(<span class="kw">residuals</span>(fit.abi)<span class="op">^</span><span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 0.09134405</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Final line.
-<span class="kw">sum</span>(<span class="kw">residuals</span>(fit.abi)<span class="op">^</span><span class="dv">2</span>)</code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="modelling-experimental-data.html#cb184-1"></a><span class="co">## Final line.</span></span>
+<span id="cb184-2"><a href="modelling-experimental-data.html#cb184-2"></a><span class="kw">sum</span>(<span class="kw">residuals</span>(fit.abi)<span class="op">^</span><span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 1.537717</code></pre>
 </div>
-<div id="type-ii-ss" class="section level4">
-<h4>Type II <span class="math inline">\(SS\)</span></h4>
+<div id="type-ii-ss" class="section level4 hasAnchor">
+<h4>Type II <span class="math inline">\(SS\)</span><a href="modelling-experimental-data.html#type-ii-ss" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Rather than calculating <span class="math inline">\(SS\)</span> sequentially we can calculate the <span class="math inline">\(SS\)</span> for a given effect adjusting for all other effects listed in the model. This means that the <span class="math inline">\(SS_\text{A}\)</span> and <span class="math inline">\(SS_\text{B}\)</span> main effects will both be adjusted for each other (since neither contains the other), but will not be adjusted for <span class="math inline">\(SS_\text{A:B}\)</span> (since it contains both A and B). <span class="math inline">\(SS_\text{A:B}\)</span> will be adjusted for both main effects.</p>
 <p>In our example above <span class="math inline">\(SS_\text{Disease}\)</span> and <span class="math inline">\(SS_\text{Organ}\)</span> main effects will both be adjusted for each other, but will not be adjusted for <span class="math inline">\(SS_\text{A:B}\)</span> and <span class="math inline">\(SS_\text{Disease:Organ}\)</span> will be adjusted for both main effects.</p>
 <p>We can calculate the Type II <span class="math inline">\(SS\)</span> table in <code>R</code> buy either</p>
 <ol style="list-style-type: decimal">
 <li>Extracting the main effect rows that have been adjusted for the other model terms from two Type I <span class="math inline">\(SS\)</span> tables (each one having the terms specified in a different order):</li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Type II Organ SS
-<span class="kw">anova</span>(fac_lm)[<span class="dv">2</span>, ]</code></pre></div>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="modelling-experimental-data.html#cb186-1"></a><span class="co">## Type II Organ SS</span></span>
+<span id="cb186-2"><a href="modelling-experimental-data.html#cb186-2"></a><span class="kw">anova</span>(fac_lm)[<span class="dv">2</span>, ]</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: logAUC
@@ -1145,8 +1215,8 @@ fit.abi &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC <span cl
 ## Organ  1 3.1149  3.1149  8.1027 0.04656 *
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Type II Disease SS
-<span class="kw">anova</span>(fac_lm_<span class="dv">2</span>)[<span class="dv">2</span>, ]</code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="modelling-experimental-data.html#cb188-1"></a><span class="co">## Type II Disease SS</span></span>
+<span id="cb188-2"><a href="modelling-experimental-data.html#cb188-2"></a><span class="kw">anova</span>(fac_lm_<span class="dv">2</span>)[<span class="dv">2</span>, ]</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: logAUC
@@ -1154,8 +1224,8 @@ fit.abi &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC <span cl
 ## Disease  1  4.496   4.496  11.695 0.02678 *
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Type II Organ:Disease/Disease:Organ
-<span class="kw">anova</span>(fac_lm_<span class="dv">2</span>)[<span class="dv">3</span>, ]</code></pre></div>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="modelling-experimental-data.html#cb190-1"></a><span class="co">## Type II Organ:Disease/Disease:Organ</span></span>
+<span id="cb190-2"><a href="modelling-experimental-data.html#cb190-2"></a><span class="kw">anova</span>(fac_lm_<span class="dv">2</span>)[<span class="dv">3</span>, ]</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: logAUC
@@ -1165,7 +1235,7 @@ fit.abi &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC <span cl
 <ol start="2" style="list-style-type: decimal">
 <li>Using an inbuilt <code>R</code> function (does not matter which order the model has the terms specified):</li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">car<span class="op">::</span><span class="kw">Anova</span>(fac_lm, <span class="dt">type =</span> <span class="dv">2</span>)</code></pre></div>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="modelling-experimental-data.html#cb192-1"></a>car<span class="op">::</span><span class="kw">Anova</span>(fac_lm, <span class="dt">type =</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## Anova Table (Type II tests)
 ## 
 ## Response: logAUC
@@ -1178,8 +1248,8 @@ fit.abi &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC <span cl
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p><strong>Note:</strong> Type III <span class="math inline">\(SS\)</span> and beyond are not covered in this course but I would recommend reading <a href="https://besjournals.onlinelibrary.wiley.com/doi/10.1111/j.1365-2656.2009.01634.x">this recent paper</a> for an intuitive overview.</p>
 </div>
-<div id="marginal-means" class="section level4">
-<h4>Marginal means</h4>
+<div id="marginal-means" class="section level4 hasAnchor">
+<h4>Marginal means<a href="modelling-experimental-data.html#marginal-means" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><strong>Balanced design</strong></p>
 <table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
@@ -1712,25 +1782,25 @@ outerLV
 </tr>
 </tbody>
 </table>
-<p>Everything is as we'd expect up until now, but what about the marginal means? The, perhaps, most obvious way would be to do the following (i.e., ignore subgroups, hence give all observations equal weight)?</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">unbalanced_nafree <span class="op">%&gt;%</span>
-<span class="st">   </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="kw">c</span>(Disease, logAUC)) <span class="op">%&gt;%</span>
-<span class="st">   </span><span class="kw">group_by</span>(Disease) <span class="op">%&gt;%</span>
-<span class="st">   </span><span class="kw">summarise</span>(<span class="dt">Mean =</span> <span class="kw">mean</span>(logAUC))</code></pre></div>
+<p>Everything is as we’d expect up until now, but what about the marginal means? The, perhaps, most obvious way would be to do the following (i.e., ignore subgroups, hence give all observations equal weight)?</p>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="modelling-experimental-data.html#cb194-1"></a>unbalanced_nafree <span class="op">%&gt;%</span></span>
+<span id="cb194-2"><a href="modelling-experimental-data.html#cb194-2"></a><span class="st">   </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="kw">c</span>(Disease, logAUC)) <span class="op">%&gt;%</span></span>
+<span id="cb194-3"><a href="modelling-experimental-data.html#cb194-3"></a><span class="st">   </span><span class="kw">group_by</span>(Disease) <span class="op">%&gt;%</span></span>
+<span id="cb194-4"><a href="modelling-experimental-data.html#cb194-4"></a><span class="st">   </span><span class="kw">summarise</span>(<span class="dt">Mean =</span> <span class="kw">mean</span>(logAUC))</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 2
 ##   Disease   Mean
 ##   &lt;fct&gt;    &lt;dbl&gt;
 ## 1 Diabetic  8.46
 ## 2 Healthy  10.4</code></pre>
 <p>However, as a result of this the means are <strong>biased</strong> towards groups with greater replication! To avoid this we give the subgroups (<code>Organ</code>) cell means equal weight (this is sometimes called the <em>least squares</em> mean):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">unbalanced_nafree <span class="op">%&gt;%</span>
-<span class="st">   </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="kw">c</span>(Disease, Organ, logAUC)) <span class="op">%&gt;%</span>
-<span class="st">   </span><span class="kw">group_by</span>(Organ, Disease) <span class="op">%&gt;%</span>
-<span class="st">     </span><span class="kw">mutate</span>(<span class="dt">n =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span><span class="st"> </span>## count observations in each group
-<span class="st">    </span>## then calculate weighted mean based on the no. observations
-<span class="st">   </span><span class="kw">summarise</span>(<span class="dt">weighted_mean =</span> <span class="kw">weighted.mean</span>(logAUC, <span class="dt">w =</span> <span class="dv">1</span><span class="op">/</span>n)) <span class="op">%&gt;%</span>
-<span class="st">     </span><span class="kw">group_by</span>(Disease) <span class="op">%&gt;%</span><span class="st"> </span>## calculate mean of weighted means
-<span class="st">     </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(weighted_mean))</code></pre></div>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="modelling-experimental-data.html#cb196-1"></a>unbalanced_nafree <span class="op">%&gt;%</span></span>
+<span id="cb196-2"><a href="modelling-experimental-data.html#cb196-2"></a><span class="st">   </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="kw">c</span>(Disease, Organ, logAUC)) <span class="op">%&gt;%</span></span>
+<span id="cb196-3"><a href="modelling-experimental-data.html#cb196-3"></a><span class="st">   </span><span class="kw">group_by</span>(Organ, Disease) <span class="op">%&gt;%</span></span>
+<span id="cb196-4"><a href="modelling-experimental-data.html#cb196-4"></a><span class="st">     </span><span class="kw">mutate</span>(<span class="dt">n =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">## count observations in each group</span></span>
+<span id="cb196-5"><a href="modelling-experimental-data.html#cb196-5"></a><span class="st">    </span><span class="co">## then calculate weighted mean based on the no. observations</span></span>
+<span id="cb196-6"><a href="modelling-experimental-data.html#cb196-6"></a><span class="st">   </span><span class="kw">summarise</span>(<span class="dt">weighted_mean =</span> <span class="kw">weighted.mean</span>(logAUC, <span class="dt">w =</span> <span class="dv">1</span><span class="op">/</span>n)) <span class="op">%&gt;%</span></span>
+<span id="cb196-7"><a href="modelling-experimental-data.html#cb196-7"></a><span class="st">     </span><span class="kw">group_by</span>(Disease) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">## calculate mean of weighted means</span></span>
+<span id="cb196-8"><a href="modelling-experimental-data.html#cb196-8"></a><span class="st">     </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(weighted_mean))</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 2
 ##   Disease   mean
 ##   &lt;fct&gt;    &lt;dbl&gt;
@@ -1840,7 +1910,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))

@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Permutation and randomisation tests | Advanced Biological Data Analysis</title>
   <meta name="description" content="Permutation and randomisation tests | Advanced Biological Data Analysis" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Permutation and randomisation tests | Advanced Biological Data Analysis" />
   <meta property="og:type" content="book" />
-  
   
   
   
@@ -49,48 +48,76 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -107,76 +134,97 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <ul class="summary">
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Nau mai, haere mai. Welcome to BIOSCI 738</a></li>
-<li class="chapter" data-level="" data-path="useful-information-to-set-you-up-for-your-semester.html"><a href="useful-information-to-set-you-up-for-your-semester.html"><i class="fa fa-check"></i>Useful information to set you up for your semester</a><ul>
-<li class="chapter" data-level="" data-path="useful-information-to-set-you-up-for-your-semester.html"><a href="useful-information-to-set-you-up-for-your-semester.html#course-outline"><i class="fa fa-check"></i>Course outline</a></li>
-<li class="chapter" data-level="" data-path="useful-information-to-set-you-up-for-your-semester.html"><a href="useful-information-to-set-you-up-for-your-semester.html#learning-outcomes"><i class="fa fa-check"></i>Learning Outcomes</a></li>
-<li class="chapter" data-level="" data-path="useful-information-to-set-you-up-for-your-semester.html"><a href="useful-information-to-set-you-up-for-your-semester.html#course-summary"><i class="fa fa-check"></i>Course summary</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html"><i class="fa fa-check"></i>Syllabus</a>
+<ul>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#course-community"><i class="fa fa-check"></i>Course Community</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#synopsis"><i class="fa fa-check"></i>Synopsis</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#prerequisites"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#course-overview"><i class="fa fa-check"></i>Course overview</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#assessment-summary"><i class="fa fa-check"></i>Assessment summary</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#course-policies"><i class="fa fa-check"></i>Course policies</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-1.html"><a href="module-1.html"><i class="fa fa-check"></i>Module 1</a><ul>
-<li><a href="r-and-rstudio.html#r-and-rstudio"><code>R</code> and <code>RStudio</code></a><ul>
-<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html"><i class="fa fa-check"></i>Installing R and RStudio</a></li>
+<li class="chapter" data-level="" data-path="module-1.html"><a href="module-1.html"><i class="fa fa-check"></i>Module 1</a>
+<ul>
+<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html"><i class="fa fa-check"></i><code>R</code> and <code>RStudio</code></a>
+<ul>
+<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#installing-r-and-rstudio"><i class="fa fa-check"></i>Installing R and RStudio</a></li>
 <li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#getting-started"><i class="fa fa-check"></i>Getting started</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html"><i class="fa fa-check"></i>Reproducible research</a><ul>
+<li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html"><i class="fa fa-check"></i>Reproducible research</a>
+<ul>
 <li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html#project-oriented-workflow-good-practice"><i class="fa fa-check"></i>Project-oriented workflow: good practice</a></li>
-<li><a href="reproducible-research.html#version-control-with-git-and-github">Version control with <code>git</code> and GitHub</a></li>
+<li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html#version-control-with-git-and-github"><i class="fa fa-check"></i>Version control with <code>git</code> and GitHub</a></li>
 </ul></li>
-<li><a href="your-data-and-r.html#your-data-and-r">Your data and <code>R</code></a><ul>
-<li><a href="your-data-and-r.html#reading-in-data-from-a-.csv-file">Reading in data from a <code>.csv</code> file</a></li>
-<li class="chapter" data-level="" data-path="your-data-and-r.html"><a href="your-data-and-r.html"><i class="fa fa-check"></i>Explore your data</a></li>
-<li><a href="your-data-and-r.html#the-pipe-operator">The pipe operator <code>%&gt;%</code></a></li>
+<li class="chapter" data-level="" data-path="your-data-and-r.html"><a href="your-data-and-r.html"><i class="fa fa-check"></i>Your data and <code>R</code></a>
+<ul>
+<li class="chapter" data-level="" data-path="your-data-and-r.html"><a href="your-data-and-r.html#reading-in-data-from-a-.csv-file"><i class="fa fa-check"></i>Reading in data from a <code>.csv</code> file</a></li>
+<li class="chapter" data-level="" data-path="your-data-and-r.html"><a href="your-data-and-r.html#explore-your-data"><i class="fa fa-check"></i>Explore your data</a></li>
+<li class="chapter" data-level="" data-path="your-data-and-r.html"><a href="your-data-and-r.html#the-pipe-operator"><i class="fa fa-check"></i>The pipe operator <code>%&gt;%</code></a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="data-wrangling.html"><a href="data-wrangling.html"><i class="fa fa-check"></i>Data wrangling</a><ul>
-<li><a href="data-wrangling.html#introuducing-the-palmer-penguins">Introuducing the <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0090081">Palmer penguins</a></a></li>
-<li><a href="data-wrangling.html#common-dataframe-manipulations-in-the-tidyverse-using-dplyr-and-tidyr">Common dataframe manipulations in the <code>tidyverse</code>, using <code>dplyr</code> and <code>tidyr</code></a></li>
+<li class="chapter" data-level="" data-path="data-wrangling.html"><a href="data-wrangling.html"><i class="fa fa-check"></i>Data wrangling</a>
+<ul>
+<li class="chapter" data-level="" data-path="data-wrangling.html"><a href="data-wrangling.html#introuducing-the-palmer-penguins"><i class="fa fa-check"></i>Introuducing the <span>Palmer penguins</span></a></li>
+<li class="chapter" data-level="" data-path="data-wrangling.html"><a href="data-wrangling.html#common-dataframe-manipulations-in-the-tidyverse-using-dplyr-and-tidyr"><i class="fa fa-check"></i>Common dataframe manipulations in the <code>tidyverse</code>, using <code>dplyr</code> and <code>tidyr</code></a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html"><i class="fa fa-check"></i>Data visualiation (data viz)</a><ul>
+<li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html"><i class="fa fa-check"></i>Data visualiation (data viz)</a>
+<ul>
 <li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html#exploratory-plots"><i class="fa fa-check"></i>Exploratory plots</a></li>
 <li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html#explanatory-plots"><i class="fa fa-check"></i>Explanatory plots</a></li>
 <li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html#ten-simple-rules-for-better-figures"><i class="fa fa-check"></i>Ten Simple Rules for Better Figures</a></li>
-<li><a href="data-visualiation-data-viz.html#ggplot2"><code>ggplot2</code></a></li>
+<li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html#ggplot2"><i class="fa fa-check"></i><code>ggplot2</code></a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="māori-data-sovereignty-principles.html"><a href="māori-data-sovereignty-principles.html"><i class="fa fa-check"></i>Māori Data Sovereignty principles</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-2.html"><a href="module-2.html"><i class="fa fa-check"></i>Module 2</a><ul>
+<li class="chapter" data-level="" data-path="module-2.html"><a href="module-2.html"><i class="fa fa-check"></i>Module 2</a>
+<ul>
 <li class="chapter" data-level="" data-path="key-satistical-concepts.html"><a href="key-satistical-concepts.html"><i class="fa fa-check"></i>Key satistical concepts</a></li>
-<li class="chapter" data-level="" data-path="bootstrap-resampling.html"><a href="bootstrap-resampling.html"><i class="fa fa-check"></i>Bootstrap resampling</a><ul>
+<li class="chapter" data-level="" data-path="bootstrap-resampling.html"><a href="bootstrap-resampling.html"><i class="fa fa-check"></i>Bootstrap resampling</a>
+<ul>
 <li class="chapter" data-level="" data-path="bootstrap-resampling.html"><a href="bootstrap-resampling.html#example-constructing-bootstrap-confidence-intervals"><i class="fa fa-check"></i>Example: constructing bootstrap confidence intervals</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="permutation-and-randomisation-tests.html"><a href="permutation-and-randomisation-tests.html"><i class="fa fa-check"></i>Permutation and randomisation tests</a><ul>
+<li class="chapter" data-level="" data-path="permutation-and-randomisation-tests.html"><a href="permutation-and-randomisation-tests.html"><i class="fa fa-check"></i>Permutation and randomisation tests</a>
+<ul>
 <li class="chapter" data-level="" data-path="permutation-and-randomisation-tests.html"><a href="permutation-and-randomisation-tests.html#a-permutation-test-jackal-mandible-lengths"><i class="fa fa-check"></i>A permutation test: Jackal mandible lengths</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="resampling-procedures-the-differences.html"><a href="resampling-procedures-the-differences.html"><i class="fa fa-check"></i>Resampling procedures, the differences</a></li>
-<li class="chapter" data-level="" data-path="hypothesis-testing-key-terms.html"><a href="hypothesis-testing-key-terms.html"><i class="fa fa-check"></i>Hypothesis testing: key terms</a><ul>
+<li class="chapter" data-level="" data-path="hypothesis-testing-key-terms.html"><a href="hypothesis-testing-key-terms.html"><i class="fa fa-check"></i>Hypothesis testing: key terms</a>
+<ul>
 <li class="chapter" data-level="" data-path="hypothesis-testing-key-terms.html"><a href="hypothesis-testing-key-terms.html#p-values"><i class="fa fa-check"></i>😱 p-values 😱</a></li>
 <li class="chapter" data-level="" data-path="hypothesis-testing-key-terms.html"><a href="hypothesis-testing-key-terms.html#type-i-and-type-ii-errors"><i class="fa fa-check"></i>Type I and Type II errors</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="parametric-hypothesis-tests.html"><a href="parametric-hypothesis-tests.html"><i class="fa fa-check"></i>Parametric hypothesis tests</a><ul>
+<li class="chapter" data-level="" data-path="parametric-hypothesis-tests.html"><a href="parametric-hypothesis-tests.html"><i class="fa fa-check"></i>Parametric hypothesis tests</a>
+<ul>
 <li class="chapter" data-level="" data-path="parametric-hypothesis-tests.html"><a href="parametric-hypothesis-tests.html#one-sample-t-test"><i class="fa fa-check"></i>One-Sample t-test</a></li>
 <li class="chapter" data-level="" data-path="parametric-hypothesis-tests.html"><a href="parametric-hypothesis-tests.html#differences-between-two-means"><i class="fa fa-check"></i>Differences between two means</a></li>
 <li class="chapter" data-level="" data-path="parametric-hypothesis-tests.html"><a href="parametric-hypothesis-tests.html#one-way-analysis-of-variance-anova"><i class="fa fa-check"></i>One-Way Analysis of Variance (ANOVA)</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i>Linear regression</a><ul>
+<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i>Linear regression</a>
+<ul>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#some-mathematical-notation"><i class="fa fa-check"></i>Some mathematical notation</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#modeling-bill-depth"><i class="fa fa-check"></i>Modeling Bill Depth</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#single-continuous-variable"><i class="fa fa-check"></i>Single continuous variable</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#one-factor-and-a-continuous-variable"><i class="fa fa-check"></i>One factor and a continuous variable</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#interactions"><i class="fa fa-check"></i>Interactions</a></li>
 </ul></li>
-<li><a href="model-formula-syntax-in-r.html#model-formula-syntax-in-r">Model formula syntax in <code>R</code></a><ul>
-<li class="chapter" data-level="" data-path="model-formula-syntax-in-r.html"><a href="model-formula-syntax-in-r.html"><i class="fa fa-check"></i>Other possible models</a></li>
+<li class="chapter" data-level="" data-path="model-formula-syntax-in-r.html"><a href="model-formula-syntax-in-r.html"><i class="fa fa-check"></i>Model formula syntax in <code>R</code></a>
+<ul>
+<li class="chapter" data-level="" data-path="model-formula-syntax-in-r.html"><a href="model-formula-syntax-in-r.html#other-possible-models"><i class="fa fa-check"></i>Other possible models</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html"><i class="fa fa-check"></i>Model diagnostics for a linear model</a><ul>
+<li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html"><i class="fa fa-check"></i>Model diagnostics for a linear model</a>
+<ul>
 <li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html#marginal-predictions"><i class="fa fa-check"></i>Marginal predictions</a></li>
 <li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html#model-selection"><i class="fa fa-check"></i>Model selection</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="inference-for-a-linear-model.html"><a href="inference-for-a-linear-model.html"><i class="fa fa-check"></i>Inference for a linear model</a><ul>
+<li class="chapter" data-level="" data-path="inference-for-a-linear-model.html"><a href="inference-for-a-linear-model.html"><i class="fa fa-check"></i>Inference for a linear model</a>
+<ul>
 <li class="chapter" data-level="" data-path="inference-for-a-linear-model.html"><a href="inference-for-a-linear-model.html#point-prediction"><i class="fa fa-check"></i>Point prediction</a></li>
 <li class="chapter" data-level="" data-path="inference-for-a-linear-model.html"><a href="inference-for-a-linear-model.html#confidence-intervals-for-parameters"><i class="fa fa-check"></i>Confidence intervals for parameters</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-3.html"><a href="module-3.html"><i class="fa fa-check"></i>Module 3</a><ul>
-<li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html"><i class="fa fa-check"></i>Introduction to the design and analysis of experiments</a><ul>
+<li class="chapter" data-level="" data-path="module-3.html"><a href="module-3.html"><i class="fa fa-check"></i>Module 3</a>
+<ul>
+<li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html"><i class="fa fa-check"></i>Introduction to the design and analysis of experiments</a>
+<ul>
 <li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#key-phrases"><i class="fa fa-check"></i>Key phrases</a></li>
 <li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#the-three-key-principles"><i class="fa fa-check"></i>The three key principles:</a></li>
 <li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#replication"><i class="fa fa-check"></i>Replication</a></li>
@@ -184,37 +232,89 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#blocking"><i class="fa fa-check"></i>Blocking</a></li>
 <li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#setting-up-an-experiment"><i class="fa fa-check"></i>Setting up an experiment</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html"><i class="fa fa-check"></i>Some basic experimental designs</a><ul>
+<li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html"><i class="fa fa-check"></i>Some basic experimental designs</a>
+<ul>
 <li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html#completely-randomised-design-crd"><i class="fa fa-check"></i>Completely randomised design (CRD)</a></li>
 <li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html#randomised-complete-block-design-rcbd"><i class="fa fa-check"></i>Randomised complete block design (RCBD)</a></li>
 <li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html#factorial-design"><i class="fa fa-check"></i>Factorial design</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html"><i class="fa fa-check"></i>Modelling experimental data</a><ul>
+<li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html"><i class="fa fa-check"></i>Modelling experimental data</a>
+<ul>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-completely-randomised-design-crd-as-a-linear-model"><i class="fa fa-check"></i>A completely randomised design (CRD) as a linear model</a></li>
-<li><a href="modelling-experimental-data.html#analysis-of-a-crd-in-r">Analysis of a CRD in <code>R</code></a></li>
+<li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#analysis-of-a-crd-in-r"><i class="fa fa-check"></i>Analysis of a CRD in <code>R</code></a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-factorial-experiment-as-a-crd"><i class="fa fa-check"></i>A Factorial experiment (as a CRD)</a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#unqual-replications-unbalanced-design"><i class="fa fa-check"></i>Unqual replications (unbalanced design)</a></li>
-<li><a href="modelling-experimental-data.html#sums-of-squares-ss">Sums of squares (<span class="math inline">\(SS\)</span>)</a></li>
+<li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#sums-of-squares-ss"><i class="fa fa-check"></i>Sums of squares (<span class="math inline">\(SS\)</span>)</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html"><i class="fa fa-check"></i>Multiple comparisons</a><ul>
+<li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html"><i class="fa fa-check"></i>Multiple comparisons</a>
+<ul>
 <li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html#adjustments-for-multiple-testing"><i class="fa fa-check"></i>Adjustments for multiple testing</a></li>
 <li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html#classification-of-multiple-hypothesis-tests"><i class="fa fa-check"></i>Classification of multiple hypothesis tests</a></li>
 <li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html#multiple-comparison-procedures"><i class="fa fa-check"></i>Multiple comparison procedures</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html"><i class="fa fa-check"></i>Linear mixed-effect models (LMMs)</a><ul>
+<li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html"><i class="fa fa-check"></i>Linear mixed-effect models (LMMs)</a>
+<ul>
 <li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html#a-randomised-controlled-block-design-rcbd"><i class="fa fa-check"></i>A Randomised Controlled Block Design (RCBD)</a></li>
 <li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html#a-split-plot-design"><i class="fa fa-check"></i>A Split-plot design</a></li>
 <li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html#a-repeated-measures-design"><i class="fa fa-check"></i>A repeated measures design</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-4.html"><a href="module-4.html"><i class="fa fa-check"></i>Module 4</a><ul>
-<li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html"><i class="fa fa-check"></i>Least Squares Estimation</a><ul>
+<li class="chapter" data-level="" data-path="module-4.html"><a href="module-4.html"><i class="fa fa-check"></i>Module 4</a>
+<ul>
+<li class="chapter" data-level="" data-path="introduction-to-generalised-linear-models-glms.html"><a href="introduction-to-generalised-linear-models-glms.html"><i class="fa fa-check"></i>Introduction to generalised linear models (GLMs)</a></li>
+<li class="chapter" data-level="" data-path="poisson-regression.html"><a href="poisson-regression.html"><i class="fa fa-check"></i>Poisson regression</a>
+<ul>
+<li class="chapter" data-level="" data-path="poisson-regression.html"><a href="poisson-regression.html#an-example-bird-abundance"><i class="fa fa-check"></i>An example: bird abundance</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i>Logistic regression</a>
+<ul>
+<li class="chapter" data-level="" data-path="logistic-regression.html"><a href="logistic-regression.html#an-example-lobsters"><i class="fa fa-check"></i>An example: lobsters</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="a-summary-of-glms.html"><a href="a-summary-of-glms.html"><i class="fa fa-check"></i>A summary of GLMs</a></li>
+<li class="chapter" data-level="" data-path="generalised-linear-mixed-effects-models-glmmms.html"><a href="generalised-linear-mixed-effects-models-glmmms.html"><i class="fa fa-check"></i>Generalised linear mixed-effects models (GLMMMs)</a>
+<ul>
+<li class="chapter" data-level="" data-path="generalised-linear-mixed-effects-models-glmmms.html"><a href="generalised-linear-mixed-effects-models-glmmms.html#fitting-a-glmm"><i class="fa fa-check"></i>Fitting a GLMM</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-5.html"><a href="module-5.html"><i class="fa fa-check"></i>Module 5</a>
+<ul>
+<li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i>Clustering</a>
+<ul>
+<li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#divisive-partitioning-methods."><i class="fa fa-check"></i>Divisive (partitioning) methods.</a></li>
+<li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#k-means-an-example-using-the-palmerpenguins-data"><i class="fa fa-check"></i>K-means: an example using the <code>palmerpenguins</code> data</a></li>
+<li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#hierarchical-agglomerative-clustering."><i class="fa fa-check"></i>Hierarchical agglomerative clustering.</a></li>
+<li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#hierarchical-clustering-an-example"><i class="fa fa-check"></i>Hierarchical clustering: an example</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="principal-component-analysis-pca.html"><a href="principal-component-analysis-pca.html"><i class="fa fa-check"></i>Principal Component Analysis (PCA)</a>
+<ul>
+<li class="chapter" data-level="" data-path="principal-component-analysis-pca.html"><a href="principal-component-analysis-pca.html#examples-in-r"><i class="fa fa-check"></i>Examples in <code>R</code></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html"><i class="fa fa-check"></i>Multidimensional Scaling (MDS)</a>
+<ul>
+<li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html#metric-scaling"><i class="fa fa-check"></i>Metric Scaling</a></li>
+<li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html#correspondence-analysis-ca"><i class="fa fa-check"></i>Correspondence Analysis (CA)</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="non-metric-multidimensional-scaling.html"><a href="non-metric-multidimensional-scaling.html"><i class="fa fa-check"></i>Non-metric Multidimensional Scaling</a>
+<ul>
+<li class="chapter" data-level="" data-path="non-metric-multidimensional-scaling.html"><a href="non-metric-multidimensional-scaling.html#examples-in-r-2"><i class="fa fa-check"></i>Examples in <code>R</code></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html"><i class="fa fa-check"></i>Linear Discriminant Analysis (LDA)</a>
+<ul>
+<li class="chapter" data-level="" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html#example-in-r"><i class="fa fa-check"></i>Example in <code>R</code></a></li>
+<li class="chapter" data-level="" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html#prediction"><i class="fa fa-check"></i>Prediction</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-6.html"><a href="module-6.html"><i class="fa fa-check"></i>Module 6</a>
+<ul>
+<li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html"><i class="fa fa-check"></i>Least Squares Estimation</a>
+<ul>
 <li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html#some-basic-matrix-algebra"><i class="fa fa-check"></i>Some basic matrix algebra</a></li>
 <li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html#linear-least-squares"><i class="fa fa-check"></i>Linear least squares</a></li>
 <li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html#matrix-representation-of-a-crd"><i class="fa fa-check"></i>Matrix representation of a CRD</a></li>
 <li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html#a-numeric-example"><i class="fa fa-check"></i>A numeric example</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html"><i class="fa fa-check"></i>Maximum likelihood estimation</a><ul>
+<li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html"><i class="fa fa-check"></i>Maximum likelihood estimation</a>
+<ul>
 <li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#differeniation-rules"><i class="fa fa-check"></i>Differeniation rules</a></li>
 <li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#logarithm-rules"><i class="fa fa-check"></i>Logarithm rules</a></li>
 <li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#maximum-likelihood-estimation-for-a-binomial-distribution"><i class="fa fa-check"></i>Maximum likelihood estimation for a Binomial distribution</a></li>
@@ -223,44 +323,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#maximum-likelihood-estimation-for-a-poisson-distribution"><i class="fa fa-check"></i>Maximum likelihood estimation for a Poisson distribution</a></li>
 <li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#maximum-likelihood-estimation-for-a-continuous-random-variable"><i class="fa fa-check"></i>Maximum likelihood estimation for a continuous random variable</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html"><i class="fa fa-check"></i>Introduction to Bayesian statistics</a><ul>
+<li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html"><i class="fa fa-check"></i>Introduction to Bayesian statistics</a>
+<ul>
 <li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html#conditional-probability"><i class="fa fa-check"></i>Conditional probability</a></li>
-<li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html#bayes-rule"><i class="fa fa-check"></i>Bayes' rule</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="module-5.html"><a href="module-5.html"><i class="fa fa-check"></i>Module 5</a><ul>
-<li class="chapter" data-level="" data-path="introduction-to-generalised-linear-models-glms.html"><a href="introduction-to-generalised-linear-models-glms.html"><i class="fa fa-check"></i>Introduction to generalised linear models (GLMs)</a></li>
-<li class="chapter" data-level="" data-path="poisson-regression.html"><a href="poisson-regression.html"><i class="fa fa-check"></i>Poisson regression</a><ul>
-<li class="chapter" data-level="" data-path="poisson-regression.html"><a href="poisson-regression.html#an-example-bird-abundance"><i class="fa fa-check"></i>An example: bird abundance</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i>Logistic regression</a><ul>
-<li class="chapter" data-level="" data-path="logistic-regression.html"><a href="logistic-regression.html#an-example-lobsters"><i class="fa fa-check"></i>An example: lobsters</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="a-summary-of-glms.html"><a href="a-summary-of-glms.html"><i class="fa fa-check"></i>A summary of GLMs</a></li>
-<li class="chapter" data-level="" data-path="generalised-linear-mixed-effects-models-glmmms.html"><a href="generalised-linear-mixed-effects-models-glmmms.html"><i class="fa fa-check"></i>Generalised linear mixed-effects models (GLMMMs)</a><ul>
-<li class="chapter" data-level="" data-path="generalised-linear-mixed-effects-models-glmmms.html"><a href="generalised-linear-mixed-effects-models-glmmms.html#fitting-a-glmm"><i class="fa fa-check"></i>Fitting a GLMM</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="module-6.html"><a href="module-6.html"><i class="fa fa-check"></i>Module 6</a><ul>
-<li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i>Clustering</a><ul>
-<li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#divisive-partitioning-methods."><i class="fa fa-check"></i>Divisive (partitioning) methods.</a></li>
-<li><a href="clustering.html#k-means-an-example-using-the-palmerpenguins-data">K-means: an example using the <code>palmerpenguins</code> data</a></li>
-<li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#hierarchical-agglomerative-clustering."><i class="fa fa-check"></i>Hierarchical agglomerative clustering.</a></li>
-<li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#hierarchical-clustering-an-example"><i class="fa fa-check"></i>Hierarchical clustering: an example</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="principal-component-analysis-pca.html"><a href="principal-component-analysis-pca.html"><i class="fa fa-check"></i>Principal Component Analysis (PCA)</a><ul>
-<li><a href="principal-component-analysis-pca.html#examples-in-r">Examples in <code>R</code></a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html"><i class="fa fa-check"></i>Multidimensional Scaling (MDS)</a><ul>
-<li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html#metric-scaling"><i class="fa fa-check"></i>Metric Scaling</a></li>
-<li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html#correspondence-analysis-ca"><i class="fa fa-check"></i>Correspondence Analysis (CA)</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="non-metric-multidimensional-scaling.html"><a href="non-metric-multidimensional-scaling.html"><i class="fa fa-check"></i>Non-metric Multidimensional Scaling</a><ul>
-<li><a href="non-metric-multidimensional-scaling.html#examples-in-r-2">Examples in <code>R</code></a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html"><i class="fa fa-check"></i>Linear Discriminant Analysis (LDA)</a><ul>
-<li><a href="linear-discriminant-analysis-lda.html#example-in-r">Example in <code>R</code></a></li>
-<li class="chapter" data-level="" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html#prediction"><i class="fa fa-check"></i>Prediction</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html#bayes-rule"><i class="fa fa-check"></i>Bayes’ rule</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -280,15 +346,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="permutation-and-randomisation-tests" class="section level2">
-<h2>Permutation and randomisation tests</h2>
+<div id="permutation-and-randomisation-tests" class="section level2 hasAnchor">
+<h2>Permutation and randomisation tests<a href="permutation-and-randomisation-tests.html#permutation-and-randomisation-tests" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>A <strong>permutation test</strong> is a statistical significance test where the distribution of the test statistic under the null hypothesis is obtained by calculating <strong>all</strong> possible values of the test statistic under <strong>all</strong> possible rearrangements of the observed data points. This is also known as an <strong>exact</strong> test.</p>
 <p>Now, often finding <em>all</em> possible combinations is hugely computationally expensive so we harness the power of simulation and carry out a <strong>randomisation test</strong>, which <strong>randomly simulates</strong> (for a given number of repetitions) possible values of the test statistic under the null hypothesis to obtain its approximate distribution.</p>
 <p>The basic approach to a randomisation tests is straightforward:</p>
 <ol style="list-style-type: decimal">
 <li>Choose a statistic to measure the effect in question (e.g., differences between group means)</li>
 <li>Calculate that test statistic on the observed data. Note this metric can be <strong>anything</strong> you wish</li>
-<li>Construct the sampling distribution that this statistic would have if the effect were not present in the population (i.e., the distribution under the <em>Null</em> hypothesis, <span class="math inline">\(H_0\)</span>): For chosen number of times
+<li>Construct the sampling distribution that this statistic would have if the effect were not present in the population (i.e.,
+the distribution under the <em>Null</em> hypothesis, <span class="math inline">\(H_0\)</span>): For chosen number of times
 <ul>
 <li>shuffle the data labels</li>
 <li>calculate the test statistic for the reshuffled data and retain</li>
@@ -302,8 +369,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <ol start="5" style="list-style-type: decimal">
 <li>Calculate the proportion of times your reshuffled statistics equal or exceed the observed. This <em>p-value</em> is the probability that we observe a statistic at least as “extreme” as the one we observed <strong>State</strong> the strength of evidence against the null on the basis of this <strong>probability</strong>.</li>
 </ol>
-<div id="a-permutation-test-jackal-mandible-lengths" class="section level3">
-<h3>A permutation test: Jackal mandible lengths</h3>
+<div id="a-permutation-test-jackal-mandible-lengths" class="section level3 hasAnchor">
+<h3>A permutation test: Jackal mandible lengths<a href="permutation-and-randomisation-tests.html#a-permutation-test-jackal-mandible-lengths" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Below are data specifying mandible lengths (mm) for golden jackals (<em>Canis aureus</em>) of each sex from the British Museum</p>
 <table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
@@ -484,43 +551,43 @@ Female
 <p><strong>Null hypothesis</strong>: The average jaw lengths in male jackals the same as for females</p>
 <p><strong>Test statistic</strong>: Difference of sample means</p>
 <p>Let us first calculate the observed test statistic:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## the data
-jackal &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">mandible_length_mm =</span> <span class="kw">c</span>(<span class="dv">120</span>, <span class="dv">107</span>, <span class="dv">110</span>, <span class="dv">116</span>, <span class="dv">114</span>, <span class="dv">111</span>, <span class="dv">113</span>, <span class="dv">117</span>, <span class="dv">114</span>, <span class="dv">112</span>,
-                                            <span class="dv">110</span>, <span class="dv">111</span>, <span class="dv">107</span>, <span class="dv">108</span>, <span class="dv">110</span>, <span class="dv">105</span>, <span class="dv">107</span>, <span class="dv">106</span>, <span class="dv">111</span>, <span class="dv">111</span>),
-                     <span class="dt">sex =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;Male&quot;</span>,<span class="st">&quot;Female&quot;</span>), <span class="dt">each =</span> <span class="dv">10</span>))
-## observed statistic
-jackal_mean_diff &lt;-<span class="st"> </span>jackal <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">group_by</span>(sex) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(mandible_length_mm)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">diff =</span> <span class="kw">diff</span>(mean)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">as.numeric</span>()
-jackal_mean_diff</code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="permutation-and-randomisation-tests.html#cb67-1"></a><span class="co">## the data</span></span>
+<span id="cb67-2"><a href="permutation-and-randomisation-tests.html#cb67-2"></a>jackal &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">mandible_length_mm =</span> <span class="kw">c</span>(<span class="dv">120</span>, <span class="dv">107</span>, <span class="dv">110</span>, <span class="dv">116</span>, <span class="dv">114</span>, <span class="dv">111</span>, <span class="dv">113</span>, <span class="dv">117</span>, <span class="dv">114</span>, <span class="dv">112</span>,</span>
+<span id="cb67-3"><a href="permutation-and-randomisation-tests.html#cb67-3"></a>                                            <span class="dv">110</span>, <span class="dv">111</span>, <span class="dv">107</span>, <span class="dv">108</span>, <span class="dv">110</span>, <span class="dv">105</span>, <span class="dv">107</span>, <span class="dv">106</span>, <span class="dv">111</span>, <span class="dv">111</span>),</span>
+<span id="cb67-4"><a href="permutation-and-randomisation-tests.html#cb67-4"></a>                     <span class="dt">sex =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;Male&quot;</span>,<span class="st">&quot;Female&quot;</span>), <span class="dt">each =</span> <span class="dv">10</span>))</span>
+<span id="cb67-5"><a href="permutation-and-randomisation-tests.html#cb67-5"></a><span class="co">## observed statistic</span></span>
+<span id="cb67-6"><a href="permutation-and-randomisation-tests.html#cb67-6"></a>jackal_mean_diff &lt;-<span class="st"> </span>jackal <span class="op">%&gt;%</span></span>
+<span id="cb67-7"><a href="permutation-and-randomisation-tests.html#cb67-7"></a><span class="st">  </span><span class="kw">group_by</span>(sex) <span class="op">%&gt;%</span></span>
+<span id="cb67-8"><a href="permutation-and-randomisation-tests.html#cb67-8"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(mandible_length_mm)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb67-9"><a href="permutation-and-randomisation-tests.html#cb67-9"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">diff =</span> <span class="kw">diff</span>(mean)) <span class="op">%&gt;%</span></span>
+<span id="cb67-10"><a href="permutation-and-randomisation-tests.html#cb67-10"></a><span class="st">  </span><span class="kw">as.numeric</span>()</span>
+<span id="cb67-11"><a href="permutation-and-randomisation-tests.html#cb67-11"></a>jackal_mean_diff</span></code></pre></div>
 <pre><code>## [1] 4.8</code></pre>
 <p>Now we use the command <code>combn(x, m)</code> to generate all possible combinations of the elements of <code>x</code> taken <code>m</code> at a time. For our data we have 20 elements in total with two groups of 10 elements each, therefore, we use <code>combn(20,10)</code>. We can use these combinations to generate <strong>all</strong> possible combinations and calculate the proportion of times the test statistic calculated under the null hypothesis is <em>as least as extreme</em> as the one observed (the p-value):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">combinations &lt;-<span class="st"> </span><span class="kw">combn</span>(<span class="dv">20</span>,<span class="dv">10</span>)
-## Do the permutations
-permtest_combinations &lt;-<span class="st"> </span><span class="kw">apply</span>(combinations, <span class="dv">2</span>, <span class="cf">function</span>(x)
-  <span class="kw">mean</span>(jackal<span class="op">$</span>mandible_length_mm[x]) <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(jackal<span class="op">$</span>mandible_length_mm[<span class="op">-</span>x]))
-## Full Permutation test p.value
-p_val &lt;-<span class="st"> </span><span class="kw">length</span>(permtest_combinations[<span class="kw">abs</span>(permtest_combinations) <span class="op">&gt;=</span><span class="st"> </span>jackal_mean_diff]) <span class="op">/</span><span class="st"> </span><span class="kw">choose</span>(<span class="dv">20</span>,<span class="dv">10</span>)
-p_val</code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="permutation-and-randomisation-tests.html#cb69-1"></a>combinations &lt;-<span class="st"> </span><span class="kw">combn</span>(<span class="dv">20</span>,<span class="dv">10</span>)</span>
+<span id="cb69-2"><a href="permutation-and-randomisation-tests.html#cb69-2"></a><span class="co">## Do the permutations</span></span>
+<span id="cb69-3"><a href="permutation-and-randomisation-tests.html#cb69-3"></a>permtest_combinations &lt;-<span class="st"> </span><span class="kw">apply</span>(combinations, <span class="dv">2</span>, <span class="cf">function</span>(x)</span>
+<span id="cb69-4"><a href="permutation-and-randomisation-tests.html#cb69-4"></a>  <span class="kw">mean</span>(jackal<span class="op">$</span>mandible_length_mm[x]) <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(jackal<span class="op">$</span>mandible_length_mm[<span class="op">-</span>x]))</span>
+<span id="cb69-5"><a href="permutation-and-randomisation-tests.html#cb69-5"></a><span class="co">## Full Permutation test p.value</span></span>
+<span id="cb69-6"><a href="permutation-and-randomisation-tests.html#cb69-6"></a>p_val &lt;-<span class="st"> </span><span class="kw">length</span>(permtest_combinations[<span class="kw">abs</span>(permtest_combinations) <span class="op">&gt;=</span><span class="st"> </span>jackal_mean_diff]) <span class="op">/</span><span class="st"> </span><span class="kw">choose</span>(<span class="dv">20</span>,<span class="dv">10</span>)</span>
+<span id="cb69-7"><a href="permutation-and-randomisation-tests.html#cb69-7"></a>p_val</span></code></pre></div>
 <pre><code>## [1] 0.003334127</code></pre>
 <p><img src="_main_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
 <p>Rather than considering <strong>all</strong> possible combinations we might rather use 100 random permutations under the null hypothesis. Here, we sample <strong>without</strong> replacement:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## set up matrix
-random_perm &lt;-<span class="st"> </span><span class="kw">apply</span>(<span class="kw">matrix</span>(<span class="dv">0</span>, <span class="dt">nrow =</span> <span class="dv">99</span>, <span class="dt">ncol =</span> <span class="dv">1</span>), <span class="dv">1</span>, <span class="cf">function</span>(x) <span class="kw">sample</span>(<span class="dv">20</span>))
-random_mean_diff &lt;-<span class="st"> </span><span class="kw">apply</span>(random_perm, <span class="dv">2</span>, <span class="cf">function</span>(x){
-  z &lt;-<span class="st"> </span>jackal<span class="op">$</span>mandible_length_mm[x]
-  <span class="kw">mean</span>(z[jackal<span class="op">$</span>sex <span class="op">==</span><span class="st"> &quot;Male&quot;</span>]) <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(z[jackal<span class="op">$</span>sex <span class="op">==</span><span class="st"> &quot;Female&quot;</span>])
-})
-## add the observed 
-random_mean_diff &lt;-<span class="st"> </span><span class="kw">c</span>(random_mean_diff, jackal_mean_diff)
-random_p.value &lt;-<span class="st"> </span><span class="kw">length</span>(random_mean_diff[<span class="kw">abs</span>(random_mean_diff) <span class="op">&gt;=</span><span class="st"> </span>jackal_mean_diff]) <span class="op">/</span><span class="st"> </span><span class="dv">100</span> ## note the abs()
-random_p.value</code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="permutation-and-randomisation-tests.html#cb71-1"></a><span class="co">## set up matrix</span></span>
+<span id="cb71-2"><a href="permutation-and-randomisation-tests.html#cb71-2"></a>random_perm &lt;-<span class="st"> </span><span class="kw">apply</span>(<span class="kw">matrix</span>(<span class="dv">0</span>, <span class="dt">nrow =</span> <span class="dv">99</span>, <span class="dt">ncol =</span> <span class="dv">1</span>), <span class="dv">1</span>, <span class="cf">function</span>(x) <span class="kw">sample</span>(<span class="dv">20</span>))</span>
+<span id="cb71-3"><a href="permutation-and-randomisation-tests.html#cb71-3"></a>random_mean_diff &lt;-<span class="st"> </span><span class="kw">apply</span>(random_perm, <span class="dv">2</span>, <span class="cf">function</span>(x){</span>
+<span id="cb71-4"><a href="permutation-and-randomisation-tests.html#cb71-4"></a>  z &lt;-<span class="st"> </span>jackal<span class="op">$</span>mandible_length_mm[x]</span>
+<span id="cb71-5"><a href="permutation-and-randomisation-tests.html#cb71-5"></a>  <span class="kw">mean</span>(z[jackal<span class="op">$</span>sex <span class="op">==</span><span class="st"> &quot;Male&quot;</span>]) <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(z[jackal<span class="op">$</span>sex <span class="op">==</span><span class="st"> &quot;Female&quot;</span>])</span>
+<span id="cb71-6"><a href="permutation-and-randomisation-tests.html#cb71-6"></a>})</span>
+<span id="cb71-7"><a href="permutation-and-randomisation-tests.html#cb71-7"></a><span class="co">## add the observed </span></span>
+<span id="cb71-8"><a href="permutation-and-randomisation-tests.html#cb71-8"></a>random_mean_diff &lt;-<span class="st"> </span><span class="kw">c</span>(random_mean_diff, jackal_mean_diff)</span>
+<span id="cb71-9"><a href="permutation-and-randomisation-tests.html#cb71-9"></a>random_p.value &lt;-<span class="st"> </span><span class="kw">length</span>(random_mean_diff[<span class="kw">abs</span>(random_mean_diff) <span class="op">&gt;=</span><span class="st"> </span>jackal_mean_diff]) <span class="op">/</span><span class="st"> </span><span class="dv">100</span> <span class="co">## note the abs()</span></span>
+<span id="cb71-10"><a href="permutation-and-randomisation-tests.html#cb71-10"></a>random_p.value</span></code></pre></div>
 <pre><code>## [1] 0.01</code></pre>
 <p>How does this compare to the exact (permutation) results above? Try increasing the number of times you randomise? What happens as you increase it?</p>
-<div id="a-randomisation-test-pāua-shell-length" class="section level4">
-<h4>A randomisation test: Pāua shell length</h4>
+<div id="a-randomisation-test-pāua-shell-length" class="section level4 hasAnchor">
+<h4>A randomisation test: Pāua shell length<a href="permutation-and-randomisation-tests.html#a-randomisation-test-pāua-shell-length" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Remember the Pāua data from the previous module? The dataset contains the following variables</p>
 <ul>
 <li><code>Age</code> of P<span class="math inline">\(\overline{\text{a}}\)</span>ua in years (calculated from counting rings in the cone)</li>
@@ -528,53 +595,55 @@ random_p.value</code></pre></div>
 <li><code>Species</code> of P<span class="math inline">\(\overline{\text{a}}\)</span>ua: <em>Haliotis iris</em> (typically found in NZ) and <em>Haliotis australis</em> (less commonly found in NZ)</li>
 </ul>
 <p>One question we may want to ask is if on average the shell length differs between Species?</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
-paua &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/paua.csv&quot;</span>)</code></pre></div>
-<p><strong>Scientific question</strong>: Are the shell lengths of shells the same in both species? <strong>Null hypothesis</strong>: The distribution of shell lengths in <em>Haliotis iris</em> the same as in <em>Haliotis australis</em> <strong>Test statistic</strong>: Difference of sample means</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="permutation-and-randomisation-tests.html#cb73-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb73-2"><a href="permutation-and-randomisation-tests.html#cb73-2"></a>paua &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/paua.csv&quot;</span>)</span></code></pre></div>
+<p><strong>Scientific question</strong>: Are the shell lengths of shells the same in both species?
+<strong>Null hypothesis</strong>: The distribution of shell lengths in <em>Haliotis iris</em> the same as in <em>Haliotis australis</em>
+<strong>Test statistic</strong>: Difference of sample means</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
-<p>But because the data are skewed and we've likely got non-constant variances we may be better off adopting a randomization test (this time using a <code>for</code> loop!), rather than a parametric t-test</p>
+<p>But because the data are skewed and we’ve likely got non-constant variances we may be better off adopting a randomization test (this time using a <code>for</code> loop!), rather than a parametric t-test</p>
 </div>
-<div id="choose-a-statistic-that-measures-the-effect-of-interest-in-this-case-the-differences-between-means." class="section level4">
-<h4>1. Choose a statistic that measures the effect of interest (in this case the differences between means).</h4>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## observed differences in means
-diff_in_means &lt;-<span class="st"> </span>(paua <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(Species) <span class="op">%&gt;%</span>
-<span class="st">                    </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(Length)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">                    </span><span class="kw">summarise</span>(<span class="dt">diff =</span> <span class="kw">diff</span>(mean)))<span class="op">$</span>diff
-diff_in_means</code></pre></div>
+<div id="choose-a-statistic-that-measures-the-effect-of-interest-in-this-case-the-differences-between-means." class="section level4 hasAnchor">
+<h4>1. Choose a statistic that measures the effect of interest (in this case the differences between means).<a href="permutation-and-randomisation-tests.html#choose-a-statistic-that-measures-the-effect-of-interest-in-this-case-the-differences-between-means." class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="permutation-and-randomisation-tests.html#cb74-1"></a><span class="co">## observed differences in means</span></span>
+<span id="cb74-2"><a href="permutation-and-randomisation-tests.html#cb74-2"></a>diff_in_means &lt;-<span class="st"> </span>(paua <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(Species) <span class="op">%&gt;%</span></span>
+<span id="cb74-3"><a href="permutation-and-randomisation-tests.html#cb74-3"></a><span class="st">                    </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(Length)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb74-4"><a href="permutation-and-randomisation-tests.html#cb74-4"></a><span class="st">                    </span><span class="kw">summarise</span>(<span class="dt">diff =</span> <span class="kw">diff</span>(mean)))<span class="op">$</span>diff</span>
+<span id="cb74-5"><a href="permutation-and-randomisation-tests.html#cb74-5"></a>diff_in_means</span></code></pre></div>
 <pre><code>## [1] -0.9569444</code></pre>
 </div>
-<div id="construct-the-sampling-distribution-that-this-statistic-would-have-if-the-effect-were-not-present-in-the-population-i.e.-the-distribution-under-h_0-." class="section level4">
-<h4>2. Construct the sampling distribution that this statistic would have if the effect were not present in the population (i.e., the distribution under <span class="math inline">\(H_0\)</span>) .</h4>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Number of times I want to randomise
-nreps &lt;-<span class="st"> </span><span class="dv">999</span>   
-## initialize empty array to hold results
-randomisation_difference_mean &lt;-<span class="st"> </span><span class="kw">numeric</span>(nreps)
-<span class="kw">set.seed</span>(<span class="dv">1234</span>) ## *****Remove this line for actual analyses*****
-## This means that each run with produce the same results and
-## agree with the printout that I show.
-
-<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>nreps) {
-  ## the observations
-  data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">value =</span> paua<span class="op">$</span>Length)
-  ##  randomise labels
-  data<span class="op">$</span>random_labels &lt;-<span class="kw">sample</span>(paua<span class="op">$</span>Species, <span class="dt">replace =</span> <span class="ot">FALSE</span>)
-  ## randomised differences in mean
-  randomisation_difference_mean[i] &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">group_by</span>(random_labels) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(value)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">summarise</span>(<span class="dt">diff =</span> <span class="kw">diff</span>(mean)) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">as.numeric</span>()
-}
-## results, join randomised stats with the observed value
-results &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">results =</span> <span class="kw">c</span>(randomisation_difference_mean, diff_in_means))</code></pre></div>
+<div id="construct-the-sampling-distribution-that-this-statistic-would-have-if-the-effect-were-not-present-in-the-population-i.e.-the-distribution-under-h_0-." class="section level4 hasAnchor">
+<h4>2. Construct the sampling distribution that this statistic would have if the effect were not present in the population (i.e., the distribution under <span class="math inline">\(H_0\)</span>) .<a href="permutation-and-randomisation-tests.html#construct-the-sampling-distribution-that-this-statistic-would-have-if-the-effect-were-not-present-in-the-population-i.e.-the-distribution-under-h_0-." class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="permutation-and-randomisation-tests.html#cb76-1"></a><span class="co">## Number of times I want to randomise</span></span>
+<span id="cb76-2"><a href="permutation-and-randomisation-tests.html#cb76-2"></a>nreps &lt;-<span class="st"> </span><span class="dv">999</span>   </span>
+<span id="cb76-3"><a href="permutation-and-randomisation-tests.html#cb76-3"></a><span class="co">## initialize empty array to hold results</span></span>
+<span id="cb76-4"><a href="permutation-and-randomisation-tests.html#cb76-4"></a>randomisation_difference_mean &lt;-<span class="st"> </span><span class="kw">numeric</span>(nreps)</span>
+<span id="cb76-5"><a href="permutation-and-randomisation-tests.html#cb76-5"></a><span class="kw">set.seed</span>(<span class="dv">1234</span>) <span class="co">## *****Remove this line for actual analyses*****</span></span>
+<span id="cb76-6"><a href="permutation-and-randomisation-tests.html#cb76-6"></a><span class="co">## This means that each run with produce the same results and</span></span>
+<span id="cb76-7"><a href="permutation-and-randomisation-tests.html#cb76-7"></a><span class="co">## agree with the printout that I show.</span></span>
+<span id="cb76-8"><a href="permutation-and-randomisation-tests.html#cb76-8"></a></span>
+<span id="cb76-9"><a href="permutation-and-randomisation-tests.html#cb76-9"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>nreps) {</span>
+<span id="cb76-10"><a href="permutation-and-randomisation-tests.html#cb76-10"></a>  <span class="co">## the observations</span></span>
+<span id="cb76-11"><a href="permutation-and-randomisation-tests.html#cb76-11"></a>  data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">value =</span> paua<span class="op">$</span>Length)</span>
+<span id="cb76-12"><a href="permutation-and-randomisation-tests.html#cb76-12"></a>  <span class="co">##  randomise labels</span></span>
+<span id="cb76-13"><a href="permutation-and-randomisation-tests.html#cb76-13"></a>  data<span class="op">$</span>random_labels &lt;-<span class="kw">sample</span>(paua<span class="op">$</span>Species, <span class="dt">replace =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb76-14"><a href="permutation-and-randomisation-tests.html#cb76-14"></a>  <span class="co">## randomised differences in mean</span></span>
+<span id="cb76-15"><a href="permutation-and-randomisation-tests.html#cb76-15"></a>  randomisation_difference_mean[i] &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb76-16"><a href="permutation-and-randomisation-tests.html#cb76-16"></a><span class="st">    </span><span class="kw">group_by</span>(random_labels) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(value)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb76-17"><a href="permutation-and-randomisation-tests.html#cb76-17"></a><span class="st">    </span><span class="kw">summarise</span>(<span class="dt">diff =</span> <span class="kw">diff</span>(mean)) <span class="op">%&gt;%</span></span>
+<span id="cb76-18"><a href="permutation-and-randomisation-tests.html#cb76-18"></a><span class="st">    </span><span class="kw">as.numeric</span>()</span>
+<span id="cb76-19"><a href="permutation-and-randomisation-tests.html#cb76-19"></a>}</span>
+<span id="cb76-20"><a href="permutation-and-randomisation-tests.html#cb76-20"></a><span class="co">## results, join randomised stats with the observed value</span></span>
+<span id="cb76-21"><a href="permutation-and-randomisation-tests.html#cb76-21"></a>results &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">results =</span> <span class="kw">c</span>(randomisation_difference_mean, diff_in_means))</span></code></pre></div>
 </div>
-<div id="locate-the-observed-statistic-i.e.-from-our-observed-random-sample-in-the-sampling-distribution" class="section level4">
-<h4>3. Locate the observed statistic (i.e., from our observed random sample) in the sampling distribution</h4>
-<p>Let's calculate how many randomised differences in means are <em>as least as extreme</em> as the one we observed. Note that we library the absolute value as dealing with a two tailed test.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n_exceed &lt;-<span class="st"> </span><span class="kw">sum</span>(<span class="kw">abs</span>(results<span class="op">$</span>results) <span class="op">&gt;=</span><span class="st"> </span><span class="kw">abs</span>(diff_in_means))
-n_exceed</code></pre></div>
+<div id="locate-the-observed-statistic-i.e.-from-our-observed-random-sample-in-the-sampling-distribution" class="section level4 hasAnchor">
+<h4>3. Locate the observed statistic (i.e., from our observed random sample) in the sampling distribution<a href="permutation-and-randomisation-tests.html#locate-the-observed-statistic-i.e.-from-our-observed-random-sample-in-the-sampling-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Let’s calculate how many randomised differences in means are <em>as least as extreme</em> as the one we observed. Note that we library the absolute value as dealing with a two tailed test.</p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="permutation-and-randomisation-tests.html#cb77-1"></a>n_exceed &lt;-<span class="st"> </span><span class="kw">sum</span>(<span class="kw">abs</span>(results<span class="op">$</span>results) <span class="op">&gt;=</span><span class="st"> </span><span class="kw">abs</span>(diff_in_means))</span>
+<span id="cb77-2"><a href="permutation-and-randomisation-tests.html#cb77-2"></a>n_exceed</span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## proportion
-n_exceed<span class="op">/</span>nreps</code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="permutation-and-randomisation-tests.html#cb79-1"></a><span class="co">## proportion</span></span>
+<span id="cb79-2"><a href="permutation-and-randomisation-tests.html#cb79-2"></a>n_exceed<span class="op">/</span>nreps</span></code></pre></div>
 <pre><code>## [1] 0.002002002</code></pre>
 <p>What do you conclude from this proportion? How does this tie in with the distribution of the test statistic under the null hypothesis shown below?</p>
 <p><img src="_main_files/figure-html/hist-1.png" width="672" /></p>
@@ -647,7 +716,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))

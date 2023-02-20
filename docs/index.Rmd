@@ -23,8 +23,7 @@ knitr::opts_chunk$set(message = FALSE, warning = FALSE)
 
 # Nau mai, haere mai. Welcome to BIOSCI 738 {-}
 
-![](https://raw.githubusercontent.com/allisonhorst/stats-illustrations/master/other-stats-artwork/debugging.jpg)
-Artwork by [\@allison_horst](https://github.com/allisonhorst/)
+![](img/canvas_img.png)
 
 
 ###### With thanks to Prof. Chris Triggs, Dr Kathy Ruggiero, and Prof. James Russell who all freely gave me their previous iterations of the course and told me to do what I wanted with their notes. I did, and they may well find sections of this material hauntingly familiar!

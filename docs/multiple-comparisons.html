@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Multiple comparisons | Advanced Biological Data Analysis</title>
   <meta name="description" content="Multiple comparisons | Advanced Biological Data Analysis" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Multiple comparisons | Advanced Biological Data Analysis" />
   <meta property="og:type" content="book" />
-  
   
   
   
@@ -49,48 +48,76 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -107,76 +134,97 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <ul class="summary">
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Nau mai, haere mai. Welcome to BIOSCI 738</a></li>
-<li class="chapter" data-level="" data-path="useful-information-to-set-you-up-for-your-semester.html"><a href="useful-information-to-set-you-up-for-your-semester.html"><i class="fa fa-check"></i>Useful information to set you up for your semester</a><ul>
-<li class="chapter" data-level="" data-path="useful-information-to-set-you-up-for-your-semester.html"><a href="useful-information-to-set-you-up-for-your-semester.html#course-outline"><i class="fa fa-check"></i>Course outline</a></li>
-<li class="chapter" data-level="" data-path="useful-information-to-set-you-up-for-your-semester.html"><a href="useful-information-to-set-you-up-for-your-semester.html#learning-outcomes"><i class="fa fa-check"></i>Learning Outcomes</a></li>
-<li class="chapter" data-level="" data-path="useful-information-to-set-you-up-for-your-semester.html"><a href="useful-information-to-set-you-up-for-your-semester.html#course-summary"><i class="fa fa-check"></i>Course summary</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html"><i class="fa fa-check"></i>Syllabus</a>
+<ul>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#course-community"><i class="fa fa-check"></i>Course Community</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#synopsis"><i class="fa fa-check"></i>Synopsis</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#prerequisites"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#course-overview"><i class="fa fa-check"></i>Course overview</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#assessment-summary"><i class="fa fa-check"></i>Assessment summary</a></li>
+<li class="chapter" data-level="" data-path="syllabus.html"><a href="syllabus.html#course-policies"><i class="fa fa-check"></i>Course policies</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-1.html"><a href="module-1.html"><i class="fa fa-check"></i>Module 1</a><ul>
-<li><a href="r-and-rstudio.html#r-and-rstudio"><code>R</code> and <code>RStudio</code></a><ul>
-<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html"><i class="fa fa-check"></i>Installing R and RStudio</a></li>
+<li class="chapter" data-level="" data-path="module-1.html"><a href="module-1.html"><i class="fa fa-check"></i>Module 1</a>
+<ul>
+<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html"><i class="fa fa-check"></i><code>R</code> and <code>RStudio</code></a>
+<ul>
+<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#installing-r-and-rstudio"><i class="fa fa-check"></i>Installing R and RStudio</a></li>
 <li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#getting-started"><i class="fa fa-check"></i>Getting started</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html"><i class="fa fa-check"></i>Reproducible research</a><ul>
+<li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html"><i class="fa fa-check"></i>Reproducible research</a>
+<ul>
 <li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html#project-oriented-workflow-good-practice"><i class="fa fa-check"></i>Project-oriented workflow: good practice</a></li>
-<li><a href="reproducible-research.html#version-control-with-git-and-github">Version control with <code>git</code> and GitHub</a></li>
+<li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html#version-control-with-git-and-github"><i class="fa fa-check"></i>Version control with <code>git</code> and GitHub</a></li>
 </ul></li>
-<li><a href="your-data-and-r.html#your-data-and-r">Your data and <code>R</code></a><ul>
-<li><a href="your-data-and-r.html#reading-in-data-from-a-.csv-file">Reading in data from a <code>.csv</code> file</a></li>
-<li class="chapter" data-level="" data-path="your-data-and-r.html"><a href="your-data-and-r.html"><i class="fa fa-check"></i>Explore your data</a></li>
-<li><a href="your-data-and-r.html#the-pipe-operator">The pipe operator <code>%&gt;%</code></a></li>
+<li class="chapter" data-level="" data-path="your-data-and-r.html"><a href="your-data-and-r.html"><i class="fa fa-check"></i>Your data and <code>R</code></a>
+<ul>
+<li class="chapter" data-level="" data-path="your-data-and-r.html"><a href="your-data-and-r.html#reading-in-data-from-a-.csv-file"><i class="fa fa-check"></i>Reading in data from a <code>.csv</code> file</a></li>
+<li class="chapter" data-level="" data-path="your-data-and-r.html"><a href="your-data-and-r.html#explore-your-data"><i class="fa fa-check"></i>Explore your data</a></li>
+<li class="chapter" data-level="" data-path="your-data-and-r.html"><a href="your-data-and-r.html#the-pipe-operator"><i class="fa fa-check"></i>The pipe operator <code>%&gt;%</code></a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="data-wrangling.html"><a href="data-wrangling.html"><i class="fa fa-check"></i>Data wrangling</a><ul>
-<li><a href="data-wrangling.html#introuducing-the-palmer-penguins">Introuducing the <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0090081">Palmer penguins</a></a></li>
-<li><a href="data-wrangling.html#common-dataframe-manipulations-in-the-tidyverse-using-dplyr-and-tidyr">Common dataframe manipulations in the <code>tidyverse</code>, using <code>dplyr</code> and <code>tidyr</code></a></li>
+<li class="chapter" data-level="" data-path="data-wrangling.html"><a href="data-wrangling.html"><i class="fa fa-check"></i>Data wrangling</a>
+<ul>
+<li class="chapter" data-level="" data-path="data-wrangling.html"><a href="data-wrangling.html#introuducing-the-palmer-penguins"><i class="fa fa-check"></i>Introuducing the <span>Palmer penguins</span></a></li>
+<li class="chapter" data-level="" data-path="data-wrangling.html"><a href="data-wrangling.html#common-dataframe-manipulations-in-the-tidyverse-using-dplyr-and-tidyr"><i class="fa fa-check"></i>Common dataframe manipulations in the <code>tidyverse</code>, using <code>dplyr</code> and <code>tidyr</code></a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html"><i class="fa fa-check"></i>Data visualiation (data viz)</a><ul>
+<li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html"><i class="fa fa-check"></i>Data visualiation (data viz)</a>
+<ul>
 <li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html#exploratory-plots"><i class="fa fa-check"></i>Exploratory plots</a></li>
 <li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html#explanatory-plots"><i class="fa fa-check"></i>Explanatory plots</a></li>
 <li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html#ten-simple-rules-for-better-figures"><i class="fa fa-check"></i>Ten Simple Rules for Better Figures</a></li>
-<li><a href="data-visualiation-data-viz.html#ggplot2"><code>ggplot2</code></a></li>
+<li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html#ggplot2"><i class="fa fa-check"></i><code>ggplot2</code></a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="māori-data-sovereignty-principles.html"><a href="māori-data-sovereignty-principles.html"><i class="fa fa-check"></i>Māori Data Sovereignty principles</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-2.html"><a href="module-2.html"><i class="fa fa-check"></i>Module 2</a><ul>
+<li class="chapter" data-level="" data-path="module-2.html"><a href="module-2.html"><i class="fa fa-check"></i>Module 2</a>
+<ul>
 <li class="chapter" data-level="" data-path="key-satistical-concepts.html"><a href="key-satistical-concepts.html"><i class="fa fa-check"></i>Key satistical concepts</a></li>
-<li class="chapter" data-level="" data-path="bootstrap-resampling.html"><a href="bootstrap-resampling.html"><i class="fa fa-check"></i>Bootstrap resampling</a><ul>
+<li class="chapter" data-level="" data-path="bootstrap-resampling.html"><a href="bootstrap-resampling.html"><i class="fa fa-check"></i>Bootstrap resampling</a>
+<ul>
 <li class="chapter" data-level="" data-path="bootstrap-resampling.html"><a href="bootstrap-resampling.html#example-constructing-bootstrap-confidence-intervals"><i class="fa fa-check"></i>Example: constructing bootstrap confidence intervals</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="permutation-and-randomisation-tests.html"><a href="permutation-and-randomisation-tests.html"><i class="fa fa-check"></i>Permutation and randomisation tests</a><ul>
+<li class="chapter" data-level="" data-path="permutation-and-randomisation-tests.html"><a href="permutation-and-randomisation-tests.html"><i class="fa fa-check"></i>Permutation and randomisation tests</a>
+<ul>
 <li class="chapter" data-level="" data-path="permutation-and-randomisation-tests.html"><a href="permutation-and-randomisation-tests.html#a-permutation-test-jackal-mandible-lengths"><i class="fa fa-check"></i>A permutation test: Jackal mandible lengths</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="resampling-procedures-the-differences.html"><a href="resampling-procedures-the-differences.html"><i class="fa fa-check"></i>Resampling procedures, the differences</a></li>
-<li class="chapter" data-level="" data-path="hypothesis-testing-key-terms.html"><a href="hypothesis-testing-key-terms.html"><i class="fa fa-check"></i>Hypothesis testing: key terms</a><ul>
+<li class="chapter" data-level="" data-path="hypothesis-testing-key-terms.html"><a href="hypothesis-testing-key-terms.html"><i class="fa fa-check"></i>Hypothesis testing: key terms</a>
+<ul>
 <li class="chapter" data-level="" data-path="hypothesis-testing-key-terms.html"><a href="hypothesis-testing-key-terms.html#p-values"><i class="fa fa-check"></i>😱 p-values 😱</a></li>
 <li class="chapter" data-level="" data-path="hypothesis-testing-key-terms.html"><a href="hypothesis-testing-key-terms.html#type-i-and-type-ii-errors"><i class="fa fa-check"></i>Type I and Type II errors</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="parametric-hypothesis-tests.html"><a href="parametric-hypothesis-tests.html"><i class="fa fa-check"></i>Parametric hypothesis tests</a><ul>
+<li class="chapter" data-level="" data-path="parametric-hypothesis-tests.html"><a href="parametric-hypothesis-tests.html"><i class="fa fa-check"></i>Parametric hypothesis tests</a>
+<ul>
 <li class="chapter" data-level="" data-path="parametric-hypothesis-tests.html"><a href="parametric-hypothesis-tests.html#one-sample-t-test"><i class="fa fa-check"></i>One-Sample t-test</a></li>
 <li class="chapter" data-level="" data-path="parametric-hypothesis-tests.html"><a href="parametric-hypothesis-tests.html#differences-between-two-means"><i class="fa fa-check"></i>Differences between two means</a></li>
 <li class="chapter" data-level="" data-path="parametric-hypothesis-tests.html"><a href="parametric-hypothesis-tests.html#one-way-analysis-of-variance-anova"><i class="fa fa-check"></i>One-Way Analysis of Variance (ANOVA)</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i>Linear regression</a><ul>
+<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i>Linear regression</a>
+<ul>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#some-mathematical-notation"><i class="fa fa-check"></i>Some mathematical notation</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#modeling-bill-depth"><i class="fa fa-check"></i>Modeling Bill Depth</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#single-continuous-variable"><i class="fa fa-check"></i>Single continuous variable</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#one-factor-and-a-continuous-variable"><i class="fa fa-check"></i>One factor and a continuous variable</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#interactions"><i class="fa fa-check"></i>Interactions</a></li>
 </ul></li>
-<li><a href="model-formula-syntax-in-r.html#model-formula-syntax-in-r">Model formula syntax in <code>R</code></a><ul>
-<li class="chapter" data-level="" data-path="model-formula-syntax-in-r.html"><a href="model-formula-syntax-in-r.html"><i class="fa fa-check"></i>Other possible models</a></li>
+<li class="chapter" data-level="" data-path="model-formula-syntax-in-r.html"><a href="model-formula-syntax-in-r.html"><i class="fa fa-check"></i>Model formula syntax in <code>R</code></a>
+<ul>
+<li class="chapter" data-level="" data-path="model-formula-syntax-in-r.html"><a href="model-formula-syntax-in-r.html#other-possible-models"><i class="fa fa-check"></i>Other possible models</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html"><i class="fa fa-check"></i>Model diagnostics for a linear model</a><ul>
+<li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html"><i class="fa fa-check"></i>Model diagnostics for a linear model</a>
+<ul>
 <li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html#marginal-predictions"><i class="fa fa-check"></i>Marginal predictions</a></li>
 <li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html#model-selection"><i class="fa fa-check"></i>Model selection</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="inference-for-a-linear-model.html"><a href="inference-for-a-linear-model.html"><i class="fa fa-check"></i>Inference for a linear model</a><ul>
+<li class="chapter" data-level="" data-path="inference-for-a-linear-model.html"><a href="inference-for-a-linear-model.html"><i class="fa fa-check"></i>Inference for a linear model</a>
+<ul>
 <li class="chapter" data-level="" data-path="inference-for-a-linear-model.html"><a href="inference-for-a-linear-model.html#point-prediction"><i class="fa fa-check"></i>Point prediction</a></li>
 <li class="chapter" data-level="" data-path="inference-for-a-linear-model.html"><a href="inference-for-a-linear-model.html#confidence-intervals-for-parameters"><i class="fa fa-check"></i>Confidence intervals for parameters</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-3.html"><a href="module-3.html"><i class="fa fa-check"></i>Module 3</a><ul>
-<li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html"><i class="fa fa-check"></i>Introduction to the design and analysis of experiments</a><ul>
+<li class="chapter" data-level="" data-path="module-3.html"><a href="module-3.html"><i class="fa fa-check"></i>Module 3</a>
+<ul>
+<li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html"><i class="fa fa-check"></i>Introduction to the design and analysis of experiments</a>
+<ul>
 <li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#key-phrases"><i class="fa fa-check"></i>Key phrases</a></li>
 <li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#the-three-key-principles"><i class="fa fa-check"></i>The three key principles:</a></li>
 <li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#replication"><i class="fa fa-check"></i>Replication</a></li>
@@ -184,37 +232,89 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#blocking"><i class="fa fa-check"></i>Blocking</a></li>
 <li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#setting-up-an-experiment"><i class="fa fa-check"></i>Setting up an experiment</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html"><i class="fa fa-check"></i>Some basic experimental designs</a><ul>
+<li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html"><i class="fa fa-check"></i>Some basic experimental designs</a>
+<ul>
 <li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html#completely-randomised-design-crd"><i class="fa fa-check"></i>Completely randomised design (CRD)</a></li>
 <li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html#randomised-complete-block-design-rcbd"><i class="fa fa-check"></i>Randomised complete block design (RCBD)</a></li>
 <li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html#factorial-design"><i class="fa fa-check"></i>Factorial design</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html"><i class="fa fa-check"></i>Modelling experimental data</a><ul>
+<li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html"><i class="fa fa-check"></i>Modelling experimental data</a>
+<ul>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-completely-randomised-design-crd-as-a-linear-model"><i class="fa fa-check"></i>A completely randomised design (CRD) as a linear model</a></li>
-<li><a href="modelling-experimental-data.html#analysis-of-a-crd-in-r">Analysis of a CRD in <code>R</code></a></li>
+<li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#analysis-of-a-crd-in-r"><i class="fa fa-check"></i>Analysis of a CRD in <code>R</code></a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-factorial-experiment-as-a-crd"><i class="fa fa-check"></i>A Factorial experiment (as a CRD)</a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#unqual-replications-unbalanced-design"><i class="fa fa-check"></i>Unqual replications (unbalanced design)</a></li>
-<li><a href="modelling-experimental-data.html#sums-of-squares-ss">Sums of squares (<span class="math inline">\(SS\)</span>)</a></li>
+<li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#sums-of-squares-ss"><i class="fa fa-check"></i>Sums of squares (<span class="math inline">\(SS\)</span>)</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html"><i class="fa fa-check"></i>Multiple comparisons</a><ul>
+<li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html"><i class="fa fa-check"></i>Multiple comparisons</a>
+<ul>
 <li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html#adjustments-for-multiple-testing"><i class="fa fa-check"></i>Adjustments for multiple testing</a></li>
 <li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html#classification-of-multiple-hypothesis-tests"><i class="fa fa-check"></i>Classification of multiple hypothesis tests</a></li>
 <li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html#multiple-comparison-procedures"><i class="fa fa-check"></i>Multiple comparison procedures</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html"><i class="fa fa-check"></i>Linear mixed-effect models (LMMs)</a><ul>
+<li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html"><i class="fa fa-check"></i>Linear mixed-effect models (LMMs)</a>
+<ul>
 <li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html#a-randomised-controlled-block-design-rcbd"><i class="fa fa-check"></i>A Randomised Controlled Block Design (RCBD)</a></li>
 <li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html#a-split-plot-design"><i class="fa fa-check"></i>A Split-plot design</a></li>
 <li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html#a-repeated-measures-design"><i class="fa fa-check"></i>A repeated measures design</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-4.html"><a href="module-4.html"><i class="fa fa-check"></i>Module 4</a><ul>
-<li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html"><i class="fa fa-check"></i>Least Squares Estimation</a><ul>
+<li class="chapter" data-level="" data-path="module-4.html"><a href="module-4.html"><i class="fa fa-check"></i>Module 4</a>
+<ul>
+<li class="chapter" data-level="" data-path="introduction-to-generalised-linear-models-glms.html"><a href="introduction-to-generalised-linear-models-glms.html"><i class="fa fa-check"></i>Introduction to generalised linear models (GLMs)</a></li>
+<li class="chapter" data-level="" data-path="poisson-regression.html"><a href="poisson-regression.html"><i class="fa fa-check"></i>Poisson regression</a>
+<ul>
+<li class="chapter" data-level="" data-path="poisson-regression.html"><a href="poisson-regression.html#an-example-bird-abundance"><i class="fa fa-check"></i>An example: bird abundance</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i>Logistic regression</a>
+<ul>
+<li class="chapter" data-level="" data-path="logistic-regression.html"><a href="logistic-regression.html#an-example-lobsters"><i class="fa fa-check"></i>An example: lobsters</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="a-summary-of-glms.html"><a href="a-summary-of-glms.html"><i class="fa fa-check"></i>A summary of GLMs</a></li>
+<li class="chapter" data-level="" data-path="generalised-linear-mixed-effects-models-glmmms.html"><a href="generalised-linear-mixed-effects-models-glmmms.html"><i class="fa fa-check"></i>Generalised linear mixed-effects models (GLMMMs)</a>
+<ul>
+<li class="chapter" data-level="" data-path="generalised-linear-mixed-effects-models-glmmms.html"><a href="generalised-linear-mixed-effects-models-glmmms.html#fitting-a-glmm"><i class="fa fa-check"></i>Fitting a GLMM</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-5.html"><a href="module-5.html"><i class="fa fa-check"></i>Module 5</a>
+<ul>
+<li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i>Clustering</a>
+<ul>
+<li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#divisive-partitioning-methods."><i class="fa fa-check"></i>Divisive (partitioning) methods.</a></li>
+<li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#k-means-an-example-using-the-palmerpenguins-data"><i class="fa fa-check"></i>K-means: an example using the <code>palmerpenguins</code> data</a></li>
+<li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#hierarchical-agglomerative-clustering."><i class="fa fa-check"></i>Hierarchical agglomerative clustering.</a></li>
+<li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#hierarchical-clustering-an-example"><i class="fa fa-check"></i>Hierarchical clustering: an example</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="principal-component-analysis-pca.html"><a href="principal-component-analysis-pca.html"><i class="fa fa-check"></i>Principal Component Analysis (PCA)</a>
+<ul>
+<li class="chapter" data-level="" data-path="principal-component-analysis-pca.html"><a href="principal-component-analysis-pca.html#examples-in-r"><i class="fa fa-check"></i>Examples in <code>R</code></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html"><i class="fa fa-check"></i>Multidimensional Scaling (MDS)</a>
+<ul>
+<li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html#metric-scaling"><i class="fa fa-check"></i>Metric Scaling</a></li>
+<li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html#correspondence-analysis-ca"><i class="fa fa-check"></i>Correspondence Analysis (CA)</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="non-metric-multidimensional-scaling.html"><a href="non-metric-multidimensional-scaling.html"><i class="fa fa-check"></i>Non-metric Multidimensional Scaling</a>
+<ul>
+<li class="chapter" data-level="" data-path="non-metric-multidimensional-scaling.html"><a href="non-metric-multidimensional-scaling.html#examples-in-r-2"><i class="fa fa-check"></i>Examples in <code>R</code></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html"><i class="fa fa-check"></i>Linear Discriminant Analysis (LDA)</a>
+<ul>
+<li class="chapter" data-level="" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html#example-in-r"><i class="fa fa-check"></i>Example in <code>R</code></a></li>
+<li class="chapter" data-level="" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html#prediction"><i class="fa fa-check"></i>Prediction</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="module-6.html"><a href="module-6.html"><i class="fa fa-check"></i>Module 6</a>
+<ul>
+<li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html"><i class="fa fa-check"></i>Least Squares Estimation</a>
+<ul>
 <li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html#some-basic-matrix-algebra"><i class="fa fa-check"></i>Some basic matrix algebra</a></li>
 <li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html#linear-least-squares"><i class="fa fa-check"></i>Linear least squares</a></li>
 <li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html#matrix-representation-of-a-crd"><i class="fa fa-check"></i>Matrix representation of a CRD</a></li>
 <li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html#a-numeric-example"><i class="fa fa-check"></i>A numeric example</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html"><i class="fa fa-check"></i>Maximum likelihood estimation</a><ul>
+<li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html"><i class="fa fa-check"></i>Maximum likelihood estimation</a>
+<ul>
 <li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#differeniation-rules"><i class="fa fa-check"></i>Differeniation rules</a></li>
 <li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#logarithm-rules"><i class="fa fa-check"></i>Logarithm rules</a></li>
 <li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#maximum-likelihood-estimation-for-a-binomial-distribution"><i class="fa fa-check"></i>Maximum likelihood estimation for a Binomial distribution</a></li>
@@ -223,44 +323,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#maximum-likelihood-estimation-for-a-poisson-distribution"><i class="fa fa-check"></i>Maximum likelihood estimation for a Poisson distribution</a></li>
 <li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#maximum-likelihood-estimation-for-a-continuous-random-variable"><i class="fa fa-check"></i>Maximum likelihood estimation for a continuous random variable</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html"><i class="fa fa-check"></i>Introduction to Bayesian statistics</a><ul>
+<li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html"><i class="fa fa-check"></i>Introduction to Bayesian statistics</a>
+<ul>
 <li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html#conditional-probability"><i class="fa fa-check"></i>Conditional probability</a></li>
-<li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html#bayes-rule"><i class="fa fa-check"></i>Bayes' rule</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="module-5.html"><a href="module-5.html"><i class="fa fa-check"></i>Module 5</a><ul>
-<li class="chapter" data-level="" data-path="introduction-to-generalised-linear-models-glms.html"><a href="introduction-to-generalised-linear-models-glms.html"><i class="fa fa-check"></i>Introduction to generalised linear models (GLMs)</a></li>
-<li class="chapter" data-level="" data-path="poisson-regression.html"><a href="poisson-regression.html"><i class="fa fa-check"></i>Poisson regression</a><ul>
-<li class="chapter" data-level="" data-path="poisson-regression.html"><a href="poisson-regression.html#an-example-bird-abundance"><i class="fa fa-check"></i>An example: bird abundance</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i>Logistic regression</a><ul>
-<li class="chapter" data-level="" data-path="logistic-regression.html"><a href="logistic-regression.html#an-example-lobsters"><i class="fa fa-check"></i>An example: lobsters</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="a-summary-of-glms.html"><a href="a-summary-of-glms.html"><i class="fa fa-check"></i>A summary of GLMs</a></li>
-<li class="chapter" data-level="" data-path="generalised-linear-mixed-effects-models-glmmms.html"><a href="generalised-linear-mixed-effects-models-glmmms.html"><i class="fa fa-check"></i>Generalised linear mixed-effects models (GLMMMs)</a><ul>
-<li class="chapter" data-level="" data-path="generalised-linear-mixed-effects-models-glmmms.html"><a href="generalised-linear-mixed-effects-models-glmmms.html#fitting-a-glmm"><i class="fa fa-check"></i>Fitting a GLMM</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="module-6.html"><a href="module-6.html"><i class="fa fa-check"></i>Module 6</a><ul>
-<li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i>Clustering</a><ul>
-<li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#divisive-partitioning-methods."><i class="fa fa-check"></i>Divisive (partitioning) methods.</a></li>
-<li><a href="clustering.html#k-means-an-example-using-the-palmerpenguins-data">K-means: an example using the <code>palmerpenguins</code> data</a></li>
-<li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#hierarchical-agglomerative-clustering."><i class="fa fa-check"></i>Hierarchical agglomerative clustering.</a></li>
-<li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#hierarchical-clustering-an-example"><i class="fa fa-check"></i>Hierarchical clustering: an example</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="principal-component-analysis-pca.html"><a href="principal-component-analysis-pca.html"><i class="fa fa-check"></i>Principal Component Analysis (PCA)</a><ul>
-<li><a href="principal-component-analysis-pca.html#examples-in-r">Examples in <code>R</code></a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html"><i class="fa fa-check"></i>Multidimensional Scaling (MDS)</a><ul>
-<li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html#metric-scaling"><i class="fa fa-check"></i>Metric Scaling</a></li>
-<li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html#correspondence-analysis-ca"><i class="fa fa-check"></i>Correspondence Analysis (CA)</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="non-metric-multidimensional-scaling.html"><a href="non-metric-multidimensional-scaling.html"><i class="fa fa-check"></i>Non-metric Multidimensional Scaling</a><ul>
-<li><a href="non-metric-multidimensional-scaling.html#examples-in-r-2">Examples in <code>R</code></a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html"><i class="fa fa-check"></i>Linear Discriminant Analysis (LDA)</a><ul>
-<li><a href="linear-discriminant-analysis-lda.html#example-in-r">Example in <code>R</code></a></li>
-<li class="chapter" data-level="" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html#prediction"><i class="fa fa-check"></i>Prediction</a></li>
+<li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html#bayes-rule"><i class="fa fa-check"></i>Bayes’ rule</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -280,15 +346,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="multiple-comparisons" class="section level2">
-<h2>Multiple comparisons</h2>
+<div id="multiple-comparisons" class="section level2 hasAnchor">
+<h2>Multiple comparisons<a href="multiple-comparisons.html#multiple-comparisons" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Recall that <strong>each</strong> time we carry out a hypothesis test the probability we get a false positive result (type I error) is given by <span class="math inline">\(\alpha\)</span> (the <em>level of significance</em> we choose).</p>
 <p>When we have <strong>multiple comparisons</strong> to make we should then control the <strong>Type I</strong> error rate across the entire <em>family</em> of tests under consideration, i.e., control the Family-Wise Error Rate (FWER); this ensures that the risk of making at least one <strong>Type I</strong> error among the family of comparisons in the experiment is <span class="math inline">\(\alpha\)</span>.</p>
 <table>
 <thead>
 <tr class="header">
 <th>State of Nature</th>
-<th>Don't reject <span class="math inline">\(H_0\)</span></th>
+<th>Don’t reject <span class="math inline">\(H_0\)</span></th>
 <th>reject <span class="math inline">\(H_0\)</span></th>
 </tr>
 </thead>
@@ -305,44 +371,48 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </tr>
 </tbody>
 </table>
-<p>The <strong>familywise error rate (FWER)</strong> is the risk of making at least one <strong>Type I</strong> error among the family of comparisons in the experiment. Now let's consider carrying out <span class="math inline">\(m\)</span> independent t-tests and let for any single test, let Pr(commit a Type 1 error) <span class="math inline">\(= \alpha_c\)</span> be the <strong>per comparison error rate (PCER)</strong>. So for a single test the probability a correct decision is made is <span class="math inline">\(1 - \alpha_c\)</span>. Therefore for <span class="math inline">\(m\)</span> <strong>independent</strong> t-tests the probability of committing no Type I errors is <span class="math inline">\((1 - \alpha_c)^m\)</span> and the probability of committing at least one Type I error is <span class="math inline">\(1 -(1 - \alpha_c)^m = \alpha_F\)</span> which is the upper limit of the FWER.</p>
+<p>The <strong>familywise error rate (FWER)</strong> is the risk of making at least one <strong>Type I</strong> error among the family of comparisons in the experiment. Now let’s consider carrying out <span class="math inline">\(m\)</span> independent t-tests and let for any single test, let Pr(commit a Type 1 error) <span class="math inline">\(= \alpha_c\)</span> be the <strong>per comparison error rate (PCER)</strong>. So for a single test the probability a correct decision is made is <span class="math inline">\(1 - \alpha_c\)</span>. Therefore for <span class="math inline">\(m\)</span> <strong>independent</strong> t-tests the probability of committing no Type I errors is <span class="math inline">\((1 - \alpha_c)^m\)</span> and the probability of committing at least one Type I error is <span class="math inline">\(1 -(1 - \alpha_c)^m = \alpha_F\)</span> which is the upper limit of the FWER.</p>
 <p>The <strong>False Discovery Rate (FDR)</strong> controls the expected (mean) proportion of false discoveries among the <span class="math inline">\(R\)</span> (out of <span class="math inline">\(m\)</span>) hypotheses declared significant.</p>
 <p>Consider testing <span class="math inline">\(m\)</span> null hypotheses with corresponding p-values <span class="math inline">\(P_1, P_2,...,P_m\)</span>; we then order then so that <span class="math inline">\(P_{(1)} &lt; P_{(2)} &lt;...&lt;P_{(m)}\)</span> (where <span class="math inline">\(P_{(i)}\)</span> is the <span class="math inline">\(i^{th}\)</span> largest <span class="math inline">\(i=1,...,m\)</span>). The <span class="math inline">\(i^{th}\)</span> ordered p-value is calculated as <span class="math inline">\(\frac{i}{m}q^*\)</span> and the <span class="math inline">\(i^{th}\)</span> null hypothesis is rejected if <span class="math inline">\(P_i \leq \frac{i}{m}q^*\)</span></p>
 <p><img src="_main_files/figure-html/alp-1.png" width="960" style="display: block; margin: auto;" /></p>
-<div id="adjustments-for-multiple-testing" class="section level3">
-<h3>Adjustments for multiple testing</h3>
+<div id="adjustments-for-multiple-testing" class="section level3 hasAnchor">
+<h3>Adjustments for multiple testing<a href="multiple-comparisons.html#adjustments-for-multiple-testing" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Calculating 95% confidence intervals for pairwise comparisons is similar to the procedure discussed in module 2:</p>
-<p><span class="math display">\[\text{95% CI} = \text{estimate} \pm (\text{scale factor} \times \text{standard error}_\text{of estimate}).\]</span> For the 95% CI for pairwise comparisons of means this becomes</p>
-<p><span class="math display">\[\text{95% CI} = \text{difference} \pm (\text{scale factor} \times \text{SED}),\]</span> where SED is the standard error of the difference (which depends on group replication). The choice of scale factor depends on what adjustments we might want to make. Below we cover three common adjustments. Specifically where (scale factor × SED) is the 1) Fisher correction LSD, 2) Bonferroni correction LSD, and 3) Tukey's HSD.</p>
-<div id="fishers-least-significant-difference-lsd" class="section level4">
-<h4>Fisher’s Least Significant Difference (LSD)</h4>
-<p>To calculate the LSD the <span class="math inline">\(t\)</span>-distribution is used, specifically the <span class="math display">\[t_{\alpha = \frac{\alpha_c}{2}, \text{df} = N - m}\]</span> distribution, where <span class="math inline">\(N\)</span> is the number of observations and <span class="math inline">\(m\)</span> is the number of treatment groups. To obtain the critical value for <span class="math inline">\(\alpha_c = 0.05\)</span>, <span class="math inline">\(N = 12\)</span> and <span class="math inline">\(m = 3\)</span> the following code can be used in <code>R</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qt</span>(<span class="dt">p =</span> <span class="fl">0.05</span><span class="op">/</span><span class="dv">2</span>,<span class="dt">df =</span> <span class="dv">12</span> <span class="op">-</span><span class="st"> </span><span class="dv">3</span>, <span class="dt">lower.tail =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<p><span class="math display">\[\text{95% CI} = \text{estimate} \pm (\text{scale factor} \times \text{standard error}_\text{of estimate}).\]</span>
+For the 95% CI for pairwise comparisons of means this becomes</p>
+<p><span class="math display">\[\text{95% CI} = \text{difference} \pm (\text{scale factor} \times \text{SED}),\]</span>
+where SED is the standard error of the difference (which depends on group replication). The choice of scale factor depends on what adjustments we might want to make. Below we cover three common adjustments. Specifically where (scale factor × SED) is the 1) Fisher correction LSD, 2) Bonferroni correction LSD, and 3) Tukey’s HSD.</p>
+<div id="fishers-least-significant-difference-lsd" class="section level4 hasAnchor">
+<h4>Fisher’s Least Significant Difference (LSD)<a href="multiple-comparisons.html#fishers-least-significant-difference-lsd" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>To calculate the LSD the <span class="math inline">\(t\)</span>-distribution is used, specifically the
+<span class="math display">\[t_{\alpha = \frac{\alpha_c}{2}, \text{df} = N - m}\]</span> distribution, where <span class="math inline">\(N\)</span> is the number of observations and <span class="math inline">\(m\)</span> is the number of treatment groups. To obtain the critical value for <span class="math inline">\(\alpha_c = 0.05\)</span>, <span class="math inline">\(N = 12\)</span> and <span class="math inline">\(m = 3\)</span> the following code can be used in <code>R</code>.</p>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="multiple-comparisons.html#cb198-1"></a><span class="kw">qt</span>(<span class="dt">p =</span> <span class="fl">0.05</span><span class="op">/</span><span class="dv">2</span>,<span class="dt">df =</span> <span class="dv">12</span> <span class="op">-</span><span class="st"> </span><span class="dv">3</span>, <span class="dt">lower.tail =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 <pre><code>## [1] 2.262157</code></pre>
-<p>Fisher's LSD is then <span class="math display">\[t_{\alpha = \frac{\alpha_c}{2}, \text{df} = N - m} \times \text{SED}.\]</span></p>
+<p>Fisher’s LSD is then <span class="math display">\[t_{\alpha = \frac{\alpha_c}{2}, \text{df} = N - m} \times \text{SED}.\]</span></p>
 <p>Here we carry out post-hoc tests only if the ANOVA F-test is <em>significant</em>. If so declare significant <span class="math inline">\(100\alpha\%\)</span> any pairwise difference &gt; LSD. This does <strong>not</strong> control the FWER.</p>
 </div>
-<div id="bonferroni-correction" class="section level4">
-<h4>Bonferroni correction</h4>
-<p>To calculate Bonferroni correction the <span class="math inline">\(t\)</span>-distribution is used, specifically the <span class="math display">\[t_{\alpha = \frac{\alpha_c}{2 \times k}, \text{df} = N - m}\]</span> distribution, where <span class="math inline">\(N\)</span> is the number of observations, <span class="math inline">\(m\)</span> is the number of treatment groups, and <span class="math inline">\(k = {m \choose 2}\)</span> is the number of pairwise comparisons being made.</p>
+<div id="bonferroni-correction" class="section level4 hasAnchor">
+<h4>Bonferroni correction<a href="multiple-comparisons.html#bonferroni-correction" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>To calculate Bonferroni correction the <span class="math inline">\(t\)</span>-distribution is used, specifically the
+<span class="math display">\[t_{\alpha = \frac{\alpha_c}{2 \times k}, \text{df} = N - m}\]</span> distribution, where <span class="math inline">\(N\)</span> is the number of observations, <span class="math inline">\(m\)</span> is the number of treatment groups, and <span class="math inline">\(k = {m \choose 2}\)</span> is the number of pairwise comparisons being made.</p>
 <p>To obtain the critical value for <span class="math inline">\(\alpha_c = 0.05\)</span>, <span class="math inline">\(N = 12\)</span> and <span class="math inline">\(m = 3\)</span> the following code can be used in <code>R</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qt</span>(<span class="dt">p =</span> <span class="fl">0.05</span><span class="op">/</span>(<span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="kw">choose</span>(<span class="dv">3</span>,<span class="dv">2</span>)),<span class="dt">df =</span> <span class="dv">12</span> <span class="op">-</span><span class="st"> </span><span class="dv">3</span>, <span class="dt">lower.tail =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="multiple-comparisons.html#cb200-1"></a><span class="kw">qt</span>(<span class="dt">p =</span> <span class="fl">0.05</span><span class="op">/</span>(<span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="kw">choose</span>(<span class="dv">3</span>,<span class="dv">2</span>)),<span class="dt">df =</span> <span class="dv">12</span> <span class="op">-</span><span class="st"> </span><span class="dv">3</span>, <span class="dt">lower.tail =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 <pre><code>## [1] 2.933324</code></pre>
-<p>Bonferroni's LSD is then <span class="math display">\[t_{\alpha = \frac{\alpha_c}{2 \times k}, \text{df} = N - m} \times \text{SED}.\]</span></p>
+<p>Bonferroni’s LSD is then <span class="math display">\[t_{\alpha = \frac{\alpha_c}{2 \times k}, \text{df} = N - m} \times \text{SED}.\]</span></p>
 <p>Here we reject the <span class="math inline">\(H_0\)</span> for which the p-value, <em>p-val</em>, is <em>p-val</em> <span class="math inline">\(&lt; \alpha_c = \frac{\alpha_f}{n_c}\)</span> where <span class="math inline">\(\alpha_f\)</span> is the FWER and <span class="math inline">\(n_c\)</span> is the number of pairwise comparisons. However, this makes <strong>no</strong> assumptions about independence between tests.</p>
 </div>
-<div id="tukeys-honest-significant-difference-hsd" class="section level4">
-<h4>Tukey’s Honest Significant Difference (HSD)</h4>
-<p>This compares the mean of every treatment with the mean of every other treatment and uses a <em>studentised range</em> distribution compared with a <span class="math inline">\(t\)</span>-distribution for Fisher's LSD and the Bonferroni correction. Therefore to calculate the HSD the <em>studentised range</em> distribution is used, specifically the <span class="math display">\[q_{ 1- \alpha_c, m, \text{df} = N - m}\]</span> distribution, where <span class="math inline">\(N\)</span> is the number of observations, <span class="math inline">\(m\)</span> is the number of treatment groups, and <span class="math inline">\(q_{\alpha,m,\text{df}}\)</span> quantile of the studendised distribution.</p>
+<div id="tukeys-honest-significant-difference-hsd" class="section level4 hasAnchor">
+<h4>Tukey’s Honest Significant Difference (HSD)<a href="multiple-comparisons.html#tukeys-honest-significant-difference-hsd" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>This compares the mean of every treatment with the mean of every other treatment and uses a <em>studentised range</em> distribution compared with a <span class="math inline">\(t\)</span>-distribution for Fisher’s LSD and the Bonferroni correction. Therefore to calculate the HSD the <em>studentised range</em> distribution is used, specifically the <span class="math display">\[q_{ 1- \alpha_c, m, \text{df} = N - m}\]</span> distribution, where <span class="math inline">\(N\)</span> is the number of observations, <span class="math inline">\(m\)</span> is the number of treatment groups, and <span class="math inline">\(q_{\alpha,m,\text{df}}\)</span> quantile of the studendised distribution.</p>
 <p>To obtain the critical value for <span class="math inline">\(\alpha_c = 0.05\)</span>, <span class="math inline">\(N = 12\)</span> and <span class="math inline">\(m = 3\)</span> the following code can be used in <code>R</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">qtukey</span>(<span class="dt">p =</span> <span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.05</span>, <span class="dt">nmeans =</span> <span class="dv">3</span>, <span class="dt">df =</span> <span class="dv">12</span> <span class="op">-</span><span class="st"> </span><span class="dv">3</span>)</code></pre></div>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="multiple-comparisons.html#cb202-1"></a><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">qtukey</span>(<span class="dt">p =</span> <span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.05</span>, <span class="dt">nmeans =</span> <span class="dv">3</span>, <span class="dt">df =</span> <span class="dv">12</span> <span class="op">-</span><span class="st"> </span><span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## [1] -2.948492</code></pre>
-<p>Tukey's HSD is given by <span class="math display">\[\frac{q_{ 1 - \alpha_c, m, \text{df} = N - m}}{\sqrt{2}} \times \sqrt{\frac{2\hat{\sigma}^2}{n}}.\]</span> Here <span class="math inline">\(\hat{\sigma}^2\)</span> is the residual mean square error and <span class="math inline">\(n\)</span> is the assumed equal number of replicates in each group.</p>
+<p>Tukey’s HSD is given by <span class="math display">\[\frac{q_{ 1 - \alpha_c, m, \text{df} = N - m}}{\sqrt{2}} \times \sqrt{\frac{2\hat{\sigma}^2}{n}}.\]</span> Here <span class="math inline">\(\hat{\sigma}^2\)</span> is the residual mean square error and <span class="math inline">\(n\)</span> is the assumed equal number of replicates in each group.</p>
 </div>
 </div>
-<div id="classification-of-multiple-hypothesis-tests" class="section level3">
-<h3>Classification of multiple hypothesis tests</h3>
-<p>Suppose we have a number <span class="math inline">\(m\)</span> of null hypotheses, <span class="math inline">\(H_1, H_2, ..., H_m\)</span>. Using the traditional parlance we reject the null hypothesis if the test is declared significant and have no evidence to reject the null hypothesis if the test is &quot;not significant&quot;. Now, summing each type of outcome over all <span class="math inline">\(H_i (i = 1.,..,m)\)</span> yields the following random variables:</p>
+<div id="classification-of-multiple-hypothesis-tests" class="section level3 hasAnchor">
+<h3>Classification of multiple hypothesis tests<a href="multiple-comparisons.html#classification-of-multiple-hypothesis-tests" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Suppose we have a number <span class="math inline">\(m\)</span> of null hypotheses, <span class="math inline">\(H_1, H_2, ..., H_m\)</span>. Using the traditional parlance we reject the null hypothesis if the test is declared significant and have no evidence to reject the null hypothesis if the test is “not significant”. Now, summing each type of outcome over all <span class="math inline">\(H_i (i = 1.,..,m)\)</span> yields the following random variables:</p>
 <table>
 <thead>
 <tr class="header">
@@ -384,8 +454,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><span class="math inline">\(R=V+S\)</span> is the number of rejected null hypotheses (also called <em>discoveries</em>, either true or false)</li>
 </ul>
 </div>
-<div id="multiple-comparison-procedures" class="section level3">
-<h3>Multiple comparison procedures</h3>
+<div id="multiple-comparison-procedures" class="section level3 hasAnchor">
+<h3>Multiple comparison procedures<a href="multiple-comparisons.html#multiple-comparison-procedures" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Recall the CRD <code>rats</code> data</p>
 <table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
@@ -537,13 +607,13 @@ S
 </tbody>
 </table>
 <p>You can read this data directly into <code>R</code> using</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rats &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/crd_rats_data.csv&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="multiple-comparisons.html#cb204-1"></a>rats &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/crd_rats_data.csv&quot;</span>)</span></code></pre></div>
 <p>To use <code>predictmeans</code> later on we have to ensure that the relevant variables are coded as factors:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rats &lt;-<span class="st"> </span>rats <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Surgery =</span> <span class="kw">as.factor</span>(Surgery))</code></pre></div>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="multiple-comparisons.html#cb205-1"></a>rats &lt;-<span class="st"> </span>rats <span class="op">%&gt;%</span></span>
+<span id="cb205-2"><a href="multiple-comparisons.html#cb205-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Surgery =</span> <span class="kw">as.factor</span>(Surgery))</span></code></pre></div>
 <p>We can fit a linear model using <code>lm()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rats_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC <span class="op">~</span><span class="st"> </span>Surgery, <span class="dt">data =</span> rats)
-<span class="kw">coef</span>(rats_lm)</code></pre></div>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="multiple-comparisons.html#cb206-1"></a>rats_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC <span class="op">~</span><span class="st"> </span>Surgery, <span class="dt">data =</span> rats)</span>
+<span id="cb206-2"><a href="multiple-comparisons.html#cb206-2"></a><span class="kw">coef</span>(rats_lm)</span></code></pre></div>
 <pre><code>## (Intercept)    SurgeryP    SurgeryS 
 ##      8.4600      0.4900      3.0875</code></pre>
 <p>Our fitted model is therefore</p>
@@ -553,10 +623,10 @@ S
 \end{aligned}
 \]</span></p>
 <p><strong>Using</strong> <code>predictmeans</code></p>
-<p>By default Fisher's comparisons are made.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pm &lt;-<span class="st"> </span>predictmeans<span class="op">::</span><span class="kw">predictmeans</span>(rats_lm , <span class="dt">modelterm =</span> <span class="st">&quot;Surgery&quot;</span>, 
-                                     <span class="dt">pairwise =</span> <span class="ot">TRUE</span>, <span class="dt">plot =</span> <span class="ot">FALSE</span>)
-<span class="kw">str</span>(pm)</code></pre></div>
+<p>By default Fisher’s comparisons are made.</p>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="multiple-comparisons.html#cb208-1"></a>pm &lt;-<span class="st"> </span>predictmeans<span class="op">::</span><span class="kw">predictmeans</span>(rats_lm , <span class="dt">modelterm =</span> <span class="st">&quot;Surgery&quot;</span>, </span>
+<span id="cb208-2"><a href="multiple-comparisons.html#cb208-2"></a>                                     <span class="dt">pairwise =</span> <span class="ot">TRUE</span>, <span class="dt">plot =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb208-3"><a href="multiple-comparisons.html#cb208-3"></a><span class="kw">str</span>(pm)</span></code></pre></div>
 <pre><code>## List of 10
 ##  $ Predicted Means              : &#39;xtabs&#39; num [1:3(1d)] 8.46 8.95 11.55
 ##   ..- attr(*, &quot;dimnames&quot;)=List of 1
@@ -599,15 +669,15 @@ S
 ##   ..$ LetterGrp      : chr [1:3] &quot;A &quot; &quot;A &quot; &quot; B&quot;
 ##  $ p_valueMatrix                : NULL
 ##  - attr(*, &quot;class&quot;)= chr &quot;pdmlist&quot;</code></pre>
-<p>Let's look at some of the <code>pm</code> elements more closely:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pm<span class="op">$</span>mean_table</code></pre></div>
+<p>Let’s look at some of the <code>pm</code> elements more closely:</p>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="multiple-comparisons.html#cb210-1"></a>pm<span class="op">$</span>mean_table</span></code></pre></div>
 <pre><code>##   Surgery Predicted means Standard error Df LL of 95% CI UL of 95% CI LetterGrp
 ## 1       C          8.4600      0.4102531  9     7.531943     9.388057        A 
 ## 2       P          8.9500      0.4102531  9     8.021943     9.878057        A 
 ## 3       S         11.5475      0.4102531  9    10.619443    12.475557         B</code></pre>
 <p>This gives us the estimated group means and associated 95% CIs. Why are the standard errors all equal?</p>
-<p>But, what we'd like is the pairwise comparisons between groups. Information pertaining to this is also returned:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(pm<span class="op">$</span><span class="st">`</span><span class="dt">Pairwise p-value</span><span class="st">`</span>)</code></pre></div>
+<p>But, what we’d like is the pairwise comparisons between groups. Information pertaining to this is also returned:</p>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="multiple-comparisons.html#cb212-1"></a><span class="kw">print</span>(pm<span class="op">$</span><span class="st">`</span><span class="dt">Pairwise p-value</span><span class="st">`</span>)</span></code></pre></div>
 <pre><code>##        C       P       S
 ## C 0.0000 -0.8446 -5.3216
 ## P 0.4202  0.0000 -4.4770
@@ -621,9 +691,9 @@ S
 ## 1         S 11.5475    A 
 ## 2         P  8.9500     B
 ## 3         C  8.4600     B</code></pre>
-<p>This gives us the pairwise comparison statistic (the <span class="math inline">\(t\)</span>-statistic in this case) on the upper diagonal and the associated p-value's on the lower diagonal.</p>
-<p>What about the 95%CI for the comparisons? Luckily <code>predictmeans</code> also returns the pairwise LSD values (Fisher's by default with <span class="math inline">\(\alpha_c = 0.05\)</span>):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pm<span class="op">$</span><span class="st">`</span><span class="dt">Pairwise LSDs</span><span class="st">`</span></code></pre></div>
+<p>This gives us the pairwise comparison statistic (the <span class="math inline">\(t\)</span>-statistic in this case) on the upper diagonal and the associated p-value’s on the lower diagonal.</p>
+<p>What about the 95%CI for the comparisons? Luckily <code>predictmeans</code> also returns the pairwise LSD values (Fisher’s by default with <span class="math inline">\(\alpha_c = 0.05\)</span>):</p>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="multiple-comparisons.html#cb214-1"></a>pm<span class="op">$</span><span class="st">`</span><span class="dt">Pairwise LSDs</span><span class="st">`</span></span></code></pre></div>
 <pre><code>##         C        P       S
 ## C 0.00000 -0.49000 -3.0875
 ## P 1.31247  0.00000 -2.5975
@@ -635,46 +705,46 @@ S
 ## attr(,&quot;Note&quot;)
 ## [1] &quot;LSDs matrix has mean differences (row-col) above the diagonal, LSDs (adjusted by &#39;none&#39; method) below the diagonal&quot;</code></pre>
 <p>Here, the upper diagonal matrix has the pairwise differences and the lower has the LSD values.</p>
-<div id="fishers-lsd" class="section level4">
-<h4>Fisher’s LSD</h4>
-<p>So, we have all the information to construct the Fisher LSD 95% CIs! You could extract all the information and construct a pairwise comparison table manually, or use a pre-written function (aren't I nice to provide one!):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">url &lt;-<span class="st"> &quot;https://gist.github.com/cmjt/72f3941533a6bdad0701928cc2924b90&quot;</span>
-devtools<span class="op">::</span><span class="kw">source_gist</span>(url, <span class="dt">quiet =</span> <span class="ot">TRUE</span>)
-<span class="kw">comparisons</span>(pm)</code></pre></div>
+<div id="fishers-lsd" class="section level4 hasAnchor">
+<h4>Fisher’s LSD<a href="multiple-comparisons.html#fishers-lsd" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>So, we have all the information to construct the Fisher LSD 95% CIs! You could extract all the information and construct a pairwise comparison table manually, or use a pre-written function (aren’t I nice to provide one!):</p>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="multiple-comparisons.html#cb216-1"></a>url &lt;-<span class="st"> &quot;https://gist.github.com/cmjt/72f3941533a6bdad0701928cc2924b90&quot;</span></span>
+<span id="cb216-2"><a href="multiple-comparisons.html#cb216-2"></a>devtools<span class="op">::</span><span class="kw">source_gist</span>(url, <span class="dt">quiet =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb216-3"><a href="multiple-comparisons.html#cb216-3"></a><span class="kw">comparisons</span>(pm)</span></code></pre></div>
 <pre><code>##   Comparison Difference  SED   LSD    lwr    upr      t      p
 ## 1        C-P     -0.490 0.58 1.312 -1.802  0.822 -0.845 0.4202
 ## 2        C-S     -3.087 0.58 1.312 -4.400 -1.775 -5.322 0.0005
 ## 3        P-S     -2.598 0.58 1.312 -3.910 -1.285 -4.477 0.0015</code></pre>
 </div>
-<div id="bonferroni-correction-1" class="section level4">
-<h4>Bonferroni correction</h4>
-<p>To use the Bonferroni correction we must now calculate and specify the adjusted <span class="math inline">\(\alpha_b = \frac{\alpha_b}{n_c}\)</span>, in our case this is <span class="math inline">\(\frac{0.05}{{3 \choose 2}}\)</span>. We also specify <code>adj = &quot;bonferroni&quot;</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">alpha.adj &lt;-<span class="st"> </span><span class="fl">0.05</span><span class="op">/</span><span class="kw">choose</span>(<span class="dv">3</span>,<span class="dv">2</span>)
-bonferroni &lt;-<span class="st">  </span>predictmeans<span class="op">::</span><span class="kw">predictmeans</span>(rats_lm , 
-                                          <span class="dt">modelterm =</span> <span class="st">&quot;Surgery&quot;</span>, <span class="dt">adj =</span> <span class="st">&quot;bonferroni&quot;</span>,
-                                          <span class="dt">level =</span> alpha.adj,
-                                          <span class="dt">pairwise =</span> <span class="ot">TRUE</span>, <span class="dt">plot =</span> <span class="ot">FALSE</span>)
-<span class="kw">comparisons</span>(bonferroni)</code></pre></div>
+<div id="bonferroni-correction-1" class="section level4 hasAnchor">
+<h4>Bonferroni correction<a href="multiple-comparisons.html#bonferroni-correction-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>To use the Bonferroni correction we must now calculate and specify the adjusted <span class="math inline">\(\alpha_b = \frac{\alpha_b}{n_c}\)</span>, in our case this is <span class="math inline">\(\frac{0.05}{{3 \choose 2}}\)</span>. We also specify <code>adj = "bonferroni"</code>:</p>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="multiple-comparisons.html#cb218-1"></a>alpha.adj &lt;-<span class="st"> </span><span class="fl">0.05</span><span class="op">/</span><span class="kw">choose</span>(<span class="dv">3</span>,<span class="dv">2</span>)</span>
+<span id="cb218-2"><a href="multiple-comparisons.html#cb218-2"></a>bonferroni &lt;-<span class="st">  </span>predictmeans<span class="op">::</span><span class="kw">predictmeans</span>(rats_lm , </span>
+<span id="cb218-3"><a href="multiple-comparisons.html#cb218-3"></a>                                          <span class="dt">modelterm =</span> <span class="st">&quot;Surgery&quot;</span>, <span class="dt">adj =</span> <span class="st">&quot;bonferroni&quot;</span>,</span>
+<span id="cb218-4"><a href="multiple-comparisons.html#cb218-4"></a>                                          <span class="dt">level =</span> alpha.adj,</span>
+<span id="cb218-5"><a href="multiple-comparisons.html#cb218-5"></a>                                          <span class="dt">pairwise =</span> <span class="ot">TRUE</span>, <span class="dt">plot =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb218-6"><a href="multiple-comparisons.html#cb218-6"></a><span class="kw">comparisons</span>(bonferroni)</span></code></pre></div>
 <pre><code>##   Comparison Difference  SED   LSD    lwr    upr      t      p
 ## 1        C-P     -0.490 0.58 2.101 -2.591  1.611 -0.845 1.0000
 ## 2        C-S     -3.087 0.58 2.101 -5.189 -0.986 -5.322 0.0014
 ## 3        P-S     -2.598 0.58 2.101 -4.699 -0.496 -4.477 0.0046</code></pre>
 </div>
-<div id="tukeys-honest-significant-difference-hsd-1" class="section level4">
-<h4>Tukey’s Honest Significant Difference (HSD)</h4>
-<p>Things are a bit more cumbersome when it comes to Tukey's HSD. We can specify <code>adj = &quot;tukey&quot;</code> in <code>predictmeans</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tukey &lt;-<span class="st">  </span>predictmeans<span class="op">::</span><span class="kw">predictmeans</span>(rats_lm , 
-                                          <span class="dt">modelterm =</span> <span class="st">&quot;Surgery&quot;</span>, <span class="dt">adj =</span> <span class="st">&quot;tukey&quot;</span>,
-                                          <span class="dt">level =</span> alpha.adj,
-                                          <span class="dt">pairwise =</span> <span class="ot">TRUE</span>, <span class="dt">plot =</span> <span class="ot">FALSE</span>)
-<span class="kw">names</span>(tukey)</code></pre></div>
+<div id="tukeys-honest-significant-difference-hsd-1" class="section level4 hasAnchor">
+<h4>Tukey’s Honest Significant Difference (HSD)<a href="multiple-comparisons.html#tukeys-honest-significant-difference-hsd-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Things are a bit more cumbersome when it comes to Tukey’s HSD. We can specify <code>adj = "tukey"</code> in <code>predictmeans</code>:</p>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="multiple-comparisons.html#cb220-1"></a>tukey &lt;-<span class="st">  </span>predictmeans<span class="op">::</span><span class="kw">predictmeans</span>(rats_lm , </span>
+<span id="cb220-2"><a href="multiple-comparisons.html#cb220-2"></a>                                          <span class="dt">modelterm =</span> <span class="st">&quot;Surgery&quot;</span>, <span class="dt">adj =</span> <span class="st">&quot;tukey&quot;</span>,</span>
+<span id="cb220-3"><a href="multiple-comparisons.html#cb220-3"></a>                                          <span class="dt">level =</span> alpha.adj,</span>
+<span id="cb220-4"><a href="multiple-comparisons.html#cb220-4"></a>                                          <span class="dt">pairwise =</span> <span class="ot">TRUE</span>, <span class="dt">plot =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb220-5"><a href="multiple-comparisons.html#cb220-5"></a><span class="kw">names</span>(tukey)</span></code></pre></div>
 <pre><code>## [1] &quot;Predicted Means&quot;               &quot;Standard Error of Means&quot;      
 ## [3] &quot;Standard Error of Differences&quot; &quot;LSD&quot;                          
 ## [5] &quot;Pairwise p-value&quot;              &quot;predictmeansPlot&quot;             
 ## [7] &quot;predictmeansBarPlot&quot;           &quot;mean_table&quot;                   
 ## [9] &quot;p_valueMatrix&quot;</code></pre>
 <p>However, the HSD values are not returned, so we cannot calculate out pairwise CIs. <code>R</code> has an inbuilt function <code>TukeyHSD</code> that does this for us, but as we can see below the HSD values are not returned.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">TukeyHSD</span>(<span class="kw">aov</span>(logAUC<span class="op">~</span>Surgery, <span class="dt">data =</span> rats))</code></pre></div>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="multiple-comparisons.html#cb222-1"></a><span class="kw">TukeyHSD</span>(<span class="kw">aov</span>(logAUC<span class="op">~</span>Surgery, <span class="dt">data =</span> rats))</span></code></pre></div>
 <pre><code>##   Tukey multiple comparisons of means
 ##     95% family-wise confidence level
 ## 
@@ -685,29 +755,29 @@ bonferroni &lt;-<span class="st">  </span>predictmeans<span class="op">::</span>
 ## P-C 0.4900 -1.1298813 2.109881 0.6863267
 ## S-C 3.0875  1.4676187 4.707381 0.0012479
 ## S-P 2.5975  0.9776187 4.217381 0.0039400</code></pre>
-<p>From above we saw that Tukey's HSD was given by</p>
+<p>From above we saw that Tukey’s HSD was given by</p>
 <p><span class="math display">\[\frac{q_{1-\alpha_c, m, \text{df} = N - m}}{\sqrt{2}} \times \sqrt{\frac{2\hat{\sigma}^2}{n}}.\]</span></p>
 <p>We can calculate <span class="math inline">\(q_{1 - \alpha_c, m, \text{df} = N - m}\)</span> for our data using</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qtukey</span>(<span class="dt">p =</span> <span class="dv">1</span><span class="op">-</span><span class="st"> </span><span class="fl">0.05</span>, <span class="dt">nmeans =</span> <span class="dv">3</span>, <span class="dt">df =</span> <span class="dv">12</span> <span class="op">-</span><span class="st"> </span><span class="dv">3</span>)</code></pre></div>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="multiple-comparisons.html#cb224-1"></a><span class="kw">qtukey</span>(<span class="dt">p =</span> <span class="dv">1</span><span class="op">-</span><span class="st"> </span><span class="fl">0.05</span>, <span class="dt">nmeans =</span> <span class="dv">3</span>, <span class="dt">df =</span> <span class="dv">12</span> <span class="op">-</span><span class="st"> </span><span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## [1] 3.948492</code></pre>
 <p>Assuming equal replicates (<span class="math inline">\(n = 4\)</span>, with <span class="math inline">\(\hat{\sigma}^2\)</span> as above) we calculate the SED as</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sqrt</span>(<span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="kw">anova</span>(rats_lm)[<span class="dv">2</span>,<span class="dv">3</span>] <span class="op">/</span><span class="st"> </span><span class="dv">4</span>)</code></pre></div>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="multiple-comparisons.html#cb226-1"></a><span class="kw">sqrt</span>(<span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="kw">anova</span>(rats_lm)[<span class="dv">2</span>,<span class="dv">3</span>] <span class="op">/</span><span class="st"> </span><span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## [1] 0.5801856</code></pre>
-<p>Therefore, Tukey's HSD is <span class="math inline">\(\frac{3.9484922}{\sqrt{2}}\times 0.5801856 = 1.6198813.\)</span></p>
+<p>Therefore, Tukey’s HSD is <span class="math inline">\(\frac{3.9484922}{\sqrt{2}}\times 0.5801856 = 1.6198813.\)</span></p>
 <p>To calculate the CIs we use <span class="math inline">\(\text{difference} \pm \text{HSD}\)</span>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">HSD &lt;-<span class="st"> </span>(<span class="kw">qtukey</span>(<span class="dt">p =</span> <span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.05</span>, <span class="dt">nmeans =</span> <span class="dv">3</span>, <span class="dt">df =</span> <span class="dv">12</span> <span class="op">-</span><span class="st"> </span><span class="dv">3</span>)<span class="op">/</span><span class="kw">sqrt</span>(<span class="dv">2</span>))<span class="op">*</span><span class="kw">sqrt</span>(<span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="kw">anova</span>(rats_lm)[<span class="dv">2</span>,<span class="dv">3</span>] <span class="op">/</span><span class="st"> </span><span class="dv">4</span>)
-all_diffs &lt;-<span class="st"> </span><span class="kw">outer</span>(tukey<span class="op">$</span><span class="st">`</span><span class="dt">Predicted Means</span><span class="st">`</span>, tukey<span class="op">$</span><span class="st">`</span><span class="dt">Predicted Means</span><span class="st">`</span>, <span class="st">&quot;-&quot;</span>)
-comparison_table &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">differences =</span> all_diffs[<span class="kw">lower.tri</span>(all_diffs)]) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">upper =</span> differences <span class="op">+</span><span class="st"> </span>HSD, <span class="dt">lower =</span> differences <span class="op">-</span><span class="st"> </span>HSD, <span class="dt">HSD =</span> HSD)
-         
-comparison_table</code></pre></div>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="multiple-comparisons.html#cb228-1"></a>HSD &lt;-<span class="st"> </span>(<span class="kw">qtukey</span>(<span class="dt">p =</span> <span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.05</span>, <span class="dt">nmeans =</span> <span class="dv">3</span>, <span class="dt">df =</span> <span class="dv">12</span> <span class="op">-</span><span class="st"> </span><span class="dv">3</span>)<span class="op">/</span><span class="kw">sqrt</span>(<span class="dv">2</span>))<span class="op">*</span><span class="kw">sqrt</span>(<span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="kw">anova</span>(rats_lm)[<span class="dv">2</span>,<span class="dv">3</span>] <span class="op">/</span><span class="st"> </span><span class="dv">4</span>)</span>
+<span id="cb228-2"><a href="multiple-comparisons.html#cb228-2"></a>all_diffs &lt;-<span class="st"> </span><span class="kw">outer</span>(tukey<span class="op">$</span><span class="st">`</span><span class="dt">Predicted Means</span><span class="st">`</span>, tukey<span class="op">$</span><span class="st">`</span><span class="dt">Predicted Means</span><span class="st">`</span>, <span class="st">&quot;-&quot;</span>)</span>
+<span id="cb228-3"><a href="multiple-comparisons.html#cb228-3"></a>comparison_table &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">differences =</span> all_diffs[<span class="kw">lower.tri</span>(all_diffs)]) <span class="op">%&gt;%</span></span>
+<span id="cb228-4"><a href="multiple-comparisons.html#cb228-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">upper =</span> differences <span class="op">+</span><span class="st"> </span>HSD, <span class="dt">lower =</span> differences <span class="op">-</span><span class="st"> </span>HSD, <span class="dt">HSD =</span> HSD)</span>
+<span id="cb228-5"><a href="multiple-comparisons.html#cb228-5"></a>         </span>
+<span id="cb228-6"><a href="multiple-comparisons.html#cb228-6"></a>comparison_table</span></code></pre></div>
 <pre><code>##   differences    upper      lower      HSD
 ## 1      0.4900 2.109881 -1.1298813 1.619881
 ## 2      3.0875 4.707381  1.4676187 1.619881
 ## 3      2.5975 4.217381  0.9776187 1.619881</code></pre>
 <p>This matches the output from <code>TukeyHSD()</code> above!</p>
 <p>What about the values returned by <code>predictmeans()</code>?</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(tukey<span class="op">$</span><span class="st">`</span><span class="dt">Pairwise p-value</span><span class="st">`</span>)</code></pre></div>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="multiple-comparisons.html#cb230-1"></a><span class="kw">print</span>(tukey<span class="op">$</span><span class="st">`</span><span class="dt">Pairwise p-value</span><span class="st">`</span>)</span></code></pre></div>
 <pre><code>##        C       P       S
 ## C 0.0000 -0.8446 -5.3216
 ## P 0.6863  0.0000 -4.4770
@@ -722,8 +792,8 @@ comparison_table</code></pre></div>
 ## 2         P  8.9500     B
 ## 3         C  8.4600     B</code></pre>
 <p>There is an easier way to see the same pairwise contrasts using the <code>emmeans</code> function from the package of the same name and the <code>pairs</code> function:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">em &lt;-<span class="st"> </span>emmeans<span class="op">::</span><span class="kw">emmeans</span>(rats_lm, <span class="dt">specs =</span>  <span class="st">&quot;Surgery&quot;</span>)
-<span class="kw">pairs</span>(em, <span class="dt">adjust =</span> <span class="st">&quot;tukey&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="multiple-comparisons.html#cb232-1"></a>em &lt;-<span class="st"> </span>emmeans<span class="op">::</span><span class="kw">emmeans</span>(rats_lm, <span class="dt">specs =</span>  <span class="st">&quot;Surgery&quot;</span>)</span>
+<span id="cb232-2"><a href="multiple-comparisons.html#cb232-2"></a><span class="kw">pairs</span>(em, <span class="dt">adjust =</span> <span class="st">&quot;tukey&quot;</span>)</span></code></pre></div>
 <pre><code>##  contrast estimate   SE df t.ratio p.value
 ##  C - P       -0.49 0.58  9  -0.845  0.6863
 ##  C - S       -3.09 0.58  9  -5.322  0.0012
@@ -732,7 +802,7 @@ comparison_table</code></pre></div>
 ## P value adjustment: tukey method for comparing a family of 3 estimates</code></pre>
 <p>This, gives us the same information as <code>predictmeans</code> but in an easier to read format (still no CIs though, we still have to calculate those ourselves!)</p>
 <p>However, the <code>emmeans</code>package facilitates some nice plotting of the pairwise comparisons:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(em, <span class="dt">comparisons =</span> <span class="ot">TRUE</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>()</code></pre></div>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="multiple-comparisons.html#cb234-1"></a><span class="kw">plot</span>(em, <span class="dt">comparisons =</span> <span class="ot">TRUE</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>()</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-133-1.png" width="672" /></p>
 
 </div>
@@ -803,7 +873,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
