@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Logistic regression | Advanced Biological Data Analysis</title>
   <meta name="description" content="Logistic regression | Advanced Biological Data Analysis" />
-  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Logistic regression | Advanced Biological Data Analysis" />
   <meta property="og:type" content="book" />
@@ -48,7 +48,6 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
@@ -60,6 +59,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -203,6 +203,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#some-mathematical-notation"><i class="fa fa-check"></i>Some mathematical notation</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#modeling-bill-depth"><i class="fa fa-check"></i>Modeling Bill Depth</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#single-continuous-variable"><i class="fa fa-check"></i>Single continuous variable</a></li>
+<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#a-single-factor-variable"><i class="fa fa-check"></i>A single factor variable</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#one-factor-and-a-continuous-variable"><i class="fa fa-check"></i>One factor and a continuous variable</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#interactions"><i class="fa fa-check"></i>Interactions</a></li>
 </ul></li>
@@ -396,9 +397,9 @@ This implies that</p>
 <h3>An example: lobsters<a href="logistic-regression.html#an-example-lobsters" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Let us, again, consider data from the published article <a href="https://www.sciencedirect.com/science/article/pii/S0022098115000039">Influence of predator identity on the strength of predator avoidance responses in lobsters.</a>.</p>
 <p>The authors were interested in how a juvenile lobster’s size was related to its vulnerability to predation. In total, 159 juvenile lobsters were collected from their natural habitat in the Gulf of Maine, USA, and the length of each lobster’s carapace (upper shell) was measured to the nearest 3 mm, <code>size</code>. The lobsters were then tethered to the ocean floor for 24 hours. Any missing lobsters were assumed to have been consumed by a predator, while the surviving lobsters were released (i.e., <code>survived</code> = 1 if lobster survived, 0 otherwise).</p>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="logistic-regression.html#cb303-1"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb303-2"><a href="logistic-regression.html#cb303-2"></a>data &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/lobster.csv&quot;</span>)</span>
-<span id="cb303-3"><a href="logistic-regression.html#cb303-3"></a>data </span></code></pre></div>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="logistic-regression.html#cb310-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb310-2"><a href="logistic-regression.html#cb310-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/lobster.csv&quot;</span>)</span>
+<span id="cb310-3"><a href="logistic-regression.html#cb310-3" aria-hidden="true" tabindex="-1"></a>data </span></code></pre></div>
 <pre><code>## # A tibble: 159 × 2
 ##     size survived
 ##    &lt;dbl&gt;    &lt;dbl&gt;
@@ -416,8 +417,8 @@ This implies that</p>
 <div id="ungrouped-model" class="section level4 hasAnchor">
 <h4>Ungrouped model<a href="logistic-regression.html#ungrouped-model" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Fitting a binomial model we specify <code>family = "binomial"</code> in our <code>glm</code> call. Note that the default link function for <code>family = "binomial"</code> is the logit link; we could also use the equivalent syntax <code>binomial(link = logit)</code>to specify this model.</p>
-<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="logistic-regression.html#cb305-1"></a>glm_mod_ug &lt;-<span class="st"> </span><span class="kw">glm</span>(survived <span class="op">~</span><span class="st"> </span>size, <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>, <span class="dt">data =</span> data)</span>
-<span id="cb305-2"><a href="logistic-regression.html#cb305-2"></a><span class="kw">summary</span>(glm_mod_ug)</span></code></pre></div>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="logistic-regression.html#cb312-1" aria-hidden="true" tabindex="-1"></a>glm_mod_ug <span class="ot">&lt;-</span> <span class="fu">glm</span>(survived <span class="sc">~</span> size, <span class="at">family =</span> <span class="st">&quot;binomial&quot;</span>, <span class="at">data =</span> data)</span>
+<span id="cb312-2"><a href="logistic-regression.html#cb312-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(glm_mod_ug)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = survived ~ size, family = &quot;binomial&quot;, data = data)
@@ -444,15 +445,15 @@ This implies that</p>
 <p><span class="math display">\[
 \log\left[ \frac { \widehat{P( \operatorname{survived} = \operatorname{1} )} }{ 1 - \widehat{P( \operatorname{survived} = \operatorname{1} )} } \right] = -7.896 + 0.196(\operatorname{size})
 \]</span></p>
-<p><img src="_main_files/figure-html/unnamed-chunk-180-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-184-1.png" width="672" /></p>
 </div>
 <div id="grouped-model" class="section level4 hasAnchor">
 <h4>Grouped model<a href="logistic-regression.html#grouped-model" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The data are currently ungrouped, despite many lobsters sharing the same carapace size. Therefore, we rearrange the data set so that it is grouped:</p>
-<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="logistic-regression.html#cb307-1"></a>grouped &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span></span>
-<span id="cb307-2"><a href="logistic-regression.html#cb307-2"></a><span class="st">  </span><span class="kw">group_by</span>(size) <span class="op">%&gt;%</span></span>
-<span id="cb307-3"><a href="logistic-regression.html#cb307-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">y =</span> <span class="kw">sum</span>(survived), <span class="dt">n =</span> <span class="kw">length</span>(survived), <span class="dt">p =</span> <span class="kw">mean</span>(survived))</span>
-<span id="cb307-4"><a href="logistic-regression.html#cb307-4"></a>grouped</span></code></pre></div>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="logistic-regression.html#cb314-1" aria-hidden="true" tabindex="-1"></a>grouped <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb314-2"><a href="logistic-regression.html#cb314-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(size) <span class="sc">%&gt;%</span></span>
+<span id="cb314-3"><a href="logistic-regression.html#cb314-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">y =</span> <span class="fu">sum</span>(survived), <span class="at">n =</span> <span class="fu">length</span>(survived), <span class="at">p =</span> <span class="fu">mean</span>(survived))</span>
+<span id="cb314-4"><a href="logistic-regression.html#cb314-4" aria-hidden="true" tabindex="-1"></a>grouped</span></code></pre></div>
 <pre><code>## # A tibble: 11 × 4
 ##     size     y     n     p
 ##    &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt;
@@ -474,10 +475,10 @@ This implies that</p>
 <li><code>t</code> is the total number of lobsters of each size, and</li>
 <li><code>p</code>is the proportion of lobsters of each size that survived.</li>
 </ul>
-<p><img src="_main_files/figure-html/unnamed-chunk-182-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-186-1.png" width="672" /></p>
 <p>Fitting a binomial model again we specify <code>family = "binomial"</code> in our <code>glm</code> call and specify our response as <code>cbind(y, n - y)</code>:</p>
-<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="logistic-regression.html#cb309-1"></a>glm_mod_gr &lt;-<span class="st"> </span><span class="kw">glm</span>(<span class="kw">cbind</span>(y, n <span class="op">-</span><span class="st"> </span>y) <span class="op">~</span><span class="st"> </span>size, <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>, <span class="dt">data =</span> grouped)</span>
-<span id="cb309-2"><a href="logistic-regression.html#cb309-2"></a><span class="kw">summary</span>(glm_mod_gr)</span></code></pre></div>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="logistic-regression.html#cb316-1" aria-hidden="true" tabindex="-1"></a>glm_mod_gr <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="fu">cbind</span>(y, n <span class="sc">-</span> y) <span class="sc">~</span> size, <span class="at">family =</span> <span class="st">&quot;binomial&quot;</span>, <span class="at">data =</span> grouped)</span>
+<span id="cb316-2"><a href="logistic-regression.html#cb316-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(glm_mod_gr)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = cbind(y, n - y) ~ size, family = &quot;binomial&quot;, data = grouped)
@@ -510,32 +511,32 @@ This implies that</p>
 <p>Interpreting the coefficients above we estimate that the log-odds of a juvenile lobster surviving are -8 (use your common sense to ascertain if interpreting the intercept is sensible).</p>
 <p>We estimate that for every 1mm increase in carapace length the log-odds of a juvenile lobster surviving <strong>increase</strong> by 0.196.</p>
 <p>What about the odds?</p>
-<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="logistic-regression.html#cb311-1"></a><span class="kw">exp</span>(<span class="kw">coef</span>(glm_mod_gr))</span></code></pre></div>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="logistic-regression.html#cb318-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(glm_mod_gr))</span></code></pre></div>
 <pre><code>##  (Intercept)         size 
 ## 0.0003722407 1.2163540760</code></pre>
 <p>Therefore, we estimate that the odds of a juvenile lobster surviving are 0.000372 (use your common sense to ascertain if interpreting the intercept is sensible).</p>
 <p>We estimate that for every 1mm increase in carapace length the odds of a juvenile lobster surviving are <strong>multiplied</strong> by 1.22.</p>
 <p>What about for a 5mm increase in carapace length?</p>
-<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="logistic-regression.html#cb313-1"></a><span class="kw">exp</span>(<span class="dv">5</span><span class="op">*</span><span class="kw">coef</span>(glm_mod_gr)[<span class="dv">2</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="logistic-regression.html#cb320-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="dv">5</span><span class="sc">*</span><span class="fu">coef</span>(glm_mod_gr)[<span class="dv">2</span>])</span></code></pre></div>
 <pre><code>##     size 
 ## 2.662564</code></pre>
 <p>Therefore, we estimate that for every 5mm increase in carapace length the odds of a juvenile lobster surviving are <strong>multiplied</strong> by 2.66.</p>
 <p>Using 95% <strong>confidence intervals</strong>:</p>
-<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="logistic-regression.html#cb315-1"></a>ci &lt;-<span class="st"> </span><span class="kw">exp</span>(<span class="dv">5</span><span class="op">*</span><span class="kw">confint</span>(glm_mod_gr)[<span class="dv">2</span>,])</span>
-<span id="cb315-2"><a href="logistic-regression.html#cb315-2"></a>ci</span></code></pre></div>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="logistic-regression.html#cb322-1" aria-hidden="true" tabindex="-1"></a>ci <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="dv">5</span><span class="sc">*</span><span class="fu">confint</span>(glm_mod_gr)[<span class="dv">2</span>,])</span>
+<span id="cb322-2"><a href="logistic-regression.html#cb322-2" aria-hidden="true" tabindex="-1"></a>ci</span></code></pre></div>
 <pre><code>##    2.5 %   97.5 % 
 ## 1.944478 3.811167</code></pre>
 <p>Therefore, we estimate that for every 5mm increase in carapace length the odds of a juvenile lobster surviving are <strong>multiplied</strong> by between 1.94 and 3.81.</p>
 <p>For a <strong>percentage-change</strong> interpretation we use <span class="math inline">\(100 \times \left (\text{exp}(x\beta_1)−1 \right )\)</span>:</p>
-<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="logistic-regression.html#cb317-1"></a><span class="dv">100</span><span class="op">*</span>(<span class="kw">exp</span>(<span class="dv">5</span><span class="op">*</span><span class="kw">coef</span>(glm_mod_gr)[<span class="dv">2</span>]) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="logistic-regression.html#cb324-1" aria-hidden="true" tabindex="-1"></a><span class="dv">100</span><span class="sc">*</span>(<span class="fu">exp</span>(<span class="dv">5</span><span class="sc">*</span><span class="fu">coef</span>(glm_mod_gr)[<span class="dv">2</span>]) <span class="sc">-</span> <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>##     size 
 ## 166.2564</code></pre>
-<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="logistic-regression.html#cb319-1"></a>confint &lt;-<span class="st"> </span><span class="dv">100</span><span class="op">*</span>(<span class="kw">exp</span>(<span class="dv">5</span><span class="op">*</span><span class="kw">confint</span>(glm_mod_gr)[<span class="dv">2</span>, ]) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)</span>
-<span id="cb319-2"><a href="logistic-regression.html#cb319-2"></a>confint</span></code></pre></div>
+<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="logistic-regression.html#cb326-1" aria-hidden="true" tabindex="-1"></a>confint <span class="ot">&lt;-</span> <span class="dv">100</span><span class="sc">*</span>(<span class="fu">exp</span>(<span class="dv">5</span><span class="sc">*</span><span class="fu">confint</span>(glm_mod_gr)[<span class="dv">2</span>, ]) <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb326-2"><a href="logistic-regression.html#cb326-2" aria-hidden="true" tabindex="-1"></a>confint</span></code></pre></div>
 <pre><code>##     2.5 %    97.5 % 
 ##  94.44778 281.11670</code></pre>
 <p>We estimate that for every 5mm increase in carapace length the <strong>odds</strong> of a juvenile lobster surviving <strong>increase</strong> by 166.26%. We estimate that for every 5mm increase in carapace length the odds of a juvenile lobster surviving <strong>increase</strong> between 94.45% and 281.12%.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-189-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-193-1.png" width="672" /></p>
 </div>
 <div id="model-diagnostics-1" class="section level4 hasAnchor">
 <h4>Model diagnostics<a href="logistic-regression.html#model-diagnostics-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -543,29 +544,29 @@ This implies that</p>
 <h5>Residuals<a href="logistic-regression.html#residuals-1" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>Recall from module 2, where we looked at residual plots to check our assumptions for a linear model. In a similar way we can use residuals to check how appropriate our GLM is (i.e., to help diagnose the overall goodness-of-fit and to see if our model assumptions are met). As outlined in our Poisson model example before, Pearson and deviance residuals are used in model diagnostics for generalized linear models. Recall, that 1) the <strong>response residuals</strong> are the <em>conventional</em> residual on the response level. That is, the fitted residuals are transformed by taking the inverse of the link function; 2) the <strong>deviance residuals</strong> represent the contributions of individual samples to the deviance, <em>D</em> (see above); and. <strong>Pearson residuals</strong> are calculated by normalizing the raw residuals (i.e., expected - estimate) by the square root of the estimate.</p>
 <p>We calculate all three directly in <code>R</code> as follows.</p>
-<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="logistic-regression.html#cb321-1"></a><span class="co">## response residuals</span></span>
-<span id="cb321-2"><a href="logistic-regression.html#cb321-2"></a>resids_response &lt;-<span class="st"> </span><span class="kw">residuals</span>(glm_mod_gr, <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)</span>
-<span id="cb321-3"><a href="logistic-regression.html#cb321-3"></a><span class="co">## deviance residuals</span></span>
-<span id="cb321-4"><a href="logistic-regression.html#cb321-4"></a>resids_deviance &lt;-<span class="st"> </span><span class="kw">residuals</span>(glm_mod_gr, <span class="dt">type =</span> <span class="st">&quot;deviance&quot;</span>)</span>
-<span id="cb321-5"><a href="logistic-regression.html#cb321-5"></a><span class="co">## pearson residuals</span></span>
-<span id="cb321-6"><a href="logistic-regression.html#cb321-6"></a>resids_pearson &lt;-<span class="st"> </span><span class="kw">residuals</span>(glm_mod_gr, <span class="dt">type =</span> <span class="st">&quot;pearson&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="logistic-regression.html#cb328-1" aria-hidden="true" tabindex="-1"></a><span class="do">## response residuals</span></span>
+<span id="cb328-2"><a href="logistic-regression.html#cb328-2" aria-hidden="true" tabindex="-1"></a>resids_response <span class="ot">&lt;-</span> <span class="fu">residuals</span>(glm_mod_gr, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span>
+<span id="cb328-3"><a href="logistic-regression.html#cb328-3" aria-hidden="true" tabindex="-1"></a><span class="do">## deviance residuals</span></span>
+<span id="cb328-4"><a href="logistic-regression.html#cb328-4" aria-hidden="true" tabindex="-1"></a>resids_deviance <span class="ot">&lt;-</span> <span class="fu">residuals</span>(glm_mod_gr, <span class="at">type =</span> <span class="st">&quot;deviance&quot;</span>)</span>
+<span id="cb328-5"><a href="logistic-regression.html#cb328-5" aria-hidden="true" tabindex="-1"></a><span class="do">## pearson residuals</span></span>
+<span id="cb328-6"><a href="logistic-regression.html#cb328-6" aria-hidden="true" tabindex="-1"></a>resids_pearson <span class="ot">&lt;-</span> <span class="fu">residuals</span>(glm_mod_gr, <span class="at">type =</span> <span class="st">&quot;pearson&quot;</span>)</span></code></pre></div>
 <p>Plotting all three types we can asses how appropriate our chosen model is.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-191-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-195-1.png" width="672" /></p>
 <p>So, what do you see? Look back at the assumptions of a Poisson model. What do you conclude from the plots above?</p>
 </div>
 <div id="deviance-using-the-chi-squared-approach-1" class="section level5 hasAnchor">
 <h5>Deviance (using the chi-squared approach)<a href="logistic-regression.html#deviance-using-the-chi-squared-approach-1" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>Luckily no manual calculations are required, our <code>glm()</code> call returns the values we need directly:</p>
-<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="logistic-regression.html#cb322-1"></a><span class="co">## extract the residual deviance</span></span>
-<span id="cb322-2"><a href="logistic-regression.html#cb322-2"></a>D &lt;-<span class="st"> </span>glm_mod_gr<span class="op">$</span>deviance</span>
-<span id="cb322-3"><a href="logistic-regression.html#cb322-3"></a>D</span></code></pre></div>
+<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="logistic-regression.html#cb329-1" aria-hidden="true" tabindex="-1"></a><span class="do">## extract the residual deviance</span></span>
+<span id="cb329-2"><a href="logistic-regression.html#cb329-2" aria-hidden="true" tabindex="-1"></a>D <span class="ot">&lt;-</span> glm_mod_gr<span class="sc">$</span>deviance</span>
+<span id="cb329-3"><a href="logistic-regression.html#cb329-3" aria-hidden="true" tabindex="-1"></a>D</span></code></pre></div>
 <pre><code>## [1] 4.562321</code></pre>
-<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="logistic-regression.html#cb324-1"></a><span class="co">## extract the residual degrees of freedom (n-k)</span></span>
-<span id="cb324-2"><a href="logistic-regression.html#cb324-2"></a>df &lt;-<span class="st"> </span>glm_mod_gr<span class="op">$</span>df.residual</span>
-<span id="cb324-3"><a href="logistic-regression.html#cb324-3"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="logistic-regression.html#cb331-1" aria-hidden="true" tabindex="-1"></a><span class="do">## extract the residual degrees of freedom (n-k)</span></span>
+<span id="cb331-2"><a href="logistic-regression.html#cb331-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> glm_mod_gr<span class="sc">$</span>df.residual</span>
+<span id="cb331-3"><a href="logistic-regression.html#cb331-3" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
 <pre><code>## [1] 9</code></pre>
 <p>Therefore, to test the relevant null hypothesis (that the model is correct) we use</p>
-<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="logistic-regression.html#cb326-1"></a><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pchisq</span>(D, df)</span></code></pre></div>
+<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="logistic-regression.html#cb333-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">pchisq</span>(D, df)</span></code></pre></div>
 <pre><code>## [1] 0.8706732</code></pre>
 <p>Here, we have no evidence to against our model being “correct”. <strong>BUT</strong> are our chi-squared approximation assumptions met? If not, we might take a <strong>simulation based approach</strong>. This is, however, beyond the scope of this course.</p>
 </div>
@@ -638,7 +639,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

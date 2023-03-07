@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Data visualiation (data viz) | Advanced Biological Data Analysis</title>
   <meta name="description" content="Data visualiation (data viz) | Advanced Biological Data Analysis" />
-  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Data visualiation (data viz) | Advanced Biological Data Analysis" />
   <meta property="og:type" content="book" />
@@ -48,7 +48,6 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
@@ -60,6 +59,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -203,6 +203,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#some-mathematical-notation"><i class="fa fa-check"></i>Some mathematical notation</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#modeling-bill-depth"><i class="fa fa-check"></i>Modeling Bill Depth</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#single-continuous-variable"><i class="fa fa-check"></i>Single continuous variable</a></li>
+<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#a-single-factor-variable"><i class="fa fa-check"></i>A single factor variable</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#one-factor-and-a-continuous-variable"><i class="fa fa-check"></i>One factor and a continuous variable</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#interactions"><i class="fa fa-check"></i>Interactions</a></li>
 </ul></li>
@@ -441,76 +442,76 @@ Plots by Cedric Scherer and mentioned on <a href="https://jimgruman.netlify.app/
 <div id="examples" class="section level4 hasAnchor">
 <h4>Examples<a href="data-visualiation-data-viz.html#examples" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><strong>Scatter plot</strong> using <code>geom_point()</code></p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="data-visualiation-data-viz.html#cb43-1"></a><span class="kw">ggplot</span>(penguins,<span class="kw">aes</span>(<span class="dt">x =</span> body_mass_g, <span class="dt">y =</span> flipper_length_mm)) <span class="op">+</span><span class="st"> </span><span class="co">## data &amp; aesthetics</span></span>
-<span id="cb43-2"><a href="data-visualiation-data-viz.html#cb43-2"></a><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="co">## geom</span></span>
-<span id="cb43-3"><a href="data-visualiation-data-viz.html#cb43-3"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="co">## statistics (linear regression line)</span></span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="data-visualiation-data-viz.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins,<span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> flipper_length_mm)) <span class="sc">+</span> <span class="do">## data &amp; aesthetics</span></span>
+<span id="cb43-2"><a href="data-visualiation-data-viz.html#cb43-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="do">## geom</span></span>
+<span id="cb43-3"><a href="data-visualiation-data-viz.html#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="do">## statistics (linear regression line)</span></span></code></pre></div>
 <p><img src="_main_files/figure-html/flippoint-1.png" width="672" /></p>
 <p><strong>Boxplot</strong> using <code>geom_boxplot()</code></p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="data-visualiation-data-viz.html#cb44-1"></a><span class="kw">ggplot</span>(penguins,<span class="kw">aes</span>(<span class="dt">x =</span> species, <span class="dt">y =</span> flipper_length_mm)) <span class="op">+</span><span class="st"> </span><span class="co">## data &amp; aesthetics</span></span>
-<span id="cb44-2"><a href="data-visualiation-data-viz.html#cb44-2"></a><span class="st">    </span><span class="kw">geom_boxplot</span>()  <span class="op">+</span><span class="st"> </span><span class="co">## geom</span></span>
-<span id="cb44-3"><a href="data-visualiation-data-viz.html#cb44-3"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Flipper length (mm) by species&quot;</span>) <span class="op">+</span></span>
-<span id="cb44-4"><a href="data-visualiation-data-viz.html#cb44-4"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Flipper length (mm)&quot;</span>) <span class="op">+</span></span>
-<span id="cb44-5"><a href="data-visualiation-data-viz.html#cb44-5"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Species&quot;</span>) <span class="op">+</span></span>
-<span id="cb44-6"><a href="data-visualiation-data-viz.html#cb44-6"></a><span class="st">  </span><span class="kw">theme_dark</span>() <span class="co">## theme</span></span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="data-visualiation-data-viz.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins,<span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> flipper_length_mm)) <span class="sc">+</span> <span class="do">## data &amp; aesthetics</span></span>
+<span id="cb44-2"><a href="data-visualiation-data-viz.html#cb44-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>()  <span class="sc">+</span> <span class="do">## geom</span></span>
+<span id="cb44-3"><a href="data-visualiation-data-viz.html#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Flipper length (mm) by species&quot;</span>) <span class="sc">+</span></span>
+<span id="cb44-4"><a href="data-visualiation-data-viz.html#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Flipper length (mm)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb44-5"><a href="data-visualiation-data-viz.html#cb44-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Species&quot;</span>) <span class="sc">+</span></span>
+<span id="cb44-6"><a href="data-visualiation-data-viz.html#cb44-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_dark</span>() <span class="do">## theme</span></span></code></pre></div>
 <p><img src="_main_files/figure-html/flipbox2-1.png" width="672" /></p>
 <p><strong>Scatter plot</strong> specifying <code>color</code> using <code>geom_point()</code></p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="data-visualiation-data-viz.html#cb45-1"></a><span class="kw">ggplot</span>(penguins,<span class="kw">aes</span>(<span class="dt">x =</span> body_mass_g, <span class="dt">y =</span> flipper_length_mm, <span class="dt">color =</span> species)) <span class="op">+</span><span class="st"> </span><span class="co">## data and aesthetics</span></span>
-<span id="cb45-2"><a href="data-visualiation-data-viz.html#cb45-2"></a><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="co">## geom</span></span>
-<span id="cb45-3"><a href="data-visualiation-data-viz.html#cb45-3"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="co">## statistic (linear regression line without intervals)</span></span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="data-visualiation-data-viz.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins,<span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> flipper_length_mm, <span class="at">color =</span> species)) <span class="sc">+</span> <span class="do">## data and aesthetics</span></span>
+<span id="cb45-2"><a href="data-visualiation-data-viz.html#cb45-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="do">## geom</span></span>
+<span id="cb45-3"><a href="data-visualiation-data-viz.html#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="do">## statistic (linear regression line without intervals)</span></span></code></pre></div>
 <p><img src="_main_files/figure-html/flippoint2-1.png" width="672" /></p>
 </div>
 <div id="the-good-the-bad-and-the-ugly" class="section level4 hasAnchor">
 <h4>The Good, the Bad, and the Ugly…<a href="data-visualiation-data-viz.html#the-good-the-bad-and-the-ugly" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="data-visualiation-data-viz.html#cb46-1"></a>box &lt;-<span class="st"> </span><span class="kw">ggplot</span>(penguins,<span class="kw">aes</span>(<span class="dt">x =</span> species, <span class="dt">y =</span> flipper_length_mm)) <span class="op">+</span><span class="st"> </span><span class="co">## data &amp; aesthetics</span></span>
-<span id="cb46-2"><a href="data-visualiation-data-viz.html#cb46-2"></a><span class="st">    </span><span class="kw">geom_boxplot</span>()  <span class="op">+</span><span class="st"> </span><span class="co">## geom</span></span>
-<span id="cb46-3"><a href="data-visualiation-data-viz.html#cb46-3"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Flipper length (mm) by species&quot;</span>) <span class="op">+</span></span>
-<span id="cb46-4"><a href="data-visualiation-data-viz.html#cb46-4"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Flipper length (mm)&quot;</span>) <span class="op">+</span></span>
-<span id="cb46-5"><a href="data-visualiation-data-viz.html#cb46-5"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Species&quot;</span>) <span class="op">+</span></span>
-<span id="cb46-6"><a href="data-visualiation-data-viz.html#cb46-6"></a><span class="st">  </span><span class="kw">theme_dark</span>() <span class="co">## theme</span></span>
-<span id="cb46-7"><a href="data-visualiation-data-viz.html#cb46-7"></a>box</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="data-visualiation-data-viz.html#cb46-1" aria-hidden="true" tabindex="-1"></a>box <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(penguins,<span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> flipper_length_mm)) <span class="sc">+</span> <span class="do">## data &amp; aesthetics</span></span>
+<span id="cb46-2"><a href="data-visualiation-data-viz.html#cb46-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>()  <span class="sc">+</span> <span class="do">## geom</span></span>
+<span id="cb46-3"><a href="data-visualiation-data-viz.html#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Flipper length (mm) by species&quot;</span>) <span class="sc">+</span></span>
+<span id="cb46-4"><a href="data-visualiation-data-viz.html#cb46-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Flipper length (mm)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb46-5"><a href="data-visualiation-data-viz.html#cb46-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Species&quot;</span>) <span class="sc">+</span></span>
+<span id="cb46-6"><a href="data-visualiation-data-viz.html#cb46-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_dark</span>() <span class="do">## theme</span></span>
+<span id="cb46-7"><a href="data-visualiation-data-viz.html#cb46-7" aria-hidden="true" tabindex="-1"></a>box</span></code></pre></div>
 <p><img src="_main_files/figure-html/boxesc-1.png" width="672" /></p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="data-visualiation-data-viz.html#cb47-1"></a>jitter &lt;-<span class="st"> </span><span class="kw">ggplot</span>(penguins,<span class="kw">aes</span>(<span class="dt">x =</span> species, <span class="dt">y =</span> flipper_length_mm)) <span class="op">+</span><span class="st"> </span><span class="co">## data &amp; aesthetics</span></span>
-<span id="cb47-2"><a href="data-visualiation-data-viz.html#cb47-2"></a><span class="st">    </span><span class="kw">geom_jitter</span>()  <span class="op">+</span><span class="st"> </span><span class="co">## geom</span></span>
-<span id="cb47-3"><a href="data-visualiation-data-viz.html#cb47-3"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Flipper length (mm) by species&quot;</span>) <span class="op">+</span></span>
-<span id="cb47-4"><a href="data-visualiation-data-viz.html#cb47-4"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Flipper length (mm)&quot;</span>) <span class="op">+</span></span>
-<span id="cb47-5"><a href="data-visualiation-data-viz.html#cb47-5"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Species&quot;</span>) <span class="op">+</span></span>
-<span id="cb47-6"><a href="data-visualiation-data-viz.html#cb47-6"></a><span class="st">  </span><span class="kw">theme_dark</span>() <span class="co">## theme</span></span>
-<span id="cb47-7"><a href="data-visualiation-data-viz.html#cb47-7"></a>jitter</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="data-visualiation-data-viz.html#cb47-1" aria-hidden="true" tabindex="-1"></a>jitter <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(penguins,<span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> flipper_length_mm)) <span class="sc">+</span> <span class="do">## data &amp; aesthetics</span></span>
+<span id="cb47-2"><a href="data-visualiation-data-viz.html#cb47-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_jitter</span>()  <span class="sc">+</span> <span class="do">## geom</span></span>
+<span id="cb47-3"><a href="data-visualiation-data-viz.html#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Flipper length (mm) by species&quot;</span>) <span class="sc">+</span></span>
+<span id="cb47-4"><a href="data-visualiation-data-viz.html#cb47-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Flipper length (mm)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb47-5"><a href="data-visualiation-data-viz.html#cb47-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Species&quot;</span>) <span class="sc">+</span></span>
+<span id="cb47-6"><a href="data-visualiation-data-viz.html#cb47-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_dark</span>() <span class="do">## theme</span></span>
+<span id="cb47-7"><a href="data-visualiation-data-viz.html#cb47-7" aria-hidden="true" tabindex="-1"></a>jitter</span></code></pre></div>
 <p><img src="_main_files/figure-html/boxesc-2.png" width="672" /></p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="data-visualiation-data-viz.html#cb48-1"></a>violin &lt;-<span class="st"> </span><span class="kw">ggplot</span>(penguins,<span class="kw">aes</span>(<span class="dt">x =</span> species, <span class="dt">y =</span> flipper_length_mm)) <span class="op">+</span><span class="st"> </span><span class="co">## data &amp; aesthetics</span></span>
-<span id="cb48-2"><a href="data-visualiation-data-viz.html#cb48-2"></a><span class="st">    </span><span class="kw">geom_violin</span>()  <span class="op">+</span><span class="st"> </span><span class="co">## geom</span></span>
-<span id="cb48-3"><a href="data-visualiation-data-viz.html#cb48-3"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Flipper length (mm) by species&quot;</span>) <span class="op">+</span></span>
-<span id="cb48-4"><a href="data-visualiation-data-viz.html#cb48-4"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Flipper length (mm)&quot;</span>) <span class="op">+</span></span>
-<span id="cb48-5"><a href="data-visualiation-data-viz.html#cb48-5"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Species&quot;</span>) <span class="op">+</span></span>
-<span id="cb48-6"><a href="data-visualiation-data-viz.html#cb48-6"></a><span class="st">  </span><span class="kw">theme_dark</span>() <span class="co">## theme</span></span>
-<span id="cb48-7"><a href="data-visualiation-data-viz.html#cb48-7"></a>violin</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="data-visualiation-data-viz.html#cb48-1" aria-hidden="true" tabindex="-1"></a>violin <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(penguins,<span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> flipper_length_mm)) <span class="sc">+</span> <span class="do">## data &amp; aesthetics</span></span>
+<span id="cb48-2"><a href="data-visualiation-data-viz.html#cb48-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_violin</span>()  <span class="sc">+</span> <span class="do">## geom</span></span>
+<span id="cb48-3"><a href="data-visualiation-data-viz.html#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Flipper length (mm) by species&quot;</span>) <span class="sc">+</span></span>
+<span id="cb48-4"><a href="data-visualiation-data-viz.html#cb48-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Flipper length (mm)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb48-5"><a href="data-visualiation-data-viz.html#cb48-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Species&quot;</span>) <span class="sc">+</span></span>
+<span id="cb48-6"><a href="data-visualiation-data-viz.html#cb48-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_dark</span>() <span class="do">## theme</span></span>
+<span id="cb48-7"><a href="data-visualiation-data-viz.html#cb48-7" aria-hidden="true" tabindex="-1"></a>violin</span></code></pre></div>
 <p><img src="_main_files/figure-html/boxesc-3.png" width="672" /></p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="data-visualiation-data-viz.html#cb49-1"></a><span class="kw">ggplot</span>(penguins, <span class="kw">aes</span>(<span class="dt">x =</span> body_mass_g, <span class="dt">y =</span> flipper_length_mm)) <span class="op">+</span></span>
-<span id="cb49-2"><a href="data-visualiation-data-viz.html#cb49-2"></a><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb49-3"><a href="data-visualiation-data-viz.html#cb49-3"></a><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="data-visualiation-data-viz.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> flipper_length_mm)) <span class="sc">+</span></span>
+<span id="cb49-2"><a href="data-visualiation-data-viz.html#cb49-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb49-3"><a href="data-visualiation-data-viz.html#cb49-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/simple-1.png" width="672" /></p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="data-visualiation-data-viz.html#cb50-1"></a><span class="kw">ggplot</span>(penguins, <span class="kw">aes</span>(<span class="dt">x =</span> body_mass_g, <span class="dt">y =</span> flipper_length_mm, </span>
-<span id="cb50-2"><a href="data-visualiation-data-viz.html#cb50-2"></a>                         <span class="dt">col =</span> species)) <span class="op">+</span></span>
-<span id="cb50-3"><a href="data-visualiation-data-viz.html#cb50-3"></a><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb50-4"><a href="data-visualiation-data-viz.html#cb50-4"></a><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
-<span id="cb50-5"><a href="data-visualiation-data-viz.html#cb50-5"></a><span class="st">    </span><span class="kw">facet_grid</span>(<span class="op">~</span><span class="st"> </span>sex) <span class="op">+</span></span>
-<span id="cb50-6"><a href="data-visualiation-data-viz.html#cb50-6"></a><span class="st">    </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span></span>
-<span id="cb50-7"><a href="data-visualiation-data-viz.html#cb50-7"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Flipper Length and Body Mass, by Sex &amp; Species&quot;</span>,</span>
-<span id="cb50-8"><a href="data-visualiation-data-viz.html#cb50-8"></a>         <span class="dt">subtitle =</span> <span class="kw">paste0</span>(<span class="kw">nrow</span>(penguins), <span class="st">&quot; of the Palmer Penguins&quot;</span>),</span>
-<span id="cb50-9"><a href="data-visualiation-data-viz.html#cb50-9"></a>         <span class="dt">x =</span> <span class="st">&quot;Body Mass (g)&quot;</span>, </span>
-<span id="cb50-10"><a href="data-visualiation-data-viz.html#cb50-10"></a>         <span class="dt">y =</span> <span class="st">&quot;Flipper Length (mm)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="data-visualiation-data-viz.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> flipper_length_mm, </span>
+<span id="cb50-2"><a href="data-visualiation-data-viz.html#cb50-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">col =</span> species)) <span class="sc">+</span></span>
+<span id="cb50-3"><a href="data-visualiation-data-viz.html#cb50-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span> </span>
+<span id="cb50-4"><a href="data-visualiation-data-viz.html#cb50-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb50-5"><a href="data-visualiation-data-viz.html#cb50-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_grid</span>(<span class="sc">~</span> sex) <span class="sc">+</span></span>
+<span id="cb50-6"><a href="data-visualiation-data-viz.html#cb50-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb50-7"><a href="data-visualiation-data-viz.html#cb50-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Flipper Length and Body Mass, by Sex &amp; Species&quot;</span>,</span>
+<span id="cb50-8"><a href="data-visualiation-data-viz.html#cb50-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="fu">paste0</span>(<span class="fu">nrow</span>(penguins), <span class="st">&quot; of the Palmer Penguins&quot;</span>),</span>
+<span id="cb50-9"><a href="data-visualiation-data-viz.html#cb50-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">&quot;Body Mass (g)&quot;</span>, </span>
+<span id="cb50-10"><a href="data-visualiation-data-viz.html#cb50-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">&quot;Flipper Length (mm)&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/facet-1.png" width="672" /></p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="data-visualiation-data-viz.html#cb51-1"></a>penguins_nafree &lt;-<span class="st"> </span>penguins <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">drop_na</span>()</span>
-<span id="cb51-2"><a href="data-visualiation-data-viz.html#cb51-2"></a><span class="kw">ggplot</span>(penguins_nafree, <span class="kw">aes</span>(<span class="dt">x =</span> body_mass_g, <span class="dt">y =</span> flipper_length_mm, </span>
-<span id="cb51-3"><a href="data-visualiation-data-viz.html#cb51-3"></a>                         <span class="dt">col =</span> species)) <span class="op">+</span></span>
-<span id="cb51-4"><a href="data-visualiation-data-viz.html#cb51-4"></a><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb51-5"><a href="data-visualiation-data-viz.html#cb51-5"></a><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
-<span id="cb51-6"><a href="data-visualiation-data-viz.html#cb51-6"></a><span class="st">    </span><span class="kw">facet_grid</span>(<span class="op">~</span><span class="st"> </span>sex) <span class="op">+</span></span>
-<span id="cb51-7"><a href="data-visualiation-data-viz.html#cb51-7"></a><span class="st">    </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span></span>
-<span id="cb51-8"><a href="data-visualiation-data-viz.html#cb51-8"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Flipper Length and Body Mass, by Sex &amp; Species&quot;</span>,</span>
-<span id="cb51-9"><a href="data-visualiation-data-viz.html#cb51-9"></a>         <span class="dt">subtitle =</span> <span class="kw">paste0</span>(<span class="kw">nrow</span>(penguins_nafree), <span class="st">&quot; of the Palmer Penguins&quot;</span>),</span>
-<span id="cb51-10"><a href="data-visualiation-data-viz.html#cb51-10"></a>         <span class="dt">x =</span> <span class="st">&quot;Body Mass (g)&quot;</span>, </span>
-<span id="cb51-11"><a href="data-visualiation-data-viz.html#cb51-11"></a>         <span class="dt">y =</span> <span class="st">&quot;Flipper Length (mm)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="data-visualiation-data-viz.html#cb51-1" aria-hidden="true" tabindex="-1"></a>penguins_nafree <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>()</span>
+<span id="cb51-2"><a href="data-visualiation-data-viz.html#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins_nafree, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> flipper_length_mm, </span>
+<span id="cb51-3"><a href="data-visualiation-data-viz.html#cb51-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">col =</span> species)) <span class="sc">+</span></span>
+<span id="cb51-4"><a href="data-visualiation-data-viz.html#cb51-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span> </span>
+<span id="cb51-5"><a href="data-visualiation-data-viz.html#cb51-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb51-6"><a href="data-visualiation-data-viz.html#cb51-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_grid</span>(<span class="sc">~</span> sex) <span class="sc">+</span></span>
+<span id="cb51-7"><a href="data-visualiation-data-viz.html#cb51-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb51-8"><a href="data-visualiation-data-viz.html#cb51-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Flipper Length and Body Mass, by Sex &amp; Species&quot;</span>,</span>
+<span id="cb51-9"><a href="data-visualiation-data-viz.html#cb51-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="fu">paste0</span>(<span class="fu">nrow</span>(penguins_nafree), <span class="st">&quot; of the Palmer Penguins&quot;</span>),</span>
+<span id="cb51-10"><a href="data-visualiation-data-viz.html#cb51-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">&quot;Body Mass (g)&quot;</span>, </span>
+<span id="cb51-11"><a href="data-visualiation-data-viz.html#cb51-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">&quot;Flipper Length (mm)&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/facetna-1.png" width="672" /></p>
 
 </div>
@@ -582,7 +583,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

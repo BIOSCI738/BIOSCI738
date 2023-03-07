@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>R and RStudio | Advanced Biological Data Analysis</title>
   <meta name="description" content="R and RStudio | Advanced Biological Data Analysis" />
-  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
   <meta property="og:title" content="R and RStudio | Advanced Biological Data Analysis" />
   <meta property="og:type" content="book" />
@@ -48,7 +48,6 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
@@ -60,6 +59,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -203,6 +203,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#some-mathematical-notation"><i class="fa fa-check"></i>Some mathematical notation</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#modeling-bill-depth"><i class="fa fa-check"></i>Modeling Bill Depth</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#single-continuous-variable"><i class="fa fa-check"></i>Single continuous variable</a></li>
+<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#a-single-factor-variable"><i class="fa fa-check"></i>A single factor variable</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#one-factor-and-a-continuous-variable"><i class="fa fa-check"></i>One factor and a continuous variable</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#interactions"><i class="fa fa-check"></i>Interactions</a></li>
 </ul></li>
@@ -416,13 +417,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <div id="r-errors" class="section level4 hasAnchor">
 <h4>R errors 😱<a href="r-and-rstudio.html#r-errors" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="r-and-rstudio.html#cb1-1"></a>data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data_file_not_in_my_working_directory.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="r-and-rstudio.html#cb1-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data_file_not_in_my_working_directory.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## Error in file(file, &quot;rt&quot;): cannot open the connection</code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="r-and-rstudio.html#cb3-1"></a><span class="kw">library</span>(some_library_I_have_not_installed)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="r-and-rstudio.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(some_library_I_have_not_installed)</span></code></pre></div>
 <pre><code>## Error in library(some_library_I_have_not_installed): there is no package called &#39;some_library_I_have_not_installed&#39;</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="r-and-rstudio.html#cb5-1"></a><span class="kw">some_function_I_spelled_worng</span>(<span class="dt">x =</span> x)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="r-and-rstudio.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">some_function_I_spelled_worng</span>(<span class="at">x =</span> x)</span></code></pre></div>
 <pre><code>## Error in some_function_I_spelled_worng(x = x): could not find function &quot;some_function_I_spelled_worng&quot;</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="r-and-rstudio.html#cb7-1"></a>an_object_I_have_not_created</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="r-and-rstudio.html#cb7-1" aria-hidden="true" tabindex="-1"></a>an_object_I_have_not_created</span></code></pre></div>
 <pre><code>## Error in eval(expr, envir, enclos): object &#39;an_object_I_have_not_created&#39; not found</code></pre>
 <p><strong>What do you think the issues are here</strong> 😉</p>
 </div>
@@ -439,15 +440,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="writing-comments" class="section level4 hasAnchor">
 <h4>Writing <em>Comments</em><a href="r-and-rstudio.html#writing-comments" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><em>Comments</em> are notes to yourself (future or present) or to someone else and are, typically, written interspersed in your code. Now, the comments you write will typically be in a language your computer doesn’t understand (e.g., English). So that you can write yourself notes in your <em>Script</em> you need to tell your computer using the <code>R</code> language to ignore them. To do this precede any note you write with #, see below. The # is <code>R</code> for <em>ignore anything after this character</em>.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="r-and-rstudio.html#cb9-1"></a><span class="co">## IGNORE ME</span></span>
-<span id="cb9-2"><a href="r-and-rstudio.html#cb9-2"></a><span class="co">## I&#39;m a comment</span></span>
-<span id="cb9-3"><a href="r-and-rstudio.html#cb9-3"></a><span class="co">## I repeat I&#39;m a comment</span></span>
-<span id="cb9-4"><a href="r-and-rstudio.html#cb9-4"></a><span class="co">## I am not a cat</span></span>
-<span id="cb9-5"><a href="r-and-rstudio.html#cb9-5"></a><span class="co">## OK let&#39;s run some code</span></span>
-<span id="cb9-6"><a href="r-and-rstudio.html#cb9-6"></a><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="r-and-rstudio.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="do">## IGNORE ME</span></span>
+<span id="cb9-2"><a href="r-and-rstudio.html#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="do">## I&#39;m a comment</span></span>
+<span id="cb9-3"><a href="r-and-rstudio.html#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="do">## I repeat I&#39;m a comment</span></span>
+<span id="cb9-4"><a href="r-and-rstudio.html#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="do">## I am not a cat</span></span>
+<span id="cb9-5"><a href="r-and-rstudio.html#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="do">## OK let&#39;s run some code</span></span>
+<span id="cb9-6"><a href="r-and-rstudio.html#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="r-and-rstudio.html#cb11-1"></a><span class="co">## Hmm maybe I should check this</span></span>
-<span id="cb11-2"><a href="r-and-rstudio.html#cb11-2"></a><span class="co">## @kareem_carr ;-)</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="r-and-rstudio.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Hmm maybe I should check this</span></span>
+<span id="cb11-2"><a href="r-and-rstudio.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="do">## @kareem_carr ;-)</span></span></code></pre></div>
 <p>Now remember when you want to leave your <code>R</code> session you’ll need to <strong>Save</strong> your <em>Script</em> to use it again. To do this go <strong>File</strong> &gt; <strong>Save As</strong> and name your file what you wish (remember too to choose a relevant folder on your computer, or as recommended use the <code>.Rproj</code> set-up as above).</p>
 </div>
 <div id="change-rstudios-appearance" class="section level4 hasAnchor">
@@ -532,7 +533,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

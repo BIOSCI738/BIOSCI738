@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Generalised linear mixed-effects models (GLMMMs) | Advanced Biological Data Analysis</title>
   <meta name="description" content="Generalised linear mixed-effects models (GLMMMs) | Advanced Biological Data Analysis" />
-  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Generalised linear mixed-effects models (GLMMMs) | Advanced Biological Data Analysis" />
   <meta property="og:type" content="book" />
@@ -48,7 +48,6 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
@@ -60,6 +59,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -203,6 +203,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#some-mathematical-notation"><i class="fa fa-check"></i>Some mathematical notation</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#modeling-bill-depth"><i class="fa fa-check"></i>Modeling Bill Depth</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#single-continuous-variable"><i class="fa fa-check"></i>Single continuous variable</a></li>
+<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#a-single-factor-variable"><i class="fa fa-check"></i>A single factor variable</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#one-factor-and-a-continuous-variable"><i class="fa fa-check"></i>One factor and a continuous variable</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#interactions"><i class="fa fa-check"></i>Interactions</a></li>
 </ul></li>
@@ -357,9 +358,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="fitting-a-glmm" class="section level3 hasAnchor">
 <h3>Fitting a GLMM<a href="generalised-linear-mixed-effects-models-glmmms.html#fitting-a-glmm" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The authors of <a href="https://pubmed.ncbi.nlm.nih.gov/31150625/">this paper</a> transplanted gut microbiota from human donors with Autism Spectrum Disorder (ASD) or typically developing (TD) controls into germ-free mice. Faecal samples were collected from three TD and five ASD donors and were used to colonise GF male and female mice from strain C57BL/6LJ. Individuals colonized by the same donor were allowed to breed. Adult offspring mice were behavior tested; tests included marble burying (MB), open-field testing (OFT), and ultrasonic vocalization (USV).</p>
-<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="generalised-linear-mixed-effects-models-glmmms.html#cb328-1"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb328-2"><a href="generalised-linear-mixed-effects-models-glmmms.html#cb328-2"></a>data &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/autism.csv&quot;</span>)</span>
-<span id="cb328-3"><a href="generalised-linear-mixed-effects-models-glmmms.html#cb328-3"></a>data</span></code></pre></div>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="generalised-linear-mixed-effects-models-glmmms.html#cb335-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb335-2"><a href="generalised-linear-mixed-effects-models-glmmms.html#cb335-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/autism.csv&quot;</span>)</span>
+<span id="cb335-3"><a href="generalised-linear-mixed-effects-models-glmmms.html#cb335-3" aria-hidden="true" tabindex="-1"></a>data</span></code></pre></div>
 <pre><code>## # A tibble: 206 × 3
 ##    Donor   Treatment MB_buried
 ##    &lt;chr&gt;   &lt;chr&gt;         &lt;dbl&gt;
@@ -375,9 +376,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10 A24-new ASD Male          7
 ## # … with 196 more rows</code></pre>
 <p>We should separate out the treatment values:</p>
-<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="generalised-linear-mixed-effects-models-glmmms.html#cb330-1"></a>mice &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span></span>
-<span id="cb330-2"><a href="generalised-linear-mixed-effects-models-glmmms.html#cb330-2"></a><span class="st">  </span><span class="kw">separate</span>(., <span class="dt">col =</span> Treatment, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;Diagnosis&quot;</span>, <span class="st">&quot;Sex&quot;</span>))</span>
-<span id="cb330-3"><a href="generalised-linear-mixed-effects-models-glmmms.html#cb330-3"></a>mice</span></code></pre></div>
+<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="generalised-linear-mixed-effects-models-glmmms.html#cb337-1" aria-hidden="true" tabindex="-1"></a>mice <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb337-2"><a href="generalised-linear-mixed-effects-models-glmmms.html#cb337-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(., <span class="at">col =</span> Treatment, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;Diagnosis&quot;</span>, <span class="st">&quot;Sex&quot;</span>))</span>
+<span id="cb337-3"><a href="generalised-linear-mixed-effects-models-glmmms.html#cb337-3" aria-hidden="true" tabindex="-1"></a>mice</span></code></pre></div>
 <pre><code>## # A tibble: 206 × 4
 ##    Donor   Diagnosis Sex    MB_buried
 ##    &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;      &lt;dbl&gt;
@@ -393,8 +394,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10 A24-new ASD       Male           7
 ## # … with 196 more rows</code></pre>
 <p><strong>Recall, using <code>lmer</code> to fit a LMM</strong></p>
-<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="generalised-linear-mixed-effects-models-glmmms.html#cb332-1"></a>lmer &lt;-<span class="st"> </span>lmerTest<span class="op">::</span><span class="kw">lmer</span>(MB_buried <span class="op">~</span><span class="st"> </span>Sex <span class="op">*</span><span class="st"> </span>Diagnosis <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span><span class="op">|</span>Donor), <span class="dt">data =</span> mice)</span>
-<span id="cb332-2"><a href="generalised-linear-mixed-effects-models-glmmms.html#cb332-2"></a>car<span class="op">::</span><span class="kw">Anova</span>(lmer, <span class="dt">type =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="generalised-linear-mixed-effects-models-glmmms.html#cb339-1" aria-hidden="true" tabindex="-1"></a>lmer <span class="ot">&lt;-</span> lmerTest<span class="sc">::</span><span class="fu">lmer</span>(MB_buried <span class="sc">~</span> Sex <span class="sc">*</span> Diagnosis <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>Donor), <span class="at">data =</span> mice)</span>
+<span id="cb339-2"><a href="generalised-linear-mixed-effects-models-glmmms.html#cb339-2" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">Anova</span>(lmer, <span class="at">type =</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## Analysis of Deviance Table (Type II Wald chisquare tests)
 ## 
 ## Response: MB_buried
@@ -405,11 +406,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>But is the constant error variance appropriate? Below we plot the model residuals.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-197-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-201-1.png" width="672" /></p>
 <div id="using-glmer" class="section level4 hasAnchor">
 <h4>Using <code>glmer</code><a href="generalised-linear-mixed-effects-models-glmmms.html#using-glmer" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="generalised-linear-mixed-effects-models-glmmms.html#cb334-1"></a>glmer &lt;-<span class="st"> </span>lme4<span class="op">::</span><span class="kw">glmer</span>(MB_buried <span class="op">~</span><span class="st"> </span>Sex <span class="op">*</span><span class="st"> </span>Diagnosis <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span><span class="op">|</span>Donor), <span class="dt">data =</span> mice, <span class="dt">family =</span> <span class="kw">poisson</span>(<span class="dt">link =</span> <span class="st">&quot;log&quot;</span>))</span>
-<span id="cb334-2"><a href="generalised-linear-mixed-effects-models-glmmms.html#cb334-2"></a>car<span class="op">::</span><span class="kw">Anova</span>(glmer, <span class="dt">type =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="generalised-linear-mixed-effects-models-glmmms.html#cb341-1" aria-hidden="true" tabindex="-1"></a>glmer <span class="ot">&lt;-</span> lme4<span class="sc">::</span><span class="fu">glmer</span>(MB_buried <span class="sc">~</span> Sex <span class="sc">*</span> Diagnosis <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>Donor), <span class="at">data =</span> mice, <span class="at">family =</span> <span class="fu">poisson</span>(<span class="at">link =</span> <span class="st">&quot;log&quot;</span>))</span>
+<span id="cb341-2"><a href="generalised-linear-mixed-effects-models-glmmms.html#cb341-2" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">Anova</span>(glmer, <span class="at">type =</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## Analysis of Deviance Table (Type II Wald chisquare tests)
 ## 
 ## Response: MB_buried
@@ -419,7 +420,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Sex:Diagnosis 12.5904  1  0.0003877 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-199-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-203-1.png" width="672" /></p>
 
 </div>
 </div>
@@ -491,7 +492,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Model diagnostics for a linear model | Advanced Biological Data Analysis</title>
   <meta name="description" content="Model diagnostics for a linear model | Advanced Biological Data Analysis" />
-  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Model diagnostics for a linear model | Advanced Biological Data Analysis" />
   <meta property="og:type" content="book" />
@@ -48,7 +48,6 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
@@ -60,6 +59,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -203,6 +203,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#some-mathematical-notation"><i class="fa fa-check"></i>Some mathematical notation</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#modeling-bill-depth"><i class="fa fa-check"></i>Modeling Bill Depth</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#single-continuous-variable"><i class="fa fa-check"></i>Single continuous variable</a></li>
+<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#a-single-factor-variable"><i class="fa fa-check"></i>A single factor variable</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#one-factor-and-a-continuous-variable"><i class="fa fa-check"></i>One factor and a continuous variable</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#interactions"><i class="fa fa-check"></i>Interactions</a></li>
 </ul></li>
@@ -354,8 +355,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>normality of residuals.</p></li>
 </ul>
 <p>Let’s look at the fit of the <code>slm</code> model (single continuous explanatory variable)</p>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="model-diagnostics-for-a-linear-model.html#cb132-1"></a>gglm<span class="op">::</span><span class="kw">gglm</span>(slm_sp) <span class="co"># Plot the four main diagnostic plots</span></span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-68-1.png" width="672" /></p>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="model-diagnostics-for-a-linear-model.html#cb137-1" aria-hidden="true" tabindex="-1"></a>gglm<span class="sc">::</span><span class="fu">gglm</span>(slm_sp) <span class="co"># Plot the four main diagnostic plots</span></span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-72-1.png" width="672" /></p>
 <p><strong>Residuals vs Fitted</strong> plot</p>
 <p>You are basically looking for no pattern or structure in your residuals (e.g., a “starry” night). You definitely don’t want to see is the scatter increasing around the zero line (dashed line) as the fitted values get bigger (e.g., think of a trumpet, a wedge of cheese, or even a slice of pizza) which would indicate unequal variances (heteroscedacity).</p>
 <p><strong>Normal quantile-quantile (QQ)</strong> plot</p>
@@ -369,7 +370,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3>Marginal predictions<a href="model-diagnostics-for-a-linear-model.html#marginal-predictions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>If the residuals do not show a violation of our model assumptions (let’s just pretend the plots above don’t show anything for concern) we can produce margins plots, which show the marginal effect of a predictor, holding other variables constant.</p>
 <p>The <code>ggpredict()</code> function from the <code>ggeffects</code> package can be used for this:</p>
-<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="model-diagnostics-for-a-linear-model.html#cb133-1"></a>ggeffects<span class="op">::</span><span class="kw">ggpredict</span>(slm_sp, <span class="dt">terms =</span> <span class="st">&quot;species&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="model-diagnostics-for-a-linear-model.html#cb138-1" aria-hidden="true" tabindex="-1"></a>ggeffects<span class="sc">::</span><span class="fu">ggpredict</span>(slm_sp, <span class="at">terms =</span> <span class="st">&quot;species&quot;</span>)</span></code></pre></div>
 <pre><code>## # Predicted values of bill_depth_mm
 ## 
 ## species   | Predicted |         95% CI
@@ -381,15 +382,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Adjusted for:
 ## * bill_length_mm = 43.99</code></pre>
 <p>We can even plot the marginal effects:</p>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="model-diagnostics-for-a-linear-model.html#cb135-1"></a>ggeffects<span class="op">::</span><span class="kw">ggpredict</span>(slm_sp, <span class="dt">terms =</span> <span class="st">&quot;species&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb135-2"><a href="model-diagnostics-for-a-linear-model.html#cb135-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> predicted, <span class="dt">label =</span> <span class="kw">round</span>(predicted, <span class="dv">3</span>))) <span class="op">+</span></span>
-<span id="cb135-3"><a href="model-diagnostics-for-a-linear-model.html#cb135-3"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb135-4"><a href="model-diagnostics-for-a-linear-model.html#cb135-4"></a><span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> conf.low, <span class="dt">ymax =</span> conf.high), <span class="dt">width =</span> <span class="fl">.5</span>) <span class="op">+</span></span>
-<span id="cb135-5"><a href="model-diagnostics-for-a-linear-model.html#cb135-5"></a><span class="st">  </span><span class="kw">geom_text</span>(<span class="dt">hjust =</span> <span class="fl">-.2</span>) <span class="op">+</span></span>
-<span id="cb135-6"><a href="model-diagnostics-for-a-linear-model.html#cb135-6"></a><span class="st">  </span><span class="kw">ylab</span>( <span class="st">&quot;Predicted bill depth (mm)&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="op">+</span></span>
-<span id="cb135-7"><a href="model-diagnostics-for-a-linear-model.html#cb135-7"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Fitted means for each species with 95% CIs&quot;</span>, <span class="dt">subtitle =</span> <span class="st">&quot;Adjusted for bill_length_mm = 43.99&quot;</span>) <span class="op">+</span></span>
-<span id="cb135-8"><a href="model-diagnostics-for-a-linear-model.html#cb135-8"></a><span class="st">  </span><span class="kw">theme_classic</span>()</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-70-1.png" width="672" /></p>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="model-diagnostics-for-a-linear-model.html#cb140-1" aria-hidden="true" tabindex="-1"></a>ggeffects<span class="sc">::</span><span class="fu">ggpredict</span>(slm_sp, <span class="at">terms =</span> <span class="st">&quot;species&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb140-2"><a href="model-diagnostics-for-a-linear-model.html#cb140-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> predicted, <span class="at">label =</span> <span class="fu">round</span>(predicted, <span class="dv">3</span>))) <span class="sc">+</span></span>
+<span id="cb140-3"><a href="model-diagnostics-for-a-linear-model.html#cb140-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb140-4"><a href="model-diagnostics-for-a-linear-model.html#cb140-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> conf.low, <span class="at">ymax =</span> conf.high), <span class="at">width =</span> .<span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb140-5"><a href="model-diagnostics-for-a-linear-model.html#cb140-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">hjust =</span> <span class="sc">-</span>.<span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb140-6"><a href="model-diagnostics-for-a-linear-model.html#cb140-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>( <span class="st">&quot;Predicted bill depth (mm)&quot;</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span></span>
+<span id="cb140-7"><a href="model-diagnostics-for-a-linear-model.html#cb140-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Fitted means for each species with 95% CIs&quot;</span>, <span class="at">subtitle =</span> <span class="st">&quot;Adjusted for bill_length_mm = 43.99&quot;</span>) <span class="sc">+</span></span>
+<span id="cb140-8"><a href="model-diagnostics-for-a-linear-model.html#cb140-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-74-1.png" width="672" /></p>
 </div>
 <div id="model-selection" class="section level3 hasAnchor">
 <h3>Model selection<a href="model-diagnostics-for-a-linear-model.html#model-selection" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -400,7 +401,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>is a nested version of</p>
 <p><span class="math display">\[Y_i = \beta_0 + \beta_1z_i + \beta_2x_i + \epsilon_i\]</span> where <span class="math inline">\(\beta_2\)</span> has been fixed to zero.</p>
 <p>As an example consider testing the single explanatory variable model <code>slm</code> against the same model with species included as a variable <code>slm_sp</code>. To carry out the appropriate hypothesis test in <code>R</code> we can run</p>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="model-diagnostics-for-a-linear-model.html#cb136-1"></a><span class="kw">anova</span>(slm,slm_sp)</span></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="model-diagnostics-for-a-linear-model.html#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(slm,slm_sp)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Model 1: bill_depth_mm ~ bill_length_mm
@@ -413,7 +414,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>As you’ll see the <code>anova()</code> function takes the two model objects (<code>slm</code> and <code>slm_sp</code>) each as arguments. It returns an ANOVA testing whether the more complex model (<code>slm_sp</code>) is just as good at capturing the variation in the data as the simpler model (<code>slm</code>). The returned p-value should be interpreted as in any other hypothesis test. i.e., the probability of observing a statistic as least as extreme under our null hypothesis (here that each model is as good at capturing the variation in the data).</p>
 <p>What would we conclude here? I’d say we have pretty strong evidence against the models being equally good! I’d definitely plump for <code>slm_sp</code> over <code>slm</code>, looking back at the plots above does this make sense?</p>
 <p>Now what about <code>slm_int</code> vs <code>slm_sp</code>?</p>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="model-diagnostics-for-a-linear-model.html#cb138-1"></a><span class="kw">anova</span>(slm_sp,slm_int)</span></code></pre></div>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="model-diagnostics-for-a-linear-model.html#cb143-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(slm_sp,slm_int)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Model 1: bill_depth_mm ~ bill_length_mm + species
@@ -424,15 +425,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>So it seems both models are just as good at capturing the variation in our data: we’re happy with the parallel lines!</p>
 <p>Another way we might compare models is by using the Akaike information criterion (AIC) (you’ll see more of this later in the course). AIC is an estimator of out-of-sample prediction error and can be used as a metric to choose between competing models. Between nested models we’re looking for the smallest AIC (i.e., smallest out-of-sample prediction error). Typically, a difference of 4 or more is considered to indicate an improvement; this should not be taken as writ however, using multiple comparison techniques is advised.</p>
 <p><code>R</code> already has an <code>AIC()</code> function that can be used directly on your <code>lm()</code> model object(s). For example,</p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="model-diagnostics-for-a-linear-model.html#cb140-1"></a><span class="kw">AIC</span>(slm,slm_sp,slm_int)</span></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="model-diagnostics-for-a-linear-model.html#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(slm,slm_sp,slm_int)</span></code></pre></div>
 <pre><code>##         df       AIC
 ## slm      3 1383.4462
 ## slm_sp   5  919.8347
 ## slm_int  7  922.7294</code></pre>
 <p>This backs up what our ANOVA suggested model <code>slm_sp</code> as that preferred! As always it’s important to do a sanity check! Does this make sense? Have a look at the outputs from these models and see what you think.</p>
 <p>Just because we’ve chosen a model (<em>the best of a bad bunch</em> perhaps) this doesn’t let us off the hook. We should check our assumptions</p>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="model-diagnostics-for-a-linear-model.html#cb142-1"></a>gglm<span class="op">::</span><span class="kw">gglm</span>(slm_sp) <span class="co"># Plot the four main diagnostic plots</span></span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-74-1.png" width="672" /></p>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="model-diagnostics-for-a-linear-model.html#cb147-1" aria-hidden="true" tabindex="-1"></a>gglm<span class="sc">::</span><span class="fu">gglm</span>(slm_sp) <span class="co"># Plot the four main diagnostic plots</span></span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-78-1.png" width="672" /></p>
 <p><strong>Residuals vs Fitted</strong> plot: equal spread? Doesn’t look too trumpety!</p>
 <p><strong>Normal quantile-quantile (QQ)</strong> plot: skewed? Maybe slightly right skewed (deviation upwards from the right tail)</p>
 <p><strong>Scale-Location</strong> plot: equal spared? I’d say so.</p>
@@ -506,7 +507,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

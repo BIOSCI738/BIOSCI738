@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Your data and R | Advanced Biological Data Analysis</title>
   <meta name="description" content="Your data and R | Advanced Biological Data Analysis" />
-  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Your data and R | Advanced Biological Data Analysis" />
   <meta property="og:type" content="book" />
@@ -48,7 +48,6 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
@@ -60,6 +59,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -203,6 +203,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#some-mathematical-notation"><i class="fa fa-check"></i>Some mathematical notation</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#modeling-bill-depth"><i class="fa fa-check"></i>Modeling Bill Depth</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#single-continuous-variable"><i class="fa fa-check"></i>Single continuous variable</a></li>
+<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#a-single-factor-variable"><i class="fa fa-check"></i>A single factor variable</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#one-factor-and-a-continuous-variable"><i class="fa fa-check"></i>One factor and a continuous variable</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#interactions"><i class="fa fa-check"></i>Interactions</a></li>
 </ul></li>
@@ -357,15 +358,15 @@ Artwork by <a href="https://github.com/allisonhorst/">@allison_horst</a>
 </p>
 <p><a href="https://www.tidyverse.org/">‘tidyverse’</a> is a collection of <code>R</code> packages that all share underlying design philosophy, grammar, and data structures. They are specifically designed to make data wrangling, manipulation, visualisation, and analysis simpler.</p>
 <p>To install <strong>all</strong> the packages that belong to the <code>tidyverse</code> run</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="your-data-and-r.html#cb14-1"></a><span class="co">## request (download) the tidyverse packages from the centralised library</span></span>
-<span id="cb14-2"><a href="your-data-and-r.html#cb14-2"></a><span class="co">## you only need to do this once per computer :-)</span></span>
-<span id="cb14-3"><a href="your-data-and-r.html#cb14-3"></a><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="your-data-and-r.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="do">## request (download) the tidyverse packages from the centralised library</span></span>
+<span id="cb14-2"><a href="your-data-and-r.html#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="do">## you only need to do this once per computer :-)</span></span>
+<span id="cb14-3"><a href="your-data-and-r.html#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span></code></pre></div>
 <p>To tell your computer to access the <code>tidyverse</code> functionality in your session run (<strong>Note</strong> you’ll have to do this each time you start up an <code>R</code> session):</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="your-data-and-r.html#cb15-1"></a><span class="co">## Get the tidyverse packages from our local library</span></span>
-<span id="cb15-2"><a href="your-data-and-r.html#cb15-2"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb15-3"><a href="your-data-and-r.html#cb15-3"></a><span class="co">## alternatively (does essentially the same thing, </span></span>
-<span id="cb15-4"><a href="your-data-and-r.html#cb15-4"></a><span class="co">## but checks if the package is already loaded first)</span></span>
-<span id="cb15-5"><a href="your-data-and-r.html#cb15-5"></a><span class="kw">require</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="your-data-and-r.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Get the tidyverse packages from our local library</span></span>
+<span id="cb15-2"><a href="your-data-and-r.html#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb15-3"><a href="your-data-and-r.html#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="do">## alternatively (does essentially the same thing, </span></span>
+<span id="cb15-4"><a href="your-data-and-r.html#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="do">## but checks if the package is already loaded first)</span></span>
+<span id="cb15-5"><a href="your-data-and-r.html#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(tidyverse)</span></code></pre></div>
 <p><strong>Note:</strong> If you want to call a function from a specific package then you can use the syntax <code>package_name::function_name</code>. Here the <code>::</code> specifically tells your computer to use the function <code>function_name</code> from the package <code>package_name</code>. This is useful if you only want to use a single function from a package (i.e., you don’t want to load them all), or want to explicitly tell your computer which package to load the function from if there are multiple functions with the same name. See <code>readr::read_csv</code> below for an example of using this syntax. You will also see this in a few places throughout the rest of the notes.</p>
 <div id="reading-in-data-from-a-.csv-file" class="section level3 hasAnchor">
 <h3>Reading in data from a <code>.csv</code> file<a href="your-data-and-r.html#reading-in-data-from-a-.csv-file" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -380,12 +381,12 @@ Artwork by <a href="https://github.com/allisonhorst/">@allison_horst</a>
 <li><p>Download the <code>paua.csv</code> file from my <a href="https://github.com/STATS-UOA/databunker/blob/master/data/paua.csv">online repository</a> into a folder on your local computer. In the <em>Environment</em> pane click <strong>Import Dataset</strong> &gt; ** From Text (readr)** &gt; <strong>Browse</strong> &gt; <em>Choose your file, remembering which folder you downloaded it to. this is where <code>.Rproj</code> is useful</em> &gt; <em>Another pane should pop up, check the data looks as you might expect</em> &gt; <strong>Import</strong></p></li>
 <li><p>Or, you can download directly using the URL (or a any other given path)</p></li>
 </ol>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="your-data-and-r.html#cb16-1"></a>paua &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/paua.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="your-data-and-r.html#cb16-1" aria-hidden="true" tabindex="-1"></a>paua <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/paua.csv&quot;</span>)</span></code></pre></div>
 </div>
 <div id="explore-your-data" class="section level3 hasAnchor">
 <h3>Explore your data<a href="your-data-and-r.html#explore-your-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Let’s have a look at your data in the <em>Console</em></p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="your-data-and-r.html#cb17-1"></a>paua</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="your-data-and-r.html#cb17-1" aria-hidden="true" tabindex="-1"></a>paua</span></code></pre></div>
 <pre><code>## # A tibble: 60 × 3
 ##    Species            Length   Age
 ##    &lt;chr&gt;               &lt;dbl&gt; &lt;dbl&gt;
@@ -401,7 +402,7 @@ Artwork by <a href="https://github.com/allisonhorst/">@allison_horst</a>
 ## 10 Haliotis iris        4.25  5.50
 ## # … with 50 more rows</code></pre>
 <p>Use the <code>glimpse()</code> command for an alternative view</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="your-data-and-r.html#cb19-1"></a><span class="kw">glimpse</span>(paua)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="your-data-and-r.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(paua)</span></code></pre></div>
 <pre><code>## Rows: 60
 ## Columns: 3
 ## $ Species &lt;chr&gt; &quot;Haliotis iris&quot;, &quot;Haliotis australis&quot;, &quot;Haliotis australis&quot;, &quot;…
@@ -419,9 +420,9 @@ Artwork by <a href="https://github.com/allisonhorst/">@allison_horst</a>
 <li>Use the output of this as an input to a function <code>h()</code></li>
 </ul>
 <p>So to calculate the mean <strong>Age</strong> of each <strong>Species</strong> in the <code>paua</code> dataset we would use</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="your-data-and-r.html#cb21-1"></a>paua <span class="op">%&gt;%</span></span>
-<span id="cb21-2"><a href="your-data-and-r.html#cb21-2"></a><span class="st">  </span><span class="kw">group_by</span>(Species) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb21-3"><a href="your-data-and-r.html#cb21-3"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_age =</span> <span class="kw">mean</span>(Age))</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="your-data-and-r.html#cb21-1" aria-hidden="true" tabindex="-1"></a>paua <span class="sc">%&gt;%</span></span>
+<span id="cb21-2"><a href="your-data-and-r.html#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Species) <span class="sc">%&gt;%</span> </span>
+<span id="cb21-3"><a href="your-data-and-r.html#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_age =</span> <span class="fu">mean</span>(Age))</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 2
 ##   Species            mean_age
 ##   &lt;chr&gt;                 &lt;dbl&gt;
@@ -434,12 +435,12 @@ Artwork by <a href="https://github.com/allisonhorst/">@allison_horst</a>
 <li>Use this output and apply the <code>summarize()</code> function to calculate the mean Age of each group (Species), calling the resulting number <code>mean_age</code></li>
 </ul>
 <p>Or to describe my daily routine…</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="your-data-and-r.html#cb23-1"></a>I <span class="op">%&gt;%</span></span>
-<span id="cb23-2"><a href="your-data-and-r.html#cb23-2"></a><span class="st">  </span><span class="kw">wake_up</span>(<span class="dt">time =</span> <span class="st">&quot;later than I should&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb23-3"><a href="your-data-and-r.html#cb23-3"></a><span class="st">  </span><span class="kw">give</span>(<span class="dt">who =</span> <span class="st">&quot;Watson&quot;</span> , <span class="dt">what =</span> <span class="st">&quot;medication&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb23-4"><a href="your-data-and-r.html#cb23-4"></a><span class="st">  </span><span class="kw">make</span>(<span class="dt">who=</span> <span class="st">&quot;myself&quot;</span>, <span class="dt">what =</span> <span class="st">&quot;coffee&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb23-5"><a href="your-data-and-r.html#cb23-5"></a><span class="st">  </span><span class="kw">drink</span>() <span class="op">%&gt;%</span></span>
-<span id="cb23-6"><a href="your-data-and-r.html#cb23-6"></a><span class="st">  </span><span class="kw">try</span>(<span class="kw">remember_what_I_have_on</span>(<span class="dt">date =</span> <span class="st">&quot;today&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="your-data-and-r.html#cb23-1" aria-hidden="true" tabindex="-1"></a>I <span class="sc">%&gt;%</span></span>
+<span id="cb23-2"><a href="your-data-and-r.html#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wake_up</span>(<span class="at">time =</span> <span class="st">&quot;later than I should&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb23-3"><a href="your-data-and-r.html#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">give</span>(<span class="at">who =</span> <span class="st">&quot;Watson&quot;</span> , <span class="at">what =</span> <span class="st">&quot;medication&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb23-4"><a href="your-data-and-r.html#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">make</span>(<span class="at">who=</span> <span class="st">&quot;myself&quot;</span>, <span class="at">what =</span> <span class="st">&quot;coffee&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb23-5"><a href="your-data-and-r.html#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drink</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb23-6"><a href="your-data-and-r.html#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">try</span>(<span class="fu">remember_what_I_have_on</span>(<span class="at">date =</span> <span class="st">&quot;today&quot;</span>))</span></code></pre></div>
 <p><strong>Have a go at writing your own!</strong></p>
 </div>
 </div>
@@ -509,7 +510,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

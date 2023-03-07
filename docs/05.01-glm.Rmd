@@ -120,7 +120,7 @@ library(tidyverse)
 data <- read_delim("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/bird_abundance.csv")
 birds <- data %>%
   dplyr::select(c("OliveFarm","Management","Turdus_merula","Phylloscopus_collybita")) %>%
-  pivot_longer(., c(-OliveFarm, -Management), "Species", values_to = "Count") 
+  pivot_longer(., c(-OliveFarm, -Management), names_to = "Species", values_to = "Count") 
 birds
 ```
 

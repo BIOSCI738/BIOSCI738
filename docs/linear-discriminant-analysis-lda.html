@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Linear Discriminant Analysis (LDA) | Advanced Biological Data Analysis</title>
   <meta name="description" content="Linear Discriminant Analysis (LDA) | Advanced Biological Data Analysis" />
-  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Linear Discriminant Analysis (LDA) | Advanced Biological Data Analysis" />
   <meta property="og:type" content="book" />
@@ -48,7 +48,6 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
@@ -60,6 +59,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -203,6 +203,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#some-mathematical-notation"><i class="fa fa-check"></i>Some mathematical notation</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#modeling-bill-depth"><i class="fa fa-check"></i>Modeling Bill Depth</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#single-continuous-variable"><i class="fa fa-check"></i>Single continuous variable</a></li>
+<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#a-single-factor-variable"><i class="fa fa-check"></i>A single factor variable</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#one-factor-and-a-continuous-variable"><i class="fa fa-check"></i>One factor and a continuous variable</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#interactions"><i class="fa fa-check"></i>Interactions</a></li>
 </ul></li>
@@ -351,11 +352,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>LDA is a supervised learning technique: The main goal is to predict some feature of interest using sing one or more variables (the predictors)</p>
 <div id="example-in-r" class="section level3 hasAnchor">
 <h3>Example in <code>R</code><a href="linear-discriminant-analysis-lda.html#example-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="linear-discriminant-analysis-lda.html#cb393-1"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb393-2"><a href="linear-discriminant-analysis-lda.html#cb393-2"></a>diabetes &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/diabetes.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="linear-discriminant-analysis-lda.html#cb400-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb400-2"><a href="linear-discriminant-analysis-lda.html#cb400-2" aria-hidden="true" tabindex="-1"></a>diabetes <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/diabetes.csv&quot;</span>)</span></code></pre></div>
 <p><strong>The data</strong></p>
-<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="linear-discriminant-analysis-lda.html#cb394-1"></a>diabetes<span class="op">$</span>group &lt;-<span class="st"> </span><span class="kw">factor</span>(diabetes<span class="op">$</span>group)</span>
-<span id="cb394-2"><a href="linear-discriminant-analysis-lda.html#cb394-2"></a>diabetes</span></code></pre></div>
+<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="linear-discriminant-analysis-lda.html#cb401-1" aria-hidden="true" tabindex="-1"></a>diabetes<span class="sc">$</span>group <span class="ot">&lt;-</span> <span class="fu">factor</span>(diabetes<span class="sc">$</span>group)</span>
+<span id="cb401-2"><a href="linear-discriminant-analysis-lda.html#cb401-2" aria-hidden="true" tabindex="-1"></a>diabetes</span></code></pre></div>
 <pre><code>## # A tibble: 144 × 7
 ##       id relwt glufast glutest steady insulin group
 ##    &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;fct&gt;
@@ -371,25 +372,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10    19  0.83      85     296    116      60 3    
 ## # … with 134 more rows</code></pre>
 <p>Some variables can predict group of a patient</p>
-<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="linear-discriminant-analysis-lda.html#cb396-1"></a><span class="kw">ggplot</span>(reshape2<span class="op">::</span><span class="kw">melt</span>(diabetes, <span class="dt">id.vars =</span> <span class="kw">c</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;group&quot;</span>)),</span>
-<span id="cb396-2"><a href="linear-discriminant-analysis-lda.html#cb396-2"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> value, <span class="dt">col =</span> group)) <span class="op">+</span></span>
-<span id="cb396-3"><a href="linear-discriminant-analysis-lda.html#cb396-3"></a><span class="st">  </span><span class="kw">geom_density</span>() <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>( <span class="op">~</span>variable, <span class="dt">ncol =</span> <span class="dv">1</span>, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>) <span class="op">+</span></span>
-<span id="cb396-4"><a href="linear-discriminant-analysis-lda.html#cb396-4"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-243-1.png" width="672" /></p>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="linear-discriminant-analysis-lda.html#cb403-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(reshape2<span class="sc">::</span><span class="fu">melt</span>(diabetes, <span class="at">id.vars =</span> <span class="fu">c</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;group&quot;</span>)),</span>
+<span id="cb403-2"><a href="linear-discriminant-analysis-lda.html#cb403-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> value, <span class="at">col =</span> group)) <span class="sc">+</span></span>
+<span id="cb403-3"><a href="linear-discriminant-analysis-lda.html#cb403-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span> <span class="fu">facet_wrap</span>( <span class="sc">~</span>variable, <span class="at">ncol =</span> <span class="dv">1</span>, <span class="at">scales =</span> <span class="st">&quot;free&quot;</span>) <span class="sc">+</span></span>
+<span id="cb403-4"><a href="linear-discriminant-analysis-lda.html#cb403-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-247-1.png" width="672" /></p>
 <p>Possible classification rules?</p>
-<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="linear-discriminant-analysis-lda.html#cb397-1"></a><span class="kw">ggplot</span>(diabetes, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> insulin, <span class="dt">y =</span> glutest)) <span class="op">+</span></span>
-<span id="cb397-2"><a href="linear-discriminant-analysis-lda.html#cb397-2"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
-<span id="cb397-3"><a href="linear-discriminant-analysis-lda.html#cb397-3"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">colour =</span> group), <span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span></span>
-<span id="cb397-4"><a href="linear-discriminant-analysis-lda.html#cb397-4"></a><span class="st">  </span><span class="kw">labs</span>( <span class="dt">x =</span> <span class="st">&quot;insulin&quot;</span> , <span class="dt">y =</span> <span class="st">&quot;glutest&quot;</span>) <span class="op">+</span></span>
-<span id="cb397-5"><a href="linear-discriminant-analysis-lda.html#cb397-5"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.title =</span> <span class="kw">element_text</span>( <span class="dt">size =</span> <span class="dv">16</span>),</span>
-<span id="cb397-6"><a href="linear-discriminant-analysis-lda.html#cb397-6"></a>        <span class="dt">axis.text  =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">12</span>))</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-244-1.png" width="672" /></p>
+<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="linear-discriminant-analysis-lda.html#cb404-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diabetes, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> insulin, <span class="at">y =</span> glutest)) <span class="sc">+</span></span>
+<span id="cb404-2"><a href="linear-discriminant-analysis-lda.html#cb404-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb404-3"><a href="linear-discriminant-analysis-lda.html#cb404-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> group), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb404-4"><a href="linear-discriminant-analysis-lda.html#cb404-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>( <span class="at">x =</span> <span class="st">&quot;insulin&quot;</span> , <span class="at">y =</span> <span class="st">&quot;glutest&quot;</span>) <span class="sc">+</span></span>
+<span id="cb404-5"><a href="linear-discriminant-analysis-lda.html#cb404-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>( <span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb404-6"><a href="linear-discriminant-analysis-lda.html#cb404-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text  =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-248-1.png" width="672" /></p>
 <div id="carrying-out-lda" class="section level4 hasAnchor">
 <h4>Carrying out LDA<a href="linear-discriminant-analysis-lda.html#carrying-out-lda" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><strong>Some similarity to regression</strong></p>
-<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="linear-discriminant-analysis-lda.html#cb398-1"></a><span class="kw">library</span>(MASS)</span>
-<span id="cb398-2"><a href="linear-discriminant-analysis-lda.html#cb398-2"></a>diabetes_lda  &lt;-<span class="st">  </span><span class="kw">lda</span>(group <span class="op">~</span><span class="st"> </span>insulin <span class="op">+</span><span class="st"> </span>glutest, <span class="dt">data =</span> diabetes)</span>
-<span id="cb398-3"><a href="linear-discriminant-analysis-lda.html#cb398-3"></a>diabetes_lda</span></code></pre></div>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="linear-discriminant-analysis-lda.html#cb405-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb405-2"><a href="linear-discriminant-analysis-lda.html#cb405-2" aria-hidden="true" tabindex="-1"></a>diabetes_lda  <span class="ot">&lt;-</span>  <span class="fu">lda</span>(group <span class="sc">~</span> insulin <span class="sc">+</span> glutest, <span class="at">data =</span> diabetes)</span>
+<span id="cb405-3"><a href="linear-discriminant-analysis-lda.html#cb405-3" aria-hidden="true" tabindex="-1"></a>diabetes_lda</span></code></pre></div>
 <pre><code>## Call:
 ## lda(group ~ insulin + glutest, data = diabetes)
 ## 
@@ -415,7 +416,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><code>diabetes_lda$prior</code> gives the prior probabilities of belonging to each group. By default these reflect the proportions of membership in the data:</li>
 </ul>
-<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="linear-discriminant-analysis-lda.html#cb400-1"></a><span class="kw">prop.table</span>(<span class="kw">table</span>(diabetes<span class="op">$</span>group))</span></code></pre></div>
+<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="linear-discriminant-analysis-lda.html#cb407-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(diabetes<span class="sc">$</span>group))</span></code></pre></div>
 <pre><code>## 
 ##         1         2         3 
 ## 0.2222222 0.2500000 0.5277778</code></pre>
@@ -423,12 +424,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><code>diabetes_lda$mean</code> gives the means of each predictor in each group:</li>
 </ul>
-<p><img src="_main_files/figure-html/unnamed-chunk-247-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-251-1.png" width="672" /></p>
 <ul>
 <li><p><code>Proportion of Trace</code> gives the percentage separation achieved by each discriminant function</p></li>
 <li><p><code>diabetes_lda$scaling</code> contains the linear discriminant functions (i.e., the linear combination of variables giving best separation between groups):</p></li>
 </ul>
-<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="linear-discriminant-analysis-lda.html#cb402-1"></a>diabetes_lda<span class="op">$</span>scaling</span></code></pre></div>
+<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="linear-discriminant-analysis-lda.html#cb409-1" aria-hidden="true" tabindex="-1"></a>diabetes_lda<span class="sc">$</span>scaling</span></code></pre></div>
 <pre><code>##                  LD1         LD2
 ## insulin -0.004463900 -0.01591192
 ## glutest -0.005784238  0.00480830</code></pre>
@@ -438,22 +439,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>LD2: <span class="math inline">\(-0.01591 \times \text{insulin} + 0.00481 \times \text{glutest}\)</span></p></li>
 </ul>
 <p><strong>How well does LDA do on training data?</strong></p>
-<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="linear-discriminant-analysis-lda.html#cb404-1"></a>ghat &lt;-<span class="st"> </span><span class="kw">predict</span>(diabetes_lda)<span class="op">$</span>class</span>
-<span id="cb404-2"><a href="linear-discriminant-analysis-lda.html#cb404-2"></a><span class="kw">table</span>(<span class="dt">prediced =</span> ghat, <span class="dt">observed =</span> diabetes<span class="op">$</span>group)</span></code></pre></div>
+<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb411-1"><a href="linear-discriminant-analysis-lda.html#cb411-1" aria-hidden="true" tabindex="-1"></a>ghat <span class="ot">&lt;-</span> <span class="fu">predict</span>(diabetes_lda)<span class="sc">$</span>class</span>
+<span id="cb411-2"><a href="linear-discriminant-analysis-lda.html#cb411-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="at">prediced =</span> ghat, <span class="at">observed =</span> diabetes<span class="sc">$</span>group)</span></code></pre></div>
 <pre><code>##         observed
 ## prediced  1  2  3
 ##        1 25  0  0
 ##        2  6 24  6
 ##        3  1 12 70</code></pre>
 <p>The missclassification rate is therefore</p>
-<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="linear-discriminant-analysis-lda.html#cb406-1"></a><span class="kw">mean</span>(ghat <span class="op">!=</span><span class="st"> </span>diabetes<span class="op">$</span>group)</span></code></pre></div>
+<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="linear-discriminant-analysis-lda.html#cb413-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(ghat <span class="sc">!=</span> diabetes<span class="sc">$</span>group)</span></code></pre></div>
 <pre><code>## [1] 0.1736111</code></pre>
 </div>
 </div>
 <div id="prediction" class="section level3 hasAnchor">
 <h3>Prediction<a href="linear-discriminant-analysis-lda.html#prediction" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="linear-discriminant-analysis-lda.html#cb408-1"></a>diabetes.pred &lt;-<span class="st"> </span><span class="kw">predict</span>(diabetes_lda)</span>
-<span id="cb408-2"><a href="linear-discriminant-analysis-lda.html#cb408-2"></a><span class="kw">str</span>(diabetes.pred)</span></code></pre></div>
+<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb415-1"><a href="linear-discriminant-analysis-lda.html#cb415-1" aria-hidden="true" tabindex="-1"></a>diabetes.pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(diabetes_lda)</span>
+<span id="cb415-2"><a href="linear-discriminant-analysis-lda.html#cb415-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(diabetes.pred)</span></code></pre></div>
 <pre><code>## List of 3
 ##  $ class    : Factor w/ 3 levels &quot;1&quot;,&quot;2&quot;,&quot;3&quot;: 3 3 3 3 3 3 3 3 3 3 ...
 ##  $ posterior: num [1:144, 1:3] 0.00000104 0.00000106 0.00000247 0.00000326 0.00000477 ...
@@ -474,7 +475,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Every possible point is classified to one of three groups</li>
 <li>The divisions between groups are linear (<strong>Linear</strong> Discriminant Analysis)</li>
 </ul>
-<p><img src="_main_files/figure-html/unnamed-chunk-252-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-256-1.png" width="672" /></p>
 <p>The three ellipses represent the class centres and the covariance matrix of the LDA model. Note there is only <strong>one</strong> covariance matrix, which is the same for all three classes. This results in</p>
 <ul>
 <li>the sizes and orientations of the ellipses being the same for the three classes (only their centres differ)</li>
@@ -483,18 +484,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>A key assumption of LDA is that the correlations between variables are the same in each group (i.e., common covariance matrix).</p>
 <p>Recall that, by default, the prior probabilities are the initial proportions. <strong>What if we set equal prior probabilities?</strong></p>
 <p>The confusion matrix/missclassification rate:</p>
-<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="linear-discriminant-analysis-lda.html#cb410-1"></a>equal.ghat &lt;-<span class="st"> </span><span class="kw">predict</span>(diabetes_lda, <span class="dt">prior =</span> <span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">3</span>)<span class="op">/</span><span class="dv">3</span>)<span class="op">$</span>class</span>
-<span id="cb410-2"><a href="linear-discriminant-analysis-lda.html#cb410-2"></a><span class="kw">table</span>(<span class="dt">predicted =</span> equal.ghat,<span class="dt">observed =</span> diabetes<span class="op">$</span>group)</span></code></pre></div>
+<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb417-1"><a href="linear-discriminant-analysis-lda.html#cb417-1" aria-hidden="true" tabindex="-1"></a>equal.ghat <span class="ot">&lt;-</span> <span class="fu">predict</span>(diabetes_lda, <span class="at">prior =</span> <span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">3</span>)<span class="sc">/</span><span class="dv">3</span>)<span class="sc">$</span>class</span>
+<span id="cb417-2"><a href="linear-discriminant-analysis-lda.html#cb417-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="at">predicted =</span> equal.ghat,<span class="at">observed =</span> diabetes<span class="sc">$</span>group)</span></code></pre></div>
 <pre><code>##          observed
 ## predicted  1  2  3
 ##         1 25  0  0
 ##         2  7 28  9
 ##         3  0  8 67</code></pre>
-<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="linear-discriminant-analysis-lda.html#cb412-1"></a><span class="co">## missclassification rate</span></span>
-<span id="cb412-2"><a href="linear-discriminant-analysis-lda.html#cb412-2"></a><span class="kw">mean</span>(equal.ghat <span class="op">!=</span><span class="st"> </span>diabetes<span class="op">$</span>group)</span></code></pre></div>
+<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="linear-discriminant-analysis-lda.html#cb419-1" aria-hidden="true" tabindex="-1"></a><span class="do">## missclassification rate</span></span>
+<span id="cb419-2"><a href="linear-discriminant-analysis-lda.html#cb419-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(equal.ghat <span class="sc">!=</span> diabetes<span class="sc">$</span>group)</span></code></pre></div>
 <pre><code>## [1] 0.1666667</code></pre>
 <p>There are now 8 cases classified as Group 3 with prior weights classified as Group 2 with equal weights <span class="math inline">\(\rightarrow\)</span> bias towards group with larger initial size.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-254-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-258-1.png" width="672" /></p>
 
 </div>
 </div>
@@ -565,7 +566,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

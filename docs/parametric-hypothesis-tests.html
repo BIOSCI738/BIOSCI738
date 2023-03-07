@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Parametric hypothesis tests | Advanced Biological Data Analysis</title>
   <meta name="description" content="Parametric hypothesis tests | Advanced Biological Data Analysis" />
-  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Parametric hypothesis tests | Advanced Biological Data Analysis" />
   <meta property="og:type" content="book" />
@@ -48,7 +48,6 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
@@ -60,6 +59,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -203,6 +203,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#some-mathematical-notation"><i class="fa fa-check"></i>Some mathematical notation</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#modeling-bill-depth"><i class="fa fa-check"></i>Modeling Bill Depth</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#single-continuous-variable"><i class="fa fa-check"></i>Single continuous variable</a></li>
+<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#a-single-factor-variable"><i class="fa fa-check"></i>A single factor variable</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#one-factor-and-a-continuous-variable"><i class="fa fa-check"></i>One factor and a continuous variable</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#interactions"><i class="fa fa-check"></i>Interactions</a></li>
 </ul></li>
@@ -355,9 +356,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>Species</code> of P<span class="math inline">\(\overline{\text{a}}\)</span>ua: <em>Haliotis iris</em> (typically found in NZ) and
 <em>Haliotis australis</em> (less commonly found in NZ)</li>
 </ul>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="parametric-hypothesis-tests.html#cb81-1"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb81-2"><a href="parametric-hypothesis-tests.html#cb81-2"></a>paua &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/paua.csv&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="parametric-hypothesis-tests.html#cb82-1"></a><span class="kw">glimpse</span>(paua)</span></code></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="parametric-hypothesis-tests.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb81-2"><a href="parametric-hypothesis-tests.html#cb81-2" aria-hidden="true" tabindex="-1"></a>paua <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/paua.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="parametric-hypothesis-tests.html#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(paua)</span></code></pre></div>
 <pre><code>## Rows: 60
 ## Columns: 3
 ## $ Species &lt;chr&gt; &quot;Haliotis iris&quot;, &quot;Haliotis australis&quot;, &quot;Haliotis australis&quot;, &quot;…
@@ -366,7 +367,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="one-sample-t-test" class="section level3 hasAnchor">
 <h3>One-Sample t-test<a href="parametric-hypothesis-tests.html#one-sample-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Using a violin plot we can look at the distribution of shell <code>Length</code>. We can calculate the average <code>Length</code> of all shells in our sample</p>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="parametric-hypothesis-tests.html#cb84-1"></a>paua <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">average_length =</span> <span class="kw">mean</span>(Length))</span></code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="parametric-hypothesis-tests.html#cb84-1" aria-hidden="true" tabindex="-1"></a>paua <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">average_length =</span> <span class="fu">mean</span>(Length))</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 1
 ##   average_length
 ##            &lt;dbl&gt;
@@ -381,36 +382,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <img src="https://raw.githubusercontent.com/cmjt/statbiscuits/master/figs_n_gifs/var.gif" />
 </p>
 <p>So using the example values in the GIF</p>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="parametric-hypothesis-tests.html#cb86-1"></a><span class="co">## our sample of values</span></span>
-<span id="cb86-2"><a href="parametric-hypothesis-tests.html#cb86-2"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">9</span>)</span>
-<span id="cb86-3"><a href="parametric-hypothesis-tests.html#cb86-3"></a><span class="co">## sample mean</span></span>
-<span id="cb86-4"><a href="parametric-hypothesis-tests.html#cb86-4"></a>sample_mean &lt;-<span class="st"> </span><span class="kw">mean</span>(x)</span>
-<span id="cb86-5"><a href="parametric-hypothesis-tests.html#cb86-5"></a>sample_mean</span></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="parametric-hypothesis-tests.html#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="do">## our sample of values</span></span>
+<span id="cb86-2"><a href="parametric-hypothesis-tests.html#cb86-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">9</span>)</span>
+<span id="cb86-3"><a href="parametric-hypothesis-tests.html#cb86-3" aria-hidden="true" tabindex="-1"></a><span class="do">## sample mean</span></span>
+<span id="cb86-4"><a href="parametric-hypothesis-tests.html#cb86-4" aria-hidden="true" tabindex="-1"></a>sample_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
+<span id="cb86-5"><a href="parametric-hypothesis-tests.html#cb86-5" aria-hidden="true" tabindex="-1"></a>sample_mean</span></code></pre></div>
 <pre><code>## [1] 4.333333</code></pre>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="parametric-hypothesis-tests.html#cb88-1"></a><span class="co">## distance from mean for each value</span></span>
-<span id="cb88-2"><a href="parametric-hypothesis-tests.html#cb88-2"></a>distance_from_mean &lt;-<span class="st"> </span>x <span class="op">-</span><span class="st"> </span>sample_mean</span>
-<span id="cb88-3"><a href="parametric-hypothesis-tests.html#cb88-3"></a>distance_from_mean</span></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="parametric-hypothesis-tests.html#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="do">## distance from mean for each value</span></span>
+<span id="cb88-2"><a href="parametric-hypothesis-tests.html#cb88-2" aria-hidden="true" tabindex="-1"></a>distance_from_mean <span class="ot">&lt;-</span> x <span class="sc">-</span> sample_mean</span>
+<span id="cb88-3"><a href="parametric-hypothesis-tests.html#cb88-3" aria-hidden="true" tabindex="-1"></a>distance_from_mean</span></code></pre></div>
 <pre><code>## [1] -3.3333333 -2.3333333 -1.3333333  0.6666667  1.6666667  4.6666667</code></pre>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="parametric-hypothesis-tests.html#cb90-1"></a><span class="co">## squared distance from mean for each value</span></span>
-<span id="cb90-2"><a href="parametric-hypothesis-tests.html#cb90-2"></a>squared_distance_from_mean &lt;-<span class="st"> </span>distance_from_mean<span class="op">^</span><span class="dv">2</span></span>
-<span id="cb90-3"><a href="parametric-hypothesis-tests.html#cb90-3"></a>squared_distance_from_mean</span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="parametric-hypothesis-tests.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="do">## squared distance from mean for each value</span></span>
+<span id="cb90-2"><a href="parametric-hypothesis-tests.html#cb90-2" aria-hidden="true" tabindex="-1"></a>squared_distance_from_mean <span class="ot">&lt;-</span> distance_from_mean<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb90-3"><a href="parametric-hypothesis-tests.html#cb90-3" aria-hidden="true" tabindex="-1"></a>squared_distance_from_mean</span></code></pre></div>
 <pre><code>## [1] 11.1111111  5.4444444  1.7777778  0.4444444  2.7777778 21.7777778</code></pre>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="parametric-hypothesis-tests.html#cb92-1"></a><span class="co">## sum of the squared distances</span></span>
-<span id="cb92-2"><a href="parametric-hypothesis-tests.html#cb92-2"></a><span class="kw">sum</span>(squared_distance_from_mean)</span></code></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="parametric-hypothesis-tests.html#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="do">## sum of the squared distances</span></span>
+<span id="cb92-2"><a href="parametric-hypothesis-tests.html#cb92-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(squared_distance_from_mean)</span></code></pre></div>
 <pre><code>## [1] 43.33333</code></pre>
 <p><strong>Calculating SD and SEM</strong></p>
 <p>Now what about the <strong>SD</strong>? Remember it’s the <span class="math inline">\(\sqrt{\frac{\Sigma_{i = 1}^n(x_i - \bar{x})^2}{n-1}}\)</span> so = <span class="math inline">\(\sqrt{\frac{43.3333333}{n-1}}\)</span> = <span class="math inline">\(\sqrt{\frac{43.3333333}{6-1}}\)</span> = <span class="math inline">\(\sqrt{\frac{43.3333333}{5}}\)</span> = 2.9439203.</p>
 <p>Or we could just use <code>R</code>’s <code>sd()</code> function</p>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="parametric-hypothesis-tests.html#cb94-1"></a><span class="kw">sd</span>(x)</span></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="parametric-hypothesis-tests.html#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(x)</span></code></pre></div>
 <pre><code>## [1] 2.94392</code></pre>
 <p>So the <strong>SEM</strong> is <span class="math inline">\(\frac{\text{SD}}{\sqrt{n}}\)</span> = <span class="math inline">\(\frac{2.9439203}{\sqrt{6}}\)</span></p>
 <p>In <code>R</code></p>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="parametric-hypothesis-tests.html#cb96-1"></a><span class="kw">sd</span>(x)<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">length</span>(x))</span></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="parametric-hypothesis-tests.html#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(x)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">length</span>(x))</span></code></pre></div>
 <pre><code>## [1] 1.20185</code></pre>
 <p>For the <code>paua</code> data we can simply use the in-built functions in <code>R</code> to calculate the SEM</p>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="parametric-hypothesis-tests.html#cb98-1"></a>sem &lt;-<span class="st"> </span>paua <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(Length),</span>
-<span id="cb98-2"><a href="parametric-hypothesis-tests.html#cb98-2"></a>                   <span class="dt">sem =</span> <span class="kw">sd</span>(Length)<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">length</span>(Length)))</span>
-<span id="cb98-3"><a href="parametric-hypothesis-tests.html#cb98-3"></a>sem</span></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="parametric-hypothesis-tests.html#cb98-1" aria-hidden="true" tabindex="-1"></a>sem <span class="ot">&lt;-</span> paua <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">mean =</span> <span class="fu">mean</span>(Length),</span>
+<span id="cb98-2"><a href="parametric-hypothesis-tests.html#cb98-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">sem =</span> <span class="fu">sd</span>(Length)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">length</span>(Length)))</span>
+<span id="cb98-3"><a href="parametric-hypothesis-tests.html#cb98-3" aria-hidden="true" tabindex="-1"></a>sem</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 2
 ##    mean   sem
 ##   &lt;dbl&gt; &lt;dbl&gt;
@@ -447,10 +448,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Under our null hypothesis the distribution of the t-statistic is as below. The one calculated from our hypothesis test was 1.2391. Now, remember that our alternative hypotheses was <span class="math inline">\(H_1: \mu \neq 5\)</span> so we have to consider both sides of the inequality; hence, anything as least as extreme is either <span class="math inline">\(&gt; 1.2391\)</span> or <span class="math inline">\(&lt; -1.2391\)</span> to our observed statistic (vertical lines). Anything as least as extreme is therefore given by the grey shaded areas.</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
 <p>We can calculate the p-value using the <code>pt()</code> function (where <code>q</code> is our calculated t-statistic, and <code>df</code> are the degrees of freedom from above):</p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="parametric-hypothesis-tests.html#cb100-1"></a><span class="dv">2</span><span class="op">*</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pt</span>(<span class="dt">q  =</span> <span class="fl">1.2391</span>,<span class="dt">df =</span> <span class="dv">59</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="parametric-hypothesis-tests.html#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pt</span>(<span class="at">q  =</span> <span class="fl">1.2391</span>,<span class="at">df =</span> <span class="dv">59</span>))</span></code></pre></div>
 <pre><code>## [1] 0.2202152</code></pre>
 <p>Or we could do all of the above in one step using <code>R</code></p>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="parametric-hypothesis-tests.html#cb102-1"></a><span class="kw">t.test</span>(paua<span class="op">$</span>Length, <span class="dt">mu =</span> <span class="dv">5</span> )</span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="parametric-hypothesis-tests.html#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(paua<span class="sc">$</span>Length, <span class="at">mu =</span> <span class="dv">5</span> )</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -483,9 +484,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>Let us now <strong>calculate the test statistic:</strong> t-statistic = <span class="math inline">\(\frac{\bar{x}_{\text{difference}} - \mu}{\text{SED}}\)</span> = <span class="math inline">\(\frac{\bar{x}_{\text{difference}} - 0}{\text{SED}}n\)</span> where <span class="math inline">\(\bar{x}_{\text{difference}}\)</span> is the differences between the species` averages.</p>
 <p>Calculations area a little bit more tricky here so let’s use <code>R</code>:</p>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="parametric-hypothesis-tests.html#cb104-1"></a>test &lt;-<span class="st"> </span><span class="kw">t.test</span>(Length <span class="op">~</span><span class="st"> </span>Species, <span class="dt">data =</span> paua)</span>
-<span id="cb104-2"><a href="parametric-hypothesis-tests.html#cb104-2"></a><span class="co">## printing out the result</span></span>
-<span id="cb104-3"><a href="parametric-hypothesis-tests.html#cb104-3"></a>test</span></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="parametric-hypothesis-tests.html#cb104-1" aria-hidden="true" tabindex="-1"></a>test <span class="ot">&lt;-</span> <span class="fu">t.test</span>(Length <span class="sc">~</span> Species, <span class="at">data =</span> paua)</span>
+<span id="cb104-2"><a href="parametric-hypothesis-tests.html#cb104-2" aria-hidden="true" tabindex="-1"></a><span class="do">## printing out the result</span></span>
+<span id="cb104-3"><a href="parametric-hypothesis-tests.html#cb104-3" aria-hidden="true" tabindex="-1"></a>test</span></code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
@@ -497,7 +498,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## sample estimates:
 ## mean in group Haliotis australis      mean in group Haliotis iris 
 ##                         5.766667                         4.809722</code></pre>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="parametric-hypothesis-tests.html#cb106-1"></a>test<span class="op">$</span>p.value</span></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="parametric-hypothesis-tests.html#cb106-1" aria-hidden="true" tabindex="-1"></a>test<span class="sc">$</span>p.value</span></code></pre></div>
 <pre><code>## [1] 0.0007956853</code></pre>
 <p>Listed are the t-statistic, <code>t</code> = 3.5403636 and the p-value, <code>p-value</code> = 7.96^{-4} for the hypothesis test outlined above. What would you conclude?</p>
 </div>
@@ -656,7 +657,7 @@ S
 </tbody>
 </table>
 <p>To read the data directly into <code>R</code> you can use</p>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="parametric-hypothesis-tests.html#cb108-1"></a>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/crd_rats_data.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="parametric-hypothesis-tests.html#cb108-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/crd_rats_data.csv&quot;</span>)</span></code></pre></div>
 <div id="between-group-ss-ssb" class="section level5 hasAnchor">
 <h5>Between group SS (SSB)<a href="parametric-hypothesis-tests.html#between-group-ss-ssb" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p><strong>The idea</strong>: Assess <strong>distances</strong> between treatment (<em>surgical condition</em>) means relative to our uncertainty about the actual (<em>true</em>) treatment means.</p>
@@ -705,12 +706,12 @@ S
 <h5>Inference<a href="parametric-hypothesis-tests.html#inference" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>Hypothesis: We test the Null hypothesis, <span class="math inline">\(H_0\)</span>, population (<code>Surgery</code>) means are the same on average verses the alternative hypothesis, <span class="math inline">\(H_1\)</span>, that <strong>at least one</strong> differs from the others!</p>
 <p>Under our null hypothesis the distribution of the F-statistic is as below. The value calculated from our hypothesis test was 16.359. This observed test statistic is shown by the vertical line. To calculate the relevant p-value we can use</p>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="parametric-hypothesis-tests.html#cb109-1"></a>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pf</span>(<span class="dt">q  =</span> <span class="fl">16.351</span>,<span class="dt">df1 =</span> <span class="dv">2</span>, <span class="dt">df2 =</span> <span class="dv">9</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="parametric-hypothesis-tests.html#cb109-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pf</span>(<span class="at">q  =</span> <span class="fl">16.351</span>,<span class="at">df1 =</span> <span class="dv">2</span>, <span class="at">df2 =</span> <span class="dv">9</span>))</span></code></pre></div>
 <pre><code>## [1] 0.001007825</code></pre>
 <p>Thus, the probability of getting an <strong>F-statistic</strong> at least as extreme as the one we observe (think of the area under the tails of the curve below) <strong>p-value</strong> Pr(&gt;F)= 0.001 tells us we have sufficient evidence to reject <span class="math inline">\(H_0\)</span> at the 1% level of significance.</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
 <p>Alternatively, we could do this in one step <strong>using <code>aov()</code>:</strong></p>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="parametric-hypothesis-tests.html#cb111-1"></a><span class="kw">summary</span>(<span class="kw">aov</span>(logAUC <span class="op">~</span><span class="st"> </span>Surgery, <span class="dt">data =</span> rats))</span></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="parametric-hypothesis-tests.html#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">aov</span>(logAUC <span class="sc">~</span> Surgery, <span class="at">data =</span> rats))</span></code></pre></div>
 <pre><code>##             Df Sum Sq Mean Sq F value  Pr(&gt;F)   
 ## Surgery      2 22.026  11.013   16.36 0.00101 **
 ## Residuals    9  6.059   0.673                   
@@ -786,7 +787,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

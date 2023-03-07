@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Bootstrap resampling | Advanced Biological Data Analysis</title>
   <meta name="description" content="Bootstrap resampling | Advanced Biological Data Analysis" />
-  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Bootstrap resampling | Advanced Biological Data Analysis" />
   <meta property="og:type" content="book" />
@@ -48,7 +48,6 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
@@ -60,6 +59,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -203,6 +203,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#some-mathematical-notation"><i class="fa fa-check"></i>Some mathematical notation</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#modeling-bill-depth"><i class="fa fa-check"></i>Modeling Bill Depth</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#single-continuous-variable"><i class="fa fa-check"></i>Single continuous variable</a></li>
+<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#a-single-factor-variable"><i class="fa fa-check"></i>A single factor variable</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#one-factor-and-a-continuous-variable"><i class="fa fa-check"></i>One factor and a continuous variable</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#interactions"><i class="fa fa-check"></i>Interactions</a></li>
 </ul></li>
@@ -353,56 +354,56 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="example-constructing-bootstrap-confidence-intervals" class="section level3 hasAnchor">
 <h3>Example: constructing bootstrap confidence intervals<a href="bootstrap-resampling.html#example-constructing-bootstrap-confidence-intervals" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><strong>Old faithful</strong> is a gyser located in Yellowstone National Park, Wyoming. Below is a histogram of the duration of 299 consecutive eruptions. Clearly the distribution is bimodal (has two modes)!</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="bootstrap-resampling.html#cb52-1"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb52-2"><a href="bootstrap-resampling.html#cb52-2"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> MASS<span class="op">::</span>geyser, <span class="kw">aes</span>(<span class="dt">x =</span> duration)) <span class="op">+</span></span>
-<span id="cb52-3"><a href="bootstrap-resampling.html#cb52-3"></a><span class="st">  </span><span class="kw">geom_histogram</span>() <span class="op">+</span></span>
-<span id="cb52-4"><a href="bootstrap-resampling.html#cb52-4"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Duration of eruptions (m)&quot;</span>) <span class="op">+</span></span>
-<span id="cb52-5"><a href="bootstrap-resampling.html#cb52-5"></a><span class="st">  </span><span class="kw">theme_linedraw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="bootstrap-resampling.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb52-2"><a href="bootstrap-resampling.html#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> MASS<span class="sc">::</span>geyser, <span class="fu">aes</span>(<span class="at">x =</span> duration)) <span class="sc">+</span></span>
+<span id="cb52-3"><a href="bootstrap-resampling.html#cb52-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
+<span id="cb52-4"><a href="bootstrap-resampling.html#cb52-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Duration of eruptions (m)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb52-5"><a href="bootstrap-resampling.html#cb52-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_linedraw</span>()</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
 <p><strong>Step 1:</strong> Calculating the observed mean eruption duration time:</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="bootstrap-resampling.html#cb53-1"></a>mean &lt;-<span class="st"> </span>MASS<span class="op">::</span>geyser <span class="op">%&gt;%</span></span>
-<span id="cb53-2"><a href="bootstrap-resampling.html#cb53-2"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(duration))</span>
-<span id="cb53-3"><a href="bootstrap-resampling.html#cb53-3"></a>mean</span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="bootstrap-resampling.html#cb53-1" aria-hidden="true" tabindex="-1"></a>mean <span class="ot">&lt;-</span> MASS<span class="sc">::</span>geyser <span class="sc">%&gt;%</span></span>
+<span id="cb53-2"><a href="bootstrap-resampling.html#cb53-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean =</span> <span class="fu">mean</span>(duration))</span>
+<span id="cb53-3"><a href="bootstrap-resampling.html#cb53-3" aria-hidden="true" tabindex="-1"></a>mean</span></code></pre></div>
 <pre><code>##       mean
 ## 1 3.460814</code></pre>
 <p><strong>Step 2:</strong> Construct bootstrap distribution</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="bootstrap-resampling.html#cb55-1"></a><span class="co">## Number of times I want to bootstrap</span></span>
-<span id="cb55-2"><a href="bootstrap-resampling.html#cb55-2"></a>nreps &lt;-<span class="st"> </span><span class="dv">1000</span>   </span>
-<span id="cb55-3"><a href="bootstrap-resampling.html#cb55-3"></a><span class="co">## initialize empty array to hold results</span></span>
-<span id="cb55-4"><a href="bootstrap-resampling.html#cb55-4"></a>bootstrap_means &lt;-<span class="st"> </span><span class="kw">numeric</span>(nreps)</span>
-<span id="cb55-5"><a href="bootstrap-resampling.html#cb55-5"></a><span class="kw">set.seed</span>(<span class="dv">1234</span>) <span class="co">## *****Remove this line for actual analyses*****</span></span>
-<span id="cb55-6"><a href="bootstrap-resampling.html#cb55-6"></a><span class="co">## This means that each run with produce the same results and</span></span>
-<span id="cb55-7"><a href="bootstrap-resampling.html#cb55-7"></a><span class="co">## agree with the printout that I show.</span></span>
-<span id="cb55-8"><a href="bootstrap-resampling.html#cb55-8"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>nreps) {</span>
-<span id="cb55-9"><a href="bootstrap-resampling.html#cb55-9"></a>  <span class="co">## bootstrap. note with replacement</span></span>
-<span id="cb55-10"><a href="bootstrap-resampling.html#cb55-10"></a>  bootstrap_sample &lt;-<span class="st"> </span><span class="kw">sample</span>(MASS<span class="op">::</span>geyser<span class="op">$</span>duration, <span class="dt">replace =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb55-11"><a href="bootstrap-resampling.html#cb55-11"></a>  <span class="co">##  bootstrapped mean resample</span></span>
-<span id="cb55-12"><a href="bootstrap-resampling.html#cb55-12"></a>  bootstrap_means[i] &lt;-<span class="st"> </span><span class="kw">mean</span>(bootstrap_sample)</span>
-<span id="cb55-13"><a href="bootstrap-resampling.html#cb55-13"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="bootstrap-resampling.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Number of times I want to bootstrap</span></span>
+<span id="cb55-2"><a href="bootstrap-resampling.html#cb55-2" aria-hidden="true" tabindex="-1"></a>nreps <span class="ot">&lt;-</span> <span class="dv">1000</span>   </span>
+<span id="cb55-3"><a href="bootstrap-resampling.html#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="do">## initialize empty array to hold results</span></span>
+<span id="cb55-4"><a href="bootstrap-resampling.html#cb55-4" aria-hidden="true" tabindex="-1"></a>bootstrap_means <span class="ot">&lt;-</span> <span class="fu">numeric</span>(nreps)</span>
+<span id="cb55-5"><a href="bootstrap-resampling.html#cb55-5" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>) <span class="do">## *****Remove this line for actual analyses*****</span></span>
+<span id="cb55-6"><a href="bootstrap-resampling.html#cb55-6" aria-hidden="true" tabindex="-1"></a><span class="do">## This means that each run with produce the same results and</span></span>
+<span id="cb55-7"><a href="bootstrap-resampling.html#cb55-7" aria-hidden="true" tabindex="-1"></a><span class="do">## agree with the printout that I show.</span></span>
+<span id="cb55-8"><a href="bootstrap-resampling.html#cb55-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>nreps) {</span>
+<span id="cb55-9"><a href="bootstrap-resampling.html#cb55-9" aria-hidden="true" tabindex="-1"></a>  <span class="do">## bootstrap. note with replacement</span></span>
+<span id="cb55-10"><a href="bootstrap-resampling.html#cb55-10" aria-hidden="true" tabindex="-1"></a>  bootstrap_sample <span class="ot">&lt;-</span> <span class="fu">sample</span>(MASS<span class="sc">::</span>geyser<span class="sc">$</span>duration, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb55-11"><a href="bootstrap-resampling.html#cb55-11" aria-hidden="true" tabindex="-1"></a>  <span class="do">##  bootstrapped mean resample</span></span>
+<span id="cb55-12"><a href="bootstrap-resampling.html#cb55-12" aria-hidden="true" tabindex="-1"></a>  bootstrap_means[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(bootstrap_sample)</span>
+<span id="cb55-13"><a href="bootstrap-resampling.html#cb55-13" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p><strong>Step 3:</strong> Collate the sampling distribution</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="bootstrap-resampling.html#cb56-1"></a><span class="co">## results</span></span>
-<span id="cb56-2"><a href="bootstrap-resampling.html#cb56-2"></a>results &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">bootstrap_means =</span> bootstrap_means)</span>
-<span id="cb56-3"><a href="bootstrap-resampling.html#cb56-3"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> results, <span class="kw">aes</span>(<span class="dt">x =</span> bootstrap_means)) <span class="op">+</span></span>
-<span id="cb56-4"><a href="bootstrap-resampling.html#cb56-4"></a><span class="st">  </span><span class="kw">geom_histogram</span>() <span class="op">+</span></span>
-<span id="cb56-5"><a href="bootstrap-resampling.html#cb56-5"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="kw">as.numeric</span>(mean)) <span class="op">+</span></span>
-<span id="cb56-6"><a href="bootstrap-resampling.html#cb56-6"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Sampling distribution of the mean&quot;</span>) <span class="op">+</span></span>
-<span id="cb56-7"><a href="bootstrap-resampling.html#cb56-7"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Bootstrap means&quot;</span>)  <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_classic</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="bootstrap-resampling.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="do">## results</span></span>
+<span id="cb56-2"><a href="bootstrap-resampling.html#cb56-2" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">bootstrap_means =</span> bootstrap_means)</span>
+<span id="cb56-3"><a href="bootstrap-resampling.html#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> results, <span class="fu">aes</span>(<span class="at">x =</span> bootstrap_means)) <span class="sc">+</span></span>
+<span id="cb56-4"><a href="bootstrap-resampling.html#cb56-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
+<span id="cb56-5"><a href="bootstrap-resampling.html#cb56-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">as.numeric</span>(mean)) <span class="sc">+</span></span>
+<span id="cb56-6"><a href="bootstrap-resampling.html#cb56-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Sampling distribution of the mean&quot;</span>) <span class="sc">+</span></span>
+<span id="cb56-7"><a href="bootstrap-resampling.html#cb56-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Bootstrap means&quot;</span>)  <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span> <span class="fu">theme_classic</span>()</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
 <p><strong>Step 4:</strong> Calculate quantities of interest from the sampling distribution</p>
 <ol style="list-style-type: decimal">
 <li>The <strong>bootstrap estimate of bias</strong> is the difference between the mean of the bootstrap distribution and the value of the statistic in the original sample:</li>
 </ol>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="bootstrap-resampling.html#cb57-1"></a>bias &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(mean) <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(results<span class="op">$</span>bootstrap_means)</span>
-<span id="cb57-2"><a href="bootstrap-resampling.html#cb57-2"></a>bias</span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="bootstrap-resampling.html#cb57-1" aria-hidden="true" tabindex="-1"></a>bias <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(mean) <span class="sc">-</span> <span class="fu">mean</span>(results<span class="sc">$</span>bootstrap_means)</span>
+<span id="cb57-2"><a href="bootstrap-resampling.html#cb57-2" aria-hidden="true" tabindex="-1"></a>bias</span></code></pre></div>
 <pre><code>## [1] 0.001200111</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>The <strong>bootstrap standard error of a statistic</strong> is the standard deviation of its bootstrap distribution:</li>
 </ol>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="bootstrap-resampling.html#cb59-1"></a><span class="kw">sd</span>(results<span class="op">$</span>bootstrap_means)</span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="bootstrap-resampling.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(results<span class="sc">$</span>bootstrap_means)</span></code></pre></div>
 <pre><code>## [1] 0.06740607</code></pre>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="bootstrap-resampling.html#cb61-1"></a><span class="co">## compare to SEM of original data</span></span>
-<span id="cb61-2"><a href="bootstrap-resampling.html#cb61-2"></a> MASS<span class="op">::</span>geyser <span class="op">%&gt;%</span></span>
-<span id="cb61-3"><a href="bootstrap-resampling.html#cb61-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">sem =</span> <span class="kw">sd</span>(duration)<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">length</span>(duration)))</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="bootstrap-resampling.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="do">## compare to SEM of original data</span></span>
+<span id="cb61-2"><a href="bootstrap-resampling.html#cb61-2" aria-hidden="true" tabindex="-1"></a> MASS<span class="sc">::</span>geyser <span class="sc">%&gt;%</span></span>
+<span id="cb61-3"><a href="bootstrap-resampling.html#cb61-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">sem =</span> <span class="fu">sd</span>(duration)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">length</span>(duration)))</span></code></pre></div>
 <pre><code>##          sem
 ## 1 0.06638498</code></pre>
 <ol start="3" style="list-style-type: decimal">
@@ -410,13 +411,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <p><span class="math display">\[\text{statistic} \pm t^* \text{SE}_\text{bootstrap}\]</span> where <span class="math inline">\(t*\)</span> is the critical value of the <span class="math inline">\(t_{n-1}\)</span> distribution with area <span class="math inline">\(C\)</span> between <span class="math inline">\(-t^*\)</span> and <span class="math inline">\(t^*\)</span>.</p>
 <p>For <span class="math inline">\(C = 0.95\)</span>:</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="bootstrap-resampling.html#cb63-1"></a><span class="kw">as.numeric</span>(mean) <span class="op">+</span><span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>) <span class="op">*</span><span class="st"> </span><span class="kw">qt</span>(<span class="fl">0.975</span>,<span class="dv">298</span>)<span class="op">*</span><span class="kw">sd</span>(results<span class="op">$</span>bootstrap_means)</span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="bootstrap-resampling.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(mean) <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>) <span class="sc">*</span> <span class="fu">qt</span>(<span class="fl">0.975</span>,<span class="dv">298</span>)<span class="sc">*</span><span class="fu">sd</span>(results<span class="sc">$</span>bootstrap_means)</span></code></pre></div>
 <pre><code>## [1] 3.328162 3.593466</code></pre>
 <p>So our 95% confidence interval is 3.3 to 3.6.</p>
 <ol start="4" style="list-style-type: decimal">
 <li>A <strong>bootstrap <span class="math inline">\(percentile\)</span> confidence interval</strong>. Use the bootstrap distribution itself to determine the limits of the confidence interval by taking the limits of the sorted, central <span class="math inline">\(C\)</span> bulk of the distribution. For <span class="math inline">\(C = 0.95\)</span>:</li>
 </ol>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="bootstrap-resampling.html#cb65-1"></a><span class="kw">sort</span>(results<span class="op">$</span>bootstrap_means)[<span class="kw">c</span>(<span class="dv">25</span>,<span class="dv">975</span>)]</span></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="bootstrap-resampling.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(results<span class="sc">$</span>bootstrap_means)[<span class="fu">c</span>(<span class="dv">25</span>,<span class="dv">975</span>)]</span></code></pre></div>
 <pre><code>## [1] 3.328428 3.591081</code></pre>
 </div>
 </div>
@@ -486,7 +487,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

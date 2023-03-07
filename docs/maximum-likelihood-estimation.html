@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Maximum likelihood estimation | Advanced Biological Data Analysis</title>
   <meta name="description" content="Maximum likelihood estimation | Advanced Biological Data Analysis" />
-  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Maximum likelihood estimation | Advanced Biological Data Analysis" />
   <meta property="og:type" content="book" />
@@ -48,7 +48,6 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
@@ -60,6 +59,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -203,6 +203,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#some-mathematical-notation"><i class="fa fa-check"></i>Some mathematical notation</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#modeling-bill-depth"><i class="fa fa-check"></i>Modeling Bill Depth</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#single-continuous-variable"><i class="fa fa-check"></i>Single continuous variable</a></li>
+<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#a-single-factor-variable"><i class="fa fa-check"></i>A single factor variable</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#one-factor-and-a-continuous-variable"><i class="fa fa-check"></i>One factor and a continuous variable</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#interactions"><i class="fa fa-check"></i>Interactions</a></li>
 </ul></li>
@@ -385,13 +386,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The process of using observations to suggest a value for a parameter is called estimation. The value suggested is called the <strong>estimate</strong> of the parameter.</p>
 <p>Let us consider data from the published article <a href="https://www.sciencedirect.com/science/article/pii/S0022098115000039">Influence of predator identity on the strength of predator avoidance responses in lobsters.</a>.</p>
 <p>The authors were interested in how a juvenile lobster’s size was related to its vulnerability to predation. In total, 159 juvenile lobsters were collected from their natural habitat in the Gulf of Maine, USA, and the length of each lobster’s carapace (upper shell) was measured to the nearest 3 mm. The lobsters were then tethered to the ocean floor for 24 hours. Any missing lobsters were assumed to have been consumed by a predator, while the surviving lobsters were released.</p>
-<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="maximum-likelihood-estimation.html#cb416-1"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb416-2"><a href="maximum-likelihood-estimation.html#cb416-2"></a>data &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/lobster.csv&quot;</span>)</span>
-<span id="cb416-3"><a href="maximum-likelihood-estimation.html#cb416-3"></a>data <span class="op">%&gt;%</span></span>
-<span id="cb416-4"><a href="maximum-likelihood-estimation.html#cb416-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">survived =</span> <span class="kw">ifelse</span>(survived <span class="op">==</span><span class="st"> </span><span class="dv">0</span>, <span class="st">&quot;consumed&quot;</span>, <span class="st">&quot;alive&quot;</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb416-5"><a href="maximum-likelihood-estimation.html#cb416-5"></a><span class="st">  </span><span class="kw">group_by</span>(survived) <span class="op">%&gt;%</span></span>
-<span id="cb416-6"><a href="maximum-likelihood-estimation.html#cb416-6"></a><span class="st">  </span><span class="kw">tally</span>() <span class="op">%&gt;%</span></span>
-<span id="cb416-7"><a href="maximum-likelihood-estimation.html#cb416-7"></a><span class="st">  </span><span class="kw">pivot_wider</span>(<span class="dt">names_from =</span> <span class="kw">c</span>(survived), <span class="dt">values_from =</span> n)</span></code></pre></div>
+<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="maximum-likelihood-estimation.html#cb423-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb423-2"><a href="maximum-likelihood-estimation.html#cb423-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/lobster.csv&quot;</span>)</span>
+<span id="cb423-3"><a href="maximum-likelihood-estimation.html#cb423-3" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span></span>
+<span id="cb423-4"><a href="maximum-likelihood-estimation.html#cb423-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">survived =</span> <span class="fu">ifelse</span>(survived <span class="sc">==</span> <span class="dv">0</span>, <span class="st">&quot;consumed&quot;</span>, <span class="st">&quot;alive&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb423-5"><a href="maximum-likelihood-estimation.html#cb423-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(survived) <span class="sc">%&gt;%</span></span>
+<span id="cb423-6"><a href="maximum-likelihood-estimation.html#cb423-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tally</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb423-7"><a href="maximum-likelihood-estimation.html#cb423-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> <span class="fu">c</span>(survived), <span class="at">values_from =</span> n)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 2
 ##   alive consumed
 ##   &lt;int&gt;    &lt;int&gt;
@@ -423,22 +424,22 @@ There are, technically, three possible solutions to this:</p>
 </ol>
 <p>Now, remember <span class="math inline">\(\theta\)</span> is a probability and we are after a maximum likelihood estimate based on the data, so based on the above our <em>best guess</em> for <span class="math inline">\(\theta\)</span> is <span class="math display">\[\hat{\theta} = \frac{s}{n}.\]</span> Using this for the lobster data we get <span class="math inline">\(\hat{\theta} = \frac{79}{159}.\)</span> Surprise surprise!!</p>
 <p><strong>Using <code>R</code></strong></p>
-<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb418-1"><a href="maximum-likelihood-estimation.html#cb418-1"></a><span class="co">## define the likelihood as a function of the parameter(s)</span></span>
-<span id="cb418-2"><a href="maximum-likelihood-estimation.html#cb418-2"></a><span class="co">## Luckily the Binomial likelihood is already defined in R</span></span>
-<span id="cb418-3"><a href="maximum-likelihood-estimation.html#cb418-3"></a><span class="co">## as dbinom()</span></span>
-<span id="cb418-4"><a href="maximum-likelihood-estimation.html#cb418-4"></a>likelihood &lt;-<span class="st"> </span><span class="cf">function</span>(theta) <span class="kw">dbinom</span>(<span class="dt">x =</span> <span class="dv">79</span>, <span class="dt">size =</span> <span class="dv">159</span>, <span class="dt">prob =</span> theta)</span>
-<span id="cb418-5"><a href="maximum-likelihood-estimation.html#cb418-5"></a><span class="co">## Use the optimise function to optimise!!</span></span>
-<span id="cb418-6"><a href="maximum-likelihood-estimation.html#cb418-6"></a><span class="co">## the second argument specifies the plausible</span></span>
-<span id="cb418-7"><a href="maximum-likelihood-estimation.html#cb418-7"></a><span class="co">## interval for the parameter</span></span>
-<span id="cb418-8"><a href="maximum-likelihood-estimation.html#cb418-8"></a><span class="co">## Note for a number of parameters &gt; 1</span></span>
-<span id="cb418-9"><a href="maximum-likelihood-estimation.html#cb418-9"></a><span class="co">## the optim() function is used</span></span>
-<span id="cb418-10"><a href="maximum-likelihood-estimation.html#cb418-10"></a><span class="kw">optimise</span>(likelihood, <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="dt">maximum =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="maximum-likelihood-estimation.html#cb425-1" aria-hidden="true" tabindex="-1"></a><span class="do">## define the likelihood as a function of the parameter(s)</span></span>
+<span id="cb425-2"><a href="maximum-likelihood-estimation.html#cb425-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Luckily the Binomial likelihood is already defined in R</span></span>
+<span id="cb425-3"><a href="maximum-likelihood-estimation.html#cb425-3" aria-hidden="true" tabindex="-1"></a><span class="do">## as dbinom()</span></span>
+<span id="cb425-4"><a href="maximum-likelihood-estimation.html#cb425-4" aria-hidden="true" tabindex="-1"></a>likelihood <span class="ot">&lt;-</span> <span class="cf">function</span>(theta) <span class="fu">dbinom</span>(<span class="at">x =</span> <span class="dv">79</span>, <span class="at">size =</span> <span class="dv">159</span>, <span class="at">prob =</span> theta)</span>
+<span id="cb425-5"><a href="maximum-likelihood-estimation.html#cb425-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Use the optimise function to optimise!!</span></span>
+<span id="cb425-6"><a href="maximum-likelihood-estimation.html#cb425-6" aria-hidden="true" tabindex="-1"></a><span class="do">## the second argument specifies the plausible</span></span>
+<span id="cb425-7"><a href="maximum-likelihood-estimation.html#cb425-7" aria-hidden="true" tabindex="-1"></a><span class="do">## interval for the parameter</span></span>
+<span id="cb425-8"><a href="maximum-likelihood-estimation.html#cb425-8" aria-hidden="true" tabindex="-1"></a><span class="do">## Note for a number of parameters &gt; 1</span></span>
+<span id="cb425-9"><a href="maximum-likelihood-estimation.html#cb425-9" aria-hidden="true" tabindex="-1"></a><span class="do">## the optim() function is used</span></span>
+<span id="cb425-10"><a href="maximum-likelihood-estimation.html#cb425-10" aria-hidden="true" tabindex="-1"></a><span class="fu">optimise</span>(likelihood, <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">maximum =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## $maximum
 ## [1] 0.4968541
 ## 
 ## $objective
 ## [1] 0.06317819</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-261-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-265-1.png" width="672" /></p>
 </div>
 </div>
 <div id="maximum-likelihood-estimation-for-a-crd" class="section level3 hasAnchor">
@@ -467,7 +468,7 @@ There are, technically, three possible solutions to this:</p>
  &amp;= \frac{s}{\theta} - \frac{n-s}{1-\theta} \\
  \end{array}\]</span></p>
 <p>Setting this to zero we get <span class="math inline">\(\frac{s}{\theta} = \frac{n-s}{1-\theta} \rightarrow s(1-\theta) = \theta(n-s) \rightarrow s - s\theta = \theta n - s\theta \rightarrow s + (s\theta - s\theta) = \theta n \rightarrow \theta = \frac{s}{n}.\)</span> Therefore, as above <span class="math display">\[\hat{\theta} = \frac{s}{n}.\]</span></p>
-<p><img src="_main_files/figure-html/unnamed-chunk-263-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-267-1.png" width="672" /></p>
 </div>
 <div id="maximum-likelihood-estimation-for-a-poisson-distribution" class="section level3 hasAnchor">
 <h3>Maximum likelihood estimation for a Poisson distribution<a href="maximum-likelihood-estimation.html#maximum-likelihood-estimation-for-a-poisson-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -530,21 +531,21 @@ assuming a unique maximum in <span class="math inline">\(0 &lt; \lambda &lt; \in
 <p>Realistically <span class="math inline">\(s=\infty\)</span> is not the maximum (see graph below) so <span class="math inline">\(s = 2x.\)</span> Therefore maximum likelihood <strong>estimator</strong> is <span class="math display">\[\hat{s} = 2X.\]</span></p>
 <p><strong>Using <code>R</code> to get the MLE</strong></p>
 <p>Let’s say we observe <span class="math inline">\(X = 3\)</span>, then to find the MLE using <code>R</code> we use</p>
-<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="maximum-likelihood-estimation.html#cb420-1"></a><span class="co">## define the likelihood as a function of the parameter(s)</span></span>
-<span id="cb420-2"><a href="maximum-likelihood-estimation.html#cb420-2"></a>likelihood &lt;-<span class="st"> </span><span class="cf">function</span>(s) (<span class="dv">2</span><span class="op">*</span>(s <span class="op">-</span><span class="st"> </span><span class="dv">3</span>))<span class="op">/</span>s<span class="op">^</span><span class="dv">2</span></span>
-<span id="cb420-3"><a href="maximum-likelihood-estimation.html#cb420-3"></a><span class="co">## Use the optimise function to optimise</span></span>
-<span id="cb420-4"><a href="maximum-likelihood-estimation.html#cb420-4"></a><span class="co">## the second argument specifies the plausible</span></span>
-<span id="cb420-5"><a href="maximum-likelihood-estimation.html#cb420-5"></a><span class="co">## interval for the parameter</span></span>
-<span id="cb420-6"><a href="maximum-likelihood-estimation.html#cb420-6"></a><span class="co">## Note for a number of parameters &gt; 1</span></span>
-<span id="cb420-7"><a href="maximum-likelihood-estimation.html#cb420-7"></a><span class="co">## the optim() function is used</span></span>
-<span id="cb420-8"><a href="maximum-likelihood-estimation.html#cb420-8"></a><span class="kw">optimise</span>(likelihood, <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">8</span>), <span class="dt">maximum =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="maximum-likelihood-estimation.html#cb427-1" aria-hidden="true" tabindex="-1"></a><span class="do">## define the likelihood as a function of the parameter(s)</span></span>
+<span id="cb427-2"><a href="maximum-likelihood-estimation.html#cb427-2" aria-hidden="true" tabindex="-1"></a>likelihood <span class="ot">&lt;-</span> <span class="cf">function</span>(s) (<span class="dv">2</span><span class="sc">*</span>(s <span class="sc">-</span> <span class="dv">3</span>))<span class="sc">/</span>s<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb427-3"><a href="maximum-likelihood-estimation.html#cb427-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Use the optimise function to optimise</span></span>
+<span id="cb427-4"><a href="maximum-likelihood-estimation.html#cb427-4" aria-hidden="true" tabindex="-1"></a><span class="do">## the second argument specifies the plausible</span></span>
+<span id="cb427-5"><a href="maximum-likelihood-estimation.html#cb427-5" aria-hidden="true" tabindex="-1"></a><span class="do">## interval for the parameter</span></span>
+<span id="cb427-6"><a href="maximum-likelihood-estimation.html#cb427-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Note for a number of parameters &gt; 1</span></span>
+<span id="cb427-7"><a href="maximum-likelihood-estimation.html#cb427-7" aria-hidden="true" tabindex="-1"></a><span class="do">## the optim() function is used</span></span>
+<span id="cb427-8"><a href="maximum-likelihood-estimation.html#cb427-8" aria-hidden="true" tabindex="-1"></a><span class="fu">optimise</span>(likelihood, <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">8</span>), <span class="at">maximum =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## $maximum
 ## [1] 6.000018
 ## 
 ## $objective
 ## [1] 0.1666667</code></pre>
 <p>How does this to compare to the exact estimator, <span class="math inline">\(\hat{s} = 2X\)</span>, we found using calculus above? Consider, too, the plot below showing <span class="math inline">\(L(s; X = 3)\)</span>.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-265-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-269-1.png" width="672" /></p>
 
 </div>
 </div>
@@ -614,7 +615,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

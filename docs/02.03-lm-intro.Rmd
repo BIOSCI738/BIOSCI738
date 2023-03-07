@@ -47,7 +47,7 @@ ggplot(data = penguins_nafree, aes(x = bill_depth_mm)) +
 ```
 
 
-First off let's fit a null (intercept only)  model. This in *old money* would be called a one sample t-test. 
+**First off let's fit a null (intercept only)  model.** This in *old money* would be called a one sample t-test. 
 
 ```{r null}
 slm_null <- lm(bill_depth_mm ~ 1, data = penguins_nafree)
@@ -109,7 +109,7 @@ extract_eq(slm, wrap = TRUE)
 
 **Fitted model**
 
-As before we can get out estimated parameters (here $\alpha$ and $\beta_1$) using
+As before we extract the estimated parameters (here $\alpha$ and $\beta_1$) using
 
 ```{r}
 summary(slm)$coef
@@ -130,9 +130,57 @@ ggplot(data = penguins_nafree, aes(x = bill_length_mm, y = bill_depth_mm)) +
 
 ```
 
+### A single factor variable
+
+**Does `bill_depth_mm` vary between species?** Think of ANOVA.
+
+```{r}
+p1 <- ggplot(data = penguins_nafree, aes(x = species, y = bill_depth_mm)) +
+  geom_violin() + ylab("Bill depth (mm)") +
+  xlab("Species") + theme_classic() + stat_summary(stat = "mean")
+p1
+```
+
+```{r sflm}
+sflm <- lm(bill_depth_mm ~ species, data = penguins_nafree)
+```
+
+**Model formula**
+
+This model is simply $$Y_i = \alpha + \beta_1x_i + \epsilon_i$$ where for observation $i$, $Y_i$ is the value of the response (`bill_depth_mm`) and $x_i$ is the value of the explanatory variable (`species`). However, `species` is a factor variable. This means we need to use dummy variables: 
+  
+  
+```{r, echo = FALSE, results='asis'}
+library(equatiomatic)
+extract_eq(sflm, wrap = TRUE)
+```
+
+**Fitted model**
+
+The estimated parameters (here $\alpha$, $\beta_1$, and $\beta_2$) are
+
+```{r}
+summary(sflm)$coef
+```
+
+Here, the `(Intercept)`: `Estimate` ($\alpha$ above) gives us the estimated average bill depth (mm) of the baseline species **Adelie** (`R` does this alphabetically, to change this see previous chapter) and the remaining coefficients are the estimated difference between the baseline and the other categories (`species`). The `Std. Error` column gives the standard error for these estimated parameters (in the case of the group differences there are the SEDs, standard error of the difference).
+
+
+```{r}
+## calculate predicted values
+penguins_nafree$pred_vals <- predict(sflm)
+## plot
+ggplot(data = penguins_nafree, aes(x = species, y = bill_depth_mm, fill = species)) +
+  geom_violin() + ylab("Bill depth (mm)") +
+  xlab("Species") + theme_classic() +
+  geom_hline(aes(yintercept = pred_vals, col = species), linewidth = 2) +
+	stat_summary(stat = "mean")
+
+```
+
+
 ### One factor and a continuous variable
 
-**Adding** `species`; remember `species` is a factor variable!
 
 ```{r}
 p2 <- ggplot(data = penguins_nafree,
@@ -163,7 +211,7 @@ where for observation $i$
   + $\alpha$, $\beta_1$, and $\beta_2$ are all parameters to be estimated.
   
 
-Remember though that when we have factor explanatory variables (e.g., `species`) we have to use dummy variables, see lecture. Here the **Adelie** group are the baseline (`R` does this alphabetically, to change this see previous chapter).
+Here, again, the **Adelie** group are the baseline.
 
 So model formula is
 

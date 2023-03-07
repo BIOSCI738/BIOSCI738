@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Modelling experimental data | Advanced Biological Data Analysis</title>
   <meta name="description" content="Modelling experimental data | Advanced Biological Data Analysis" />
-  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Modelling experimental data | Advanced Biological Data Analysis" />
   <meta property="og:type" content="book" />
@@ -48,7 +48,6 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
@@ -60,6 +59,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -203,6 +203,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#some-mathematical-notation"><i class="fa fa-check"></i>Some mathematical notation</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#modeling-bill-depth"><i class="fa fa-check"></i>Modeling Bill Depth</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#single-continuous-variable"><i class="fa fa-check"></i>Single continuous variable</a></li>
+<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#a-single-factor-variable"><i class="fa fa-check"></i>A single factor variable</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#one-factor-and-a-continuous-variable"><i class="fa fa-check"></i>One factor and a continuous variable</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#interactions"><i class="fa fa-check"></i>Interactions</a></li>
 </ul></li>
@@ -357,7 +358,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Or you might think of the model as</p>
 <p><span class="math display">\[Y_{ik} = \mu_k + \epsilon_{ik}\]</span></p>
 <p>where <span class="math inline">\(Y_{ik}\)</span> is the response (i.e., observed coffee opacity) for the <span class="math inline">\(i^{th}\)</span> experimental unit (i.e., coffee cup) subjected to the <span class="math inline">\(k^{th}\)</span> level of the treatment factor (i.e., coffee type). Here <span class="math inline">\(\mu_k\)</span> are the different (cell) means for each level of the treatment factor. See below for an illustration of this for three factor treatment levels (as in the coffee example above).</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-86-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-90-1.png" width="672" /></p>
 </div>
 <div id="analysis-of-a-crd-in-r" class="section level3 hasAnchor">
 <h3>Analysis of a CRD in <code>R</code><a href="modelling-experimental-data.html#analysis-of-a-crd-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -512,10 +513,10 @@ S
 </tbody>
 </table>
 <p>To read the data directly into <code>R</code> you can use</p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="modelling-experimental-data.html#cb153-1"></a>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/crd_rats_data.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="modelling-experimental-data.html#cb158-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/crd_rats_data.csv&quot;</span>)</span></code></pre></div>
 <p>We could analyse these data <strong>using <code>aov()</code></strong>:</p>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="modelling-experimental-data.html#cb154-1"></a>rats_aov &lt;-<span class="st"> </span><span class="kw">aov</span>(logAUC <span class="op">~</span><span class="st"> </span>Surgery, <span class="dt">data =</span> rats)</span>
-<span id="cb154-2"><a href="modelling-experimental-data.html#cb154-2"></a><span class="kw">summary</span>(rats_aov)</span></code></pre></div>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="modelling-experimental-data.html#cb159-1" aria-hidden="true" tabindex="-1"></a>rats_aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(logAUC <span class="sc">~</span> Surgery, <span class="at">data =</span> rats)</span>
+<span id="cb159-2"><a href="modelling-experimental-data.html#cb159-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(rats_aov)</span></code></pre></div>
 <pre><code>##             Df Sum Sq Mean Sq F value  Pr(&gt;F)   
 ## Surgery      2 22.026  11.013   16.36 0.00101 **
 ## Residuals    9  6.059   0.673                   
@@ -524,8 +525,8 @@ S
 <p>Hypothesis: We test the Null hypothesis, <span class="math inline">\(H_0\)</span>, population (<code>Surgery</code>) means are the same on average verses the alternative hypothesis, <span class="math inline">\(H_1\)</span>, that <strong>at least one</strong> differs from the others!</p>
 <p>Probability of getting an <strong>F-statistic</strong> at least as extreme as the one we observe (think of the area under the tails of the curve below) <strong>p-value</strong> Pr(&gt;F)= 0.001 tells us we have sufficient evidence to reject <span class="math inline">\(H_0\)</span> at the 1% level of significance</p>
 <p>Alternatively, we could <strong>use <code>lm()</code></strong>:</p>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="modelling-experimental-data.html#cb156-1"></a>rats_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC <span class="op">~</span><span class="st"> </span>Surgery, <span class="dt">data =</span> rats)</span>
-<span id="cb156-2"><a href="modelling-experimental-data.html#cb156-2"></a><span class="kw">summary</span>(rats_lm)<span class="op">$</span>coef</span></code></pre></div>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="modelling-experimental-data.html#cb161-1" aria-hidden="true" tabindex="-1"></a>rats_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(logAUC <span class="sc">~</span> Surgery, <span class="at">data =</span> rats)</span>
+<span id="cb161-2"><a href="modelling-experimental-data.html#cb161-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(rats_lm)<span class="sc">$</span>coef</span></code></pre></div>
 <pre><code>##             Estimate Std. Error    t value     Pr(&gt;|t|)
 ## (Intercept)   8.4600  0.4102531 20.6214144 6.930903e-09
 ## SurgeryP      0.4900  0.5801856  0.8445574 4.202408e-01
@@ -538,7 +539,7 @@ S
 <p>SE of (Intercept) = SE of <span class="math inline">\(\text{mean}_C\)</span> = SEM = 0.4102531</p>
 <p><span class="math inline">\(\text{Surgery}_P\)</span> = <span class="math inline">\(\text{mean}_P\)</span> – <span class="math inline">\(\text{mean}_C\)</span> = 0.49</p>
 <p>SE of <span class="math inline">\(\text{Surgery}_P\)</span> = SE of (<span class="math inline">\(\text{mean}_P\)</span> - <span class="math inline">\(\text{mean}_C\)</span> ) = SED = 0.5801856</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-89-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-93-1.png" width="672" /></p>
 <p><strong>Hypotheses being tested</strong></p>
 <p>The <code>t</code> value and <code>Pr (&gt;|t|)</code> are the t-statistic and p-value for testing the null hypotheses listed below
 1. Mean abundance is zero for <code>C</code> population
@@ -546,7 +547,7 @@ S
 3. No difference between the population means of <code>S</code> and <code>C</code></p>
 <p>We’re interested in 2 and 3, but not necessarily 1!</p>
 <p><strong>F-test:</strong></p>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="modelling-experimental-data.html#cb158-1"></a><span class="kw">anova</span>(rats_lm)</span></code></pre></div>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="modelling-experimental-data.html#cb163-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(rats_lm)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: logAUC
@@ -565,7 +566,7 @@ S
 <li>The residuals have <strong>constant variance</strong></li>
 <li>The <strong>residuals</strong> are normally distributed</li>
 </ul>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="modelling-experimental-data.html#cb160-1"></a>gglm<span class="op">::</span><span class="kw">gglm</span>(rats_lm) <span class="co"># Plot the four main diagnostic plots</span></span></code></pre></div>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="modelling-experimental-data.html#cb165-1" aria-hidden="true" tabindex="-1"></a>gglm<span class="sc">::</span><span class="fu">gglm</span>(rats_lm) <span class="co"># Plot the four main diagnostic plots</span></span></code></pre></div>
 <p><img src="_main_files/figure-html/qqnorm-1.png" width="672" /></p>
 <p>What do you think? Look back at module 2.</p>
 </div>
@@ -578,7 +579,7 @@ S
 <div id="equal-replications-balanced-design" class="section level4 hasAnchor">
 <h4>Equal replications (balanced design)<a href="modelling-experimental-data.html#equal-replications-balanced-design" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><strong>Data</strong> Global metabolic profiling and comparison of relative abundances of proteins (<code>logAUC</code>) in the inner and outer left ventricle (<code>innerLV</code> and <code>outerLV</code>) wall of diabetic and healthy male Wistar rats. To read the data directly into <code>R</code> you can use</p>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="modelling-experimental-data.html#cb161-1"></a>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/factorial_expt.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="modelling-experimental-data.html#cb166-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/factorial_expt.csv&quot;</span>)</span></code></pre></div>
 <table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -846,11 +847,11 @@ outerLV
 </tbody>
 </table>
 <p><strong>Fitting models with interactions using <code>lm()</code></strong></p>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="modelling-experimental-data.html#cb162-1"></a><span class="co">## change to factors (saves errors later on)</span></span>
-<span id="cb162-2"><a href="modelling-experimental-data.html#cb162-2"></a>factorial<span class="op">$</span>Disease &lt;-<span class="st"> </span><span class="kw">as.factor</span>(factorial<span class="op">$</span>Disease)</span>
-<span id="cb162-3"><a href="modelling-experimental-data.html#cb162-3"></a>factorial<span class="op">$</span>Organ &lt;-<span class="st"> </span><span class="kw">as.factor</span>(factorial<span class="op">$</span>Organ)</span>
-<span id="cb162-4"><a href="modelling-experimental-data.html#cb162-4"></a>fac_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC <span class="op">~</span><span class="st"> </span>Disease<span class="op">*</span>Organ, <span class="dt">data =</span> factorial)</span>
-<span id="cb162-5"><a href="modelling-experimental-data.html#cb162-5"></a><span class="kw">summary</span>(fac_lm)<span class="op">$</span>coefficients</span></code></pre></div>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="modelling-experimental-data.html#cb167-1" aria-hidden="true" tabindex="-1"></a><span class="do">## change to factors (saves errors later on)</span></span>
+<span id="cb167-2"><a href="modelling-experimental-data.html#cb167-2" aria-hidden="true" tabindex="-1"></a>factorial<span class="sc">$</span>Disease <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(factorial<span class="sc">$</span>Disease)</span>
+<span id="cb167-3"><a href="modelling-experimental-data.html#cb167-3" aria-hidden="true" tabindex="-1"></a>factorial<span class="sc">$</span>Organ <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(factorial<span class="sc">$</span>Organ)</span>
+<span id="cb167-4"><a href="modelling-experimental-data.html#cb167-4" aria-hidden="true" tabindex="-1"></a>fac_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(logAUC <span class="sc">~</span> Disease<span class="sc">*</span>Organ, <span class="at">data =</span> factorial)</span>
+<span id="cb167-5"><a href="modelling-experimental-data.html#cb167-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fac_lm)<span class="sc">$</span>coefficients</span></code></pre></div>
 <pre><code>##                              Estimate Std. Error   t value     Pr(&gt;|t|)
 ## (Intercept)                  7.873333  0.5405835 14.564508 4.841215e-07
 ## DiseaseHealthy               1.950000  0.7645006  2.550685 3.413826e-02
@@ -868,7 +869,7 @@ outerLV
 <li><span class="math inline">\(H_0: \hat{\mu}_{\text{innerLV}} = \hat{\mu}_{\text{outerLV}}\)</span></li>
 <li><span class="math inline">\(H_0: \hat{\mu}_{\text{Diabetic,innerLV}} = \hat{\mu}_{\text{Diabetic,outerLV}} = \hat{\mu}_{\text{Healthy,innerLV}} = \hat{\mu}_{\text{Healthy,outerLV}}\)</span></li>
 </ol>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="modelling-experimental-data.html#cb164-1"></a><span class="kw">anova</span>(fac_lm)</span></code></pre></div>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="modelling-experimental-data.html#cb169-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fac_lm)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: logAUC
@@ -881,8 +882,8 @@ outerLV
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>What conclusions do you draw?</p>
 <p><strong>Note</strong> with a balanced design ordering of term doesn’t matter. For example,</p>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="modelling-experimental-data.html#cb166-1"></a>fac_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC <span class="op">~</span><span class="st"> </span>Disease<span class="op">*</span>Organ, <span class="dt">data =</span> factorial)</span>
-<span id="cb166-2"><a href="modelling-experimental-data.html#cb166-2"></a><span class="kw">anova</span>(fac_lm)</span></code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="modelling-experimental-data.html#cb171-1" aria-hidden="true" tabindex="-1"></a>fac_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(logAUC <span class="sc">~</span> Disease<span class="sc">*</span>Organ, <span class="at">data =</span> factorial)</span>
+<span id="cb171-2"><a href="modelling-experimental-data.html#cb171-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fac_lm)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: logAUC
@@ -893,8 +894,8 @@ outerLV
 ## Residuals      8 7.0135  0.8767                  
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="modelling-experimental-data.html#cb168-1"></a>fac_lm_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC <span class="op">~</span><span class="st"> </span>Organ<span class="op">*</span>Disease, <span class="dt">data =</span> factorial)</span>
-<span id="cb168-2"><a href="modelling-experimental-data.html#cb168-2"></a><span class="kw">anova</span>(fac_lm_<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="modelling-experimental-data.html#cb173-1" aria-hidden="true" tabindex="-1"></a>fac_lm_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(logAUC <span class="sc">~</span> Organ<span class="sc">*</span>Disease, <span class="at">data =</span> factorial)</span>
+<span id="cb173-2"><a href="modelling-experimental-data.html#cb173-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fac_lm_2)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: logAUC
@@ -1110,8 +1111,8 @@ outerLV
 </table>
 <p><strong>Fitting models with interactions using <code>lm()</code></strong></p>
 <p><strong>Note</strong>: order matters. For example,</p>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="modelling-experimental-data.html#cb170-1"></a>fac_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC <span class="op">~</span><span class="st"> </span>Disease<span class="op">*</span>Organ, <span class="dt">data =</span> unbalanced_nafree)</span>
-<span id="cb170-2"><a href="modelling-experimental-data.html#cb170-2"></a><span class="kw">anova</span>(fac_lm)</span></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="modelling-experimental-data.html#cb175-1" aria-hidden="true" tabindex="-1"></a>fac_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(logAUC <span class="sc">~</span> Disease<span class="sc">*</span>Organ, <span class="at">data =</span> unbalanced_nafree)</span>
+<span id="cb175-2"><a href="modelling-experimental-data.html#cb175-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fac_lm)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: logAUC
@@ -1122,8 +1123,8 @@ outerLV
 ## Residuals      4 1.5377  0.3844                  
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="modelling-experimental-data.html#cb172-1"></a>fac_lm_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC <span class="op">~</span><span class="st"> </span>Organ<span class="op">*</span>Disease, <span class="dt">data =</span> unbalanced_nafree)</span>
-<span id="cb172-2"><a href="modelling-experimental-data.html#cb172-2"></a><span class="kw">anova</span>(fac_lm_<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="modelling-experimental-data.html#cb177-1" aria-hidden="true" tabindex="-1"></a>fac_lm_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(logAUC <span class="sc">~</span> Organ<span class="sc">*</span>Disease, <span class="at">data =</span> unbalanced_nafree)</span>
+<span id="cb177-2"><a href="modelling-experimental-data.html#cb177-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fac_lm_2)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: logAUC
@@ -1153,28 +1154,28 @@ outerLV
 <p>Considering the data above if we include <code>Disease</code> as a main effect first (i.e., <code>Disease*Organ</code>) then the <span class="math inline">\(SS_\text{Disease}\)</span> is calculated first <strong>ignoring</strong> the <code>Organ</code> main effect. Here, some <code>Organ</code> information is confounded with <code>Disease</code> information (i.e., variation due to <code>Organ</code> confounded by the variation due to <code>Disease</code>). Then <span class="math inline">\(SS_\text{Organ}\)</span> are calculated having been adjusted for the <code>Diease</code> main effect. This now only contains <code>Organ</code> information (i.e., variation due to <code>Organ</code> effect) since all the <code>Disease</code> information was eliminated in previous step. Finally, <span class="math inline">\(SS_\text{Disease:Organ}\)</span> are calculated adjusted for both <span class="math inline">\(SS_\text{Disease}\)</span> and <span class="math inline">\(SS_\text{Organ}\)</span>. Here, there is no information left relating to <code>Disease</code> or <code>Organ</code> main effects.</p>
 <p>What does this look like?</p>
 <p>For <code>Disease*Organ</code> we calculate <span class="math inline">\(SS_\text{Disease}\)</span> ignoring any <code>Organ</code> effect (if you are unsure what each line of code is doing I suggest you run it line by line to see what’s being done at each step).</p>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="modelling-experimental-data.html#cb174-1"></a>unbalanced_nafree <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb174-2"><a href="modelling-experimental-data.html#cb174-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">grand_mean =</span> <span class="kw">mean</span>(logAUC)) <span class="op">%&gt;%</span></span>
-<span id="cb174-3"><a href="modelling-experimental-data.html#cb174-3"></a><span class="st">  </span><span class="kw">group_by</span>(Disease) <span class="op">%&gt;%</span></span>
-<span id="cb174-4"><a href="modelling-experimental-data.html#cb174-4"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>(),</span>
-<span id="cb174-5"><a href="modelling-experimental-data.html#cb174-5"></a>         <span class="dt">treatment_mean =</span> <span class="kw">mean</span>(logAUC),</span>
-<span id="cb174-6"><a href="modelling-experimental-data.html#cb174-6"></a>         <span class="dt">grand_mean =</span> <span class="kw">mean</span>(grand_mean)) <span class="op">%&gt;%</span></span>
-<span id="cb174-7"><a href="modelling-experimental-data.html#cb174-7"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">ss_disease =</span> n <span class="op">*</span><span class="st"> </span>(treatment_mean <span class="op">-</span><span class="st"> </span>grand_mean)<span class="op">^</span><span class="dv">2</span>) <span class="op">%&gt;%</span></span>
-<span id="cb174-8"><a href="modelling-experimental-data.html#cb174-8"></a><span class="st">  </span><span class="kw">pull</span>(ss_disease) <span class="op">%&gt;%</span></span>
-<span id="cb174-9"><a href="modelling-experimental-data.html#cb174-9"></a><span class="st">  </span><span class="kw">sum</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="modelling-experimental-data.html#cb179-1" aria-hidden="true" tabindex="-1"></a>unbalanced_nafree <span class="sc">%&gt;%</span> </span>
+<span id="cb179-2"><a href="modelling-experimental-data.html#cb179-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">grand_mean =</span> <span class="fu">mean</span>(logAUC)) <span class="sc">%&gt;%</span></span>
+<span id="cb179-3"><a href="modelling-experimental-data.html#cb179-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Disease) <span class="sc">%&gt;%</span></span>
+<span id="cb179-4"><a href="modelling-experimental-data.html#cb179-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>(),</span>
+<span id="cb179-5"><a href="modelling-experimental-data.html#cb179-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">treatment_mean =</span> <span class="fu">mean</span>(logAUC),</span>
+<span id="cb179-6"><a href="modelling-experimental-data.html#cb179-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">grand_mean =</span> <span class="fu">mean</span>(grand_mean)) <span class="sc">%&gt;%</span></span>
+<span id="cb179-7"><a href="modelling-experimental-data.html#cb179-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ss_disease =</span> n <span class="sc">*</span> (treatment_mean <span class="sc">-</span> grand_mean)<span class="sc">^</span><span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb179-8"><a href="modelling-experimental-data.html#cb179-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(ss_disease) <span class="sc">%&gt;%</span></span>
+<span id="cb179-9"><a href="modelling-experimental-data.html#cb179-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>()</span></code></pre></div>
 <pre><code>## [1] 7.110201</code></pre>
 <p>This matches, as we’d expect, <span class="math inline">\(SS_\text{Disease}\)</span> calculated from the <code>Disease*Organ</code> model above.</p>
 <p>But, that about the sequential <span class="math inline">\(SS\)</span>, a simple way to think about this is in terms of sequential models:</p>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="modelling-experimental-data.html#cb176-1"></a><span class="co">## Null model.</span></span>
-<span id="cb176-2"><a href="modelling-experimental-data.html#cb176-2"></a>fit.null &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC <span class="op">~</span><span class="st"> </span><span class="dv">1</span>,  <span class="dt">data =</span> unbalanced_nafree)</span>
-<span id="cb176-3"><a href="modelling-experimental-data.html#cb176-3"></a><span class="co">## Only Factor Disease.</span></span>
-<span id="cb176-4"><a href="modelling-experimental-data.html#cb176-4"></a>fit.a &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC <span class="op">~</span><span class="st"> </span>Disease,  <span class="dt">data =</span> unbalanced_nafree)</span>
-<span id="cb176-5"><a href="modelling-experimental-data.html#cb176-5"></a><span class="co">## Factors Disease and Organ.</span></span>
-<span id="cb176-6"><a href="modelling-experimental-data.html#cb176-6"></a>fit.ab &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC <span class="op">~</span><span class="st"> </span>Disease <span class="op">+</span><span class="st"> </span>Organ,  <span class="dt">data =</span> unbalanced_nafree)</span>
-<span id="cb176-7"><a href="modelling-experimental-data.html#cb176-7"></a><span class="co">## Factors Disease and Organ with interaction.</span></span>
-<span id="cb176-8"><a href="modelling-experimental-data.html#cb176-8"></a>fit.abi &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC <span class="op">~</span><span class="st"> </span>Disease<span class="op">*</span>Organ,  <span class="dt">data =</span> unbalanced_nafree)</span>
-<span id="cb176-9"><a href="modelling-experimental-data.html#cb176-9"></a><span class="co">## ANOVA table, as above</span></span>
-<span id="cb176-10"><a href="modelling-experimental-data.html#cb176-10"></a><span class="kw">anova</span>(fit.abi)</span></code></pre></div>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="modelling-experimental-data.html#cb181-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Null model.</span></span>
+<span id="cb181-2"><a href="modelling-experimental-data.html#cb181-2" aria-hidden="true" tabindex="-1"></a>fit.null <span class="ot">&lt;-</span> <span class="fu">lm</span>(logAUC <span class="sc">~</span> <span class="dv">1</span>,  <span class="at">data =</span> unbalanced_nafree)</span>
+<span id="cb181-3"><a href="modelling-experimental-data.html#cb181-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Only Factor Disease.</span></span>
+<span id="cb181-4"><a href="modelling-experimental-data.html#cb181-4" aria-hidden="true" tabindex="-1"></a>fit.a <span class="ot">&lt;-</span> <span class="fu">lm</span>(logAUC <span class="sc">~</span> Disease,  <span class="at">data =</span> unbalanced_nafree)</span>
+<span id="cb181-5"><a href="modelling-experimental-data.html#cb181-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Factors Disease and Organ.</span></span>
+<span id="cb181-6"><a href="modelling-experimental-data.html#cb181-6" aria-hidden="true" tabindex="-1"></a>fit.ab <span class="ot">&lt;-</span> <span class="fu">lm</span>(logAUC <span class="sc">~</span> Disease <span class="sc">+</span> Organ,  <span class="at">data =</span> unbalanced_nafree)</span>
+<span id="cb181-7"><a href="modelling-experimental-data.html#cb181-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Factors Disease and Organ with interaction.</span></span>
+<span id="cb181-8"><a href="modelling-experimental-data.html#cb181-8" aria-hidden="true" tabindex="-1"></a>fit.abi <span class="ot">&lt;-</span> <span class="fu">lm</span>(logAUC <span class="sc">~</span> Disease<span class="sc">*</span>Organ,  <span class="at">data =</span> unbalanced_nafree)</span>
+<span id="cb181-9"><a href="modelling-experimental-data.html#cb181-9" aria-hidden="true" tabindex="-1"></a><span class="do">## ANOVA table, as above</span></span>
+<span id="cb181-10"><a href="modelling-experimental-data.html#cb181-10" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fit.abi)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: logAUC
@@ -1185,17 +1186,17 @@ outerLV
 ## Residuals      4 1.5377  0.3844                  
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="modelling-experimental-data.html#cb178-1"></a><span class="co">## First line.</span></span>
-<span id="cb178-2"><a href="modelling-experimental-data.html#cb178-2"></a><span class="kw">sum</span>(<span class="kw">residuals</span>(fit.null)<span class="op">^</span><span class="dv">2</span>) <span class="op">-</span><span class="st"> </span><span class="kw">sum</span>(<span class="kw">residuals</span>(fit.a)<span class="op">^</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="modelling-experimental-data.html#cb183-1" aria-hidden="true" tabindex="-1"></a><span class="do">## First line.</span></span>
+<span id="cb183-2"><a href="modelling-experimental-data.html#cb183-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">residuals</span>(fit.null)<span class="sc">^</span><span class="dv">2</span>) <span class="sc">-</span> <span class="fu">sum</span>(<span class="fu">residuals</span>(fit.a)<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 7.110201</code></pre>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="modelling-experimental-data.html#cb180-1"></a><span class="co">## Second line.</span></span>
-<span id="cb180-2"><a href="modelling-experimental-data.html#cb180-2"></a><span class="kw">sum</span>(<span class="kw">residuals</span>(fit.a)<span class="op">^</span><span class="dv">2</span>) <span class="op">-</span><span class="st"> </span><span class="kw">sum</span>(<span class="kw">residuals</span>(fit.ab)<span class="op">^</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="modelling-experimental-data.html#cb185-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Second line.</span></span>
+<span id="cb185-2"><a href="modelling-experimental-data.html#cb185-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">residuals</span>(fit.a)<span class="sc">^</span><span class="dv">2</span>) <span class="sc">-</span> <span class="fu">sum</span>(<span class="fu">residuals</span>(fit.ab)<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 3.114926</code></pre>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="modelling-experimental-data.html#cb182-1"></a><span class="co">## Third line.</span></span>
-<span id="cb182-2"><a href="modelling-experimental-data.html#cb182-2"></a><span class="kw">sum</span>(<span class="kw">residuals</span>(fit.ab)<span class="op">^</span><span class="dv">2</span>) <span class="op">-</span><span class="st"> </span><span class="kw">sum</span>(<span class="kw">residuals</span>(fit.abi)<span class="op">^</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="modelling-experimental-data.html#cb187-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Third line.</span></span>
+<span id="cb187-2"><a href="modelling-experimental-data.html#cb187-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">residuals</span>(fit.ab)<span class="sc">^</span><span class="dv">2</span>) <span class="sc">-</span> <span class="fu">sum</span>(<span class="fu">residuals</span>(fit.abi)<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 0.09134405</code></pre>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="modelling-experimental-data.html#cb184-1"></a><span class="co">## Final line.</span></span>
-<span id="cb184-2"><a href="modelling-experimental-data.html#cb184-2"></a><span class="kw">sum</span>(<span class="kw">residuals</span>(fit.abi)<span class="op">^</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="modelling-experimental-data.html#cb189-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Final line.</span></span>
+<span id="cb189-2"><a href="modelling-experimental-data.html#cb189-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">residuals</span>(fit.abi)<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 1.537717</code></pre>
 </div>
 <div id="type-ii-ss" class="section level4 hasAnchor">
@@ -1206,8 +1207,8 @@ outerLV
 <ol style="list-style-type: decimal">
 <li>Extracting the main effect rows that have been adjusted for the other model terms from two Type I <span class="math inline">\(SS\)</span> tables (each one having the terms specified in a different order):</li>
 </ol>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="modelling-experimental-data.html#cb186-1"></a><span class="co">## Type II Organ SS</span></span>
-<span id="cb186-2"><a href="modelling-experimental-data.html#cb186-2"></a><span class="kw">anova</span>(fac_lm)[<span class="dv">2</span>, ]</span></code></pre></div>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="modelling-experimental-data.html#cb191-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Type II Organ SS</span></span>
+<span id="cb191-2"><a href="modelling-experimental-data.html#cb191-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fac_lm)[<span class="dv">2</span>, ]</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: logAUC
@@ -1215,8 +1216,8 @@ outerLV
 ## Organ  1 3.1149  3.1149  8.1027 0.04656 *
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="modelling-experimental-data.html#cb188-1"></a><span class="co">## Type II Disease SS</span></span>
-<span id="cb188-2"><a href="modelling-experimental-data.html#cb188-2"></a><span class="kw">anova</span>(fac_lm_<span class="dv">2</span>)[<span class="dv">2</span>, ]</span></code></pre></div>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="modelling-experimental-data.html#cb193-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Type II Disease SS</span></span>
+<span id="cb193-2"><a href="modelling-experimental-data.html#cb193-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fac_lm_2)[<span class="dv">2</span>, ]</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: logAUC
@@ -1224,8 +1225,8 @@ outerLV
 ## Disease  1  4.496   4.496  11.695 0.02678 *
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="modelling-experimental-data.html#cb190-1"></a><span class="co">## Type II Organ:Disease/Disease:Organ</span></span>
-<span id="cb190-2"><a href="modelling-experimental-data.html#cb190-2"></a><span class="kw">anova</span>(fac_lm_<span class="dv">2</span>)[<span class="dv">3</span>, ]</span></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="modelling-experimental-data.html#cb195-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Type II Organ:Disease/Disease:Organ</span></span>
+<span id="cb195-2"><a href="modelling-experimental-data.html#cb195-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fac_lm_2)[<span class="dv">3</span>, ]</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: logAUC
@@ -1235,7 +1236,7 @@ outerLV
 <ol start="2" style="list-style-type: decimal">
 <li>Using an inbuilt <code>R</code> function (does not matter which order the model has the terms specified):</li>
 </ol>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="modelling-experimental-data.html#cb192-1"></a>car<span class="op">::</span><span class="kw">Anova</span>(fac_lm, <span class="dt">type =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="modelling-experimental-data.html#cb197-1" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">Anova</span>(fac_lm, <span class="at">type =</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## Anova Table (Type II tests)
 ## 
 ## Response: logAUC
@@ -1253,7 +1254,7 @@ outerLV
 <p><strong>Balanced design</strong></p>
 <table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-103">Table 1: </span>logAUC data from a balanced design
+<span id="tab:unnamed-chunk-107">Table 1: </span>logAUC data from a balanced design
 </caption>
 <thead>
 <tr>
@@ -1421,7 +1422,7 @@ Grand mean
 </table>
 <table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-103">Table 1: </span>Cell means
+<span id="tab:unnamed-chunk-107">Table 1: </span>Cell means
 </caption>
 <thead>
 <tr>
@@ -1485,7 +1486,7 @@ outerLV
 </table>
 <table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-103">Table 1: </span>Marginal (organ) mean
+<span id="tab:unnamed-chunk-107">Table 1: </span>Marginal (organ) mean
 </caption>
 <thead>
 <tr>
@@ -1518,7 +1519,7 @@ outerLV
 </table>
 <table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-103">Table 1: </span>Marginal (disease) mean
+<span id="tab:unnamed-chunk-107">Table 1: </span>Marginal (disease) mean
 </caption>
 <thead>
 <tr>
@@ -1552,7 +1553,7 @@ Healthy
 <p><strong>Unbalanced design</strong> (Unequal replication due to missing data)</p>
 <table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-104">Table 2: </span>logAUC data from an unbalanced design
+<span id="tab:unnamed-chunk-108">Table 2: </span>logAUC data from an unbalanced design
 </caption>
 <thead>
 <tr>
@@ -1720,7 +1721,7 @@ Grand mean
 </table>
 <table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-106">Table 3: </span>Cell means
+<span id="tab:unnamed-chunk-110">Table 3: </span>Cell means
 </caption>
 <thead>
 <tr>
@@ -1783,24 +1784,24 @@ outerLV
 </tbody>
 </table>
 <p>Everything is as we’d expect up until now, but what about the marginal means? The, perhaps, most obvious way would be to do the following (i.e., ignore subgroups, hence give all observations equal weight)?</p>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="modelling-experimental-data.html#cb194-1"></a>unbalanced_nafree <span class="op">%&gt;%</span></span>
-<span id="cb194-2"><a href="modelling-experimental-data.html#cb194-2"></a><span class="st">   </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="kw">c</span>(Disease, logAUC)) <span class="op">%&gt;%</span></span>
-<span id="cb194-3"><a href="modelling-experimental-data.html#cb194-3"></a><span class="st">   </span><span class="kw">group_by</span>(Disease) <span class="op">%&gt;%</span></span>
-<span id="cb194-4"><a href="modelling-experimental-data.html#cb194-4"></a><span class="st">   </span><span class="kw">summarise</span>(<span class="dt">Mean =</span> <span class="kw">mean</span>(logAUC))</span></code></pre></div>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="modelling-experimental-data.html#cb199-1" aria-hidden="true" tabindex="-1"></a>unbalanced_nafree <span class="sc">%&gt;%</span></span>
+<span id="cb199-2"><a href="modelling-experimental-data.html#cb199-2" aria-hidden="true" tabindex="-1"></a>   dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">c</span>(Disease, logAUC)) <span class="sc">%&gt;%</span></span>
+<span id="cb199-3"><a href="modelling-experimental-data.html#cb199-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">group_by</span>(Disease) <span class="sc">%&gt;%</span></span>
+<span id="cb199-4"><a href="modelling-experimental-data.html#cb199-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">summarise</span>(<span class="at">Mean =</span> <span class="fu">mean</span>(logAUC))</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 2
 ##   Disease   Mean
 ##   &lt;fct&gt;    &lt;dbl&gt;
 ## 1 Diabetic  8.46
 ## 2 Healthy  10.4</code></pre>
 <p>However, as a result of this the means are <strong>biased</strong> towards groups with greater replication! To avoid this we give the subgroups (<code>Organ</code>) cell means equal weight (this is sometimes called the <em>least squares</em> mean):</p>
-<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="modelling-experimental-data.html#cb196-1"></a>unbalanced_nafree <span class="op">%&gt;%</span></span>
-<span id="cb196-2"><a href="modelling-experimental-data.html#cb196-2"></a><span class="st">   </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="kw">c</span>(Disease, Organ, logAUC)) <span class="op">%&gt;%</span></span>
-<span id="cb196-3"><a href="modelling-experimental-data.html#cb196-3"></a><span class="st">   </span><span class="kw">group_by</span>(Organ, Disease) <span class="op">%&gt;%</span></span>
-<span id="cb196-4"><a href="modelling-experimental-data.html#cb196-4"></a><span class="st">     </span><span class="kw">mutate</span>(<span class="dt">n =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">## count observations in each group</span></span>
-<span id="cb196-5"><a href="modelling-experimental-data.html#cb196-5"></a><span class="st">    </span><span class="co">## then calculate weighted mean based on the no. observations</span></span>
-<span id="cb196-6"><a href="modelling-experimental-data.html#cb196-6"></a><span class="st">   </span><span class="kw">summarise</span>(<span class="dt">weighted_mean =</span> <span class="kw">weighted.mean</span>(logAUC, <span class="dt">w =</span> <span class="dv">1</span><span class="op">/</span>n)) <span class="op">%&gt;%</span></span>
-<span id="cb196-7"><a href="modelling-experimental-data.html#cb196-7"></a><span class="st">     </span><span class="kw">group_by</span>(Disease) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">## calculate mean of weighted means</span></span>
-<span id="cb196-8"><a href="modelling-experimental-data.html#cb196-8"></a><span class="st">     </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(weighted_mean))</span></code></pre></div>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="modelling-experimental-data.html#cb201-1" aria-hidden="true" tabindex="-1"></a>unbalanced_nafree <span class="sc">%&gt;%</span></span>
+<span id="cb201-2"><a href="modelling-experimental-data.html#cb201-2" aria-hidden="true" tabindex="-1"></a>   dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">c</span>(Disease, Organ, logAUC)) <span class="sc">%&gt;%</span></span>
+<span id="cb201-3"><a href="modelling-experimental-data.html#cb201-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">group_by</span>(Organ, Disease) <span class="sc">%&gt;%</span></span>
+<span id="cb201-4"><a href="modelling-experimental-data.html#cb201-4" aria-hidden="true" tabindex="-1"></a>     <span class="fu">mutate</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> <span class="do">## count observations in each group</span></span>
+<span id="cb201-5"><a href="modelling-experimental-data.html#cb201-5" aria-hidden="true" tabindex="-1"></a>    <span class="do">## then calculate weighted mean based on the no. observations</span></span>
+<span id="cb201-6"><a href="modelling-experimental-data.html#cb201-6" aria-hidden="true" tabindex="-1"></a>   <span class="fu">summarise</span>(<span class="at">weighted_mean =</span> <span class="fu">weighted.mean</span>(logAUC, <span class="at">w =</span> <span class="dv">1</span><span class="sc">/</span>n)) <span class="sc">%&gt;%</span></span>
+<span id="cb201-7"><a href="modelling-experimental-data.html#cb201-7" aria-hidden="true" tabindex="-1"></a>     <span class="fu">group_by</span>(Disease) <span class="sc">%&gt;%</span> <span class="do">## calculate mean of weighted means</span></span>
+<span id="cb201-8"><a href="modelling-experimental-data.html#cb201-8" aria-hidden="true" tabindex="-1"></a>     <span class="fu">summarise</span>(<span class="at">mean =</span> <span class="fu">mean</span>(weighted_mean))</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 2
 ##   Disease   mean
 ##   &lt;fct&gt;    &lt;dbl&gt;
@@ -1809,7 +1810,7 @@ outerLV
 <p>Now see if you can do the same across <code>Organ</code> to get</p>
 <table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-109">Table 4: </span>Marginal (organ) means
+<span id="tab:unnamed-chunk-113">Table 4: </span>Marginal (organ) means
 </caption>
 <thead>
 <tr>
@@ -1911,7 +1912,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');
