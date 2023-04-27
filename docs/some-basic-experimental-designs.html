@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Some basic experimental designs | Advanced Biological Data Analysis</title>
   <meta name="description" content="Some basic experimental designs | Advanced Biological Data Analysis" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Some basic experimental designs | Advanced Biological Data Analysis" />
   <meta property="og:type" content="book" />
@@ -48,6 +48,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
@@ -59,7 +60,6 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -359,15 +359,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="designing-a-crd-using-r" class="section level4 hasAnchor">
 <h4>Designing a CRD using <code>R</code><a href="some-basic-experimental-designs.html#designing-a-crd-using-r" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Let’s assume you want to set up an experiment similar to the coffee one above using <code>R</code> to do the random allocation of treatments for you.</p>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="some-basic-experimental-designs.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="do">## create a character vector of bean types</span></span>
-<span id="cb152-2"><a href="some-basic-experimental-designs.html#cb152-2" aria-hidden="true" tabindex="-1"></a>beans <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Arabica&quot;</span>,<span class="st">&quot;Liberica&quot;</span>, <span class="st">&quot;Robusta&quot;</span>), <span class="at">each =</span> <span class="dv">4</span>)</span>
-<span id="cb152-3"><a href="some-basic-experimental-designs.html#cb152-3" aria-hidden="true" tabindex="-1"></a>beans</span></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="some-basic-experimental-designs.html#cb152-1"></a><span class="co">## create a character vector of bean types</span></span>
+<span id="cb152-2"><a href="some-basic-experimental-designs.html#cb152-2"></a>beans &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;Arabica&quot;</span>,<span class="st">&quot;Liberica&quot;</span>, <span class="st">&quot;Robusta&quot;</span>), <span class="dt">each =</span> <span class="dv">4</span>)</span>
+<span id="cb152-3"><a href="some-basic-experimental-designs.html#cb152-3"></a>beans</span></code></pre></div>
 <pre><code>##  [1] &quot;Arabica&quot;  &quot;Arabica&quot;  &quot;Arabica&quot;  &quot;Arabica&quot;  &quot;Liberica&quot; &quot;Liberica&quot;
 ##  [7] &quot;Liberica&quot; &quot;Liberica&quot; &quot;Robusta&quot;  &quot;Robusta&quot;  &quot;Robusta&quot;  &quot;Robusta&quot;</code></pre>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="some-basic-experimental-designs.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="do">## randomly sample the character vector to give the order of coffees</span></span>
-<span id="cb154-2"><a href="some-basic-experimental-designs.html#cb154-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>) <span class="do">## this is ONLY for consistency, remove if doing this yourself</span></span>
-<span id="cb154-3"><a href="some-basic-experimental-designs.html#cb154-3" aria-hidden="true" tabindex="-1"></a>allocation <span class="ot">&lt;-</span> <span class="fu">sample</span>(beans, <span class="dv">12</span>)</span>
-<span id="cb154-4"><a href="some-basic-experimental-designs.html#cb154-4" aria-hidden="true" tabindex="-1"></a>allocation</span></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="some-basic-experimental-designs.html#cb154-1"></a><span class="co">## randomly sample the character vector to give the order of coffees</span></span>
+<span id="cb154-2"><a href="some-basic-experimental-designs.html#cb154-2"></a><span class="kw">set.seed</span>(<span class="dv">1234</span>) <span class="co">## this is ONLY for consistency, remove if doing this yourself</span></span>
+<span id="cb154-3"><a href="some-basic-experimental-designs.html#cb154-3"></a>allocation &lt;-<span class="st"> </span><span class="kw">sample</span>(beans, <span class="dv">12</span>)</span>
+<span id="cb154-4"><a href="some-basic-experimental-designs.html#cb154-4"></a>allocation</span></code></pre></div>
 <pre><code>##  [1] &quot;Robusta&quot;  &quot;Robusta&quot;  &quot;Liberica&quot; &quot;Liberica&quot; &quot;Arabica&quot;  &quot;Liberica&quot;
 ##  [7] &quot;Arabica&quot;  &quot;Robusta&quot;  &quot;Arabica&quot;  &quot;Liberica&quot; &quot;Robusta&quot;  &quot;Arabica&quot;</code></pre>
 <p>Having run the code above your CRD plan is as follows</p>
@@ -495,12 +495,12 @@ Arabica
 <h4>Designing a RCBD using <code>R</code><a href="some-basic-experimental-designs.html#designing-a-rcbd-using-r" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Let’s assume you want to set up an experiment similar to the coffee one above; however, now you are in the situation where you have two types of cups (six mugs and six heatproof glasses). Below we use <code>R</code> to do the random allocation of treatments within each block (cup type) for you.</p>
 <p>Here we have <span class="math inline">\(t = 3\)</span> treatments (bean types) and <span class="math inline">\(b = 2\)</span> blocks (cup types) so we will have <span class="math inline">\(t \times b = 6\)</span> experimental units in total.</p>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="some-basic-experimental-designs.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">432</span>) <span class="do">## this is ONLY for consistency, remove if doing this yourself</span></span>
-<span id="cb156-2"><a href="some-basic-experimental-designs.html#cb156-2" aria-hidden="true" tabindex="-1"></a>plan <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Beans =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Arabica&quot;</span>,<span class="st">&quot;Liberica&quot;</span>, <span class="st">&quot;Robusta&quot;</span>), <span class="at">times =</span> <span class="dv">2</span>), </span>
-<span id="cb156-3"><a href="some-basic-experimental-designs.html#cb156-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">Block =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Mug&quot;</span>, <span class="st">&quot;Glass&quot;</span>), <span class="at">each =</span> <span class="dv">3</span>)) <span class="sc">%&gt;%</span> <span class="do">## combine experiment variables</span></span>
-<span id="cb156-4"><a href="some-basic-experimental-designs.html#cb156-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Block) <span class="sc">%&gt;%</span> <span class="do">## group by blocking factor</span></span>
-<span id="cb156-5"><a href="some-basic-experimental-designs.html#cb156-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">sample_n</span>(<span class="dv">3</span>)</span>
-<span id="cb156-6"><a href="some-basic-experimental-designs.html#cb156-6" aria-hidden="true" tabindex="-1"></a>plan</span></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="some-basic-experimental-designs.html#cb156-1"></a><span class="kw">set.seed</span>(<span class="dv">432</span>) <span class="co">## this is ONLY for consistency, remove if doing this yourself</span></span>
+<span id="cb156-2"><a href="some-basic-experimental-designs.html#cb156-2"></a>plan &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Beans =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;Arabica&quot;</span>,<span class="st">&quot;Liberica&quot;</span>, <span class="st">&quot;Robusta&quot;</span>), <span class="dt">times =</span> <span class="dv">2</span>), </span>
+<span id="cb156-3"><a href="some-basic-experimental-designs.html#cb156-3"></a>           <span class="dt">Block =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;Mug&quot;</span>, <span class="st">&quot;Glass&quot;</span>), <span class="dt">each =</span> <span class="dv">3</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">## combine experiment variables</span></span>
+<span id="cb156-4"><a href="some-basic-experimental-designs.html#cb156-4"></a><span class="st">  </span><span class="kw">group_by</span>(Block) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">## group by blocking factor</span></span>
+<span id="cb156-5"><a href="some-basic-experimental-designs.html#cb156-5"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">sample_n</span>(<span class="dv">3</span>)</span>
+<span id="cb156-6"><a href="some-basic-experimental-designs.html#cb156-6"></a>plan</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 2
 ## # Groups:   Block [2]
 ##   Beans    Block
@@ -706,7 +706,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Data wrangling | Advanced Biological Data Analysis</title>
   <meta name="description" content="Data wrangling | Advanced Biological Data Analysis" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Data wrangling | Advanced Biological Data Analysis" />
   <meta property="og:type" content="book" />
@@ -48,6 +48,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
@@ -59,7 +60,6 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -375,28 +375,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="introuducing-the-palmer-penguins" class="section level3 hasAnchor">
 <h3>Introuducing the <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0090081">Palmer penguins</a><a href="data-wrangling.html#introuducing-the-palmer-penguins" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>These data are included in the <code>R</code> package <code>palmerpenguins</code>; to access the data and follow along with this, and following, sections you should first install the package using</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="data-wrangling.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;palmerpenguins&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="data-wrangling.html#cb24-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;palmerpenguins&quot;</span>)</span></code></pre></div>
 <p>Then remember to load the package, using <code>library(palmerpenguins)</code>, into your workspace each new <code>R</code> session in which you wish to use these data.</p>
 <iframe src="https://giphy.com/embed/3og0IO5z8Rd30ktV6g" width="40%" height="400px" data-external="1" style="border: none;">
 </iframe>
 <p>Let’s first have a look at the data:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="data-wrangling.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins) <span class="do">## contains some nice penguin data</span></span>
-<span id="cb25-2"><a href="data-wrangling.html#cb25-2" aria-hidden="true" tabindex="-1"></a>penguins</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="data-wrangling.html#cb25-1"></a><span class="kw">library</span>(palmerpenguins) <span class="co">## contains some nice penguin data</span></span>
+<span id="cb25-2"><a href="data-wrangling.html#cb25-2"></a>penguins</span></code></pre></div>
 <pre><code>## # A tibble: 344 × 8
-##    species island    bill_length_mm bill_depth_mm flipper_…¹ body_…² sex    year
-##    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;      &lt;int&gt;   &lt;int&gt; &lt;fct&gt; &lt;int&gt;
-##  1 Adelie  Torgersen           39.1          18.7        181    3750 male   2007
-##  2 Adelie  Torgersen           39.5          17.4        186    3800 fema…  2007
-##  3 Adelie  Torgersen           40.3          18          195    3250 fema…  2007
-##  4 Adelie  Torgersen           NA            NA           NA      NA &lt;NA&gt;   2007
-##  5 Adelie  Torgersen           36.7          19.3        193    3450 fema…  2007
-##  6 Adelie  Torgersen           39.3          20.6        190    3650 male   2007
-##  7 Adelie  Torgersen           38.9          17.8        181    3625 fema…  2007
-##  8 Adelie  Torgersen           39.2          19.6        195    4675 male   2007
-##  9 Adelie  Torgersen           34.1          18.1        193    3475 &lt;NA&gt;   2007
-## 10 Adelie  Torgersen           42            20.2        190    4250 &lt;NA&gt;   2007
-## # … with 334 more rows, and abbreviated variable names ¹​flipper_length_mm,
-## #   ²​body_mass_g</code></pre>
+##    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+##  1 Adelie  Torgersen           39.1          18.7               181        3750
+##  2 Adelie  Torgersen           39.5          17.4               186        3800
+##  3 Adelie  Torgersen           40.3          18                 195        3250
+##  4 Adelie  Torgersen           NA            NA                  NA          NA
+##  5 Adelie  Torgersen           36.7          19.3               193        3450
+##  6 Adelie  Torgersen           39.3          20.6               190        3650
+##  7 Adelie  Torgersen           38.9          17.8               181        3625
+##  8 Adelie  Torgersen           39.2          19.6               195        4675
+##  9 Adelie  Torgersen           34.1          18.1               193        3475
+## 10 Adelie  Torgersen           42            20.2               190        4250
+## # ℹ 334 more rows
+## # ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
 <p>So, what does this show us?</p>
 <ul>
 <li><code>A tibble: 344 x 8</code>: A <code>tibble</code> is a specific kind of data frame in <code>R</code>. The <code>penguin</code> dataset has
@@ -417,10 +417,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>the <code>is.na()</code> function, and</li>
 <li>how <code>R</code> deals with <code>logical</code> values!</li>
 </ul>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="data-wrangling.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb27-2"><a href="data-wrangling.html#cb27-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> </span>
-<span id="cb27-3"><a href="data-wrangling.html#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">apply</span>(.,<span class="dv">2</span>,is.na) <span class="sc">%&gt;%</span></span>
-<span id="cb27-4"><a href="data-wrangling.html#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">apply</span>(.,<span class="dv">2</span>,sum)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="data-wrangling.html#cb27-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb27-2"><a href="data-wrangling.html#cb27-2"></a>penguins <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb27-3"><a href="data-wrangling.html#cb27-3"></a><span class="st">  </span><span class="kw">apply</span>(.,<span class="dv">2</span>,is.na) <span class="op">%&gt;%</span></span>
+<span id="cb27-4"><a href="data-wrangling.html#cb27-4"></a><span class="st">  </span><span class="kw">apply</span>(.,<span class="dv">2</span>,sum)</span></code></pre></div>
 <pre><code>##           species            island    bill_length_mm     bill_depth_mm 
 ##                 0                 0                 2                 2 
 ## flipper_length_mm       body_mass_g               sex              year 
@@ -449,71 +449,71 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>So how many <code>NA</code>s do you think there are!</p>
 <p>Doesn’t help much. To</p>
 <p>Now we know there are <code>NA</code> values throughout the data let’s remove then and create a new <code>NA</code> free version called <code>penguins_nafree</code>. There is a really handy <code>tidyverse</code> (<code>dplyr</code>) function for this!</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="data-wrangling.html#cb29-1" aria-hidden="true" tabindex="-1"></a>penguins_nafree <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>()</span>
-<span id="cb29-2"><a href="data-wrangling.html#cb29-2" aria-hidden="true" tabindex="-1"></a>penguins_nafree</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="data-wrangling.html#cb29-1"></a>penguins_nafree &lt;-<span class="st"> </span>penguins <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">drop_na</span>()</span>
+<span id="cb29-2"><a href="data-wrangling.html#cb29-2"></a>penguins_nafree</span></code></pre></div>
 <pre><code>## # A tibble: 333 × 8
-##    species island    bill_length_mm bill_depth_mm flipper_…¹ body_…² sex    year
-##    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;      &lt;int&gt;   &lt;int&gt; &lt;fct&gt; &lt;int&gt;
-##  1 Adelie  Torgersen           39.1          18.7        181    3750 male   2007
-##  2 Adelie  Torgersen           39.5          17.4        186    3800 fema…  2007
-##  3 Adelie  Torgersen           40.3          18          195    3250 fema…  2007
-##  4 Adelie  Torgersen           36.7          19.3        193    3450 fema…  2007
-##  5 Adelie  Torgersen           39.3          20.6        190    3650 male   2007
-##  6 Adelie  Torgersen           38.9          17.8        181    3625 fema…  2007
-##  7 Adelie  Torgersen           39.2          19.6        195    4675 male   2007
-##  8 Adelie  Torgersen           41.1          17.6        182    3200 fema…  2007
-##  9 Adelie  Torgersen           38.6          21.2        191    3800 male   2007
-## 10 Adelie  Torgersen           34.6          21.1        198    4400 male   2007
-## # … with 323 more rows, and abbreviated variable names ¹​flipper_length_mm,
-## #   ²​body_mass_g</code></pre>
+##    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+##  1 Adelie  Torgersen           39.1          18.7               181        3750
+##  2 Adelie  Torgersen           39.5          17.4               186        3800
+##  3 Adelie  Torgersen           40.3          18                 195        3250
+##  4 Adelie  Torgersen           36.7          19.3               193        3450
+##  5 Adelie  Torgersen           39.3          20.6               190        3650
+##  6 Adelie  Torgersen           38.9          17.8               181        3625
+##  7 Adelie  Torgersen           39.2          19.6               195        4675
+##  8 Adelie  Torgersen           41.1          17.6               182        3200
+##  9 Adelie  Torgersen           38.6          21.2               191        3800
+## 10 Adelie  Torgersen           34.6          21.1               198        4400
+## # ℹ 323 more rows
+## # ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
 <p>Below are some other useful manipulation functions; have a look at the outputs and run them yourselves and see if you can work out what they’re doing.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="data-wrangling.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(penguins_nafree, island <span class="sc">==</span> <span class="st">&quot;Torgersen&quot;</span> )</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="data-wrangling.html#cb31-1"></a><span class="kw">filter</span>(penguins_nafree, island <span class="op">==</span><span class="st"> &quot;Torgersen&quot;</span> )</span></code></pre></div>
 <pre><code>## # A tibble: 47 × 8
-##    species island    bill_length_mm bill_depth_mm flipper_…¹ body_…² sex    year
-##    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;      &lt;int&gt;   &lt;int&gt; &lt;fct&gt; &lt;int&gt;
-##  1 Adelie  Torgersen           39.1          18.7        181    3750 male   2007
-##  2 Adelie  Torgersen           39.5          17.4        186    3800 fema…  2007
-##  3 Adelie  Torgersen           40.3          18          195    3250 fema…  2007
-##  4 Adelie  Torgersen           36.7          19.3        193    3450 fema…  2007
-##  5 Adelie  Torgersen           39.3          20.6        190    3650 male   2007
-##  6 Adelie  Torgersen           38.9          17.8        181    3625 fema…  2007
-##  7 Adelie  Torgersen           39.2          19.6        195    4675 male   2007
-##  8 Adelie  Torgersen           41.1          17.6        182    3200 fema…  2007
-##  9 Adelie  Torgersen           38.6          21.2        191    3800 male   2007
-## 10 Adelie  Torgersen           34.6          21.1        198    4400 male   2007
-## # … with 37 more rows, and abbreviated variable names ¹​flipper_length_mm,
-## #   ²​body_mass_g</code></pre>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="data-wrangling.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(penguins_nafree, <span class="at">avgerage_bill_length =</span> <span class="fu">mean</span>(bill_length_mm))</span></code></pre></div>
+##    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+##  1 Adelie  Torgersen           39.1          18.7               181        3750
+##  2 Adelie  Torgersen           39.5          17.4               186        3800
+##  3 Adelie  Torgersen           40.3          18                 195        3250
+##  4 Adelie  Torgersen           36.7          19.3               193        3450
+##  5 Adelie  Torgersen           39.3          20.6               190        3650
+##  6 Adelie  Torgersen           38.9          17.8               181        3625
+##  7 Adelie  Torgersen           39.2          19.6               195        4675
+##  8 Adelie  Torgersen           41.1          17.6               182        3200
+##  9 Adelie  Torgersen           38.6          21.2               191        3800
+## 10 Adelie  Torgersen           34.6          21.1               198        4400
+## # ℹ 37 more rows
+## # ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="data-wrangling.html#cb33-1"></a><span class="kw">summarise</span>(penguins_nafree, <span class="dt">avgerage_bill_length =</span> <span class="kw">mean</span>(bill_length_mm))</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 1
 ##   avgerage_bill_length
 ##                  &lt;dbl&gt;
 ## 1                 44.0</code></pre>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="data-wrangling.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(penguins_nafree, species)</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="data-wrangling.html#cb35-1"></a><span class="kw">group_by</span>(penguins_nafree, species)</span></code></pre></div>
 <pre><code>## # A tibble: 333 × 8
 ## # Groups:   species [3]
-##    species island    bill_length_mm bill_depth_mm flipper_…¹ body_…² sex    year
-##    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;      &lt;int&gt;   &lt;int&gt; &lt;fct&gt; &lt;int&gt;
-##  1 Adelie  Torgersen           39.1          18.7        181    3750 male   2007
-##  2 Adelie  Torgersen           39.5          17.4        186    3800 fema…  2007
-##  3 Adelie  Torgersen           40.3          18          195    3250 fema…  2007
-##  4 Adelie  Torgersen           36.7          19.3        193    3450 fema…  2007
-##  5 Adelie  Torgersen           39.3          20.6        190    3650 male   2007
-##  6 Adelie  Torgersen           38.9          17.8        181    3625 fema…  2007
-##  7 Adelie  Torgersen           39.2          19.6        195    4675 male   2007
-##  8 Adelie  Torgersen           41.1          17.6        182    3200 fema…  2007
-##  9 Adelie  Torgersen           38.6          21.2        191    3800 male   2007
-## 10 Adelie  Torgersen           34.6          21.1        198    4400 male   2007
-## # … with 323 more rows, and abbreviated variable names ¹​flipper_length_mm,
-## #   ²​body_mass_g</code></pre>
+##    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+##  1 Adelie  Torgersen           39.1          18.7               181        3750
+##  2 Adelie  Torgersen           39.5          17.4               186        3800
+##  3 Adelie  Torgersen           40.3          18                 195        3250
+##  4 Adelie  Torgersen           36.7          19.3               193        3450
+##  5 Adelie  Torgersen           39.3          20.6               190        3650
+##  6 Adelie  Torgersen           38.9          17.8               181        3625
+##  7 Adelie  Torgersen           39.2          19.6               195        4675
+##  8 Adelie  Torgersen           41.1          17.6               182        3200
+##  9 Adelie  Torgersen           38.6          21.2               191        3800
+## 10 Adelie  Torgersen           34.6          21.1               198        4400
+## # ℹ 323 more rows
+## # ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
 <p>Often we want to summarise variables by different groups (factors). Below we</p>
 <ul>
 <li>Take the <code>penguins_nafree</code> data then</li>
 <li>Use this and apply the <code>group_by()</code> function to group by <code>species</code></li>
 <li>Use this output and apply the <code>summarize()</code> function to calculate the mean (using (<code>mean()</code>) bill length (<code>bill_length_mm</code>) of each group (<code>species</code>), calling the resulting number <code>avgerage_bill_length</code></li>
 </ul>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="data-wrangling.html#cb37-1" aria-hidden="true" tabindex="-1"></a>penguins_nafree <span class="sc">%&gt;%</span> </span>
-<span id="cb37-2"><a href="data-wrangling.html#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span> </span>
-<span id="cb37-3"><a href="data-wrangling.html#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">avgerage_bill_length =</span> <span class="fu">mean</span>(bill_length_mm))</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="data-wrangling.html#cb37-1"></a>penguins_nafree <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb37-2"><a href="data-wrangling.html#cb37-2"></a><span class="st">  </span><span class="kw">group_by</span>(species) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb37-3"><a href="data-wrangling.html#cb37-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">avgerage_bill_length =</span> <span class="kw">mean</span>(bill_length_mm))</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 2
 ##   species   avgerage_bill_length
 ##   &lt;fct&gt;                    &lt;dbl&gt;
@@ -521,9 +521,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 2 Chinstrap                 48.8
 ## 3 Gentoo                    47.6</code></pre>
 <p>We can also group by multiple factors, for example,</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="data-wrangling.html#cb39-1" aria-hidden="true" tabindex="-1"></a>penguins_nafree <span class="sc">%&gt;%</span> </span>
-<span id="cb39-2"><a href="data-wrangling.html#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(island,species) <span class="sc">%&gt;%</span> </span>
-<span id="cb39-3"><a href="data-wrangling.html#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">avgerage_bill_length =</span> <span class="fu">mean</span>(bill_length_mm))</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="data-wrangling.html#cb39-1"></a>penguins_nafree <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb39-2"><a href="data-wrangling.html#cb39-2"></a><span class="st">  </span><span class="kw">group_by</span>(island,species) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb39-3"><a href="data-wrangling.html#cb39-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">avgerage_bill_length =</span> <span class="kw">mean</span>(bill_length_mm))</span></code></pre></div>
 <pre><code>## # A tibble: 5 × 3
 ## # Groups:   island [3]
 ##   island    species   avgerage_bill_length
@@ -535,12 +535,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5 Torgersen Adelie                    39.0</code></pre>
 <p><strong>What about getting more complicated?</strong></p>
 <p>I suggest you run the code below one pipe at a time to work out what each function is doing and data it is acting on.</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="data-wrangling.html#cb41-1" aria-hidden="true" tabindex="-1"></a>penguins_nafree <span class="sc">%&gt;%</span></span>
-<span id="cb41-2"><a href="data-wrangling.html#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(., sex <span class="sc">!=</span> <span class="st">&quot;male&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb41-3"><a href="data-wrangling.html#cb41-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">c</span>(<span class="st">&quot;species&quot;</span>, <span class="st">&quot;island&quot;</span>, <span class="st">&quot;body_mass_g&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb41-4"><a href="data-wrangling.html#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species, island) <span class="sc">%&gt;%</span></span>
-<span id="cb41-5"><a href="data-wrangling.html#cb41-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">total_mass_g =</span> <span class="fu">sum</span>(body_mass_g)) <span class="sc">%&gt;%</span></span>
-<span id="cb41-6"><a href="data-wrangling.html#cb41-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> <span class="fu">c</span>(island), <span class="at">values_from =</span> total_mass_g)</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="data-wrangling.html#cb41-1"></a>penguins_nafree <span class="op">%&gt;%</span></span>
+<span id="cb41-2"><a href="data-wrangling.html#cb41-2"></a><span class="st">  </span><span class="kw">filter</span>(., sex <span class="op">!=</span><span class="st"> &quot;male&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb41-3"><a href="data-wrangling.html#cb41-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="kw">c</span>(<span class="st">&quot;species&quot;</span>, <span class="st">&quot;island&quot;</span>, <span class="st">&quot;body_mass_g&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb41-4"><a href="data-wrangling.html#cb41-4"></a><span class="st">  </span><span class="kw">group_by</span>(species, island) <span class="op">%&gt;%</span></span>
+<span id="cb41-5"><a href="data-wrangling.html#cb41-5"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">total_mass_g =</span> <span class="kw">sum</span>(body_mass_g)) <span class="op">%&gt;%</span></span>
+<span id="cb41-6"><a href="data-wrangling.html#cb41-6"></a><span class="st">  </span><span class="kw">pivot_wider</span>(<span class="dt">names_from =</span> <span class="kw">c</span>(island), <span class="dt">values_from =</span> total_mass_g)</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 4
 ## # Groups:   species [3]
 ##   species   Biscoe  Dream Torgersen
@@ -616,7 +616,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Poisson regression | Advanced Biological Data Analysis</title>
   <meta name="description" content="Poisson regression | Advanced Biological Data Analysis" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Poisson regression | Advanced Biological Data Analysis" />
   <meta property="og:type" content="book" />
@@ -48,6 +48,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
@@ -59,7 +60,6 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -349,8 +349,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="poisson-regression" class="section level2 hasAnchor">
 <h2>Poisson regression<a href="poisson-regression.html#poisson-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We saw the Poisson distribution in module 4. There, we talked about it in terms of rates. Additionally, it is commonly used as a distribution for counts.</p>
-<p>In summary, the Poisson distribution is a discrete distribution (of positive values only) and has <span class="math inline">\(\text{Var}(Y_i) = \mu_i\)</span> (i.e., we expect the variance to increase with the mean).</p>
+<p>Poisson regression is commonly used as a distribution for counts. It is a discrete distribution (of positive values only) and has <span class="math inline">\(\text{Var}(Y_i) = \mu_i\)</span> (i.e., we expect the variance to increase with the mean).</p>
 <p>If we were to assume (as previously) that <span class="math inline">\(\mu_i = \alpha + \beta_1 x_i\)</span> then we would be allowing <span class="math inline">\(\mu &lt; 0\)</span>, which is not supported by the Poisson distribution. So, we use a link function to map between <span class="math inline">\(\mu_i\)</span> and the real number line:</p>
 <p><span class="math display">\[\text{log}(\mu_i) = \alpha + \beta_1 x_i.\]</span></p>
 <p>So, <span class="math inline">\(\mu_i \geq 0\)</span> and <span class="math inline">\(-\infty &lt; \text{log}(\mu_i) &lt; \infty\)</span>; however negative the linear predictor <span class="math inline">\(\alpha + \beta_1 x_i\)</span> gets <span class="math inline">\(\mu_i\)</span> will always be positive.</p>
@@ -397,12 +396,12 @@ This implies that</p>
 <div id="an-example-bird-abundance" class="section level3 hasAnchor">
 <h3>An example: bird abundance<a href="poisson-regression.html#an-example-bird-abundance" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A recent publication <a href="https://onlinelibrary.wiley.com/doi/10.1111/ddi.13445">Partitioning beta diversity to untangle mechanisms underlying the assembly of bird communities in Mediterranean olive groves</a> investigates bird abundance data for a number of olive farms. Each farm is catalogued according to the level of landscape complexity (high; intermediate; low) and the type of management of the ground cover (extensive or intensive).</p>
-<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="poisson-regression.html#cb289-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb289-2"><a href="poisson-regression.html#cb289-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/bird_abundance.csv&quot;</span>)</span>
-<span id="cb289-3"><a href="poisson-regression.html#cb289-3" aria-hidden="true" tabindex="-1"></a>birds <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
-<span id="cb289-4"><a href="poisson-regression.html#cb289-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">c</span>(<span class="st">&quot;OliveFarm&quot;</span>,<span class="st">&quot;Management&quot;</span>,<span class="st">&quot;Turdus_merula&quot;</span>,<span class="st">&quot;Phylloscopus_collybita&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb289-5"><a href="poisson-regression.html#cb289-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(., <span class="fu">c</span>(<span class="sc">-</span>OliveFarm, <span class="sc">-</span>Management), <span class="at">names_to =</span> <span class="st">&quot;Species&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;Count&quot;</span>) </span>
-<span id="cb289-6"><a href="poisson-regression.html#cb289-6" aria-hidden="true" tabindex="-1"></a>birds</span></code></pre></div>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="poisson-regression.html#cb287-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb287-2"><a href="poisson-regression.html#cb287-2"></a>data &lt;-<span class="st"> </span><span class="kw">read_delim</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/bird_abundance.csv&quot;</span>)</span>
+<span id="cb287-3"><a href="poisson-regression.html#cb287-3"></a>birds &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span></span>
+<span id="cb287-4"><a href="poisson-regression.html#cb287-4"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="kw">c</span>(<span class="st">&quot;OliveFarm&quot;</span>,<span class="st">&quot;Management&quot;</span>,<span class="st">&quot;Turdus_merula&quot;</span>,<span class="st">&quot;Phylloscopus_collybita&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb287-5"><a href="poisson-regression.html#cb287-5"></a><span class="st">  </span><span class="kw">pivot_longer</span>(., <span class="kw">c</span>(<span class="op">-</span>OliveFarm, <span class="op">-</span>Management), <span class="dt">names_to =</span> <span class="st">&quot;Species&quot;</span>, <span class="dt">values_to =</span> <span class="st">&quot;Count&quot;</span>) </span>
+<span id="cb287-6"><a href="poisson-regression.html#cb287-6"></a>birds</span></code></pre></div>
 <pre><code>## # A tibble: 80 × 4
 ##    OliveFarm   Management Species                Count
 ##    &lt;chr&gt;       &lt;chr&gt;      &lt;chr&gt;                  &lt;dbl&gt;
@@ -416,11 +415,11 @@ This implies that</p>
 ##  8 OJUELOSCON  extensive  Phylloscopus_collybita    52
 ##  9 LUNAEXP     extensive  Turdus_merula            103
 ## 10 LUNAEXP     extensive  Phylloscopus_collybita    10
-## # … with 70 more rows</code></pre>
+## # ℹ 70 more rows</code></pre>
 <p><img src="_main_files/figure-html/unnamed-chunk-168-1.png" width="672" /></p>
 <p>Fitting a poisson model we specify <code>family = "poisson"</code> in a call to <code>glm()</code>. Note that the default link function for <code>family = "poisson"</code> is the log link; we could also use the equivalent syntax <code>poisson(link = log)</code> to specify this model. Or, we could change the link function to something else (e.g., <code>poisson(link = identity)</code>) that makes sense.</p>
-<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="poisson-regression.html#cb291-1" aria-hidden="true" tabindex="-1"></a>glm_bird <span class="ot">&lt;-</span> <span class="fu">glm</span>(Count <span class="sc">~</span> Species, <span class="at">data =</span> birds, <span class="at">family =</span> <span class="st">&quot;poisson&quot;</span>)</span>
-<span id="cb291-2"><a href="poisson-regression.html#cb291-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(glm_bird)</span></code></pre></div>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="poisson-regression.html#cb289-1"></a>glm_bird &lt;-<span class="st"> </span><span class="kw">glm</span>(Count <span class="op">~</span><span class="st"> </span>Species, <span class="dt">data =</span> birds, <span class="dt">family =</span> <span class="st">&quot;poisson&quot;</span>)</span>
+<span id="cb289-2"><a href="poisson-regression.html#cb289-2"></a><span class="kw">summary</span>(glm_bird)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = Count ~ Species, family = &quot;poisson&quot;, data = birds)
@@ -451,29 +450,29 @@ This implies that</p>
 <h4>Interpreting the coefficients<a href="poisson-regression.html#interpreting-the-coefficients" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Interpreting the coefficients above we estimate that the <strong>log</strong> of the expected number of <em>Phylloscopus collybita</em> is 3.06 and the <strong>log</strong> of the expected number of <em>Turdus merula</em> is 4.01.</p>
 <p>But what about the expected number?</p>
-<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="poisson-regression.html#cb293-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(glm_bird))</span></code></pre></div>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="poisson-regression.html#cb291-1"></a><span class="kw">exp</span>(<span class="kw">coef</span>(glm_bird))</span></code></pre></div>
 <pre><code>##          (Intercept) SpeciesTurdus_merula 
 ##             21.35000              2.57377</code></pre>
 <p>Therefore, we estimate that the expected average number of <em>Phylloscopus collybita</em> is 21.35 and the expected average number of <em>Turdus merula</em> is 54.95.</p>
 <p>Using confidence intervals:</p>
-<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="poisson-regression.html#cb295-1" aria-hidden="true" tabindex="-1"></a>confint <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="fu">confint</span>(glm_bird)[<span class="dv">1</span>,])</span>
-<span id="cb295-2"><a href="poisson-regression.html#cb295-2" aria-hidden="true" tabindex="-1"></a>confint</span></code></pre></div>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="poisson-regression.html#cb293-1"></a>confint &lt;-<span class="st"> </span><span class="kw">exp</span>(<span class="kw">confint</span>(glm_bird)[<span class="dv">1</span>,])</span>
+<span id="cb293-2"><a href="poisson-regression.html#cb293-2"></a>confint</span></code></pre></div>
 <pre><code>##    2.5 %   97.5 % 
 ## 19.94989 22.81408</code></pre>
 <p>Therefore, we estimate that the expected average number of <em>Phylloscopus collybita</em> is between 19.95 and 22.81.</p>
 <p>For a <strong>multiplicative interpretation</strong> of the effect use <span class="math inline">\(\text{exp}(\beta_1)\)</span></p>
-<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="poisson-regression.html#cb297-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(glm_bird)[<span class="dv">2</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="poisson-regression.html#cb295-1"></a><span class="kw">exp</span>(<span class="kw">coef</span>(glm_bird)[<span class="dv">2</span>])</span></code></pre></div>
 <pre><code>## SpeciesTurdus_merula 
 ##              2.57377</code></pre>
 <p>Therefore, we estimate that the expected number of <em>Turdus merula</em> is 2.57 <span class="math inline">\(\times\)</span> greater than <em>Phylloscopus collybita</em>.</p>
 <p>For a <strong>percentage-change interpretation</strong> use <span class="math inline">\(100 \times \left (\text{exp}(\beta_1)−1 \right )\)</span>:</p>
-<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="poisson-regression.html#cb299-1" aria-hidden="true" tabindex="-1"></a><span class="dv">100</span><span class="sc">*</span>(<span class="fu">exp</span>(<span class="fu">coef</span>(glm_bird)[<span class="dv">2</span>]) <span class="sc">-</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="poisson-regression.html#cb297-1"></a><span class="dv">100</span><span class="op">*</span>(<span class="kw">exp</span>(<span class="kw">coef</span>(glm_bird)[<span class="dv">2</span>]) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## SpeciesTurdus_merula 
 ##              157.377</code></pre>
 <p>Therefore, we estimate that expected number of <em>Turdus merula</em> is 157.38% greater than <em>Phylloscopus collybita</em>.</p>
 <p>Using 95% <strong>confidence intervals</strong>:</p>
-<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="poisson-regression.html#cb301-1" aria-hidden="true" tabindex="-1"></a>confint <span class="ot">&lt;-</span> <span class="dv">100</span><span class="sc">*</span>(<span class="fu">exp</span>(<span class="fu">confint</span>(glm_bird)[<span class="dv">2</span>, ]) <span class="sc">-</span> <span class="dv">1</span>)</span>
-<span id="cb301-2"><a href="poisson-regression.html#cb301-2" aria-hidden="true" tabindex="-1"></a>confint</span></code></pre></div>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="poisson-regression.html#cb299-1"></a>confint &lt;-<span class="st"> </span><span class="dv">100</span><span class="op">*</span>(<span class="kw">exp</span>(<span class="kw">confint</span>(glm_bird)[<span class="dv">2</span>, ]) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)</span>
+<span id="cb299-2"><a href="poisson-regression.html#cb299-2"></a>confint</span></code></pre></div>
 <pre><code>##    2.5 %   97.5 % 
 ## 137.9259 178.6742</code></pre>
 <p>So, we estimate that expected number of <em>Turdus merula</em> is between 137.93% and 178.67% greater than <em>Phylloscopus collybita</em>.</p>
@@ -488,12 +487,12 @@ This implies that</p>
 <p><strong>Deviance residuals</strong> represent the contributions of individual samples to the deviance, <em>D</em> (see above).</p>
 <p><strong>Pearson residuals</strong> are calculated by normalizing the raw residuals (i.e., expected - estimate) by the square root of the estimate.</p>
 <p>Luckily, we can calculate all three directly in <code>R</code> as follows.</p>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="poisson-regression.html#cb303-1" aria-hidden="true" tabindex="-1"></a><span class="do">## response residuals</span></span>
-<span id="cb303-2"><a href="poisson-regression.html#cb303-2" aria-hidden="true" tabindex="-1"></a>resids_response <span class="ot">&lt;-</span> <span class="fu">residuals</span>(glm_bird, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span>
-<span id="cb303-3"><a href="poisson-regression.html#cb303-3" aria-hidden="true" tabindex="-1"></a><span class="do">## deviance residuals</span></span>
-<span id="cb303-4"><a href="poisson-regression.html#cb303-4" aria-hidden="true" tabindex="-1"></a>resids_deviance <span class="ot">&lt;-</span> <span class="fu">residuals</span>(glm_bird, <span class="at">type =</span> <span class="st">&quot;deviance&quot;</span>)</span>
-<span id="cb303-5"><a href="poisson-regression.html#cb303-5" aria-hidden="true" tabindex="-1"></a><span class="do">## pearson residuals</span></span>
-<span id="cb303-6"><a href="poisson-regression.html#cb303-6" aria-hidden="true" tabindex="-1"></a>resids_pearson <span class="ot">&lt;-</span> <span class="fu">residuals</span>(glm_bird, <span class="at">type =</span> <span class="st">&quot;pearson&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="poisson-regression.html#cb301-1"></a><span class="co">## response residuals</span></span>
+<span id="cb301-2"><a href="poisson-regression.html#cb301-2"></a>resids_response &lt;-<span class="st"> </span><span class="kw">residuals</span>(glm_bird, <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)</span>
+<span id="cb301-3"><a href="poisson-regression.html#cb301-3"></a><span class="co">## deviance residuals</span></span>
+<span id="cb301-4"><a href="poisson-regression.html#cb301-4"></a>resids_deviance &lt;-<span class="st"> </span><span class="kw">residuals</span>(glm_bird, <span class="dt">type =</span> <span class="st">&quot;deviance&quot;</span>)</span>
+<span id="cb301-5"><a href="poisson-regression.html#cb301-5"></a><span class="co">## pearson residuals</span></span>
+<span id="cb301-6"><a href="poisson-regression.html#cb301-6"></a>resids_pearson &lt;-<span class="st"> </span><span class="kw">residuals</span>(glm_bird, <span class="dt">type =</span> <span class="st">&quot;pearson&quot;</span>)</span></code></pre></div>
 <p>Plotting all three types we can asses how appropriate our chosen model is.</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-178-1.png" width="672" /></p>
 <p>So, what do you see? Look back at the assumptions of a Poisson model. What do you conclude from the plots above?</p>
@@ -501,16 +500,16 @@ This implies that</p>
 <div id="deviance-using-the-chi-squared-approach" class="section level5 hasAnchor">
 <h5>Deviance (using the chi-squared approach)<a href="poisson-regression.html#deviance-using-the-chi-squared-approach" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>Luckily no manual calculations are required, our <code>glm()</code> call returns the values we need directly:</p>
-<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="poisson-regression.html#cb304-1" aria-hidden="true" tabindex="-1"></a><span class="do">## extract the residual deviance</span></span>
-<span id="cb304-2"><a href="poisson-regression.html#cb304-2" aria-hidden="true" tabindex="-1"></a>D <span class="ot">&lt;-</span> glm_bird<span class="sc">$</span>deviance</span>
-<span id="cb304-3"><a href="poisson-regression.html#cb304-3" aria-hidden="true" tabindex="-1"></a>D</span></code></pre></div>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="poisson-regression.html#cb302-1"></a><span class="co">## extract the residual deviance</span></span>
+<span id="cb302-2"><a href="poisson-regression.html#cb302-2"></a>D &lt;-<span class="st"> </span>glm_bird<span class="op">$</span>deviance</span>
+<span id="cb302-3"><a href="poisson-regression.html#cb302-3"></a>D</span></code></pre></div>
 <pre><code>## [1] 1621.948</code></pre>
-<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="poisson-regression.html#cb306-1" aria-hidden="true" tabindex="-1"></a><span class="do">## extract the residual degrees of freedom (n-k)</span></span>
-<span id="cb306-2"><a href="poisson-regression.html#cb306-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> glm_bird<span class="sc">$</span>df.residual</span>
-<span id="cb306-3"><a href="poisson-regression.html#cb306-3" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="poisson-regression.html#cb304-1"></a><span class="co">## extract the residual degrees of freedom (n-k)</span></span>
+<span id="cb304-2"><a href="poisson-regression.html#cb304-2"></a>df &lt;-<span class="st"> </span>glm_bird<span class="op">$</span>df.residual</span>
+<span id="cb304-3"><a href="poisson-regression.html#cb304-3"></a>df</span></code></pre></div>
 <pre><code>## [1] 78</code></pre>
 <p>Therefore, to test the relevant null hypothesis (that the model is correct) we use</p>
-<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="poisson-regression.html#cb308-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">pchisq</span>(D, df)</span></code></pre></div>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="poisson-regression.html#cb306-1"></a><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pchisq</span>(D, df)</span></code></pre></div>
 <pre><code>## [1] 0</code></pre>
 <p>We have strong evidence to reject the null hypothesis; suggesting a lack of fit! <strong>BUT</strong> are our chi-squared approximation assumptions met? If not, we might take a <strong>simulation based approach</strong>. This is, however, beyond the scope of this course.</p>
 </div>
@@ -583,7 +582,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

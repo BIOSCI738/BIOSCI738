@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Non-metric Multidimensional Scaling | Advanced Biological Data Analysis</title>
   <meta name="description" content="Non-metric Multidimensional Scaling | Advanced Biological Data Analysis" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Non-metric Multidimensional Scaling | Advanced Biological Data Analysis" />
   <meta property="og:type" content="book" />
@@ -48,6 +48,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
@@ -59,7 +60,6 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -370,39 +370,37 @@ squares (STRESS) function: <span class="math inline">\(\text{Stress}^2 = \frac{\
 <p>Use the function <code>metaMDS</code> from the <code>vegan</code> package; <code>metaMDS</code> performs NMDS, and tries to find a stable solution using several random starts. In addition, it standardizes the scaling in the result, so
 that the configurations are easier to interpret.</p>
 <p><strong>Illustration with k = 2</strong></p>
-<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="non-metric-multidimensional-scaling.html#cb397-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vegan)</span>
-<span id="cb397-2"><a href="non-metric-multidimensional-scaling.html#cb397-2" aria-hidden="true" tabindex="-1"></a>nMDS<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">100</span>, <span class="fu">metaMDS</span>(ekman, <span class="at">k =</span> <span class="dv">2</span>, <span class="at">autotransform =</span> <span class="cn">FALSE</span>)) </span></code></pre></div>
-<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="non-metric-multidimensional-scaling.html#cb398-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stressplot</span>(<span class="fu">metaMDS</span>(ekman, <span class="at">k =</span> <span class="dv">2</span>, <span class="at">autotransform =</span> <span class="cn">FALSE</span>), <span class="at">pch =</span> <span class="dv">20</span>, <span class="at">cex =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="non-metric-multidimensional-scaling.html#cb395-1"></a><span class="kw">library</span>(vegan)</span>
+<span id="cb395-2"><a href="non-metric-multidimensional-scaling.html#cb395-2"></a>nMDS<span class="fl">.2</span> &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="dv">100</span>, <span class="kw">metaMDS</span>(ekman, <span class="dt">k =</span> <span class="dv">2</span>, <span class="dt">autotransform =</span> <span class="ot">FALSE</span>)) </span></code></pre></div>
+<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="non-metric-multidimensional-scaling.html#cb396-1"></a><span class="kw">stressplot</span>(<span class="kw">metaMDS</span>(ekman, <span class="dt">k =</span> <span class="dv">2</span>, <span class="dt">autotransform =</span> <span class="ot">FALSE</span>), <span class="dt">pch =</span> <span class="dv">20</span>, <span class="dt">cex =</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## Run 0 stress 0.2705898 
-## Run 1 stress 0.2711545 
-## Run 2 stress 0.2739054 
-## Run 3 stress 0.2634663 
+## Run 1 stress 0.2631587 
 ## ... New best solution
-## ... Procrustes: rmse 0.2448256  max resid 0.4517853 
-## Run 4 stress 0.265124 
-## Run 5 stress 0.261966 
+## ... Procrustes: rmse 0.2122761  max resid 0.4405217 
+## Run 2 stress 0.282509 
+## Run 3 stress 0.2860458 
+## Run 4 stress 0.292585 
+## Run 5 stress 0.2724171 
+## Run 6 stress 0.2808561 
+## Run 7 stress 0.2658076 
+## Run 8 stress 0.2624427 
 ## ... New best solution
-## ... Procrustes: rmse 0.1819642  max resid 0.5616079 
-## Run 6 stress 0.2752863 
-## Run 7 stress 0.2634591 
-## Run 8 stress 0.2664506 
-## Run 9 stress 0.2658195 
-## Run 10 stress 0.2655221 
-## Run 11 stress 0.2683486 
-## Run 12 stress 0.2682856 
-## Run 13 stress 0.272819 
-## Run 14 stress 0.2611536 
-## ... New best solution
-## ... Procrustes: rmse 0.1314703  max resid 0.2913875 
-## Run 15 stress 0.278313 
-## Run 16 stress 0.3000136 
-## Run 17 stress 0.2702805 
-## Run 18 stress 0.2770341 
-## Run 19 stress 0.2713099 
-## Run 20 stress 0.2635924 
-## *** Best solution was not repeated -- monoMDS stopping criteria:
-##      1: no. of iterations &gt;= maxit
-##     18: stress ratio &gt; sratmax
+## ... Procrustes: rmse 0.1488645  max resid 0.3136837 
+## Run 9 stress 0.2638454 
+## Run 10 stress 0.2782765 
+## Run 11 stress 0.2700731 
+## Run 12 stress 0.2733299 
+## Run 13 stress 0.2745804 
+## Run 14 stress 0.2626338 
+## ... Procrustes: rmse 0.152867  max resid 0.3162977 
+## Run 15 stress 0.2821937 
+## Run 16 stress 0.2731302 
+## Run 17 stress 0.3273443 
+## Run 18 stress 0.2730656 
+## Run 19 stress 0.2781293 
+## Run 20 stress 0.2761824 
+## *** No convergence -- monoMDS stopping criteria:
+##     19: stress ratio &gt; sratmax
 ##      1: scale factor of the gradient &lt; sfgrmin</code></pre>
 <p><img src="_main_files/figure-html/unnamed-chunk-244-1.png" width="672" /></p>
 
@@ -474,7 +472,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

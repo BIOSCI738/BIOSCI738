@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Multidimensional Scaling (MDS) | Advanced Biological Data Analysis</title>
   <meta name="description" content="Multidimensional Scaling (MDS) | Advanced Biological Data Analysis" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Multidimensional Scaling (MDS) | Advanced Biological Data Analysis" />
   <meta property="og:type" content="book" />
@@ -48,6 +48,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
@@ -59,7 +60,6 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -366,17 +366,17 @@ dissimilarity matrix as closely as possible. Principal coordinates (PCO) is one 
 </ul>
 <div id="distances-in-km-between-north-island-cities" class="section level5 hasAnchor">
 <h5>Distances (in km) between North Island cities<a href="multidimensional-scaling-mds.html#distances-in-km-between-north-island-cities" class="anchor-section" aria-label="Anchor link to header"></a></h5>
-<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="multidimensional-scaling-mds.html#cb383-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb383-2"><a href="multidimensional-scaling-mds.html#cb383-2" aria-hidden="true" tabindex="-1"></a>ni <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/north_islands_distances.csv&quot;</span>)</span>
-<span id="cb383-3"><a href="multidimensional-scaling-mds.html#cb383-3" aria-hidden="true" tabindex="-1"></a>ni <span class="ot">&lt;-</span> ni <span class="sc">%&gt;%</span> <span class="fu">column_to_rownames</span>(<span class="at">var =</span> <span class="st">&quot;...1&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="multidimensional-scaling-mds.html#cb384-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pheatmap)</span>
-<span id="cb384-2"><a href="multidimensional-scaling-mds.html#cb384-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pheatmap</span>(ni, <span class="at">cluster_rows =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb384-3"><a href="multidimensional-scaling-mds.html#cb384-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">treeheight_row =</span> <span class="dv">2</span>, <span class="at">treeheight_col =</span> <span class="dv">2</span>,</span>
-<span id="cb384-4"><a href="multidimensional-scaling-mds.html#cb384-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">fontsize_row =</span> <span class="dv">12</span>, <span class="at">fontsize_col =</span> <span class="dv">12</span>,</span>
-<span id="cb384-5"><a href="multidimensional-scaling-mds.html#cb384-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">cellwidth =</span> <span class="dv">26</span>, <span class="at">cellheight =</span> <span class="dv">26</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="multidimensional-scaling-mds.html#cb381-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb381-2"><a href="multidimensional-scaling-mds.html#cb381-2"></a>ni &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/north_islands_distances.csv&quot;</span>)</span>
+<span id="cb381-3"><a href="multidimensional-scaling-mds.html#cb381-3"></a>ni &lt;-<span class="st"> </span>ni <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">column_to_rownames</span>(<span class="dt">var =</span> <span class="st">&quot;...1&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="multidimensional-scaling-mds.html#cb382-1"></a><span class="kw">library</span>(pheatmap)</span>
+<span id="cb382-2"><a href="multidimensional-scaling-mds.html#cb382-2"></a><span class="kw">pheatmap</span>(ni, <span class="dt">cluster_rows =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb382-3"><a href="multidimensional-scaling-mds.html#cb382-3"></a>         <span class="dt">treeheight_row =</span> <span class="dv">2</span>, <span class="dt">treeheight_col =</span> <span class="dv">2</span>,</span>
+<span id="cb382-4"><a href="multidimensional-scaling-mds.html#cb382-4"></a>         <span class="dt">fontsize_row =</span> <span class="dv">12</span>, <span class="dt">fontsize_col =</span> <span class="dv">12</span>,</span>
+<span id="cb382-5"><a href="multidimensional-scaling-mds.html#cb382-5"></a>         <span class="dt">cellwidth =</span> <span class="dv">26</span>, <span class="dt">cellheight =</span> <span class="dv">26</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-235-1.png" width="672" /></p>
-<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="multidimensional-scaling-mds.html#cb385-1" aria-hidden="true" tabindex="-1"></a>mds <span class="ot">&lt;-</span> <span class="fu">cmdscale</span>(ni, <span class="at">eig =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb385-2"><a href="multidimensional-scaling-mds.html#cb385-2" aria-hidden="true" tabindex="-1"></a>mds</span></code></pre></div>
+<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="multidimensional-scaling-mds.html#cb383-1"></a>mds &lt;-<span class="st"> </span><span class="kw">cmdscale</span>(ni, <span class="dt">eig =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb383-2"><a href="multidimensional-scaling-mds.html#cb383-2"></a>mds</span></code></pre></div>
 <pre><code>## $points
 ##                  [,1]       [,2]
 ## Auckland    259.23245   67.43013
@@ -416,37 +416,37 @@ dissimilarity matrix as closely as possible. Principal coordinates (PCO) is one 
 </ul></li>
 <li>After averaging over 31 raters the similarities were divided by 4 such that they are within the unit interval.</li>
 </ul>
-<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="multidimensional-scaling-mds.html#cb387-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb387-2"><a href="multidimensional-scaling-mds.html#cb387-2" aria-hidden="true" tabindex="-1"></a>ekman <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/ekman.csv&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="multidimensional-scaling-mds.html#cb388-1" aria-hidden="true" tabindex="-1"></a>ekman.mds <span class="ot">&lt;-</span> <span class="fu">cmdscale</span>(ekman, <span class="at">eig =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb388-2"><a href="multidimensional-scaling-mds.html#cb388-2" aria-hidden="true" tabindex="-1"></a>ekman.mds</span>
-<span id="cb388-3"><a href="multidimensional-scaling-mds.html#cb388-3" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(ekman.mds<span class="sc">$</span>eig,<span class="dv">2</span>)</span>
-<span id="cb388-4"><a href="multidimensional-scaling-mds.html#cb388-4" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(ekman.mds)</span></code></pre></div>
+<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="multidimensional-scaling-mds.html#cb385-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb385-2"><a href="multidimensional-scaling-mds.html#cb385-2"></a>ekman &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/ekman.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="multidimensional-scaling-mds.html#cb386-1"></a>ekman.mds &lt;-<span class="st"> </span><span class="kw">cmdscale</span>(ekman, <span class="dt">eig =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb386-2"><a href="multidimensional-scaling-mds.html#cb386-2"></a>ekman.mds</span>
+<span id="cb386-3"><a href="multidimensional-scaling-mds.html#cb386-3"></a><span class="kw">round</span>(ekman.mds<span class="op">$</span>eig,<span class="dv">2</span>)</span>
+<span id="cb386-4"><a href="multidimensional-scaling-mds.html#cb386-4"></a><span class="kw">autoplot</span>(ekman.mds)</span></code></pre></div>
 </div>
 <div id="distances-in-km-between-21-cities-in-europe" class="section level5 hasAnchor">
 <h5>Distances (in km) between 21 cities in Europe<a href="multidimensional-scaling-mds.html#distances-in-km-between-21-cities-in-europe" class="anchor-section" aria-label="Anchor link to header"></a></h5>
-<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="multidimensional-scaling-mds.html#cb389-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggfortify)</span>
-<span id="cb389-2"><a href="multidimensional-scaling-mds.html#cb389-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Plotting Multidimensional Scaling (for interest)</span></span>
-<span id="cb389-3"><a href="multidimensional-scaling-mds.html#cb389-3" aria-hidden="true" tabindex="-1"></a><span class="do">## stats::cmdscale performs Classical MDS</span></span>
-<span id="cb389-4"><a href="multidimensional-scaling-mds.html#cb389-4" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;eurodist&quot;</span>) <span class="do">## road distances (in km) between 21 cities in Europe.</span></span>
-<span id="cb389-5"><a href="multidimensional-scaling-mds.html#cb389-5" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(eurodist)</span>
-<span id="cb389-6"><a href="multidimensional-scaling-mds.html#cb389-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Plotting Classical (Metric) Multidimensional Scaling</span></span>
-<span id="cb389-7"><a href="multidimensional-scaling-mds.html#cb389-7" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(<span class="fu">cmdscale</span>(eurodist, <span class="at">eig =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb389-8"><a href="multidimensional-scaling-mds.html#cb389-8" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(<span class="fu">cmdscale</span>(eurodist, <span class="at">eig =</span> <span class="cn">TRUE</span>), <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">shape =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb389-9"><a href="multidimensional-scaling-mds.html#cb389-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.size =</span> <span class="dv">3</span>)</span>
-<span id="cb389-10"><a href="multidimensional-scaling-mds.html#cb389-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Plotting Non-metric Multidimensional Scaling</span></span>
-<span id="cb389-11"><a href="multidimensional-scaling-mds.html#cb389-11" aria-hidden="true" tabindex="-1"></a><span class="do">## MASS::isoMDS and MASS::sammon perform Non-metric MDS</span></span>
-<span id="cb389-12"><a href="multidimensional-scaling-mds.html#cb389-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
-<span id="cb389-13"><a href="multidimensional-scaling-mds.html#cb389-13" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(<span class="fu">sammon</span>(eurodist))</span>
-<span id="cb389-14"><a href="multidimensional-scaling-mds.html#cb389-14" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(<span class="fu">sammon</span>(eurodist), <span class="at">shape =</span> <span class="cn">FALSE</span>, <span class="at">label =</span> <span class="cn">TRUE</span>,<span class="at">label.size =</span> <span class="dv">3</span>)</span>
-<span id="cb389-15"><a href="multidimensional-scaling-mds.html#cb389-15" aria-hidden="true" tabindex="-1"></a><span class="do">## Have a go at interpreting these plots based on the geography of the cities :-)</span></span></code></pre></div>
+<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="multidimensional-scaling-mds.html#cb387-1"></a><span class="kw">library</span>(ggfortify)</span>
+<span id="cb387-2"><a href="multidimensional-scaling-mds.html#cb387-2"></a><span class="co">## Plotting Multidimensional Scaling (for interest)</span></span>
+<span id="cb387-3"><a href="multidimensional-scaling-mds.html#cb387-3"></a><span class="co">## stats::cmdscale performs Classical MDS</span></span>
+<span id="cb387-4"><a href="multidimensional-scaling-mds.html#cb387-4"></a><span class="kw">data</span>(<span class="st">&quot;eurodist&quot;</span>) <span class="co">## road distances (in km) between 21 cities in Europe.</span></span>
+<span id="cb387-5"><a href="multidimensional-scaling-mds.html#cb387-5"></a><span class="kw">autoplot</span>(eurodist)</span>
+<span id="cb387-6"><a href="multidimensional-scaling-mds.html#cb387-6"></a><span class="co">## Plotting Classical (Metric) Multidimensional Scaling</span></span>
+<span id="cb387-7"><a href="multidimensional-scaling-mds.html#cb387-7"></a><span class="kw">autoplot</span>(<span class="kw">cmdscale</span>(eurodist, <span class="dt">eig =</span> <span class="ot">TRUE</span>))</span>
+<span id="cb387-8"><a href="multidimensional-scaling-mds.html#cb387-8"></a><span class="kw">autoplot</span>(<span class="kw">cmdscale</span>(eurodist, <span class="dt">eig =</span> <span class="ot">TRUE</span>), <span class="dt">label =</span> <span class="ot">TRUE</span>, <span class="dt">shape =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb387-9"><a href="multidimensional-scaling-mds.html#cb387-9"></a>         <span class="dt">label.size =</span> <span class="dv">3</span>)</span>
+<span id="cb387-10"><a href="multidimensional-scaling-mds.html#cb387-10"></a><span class="co">## Plotting Non-metric Multidimensional Scaling</span></span>
+<span id="cb387-11"><a href="multidimensional-scaling-mds.html#cb387-11"></a><span class="co">## MASS::isoMDS and MASS::sammon perform Non-metric MDS</span></span>
+<span id="cb387-12"><a href="multidimensional-scaling-mds.html#cb387-12"></a><span class="kw">library</span>(MASS)</span>
+<span id="cb387-13"><a href="multidimensional-scaling-mds.html#cb387-13"></a><span class="kw">autoplot</span>(<span class="kw">sammon</span>(eurodist))</span>
+<span id="cb387-14"><a href="multidimensional-scaling-mds.html#cb387-14"></a><span class="kw">autoplot</span>(<span class="kw">sammon</span>(eurodist), <span class="dt">shape =</span> <span class="ot">FALSE</span>, <span class="dt">label =</span> <span class="ot">TRUE</span>,<span class="dt">label.size =</span> <span class="dv">3</span>)</span>
+<span id="cb387-15"><a href="multidimensional-scaling-mds.html#cb387-15"></a><span class="co">## Have a go at interpreting these plots based on the geography of the cities :-)</span></span></code></pre></div>
 </div>
 </div>
 </div>
 <div id="correspondence-analysis-ca" class="section level3 hasAnchor">
 <h3>Correspondence Analysis (CA)<a href="multidimensional-scaling-mds.html#correspondence-analysis-ca" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>CA is a special case of metric MDS where the distance measure is the chi-square distance. It is conceptually similar to principal component analysis but where the data are categorical, counts, rather than continuous. CA is traditionally applied to contingency tables where rows and columns are treated equivalently; it decomposes the chi-square statistic associated with this table into orthogonal factors. Correspondence analysis is usually the best way to follow up on a <em>significant</em> chi-square test.</p>
-<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="multidimensional-scaling-mds.html#cb390-1" aria-hidden="true" tabindex="-1"></a>HairEyeColor</span></code></pre></div>
+<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="multidimensional-scaling-mds.html#cb388-1"></a>HairEyeColor</span></code></pre></div>
 <pre><code>## , , Sex = Male
 ## 
 ##        Eye
@@ -464,21 +464,21 @@ dissimilarity matrix as closely as possible. Principal coordinates (PCO) is one 
 ##   Brown    66   34    29    14
 ##   Red      16    7     7     7
 ##   Blond     4   64     5     8</code></pre>
-<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="multidimensional-scaling-mds.html#cb392-1" aria-hidden="true" tabindex="-1"></a>HC.df <span class="ot">&lt;-</span> <span class="fu">as.data.frame.matrix</span>(HairEyeColor[ , , <span class="dv">2</span>])</span>
-<span id="cb392-2"><a href="multidimensional-scaling-mds.html#cb392-2" aria-hidden="true" tabindex="-1"></a>HC.df</span></code></pre></div>
+<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="multidimensional-scaling-mds.html#cb390-1"></a>HC.df &lt;-<span class="st"> </span><span class="kw">as.data.frame.matrix</span>(HairEyeColor[ , , <span class="dv">2</span>])</span>
+<span id="cb390-2"><a href="multidimensional-scaling-mds.html#cb390-2"></a>HC.df</span></code></pre></div>
 <pre><code>##       Brown Blue Hazel Green
 ## Black    36    9     5     2
 ## Brown    66   34    29    14
 ## Red      16    7     7     7
 ## Blond     4   64     5     8</code></pre>
-<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="multidimensional-scaling-mds.html#cb394-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(HC.df)</span></code></pre></div>
+<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="multidimensional-scaling-mds.html#cb392-1"></a><span class="kw">chisq.test</span>(HC.df)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test
 ## 
 ## data:  HC.df
 ## X-squared = 106.66, df = 9, p-value &lt; 2.2e-16</code></pre>
-<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="multidimensional-scaling-mds.html#cb396-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ade4)</span>
-<span id="cb396-2"><a href="multidimensional-scaling-mds.html#cb396-2" aria-hidden="true" tabindex="-1"></a>coaHC <span class="ot">&lt;-</span> <span class="fu">dudi.coa</span>(HC.df, <span class="at">scannf =</span> <span class="cn">FALSE</span>, <span class="at">nf =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="multidimensional-scaling-mds.html#cb394-1"></a><span class="kw">library</span>(ade4)</span>
+<span id="cb394-2"><a href="multidimensional-scaling-mds.html#cb394-2"></a>coaHC &lt;-<span class="st"> </span><span class="kw">dudi.coa</span>(HC.df, <span class="dt">scannf =</span> <span class="ot">FALSE</span>, <span class="dt">nf =</span> <span class="dv">2</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-242-1.png" width="672" /></p>
 <p>The first axis shows a contrast between black haired and blonde haired students, mirrored by the brown eye, blue eye contrast. In CA the two categories, rows and columns play
 symmetric roles and we interpret the proximity of Blue eyes and Blond hair as showing strong co-occurence of these categories.</p>
@@ -556,7 +556,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

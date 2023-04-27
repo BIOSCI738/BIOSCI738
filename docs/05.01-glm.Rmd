@@ -41,9 +41,7 @@ But, what if we want to be a little more flexible and move away from some of the
 
 ## Poisson regression
 
-We saw the Poisson distribution in module 4. There, we talked about it in terms of rates. Additionally, it is commonly used as a  distribution for counts. 
-
-In summary, the Poisson distribution is a discrete distribution (of positive values only) and has  $\text{Var}(Y_i) = \mu_i$ (i.e., we expect the variance to increase with the mean).
+Poisson regression is commonly used as a  distribution for counts. It is a discrete distribution (of positive values only) and has  $\text{Var}(Y_i) = \mu_i$ (i.e., we expect the variance to increase with the mean).
 
 If we were to assume (as previously) that $\mu_i = \alpha + \beta_1 x_i$ then we would be allowing $\mu < 0$, which is not supported by the Poisson distribution. So, we use a link function to map between $\mu_i$ and the real number line:
   
@@ -280,7 +278,7 @@ We have strong evidence to reject the null hypothesis; suggesting a lack of fit!
 
 ## Logistic regression
   
-We saw the Binomial distribution in module 4.  We define a random variable, $Y_i$, to have a binomial distribution if it is the number of successes from a number of **independent** trials, $n$, each with the same probability of success, $p$. It is a discrete distribution, which notes that the number of successes associated with the $i^{th}$ observation must be an integer between $0$ and $n_i$. In addition, it builds in the non-constant variance of $Y_i$ and $\frac{Y_i}{n_i}$: $\text{Var}(Y_i)=n_ip_i(1−p_i)$ and $\text{Var}(\frac{Y_i}{n_i}) = \frac{p_i(1−p_i)}{n_i}$.
+We define a random variable, $Y_i$, to have a binomial distribution if it is the number of successes from a number of **independent** trials, $n$, each with the same probability of success, $p$. It is a discrete distribution, which notes that the number of successes associated with the $i^{th}$ observation must be an integer between $0$ and $n_i$. In addition, it builds in the non-constant variance of $Y_i$ and $\frac{Y_i}{n_i}$: $\text{Var}(Y_i)=n_ip_i(1−p_i)$ and $\text{Var}(\frac{Y_i}{n_i}) = \frac{p_i(1−p_i)}{n_i}$.
    
   
 If we were to assume a linear relationship (as previously) that $p_i = \alpha + \beta_1 x_i$ then we would be allowing $p < 0$ and $p>1$, which is not supported by the binomial distribution. So, we use a link function to map between $p$ and the real number line:
@@ -551,7 +549,7 @@ What would happen if we wanted to add extra explanatory terms (e.g., $z_i$)? The
 
 <p align="center">**Logistic regression:** $Y_i \sim \text{Binomial}(n_i, p_i)$ where $\text{logit}(p_i) = \alpha + \beta_1 x_i+ \beta_2 z_i$</p>
 
-What about interactions (e.g., $x_iz_i$)? then,
+What about interactions (e.g., $x_iz_i$)?
 
 <p align="center"> **Linear regression:** $Y_i \sim \text{Normal}(\mu_i, \sigma^2)$ where $\mu_i = \alpha + \beta_1 x_i + \beta_2 z_i + \beta_3 x_iz_i$</p>
   
@@ -561,7 +559,7 @@ What about interactions (e.g., $x_iz_i$)? then,
 
 
 
-**Building a GLM**
+#### Building a GLM
 
 Assume the observations are independent of one another, then,
 
@@ -575,12 +573,32 @@ Assume the observations are independent of one another, then,
   
   5. Estimate additional parameters. For example, <span style="color:red">$\sigma^2$</span>.
   
+#### Other distributions
+  
 We are not restricted to the three distributions above. Many others exist:
   
-  + Gamma and inverse-Gaussian, for continuous responses on the interval $[0,\infty)$ 
-  + Beta, for continuous responses on the interval $[0,1]$ 
-  + Negative binomial, for discrete responses on $(0,1,2,\cdots)$, with $\text{Var}(Y) \geq E(Y)$ 
+  + **Gamma** and **inverse-Gaussian**, for continuous responses on the interval $[0,\infty)$ 
+  + **Beta**, for continuous responses on the interval $[0,1]$
+  + **Quasi-Poisson**$^{+}$, typically for modelling overdispersed count data (i.e., when $\text{Var}(Y) > E(Y)$) where $\text{Var}(Y)$ is a linear function of $E(Y)$
+  + **Negative binomial**, for discrete responses on $(0,1,2,\cdots)$ (can also be used for overdispersed count data), with $\text{Var}(Y) \geq E(Y)$ and where $\text{Var}(Y)$ is a quadratic function of $E(Y)$
+  + **Quasi-binomial**$^{+}$, a model for situation when $\text{Var}(Y) > \text{Var}(Y_{Y \sim \text{Binomial}})$
+  + **Beta-binomial**, a Binomial-type model where $p \sim \text{Beta}(a, b)$
   + ...
+  
+<div style="overflow:auto;">
+  
+| **Distribution**  | **Notation**  | **Mean** $\mu = E(Y)$  | **Variance** $\sigma^2 = \text{Var}(Y)$ | **Linear predictor** (w. a typical <span style="color:pink">link</span> function) |
+|-------------------|---------------|------------------------|-----------------------------------------|-----------------------------------------------------------------------------------|
+| Gaussian          | $Y\sim\textbf{Normal}(\mu, \sigma^2)$  |  $\mu$ | $\sigma^2$  | <span style="color:pink">I</span>$(\mu) = \alpha + \Sigma_{j=1}^{n_\text{covariates}}\beta_j x_j$  |
+| Poisson           | $Y \sim \textbf{Poisson}(\mu)$ where $\mu = \text{rate}$ | $\mu$  | $\mu$  |  <span style="color:pink">log</span>$(\mu) = \alpha + \Sigma_{j=1}^{n_\text{covariates}}\beta_j x_j$ |
+| Binomial          | $Y \sim \textbf{Bonomial}(\text{n}, p)$ where $\text{n} = \text{number of trials}$ and $p = \text{probability of sucess}$  | $\text{n}p$  | $\text{n}p (1-p)$  |  <span style="color:pink">logit</span>$(p) = \alpha + \Sigma_{j=1}^{n_\text{covariates}}\beta_j x_j$ |
+| Gamma             | $Y \sim \textbf{Gamma}(k, \theta = \frac{1}{\text{rate}})$ where $k = \text{shape}$ and $\theta = \text{scale}$ |  $k\theta$ | $k\theta^2$  |<span style="color:pink">log</span>$(E(Y)) = \alpha + \Sigma_{j=1}^{n_\text{covariates}}\beta_j x_j$ |
+| Beta              | $Y \sim \textbf{Beta}(a, b)$  where $a = \text{shape}$ and $b = \text{scale}$ | $\frac{a}{a+b}$  | $\frac{ab}{(a+b)^2(a+b+1)}$  | <span style="color:pink">log</span>$(E(Y)) = \alpha + \Sigma_{j=1}^{n_\text{covariates}}\beta_j x_j$  |
+| Negative binomial | $Y \sim \textbf{NB}(r, p)$ where $\text{r} = \text{number of successes until the experiment is stopped}$ and $p = \text{probability of sucess}$ or $Y \sim \textbf{NB}(k, p)$ where $\text{k} = \text{number of failures}$ given $p = \text{probability of sucess}$     | $\frac{r(1-p)}{p}$ or $\mu = k\frac{p}{1-p}$  | $\frac{r(1-p)}{p^2}$ or $\mu + \frac{\mu^2}{k}$ | <span style="color:pink">log</span>$(E(Y)) = \alpha + \Sigma_{j=1}^{n_\text{covariates}}\beta_j x_j$  |
+| Beta-binomial     |$Y \sim \textbf{BetaBin}(\text{n},a, b)$ where $\text{n} = \text{number of trials}$ and  $p = \frac{a}{a + b}, \text{the probability of success}$  |  $\frac{\text{n} a}{a+b}=  \text{n}p$  | $\frac{\text{n} a b(a + b + \text{n})}{(a+b)^2(a + b + 1)}$ | <span style="color:pink">logit</span>$(p) = \alpha + \Sigma_{j=1}^{n_\text{covariates}}\beta_j x_j$  |
+</div>
+
+$^{+}$ Note that the Quasi-... distributions are not really *proper* distributions; they are simply models describing a mean-variance relationship beyond that offered by the base distribution.
 
 #### Other modelling approaches (not examinable)
 

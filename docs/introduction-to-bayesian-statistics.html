@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Introduction to Bayesian statistics | Advanced Biological Data Analysis</title>
   <meta name="description" content="Introduction to Bayesian statistics | Advanced Biological Data Analysis" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Introduction to Bayesian statistics | Advanced Biological Data Analysis" />
   <meta property="og:type" content="book" />
@@ -48,6 +48,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
@@ -59,7 +60,6 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -402,14 +402,14 @@ is typically a high-dimensional integral, difficult if not impossible to calcula
 <p>Again we consider data from the published article <a href="https://www.sciencedirect.com/science/article/pii/S0022098115000039">Influence of predator identity on the strength of predator avoidance responses in lobsters.</a>.</p>
 <p>Recall that the authors were interested in how a juvenile lobster’s size was related to its vulnerability to predation. In total, 159 juvenile lobsters were collected from their natural habitat in the Gulf of Maine, USA, and the length of each lobster’s carapace (upper shell) was measured to the nearest 3 mm. The lobsters were then tethered to the ocean floor for 24 hours. Any missing lobsters were assumed to have been consumed by a predator, while the surviving lobsters were released.</p>
 <p>We define large juvenile’s as those with carapace <span class="math inline">\(\geq\)</span> 40 mm, and otherwise we class them as small.</p>
-<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="introduction-to-bayesian-statistics.html#cb429-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb429-2"><a href="introduction-to-bayesian-statistics.html#cb429-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/lobster.csv&quot;</span>)</span>
-<span id="cb429-3"><a href="introduction-to-bayesian-statistics.html#cb429-3" aria-hidden="true" tabindex="-1"></a>lobsters <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
-<span id="cb429-4"><a href="introduction-to-bayesian-statistics.html#cb429-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">size =</span> <span class="fu">ifelse</span>(size <span class="sc">&gt;=</span> <span class="dv">40</span>, <span class="st">&quot;large&quot;</span>, <span class="st">&quot;small&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb429-5"><a href="introduction-to-bayesian-statistics.html#cb429-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">survived =</span> <span class="fu">ifelse</span>(survived <span class="sc">==</span> <span class="dv">0</span>, <span class="st">&quot;consumed&quot;</span>, <span class="st">&quot;alive&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb429-6"><a href="introduction-to-bayesian-statistics.html#cb429-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(size, survived) <span class="sc">%&gt;%</span></span>
-<span id="cb429-7"><a href="introduction-to-bayesian-statistics.html#cb429-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tally</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb429-8"><a href="introduction-to-bayesian-statistics.html#cb429-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> <span class="fu">c</span>(survived), <span class="at">values_from =</span> n)</span></code></pre></div>
+<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="introduction-to-bayesian-statistics.html#cb427-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb427-2"><a href="introduction-to-bayesian-statistics.html#cb427-2"></a>data &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/lobster.csv&quot;</span>)</span>
+<span id="cb427-3"><a href="introduction-to-bayesian-statistics.html#cb427-3"></a>lobsters &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span></span>
+<span id="cb427-4"><a href="introduction-to-bayesian-statistics.html#cb427-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">size =</span> <span class="kw">ifelse</span>(size <span class="op">&gt;=</span><span class="st"> </span><span class="dv">40</span>, <span class="st">&quot;large&quot;</span>, <span class="st">&quot;small&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb427-5"><a href="introduction-to-bayesian-statistics.html#cb427-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">survived =</span> <span class="kw">ifelse</span>(survived <span class="op">==</span><span class="st"> </span><span class="dv">0</span>, <span class="st">&quot;consumed&quot;</span>, <span class="st">&quot;alive&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb427-6"><a href="introduction-to-bayesian-statistics.html#cb427-6"></a><span class="st">  </span><span class="kw">group_by</span>(size, survived) <span class="op">%&gt;%</span></span>
+<span id="cb427-7"><a href="introduction-to-bayesian-statistics.html#cb427-7"></a><span class="st">  </span><span class="kw">tally</span>() <span class="op">%&gt;%</span></span>
+<span id="cb427-8"><a href="introduction-to-bayesian-statistics.html#cb427-8"></a><span class="st">  </span><span class="kw">pivot_wider</span>(<span class="dt">names_from =</span> <span class="kw">c</span>(survived), <span class="dt">values_from =</span> n)</span></code></pre></div>
 <table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -559,7 +559,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');
