@@ -212,70 +212,6 @@ birds %>%
            col = "#FC8D62")
 ```
 
-#### Model diagnostics
-
-##### Residuals
-
-Recall from module 2, where we looked at residual plots to check our assumptions for a linear model. In a similar way we can use residuals to check how appropriate our GLM is (i.e., to help diagnose the overall goodness-of-fit and to see if our model assumptions are met). Often, Pearson and deviance residuals are used in model diagnostics for generalized linear models. Below, all three are calculated for our Poisson model above.
-
-**Response residuals** are the *conventional* residual on the response level. That is, the fitted residuals are transformed by taking the inverse of the link function. Think back to linear models where the link function was set as the identity. 
-
-**Deviance residuals** represent the contributions of individual samples to the deviance, *D* (see above).
-
-**Pearson residuals** are calculated by normalizing the raw residuals (i.e., expected - estimate) by the square root of the estimate.
-
-Luckily, we can calculate all three directly in `R` as follows.
-
-```{r}
-## response residuals
-resids_response <- residuals(glm_bird, type = "response")
-## deviance residuals
-resids_deviance <- residuals(glm_bird, type = "deviance")
-## pearson residuals
-resids_pearson <- residuals(glm_bird, type = "pearson")
-```
-
-Plotting all three types we can asses how appropriate our chosen model is.
-
-```{r, echo = FALSE}
-resids <- data.frame(Fitted = glm_bird$fitted.values,
-										 "Response_residuals" = resids_response,
-										 "Deviance_residuals" = resids_deviance,
-										 "Pearson_residuals" = resids_pearson)
-r <- ggplot(resids, aes(x = Fitted, y = Response_residuals)) +
-	geom_point() + geom_hline(yintercept = 0) + theme_linedraw() + ylab("Response residuals")
-d <- ggplot(resids, aes(x = Fitted, y = Deviance_residuals)) +
-	geom_point() + geom_hline(yintercept = 0) + theme_linedraw() + ylab("Deviance residuals")
-p <- ggplot(resids, aes(x = Fitted, y = Pearson_residuals)) +
-	geom_point() + geom_hline(yintercept = 0) + theme_linedraw() + ylab("Pearson residuals")
-require(patchwork)
-r + d + p
-
-```
-
-So, what do you see? Look back at the assumptions of a Poisson model. What do you conclude from the plots above?
-
-##### Deviance (using the chi-squared approach)
-
-Luckily no manual calculations are required, our `glm()` call returns the values we need directly: 
-
-```{r}
-## extract the residual deviance
-D <- glm_bird$deviance
-D
-## extract the residual degrees of freedom (n-k)
-df <- glm_bird$df.residual
-df
-```
-
-Therefore, to test the relevant null hypothesis (that the model is correct) we use
-
-```{r}
-1 - pchisq(D, df)
-```
-
-We have strong evidence to reject the null hypothesis; suggesting a lack of fit! **BUT** are our chi-squared approximation assumptions met? If not, we might take a **simulation based approach**. This is, however, beyond the scope of this course.
-
 ## Logistic regression
   
 We define a random variable, $Y_i$, to have a binomial distribution if it is the number of successes from a number of **independent** trials, $n$, each with the same probability of success, $p$. It is a discrete distribution, which notes that the number of successes associated with the $i^{th}$ observation must be an integer between $0$ and $n_i$. In addition, it builds in the non-constant variance of $Y_i$ and $\frac{Y_i}{n_i}$: $\text{Var}(Y_i)=n_ip_i(1−p_i)$ and $\text{Var}(\frac{Y_i}{n_i}) = \frac{p_i(1−p_i)}{n_i}$.
@@ -472,27 +408,35 @@ ggplot(grouped, aes(x = size, y = p)) +
   theme_classic()
 ```
 
-#### Model diagnostics
+## Model diagnostics
 
-##### Residuals
+### Residuals
 
-Recall from module 2, where we looked at residual plots to check our assumptions for a linear model. In a similar way we can use residuals to check how appropriate our GLM is (i.e., to help diagnose the overall goodness-of-fit and to see if our model assumptions are met). As outlined in our Poisson model example before, Pearson and deviance residuals are used in model diagnostics for generalized linear models. Recall, that 1) the **response residuals** are the *conventional* residual on the response level. That is, the fitted residuals are transformed by taking the inverse of the link function; 2) the **deviance residuals** represent the contributions of individual samples to the deviance, *D* (see above); and. **Pearson residuals** are calculated by normalizing the raw residuals (i.e., expected - estimate) by the square root of the estimate.
 
-We calculate all three directly in `R` as follows.
+Recall from module 2, where we looked at residual plots to check our assumptions for a linear model. In a similar way we can use residuals to check how appropriate our GLM is (i.e., to help diagnose the overall goodness-of-fit and to see if our model assumptions are met). Often, Pearson and deviance residuals are used in model diagnostics for generalized linear models. 
+
+**Response residuals** are the *conventional* residual on the response level. That is, the fitted residuals are transformed by taking the inverse of the link function. Think back to linear models where the link function was set as the identity. 
+
+**Deviance residuals** represent the contributions of individual samples to the deviance, *D* (see above).
+
+**Pearson residuals** are calculated by normalizing the raw residuals (i.e., expected - estimate) by the square root of the estimate.
+
+
+Luckily, we can calculate all three directly in `R`. Below we do that for the bird abundance model.
 
 ```{r}
 ## response residuals
-resids_response <- residuals(glm_mod_gr, type = "response")
+resids_response <- residuals(glm_bird, type = "response")
 ## deviance residuals
-resids_deviance <- residuals(glm_mod_gr, type = "deviance")
+resids_deviance <- residuals(glm_bird, type = "deviance")
 ## pearson residuals
-resids_pearson <- residuals(glm_mod_gr, type = "pearson")
+resids_pearson <- residuals(glm_bird, type = "pearson")
 ```
 
 Plotting all three types we can asses how appropriate our chosen model is.
 
 ```{r, echo = FALSE}
-resids <- data.frame(Fitted = glm_mod_gr$fitted.values,
+resids <- data.frame(Fitted = glm_bird$fitted.values,
 										 "Response_residuals" = resids_response,
 										 "Deviance_residuals" = resids_deviance,
 										 "Pearson_residuals" = resids_pearson)
@@ -509,9 +453,35 @@ r + d + p
 
 So, what do you see? Look back at the assumptions of a Poisson model. What do you conclude from the plots above?
 
-##### Deviance (using the chi-squared approach)
+### The quantile residual Q-Q plot
 
-Luckily no manual calculations are required, our `glm()` call returns the values we need directly: 
+Recall from Module 2 that a Normal quantile-quantile (Q-Q) plot is used to check overall similarity of the observed distribution of the residuals to that expected under the model (i.e., Gaussian). An alternative to a Normal Q-Q plot for a GLM fit is a quantile residual Q-Q plot of observed versus expected **quantile residuals**. Quantile residuals are, typically, the residuals of choice for GLMs when the deviance and Pearson residuals can be grossly non-normal. It is suggested that quantile residuals are the only useful residuals for binomial or Poisson data when the response takes on only a small number of distinct values. We can use the `statmod::qresiduals()` function to compute these residuals.
+
+
+### Deviance (using the chi-squared approach)
+
+#### For our Poisson model
+
+
+```{r}
+## extract the residual deviance
+D <- glm_bird$deviance
+D
+## extract the residual degrees of freedom (n-k)
+df <- glm_bird$df.residual
+df
+```
+
+Therefore, to test the relevant null hypothesis (that the model is correct) we use
+
+```{r}
+1 - pchisq(D, df)
+```
+
+We have strong evidence to reject the null hypothesis; suggesting a lack of fit! **BUT** are our chi-squared approximation assumptions met? If not, we might take a **simulation based approach**. This is, however, beyond the scope of this course.
+
+
+#### For our binomial model
 
 ```{r}
 ## extract the residual deviance
