@@ -105,7 +105,7 @@ $$ p = \Pr(\chi^2_{n - k} > D).$$
   
 The distribution of the deviance under the null hypothesis is approximately chi-squared if the response of each observation is well approximated by a normal distribution. This holds for Poisson random variables with $\mu_i > 5$.
 
-However, if our chi-squared approximation assumptions are not met we should find another way. See the example below for a simulation based approach.
+However, if our chi-squared approximation assumptions are not met we should find another way.
  
 ### An example: bird abundance
 
@@ -266,10 +266,11 @@ $$ p = \Pr(\chi^2_{n - k} > D).$$
 **Conditions of the chi-squared approximation**
   
 The distribution of the deviance under the null hypothesis is approximately chi-squared if the response of each observation is well approximated by a normal distribution. This holds for binomial random variables if the number of trials, $n_i$, is large enough:
-       + when $p_i$ is close to 0.5, $n_i \geq 5$ is probably sufficient,
-       + but if $p_i$ is close to 0 or 1, $n_i$ must be much larger.
 
-However, if our chi-squared approximation assumptions are not met we should find another way. See the example below for a simulation based approach.
+   + when $p_i$ is close to 0.5, $n_i \geq 5$ is probably sufficient,
+   + but if $p_i$ is close to 0 or 1, $n_i$ must be much larger.
+
+However, if our chi-squared approximation assumptions are not met we should find another way.
 
 ### An example: lobsters
 
