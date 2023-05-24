@@ -33,7 +33,7 @@ $$P( \text{infected}| +) = \frac{P(\text{infected} \:\text{and}\: +)}{P(+)}.$$
 
 We have, $P(\text{infected} \:\text{and}\: +) = P(\text{infected})\times P( + | \text{infected}) = 0.1 \times 0.787 = `r 0.1*0.787`.$
 
-So, $P(+) = P(\text{infected} \:\text{and}\: +) + P(\text{clear} \:\text{and}\: +) = `r 0.1*0.787` + ( 0.9 \times (1 - 0.997)) = `r 0.1*0.787` + ( 0.9 \times  `r (1 - 0.997)`) = `r 0.1*0.787` + `r 0.9*(1 - 0.997)` = `r (0.1*0.787) +  0.9*(1 - 0.997)`.$
+So, $P(+) = P(\text{infected} \:\text{and}\: +) + P(\text{clear} \:\text{and}\: +) =$ $`r 0.1*0.787` + ( 0.9 \times (1 - 0.997)) = `r 0.1*0.787` + ( 0.9 \times  `r (1 - 0.997)`) =$ $`r 0.1*0.787` + `r 0.9*(1 - 0.997)` = `r (0.1*0.787) +  0.9*(1 - 0.997)`.$
 
 Therefore, $P( \text{infected}| +) = \frac{ `r 0.1*0.787`}{`r (0.1*0.787) +  0.9*(1 - 0.997)`} = `r (0.1*0.787)/((0.1*0.787) +  0.9*(1 - 0.997))`.$
 
@@ -60,7 +60,7 @@ $$P(\text{hypothesis}∣\text{data}) = \frac{P(\text{data} | \text{hypothesis} )
 Recall from the previous sections that our hypotheses relate to estimating **parameter** values (e.g., intercepts, differences in means, slopes etc ). The formula above (Bayes' theorem) calculates the probability of the parameter(s), say $\theta$, values given the data. 
 
 But what is the difference here to maximum likelihood estimation (i.e., MLE, the frequentist approach)? 
-Taking an MLE approach assumes that the parameters are fixed (i.e., they have one *true* value); the parameters are unknown and are to be estimated. Using this approach we typically estimate a point estimate of the parameter of interest. Taking a Bayesian approach assumes that the parameters are not fixed. Instead, parameters are assumed to come from some fixed unknown distribution (i;e., a range of plausible values). This approach librarys that we have some prior beliefs about the data (even if these beliefs are uninformative). This information is introduces *a priori* to the modelling framework.
+Taking an MLE approach assumes that the parameters are fixed (i.e., they have one *true* value); the parameters are unknown and are to be estimated. Using this approach we typically estimate a point estimate of the parameter of interest. Taking a Bayesian approach assumes that the parameters are not fixed. Instead, parameters are assumed to come from some fixed unknown distribution (i;e., a range of plausible values). This approach assumes that we have some prior beliefs about the data (even if these beliefs are uninformative). This information is introduces *a priori* to the modelling framework.
 
 $$P(B|A) = \frac{P(A|B)P(B)}{P(A)}$$
 
@@ -69,7 +69,7 @@ Let $A = \theta$ and $B = \text{data}$, then the above translates to
 $$P(\theta∣\text{data}) = \frac{P(\text{data} | \theta )P(\theta)}{P(\text{data})}$$
 
 where $P(\theta∣\text{data})$ represents what you know after having seen the data. This is called he **posterior distribution** and is the basis for inference, a distribution, possibly multivariate if more than one parameter
-($\theta$). $\frac{P(\text{data} | \theta )$ is the **likelihood**, think back to the previous section. $P(\text{data})$ is called the **prior distribution** and represents what you know before seeing the data. The source of much discussion about the Bayesian approach. Now.
+($\theta$). $P(\text{data} | \theta )$ is the **likelihood**, think back to the previous section. $P(\text{data})$ is called the **prior distribution** and represents what you know before seeing the data. The source of much discussion about the Bayesian approach. Now.
 
 $$P(\text{data}) = \int P(\text{data}|\theta)P(\theta)d\theta$$
 is typically a high-dimensional integral, difficult if not impossible to calculate. 
