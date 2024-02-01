@@ -232,7 +232,7 @@ comparisons(pm)
 
 To use the Bonferroni correction we must now calculate and specify the adjusted $\alpha_b = \frac{\alpha_b}{n_c}$, in our case this is $\frac{0.05}{{3 \choose 2}}$. We also specify `adj = "bonferroni"`:
 
-```{r}
+```{r, eval=FALSE}
 alpha.adj <- 0.05/choose(3,2)
 bonferroni <-  predictmeans::predictmeans(rats_lm , 
                                           modelterm = "Surgery", adj = "bonferroni",
@@ -245,7 +245,7 @@ comparisons(bonferroni)
 
 Things are a bit more cumbersome when it comes to Tukey's HSD. We can specify `adj = "tukey"` in `predictmeans`:
 
-```{r}
+```{r, eval = FALSE}
 tukey <-  predictmeans::predictmeans(rats_lm , 
                                           modelterm = "Surgery", adj = "tukey",
                                           level = alpha.adj,
@@ -279,7 +279,7 @@ Therefore, Tukey's HSD is $\frac{`r qtukey(p = 1- 0.05, nmeans = 3, df = 12 - 3)
 
 To calculate the CIs we use $\text{difference} \pm \text{HSD}$:
 
-```{r}
+```{r, eval = FALSE}
 HSD <- (qtukey(p = 1 - 0.05, nmeans = 3, df = 12 - 3)/sqrt(2))*sqrt(2 * anova(rats_lm)[2,3] / 4)
 all_diffs <- outer(tukey$`Predicted Means`, tukey$`Predicted Means`, "-")
 comparison_table <- data.frame(differences = all_diffs[lower.tri(all_diffs)]) %>%
@@ -292,7 +292,7 @@ This matches the output from `TukeyHSD()` above!
 
 What about the values returned by `predictmeans()`?
 
-```{r}
+```{r, eval = FALSE}
 print(tukey$`Pairwise p-value`)
 ```
 

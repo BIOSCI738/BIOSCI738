@@ -23,7 +23,7 @@ knitr::opts_chunk$set(message = FALSE, warning = FALSE)
 
 # Nau mai, haere mai. Welcome to BIOSCI 738 {-}
 
-<center>![](img/coxhex.png)</center>
+<center>![](img/coxhex.png){width=60%}</center>
 
 **Lecturer**: [Dr. C. M. Jones-Todd](https://cmjt.github.io/)
 

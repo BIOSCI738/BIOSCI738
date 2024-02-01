@@ -1,0 +1,14 @@
+bookdown::gitbook:
+  toc_depth: 3
+  highlight: pygments
+  config:
+    toc:
+      collapse: section
+      before: |
+        <li><a href="./">BIOSCI 738: Advanced Biological Data Analysis</a></li>
+      after: |
+        <li><a href="https://canvas.auckland.ac.nz/courses/103658">CANVAS</a></li>
+    search: yes
+    sharing: null
+bookdown::html_book:
+  theme: spacelab
