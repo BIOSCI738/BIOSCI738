@@ -1,108 +1,99 @@
-# Syllabus {-}
+# Key Information {-}
 
-#### Contact (lecture) hours are **Wednesdays 11am to 1pm** and **Thursdays 4pm to 6pm** (weeks 2--12) {-}
-
-#### Consultation (office) hours are **Mondays, Wednesdays, and Thursdays 1--2pm** throughout the semester {-}
-
-### Course Community {-}
+<div class="alert alert-danger" role="alert">
+<span><strong>**Please read this page carefully as it contains important information about the course structure, delivery, and assessment.**</span></strong>
+</div>
 
 
-**Inclusive community**
+## Course Community {-}
 
-It is my intent that students from all diverse backgrounds and perspectives be well-served by this course, that students’ learning needs be addressed both in and out of class, and that the diversity that the students bring to this class be viewed as a resource, strength, and benefit.
 
-**Accessibility**
+**Inclusive community:** It is my intent that students from all diverse backgrounds and perspectives be well-served by this course, that students’ learning needs be addressed both in and out of class, and that the diversity that the students bring to this class be viewed as a resource, strength, and benefit.
 
-If there is any portion of the course that is not accessible to you due to challenges with technology or the course format, please let me know so we can make appropriate accommodations.
+**Accessibility:** If there is any portion of the course that is not accessible to you due to challenges with technology or the course format, please let me know so we can make appropriate accommodations.
 
-**Communication** 
+## Synopsis {-}
 
-All lecture notes, assignment instructions, an up-to-date schedule, and other course materials may be found here or on the course's [CANVAS page](https://canvas.auckland.ac.nz/courses/90399).
+This is a postgraduate course geared towards students of biology, ecology, and environmental science. Building on a strong foundation in quantitative biology, fundamental statistical methods and basic R programming, you will learn an array of advanced biostatistical methods for data analysis. Topics covered include data wrangling, methods for the analysis of designed experiments, regression analysis, including mixed effect models, and the analysis of multivariate data, including advanced supervised and unsupervised learning techniques. 
 
-### Synopsis {-}
-
-This is a postgraduate course geared towards students of biology, ecology, and environmental science. It is suited to students with an interest in (bio)statistics who would like to equip themselves with the know-how to be able to correctly prepare experiments, analyse data, interpret their results and draw valid conclusions. 
-
-Building on a strong foundation in quantitative biology, fundamental statistical methods and basic R programming, students will learn an array of advanced biostatistical methods for data analysis. Topics covered include data wrangling, methods for the analysis of designed experiments, regression analysis, including mixed effect models, and the analysis of multivariate data, including advanced supervised and unsupervised learning techniques. Requires students to apply their knowledge across a myriad of complex biological datasets.
-
-### Prerequisites {-}
+## Prerequisites {-}
 
 The course builds on assumed knowledge of some fundamental statistical concepts. It is expected that students are comfortable with the statistical content covered in a typical core (bio)statistics course (e.g., linear regression, hypothesis testing etc.). In addition, we will use the programming language R (through RStudio) and students are expected to be familiar with data import, manipulation, and visualisation using R. If students are unfamiliar with R it is expected that students will prepare accordingly before the semester begins.
 
-**Before the course begins all students should complete the [pre-course tasks](https://canvas.auckland.ac.nz/courses/90399/modules/253015?wrap=1).**
+<div class="alert alert-danger" role="alert">
 
-These include an academic honesty declaration, installation of required softwares, and two diagnostic quizzes. These tasks are designed for you to self-assess your R and statistics knowledge. If you fail to complete the coding task and score less than 7/10 on the quiz you will struggle with the pace and content of the course. This does not preclude you from taking the course, however, you should expect to invest time on top of what is expected for a postgraduate course into ensuring that you understand the material.
-
-### Course overview {-}
-
-**Module 1**
-
- + Data sovereignty
- + Data visualisation and wrangling
- + Reproducibility and version control
-
-**Module 2**
-
- + Multiple comparison procedures (e.g., pairwise, and multiple, comparisons of means)
- + Resampling procedures (e.g., randomisation, permutation, and bootstrapping)
- + Introduction to linear regression with continuous and categorical explanatory variables
-
-**Module 3** 
-
- + Design and analysis of experiments
- + Linear regression cont.
- 
-**Module 4**
- 
- + Mixed models (e.g., incorporating fixed and random effects)
- + Introduction to generalised linear models
- 
-**Module 5**  
-
- + Unsupervised and supervised learning (e.g., principal components analysis, dimension reduction,  discriminant analysis)
- + Ordination (e.g., multidimensional scaling, correspondence analysis)
-
-**Module 6**   
-
- + Least squares estimation
- + Maximum likelihood estimation
- + Introduction to Bayesian statistics
+<span><strong>Before the course begins all students should complete the [pre-course tasks](https://canvas.auckland.ac.nz/courses/103658/modules).</span></strong>
 
 
+These include an academic honesty declaration, confirmation that you have installed ALL required software, a short quiz to demonstrate that you are aware of the assessment structure of the course and two diagnostic tasks. These tasks are designed for you to self-assess your R and statistics knowledge. If you fail to complete the coding task and score less than 70% on the quiz you will likely struggle with the pace and content of the course. This does not preclude you from taking the course, however, you should expect to invest time on top of what is expected for a postgraduate course into ensuring that you understand the material.
+
+</div>
+
+## Lectures {-}
+
+<div class="alert alert-danger" role="alert">
+
+<span><strong>Lectures are weekly</span></strong> (weeks 2–12)
+ <ul>
+  <li>**Tuesdays**: 4–6 pm (303-B05), and </li>
+  <li>**Wednesdays**: 4–6 pm (303-B09). </li>
+</ul>
+</div>
+
+
+## Assessment {-}
 
 ### Assessment summary {-}
 
-**Grading**
+<center>![](img/gnatt.png)</center>
 
-Your final course grade will be calculated as follows:
+### Assessment structure {-}
 
-| Category                                             |Percentage      |
-| ---------------------------------------------------- |----------------|
-| Assignments (x3)                                     |60% (20% each)  |
-| Presentations (x1 lecture style & x1 3MT style)      |10% (best grade)|
-| R-based tasks (x10)                                  |5% (0.5% each)  |
-| Final project (essay 15%, code rep 10%)              |25%             |
+**Assignments** In the assignments, you will apply what you’ve learned during the lectures and labs to discuss and complete data analysis tasks.
 
- + **Assignments** In the assignments, you will apply what you’ve learned during the lectures and labs to discuss and complete data analysis tasks. A section of each assignment will be peer-reviewed.
- + **Presentations** Each presentation will ask you to deliver a short lecture/talk on a statistical topic.
- + **R-based tasks** In the labs, you will apply the concepts discussed in lecture to complete various applied data analysis tasks in `R`.
- + **Final project** This will involve a written report as well as producing a fully reproducible code repository. 
+ + 3 in total
+ + Weighted 20% each
+ + Total combined weighting 60%
+ + *A portion of each assignment will be graded based on your peer feedback*
  
-(*there is no test or exam for this course*)
+**R-tasks** In the labs, you will apply the concepts discussed in lecture to complete various applied data analysis tasks in `R`.
+ 
+  + 10 in total
+  + Weighted 0.5% per assessment
+  + Total combined weighting 5%
+  + *Must complete 7 out of the 10 tasks or a DNC grade will be given.*
+
+**Project:** This will involve a written report as well as producing a fully reproducible code repository. You will also be asked to deliver a short lecture/talk on a statistical topic of your choice.
+
+ + 4 components in total:
+     
+     + Elevator pitch (10%)
+     + Project essay (15%)
+     + Project code repo (10%)
+     + Project presentation (*must complete to receive Project grade*)
+     
+ + Total combined weighting 35%
+
+ 
+(**there is no test or exam for this course**)
  
 
-### Course policies {-}
+## Course policies {-}
 
-#### Academic honesty
+### Academic honesty {-}
 
-**TL;DR: Don’t cheat!**
+<div class="alert alert-danger" role="alert">
+
+<span><strong>TL;DR: Don’t cheat!</span></strong>
+
+</div>
 
 Please abide by the following as you work on assignments in this course:
 
  + You may **discuss** individual homework and lab assignments with other students; however, you may not directly share (or copy) code or write up with other students. For team assignments, you may collaborate freely within your team. You may discuss the assignment with other teams; however, you may not directly share (or copy) code or write up with another team. Unauthorized sharing (or copying) of the code or write up will be considered a violation for all students involved.
- + **Reusing code** Unless explicitly stated otherwise, you may make use of online resources (e.g. StackOverflow) for coding examples on assignments. If you directly use code from an outside source (or use it as inspiration), you must explicitly cite where you obtained the code. Any recycled code that is discovered and is not explicitly cited will be treated as plagiarism.
+ + **Reusing code** Unless explicitly stated otherwise, you may make use of online resources (e.g., StackOverflow) for coding examples on assignments. If you directly use code from an outside source (or use it as inspiration), you must explicitly cite where you obtained the code. Any recycled code that is discovered and is not explicitly cited will be treated as plagiarism.
 
-#### Late work & extensions
+### Late work & extensions {-}
 
 The due dates for assignments are there to help you keep up with the course material and to ensure the teaching team can provide feedback within a timely manner. However, I understand that things come up periodically that could make it difficult to submit an assignment by the deadline. If this is the case for you it is imperative that you get in contact with me as soon as possible so that we might make alternative arrangements.
 
