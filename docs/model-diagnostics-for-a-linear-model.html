@@ -29,7 +29,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="model-formula-syntax-in-r.html"/>
+<link rel="prev" href="linear-regression.html"/>
 <link rel="next" href="inference-for-a-linear-model.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -140,8 +140,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Nau mai, haere mai. Welcome to BIOSCI 738</a></li>
 <li class="chapter" data-level="" data-path="key-information.html"><a href="key-information.html"><i class="fa fa-check"></i>Key Information</a><ul>
-<li class="chapter" data-level="" data-path="key-information.html"><a href="key-information.html#course-community"><i class="fa fa-check"></i>Course Community</a></li>
-<li class="chapter" data-level="" data-path="key-information.html"><a href="key-information.html#synopsis"><i class="fa fa-check"></i>Synopsis</a></li>
+<li class="chapter" data-level="" data-path="key-information.html"><a href="key-information.html#overview"><i class="fa fa-check"></i>Overview</a></li>
 <li class="chapter" data-level="" data-path="key-information.html"><a href="key-information.html#prerequisites"><i class="fa fa-check"></i>Prerequisites</a></li>
 <li class="chapter" data-level="" data-path="key-information.html"><a href="key-information.html#lectures"><i class="fa fa-check"></i>Lectures</a></li>
 <li class="chapter" data-level="" data-path="key-information.html"><a href="key-information.html#assessment"><i class="fa fa-check"></i>Assessment</a></li>
@@ -149,58 +148,51 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="" data-path="module-1.html"><a href="module-1.html"><i class="fa fa-check"></i>Module 1</a><ul>
 <li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html"><i class="fa fa-check"></i><code>R</code> and <code>RStudio</code></a><ul>
-<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#installing-r-and-rstudio"><i class="fa fa-check"></i>Installing R and RStudio</a></li>
-<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#getting-started"><i class="fa fa-check"></i>Getting started</a></li>
+<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#recap-r-terminology"><i class="fa fa-check"></i>Recap: <code>R</code> terminology</a></li>
+<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#which-r-syntax"><i class="fa fa-check"></i>Which <code>R</code> syntax?</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html"><i class="fa fa-check"></i>Reproducible research</a><ul>
-<li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html#project-oriented-workflow-good-practice"><i class="fa fa-check"></i>Project-oriented workflow: good practice</a></li>
-<li class="chapter" data-level="" data-path="reproducible-research.html"><a href="reproducible-research.html#version-control-with-git-and-github"><i class="fa fa-check"></i>Version control with <code>git</code> and GitHub</a></li>
+<li class="chapter" data-level="" data-path="error-handling-and-debugging.html"><a href="error-handling-and-debugging.html"><i class="fa fa-check"></i>Error handling and debugging</a></li>
+<li class="chapter" data-level="" data-path="accuracy-and-honesty.html"><a href="accuracy-and-honesty.html"><i class="fa fa-check"></i>Accuracy and Honesty</a><ul>
+<li class="chapter" data-level="" data-path="accuracy-and-honesty.html"><a href="accuracy-and-honesty.html#reproducible-research"><i class="fa fa-check"></i>Reproducible research</a></li>
+<li class="chapter" data-level="" data-path="accuracy-and-honesty.html"><a href="accuracy-and-honesty.html#good-coding-practice"><i class="fa fa-check"></i>Good coding practice</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="your-data-and-r.html"><a href="your-data-and-r.html"><i class="fa fa-check"></i>Your data and <code>R</code></a><ul>
-<li class="chapter" data-level="" data-path="your-data-and-r.html"><a href="your-data-and-r.html#reading-in-data-from-a-.csv-file"><i class="fa fa-check"></i>Reading in data from a <code>.csv</code> file</a></li>
-<li class="chapter" data-level="" data-path="your-data-and-r.html"><a href="your-data-and-r.html#explore-your-data"><i class="fa fa-check"></i>Explore your data</a></li>
-<li class="chapter" data-level="" data-path="your-data-and-r.html"><a href="your-data-and-r.html#the-pipe-operator"><i class="fa fa-check"></i>The pipe operator <code>%&gt;%</code></a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html"><i class="fa fa-check"></i>Version control with <code>git</code> and GitHub</a><ul>
+<li class="chapter" data-level="" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#setting-up"><i class="fa fa-check"></i>Setting up</a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#cloning-a-repository-from-github-using-rstudio"><i class="fa fa-check"></i>Cloning a repository from <code>GitHub</code> using <code>RStudio</code></a></li>
+<li class="chapter" data-level="" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#commiting-and-pushing-changes"><i class="fa fa-check"></i>Commiting and pushing changes</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="data-wrangling.html"><a href="data-wrangling.html"><i class="fa fa-check"></i>Data wrangling</a><ul>
-<li class="chapter" data-level="" data-path="data-wrangling.html"><a href="data-wrangling.html#introuducing-the-palmer-penguins"><i class="fa fa-check"></i>Introuducing the <span>Palmer penguins</span></a></li>
-<li class="chapter" data-level="" data-path="data-wrangling.html"><a href="data-wrangling.html#common-dataframe-manipulations-in-the-tidyverse-using-dplyr-and-tidyr"><i class="fa fa-check"></i>Common dataframe manipulations in the <code>tidyverse</code>, using <code>dplyr</code> and <code>tidyr</code></a></li>
+<li class="chapter" data-level="" data-path="respectful-handling-of-data.html"><a href="respectful-handling-of-data.html"><i class="fa fa-check"></i>Respectful Handling of Data</a><ul>
+<li class="chapter" data-level="" data-path="respectful-handling-of-data.html"><a href="respectful-handling-of-data.html#data-sovereignty"><i class="fa fa-check"></i>Data sovereignty</a></li>
+<li class="chapter" data-level="" data-path="respectful-handling-of-data.html"><a href="respectful-handling-of-data.html#māori-data-sovereignty-principles"><i class="fa fa-check"></i>Māori Data Sovereignty principles</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html"><i class="fa fa-check"></i>Data visualiation (data viz)</a><ul>
-<li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html#exploratory-plots"><i class="fa fa-check"></i>Exploratory plots</a></li>
-<li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html#explanatory-plots"><i class="fa fa-check"></i>Explanatory plots</a></li>
-<li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html#ten-simple-rules-for-better-figures"><i class="fa fa-check"></i>Ten Simple Rules for Better Figures</a></li>
-<li class="chapter" data-level="" data-path="data-visualiation-data-viz.html"><a href="data-visualiation-data-viz.html#ggplot2"><i class="fa fa-check"></i><code>ggplot2</code></a></li>
+<li class="chapter" data-level="" data-path="awareness-of-consequences.html"><a href="awareness-of-consequences.html"><i class="fa fa-check"></i>Awareness of Consequences</a><ul>
+<li class="chapter" data-level="" data-path="awareness-of-consequences.html"><a href="awareness-of-consequences.html#case-study"><i class="fa fa-check"></i>Case study</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="māori-data-sovereignty-principles.html"><a href="māori-data-sovereignty-principles.html"><i class="fa fa-check"></i>Māori Data Sovereignty principles</a></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i>Data Visualization</a><ul>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#exploratory-plots-for-your-own-purposes"><i class="fa fa-check"></i>Exploratory plots (for your own purposes)</a></li>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#explanatory-plots"><i class="fa fa-check"></i>Explanatory plots</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="module-2.html"><a href="module-2.html"><i class="fa fa-check"></i>Module 2</a><ul>
-<li class="chapter" data-level="" data-path="key-satistical-concepts.html"><a href="key-satistical-concepts.html"><i class="fa fa-check"></i>Key satistical concepts</a></li>
-<li class="chapter" data-level="" data-path="bootstrap-resampling.html"><a href="bootstrap-resampling.html"><i class="fa fa-check"></i>Bootstrap resampling</a><ul>
-<li class="chapter" data-level="" data-path="bootstrap-resampling.html"><a href="bootstrap-resampling.html#example-constructing-bootstrap-confidence-intervals"><i class="fa fa-check"></i>Example: constructing bootstrap confidence intervals</a></li>
-</ul></li>
 <li class="chapter" data-level="" data-path="permutation-and-randomisation-tests.html"><a href="permutation-and-randomisation-tests.html"><i class="fa fa-check"></i>Permutation and randomisation tests</a><ul>
 <li class="chapter" data-level="" data-path="permutation-and-randomisation-tests.html"><a href="permutation-and-randomisation-tests.html#a-permutation-test-jackal-mandible-lengths"><i class="fa fa-check"></i>A permutation test: Jackal mandible lengths</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="resampling-procedures-the-differences.html"><a href="resampling-procedures-the-differences.html"><i class="fa fa-check"></i>Resampling procedures, the differences</a></li>
-<li class="chapter" data-level="" data-path="hypothesis-testing-key-terms.html"><a href="hypothesis-testing-key-terms.html"><i class="fa fa-check"></i>Hypothesis testing: key terms</a><ul>
-<li class="chapter" data-level="" data-path="hypothesis-testing-key-terms.html"><a href="hypothesis-testing-key-terms.html#p-values"><i class="fa fa-check"></i>😱 p-values 😱</a></li>
-<li class="chapter" data-level="" data-path="hypothesis-testing-key-terms.html"><a href="hypothesis-testing-key-terms.html#type-i-and-type-ii-errors"><i class="fa fa-check"></i>Type I and Type II errors</a></li>
+<li class="chapter" data-level="" data-path="bootstrap-resampling.html"><a href="bootstrap-resampling.html"><i class="fa fa-check"></i>Bootstrap resampling</a><ul>
+<li class="chapter" data-level="" data-path="bootstrap-resampling.html"><a href="bootstrap-resampling.html#example-constructing-bootstrap-confidence-intervals"><i class="fa fa-check"></i>Example: constructing bootstrap confidence intervals</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="parametric-hypothesis-tests.html"><a href="parametric-hypothesis-tests.html"><i class="fa fa-check"></i>Parametric hypothesis tests</a><ul>
-<li class="chapter" data-level="" data-path="parametric-hypothesis-tests.html"><a href="parametric-hypothesis-tests.html#one-sample-t-test"><i class="fa fa-check"></i>One-Sample t-test</a></li>
-<li class="chapter" data-level="" data-path="parametric-hypothesis-tests.html"><a href="parametric-hypothesis-tests.html#differences-between-two-means"><i class="fa fa-check"></i>Differences between two means</a></li>
-<li class="chapter" data-level="" data-path="parametric-hypothesis-tests.html"><a href="parametric-hypothesis-tests.html#one-way-analysis-of-variance-anova"><i class="fa fa-check"></i>One-Way Analysis of Variance (ANOVA)</a></li>
+<li class="chapter" data-level="" data-path="parametric-hypothesis-testing.html"><a href="parametric-hypothesis-testing.html"><i class="fa fa-check"></i>Parametric hypothesis testing</a><ul>
+<li class="chapter" data-level="" data-path="parametric-hypothesis-testing.html"><a href="parametric-hypothesis-testing.html#the-vocabulary-of-hypothesis-testing"><i class="fa fa-check"></i>The vocabulary of hypothesis testing</a></li>
+<li class="chapter" data-level="" data-path="parametric-hypothesis-testing.html"><a href="parametric-hypothesis-testing.html#example"><i class="fa fa-check"></i>Example</a></li>
+<li class="chapter" data-level="" data-path="parametric-hypothesis-testing.html"><a href="parametric-hypothesis-testing.html#differences-between-two-means"><i class="fa fa-check"></i>Differences between two means</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i>Linear regression</a><ul>
+<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#model-formula-syntax-in-r"><i class="fa fa-check"></i>Model formula syntax in <code>R</code></a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#some-mathematical-notation"><i class="fa fa-check"></i>Some mathematical notation</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#modeling-bill-depth"><i class="fa fa-check"></i>Modeling Bill Depth</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#single-continuous-variable"><i class="fa fa-check"></i>Single continuous variable</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#a-single-factor-variable"><i class="fa fa-check"></i>A single factor variable</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#one-factor-and-a-continuous-variable"><i class="fa fa-check"></i>One factor and a continuous variable</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#interactions"><i class="fa fa-check"></i>Interactions</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="model-formula-syntax-in-r.html"><a href="model-formula-syntax-in-r.html"><i class="fa fa-check"></i>Model formula syntax in <code>R</code></a><ul>
-<li class="chapter" data-level="" data-path="model-formula-syntax-in-r.html"><a href="model-formula-syntax-in-r.html#other-possible-models"><i class="fa fa-check"></i>Other possible models</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html"><i class="fa fa-check"></i>Model diagnostics for a linear model</a><ul>
 <li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html#marginal-predictions"><i class="fa fa-check"></i>Marginal predictions</a></li>
@@ -334,8 +326,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul>
 <p>Let’s look at the fit of the <code>slm</code> model (single continuous explanatory variable)</p>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb135-1" title="1">gglm<span class="op">::</span><span class="kw">gglm</span>(slm_sp) <span class="co"># Plot the four main diagnostic plots</span></a></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-72-1.png" width="672" /></p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" title="1">gglm<span class="op">::</span><span class="kw">gglm</span>(slm_sp) <span class="co"># Plot the four main diagnostic plots</span></a></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-58-1.png" width="672" /></p>
 <p><strong>Residuals vs Fitted</strong> plot</p>
 <p>You are basically looking for no pattern or structure in your residuals (e.g., a “starry” night). You definitely don’t want to see is the scatter increasing around the zero line (dashed line) as the fitted values get bigger (e.g., think of a trumpet, a wedge of cheese, or even a slice of pizza) which would indicate unequal variances (heteroscedacity).</p>
 <p><strong>Normal quantile-quantile (QQ)</strong> plot</p>
@@ -349,27 +341,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3>Marginal predictions<a href="model-diagnostics-for-a-linear-model.html#marginal-predictions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>If the residuals do not show a violation of our model assumptions (let’s just pretend the plots above don’t show anything for concern) we can produce margins plots, which show the marginal effect of a predictor, holding other variables constant.</p>
 <p>The <code>ggpredict()</code> function from the <code>ggeffects</code> package can be used for this:</p>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb136-1" title="1">ggeffects<span class="op">::</span><span class="kw">ggpredict</span>(slm_sp, <span class="dt">terms =</span> <span class="st">&quot;species&quot;</span>)</a></code></pre></div>
-<pre><code>## # Predicted values of bill_depth_mm
-## 
-## species   | Predicted |         95% CI
-## --------------------------------------
-## Adelie    |     19.38 | [19.15, 19.62]
-## Chinstrap |     17.45 | [17.17, 17.73]
-## Gentoo    |     14.28 | [14.07, 14.49]
-## 
-## Adjusted for:
-## * bill_length_mm = 43.99</code></pre>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" title="1">ggeffects<span class="op">::</span><span class="kw">ggpredict</span>(slm_sp, <span class="dt">terms =</span> <span class="st">&quot;species&quot;</span>)</a>
+<a class="sourceLine" id="cb50-2" title="2"><span class="co">## # Predicted values of bill_depth_mm</span></a>
+<a class="sourceLine" id="cb50-3" title="3"><span class="co">## </span></a>
+<a class="sourceLine" id="cb50-4" title="4"><span class="co">## species   | Predicted |         95% CI</span></a>
+<a class="sourceLine" id="cb50-5" title="5"><span class="co">## --------------------------------------</span></a>
+<a class="sourceLine" id="cb50-6" title="6"><span class="co">## Adelie    |     19.38 | [19.15, 19.62]</span></a>
+<a class="sourceLine" id="cb50-7" title="7"><span class="co">## Chinstrap |     17.45 | [17.17, 17.73]</span></a>
+<a class="sourceLine" id="cb50-8" title="8"><span class="co">## Gentoo    |     14.28 | [14.07, 14.49]</span></a>
+<a class="sourceLine" id="cb50-9" title="9"><span class="co">## </span></a>
+<a class="sourceLine" id="cb50-10" title="10"><span class="co">## Adjusted for:</span></a>
+<a class="sourceLine" id="cb50-11" title="11"><span class="co">## * bill_length_mm = 43.99</span></a></code></pre></div>
 <p>We can even plot the marginal effects:</p>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb138-1" title="1">ggeffects<span class="op">::</span><span class="kw">ggpredict</span>(slm_sp, <span class="dt">terms =</span> <span class="st">&quot;species&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb138-2" title="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> predicted, <span class="dt">label =</span> <span class="kw">round</span>(predicted, <span class="dv">3</span>))) <span class="op">+</span></a>
-<a class="sourceLine" id="cb138-3" title="3"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb138-4" title="4"><span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> conf.low, <span class="dt">ymax =</span> conf.high), <span class="dt">width =</span> <span class="fl">.5</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb138-5" title="5"><span class="st">  </span><span class="kw">geom_text</span>(<span class="dt">hjust =</span> <span class="fl">-.2</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb138-6" title="6"><span class="st">  </span><span class="kw">ylab</span>( <span class="st">&quot;Predicted bill depth (mm)&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb138-7" title="7"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Fitted means for each species with 95% CIs&quot;</span>, <span class="dt">subtitle =</span> <span class="st">&quot;Adjusted for bill_length_mm = 43.99&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb138-8" title="8"><span class="st">  </span><span class="kw">theme_classic</span>()</a></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-74-1.png" width="672" /></p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" title="1">ggeffects<span class="op">::</span><span class="kw">ggpredict</span>(slm_sp, <span class="dt">terms =</span> <span class="st">&quot;species&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb51-2" title="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> predicted, <span class="dt">label =</span> <span class="kw">round</span>(predicted, <span class="dv">3</span>))) <span class="op">+</span></a>
+<a class="sourceLine" id="cb51-3" title="3"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb51-4" title="4"><span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> conf.low, <span class="dt">ymax =</span> conf.high), <span class="dt">width =</span> <span class="fl">.5</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb51-5" title="5"><span class="st">  </span><span class="kw">geom_text</span>(<span class="dt">hjust =</span> <span class="fl">-.2</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb51-6" title="6"><span class="st">  </span><span class="kw">ylab</span>( <span class="st">&quot;Predicted bill depth (mm)&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb51-7" title="7"><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Fitted means for each species with 95% CIs&quot;</span>, <span class="dt">subtitle =</span> <span class="st">&quot;Adjusted for bill_length_mm = 43.99&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb51-8" title="8"><span class="st">  </span><span class="kw">theme_classic</span>()</a></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-60-1.png" width="672" /></p>
 </div>
 <div id="model-selection" class="section level3 hasAnchor">
 <h3>Model selection<a href="model-diagnostics-for-a-linear-model.html#model-selection" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -380,39 +372,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>is a nested version of</p>
 <p><span class="math display">\[Y_i = \beta_0 + \beta_1z_i + \beta_2x_i + \epsilon_i\]</span> where <span class="math inline">\(\beta_2\)</span> has been fixed to zero.</p>
 <p>As an example consider testing the single explanatory variable model <code>slm</code> against the same model with species included as a variable <code>slm_sp</code>. To carry out the appropriate hypothesis test in <code>R</code> we can run</p>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb139-1" title="1"><span class="kw">anova</span>(slm,slm_sp)</a></code></pre></div>
-<pre><code>## Analysis of Variance Table
-## 
-## Model 1: bill_depth_mm ~ bill_length_mm
-## Model 2: bill_depth_mm ~ bill_length_mm + species
-##   Res.Df     RSS Df Sum of Sq      F    Pr(&gt;F)    
-## 1    331 1220.16                                  
-## 2    329  299.62  2    920.55 505.41 &lt; 2.2e-16 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" title="1"><span class="kw">anova</span>(slm,slm_sp)</a>
+<a class="sourceLine" id="cb52-2" title="2"><span class="co">## Analysis of Variance Table</span></a>
+<a class="sourceLine" id="cb52-3" title="3"><span class="co">## </span></a>
+<a class="sourceLine" id="cb52-4" title="4"><span class="co">## Model 1: bill_depth_mm ~ bill_length_mm</span></a>
+<a class="sourceLine" id="cb52-5" title="5"><span class="co">## Model 2: bill_depth_mm ~ bill_length_mm + species</span></a>
+<a class="sourceLine" id="cb52-6" title="6"><span class="co">##   Res.Df     RSS Df Sum of Sq      F    Pr(&gt;F)    </span></a>
+<a class="sourceLine" id="cb52-7" title="7"><span class="co">## 1    331 1220.16                                  </span></a>
+<a class="sourceLine" id="cb52-8" title="8"><span class="co">## 2    329  299.62  2    920.55 505.41 &lt; 2.2e-16 ***</span></a>
+<a class="sourceLine" id="cb52-9" title="9"><span class="co">## ---</span></a>
+<a class="sourceLine" id="cb52-10" title="10"><span class="co">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a></code></pre></div>
 <p>As you’ll see the <code>anova()</code> function takes the two model objects (<code>slm</code> and <code>slm_sp</code>) each as arguments. It returns an ANOVA testing whether the more complex model (<code>slm_sp</code>) is just as good at capturing the variation in the data as the simpler model (<code>slm</code>). The returned p-value should be interpreted as in any other hypothesis test. i.e., the probability of observing a statistic as least as extreme under our null hypothesis (here that each model is as good at capturing the variation in the data).</p>
 <p>What would we conclude here? I’d say we have pretty strong evidence against the models being equally good! I’d definitely plump for <code>slm_sp</code> over <code>slm</code>, looking back at the plots above does this make sense?</p>
 <p>Now what about <code>slm_int</code> vs <code>slm_sp</code>?</p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb141-1" title="1"><span class="kw">anova</span>(slm_sp,slm_int)</a></code></pre></div>
-<pre><code>## Analysis of Variance Table
-## 
-## Model 1: bill_depth_mm ~ bill_length_mm + species
-## Model 2: bill_depth_mm ~ bill_length_mm * species
-##   Res.Df    RSS Df Sum of Sq      F Pr(&gt;F)
-## 1    329 299.62                           
-## 2    327 298.62  2   0.99284 0.5436 0.5812</code></pre>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" title="1"><span class="kw">anova</span>(slm_sp,slm_int)</a>
+<a class="sourceLine" id="cb53-2" title="2"><span class="co">## Analysis of Variance Table</span></a>
+<a class="sourceLine" id="cb53-3" title="3"><span class="co">## </span></a>
+<a class="sourceLine" id="cb53-4" title="4"><span class="co">## Model 1: bill_depth_mm ~ bill_length_mm + species</span></a>
+<a class="sourceLine" id="cb53-5" title="5"><span class="co">## Model 2: bill_depth_mm ~ bill_length_mm * species</span></a>
+<a class="sourceLine" id="cb53-6" title="6"><span class="co">##   Res.Df    RSS Df Sum of Sq      F Pr(&gt;F)</span></a>
+<a class="sourceLine" id="cb53-7" title="7"><span class="co">## 1    329 299.62                           </span></a>
+<a class="sourceLine" id="cb53-8" title="8"><span class="co">## 2    327 298.62  2   0.99284 0.5436 0.5812</span></a></code></pre></div>
 <p>So it seems both models are just as good at capturing the variation in our data: we’re happy with the parallel lines!</p>
 <p>Another way we might compare models is by using the Akaike information criterion (AIC) (you’ll see more of this later in the course). AIC is an estimator of out-of-sample prediction error and can be used as a metric to choose between competing models. Between nested models we’re looking for the smallest AIC (i.e., smallest out-of-sample prediction error). Typically, a difference of 4 or more is considered to indicate an improvement; this should not be taken as writ however, using multiple comparison techniques is advised.</p>
 <p><code>R</code> already has an <code>AIC()</code> function that can be used directly on your <code>lm()</code> model object(s). For example,</p>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" title="1"><span class="kw">AIC</span>(slm,slm_sp,slm_int)</a></code></pre></div>
-<pre><code>##         df       AIC
-## slm      3 1383.4462
-## slm_sp   5  919.8347
-## slm_int  7  922.7294</code></pre>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" title="1"><span class="kw">AIC</span>(slm,slm_sp,slm_int)</a>
+<a class="sourceLine" id="cb54-2" title="2"><span class="co">##         df       AIC</span></a>
+<a class="sourceLine" id="cb54-3" title="3"><span class="co">## slm      3 1383.4462</span></a>
+<a class="sourceLine" id="cb54-4" title="4"><span class="co">## slm_sp   5  919.8347</span></a>
+<a class="sourceLine" id="cb54-5" title="5"><span class="co">## slm_int  7  922.7294</span></a></code></pre></div>
 <p>This backs up what our ANOVA suggested model <code>slm_sp</code> as that preferred! As always it’s important to do a sanity check! Does this make sense? Have a look at the outputs from these models and see what you think.</p>
 <p>Just because we’ve chosen a model (<em>the best of a bad bunch</em> perhaps) this doesn’t let us off the hook. We should check our assumptions</p>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb145-1" title="1">gglm<span class="op">::</span><span class="kw">gglm</span>(slm_sp) <span class="co"># Plot the four main diagnostic plots</span></a></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-78-1.png" width="672" /></p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" title="1">gglm<span class="op">::</span><span class="kw">gglm</span>(slm_sp) <span class="co"># Plot the four main diagnostic plots</span></a></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-64-1.png" width="672" /></p>
 <p><strong>Residuals vs Fitted</strong> plot: equal spread? Doesn’t look too trumpety!</p>
 <p><strong>Normal quantile-quantile (QQ)</strong> plot: skewed? Maybe slightly right skewed (deviation upwards from the right tail)</p>
 <p><strong>Scale-Location</strong> plot: equal spared? I’d say so.</p>
@@ -425,7 +417,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="model-formula-syntax-in-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="linear-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="inference-for-a-linear-model.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
@@ -458,14 +450,15 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": null,
+"download": [["BIOSCI738.html", "HTML"]],
 "search": {
 "engine": "fuse",
 "options": null
 },
 "toc": {
 "collapse": "section"
-}
+},
+"info": false
 });
 });
 </script>

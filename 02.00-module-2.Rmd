@@ -1,0 +1,22 @@
+# Module 2 {-}
+
+
+<div class="alert alert-success" role="alert">
+![](https://github.com/BIOSCI738/cowstats/blob/main/img/code_bell.png?raw=true){width=10%} <strong>Key topics</strong> 
+
+<ul>
+   <li>Statistical inference</li>
+   <li>Hypothesis testing</li>
+   <li>Resampling procedures</li>
+   <li>Linear regression</li>
+ </ul>
+
+</div>
+
+**Statistical inference** is the process of deducing properties of an underlying distribution by analysis of data. The word **inference** means *conclusions* or *decisions*. Statistical inference is about drawing conclusions and making decisions based on observed data. Data, or observations, typically arise from some underlying process. It is the underlying process  we are interested in, not the observations themselves.  Sometimes we call the underlying process the population or mechanism of interest.  The data are only a sample from this population or mechanism.  We cannot possibly observe every outcome of the process, so we have to make do with the sample that we have observed. The data give us imperfect insight into the population of interest. The role of statistical inference is to use this imperfect data to draw conclusions about the population of interest, while simultaneously giving an honest reflection of the uncertainty in our conclusions. **Hypothesis testing** is a form of **statistical inference** that uses data from a sample to draw conclusions about a population parameter or a population probability distribution. 
+
+
+<div class="alert alert-warning">
+  <strong>TASK</strong> Imagine that you have a **fair** coin and toss it 10 times. Write out all the possible outcomes alongside how likely you think each is.
+  
+</div>

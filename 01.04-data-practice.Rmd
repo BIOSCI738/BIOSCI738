@@ -1,0 +1,92 @@
+## Awareness of Consequences
+
+Considering the implications and societal impact of your research includes ensuring that any conclusions you draw are appropriately and accurately balanced. Consider the previous chapter [Data Visualization], the guiding principles of making informed visualizations included not misleading readers and prioritizing conveying a clear message. These speak to being mindful of how your figures may be perceived and presenting your data ethically and responsibly.
+
+Your responsibilities go beyond just making figures, they extend to the methods and inferences you draw. Learning how to communicate science is a key and invaluable skill. [Siouxsie Wiles](https://profiles.auckland.ac.nz/s-wiles), is an award winning science communicator and is perhaps best known for stepping up during the pandemic giving us information about the virus and advice on how to beat it.
+
+> "I assumed it would be through my research by helping develop a new antibiotic. But through the pandemic, I’ve learned that I can have a huge impact globally by doing good science communication." `r tufte::quote_footer('--- Associate Professor Siouxsie Wiles')`^[https://researchscienceinnovation.nz/case-studies/relentless-science-communication-in-the-time-of-covid/index.html]
+
+
+Below is a case study in science (mis)communication.
+
+### Case study
+
+**Asthma carbon footprint 'as big as eating meat'** is the headline of [this news story](https://www.bbc.com/news/health-50215011) published on the BBC website. The article is based research outlined in [this published paper](https://bmjopen.bmj.com/content/bmjopen/9/10/e028763.full.pdf) which in turn cites [this paper](https://iopscience.iop.org/article/10.1088/1748-9326/aa7541) for an estimate of the carbon footprint reduced by an individual not eating meat.
+
+
+It is not unreasonable to assume that many people would interpret this to mean that the total global carbon footprint due to eating meat is equal to the total carbon footprint due to the use of asthma inhalers. However, this is not what they mean. They mean that an individual deciding not to eat meat reduces their carbon footprint as much as an asthmatic individual deciding not to use an inhaler.
+
+There are far more meat consumers compared to inhaler users and so the overall carbon footprint associated with meat consumption is much greater. However, the claim that not eating meat reduces someone's carbon footprint about the same amount as not using inhalers is questionable. Yet, both the [BBC article](https://www.bbc.com/news/health-50215011) and [the paper](https://bmjopen.bmj.com/content/bmjopen/9/10/e028763.full.pdf) make this claim.
+
+> "And at the individual level, each metered-dose inhaler replaced by a dry powder inhaler could save the equivalent of between 150kg and 400kg (63 stone) of carbon dioxide a year - similar to the carbon footprint reduction of cutting meat from your diet."`r tufte::quote_footer('--- [Asthma carbon footprint as big as eating meat](https://www.bbc.com/news/health-50215011)')`
+
+> "Changing one MDI device to a DPI could save 150–400 kg CO2 annually; roughly equivalent to installing wall insulation at home, recycling or cutting out meat." `r tufte::quote_footer('--- [ Wilkinson et al (2019)](https://bmjopen.bmj.com/content/bmjopen/9/10/e028763.full.pdf) who cite [Wynes and Nicholas (2017)](https://iopscience.iop.org/article/10.1088/1748-9326/aa7541)')`
+
+Now, the the carbon footprint of eating meat is estimated as 300–1600 kg CO2 annually by [this paper](https://iopscience.iop.org/article/10.1088/1748-9326/aa7541) (see Table 1). And so the two claims don't really match up. Moreover, what is being suggested by the article? That should asthmatics should think about ceasing their medication in the same way many people are trying to reduce meat consumption?!?
+
+
+In this section we've discussed how ethical data practice involves accuracy, respect, and clear communication. There is one other component that should be considered here and that is **consequence**. The two options in this case study are not balanced because they have very different consequences: 
+ 
+ - Not eating meat is (possibly) good for you and is also good for the planet, but
+ - Not taking your inhaler is (probably) much worse for your health.
+
+
+
+<div class="alert alert-warning">
+  <strong>TASK</strong> Watch this lecture [Algorithmic fairness: Examples from predictive models for criminal justice](https://www.youtube.com/watch?v=dFfA7VtrAYI) and summarise the key points made. Can you think of a recent story that highlights the issues raised?
+
+</div>
+
+
+## Data Visualization
+
+The guiding principles of making informed visualizations included not misleading readers and prioritizing conveying a clear message. These speak to being mindful of how your figures may be perceived and presenting your data ethically and responsibly.
+
+> "Scientific visualization is classically defined as the process of graphically displaying scientific data. However, this process is far from direct or automatic. There are so many different ways to represent the same data: scatter plots, linear plots, bar plots, and pie charts, to name just a few. Furthermore, the same data, using the same type of plot, may be perceived very differently depending on who is looking at the figure. A more accurate definition for scientific visualization would be a graphical interface between people and data." `r tufte::quote_footer('--- Nicolas P. Rougier, Michael Droettboom, Philip E. Bourne, Ten Simple Rules for Better Figures ')`
+
+
+### Exploratory plots (for your own purposes)
+
+Exploratory plots are just *for you*, they focus solely on data exploration. They 
+
+  1. **Don't Have to Look Pretty:** These plots are only needed to reveal insights.
+  2. **Just Needs to Get to the Point:** Keep the plots concise and straightforward. Avoid unnecessary embellishments or complex formatting. 
+  3. **Explore and Discover New Data Facets:** Use exploratory plots to uncover hidden patterns, trends, or outliers in the data. Employ different plot types to reveal various facets and aspects of the dataset.
+  4. **Help Formulate New Questions:** Use exploratory plots as a tool to prompt new questions and hypotheses. As you discover patterns, think about what additional questions these findings raise for further investigation.
+
+### Explanatory plots
+
+> "...have obligations in that we have a great deal of power over how people ultimately make use of data, both in the patterns they see and the conclusions they draw." `r tufte::quote_footer('--- Michael Correll, Ethical Dimensions of Visualization Research')`
+
+Explanatory plots are mainly *for others*. These are the most common kind of graph used in scientific publications. They should
+
+   1. **Have a Clear Purpose:** Define a clear and specific purpose for your plot. Identify what scientific question or hypothesis the plot is addressing. Avoid unnecessary elements that do not contribute to this purpose.
+   2. **Be Designed for the Audience:** Tailor the design of your plot to the characteristics and expertise of your audience. Consider their familiarity with technical terms, preferred visualizations, and overall scientific background.
+   3. **Be Easy to Read:** Prioritize readability by using legible fonts, appropriate font sizes, and clear labels. Ensure that the axes are well-labeled, and use a simple and straightforward layout. Avoid clutter and unnecessary complexity that could hinder comprehension.
+   4. **Not Distort the Data:** Maintain the integrity of the data by avoiding distortion in your plot. Ensure that scales and proportions accurately represent the underlying data, preventing misleading visualizations.
+   5. **Help Guide the Reader to a Particular Conclusion:**
+   Structure your plot in a way that guides the reader toward the intended conclusion. Use visual elements such as annotations, arrows, or emphasis to highlight key findings and lead the reader through the data interpretation process.
+   6. **Answer a Specific Question:**Construct your plot with a specific research question in mind. The plot should directly address and answer this question, providing a clear and unambiguous response.
+   7. **Support an Outlined Decision:** If the plot is intended to support decision-making, clearly outline the decision or action it is meant to inform. The plot should provide relevant information that aids in making well-informed decisions based on the presented data.
+
+
+
+The table below summarises [Ten Simple Rules for Better Figures](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003833), a basic set of rules to improve your visualizations.
+
+| Rule Name                   | Rule Description                                                                                                       |
+|-----------------------------|-------------------------------------------------------------------------------------------------------------------------|
+| **Know Your Audience**      | Understand the characteristics and expertise of your audience to tailor the figure accordingly.                          |
+| **Identify Your Message**    | Clearly define the main message or takeaway that you want the audience to understand from the figure.                    |
+| **Adapt the Figure to the Support Medium** | Tailor the figure's complexity and design to suit the medium it will be presented in (e.g., print, online). |
+| **Captions Are Not Optional**| Craft informative captions that provide essential details and context for interpreting the figure.                        |
+| **Do Not Trust the Defaults**| Adjust default settings to optimize the visual elements of the figure, such as colors, scales, and labels.                |
+| **Use Color Effectively**   | Apply color purposefully, taking into account accessibility considerations and cultural interpretations.                   |
+| **Do Not Mislead the Reader**| Avoid creating misleading visualizations and be aware of formulas to measure the potential misleading nature of a graph. [There are formulas to measure how misleading a graph is!](https://en.wikipedia.org/wiki/Misleading_graph) |
+| **Avoid Chartjunk**         | Eliminate unnecessary decorations and embellishments in the figure that do not contribute to the message.                 |
+| **Message Trumps Beauty**   | Prioritize conveying a clear message over making the figure aesthetically pleasing.                                      |
+| **Get the Right Tool**      | Choose the appropriate visualization tool (e.g., `R`) or chart type that best communicates the data and intended message.              |
+
+
+<div class="alert alert-warning">
+  <strong>TASK</strong> Read [this short paper](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003833) and find examples in your choice of literature of one or more of the rules in action.
+</div>
