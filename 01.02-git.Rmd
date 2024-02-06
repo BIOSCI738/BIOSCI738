@@ -1,9 +1,6 @@
 ## Accuracy and Honesty
 
-Honesty is an expectation: we expect honesty from you and you expect the same from your teaching team. Honesty is an expectation in any scientific discipline as is accuracy. These are morals, ethical principles we should abide by. But this course isn't here to discuss philosophy or character development. This course, in particular this section of the course, is to expose you to the tools and principles that will aid you in your own pursuit of ethical data practice.
-
-
-This course doesn't , teaching you the tools so that your analysis is reproducible goes someway towards accuracy. This because, reproducibility promotes transparency, facilitates error detection and correction, and contributes to the overall reliability and accuracy of your research findings.
+Honesty is an expectation: we expect honesty from you and you expect the same from your teaching team. Honesty is an expectation in any scientific discipline as is accuracy. These are morals, ethical principles we should abide by. But this course isn't here to discuss philosophy or character development. This course, in particular this section of the course, aims to expose you to the tools and principles that will aid you in your own pursuit of ethical data practice. Teaching you the tools so that your analysis is reproducible goes someway towards ensuring accuracy in your research. This because, reproducibility promotes transparency, facilitates error detection and correction, and contributes to the overall reliability and accuracy of your research findings.
 
 ### Reproducible research
 
@@ -15,11 +12,12 @@ Reproducibility is a stepping stone towards ensuring accuracy. This is because, 
 ### Good coding practice
 
 
-**Always start with a clean workspace** **Why?** *So your ex (code) can't come and mess up your life!* To ensure this go to **Tools** > **Global Options** and uncheck the highlighted options.
+You should **always start with a clean workspace**. **Why?** *So your ex (code) can't come and mess up your life!* 
 
+To ensure that RStudio does not load up your previous workspace go to **Tools** > **Global Options** and uncheck the highlighted options below. 
 <p align="center">![](https://miro.medium.com/max/2784/1*dUNl71Jic2zYhYS2hxOBZA.png){width="40%"}</p>
 
-**Why?** Because, this is not reproducible, does **NOT** create a fresh `R` process, makes your script vulnerable, and it **will** come back to bite you.
+The reasoning may not be immediately obvious; however, it is something you will later regret if you don't start as you mean to go on! Loading up a previous workspace may seem convenient as your previous objects and code are immediately on-hand. However, this is the exact reason that it is not good practice, loading up a previous workspace is **NOT** reproducible, does **NOT** create a fresh `R` process, makes your script vulnerable, and it **will** come back to bite you.
 
 <div class="alert alert-warning">
   <strong>TASK</strong> Below are two quotes from [Jenny Bryan, an `R` wizard](https://jennybryan.org/about/) which reference two snippets of `R` code. Find out what each snippet does and why Jenny is so against them.
@@ -59,8 +57,32 @@ A project-oriented workflow in `R` refers to a structured approach to organizing
    - *Package Guidelines:* If you're creating an R package, conform to package development guidelines. Use the `usethis` package to help set up your package structure in a conformant way.
 
 
-There are many other good practice tips when it comes to coding these include ensuring your code is modular, implementing unit testing, automating workflows and implementing version control. In this course you will be using `git` to manage your project code and data. Use of `git`, or similar, will very likely be an expectation of your future career.
+<div class="alert alert-warning">
+  <strong>TASK</strong> Read [Good enough practices in scientific computing](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005510#sec014) and briefly summarise why good coding practices are key to any scientific discipline. 
 
+</div>
+
+There are many other good practice tips when it comes to coding these include ensuring your code is modular, implementing unit testing, automating workflows and implementing version control. In this course you will be using `git` to manage your project code and data. Use of `git`, or similar, will very likely be an expectation of your future career, see [Version control with `git` and GitHub] for an introduction to these tools.
+
+#### File naming policies
+
+| Item                            | What                                                    | Why                                                                      |
+|---------------------------------|---------------------------------------------------------|--------------------------------------------------------------------------|
+| **Be nice to your computer:**   | No white spaces as some systems can be confused by them | Ensures compatibility across different systems and prevents errors      |
+|                                 | No special characters (e.g., \*, ^, +, ...)             | Prevents interpretation issues and potential conflicts with system functions |
+|                                | Don’t assume case is meaningful                        | Avoids confusion on systems that do not differentiate by case            |
+|                                | Consistency is KEY                                     | Avoids confusion in general                                      |
+| **Be nice to yourself and your collaborators**   | Concise and descriptive names                           | Just makes life easier :)        |
+| **Make sorting and searching easy**   | Dates should follow YYYY-MM-DD format                   | Standardizes date representation makes sorting and interpretation easy   |
+|                             | Use numbers as a prefix to order files                 | Enables sequential sorting of files regardless of system                |
+|                             | Left pad with 0 so numbers have the same length         | Ensures proper numerical order when sorting files                       |
+|                             | Use keywords                                          | You can search these!                       |
+
+
+<div class="alert alert-warning">
+  <strong>TASK</strong> Work through [Danielle Navarro's presentation on Project Structure](https://djnavarro.net/slides-project-structure/#1) and see how many pitfalls you have fallen into to-date.
+
+</div>
 
 ## Version control with `git` and GitHub
 
@@ -74,6 +96,31 @@ Below are some key terms you will undoubtedly hear when delving into the git--Gi
 **Cloning** A repository on GitHub is stored remotely in the cloud. To create a local copy of this repository you can clone it and use Git to sync the two.
 
 **Committing** and **pushing** are how you can add the changes you made on your local machine to the remote repository in GitHub. You can make a commit when you have made milestone worthy changes to your project. You should also add a helpful commit message to remind future you, or your teammates, what the changes you made were (e.g., fixed the bug in my_function).
+
+
+The table below gives [Ten Simple Rules for Taking Advantage of Git and GitHub](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1004947), which outline how to get the most out of using these softwares.
+
+|        | Title                                                                      |Why       |
+|-------|-----------------------------------------------------------------------------|----------|
+| Rule 1 | Use GitHub to Track Your Projects                                          | Keeps your work backed up and in order |
+| Rule 2 | GitHub for Single Users, Teams, and Organizations                          | Flexible repo rights helps project management | 
+| Rule 3 | Developing and Collaborating on New Features: Branching and Forking         | Easily copy and create your own version of a project to modify |
+| Rule 4 | Naming Branches and Commits: Tags and Semantic Versions                     | Consistency helps your collaborators and end-users |
+| Rule 5 | Let GitHub Do Some Tasks for You: Integrate                                 | Continuous integration helps make sure your code is *ready* to go as soon as possible |
+| Rule 6 | Let GitHub Do More Tasks for You: Automate                                    | Automating tasks means less manual work and more reliable testing |
+| Rule 7 | Use GitHub to Openly and Collaboratively Discuss, Address, and Close Issues    |Promotes collaboration |
+| Rule 8 | Make Your Code Easily Citable, and Cite Source Code!                          | Just overall good practice and aids reproducibility |
+| Rule 9 | Promote and Discuss Your Projects: Web Page and More                         | Promoting your work is likely always good for your career |
+| Rule 10| Use GitHub to Be Social: Follow and Watch                                  | GitHub is a nice way to follow developments in your field and see others work |
+
+
+
+
+
+<div class="alert alert-warning">
+  <strong>TASK</strong> Read [Ten Simple Rules for Taking Advantage of Git and GitHub](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1004947) and briefly expand on the points above using examples from your studies/careers to-date.
+
+</div>
 
 ### Setting up
 
@@ -122,7 +169,7 @@ R.version.string
  
  <p align="center">![](img/git_commit_popup.png){width="50%"}</p>
  
- 6. Now you'll see RStudio has left you a little message in the `Git` tab, something similar to `Your branch is ahead of origin/master by 1 commit`. This means that you've made and commited your changes locally (i.e., on your computer) but you are yet to **push** these changes to GitHub.
+ 6. Now you'll see RStudio has left you a little message in the `Git` tab, something similar to `Your branch is ahead of origin/master by 1 commit`. This means that you've made and committed your changes locally (i.e., on your computer) but you are yet to **push** these changes to GitHub.
  
  7. To **push** to GitHub press the **Push** button, ![](img/push.png){width=10%}
  
@@ -131,4 +178,56 @@ R.version.string
   <p align="center">![](img/git_push.png){width="50%"}</p>
  
 
+### System specific hurdles
 
+As with any new software there are likely to be a few teething issues! Below are some previous classmate's solutions^[Zhao Cao, Weiran Jin, and Jack Blackwood from the 2023 cohort] to issues encountered when commiting and pushing changes using `git` via RStudio. These initial issues are likely due to authentication. 
+
+#### Windows `config` file
+
+Assuming your current working directory is at the top level of your repo/project then choose the **Files** tab in your plotting pane. 
+
+ 1. Then choose  the <i class="fas fa-cog"></i>**More** tab and the **Show Hidden Files** option:
+
+ ![](img/hidden_files.png)
+
+ 2. Navigate to the `.git` folder and open the file named `config`:
+ 
+ ![](img/config.png)
+ 
+ 3. Open `config` and add the following code replacing the relevant bits with your GitHub username/handle and email.
+ 
+```
+[user]
+
+name = <adding your GitHub username here>
+
+email = <adding your GitHub email here>
+```
+
+ 4. Save the changes to this file and you should be all good to commit!
+ 
+#### Personal Access Token authentication (linking GitHub to your project)
+
+
+Using your Github email and password as authentication was decommissioned a while ago. Instead a Personal Access Token is required.
+
+ 1. Sign into [Github](github.com) and follow these instructions to create a [Personal Access Token](https://docs.github.com/en/enterprise-server@3.9/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token)
+ 
+ 2. Once completed a new popup will appear with what looks like a random jumble of letters and numbers (in the format `ghp_*************`), this is your Personal Access Token. **Copy this! Or put it in your notes, or password manager, for later**
+ 
+ 3. Return to RStudio clone your desired repository (e.g., the one for the assignment):
+ 
+   + Create a New Project
+   + Click on Version Control
+   + Click on Git
+   + Enter the URL from the repository link from Canvas
+   + Make a name for the project (or just use the default)
+   + Click Create
+   
+You will now be asked for your GitHub details:
+
+  + When asked for your username type your GitHub account username/handle
+  + When asked for your password, input the **Personal Access Token** you just created, not your GitHub account password
+  
+  
+Note, depending on the choices you made when creating your Personal Access Token, it may run out (the default duration is 30 days) and your authentication stop working. No worries, simply [create a new one one](https://docs.github.com/en/enterprise-server@3.9/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token) use this as your password! 

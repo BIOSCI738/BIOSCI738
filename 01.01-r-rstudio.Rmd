@@ -36,11 +36,24 @@ Throughout this course we will be programming using `R`. `R` is a **free** **ope
 
 ### Which `R` syntax?
 
-This is not a comprehensive list of `R` syntax, but a call to develop your own coding style and use whatever you are most comfortable with. Throughout this course I will likely use a mix of syntax and function to carry out the same operations. This is (somewhat) by design, to expose you to a strength^[some might say] of `R` that you can do the same thing in multiple ways.
+This is not a comprehensive list of `R` syntax, but a call to develop your own coding style and use whatever you are most comfortable with. Throughout this course I will likely use a mix of syntax and functions to carry out the same operations. This is (somewhat) by design, and is intended to expose you to a strength^[some might say] of `R`, which is that there are multiple ways of doing the same thing. As long as it works and is reproducible then whatever works for you, although of course there are some recommended practices, see [Good coding practice] .
 
-**Example**
+**Example `<-` vs `=`**
 
-Recall the `tidyverse` (specifically, `magrittr`) pipe operator `%>%`, which allows us to combine multiple operations in `R` into a single sequential chain of actions. There is also a base pipe `|>` which acts similarly, but not exactly. Essentially, `|>`  passes the left-hand side as the **first** argument in the right-hand side call. This is subtly different from `%>%` as it cannot pass the left-had side onto multiple arguments. The `%>%` operator, however, does allow for this and you can also change the placement of the left-hand object with a `.` placeholder^[although since v.4.2.0 the base pipe does now allow for a names placeholder `_`].
+Both `<-` and `=` are assignment operators. It is mainly a personal choice which you use^[[Ross Ihaka has been know to express his preference for `=` simply due to requiring *less typing*](https://www.youtube.com/watch?v=88TftllIjaY)]. However, there is a difference depending on which environment you evaluate the assigning. In the top level there is no difference; however, `=` does not act as an assignment operator in a function call, whereas `<-` does.
+
+<div class="alert alert-warning">
+  <strong>TASK</strong> Both lines of code below give you a two row matrix, can you work out what the difference is between them (HINT look at what is created in your environment after each line)?
+  
+```{r, eval = FALSE}
+matrix("BIOSCI78", nrow = 2)
+matrix("BIOSCI78", nrow <- 2)
+```
+</div>
+
+**Example `%>%` vs `|>`**
+
+Recall the `tidyverse` (specifically the `magrittr`) pipe operator `%>%`, which allows us to combine multiple operations in `R` into a single sequential chain of actions. There is also a base pipe `|>` which acts similarly, but not exactly. Essentially, `|>`  passes the left-hand side as the **first** argument in the right-hand side call. This is subtly different from `%>%` as it cannot pass the left-had side onto multiple arguments. The `%>%` operator, however, does allow for this and you can also change the placement of the left-hand object with a `.` placeholder^[although since v.4.2.0 the base pipe does now allow for a names placeholder `_`].
 
 <div class="alert alert-warning">
   <strong>TASK</strong> Given `df <- data.frame(x = 1:10, group = rep(c("A", "B")))` are all the following operations equivalent?
