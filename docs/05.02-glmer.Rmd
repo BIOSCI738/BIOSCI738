@@ -1,0 +1,70 @@
+## Generalised linear mixed-effects models (GLMMMs)
+
+Recall module 3 when we covered fitting linear models with random effects (`lmer`). The fixed effects and random effects were specified via the model formula. Now we've covered GLMs we can include random effects here too and fit GLMMs!
+
+**Recall**
+
+ + **Fixed effects:** terms (parameters) in a statistical model which are fixed, or non-random, quantities (e.g., *treatment* group's mean response). For the same *treatment*, we expect this quantity to be the same from experiment to experiment.
+ + **Random effects:** terms (parameters) in a statistical model which are considered as random quantities or variables (e.g., block id). Specifically, terms whose levels are a representative sample from a population, and where the variance of the population is of interest should be allocated as random. Setting a block as a random effect allows us to infer variation between blocks as well as the variation between experimental units within blocks.
+ 
+
+### Fitting a GLMM
+
+The authors of [this paper](https://pubmed.ncbi.nlm.nih.gov/31150625/) transplanted gut microbiota from human donors with Autism Spectrum Disorder (ASD) or typically developing (TD) controls into germ-free mice. Faecal samples were collected from three TD and five ASD donors and were used to colonise GF male and female mice from strain C57BL/6LJ. Individuals colonized by the same donor were allowed to breed. Adult offspring mice were behavior tested; tests included marble burying (MB), open-field testing (OFT), and ultrasonic vocalization (USV).
+
+```{r, message = FALSE, warnings = FALSE}
+library(tidyverse)
+data <- read_csv("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/autism.csv")
+data
+```
+
+We should separate out the treatment values:
+
+```{r}
+mice <- data %>%
+  separate(., col = Treatment, into = c("Diagnosis", "Sex"))
+mice
+```
+
+
+**Recall, using `lmer` to fit a LMM**
+
+```{r}
+lmer <- lmerTest::lmer(MB_buried ~ Sex * Diagnosis + (1|Donor), data = mice)
+car::Anova(lmer, type = 2)
+```
+
+
+But is the constant error variance appropriate? Below we plot the model residuals.
+
+```{r, echo = FALSE}
+mice$resid <- resid(lmer)
+mice %>%
+  ggplot(., aes(y = resid, x = 1:length(resid))) +
+  geom_line(data = data.frame(x = seq(-10,10, 0.01), y = 150*abs(dnorm(seq(-10,10,0.01), 0, 3))), 
+            mapping = aes(x = y, y = x), col = "grey", alpha = 0.5) + 
+  geom_line(data = data.frame(x = seq(-12,12, 0.01), y = 140 + 200*abs(dnorm(seq(-12,12,0.01), 0, 4))), 
+            mapping = aes(x = y, y = x), col = "grey", alpha = 0.5) + 
+  geom_point() + geom_abline(intercept = 0, slope = 0) +
+  ylab("Residuals") + xlab("")  + theme_bw() + theme(axis.ticks.x = element_blank(), axis.text.x = element_blank()) 
+```
+
+
+#### Using `glmer`
+
+```{r}
+glmer <- lme4::glmer(MB_buried ~ Sex * Diagnosis + (1|Donor), data = mice, family = poisson(link = "log"))
+car::Anova(glmer, type = 2)
+```
+
+```{r,echo=FALSE}
+mice$resid <- resid(glmer)
+mice %>%
+  ggplot(., aes(y = resid, x = 1:length(resid))) +
+  geom_line(data = data.frame(x = seq(-4,4, 0.01), y = 80*abs(dnorm(seq(-4,4,0.01), 0, 1))), 
+            mapping = aes(x = y, y = x), col = "grey", alpha = 0.5) + 
+  geom_line(data = data.frame(x = seq(-4, 4, 0.01), y = 140 + 80*abs(dnorm(seq(-4,4,0.01), 0, 1))), 
+            mapping = aes(x = y, y = x), col = "grey", alpha = 0.5) + 
+  geom_point() +geom_abline(intercept = 0, slope = 0) +
+  ylab("Residuals") + xlab("") + theme(axis.ticks.x = element_blank(), axis.text.x = element_blank()) 
+```

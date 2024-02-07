@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Linear mixed-effect models (LMMs) | Advanced Biological Data Analysis</title>
   <meta name="description" content="Linear mixed-effect models (LMMs) | Advanced Biological Data Analysis" />
-  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Linear mixed-effect models (LMMs) | Advanced Biological Data Analysis" />
   <meta property="og:type" content="book" />
@@ -20,6 +20,7 @@
   
   
 
+<meta name="author" content="" />
 
 
 
@@ -55,27 +56,25 @@
 
 
 <style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -84,9 +83,9 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  {  }
 @media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+a.sourceLine::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -140,67 +139,54 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Nau mai, haere mai. Welcome to BIOSCI 738</a></li>
-<li class="chapter" data-level="" data-path="key-information.html"><a href="key-information.html"><i class="fa fa-check"></i>Key Information</a>
-<ul>
+<li class="chapter" data-level="" data-path="key-information.html"><a href="key-information.html"><i class="fa fa-check"></i>Key Information</a><ul>
 <li class="chapter" data-level="" data-path="key-information.html"><a href="key-information.html#overview"><i class="fa fa-check"></i>Overview</a></li>
 <li class="chapter" data-level="" data-path="key-information.html"><a href="key-information.html#prerequisites"><i class="fa fa-check"></i>Prerequisites</a></li>
 <li class="chapter" data-level="" data-path="key-information.html"><a href="key-information.html#lectures"><i class="fa fa-check"></i>Lectures</a></li>
 <li class="chapter" data-level="" data-path="key-information.html"><a href="key-information.html#assessment"><i class="fa fa-check"></i>Assessment</a></li>
 <li class="chapter" data-level="" data-path="key-information.html"><a href="key-information.html#course-policies"><i class="fa fa-check"></i>Course policies</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-1.html"><a href="module-1.html"><i class="fa fa-check"></i>Module 1</a>
-<ul>
-<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html"><i class="fa fa-check"></i><code>R</code> and <code>RStudio</code></a>
-<ul>
+<li class="chapter" data-level="" data-path="module-1.html"><a href="module-1.html"><i class="fa fa-check"></i>Module 1</a><ul>
+<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html"><i class="fa fa-check"></i><code>R</code> and <code>RStudio</code></a><ul>
 <li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#recap-r-terminology"><i class="fa fa-check"></i>Recap: <code>R</code> terminology</a></li>
 <li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#which-r-syntax"><i class="fa fa-check"></i>Which <code>R</code> syntax?</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="error-handling-and-debugging.html"><a href="error-handling-and-debugging.html"><i class="fa fa-check"></i>Error handling and debugging</a></li>
-<li class="chapter" data-level="" data-path="accuracy-and-honesty.html"><a href="accuracy-and-honesty.html"><i class="fa fa-check"></i>Accuracy and Honesty</a>
-<ul>
+<li class="chapter" data-level="" data-path="accuracy-and-honesty.html"><a href="accuracy-and-honesty.html"><i class="fa fa-check"></i>Accuracy and Honesty</a><ul>
 <li class="chapter" data-level="" data-path="accuracy-and-honesty.html"><a href="accuracy-and-honesty.html#reproducible-research"><i class="fa fa-check"></i>Reproducible research</a></li>
 <li class="chapter" data-level="" data-path="accuracy-and-honesty.html"><a href="accuracy-and-honesty.html#good-coding-practice"><i class="fa fa-check"></i>Good coding practice</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html"><i class="fa fa-check"></i>Version control with <code>git</code> and GitHub</a>
-<ul>
+<li class="chapter" data-level="" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html"><i class="fa fa-check"></i>Version control with <code>git</code> and GitHub</a><ul>
 <li class="chapter" data-level="" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#setting-up"><i class="fa fa-check"></i>Setting up</a></li>
 <li class="chapter" data-level="" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#cloning-a-repository-from-github-using-rstudio"><i class="fa fa-check"></i>Cloning a repository from <code>GitHub</code> using <code>RStudio</code></a></li>
 <li class="chapter" data-level="" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#commiting-and-pushing-changes"><i class="fa fa-check"></i>Commiting and pushing changes</a></li>
 <li class="chapter" data-level="" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#system-specific-hurdles"><i class="fa fa-check"></i>System specific hurdles</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="respectful-handling-of-data.html"><a href="respectful-handling-of-data.html"><i class="fa fa-check"></i>Respectful Handling of Data</a>
-<ul>
+<li class="chapter" data-level="" data-path="respectful-handling-of-data.html"><a href="respectful-handling-of-data.html"><i class="fa fa-check"></i>Respectful Handling of Data</a><ul>
 <li class="chapter" data-level="" data-path="respectful-handling-of-data.html"><a href="respectful-handling-of-data.html#data-sovereignty"><i class="fa fa-check"></i>Data sovereignty</a></li>
 <li class="chapter" data-level="" data-path="respectful-handling-of-data.html"><a href="respectful-handling-of-data.html#māori-data-sovereignty-principles"><i class="fa fa-check"></i>Māori Data Sovereignty principles</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="awareness-of-consequences.html"><a href="awareness-of-consequences.html"><i class="fa fa-check"></i>Awareness of Consequences</a>
-<ul>
+<li class="chapter" data-level="" data-path="awareness-of-consequences.html"><a href="awareness-of-consequences.html"><i class="fa fa-check"></i>Awareness of Consequences</a><ul>
 <li class="chapter" data-level="" data-path="awareness-of-consequences.html"><a href="awareness-of-consequences.html#case-study"><i class="fa fa-check"></i>Case study</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i>Data Visualization</a>
-<ul>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i>Data Visualization</a><ul>
 <li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#exploratory-plots-for-your-own-purposes"><i class="fa fa-check"></i>Exploratory plots (for your own purposes)</a></li>
 <li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#explanatory-plots"><i class="fa fa-check"></i>Explanatory plots</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-2.html"><a href="module-2.html"><i class="fa fa-check"></i>Module 2</a>
-<ul>
-<li class="chapter" data-level="" data-path="permutation-and-randomisation-tests.html"><a href="permutation-and-randomisation-tests.html"><i class="fa fa-check"></i>Permutation and randomisation tests</a>
-<ul>
+<li class="chapter" data-level="" data-path="module-2.html"><a href="module-2.html"><i class="fa fa-check"></i>Module 2</a><ul>
+<li class="chapter" data-level="" data-path="permutation-and-randomisation-tests.html"><a href="permutation-and-randomisation-tests.html"><i class="fa fa-check"></i>Permutation and randomisation tests</a><ul>
 <li class="chapter" data-level="" data-path="permutation-and-randomisation-tests.html"><a href="permutation-and-randomisation-tests.html#a-permutation-test-jackal-mandible-lengths"><i class="fa fa-check"></i>A permutation test: Jackal mandible lengths</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="bootstrap-resampling.html"><a href="bootstrap-resampling.html"><i class="fa fa-check"></i>Bootstrap resampling</a>
-<ul>
+<li class="chapter" data-level="" data-path="bootstrap-resampling.html"><a href="bootstrap-resampling.html"><i class="fa fa-check"></i>Bootstrap resampling</a><ul>
 <li class="chapter" data-level="" data-path="bootstrap-resampling.html"><a href="bootstrap-resampling.html#example-constructing-bootstrap-confidence-intervals"><i class="fa fa-check"></i>Example: constructing bootstrap confidence intervals</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="parametric-hypothesis-testing.html"><a href="parametric-hypothesis-testing.html"><i class="fa fa-check"></i>Parametric hypothesis testing</a>
-<ul>
+<li class="chapter" data-level="" data-path="parametric-hypothesis-testing.html"><a href="parametric-hypothesis-testing.html"><i class="fa fa-check"></i>Parametric hypothesis testing</a><ul>
 <li class="chapter" data-level="" data-path="parametric-hypothesis-testing.html"><a href="parametric-hypothesis-testing.html#the-vocabulary-of-hypothesis-testing"><i class="fa fa-check"></i>The vocabulary of hypothesis testing</a></li>
 <li class="chapter" data-level="" data-path="parametric-hypothesis-testing.html"><a href="parametric-hypothesis-testing.html#example"><i class="fa fa-check"></i>Example</a></li>
 <li class="chapter" data-level="" data-path="parametric-hypothesis-testing.html"><a href="parametric-hypothesis-testing.html#differences-between-two-means"><i class="fa fa-check"></i>Differences between two means</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i>Linear regression</a>
-<ul>
+<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i>Linear regression</a><ul>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#model-formula-syntax-in-r"><i class="fa fa-check"></i>Model formula syntax in <code>R</code></a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#some-mathematical-notation"><i class="fa fa-check"></i>Some mathematical notation</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#modeling-bill-depth"><i class="fa fa-check"></i>Modeling Bill Depth</a></li>
@@ -209,21 +195,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#one-factor-and-a-continuous-variable"><i class="fa fa-check"></i>One factor and a continuous variable</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#interactions"><i class="fa fa-check"></i>Interactions</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html"><i class="fa fa-check"></i>Model diagnostics for a linear model</a>
-<ul>
+<li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html"><i class="fa fa-check"></i>Model diagnostics for a linear model</a><ul>
 <li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html#marginal-predictions"><i class="fa fa-check"></i>Marginal predictions</a></li>
 <li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html#model-selection"><i class="fa fa-check"></i>Model selection</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="inference-for-a-linear-model.html"><a href="inference-for-a-linear-model.html"><i class="fa fa-check"></i>Inference for a linear model</a>
-<ul>
+<li class="chapter" data-level="" data-path="inference-for-a-linear-model.html"><a href="inference-for-a-linear-model.html"><i class="fa fa-check"></i>Inference for a linear model</a><ul>
 <li class="chapter" data-level="" data-path="inference-for-a-linear-model.html"><a href="inference-for-a-linear-model.html#point-prediction"><i class="fa fa-check"></i>Point prediction</a></li>
 <li class="chapter" data-level="" data-path="inference-for-a-linear-model.html"><a href="inference-for-a-linear-model.html#confidence-intervals-for-parameters"><i class="fa fa-check"></i>Confidence intervals for parameters</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-3.html"><a href="module-3.html"><i class="fa fa-check"></i>Module 3</a>
-<ul>
-<li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html"><i class="fa fa-check"></i>Introduction to the design and analysis of experiments</a>
-<ul>
+<li class="chapter" data-level="" data-path="module-3.html"><a href="module-3.html"><i class="fa fa-check"></i>Module 3</a><ul>
+<li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html"><i class="fa fa-check"></i>Introduction to the design and analysis of experiments</a><ul>
 <li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#key-phrases"><i class="fa fa-check"></i>Key phrases</a></li>
 <li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#the-three-key-principles"><i class="fa fa-check"></i>The three key principles:</a></li>
 <li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#replication"><i class="fa fa-check"></i>Replication</a></li>
@@ -231,95 +213,77 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#blocking"><i class="fa fa-check"></i>Blocking</a></li>
 <li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#setting-up-an-experiment"><i class="fa fa-check"></i>Setting up an experiment</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html"><i class="fa fa-check"></i>Some basic experimental designs</a>
-<ul>
+<li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html"><i class="fa fa-check"></i>Some basic experimental designs</a><ul>
 <li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html#completely-randomised-design-crd"><i class="fa fa-check"></i>Completely randomised design (CRD)</a></li>
 <li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html#randomised-complete-block-design-rcbd"><i class="fa fa-check"></i>Randomised complete block design (RCBD)</a></li>
 <li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html#factorial-design"><i class="fa fa-check"></i>Factorial design</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html"><i class="fa fa-check"></i>Modelling experimental data</a>
-<ul>
+<li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html"><i class="fa fa-check"></i>Modelling experimental data</a><ul>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-completely-randomised-design-crd-as-a-linear-model"><i class="fa fa-check"></i>A completely randomised design (CRD) as a linear model</a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#analysis-of-a-crd-in-r"><i class="fa fa-check"></i>Analysis of a CRD in <code>R</code></a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-factorial-experiment-as-a-crd"><i class="fa fa-check"></i>A Factorial experiment (as a CRD)</a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#unqual-replications-unbalanced-design"><i class="fa fa-check"></i>Unqual replications (unbalanced design)</a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#sums-of-squares-ss"><i class="fa fa-check"></i>Sums of squares (<span class="math inline">\(SS\)</span>)</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html"><i class="fa fa-check"></i>Multiple comparisons</a>
-<ul>
+<li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html"><i class="fa fa-check"></i>Multiple comparisons</a><ul>
 <li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html#adjustments-for-multiple-testing"><i class="fa fa-check"></i>Adjustments for multiple testing</a></li>
 <li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html#classification-of-multiple-hypothesis-tests"><i class="fa fa-check"></i>Classification of multiple hypothesis tests</a></li>
 <li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html#multiple-comparison-procedures"><i class="fa fa-check"></i>Multiple comparison procedures</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html"><i class="fa fa-check"></i>Linear mixed-effect models (LMMs)</a>
-<ul>
+<li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html"><i class="fa fa-check"></i>Linear mixed-effect models (LMMs)</a><ul>
 <li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html#a-randomised-controlled-block-design-rcbd"><i class="fa fa-check"></i>A Randomised Controlled Block Design (RCBD)</a></li>
 <li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html#a-split-plot-design"><i class="fa fa-check"></i>A Split-plot design</a></li>
 <li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html#a-repeated-measures-design"><i class="fa fa-check"></i>A repeated measures design</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-4.html"><a href="module-4.html"><i class="fa fa-check"></i>Module 4</a>
-<ul>
+<li class="chapter" data-level="" data-path="module-4.html"><a href="module-4.html"><i class="fa fa-check"></i>Module 4</a><ul>
 <li class="chapter" data-level="" data-path="introduction-to-generalised-linear-models-glms.html"><a href="introduction-to-generalised-linear-models-glms.html"><i class="fa fa-check"></i>Introduction to generalised linear models (GLMs)</a></li>
-<li class="chapter" data-level="" data-path="poisson-regression.html"><a href="poisson-regression.html"><i class="fa fa-check"></i>Poisson regression</a>
-<ul>
+<li class="chapter" data-level="" data-path="poisson-regression.html"><a href="poisson-regression.html"><i class="fa fa-check"></i>Poisson regression</a><ul>
 <li class="chapter" data-level="" data-path="poisson-regression.html"><a href="poisson-regression.html#an-example-bird-abundance"><i class="fa fa-check"></i>An example: bird abundance</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i>Logistic regression</a>
-<ul>
+<li class="chapter" data-level="" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i>Logistic regression</a><ul>
 <li class="chapter" data-level="" data-path="logistic-regression.html"><a href="logistic-regression.html#an-example-lobsters"><i class="fa fa-check"></i>An example: lobsters</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="model-diagnostics.html"><a href="model-diagnostics.html"><i class="fa fa-check"></i>Model diagnostics</a>
-<ul>
+<li class="chapter" data-level="" data-path="model-diagnostics.html"><a href="model-diagnostics.html"><i class="fa fa-check"></i>Model diagnostics</a><ul>
 <li class="chapter" data-level="" data-path="model-diagnostics.html"><a href="model-diagnostics.html#residuals"><i class="fa fa-check"></i>Residuals</a></li>
 <li class="chapter" data-level="" data-path="model-diagnostics.html"><a href="model-diagnostics.html#the-quantile-residual-q-q-plot"><i class="fa fa-check"></i>The quantile residual Q-Q plot</a></li>
 <li class="chapter" data-level="" data-path="model-diagnostics.html"><a href="model-diagnostics.html#deviance-using-the-chi-squared-approach"><i class="fa fa-check"></i>Deviance (using the chi-squared approach)</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="a-summary-of-glms.html"><a href="a-summary-of-glms.html"><i class="fa fa-check"></i>A summary of GLMs</a></li>
-<li class="chapter" data-level="" data-path="generalised-linear-mixed-effects-models-glmmms.html"><a href="generalised-linear-mixed-effects-models-glmmms.html"><i class="fa fa-check"></i>Generalised linear mixed-effects models (GLMMMs)</a>
-<ul>
+<li class="chapter" data-level="" data-path="generalised-linear-mixed-effects-models-glmmms.html"><a href="generalised-linear-mixed-effects-models-glmmms.html"><i class="fa fa-check"></i>Generalised linear mixed-effects models (GLMMMs)</a><ul>
 <li class="chapter" data-level="" data-path="generalised-linear-mixed-effects-models-glmmms.html"><a href="generalised-linear-mixed-effects-models-glmmms.html#fitting-a-glmm"><i class="fa fa-check"></i>Fitting a GLMM</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-5.html"><a href="module-5.html"><i class="fa fa-check"></i>Module 5</a>
-<ul>
-<li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i>Clustering</a>
-<ul>
+<li class="chapter" data-level="" data-path="module-5.html"><a href="module-5.html"><i class="fa fa-check"></i>Module 5</a><ul>
+<li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i>Clustering</a><ul>
 <li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#divisive-partitioning-methods."><i class="fa fa-check"></i>Divisive (partitioning) methods.</a></li>
 <li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#k-means-an-example-using-the-palmerpenguins-data"><i class="fa fa-check"></i>K-means: an example using the <code>palmerpenguins</code> data</a></li>
 <li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#hierarchical-agglomerative-clustering."><i class="fa fa-check"></i>Hierarchical agglomerative clustering.</a></li>
 <li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#hierarchical-clustering-an-example"><i class="fa fa-check"></i>Hierarchical clustering: an example</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="principal-component-analysis-pca.html"><a href="principal-component-analysis-pca.html"><i class="fa fa-check"></i>Principal Component Analysis (PCA)</a>
-<ul>
+<li class="chapter" data-level="" data-path="principal-component-analysis-pca.html"><a href="principal-component-analysis-pca.html"><i class="fa fa-check"></i>Principal Component Analysis (PCA)</a><ul>
 <li class="chapter" data-level="" data-path="principal-component-analysis-pca.html"><a href="principal-component-analysis-pca.html#examples-in-r"><i class="fa fa-check"></i>Examples in <code>R</code></a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html"><i class="fa fa-check"></i>Multidimensional Scaling (MDS)</a>
-<ul>
+<li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html"><i class="fa fa-check"></i>Multidimensional Scaling (MDS)</a><ul>
 <li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html#metric-scaling"><i class="fa fa-check"></i>Metric Scaling</a></li>
 <li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html#correspondence-analysis-ca"><i class="fa fa-check"></i>Correspondence Analysis (CA)</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="non-metric-multidimensional-scaling.html"><a href="non-metric-multidimensional-scaling.html"><i class="fa fa-check"></i>Non-metric Multidimensional Scaling</a>
-<ul>
+<li class="chapter" data-level="" data-path="non-metric-multidimensional-scaling.html"><a href="non-metric-multidimensional-scaling.html"><i class="fa fa-check"></i>Non-metric Multidimensional Scaling</a><ul>
 <li class="chapter" data-level="" data-path="non-metric-multidimensional-scaling.html"><a href="non-metric-multidimensional-scaling.html#examples-in-r-2"><i class="fa fa-check"></i>Examples in <code>R</code></a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html"><i class="fa fa-check"></i>Linear Discriminant Analysis (LDA)</a>
-<ul>
+<li class="chapter" data-level="" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html"><i class="fa fa-check"></i>Linear Discriminant Analysis (LDA)</a><ul>
 <li class="chapter" data-level="" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html#example-in-r"><i class="fa fa-check"></i>Example in <code>R</code></a></li>
 <li class="chapter" data-level="" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html#prediction"><i class="fa fa-check"></i>Prediction</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-6.html"><a href="module-6.html"><i class="fa fa-check"></i>Module 6</a>
-<ul>
-<li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html"><i class="fa fa-check"></i>Least Squares Estimation</a>
-<ul>
+<li class="chapter" data-level="" data-path="module-6.html"><a href="module-6.html"><i class="fa fa-check"></i>Module 6</a><ul>
+<li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html"><i class="fa fa-check"></i>Least Squares Estimation</a><ul>
 <li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html#some-basic-matrix-algebra"><i class="fa fa-check"></i>Some basic matrix algebra</a></li>
 <li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html#linear-least-squares"><i class="fa fa-check"></i>Linear least squares</a></li>
 <li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html#matrix-representation-of-a-crd"><i class="fa fa-check"></i>Matrix representation of a CRD</a></li>
 <li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html#a-numeric-example"><i class="fa fa-check"></i>A numeric example</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html"><i class="fa fa-check"></i>Maximum likelihood estimation</a>
-<ul>
+<li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html"><i class="fa fa-check"></i>Maximum likelihood estimation</a><ul>
 <li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#differeniation-rules"><i class="fa fa-check"></i>Differeniation rules</a></li>
 <li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#logarithm-rules"><i class="fa fa-check"></i>Logarithm rules</a></li>
 <li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#maximum-likelihood-estimation-for-a-binomial-distribution"><i class="fa fa-check"></i>Maximum likelihood estimation for a Binomial distribution</a></li>
@@ -328,8 +292,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#maximum-likelihood-estimation-for-a-poisson-distribution"><i class="fa fa-check"></i>Maximum likelihood estimation for a Poisson distribution</a></li>
 <li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#maximum-likelihood-estimation-for-a-continuous-random-variable"><i class="fa fa-check"></i>Maximum likelihood estimation for a continuous random variable</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html"><i class="fa fa-check"></i>Introduction to Bayesian statistics</a>
-<ul>
+<li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html"><i class="fa fa-check"></i>Introduction to Bayesian statistics</a><ul>
 <li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html#conditional-probability"><i class="fa fa-check"></i>Conditional probability</a></li>
 <li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html#bayes-rule"><i class="fa fa-check"></i>Bayes’ rule</a></li>
 </ul></li>
@@ -551,122 +514,124 @@ S
 </tbody>
 </table>
 <p>You can read these data directly into <code>R</code>:</p>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="linear-mixed-effect-models-lmms.html#cb98-1" aria-hidden="true" tabindex="-1"></a>rcbd <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/rcbd.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" title="1">rcbd &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/rcbd.csv&quot;</span>)</a></code></pre></div>
 <p>To use <code>predictmeans</code> later on we have to ensure that the relevant variables are coded as factors:</p>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="linear-mixed-effect-models-lmms.html#cb99-1" aria-hidden="true" tabindex="-1"></a>rcbd <span class="ot">&lt;-</span> rcbd <span class="sc">%&gt;%</span></span>
-<span id="cb99-2"><a href="linear-mixed-effect-models-lmms.html#cb99-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Run =</span> <span class="fu">as.factor</span>(Run)) <span class="sc">%&gt;%</span></span>
-<span id="cb99-3"><a href="linear-mixed-effect-models-lmms.html#cb99-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Surgery =</span> <span class="fu">as.factor</span>(Surgery))</span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb99-1" title="1">rcbd &lt;-<span class="st"> </span>rcbd <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb99-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Run =</span> <span class="kw">as.factor</span>(Run)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb99-3" title="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Surgery =</span> <span class="kw">as.factor</span>(Surgery))</a></code></pre></div>
 <div id="run-as-a-fixed-effect" class="section level4 hasAnchor">
 <h4><code>Run</code> as a fixed effect<a href="linear-mixed-effect-models-lmms.html#run-as-a-fixed-effect" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="linear-mixed-effect-models-lmms.html#cb100-1" aria-hidden="true" tabindex="-1"></a>lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(logAUC8 <span class="sc">~</span> Run <span class="sc">+</span> Surgery, <span class="at">data =</span> rcbd)</span>
-<span id="cb100-2"><a href="linear-mixed-effect-models-lmms.html#cb100-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm)</span>
-<span id="cb100-3"><a href="linear-mixed-effect-models-lmms.html#cb100-3" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb100-4"><a href="linear-mixed-effect-models-lmms.html#cb100-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Call:</span></span>
-<span id="cb100-5"><a href="linear-mixed-effect-models-lmms.html#cb100-5" aria-hidden="true" tabindex="-1"></a><span class="do">## lm(formula = logAUC8 ~ Run + Surgery, data = rcbd)</span></span>
-<span id="cb100-6"><a href="linear-mixed-effect-models-lmms.html#cb100-6" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb100-7"><a href="linear-mixed-effect-models-lmms.html#cb100-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Residuals:</span></span>
-<span id="cb100-8"><a href="linear-mixed-effect-models-lmms.html#cb100-8" aria-hidden="true" tabindex="-1"></a><span class="do">##     Min      1Q  Median      3Q     Max </span></span>
-<span id="cb100-9"><a href="linear-mixed-effect-models-lmms.html#cb100-9" aria-hidden="true" tabindex="-1"></a><span class="do">## -1.7517 -0.3683 -0.0900  0.4508  1.5817 </span></span>
-<span id="cb100-10"><a href="linear-mixed-effect-models-lmms.html#cb100-10" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb100-11"><a href="linear-mixed-effect-models-lmms.html#cb100-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Coefficients:</span></span>
-<span id="cb100-12"><a href="linear-mixed-effect-models-lmms.html#cb100-12" aria-hidden="true" tabindex="-1"></a><span class="do">##             Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
-<span id="cb100-13"><a href="linear-mixed-effect-models-lmms.html#cb100-13" aria-hidden="true" tabindex="-1"></a><span class="do">## (Intercept)   7.6583     0.8506   9.004 0.000105 ***</span></span>
-<span id="cb100-14"><a href="linear-mixed-effect-models-lmms.html#cb100-14" aria-hidden="true" tabindex="-1"></a><span class="do">## Run2         -2.0167     0.9822  -2.053 0.085854 .  </span></span>
-<span id="cb100-15"><a href="linear-mixed-effect-models-lmms.html#cb100-15" aria-hidden="true" tabindex="-1"></a><span class="do">## Run3          0.4100     0.9822   0.417 0.690882    </span></span>
-<span id="cb100-16"><a href="linear-mixed-effect-models-lmms.html#cb100-16" aria-hidden="true" tabindex="-1"></a><span class="do">## Run4          1.2933     0.9822   1.317 0.235963    </span></span>
-<span id="cb100-17"><a href="linear-mixed-effect-models-lmms.html#cb100-17" aria-hidden="true" tabindex="-1"></a><span class="do">## SurgeryP      1.9750     0.8506   2.322 0.059293 .  </span></span>
-<span id="cb100-18"><a href="linear-mixed-effect-models-lmms.html#cb100-18" aria-hidden="true" tabindex="-1"></a><span class="do">## SurgeryS      3.8500     0.8506   4.526 0.003991 ** </span></span>
-<span id="cb100-19"><a href="linear-mixed-effect-models-lmms.html#cb100-19" aria-hidden="true" tabindex="-1"></a><span class="do">## ---</span></span>
-<span id="cb100-20"><a href="linear-mixed-effect-models-lmms.html#cb100-20" aria-hidden="true" tabindex="-1"></a><span class="do">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
-<span id="cb100-21"><a href="linear-mixed-effect-models-lmms.html#cb100-21" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb100-22"><a href="linear-mixed-effect-models-lmms.html#cb100-22" aria-hidden="true" tabindex="-1"></a><span class="do">## Residual standard error: 1.203 on 6 degrees of freedom</span></span>
-<span id="cb100-23"><a href="linear-mixed-effect-models-lmms.html#cb100-23" aria-hidden="true" tabindex="-1"></a><span class="do">## Multiple R-squared:  0.8449, Adjusted R-squared:  0.7157 </span></span>
-<span id="cb100-24"><a href="linear-mixed-effect-models-lmms.html#cb100-24" aria-hidden="true" tabindex="-1"></a><span class="do">## F-statistic: 6.538 on 5 and 6 DF,  p-value: 0.02034</span></span></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" title="1">lm &lt;-<span class="st"> </span><span class="kw">lm</span>(logAUC8 <span class="op">~</span><span class="st"> </span>Run <span class="op">+</span><span class="st"> </span>Surgery, <span class="dt">data =</span> rcbd)</a>
+<a class="sourceLine" id="cb100-2" title="2"><span class="kw">summary</span>(lm)</a>
+<a class="sourceLine" id="cb100-3" title="3"><span class="co">## </span></a>
+<a class="sourceLine" id="cb100-4" title="4"><span class="co">## Call:</span></a>
+<a class="sourceLine" id="cb100-5" title="5"><span class="co">## lm(formula = logAUC8 ~ Run + Surgery, data = rcbd)</span></a>
+<a class="sourceLine" id="cb100-6" title="6"><span class="co">## </span></a>
+<a class="sourceLine" id="cb100-7" title="7"><span class="co">## Residuals:</span></a>
+<a class="sourceLine" id="cb100-8" title="8"><span class="co">##     Min      1Q  Median      3Q     Max </span></a>
+<a class="sourceLine" id="cb100-9" title="9"><span class="co">## -1.7517 -0.3683 -0.0900  0.4508  1.5817 </span></a>
+<a class="sourceLine" id="cb100-10" title="10"><span class="co">## </span></a>
+<a class="sourceLine" id="cb100-11" title="11"><span class="co">## Coefficients:</span></a>
+<a class="sourceLine" id="cb100-12" title="12"><span class="co">##             Estimate Std. Error t value Pr(&gt;|t|)    </span></a>
+<a class="sourceLine" id="cb100-13" title="13"><span class="co">## (Intercept)   7.6583     0.8506   9.004 0.000105 ***</span></a>
+<a class="sourceLine" id="cb100-14" title="14"><span class="co">## Run2         -2.0167     0.9822  -2.053 0.085854 .  </span></a>
+<a class="sourceLine" id="cb100-15" title="15"><span class="co">## Run3          0.4100     0.9822   0.417 0.690882    </span></a>
+<a class="sourceLine" id="cb100-16" title="16"><span class="co">## Run4          1.2933     0.9822   1.317 0.235963    </span></a>
+<a class="sourceLine" id="cb100-17" title="17"><span class="co">## SurgeryP      1.9750     0.8506   2.322 0.059293 .  </span></a>
+<a class="sourceLine" id="cb100-18" title="18"><span class="co">## SurgeryS      3.8500     0.8506   4.526 0.003991 ** </span></a>
+<a class="sourceLine" id="cb100-19" title="19"><span class="co">## ---</span></a>
+<a class="sourceLine" id="cb100-20" title="20"><span class="co">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a>
+<a class="sourceLine" id="cb100-21" title="21"><span class="co">## </span></a>
+<a class="sourceLine" id="cb100-22" title="22"><span class="co">## Residual standard error: 1.203 on 6 degrees of freedom</span></a>
+<a class="sourceLine" id="cb100-23" title="23"><span class="co">## Multiple R-squared:  0.8449, Adjusted R-squared:  0.7157 </span></a>
+<a class="sourceLine" id="cb100-24" title="24"><span class="co">## F-statistic: 6.538 on 5 and 6 DF,  p-value: 0.02034</span></a></code></pre></div>
 </div>
 <div id="run-as-a-random-effect" class="section level4 hasAnchor">
 <h4><code>Run</code> as a random effect<a href="linear-mixed-effect-models-lmms.html#run-as-a-random-effect" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>There are, confusingly, two ways of fitting the same model. For inference we require both!</p>
 <p>Option 1 uses the <code>lmer</code> function from the <code>lme4</code> package:</p>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="linear-mixed-effect-models-lmms.html#cb101-1" aria-hidden="true" tabindex="-1"></a>lmer4_mod <span class="ot">&lt;-</span> lme4<span class="sc">::</span><span class="fu">lmer</span>(logAUC8 <span class="sc">~</span> Surgery <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>Run), <span class="at">data =</span> rcbd)</span>
-<span id="cb101-2"><a href="linear-mixed-effect-models-lmms.html#cb101-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lmer4_mod)</span>
-<span id="cb101-3"><a href="linear-mixed-effect-models-lmms.html#cb101-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Linear mixed model fit by REML [&#39;lmerMod&#39;]</span></span>
-<span id="cb101-4"><a href="linear-mixed-effect-models-lmms.html#cb101-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Formula: logAUC8 ~ Surgery + (1 | Run)</span></span>
-<span id="cb101-5"><a href="linear-mixed-effect-models-lmms.html#cb101-5" aria-hidden="true" tabindex="-1"></a><span class="do">##    Data: rcbd</span></span>
-<span id="cb101-6"><a href="linear-mixed-effect-models-lmms.html#cb101-6" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb101-7"><a href="linear-mixed-effect-models-lmms.html#cb101-7" aria-hidden="true" tabindex="-1"></a><span class="do">## REML criterion at convergence: 37.2</span></span>
-<span id="cb101-8"><a href="linear-mixed-effect-models-lmms.html#cb101-8" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb101-9"><a href="linear-mixed-effect-models-lmms.html#cb101-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Scaled residuals: </span></span>
-<span id="cb101-10"><a href="linear-mixed-effect-models-lmms.html#cb101-10" aria-hidden="true" tabindex="-1"></a><span class="do">##     Min      1Q  Median      3Q     Max </span></span>
-<span id="cb101-11"><a href="linear-mixed-effect-models-lmms.html#cb101-11" aria-hidden="true" tabindex="-1"></a><span class="do">## -1.8525 -0.2273  0.1772  0.4036  1.3309 </span></span>
-<span id="cb101-12"><a href="linear-mixed-effect-models-lmms.html#cb101-12" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb101-13"><a href="linear-mixed-effect-models-lmms.html#cb101-13" aria-hidden="true" tabindex="-1"></a><span class="do">## Random effects:</span></span>
-<span id="cb101-14"><a href="linear-mixed-effect-models-lmms.html#cb101-14" aria-hidden="true" tabindex="-1"></a><span class="do">##  Groups   Name        Variance Std.Dev.</span></span>
-<span id="cb101-15"><a href="linear-mixed-effect-models-lmms.html#cb101-15" aria-hidden="true" tabindex="-1"></a><span class="do">##  Run      (Intercept) 1.479    1.216   </span></span>
-<span id="cb101-16"><a href="linear-mixed-effect-models-lmms.html#cb101-16" aria-hidden="true" tabindex="-1"></a><span class="do">##  Residual             1.447    1.203   </span></span>
-<span id="cb101-17"><a href="linear-mixed-effect-models-lmms.html#cb101-17" aria-hidden="true" tabindex="-1"></a><span class="do">## Number of obs: 12, groups:  Run, 4</span></span>
-<span id="cb101-18"><a href="linear-mixed-effect-models-lmms.html#cb101-18" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb101-19"><a href="linear-mixed-effect-models-lmms.html#cb101-19" aria-hidden="true" tabindex="-1"></a><span class="do">## Fixed effects:</span></span>
-<span id="cb101-20"><a href="linear-mixed-effect-models-lmms.html#cb101-20" aria-hidden="true" tabindex="-1"></a><span class="do">##             Estimate Std. Error t value</span></span>
-<span id="cb101-21"><a href="linear-mixed-effect-models-lmms.html#cb101-21" aria-hidden="true" tabindex="-1"></a><span class="do">## (Intercept)   7.5800     0.8552   8.863</span></span>
-<span id="cb101-22"><a href="linear-mixed-effect-models-lmms.html#cb101-22" aria-hidden="true" tabindex="-1"></a><span class="do">## SurgeryP      1.9750     0.8506   2.322</span></span>
-<span id="cb101-23"><a href="linear-mixed-effect-models-lmms.html#cb101-23" aria-hidden="true" tabindex="-1"></a><span class="do">## SurgeryS      3.8500     0.8506   4.526</span></span>
-<span id="cb101-24"><a href="linear-mixed-effect-models-lmms.html#cb101-24" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb101-25"><a href="linear-mixed-effect-models-lmms.html#cb101-25" aria-hidden="true" tabindex="-1"></a><span class="do">## Correlation of Fixed Effects:</span></span>
-<span id="cb101-26"><a href="linear-mixed-effect-models-lmms.html#cb101-26" aria-hidden="true" tabindex="-1"></a><span class="do">##          (Intr) SrgryP</span></span>
-<span id="cb101-27"><a href="linear-mixed-effect-models-lmms.html#cb101-27" aria-hidden="true" tabindex="-1"></a><span class="do">## SurgeryP -0.497       </span></span>
-<span id="cb101-28"><a href="linear-mixed-effect-models-lmms.html#cb101-28" aria-hidden="true" tabindex="-1"></a><span class="do">## SurgeryS -0.497  0.500</span></span></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb101-1" title="1">lmer4_mod &lt;-<span class="st"> </span>lme4<span class="op">::</span><span class="kw">lmer</span>(logAUC8 <span class="op">~</span><span class="st"> </span>Surgery <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span><span class="op">|</span>Run), <span class="dt">data =</span> rcbd)</a>
+<a class="sourceLine" id="cb101-2" title="2"><span class="kw">summary</span>(lmer4_mod)</a>
+<a class="sourceLine" id="cb101-3" title="3"><span class="co">## Linear mixed model fit by REML [&#39;lmerMod&#39;]</span></a>
+<a class="sourceLine" id="cb101-4" title="4"><span class="co">## Formula: logAUC8 ~ Surgery + (1 | Run)</span></a>
+<a class="sourceLine" id="cb101-5" title="5"><span class="co">##    Data: rcbd</span></a>
+<a class="sourceLine" id="cb101-6" title="6"><span class="co">## </span></a>
+<a class="sourceLine" id="cb101-7" title="7"><span class="co">## REML criterion at convergence: 37.2</span></a>
+<a class="sourceLine" id="cb101-8" title="8"><span class="co">## </span></a>
+<a class="sourceLine" id="cb101-9" title="9"><span class="co">## Scaled residuals: </span></a>
+<a class="sourceLine" id="cb101-10" title="10"><span class="co">##     Min      1Q  Median      3Q     Max </span></a>
+<a class="sourceLine" id="cb101-11" title="11"><span class="co">## -1.8525 -0.2273  0.1772  0.4036  1.3309 </span></a>
+<a class="sourceLine" id="cb101-12" title="12"><span class="co">## </span></a>
+<a class="sourceLine" id="cb101-13" title="13"><span class="co">## Random effects:</span></a>
+<a class="sourceLine" id="cb101-14" title="14"><span class="co">##  Groups   Name        Variance Std.Dev.</span></a>
+<a class="sourceLine" id="cb101-15" title="15"><span class="co">##  Run      (Intercept) 1.479    1.216   </span></a>
+<a class="sourceLine" id="cb101-16" title="16"><span class="co">##  Residual             1.447    1.203   </span></a>
+<a class="sourceLine" id="cb101-17" title="17"><span class="co">## Number of obs: 12, groups:  Run, 4</span></a>
+<a class="sourceLine" id="cb101-18" title="18"><span class="co">## </span></a>
+<a class="sourceLine" id="cb101-19" title="19"><span class="co">## Fixed effects:</span></a>
+<a class="sourceLine" id="cb101-20" title="20"><span class="co">##             Estimate Std. Error t value</span></a>
+<a class="sourceLine" id="cb101-21" title="21"><span class="co">## (Intercept)   7.5800     0.8552   8.863</span></a>
+<a class="sourceLine" id="cb101-22" title="22"><span class="co">## SurgeryP      1.9750     0.8506   2.322</span></a>
+<a class="sourceLine" id="cb101-23" title="23"><span class="co">## SurgeryS      3.8500     0.8506   4.526</span></a>
+<a class="sourceLine" id="cb101-24" title="24"><span class="co">## </span></a>
+<a class="sourceLine" id="cb101-25" title="25"><span class="co">## Correlation of Fixed Effects:</span></a>
+<a class="sourceLine" id="cb101-26" title="26"><span class="co">##          (Intr) SrgryP</span></a>
+<a class="sourceLine" id="cb101-27" title="27"><span class="co">## SurgeryP -0.497       </span></a>
+<a class="sourceLine" id="cb101-28" title="28"><span class="co">## SurgeryS -0.497  0.500</span></a></code></pre></div>
 <p>Option 2 uses the <code>lmer</code> function from the <code>lmerTest</code> package:</p>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="linear-mixed-effect-models-lmms.html#cb102-1" aria-hidden="true" tabindex="-1"></a>lmerTest_mod <span class="ot">&lt;-</span> lmerTest<span class="sc">::</span><span class="fu">lmer</span>(logAUC8 <span class="sc">~</span> Surgery <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>Run), <span class="at">data =</span> rcbd)</span>
-<span id="cb102-2"><a href="linear-mixed-effect-models-lmms.html#cb102-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lmerTest_mod)</span>
-<span id="cb102-3"><a href="linear-mixed-effect-models-lmms.html#cb102-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Linear mixed model fit by REML. t-tests use Satterthwaite&#39;s method [</span></span>
-<span id="cb102-4"><a href="linear-mixed-effect-models-lmms.html#cb102-4" aria-hidden="true" tabindex="-1"></a><span class="do">## lmerModLmerTest]</span></span>
-<span id="cb102-5"><a href="linear-mixed-effect-models-lmms.html#cb102-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Formula: logAUC8 ~ Surgery + (1 | Run)</span></span>
-<span id="cb102-6"><a href="linear-mixed-effect-models-lmms.html#cb102-6" aria-hidden="true" tabindex="-1"></a><span class="do">##    Data: rcbd</span></span>
-<span id="cb102-7"><a href="linear-mixed-effect-models-lmms.html#cb102-7" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb102-8"><a href="linear-mixed-effect-models-lmms.html#cb102-8" aria-hidden="true" tabindex="-1"></a><span class="do">## REML criterion at convergence: 37.2</span></span>
-<span id="cb102-9"><a href="linear-mixed-effect-models-lmms.html#cb102-9" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb102-10"><a href="linear-mixed-effect-models-lmms.html#cb102-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Scaled residuals: </span></span>
-<span id="cb102-11"><a href="linear-mixed-effect-models-lmms.html#cb102-11" aria-hidden="true" tabindex="-1"></a><span class="do">##     Min      1Q  Median      3Q     Max </span></span>
-<span id="cb102-12"><a href="linear-mixed-effect-models-lmms.html#cb102-12" aria-hidden="true" tabindex="-1"></a><span class="do">## -1.8525 -0.2273  0.1772  0.4036  1.3309 </span></span>
-<span id="cb102-13"><a href="linear-mixed-effect-models-lmms.html#cb102-13" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb102-14"><a href="linear-mixed-effect-models-lmms.html#cb102-14" aria-hidden="true" tabindex="-1"></a><span class="do">## Random effects:</span></span>
-<span id="cb102-15"><a href="linear-mixed-effect-models-lmms.html#cb102-15" aria-hidden="true" tabindex="-1"></a><span class="do">##  Groups   Name        Variance Std.Dev.</span></span>
-<span id="cb102-16"><a href="linear-mixed-effect-models-lmms.html#cb102-16" aria-hidden="true" tabindex="-1"></a><span class="do">##  Run      (Intercept) 1.479    1.216   </span></span>
-<span id="cb102-17"><a href="linear-mixed-effect-models-lmms.html#cb102-17" aria-hidden="true" tabindex="-1"></a><span class="do">##  Residual             1.447    1.203   </span></span>
-<span id="cb102-18"><a href="linear-mixed-effect-models-lmms.html#cb102-18" aria-hidden="true" tabindex="-1"></a><span class="do">## Number of obs: 12, groups:  Run, 4</span></span>
-<span id="cb102-19"><a href="linear-mixed-effect-models-lmms.html#cb102-19" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb102-20"><a href="linear-mixed-effect-models-lmms.html#cb102-20" aria-hidden="true" tabindex="-1"></a><span class="do">## Fixed effects:</span></span>
-<span id="cb102-21"><a href="linear-mixed-effect-models-lmms.html#cb102-21" aria-hidden="true" tabindex="-1"></a><span class="do">##             Estimate Std. Error     df t value Pr(&gt;|t|)    </span></span>
-<span id="cb102-22"><a href="linear-mixed-effect-models-lmms.html#cb102-22" aria-hidden="true" tabindex="-1"></a><span class="do">## (Intercept)   7.5800     0.8552 5.9567   8.863 0.000119 ***</span></span>
-<span id="cb102-23"><a href="linear-mixed-effect-models-lmms.html#cb102-23" aria-hidden="true" tabindex="-1"></a><span class="do">## SurgeryP      1.9750     0.8506 6.0000   2.322 0.059293 .  </span></span>
-<span id="cb102-24"><a href="linear-mixed-effect-models-lmms.html#cb102-24" aria-hidden="true" tabindex="-1"></a><span class="do">## SurgeryS      3.8500     0.8506 6.0000   4.526 0.003991 ** </span></span>
-<span id="cb102-25"><a href="linear-mixed-effect-models-lmms.html#cb102-25" aria-hidden="true" tabindex="-1"></a><span class="do">## ---</span></span>
-<span id="cb102-26"><a href="linear-mixed-effect-models-lmms.html#cb102-26" aria-hidden="true" tabindex="-1"></a><span class="do">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
-<span id="cb102-27"><a href="linear-mixed-effect-models-lmms.html#cb102-27" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb102-28"><a href="linear-mixed-effect-models-lmms.html#cb102-28" aria-hidden="true" tabindex="-1"></a><span class="do">## Correlation of Fixed Effects:</span></span>
-<span id="cb102-29"><a href="linear-mixed-effect-models-lmms.html#cb102-29" aria-hidden="true" tabindex="-1"></a><span class="do">##          (Intr) SrgryP</span></span>
-<span id="cb102-30"><a href="linear-mixed-effect-models-lmms.html#cb102-30" aria-hidden="true" tabindex="-1"></a><span class="do">## SurgeryP -0.497       </span></span>
-<span id="cb102-31"><a href="linear-mixed-effect-models-lmms.html#cb102-31" aria-hidden="true" tabindex="-1"></a><span class="do">## SurgeryS -0.497  0.500</span></span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" title="1">lmerTest_mod &lt;-<span class="st"> </span>lmerTest<span class="op">::</span><span class="kw">lmer</span>(logAUC8 <span class="op">~</span><span class="st"> </span>Surgery <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span><span class="op">|</span>Run), <span class="dt">data =</span> rcbd)</a>
+<a class="sourceLine" id="cb102-2" title="2"><span class="kw">summary</span>(lmerTest_mod)</a>
+<a class="sourceLine" id="cb102-3" title="3"><span class="co">## Linear mixed model fit by REML. t-tests use Satterthwaite&#39;s method [</span></a>
+<a class="sourceLine" id="cb102-4" title="4"><span class="co">## lmerModLmerTest]</span></a>
+<a class="sourceLine" id="cb102-5" title="5"><span class="co">## Formula: logAUC8 ~ Surgery + (1 | Run)</span></a>
+<a class="sourceLine" id="cb102-6" title="6"><span class="co">##    Data: rcbd</span></a>
+<a class="sourceLine" id="cb102-7" title="7"><span class="co">## </span></a>
+<a class="sourceLine" id="cb102-8" title="8"><span class="co">## REML criterion at convergence: 37.2</span></a>
+<a class="sourceLine" id="cb102-9" title="9"><span class="co">## </span></a>
+<a class="sourceLine" id="cb102-10" title="10"><span class="co">## Scaled residuals: </span></a>
+<a class="sourceLine" id="cb102-11" title="11"><span class="co">##     Min      1Q  Median      3Q     Max </span></a>
+<a class="sourceLine" id="cb102-12" title="12"><span class="co">## -1.8525 -0.2273  0.1772  0.4036  1.3309 </span></a>
+<a class="sourceLine" id="cb102-13" title="13"><span class="co">## </span></a>
+<a class="sourceLine" id="cb102-14" title="14"><span class="co">## Random effects:</span></a>
+<a class="sourceLine" id="cb102-15" title="15"><span class="co">##  Groups   Name        Variance Std.Dev.</span></a>
+<a class="sourceLine" id="cb102-16" title="16"><span class="co">##  Run      (Intercept) 1.479    1.216   </span></a>
+<a class="sourceLine" id="cb102-17" title="17"><span class="co">##  Residual             1.447    1.203   </span></a>
+<a class="sourceLine" id="cb102-18" title="18"><span class="co">## Number of obs: 12, groups:  Run, 4</span></a>
+<a class="sourceLine" id="cb102-19" title="19"><span class="co">## </span></a>
+<a class="sourceLine" id="cb102-20" title="20"><span class="co">## Fixed effects:</span></a>
+<a class="sourceLine" id="cb102-21" title="21"><span class="co">##             Estimate Std. Error     df t value Pr(&gt;|t|)    </span></a>
+<a class="sourceLine" id="cb102-22" title="22"><span class="co">## (Intercept)   7.5800     0.8552 5.9567   8.863 0.000119 ***</span></a>
+<a class="sourceLine" id="cb102-23" title="23"><span class="co">## SurgeryP      1.9750     0.8506 6.0000   2.322 0.059293 .  </span></a>
+<a class="sourceLine" id="cb102-24" title="24"><span class="co">## SurgeryS      3.8500     0.8506 6.0000   4.526 0.003991 ** </span></a>
+<a class="sourceLine" id="cb102-25" title="25"><span class="co">## ---</span></a>
+<a class="sourceLine" id="cb102-26" title="26"><span class="co">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a>
+<a class="sourceLine" id="cb102-27" title="27"><span class="co">## </span></a>
+<a class="sourceLine" id="cb102-28" title="28"><span class="co">## Correlation of Fixed Effects:</span></a>
+<a class="sourceLine" id="cb102-29" title="29"><span class="co">##          (Intr) SrgryP</span></a>
+<a class="sourceLine" id="cb102-30" title="30"><span class="co">## SurgeryP -0.497       </span></a>
+<a class="sourceLine" id="cb102-31" title="31"><span class="co">## SurgeryS -0.497  0.500</span></a></code></pre></div>
 <p>As you can see they give the same output! Why bother, you might ask?! This will become apparent later on.</p>
 <p><strong>Inference</strong> about the random effects</p>
 <p>We have two variance components</p>
 <ul>
-<li>Between Groups (Runs) <span class="math inline">\(\hat{\sigma^2}_{\text{Run}}\)</span> = 1.479</li>
+<li>Between Groups (Runs) <span class="math inline">\(\hat{\sigma^2}_{\text{Run}}\)</span> = 1.479
+<ul>
 <li>Within Runs (between observations) <span class="math inline">\(\hat{\sigma_2}\)</span> = 1.447</li>
+</ul></li>
 </ul>
 <p>Note that <code>aov()</code> presents the same information, but in a different way:</p>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="linear-mixed-effect-models-lmms.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">aov</span>(logAUC8 <span class="sc">~</span> Surgery <span class="sc">+</span> <span class="fu">Error</span>(Run), <span class="at">data =</span> rcbd))</span>
-<span id="cb103-2"><a href="linear-mixed-effect-models-lmms.html#cb103-2" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb103-3"><a href="linear-mixed-effect-models-lmms.html#cb103-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Error: Run</span></span>
-<span id="cb103-4"><a href="linear-mixed-effect-models-lmms.html#cb103-4" aria-hidden="true" tabindex="-1"></a><span class="do">##           Df Sum Sq Mean Sq F value Pr(&gt;F)</span></span>
-<span id="cb103-5"><a href="linear-mixed-effect-models-lmms.html#cb103-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Residuals  3  17.65   5.883               </span></span>
-<span id="cb103-6"><a href="linear-mixed-effect-models-lmms.html#cb103-6" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb103-7"><a href="linear-mixed-effect-models-lmms.html#cb103-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Error: Within</span></span>
-<span id="cb103-8"><a href="linear-mixed-effect-models-lmms.html#cb103-8" aria-hidden="true" tabindex="-1"></a><span class="do">##           Df Sum Sq Mean Sq F value Pr(&gt;F)  </span></span>
-<span id="cb103-9"><a href="linear-mixed-effect-models-lmms.html#cb103-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Surgery    2 29.652  14.826   10.25 0.0116 *</span></span>
-<span id="cb103-10"><a href="linear-mixed-effect-models-lmms.html#cb103-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Residuals  6  8.682   1.447                 </span></span>
-<span id="cb103-11"><a href="linear-mixed-effect-models-lmms.html#cb103-11" aria-hidden="true" tabindex="-1"></a><span class="do">## ---</span></span>
-<span id="cb103-12"><a href="linear-mixed-effect-models-lmms.html#cb103-12" aria-hidden="true" tabindex="-1"></a><span class="do">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb103-1" title="1"><span class="kw">summary</span>(<span class="kw">aov</span>(logAUC8 <span class="op">~</span><span class="st"> </span>Surgery <span class="op">+</span><span class="st"> </span><span class="kw">Error</span>(Run), <span class="dt">data =</span> rcbd))</a>
+<a class="sourceLine" id="cb103-2" title="2"><span class="co">## </span></a>
+<a class="sourceLine" id="cb103-3" title="3"><span class="co">## Error: Run</span></a>
+<a class="sourceLine" id="cb103-4" title="4"><span class="co">##           Df Sum Sq Mean Sq F value Pr(&gt;F)</span></a>
+<a class="sourceLine" id="cb103-5" title="5"><span class="co">## Residuals  3  17.65   5.883               </span></a>
+<a class="sourceLine" id="cb103-6" title="6"><span class="co">## </span></a>
+<a class="sourceLine" id="cb103-7" title="7"><span class="co">## Error: Within</span></a>
+<a class="sourceLine" id="cb103-8" title="8"><span class="co">##           Df Sum Sq Mean Sq F value Pr(&gt;F)  </span></a>
+<a class="sourceLine" id="cb103-9" title="9"><span class="co">## Surgery    2 29.652  14.826   10.25 0.0116 *</span></a>
+<a class="sourceLine" id="cb103-10" title="10"><span class="co">## Residuals  6  8.682   1.447                 </span></a>
+<a class="sourceLine" id="cb103-11" title="11"><span class="co">## ---</span></a>
+<a class="sourceLine" id="cb103-12" title="12"><span class="co">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a></code></pre></div>
 <ul>
 <li>Within Runs (Residuals) <span class="math inline">\(\hat{\sigma}_2\)</span> = 1.447 (<em>same as <code>lmer</code></em>)</li>
 <li>Between Run variance = <span class="math inline">\(\hat{\sigma}^2\)</span> + <span class="math inline">\(3\:\hat{\sigma}^2_{\text{Run}}\)</span> so <span class="math inline">\(\hat{\sigma}^2_{\text{Run}} = \frac{5.883 - \hat{\sigma}^2 }{3} = \frac{5.883 - 1.447}{3} = 1.479\)</span></li>
@@ -674,64 +639,64 @@ S
 <p><strong>Inference</strong> about the fixed effects</p>
 <p>Specifying <code>Run</code> as random effect changes our estimated baseline (i.e., <code>Intercept</code> coefficient) as now and effect due to <code>Run</code> is attributed to the structural component of the model.</p>
 <p>We can interpret the fixed effects of a LMM as we might for a linear model (now the <code>Intercept</code> estimate changes depending on <code>Run</code>).</p>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="linear-mixed-effect-models-lmms.html#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coefficients</span>(lmer4_mod)</span>
-<span id="cb104-2"><a href="linear-mixed-effect-models-lmms.html#cb104-2" aria-hidden="true" tabindex="-1"></a><span class="do">## $Run</span></span>
-<span id="cb104-3"><a href="linear-mixed-effect-models-lmms.html#cb104-3" aria-hidden="true" tabindex="-1"></a><span class="do">##   (Intercept) SurgeryP SurgeryS</span></span>
-<span id="cb104-4"><a href="linear-mixed-effect-models-lmms.html#cb104-4" aria-hidden="true" tabindex="-1"></a><span class="do">## 1    7.639067    1.975     3.85</span></span>
-<span id="cb104-5"><a href="linear-mixed-effect-models-lmms.html#cb104-5" aria-hidden="true" tabindex="-1"></a><span class="do">## 2    6.118411    1.975     3.85</span></span>
-<span id="cb104-6"><a href="linear-mixed-effect-models-lmms.html#cb104-6" aria-hidden="true" tabindex="-1"></a><span class="do">## 3    7.948225    1.975     3.85</span></span>
-<span id="cb104-7"><a href="linear-mixed-effect-models-lmms.html#cb104-7" aria-hidden="true" tabindex="-1"></a><span class="do">## 4    8.614297    1.975     3.85</span></span>
-<span id="cb104-8"><a href="linear-mixed-effect-models-lmms.html#cb104-8" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb104-9"><a href="linear-mixed-effect-models-lmms.html#cb104-9" aria-hidden="true" tabindex="-1"></a><span class="do">## attr(,&quot;class&quot;)</span></span>
-<span id="cb104-10"><a href="linear-mixed-effect-models-lmms.html#cb104-10" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;coef.mer&quot;</span></span>
-<span id="cb104-11"><a href="linear-mixed-effect-models-lmms.html#cb104-11" aria-hidden="true" tabindex="-1"></a><span class="fu">coefficients</span>(lmerTest_mod)</span>
-<span id="cb104-12"><a href="linear-mixed-effect-models-lmms.html#cb104-12" aria-hidden="true" tabindex="-1"></a><span class="do">## $Run</span></span>
-<span id="cb104-13"><a href="linear-mixed-effect-models-lmms.html#cb104-13" aria-hidden="true" tabindex="-1"></a><span class="do">##   (Intercept) SurgeryP SurgeryS</span></span>
-<span id="cb104-14"><a href="linear-mixed-effect-models-lmms.html#cb104-14" aria-hidden="true" tabindex="-1"></a><span class="do">## 1    7.639067    1.975     3.85</span></span>
-<span id="cb104-15"><a href="linear-mixed-effect-models-lmms.html#cb104-15" aria-hidden="true" tabindex="-1"></a><span class="do">## 2    6.118411    1.975     3.85</span></span>
-<span id="cb104-16"><a href="linear-mixed-effect-models-lmms.html#cb104-16" aria-hidden="true" tabindex="-1"></a><span class="do">## 3    7.948225    1.975     3.85</span></span>
-<span id="cb104-17"><a href="linear-mixed-effect-models-lmms.html#cb104-17" aria-hidden="true" tabindex="-1"></a><span class="do">## 4    8.614297    1.975     3.85</span></span>
-<span id="cb104-18"><a href="linear-mixed-effect-models-lmms.html#cb104-18" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb104-19"><a href="linear-mixed-effect-models-lmms.html#cb104-19" aria-hidden="true" tabindex="-1"></a><span class="do">## attr(,&quot;class&quot;)</span></span>
-<span id="cb104-20"><a href="linear-mixed-effect-models-lmms.html#cb104-20" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;coef.mer&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" title="1"><span class="kw">coefficients</span>(lmer4_mod)</a>
+<a class="sourceLine" id="cb104-2" title="2"><span class="co">## $Run</span></a>
+<a class="sourceLine" id="cb104-3" title="3"><span class="co">##   (Intercept) SurgeryP SurgeryS</span></a>
+<a class="sourceLine" id="cb104-4" title="4"><span class="co">## 1    7.639067    1.975     3.85</span></a>
+<a class="sourceLine" id="cb104-5" title="5"><span class="co">## 2    6.118411    1.975     3.85</span></a>
+<a class="sourceLine" id="cb104-6" title="6"><span class="co">## 3    7.948225    1.975     3.85</span></a>
+<a class="sourceLine" id="cb104-7" title="7"><span class="co">## 4    8.614297    1.975     3.85</span></a>
+<a class="sourceLine" id="cb104-8" title="8"><span class="co">## </span></a>
+<a class="sourceLine" id="cb104-9" title="9"><span class="co">## attr(,&quot;class&quot;)</span></a>
+<a class="sourceLine" id="cb104-10" title="10"><span class="co">## [1] &quot;coef.mer&quot;</span></a>
+<a class="sourceLine" id="cb104-11" title="11"><span class="kw">coefficients</span>(lmerTest_mod)</a>
+<a class="sourceLine" id="cb104-12" title="12"><span class="co">## $Run</span></a>
+<a class="sourceLine" id="cb104-13" title="13"><span class="co">##   (Intercept) SurgeryP SurgeryS</span></a>
+<a class="sourceLine" id="cb104-14" title="14"><span class="co">## 1    7.639067    1.975     3.85</span></a>
+<a class="sourceLine" id="cb104-15" title="15"><span class="co">## 2    6.118411    1.975     3.85</span></a>
+<a class="sourceLine" id="cb104-16" title="16"><span class="co">## 3    7.948225    1.975     3.85</span></a>
+<a class="sourceLine" id="cb104-17" title="17"><span class="co">## 4    8.614297    1.975     3.85</span></a>
+<a class="sourceLine" id="cb104-18" title="18"><span class="co">## </span></a>
+<a class="sourceLine" id="cb104-19" title="19"><span class="co">## attr(,&quot;class&quot;)</span></a>
+<a class="sourceLine" id="cb104-20" title="20"><span class="co">## [1] &quot;coef.mer&quot;</span></a></code></pre></div>
 <p>What about an ANOVA table? <strong>NOTE</strong> that specifying the type of <span class="math inline">\(SS\)</span> (e.g., Type I, II, or III) in an <code>anova</code> call <strong>only</strong> works with a model fitted using <code>lmerTest::lmer</code>:</p>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="linear-mixed-effect-models-lmms.html#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(lmerTest_mod, <span class="at">type =</span> <span class="dv">1</span>)</span>
-<span id="cb105-2"><a href="linear-mixed-effect-models-lmms.html#cb105-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Type I Analysis of Variance Table with Satterthwaite&#39;s method</span></span>
-<span id="cb105-3"><a href="linear-mixed-effect-models-lmms.html#cb105-3" aria-hidden="true" tabindex="-1"></a><span class="do">##         Sum Sq Mean Sq NumDF DenDF F value  Pr(&gt;F)  </span></span>
-<span id="cb105-4"><a href="linear-mixed-effect-models-lmms.html#cb105-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Surgery 29.652  14.826     2     6  10.246 0.01162 *</span></span>
-<span id="cb105-5"><a href="linear-mixed-effect-models-lmms.html#cb105-5" aria-hidden="true" tabindex="-1"></a><span class="do">## ---</span></span>
-<span id="cb105-6"><a href="linear-mixed-effect-models-lmms.html#cb105-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
-<span id="cb105-7"><a href="linear-mixed-effect-models-lmms.html#cb105-7" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(lmerTest_mod, <span class="at">type =</span> <span class="dv">2</span>)</span>
-<span id="cb105-8"><a href="linear-mixed-effect-models-lmms.html#cb105-8" aria-hidden="true" tabindex="-1"></a><span class="do">## Type II Analysis of Variance Table with Satterthwaite&#39;s method</span></span>
-<span id="cb105-9"><a href="linear-mixed-effect-models-lmms.html#cb105-9" aria-hidden="true" tabindex="-1"></a><span class="do">##         Sum Sq Mean Sq NumDF DenDF F value  Pr(&gt;F)  </span></span>
-<span id="cb105-10"><a href="linear-mixed-effect-models-lmms.html#cb105-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Surgery 29.652  14.826     2     6  10.246 0.01162 *</span></span>
-<span id="cb105-11"><a href="linear-mixed-effect-models-lmms.html#cb105-11" aria-hidden="true" tabindex="-1"></a><span class="do">## ---</span></span>
-<span id="cb105-12"><a href="linear-mixed-effect-models-lmms.html#cb105-12" aria-hidden="true" tabindex="-1"></a><span class="do">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" title="1"><span class="kw">anova</span>(lmerTest_mod, <span class="dt">type =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb105-2" title="2"><span class="co">## Type I Analysis of Variance Table with Satterthwaite&#39;s method</span></a>
+<a class="sourceLine" id="cb105-3" title="3"><span class="co">##         Sum Sq Mean Sq NumDF DenDF F value  Pr(&gt;F)  </span></a>
+<a class="sourceLine" id="cb105-4" title="4"><span class="co">## Surgery 29.652  14.826     2     6  10.246 0.01162 *</span></a>
+<a class="sourceLine" id="cb105-5" title="5"><span class="co">## ---</span></a>
+<a class="sourceLine" id="cb105-6" title="6"><span class="co">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a>
+<a class="sourceLine" id="cb105-7" title="7"><span class="kw">anova</span>(lmerTest_mod, <span class="dt">type =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb105-8" title="8"><span class="co">## Type II Analysis of Variance Table with Satterthwaite&#39;s method</span></a>
+<a class="sourceLine" id="cb105-9" title="9"><span class="co">##         Sum Sq Mean Sq NumDF DenDF F value  Pr(&gt;F)  </span></a>
+<a class="sourceLine" id="cb105-10" title="10"><span class="co">## Surgery 29.652  14.826     2     6  10.246 0.01162 *</span></a>
+<a class="sourceLine" id="cb105-11" title="11"><span class="co">## ---</span></a>
+<a class="sourceLine" id="cb105-12" title="12"><span class="co">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a></code></pre></div>
 <p>Now, as we only have a single fixed effect in our model (<code>Surgery</code>) the ANOVA Type I and Type II tables above are equivalent!</p>
 <p><strong>Inference using <code>predictmeans()</code></strong> (Note: output will be the same for the <code>lmerTest</code> model.)</p>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="linear-mixed-effect-models-lmms.html#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(predictmeans)</span>
-<span id="cb106-2"><a href="linear-mixed-effect-models-lmms.html#cb106-2" aria-hidden="true" tabindex="-1"></a>pm <span class="ot">&lt;-</span> <span class="fu">predictmeans</span>(lmer4_mod, <span class="at">modelterm =</span> <span class="st">&quot;Surgery&quot;</span>, <span class="at">pairwise =</span> <span class="cn">TRUE</span>, <span class="at">plot =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" title="1"><span class="kw">library</span>(predictmeans)</a>
+<a class="sourceLine" id="cb106-2" title="2">pm &lt;-<span class="st"> </span><span class="kw">predictmeans</span>(lmer4_mod, <span class="dt">modelterm =</span> <span class="st">&quot;Surgery&quot;</span>, <span class="dt">pairwise =</span> <span class="ot">TRUE</span>, <span class="dt">plot =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <p>Using the elements of the <code>predictmeans</code> object (as in the last section) we can extract the pairwise comparison information:</p>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="linear-mixed-effect-models-lmms.html#cb107-1" aria-hidden="true" tabindex="-1"></a>pm<span class="sc">$</span><span class="st">`</span><span class="at">Pairwise LSDs</span><span class="st">`</span></span>
-<span id="cb107-2"><a href="linear-mixed-effect-models-lmms.html#cb107-2" aria-hidden="true" tabindex="-1"></a><span class="do">##         C        P      S</span></span>
-<span id="cb107-3"><a href="linear-mixed-effect-models-lmms.html#cb107-3" aria-hidden="true" tabindex="-1"></a><span class="do">## C 0.00000 -1.97500 -3.850</span></span>
-<span id="cb107-4"><a href="linear-mixed-effect-models-lmms.html#cb107-4" aria-hidden="true" tabindex="-1"></a><span class="do">## P 2.08499  0.00000 -1.875</span></span>
-<span id="cb107-5"><a href="linear-mixed-effect-models-lmms.html#cb107-5" aria-hidden="true" tabindex="-1"></a><span class="do">## S 2.08499  2.08499  0.000</span></span>
-<span id="cb107-6"><a href="linear-mixed-effect-models-lmms.html#cb107-6" aria-hidden="true" tabindex="-1"></a><span class="do">## attr(,&quot;Significant level&quot;)</span></span>
-<span id="cb107-7"><a href="linear-mixed-effect-models-lmms.html#cb107-7" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 0.05</span></span>
-<span id="cb107-8"><a href="linear-mixed-effect-models-lmms.html#cb107-8" aria-hidden="true" tabindex="-1"></a><span class="do">## attr(,&quot;Degree of freedom&quot;)</span></span>
-<span id="cb107-9"><a href="linear-mixed-effect-models-lmms.html#cb107-9" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 5.95671</span></span>
-<span id="cb107-10"><a href="linear-mixed-effect-models-lmms.html#cb107-10" aria-hidden="true" tabindex="-1"></a><span class="do">## attr(,&quot;Note&quot;)</span></span>
-<span id="cb107-11"><a href="linear-mixed-effect-models-lmms.html#cb107-11" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;LSDs matrix has mean differences (row-col) above the diagonal, LSDs (adjusted by &#39;none&#39; method) below the diagonal&quot;</span></span>
-<span id="cb107-12"><a href="linear-mixed-effect-models-lmms.html#cb107-12" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(pm<span class="sc">$</span><span class="st">`</span><span class="at">Pairwise p-value</span><span class="st">`</span>)</span>
-<span id="cb107-13"><a href="linear-mixed-effect-models-lmms.html#cb107-13" aria-hidden="true" tabindex="-1"></a><span class="do">##        C       P       S</span></span>
-<span id="cb107-14"><a href="linear-mixed-effect-models-lmms.html#cb107-14" aria-hidden="true" tabindex="-1"></a><span class="do">## C 0.0000 -2.3219 -4.5263</span></span>
-<span id="cb107-15"><a href="linear-mixed-effect-models-lmms.html#cb107-15" aria-hidden="true" tabindex="-1"></a><span class="do">## P 0.0596  0.0000 -2.2043</span></span>
-<span id="cb107-16"><a href="linear-mixed-effect-models-lmms.html#cb107-16" aria-hidden="true" tabindex="-1"></a><span class="do">## S 0.0041  0.0700  0.0000</span></span>
-<span id="cb107-17"><a href="linear-mixed-effect-models-lmms.html#cb107-17" aria-hidden="true" tabindex="-1"></a><span class="do">## attr(,&quot;Degree of freedom&quot;)</span></span>
-<span id="cb107-18"><a href="linear-mixed-effect-models-lmms.html#cb107-18" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 5.95671</span></span>
-<span id="cb107-19"><a href="linear-mixed-effect-models-lmms.html#cb107-19" aria-hidden="true" tabindex="-1"></a><span class="do">## attr(,&quot;Note&quot;)</span></span>
-<span id="cb107-20"><a href="linear-mixed-effect-models-lmms.html#cb107-20" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;The matrix has t-value above the diagonal, p-value (adjusted by &#39;none&#39; method) below the diagonal&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" title="1">pm<span class="op">$</span><span class="st">`</span><span class="dt">Pairwise LSDs</span><span class="st">`</span></a>
+<a class="sourceLine" id="cb107-2" title="2"><span class="co">##         C        P      S</span></a>
+<a class="sourceLine" id="cb107-3" title="3"><span class="co">## C 0.00000 -1.97500 -3.850</span></a>
+<a class="sourceLine" id="cb107-4" title="4"><span class="co">## P 2.08499  0.00000 -1.875</span></a>
+<a class="sourceLine" id="cb107-5" title="5"><span class="co">## S 2.08499  2.08499  0.000</span></a>
+<a class="sourceLine" id="cb107-6" title="6"><span class="co">## attr(,&quot;Significant level&quot;)</span></a>
+<a class="sourceLine" id="cb107-7" title="7"><span class="co">## [1] 0.05</span></a>
+<a class="sourceLine" id="cb107-8" title="8"><span class="co">## attr(,&quot;Degree of freedom&quot;)</span></a>
+<a class="sourceLine" id="cb107-9" title="9"><span class="co">## [1] 5.95671</span></a>
+<a class="sourceLine" id="cb107-10" title="10"><span class="co">## attr(,&quot;Note&quot;)</span></a>
+<a class="sourceLine" id="cb107-11" title="11"><span class="co">## [1] &quot;LSDs matrix has mean differences (row-col) above the diagonal, LSDs (adjusted by &#39;none&#39; method) below the diagonal&quot;</span></a>
+<a class="sourceLine" id="cb107-12" title="12"><span class="kw">print</span>(pm<span class="op">$</span><span class="st">`</span><span class="dt">Pairwise p-value</span><span class="st">`</span>)</a>
+<a class="sourceLine" id="cb107-13" title="13"><span class="co">##        C       P       S</span></a>
+<a class="sourceLine" id="cb107-14" title="14"><span class="co">## C 0.0000 -2.3219 -4.5263</span></a>
+<a class="sourceLine" id="cb107-15" title="15"><span class="co">## P 0.0596  0.0000 -2.2043</span></a>
+<a class="sourceLine" id="cb107-16" title="16"><span class="co">## S 0.0041  0.0700  0.0000</span></a>
+<a class="sourceLine" id="cb107-17" title="17"><span class="co">## attr(,&quot;Degree of freedom&quot;)</span></a>
+<a class="sourceLine" id="cb107-18" title="18"><span class="co">## [1] 5.95671</span></a>
+<a class="sourceLine" id="cb107-19" title="19"><span class="co">## attr(,&quot;Note&quot;)</span></a>
+<a class="sourceLine" id="cb107-20" title="20"><span class="co">## [1] &quot;The matrix has t-value above the diagonal, p-value (adjusted by &#39;none&#39; method) below the diagonal&quot;</span></a></code></pre></div>
 <p>Gives us 1) pairwise differences (upper diagonal) and the LSD values (lower diagonal), and 2) the pairwise comparison statistic (the <span class="math inline">\(t\)</span>-statistic in this case) on the upper diagonal and the associated p-value’s on the lower diagonal.</p>
 <p>So is there a pairwise difference in means? Let’s organise the information in a table.</p>
 <pre><code>##   Comparison Difference   SED   LSD    lwr    upr      t      p
@@ -973,85 +938,85 @@ outerLV
 </tbody>
 </table>
 <p>You can read these data directly into <code>R</code>:</p>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="linear-mixed-effect-models-lmms.html#cb109-1" aria-hidden="true" tabindex="-1"></a>split_plot <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/split_plot.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" title="1">split_plot &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/split_plot.csv&quot;</span>)</a></code></pre></div>
 <p>To use <code>predictmeans</code> later on we have to ensure that the relevant variables are coded as factors:</p>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="linear-mixed-effect-models-lmms.html#cb110-1" aria-hidden="true" tabindex="-1"></a>split_plot <span class="ot">&lt;-</span> split_plot <span class="sc">%&gt;%</span></span>
-<span id="cb110-2"><a href="linear-mixed-effect-models-lmms.html#cb110-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Animal =</span> <span class="fu">as.factor</span>(Animal)) <span class="sc">%&gt;%</span></span>
-<span id="cb110-3"><a href="linear-mixed-effect-models-lmms.html#cb110-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Disease =</span> <span class="fu">as.factor</span>(Disease))<span class="sc">%&gt;%</span></span>
-<span id="cb110-4"><a href="linear-mixed-effect-models-lmms.html#cb110-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Organ =</span> <span class="fu">as.factor</span>(Organ))</span></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" title="1">split_plot &lt;-<span class="st"> </span>split_plot <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb110-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Animal =</span> <span class="kw">as.factor</span>(Animal)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb110-3" title="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Disease =</span> <span class="kw">as.factor</span>(Disease))<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb110-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Organ =</span> <span class="kw">as.factor</span>(Organ))</a></code></pre></div>
 <div id="animal-as-a-random-effect" class="section level4 hasAnchor">
 <h4><code>Animal</code> as a random effect<a href="linear-mixed-effect-models-lmms.html#animal-as-a-random-effect" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><strong>Using <code>aov()</code></strong></p>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="linear-mixed-effect-models-lmms.html#cb111-1" aria-hidden="true" tabindex="-1"></a>sp_aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(logAUC <span class="sc">~</span> Disease<span class="sc">*</span>Organ <span class="sc">+</span> <span class="fu">Error</span>(Animal), <span class="at">data =</span> split_plot)</span>
-<span id="cb111-2"><a href="linear-mixed-effect-models-lmms.html#cb111-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sp_aov)</span>
-<span id="cb111-3"><a href="linear-mixed-effect-models-lmms.html#cb111-3" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb111-4"><a href="linear-mixed-effect-models-lmms.html#cb111-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Error: Animal</span></span>
-<span id="cb111-5"><a href="linear-mixed-effect-models-lmms.html#cb111-5" aria-hidden="true" tabindex="-1"></a><span class="do">##           Df Sum Sq Mean Sq F value Pr(&gt;F)</span></span>
-<span id="cb111-6"><a href="linear-mixed-effect-models-lmms.html#cb111-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Disease    1  3.183   3.183   2.187  0.213</span></span>
-<span id="cb111-7"><a href="linear-mixed-effect-models-lmms.html#cb111-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Residuals  4  5.822   1.456               </span></span>
-<span id="cb111-8"><a href="linear-mixed-effect-models-lmms.html#cb111-8" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb111-9"><a href="linear-mixed-effect-models-lmms.html#cb111-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Error: Within</span></span>
-<span id="cb111-10"><a href="linear-mixed-effect-models-lmms.html#cb111-10" aria-hidden="true" tabindex="-1"></a><span class="do">##               Df Sum Sq Mean Sq F value Pr(&gt;F)  </span></span>
-<span id="cb111-11"><a href="linear-mixed-effect-models-lmms.html#cb111-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Organ          1  4.296   4.296  14.423 0.0191 *</span></span>
-<span id="cb111-12"><a href="linear-mixed-effect-models-lmms.html#cb111-12" aria-hidden="true" tabindex="-1"></a><span class="do">## Disease:Organ  1  2.539   2.539   8.525 0.0433 *</span></span>
-<span id="cb111-13"><a href="linear-mixed-effect-models-lmms.html#cb111-13" aria-hidden="true" tabindex="-1"></a><span class="do">## Residuals      4  1.191   0.298                 </span></span>
-<span id="cb111-14"><a href="linear-mixed-effect-models-lmms.html#cb111-14" aria-hidden="true" tabindex="-1"></a><span class="do">## ---</span></span>
-<span id="cb111-15"><a href="linear-mixed-effect-models-lmms.html#cb111-15" aria-hidden="true" tabindex="-1"></a><span class="do">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb111-1" title="1">sp_aov &lt;-<span class="st"> </span><span class="kw">aov</span>(logAUC <span class="op">~</span><span class="st"> </span>Disease<span class="op">*</span>Organ <span class="op">+</span><span class="st"> </span><span class="kw">Error</span>(Animal), <span class="dt">data =</span> split_plot)</a>
+<a class="sourceLine" id="cb111-2" title="2"><span class="kw">summary</span>(sp_aov)</a>
+<a class="sourceLine" id="cb111-3" title="3"><span class="co">## </span></a>
+<a class="sourceLine" id="cb111-4" title="4"><span class="co">## Error: Animal</span></a>
+<a class="sourceLine" id="cb111-5" title="5"><span class="co">##           Df Sum Sq Mean Sq F value Pr(&gt;F)</span></a>
+<a class="sourceLine" id="cb111-6" title="6"><span class="co">## Disease    1  3.183   3.183   2.187  0.213</span></a>
+<a class="sourceLine" id="cb111-7" title="7"><span class="co">## Residuals  4  5.822   1.456               </span></a>
+<a class="sourceLine" id="cb111-8" title="8"><span class="co">## </span></a>
+<a class="sourceLine" id="cb111-9" title="9"><span class="co">## Error: Within</span></a>
+<a class="sourceLine" id="cb111-10" title="10"><span class="co">##               Df Sum Sq Mean Sq F value Pr(&gt;F)  </span></a>
+<a class="sourceLine" id="cb111-11" title="11"><span class="co">## Organ          1  4.296   4.296  14.423 0.0191 *</span></a>
+<a class="sourceLine" id="cb111-12" title="12"><span class="co">## Disease:Organ  1  2.539   2.539   8.525 0.0433 *</span></a>
+<a class="sourceLine" id="cb111-13" title="13"><span class="co">## Residuals      4  1.191   0.298                 </span></a>
+<a class="sourceLine" id="cb111-14" title="14"><span class="co">## ---</span></a>
+<a class="sourceLine" id="cb111-15" title="15"><span class="co">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a></code></pre></div>
 <p><strong>Using <code>lmer()</code> (from <code>lmeTest</code> and <code>lmer4</code>)</strong></p>
 <p>Recall that specifying the type of <span class="math inline">\(SS\)</span> (e.g., Type I, II, or III) in an <code>anova</code> call <strong>only</strong> works with a model fitted using <code>lmerTest::lmer</code>. As we now have specified an interaction model then the type of <span class="math inline">\(SS\)</span> calculated will have an effect on inference for unbalanced designs.</p>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="linear-mixed-effect-models-lmms.html#cb112-1" aria-hidden="true" tabindex="-1"></a>sp_lmer <span class="ot">&lt;-</span> lmerTest<span class="sc">::</span><span class="fu">lmer</span>(logAUC <span class="sc">~</span> Disease<span class="sc">*</span>Organ <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>Animal), </span>
-<span id="cb112-2"><a href="linear-mixed-effect-models-lmms.html#cb112-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">data =</span> split_plot) </span>
-<span id="cb112-3"><a href="linear-mixed-effect-models-lmms.html#cb112-3" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(sp_lmer,<span class="at">type =</span> <span class="dv">1</span>)</span>
-<span id="cb112-4"><a href="linear-mixed-effect-models-lmms.html#cb112-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Type I Analysis of Variance Table with Satterthwaite&#39;s method</span></span>
-<span id="cb112-5"><a href="linear-mixed-effect-models-lmms.html#cb112-5" aria-hidden="true" tabindex="-1"></a><span class="do">##               Sum Sq Mean Sq NumDF DenDF F value  Pr(&gt;F)  </span></span>
-<span id="cb112-6"><a href="linear-mixed-effect-models-lmms.html#cb112-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Disease       0.6513  0.6513     1     4  2.1866 0.21329  </span></span>
-<span id="cb112-7"><a href="linear-mixed-effect-models-lmms.html#cb112-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Organ         4.2960  4.2960     1     4 14.4227 0.01914 *</span></span>
-<span id="cb112-8"><a href="linear-mixed-effect-models-lmms.html#cb112-8" aria-hidden="true" tabindex="-1"></a><span class="do">## Disease:Organ 2.5392  2.5392     1     4  8.5246 0.04326 *</span></span>
-<span id="cb112-9"><a href="linear-mixed-effect-models-lmms.html#cb112-9" aria-hidden="true" tabindex="-1"></a><span class="do">## ---</span></span>
-<span id="cb112-10"><a href="linear-mixed-effect-models-lmms.html#cb112-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
-<span id="cb112-11"><a href="linear-mixed-effect-models-lmms.html#cb112-11" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(sp_lmer,<span class="at">type =</span> <span class="dv">2</span>)</span>
-<span id="cb112-12"><a href="linear-mixed-effect-models-lmms.html#cb112-12" aria-hidden="true" tabindex="-1"></a><span class="do">## Type II Analysis of Variance Table with Satterthwaite&#39;s method</span></span>
-<span id="cb112-13"><a href="linear-mixed-effect-models-lmms.html#cb112-13" aria-hidden="true" tabindex="-1"></a><span class="do">##               Sum Sq Mean Sq NumDF DenDF F value  Pr(&gt;F)  </span></span>
-<span id="cb112-14"><a href="linear-mixed-effect-models-lmms.html#cb112-14" aria-hidden="true" tabindex="-1"></a><span class="do">## Disease       0.6513  0.6513     1     4  2.1866 0.21329  </span></span>
-<span id="cb112-15"><a href="linear-mixed-effect-models-lmms.html#cb112-15" aria-hidden="true" tabindex="-1"></a><span class="do">## Organ         4.2960  4.2960     1     4 14.4227 0.01914 *</span></span>
-<span id="cb112-16"><a href="linear-mixed-effect-models-lmms.html#cb112-16" aria-hidden="true" tabindex="-1"></a><span class="do">## Disease:Organ 2.5392  2.5392     1     4  8.5246 0.04326 *</span></span>
-<span id="cb112-17"><a href="linear-mixed-effect-models-lmms.html#cb112-17" aria-hidden="true" tabindex="-1"></a><span class="do">## ---</span></span>
-<span id="cb112-18"><a href="linear-mixed-effect-models-lmms.html#cb112-18" aria-hidden="true" tabindex="-1"></a><span class="do">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" title="1">sp_lmer &lt;-<span class="st"> </span>lmerTest<span class="op">::</span><span class="kw">lmer</span>(logAUC <span class="op">~</span><span class="st"> </span>Disease<span class="op">*</span>Organ <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span><span class="op">|</span>Animal), </a>
+<a class="sourceLine" id="cb112-2" title="2">                          <span class="dt">data =</span> split_plot) </a>
+<a class="sourceLine" id="cb112-3" title="3"><span class="kw">anova</span>(sp_lmer,<span class="dt">type =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb112-4" title="4"><span class="co">## Type I Analysis of Variance Table with Satterthwaite&#39;s method</span></a>
+<a class="sourceLine" id="cb112-5" title="5"><span class="co">##               Sum Sq Mean Sq NumDF DenDF F value  Pr(&gt;F)  </span></a>
+<a class="sourceLine" id="cb112-6" title="6"><span class="co">## Disease       0.6513  0.6513     1     4  2.1866 0.21329  </span></a>
+<a class="sourceLine" id="cb112-7" title="7"><span class="co">## Organ         4.2960  4.2960     1     4 14.4227 0.01914 *</span></a>
+<a class="sourceLine" id="cb112-8" title="8"><span class="co">## Disease:Organ 2.5392  2.5392     1     4  8.5246 0.04326 *</span></a>
+<a class="sourceLine" id="cb112-9" title="9"><span class="co">## ---</span></a>
+<a class="sourceLine" id="cb112-10" title="10"><span class="co">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a>
+<a class="sourceLine" id="cb112-11" title="11"><span class="kw">anova</span>(sp_lmer,<span class="dt">type =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb112-12" title="12"><span class="co">## Type II Analysis of Variance Table with Satterthwaite&#39;s method</span></a>
+<a class="sourceLine" id="cb112-13" title="13"><span class="co">##               Sum Sq Mean Sq NumDF DenDF F value  Pr(&gt;F)  </span></a>
+<a class="sourceLine" id="cb112-14" title="14"><span class="co">## Disease       0.6513  0.6513     1     4  2.1866 0.21329  </span></a>
+<a class="sourceLine" id="cb112-15" title="15"><span class="co">## Organ         4.2960  4.2960     1     4 14.4227 0.01914 *</span></a>
+<a class="sourceLine" id="cb112-16" title="16"><span class="co">## Disease:Organ 2.5392  2.5392     1     4  8.5246 0.04326 *</span></a>
+<a class="sourceLine" id="cb112-17" title="17"><span class="co">## ---</span></a>
+<a class="sourceLine" id="cb112-18" title="18"><span class="co">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a></code></pre></div>
 <p>Note here, though, our design is <strong>balanced</strong> hence the ordering of terms in our model does not make a difference (no need to specify Type II <span class="math inline">\(SS\)</span>)</p>
 <p><strong>Pairwise comparison of time means</strong></p>
 <p>When a design has blocking, to get summary stats using <code>predictmeans</code> you should fit the model using <code>lme4::lmer()</code>:</p>
 <p>Calling <code>predictmeans</code> alone produces plots:</p>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="linear-mixed-effect-models-lmms.html#cb113-1" aria-hidden="true" tabindex="-1"></a>lmer <span class="ot">&lt;-</span> lme4<span class="sc">::</span><span class="fu">lmer</span>(logAUC <span class="sc">~</span> Disease<span class="sc">*</span>Organ <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>Animal), </span>
-<span id="cb113-2"><a href="linear-mixed-effect-models-lmms.html#cb113-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">data =</span> split_plot)</span>
-<span id="cb113-3"><a href="linear-mixed-effect-models-lmms.html#cb113-3" aria-hidden="true" tabindex="-1"></a>predmeans <span class="ot">&lt;-</span> predictmeans<span class="sc">::</span><span class="fu">predictmeans</span>(<span class="at">model =</span> lmer ,<span class="at">modelterm =</span> <span class="st">&quot;Disease:Organ&quot;</span>, </span>
-<span id="cb113-4"><a href="linear-mixed-effect-models-lmms.html#cb113-4" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">pairwise =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="linear-mixed-effect-models-lmms.html#cb114-1" aria-hidden="true" tabindex="-1"></a>predmeans<span class="sc">$</span>predictmeansPlot</span>
-<span id="cb114-2"><a href="linear-mixed-effect-models-lmms.html#cb114-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [[1]]</span></span></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" title="1">lmer &lt;-<span class="st"> </span>lme4<span class="op">::</span><span class="kw">lmer</span>(logAUC <span class="op">~</span><span class="st"> </span>Disease<span class="op">*</span>Organ <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span><span class="op">|</span>Animal), </a>
+<a class="sourceLine" id="cb113-2" title="2">                          <span class="dt">data =</span> split_plot)</a>
+<a class="sourceLine" id="cb113-3" title="3">predmeans &lt;-<span class="st"> </span>predictmeans<span class="op">::</span><span class="kw">predictmeans</span>(<span class="dt">model =</span> lmer ,<span class="dt">modelterm =</span> <span class="st">&quot;Disease:Organ&quot;</span>, </a>
+<a class="sourceLine" id="cb113-4" title="4">                                        <span class="dt">pairwise =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" title="1">predmeans<span class="op">$</span>predictmeansPlot</a>
+<a class="sourceLine" id="cb114-2" title="2"><span class="co">## [[1]]</span></a></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-144-1.png" width="672" /></p>
 <pre><code>## 
 ## [[2]]</code></pre>
 <p><img src="_main_files/figure-html/unnamed-chunk-144-2.png" width="672" /></p>
 <p>Recall from previous sections that the LSD vale is essentially the <em>buffer</em> around the point estimate (the radius of the CI if you like), beyond the limit of which we might believe there to be a <em>significant</em> difference (a bit lax with terminology there!).</p>
 <p><strong>How</strong> would be interpret the above plot? I would conclude that there is a big difference between Diabetic and Healthy for InnerLV wall, but no difference for the outerLV wall. We can construct the pairwise comparison table:</p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="linear-mixed-effect-models-lmms.html#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="fu">comparisons</span>(predmeans)</span>
-<span id="cb116-2"><a href="linear-mixed-effect-models-lmms.html#cb116-2" aria-hidden="true" tabindex="-1"></a><span class="do">##                          Comparison Difference   SED   LSD    lwr    upr      t</span></span>
-<span id="cb116-3"><a href="linear-mixed-effect-models-lmms.html#cb116-3" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 Diabetic:innerLV-Diabetic:outerLV     -2.117 0.446 1.111 -3.228 -1.006 -4.750</span></span>
-<span id="cb116-4"><a href="linear-mixed-effect-models-lmms.html#cb116-4" aria-hidden="true" tabindex="-1"></a><span class="do">## 2  Diabetic:innerLV-Healthy:innerLV     -1.950 0.764 1.906 -3.856 -0.044 -2.551</span></span>
-<span id="cb116-5"><a href="linear-mixed-effect-models-lmms.html#cb116-5" aria-hidden="true" tabindex="-1"></a><span class="do">## 3  Diabetic:innerLV-Healthy:outerLV     -2.227 0.764 1.906 -4.133 -0.321 -2.913</span></span>
-<span id="cb116-6"><a href="linear-mixed-effect-models-lmms.html#cb116-6" aria-hidden="true" tabindex="-1"></a><span class="do">## 4  Diabetic:outerLV-Healthy:innerLV      0.167 0.765 1.906 -1.739  2.073  0.218</span></span>
-<span id="cb116-7"><a href="linear-mixed-effect-models-lmms.html#cb116-7" aria-hidden="true" tabindex="-1"></a><span class="do">## 5  Diabetic:outerLV-Healthy:outerLV     -0.110 0.764 1.906 -2.016  1.796 -0.144</span></span>
-<span id="cb116-8"><a href="linear-mixed-effect-models-lmms.html#cb116-8" aria-hidden="true" tabindex="-1"></a><span class="do">## 6   Healthy:innerLV-Healthy:outerLV     -0.277 0.446 1.111 -1.388  0.834 -0.621</span></span>
-<span id="cb116-9"><a href="linear-mixed-effect-models-lmms.html#cb116-9" aria-hidden="true" tabindex="-1"></a><span class="do">##        p</span></span>
-<span id="cb116-10"><a href="linear-mixed-effect-models-lmms.html#cb116-10" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 0.0038</span></span>
-<span id="cb116-11"><a href="linear-mixed-effect-models-lmms.html#cb116-11" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 0.0464</span></span>
-<span id="cb116-12"><a href="linear-mixed-effect-models-lmms.html#cb116-12" aria-hidden="true" tabindex="-1"></a><span class="do">## 3 0.0293</span></span>
-<span id="cb116-13"><a href="linear-mixed-effect-models-lmms.html#cb116-13" aria-hidden="true" tabindex="-1"></a><span class="do">## 4 0.8352</span></span>
-<span id="cb116-14"><a href="linear-mixed-effect-models-lmms.html#cb116-14" aria-hidden="true" tabindex="-1"></a><span class="do">## 5 0.8907</span></span>
-<span id="cb116-15"><a href="linear-mixed-effect-models-lmms.html#cb116-15" aria-hidden="true" tabindex="-1"></a><span class="do">## 6 0.5592</span></span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" title="1"><span class="kw">comparisons</span>(predmeans)</a>
+<a class="sourceLine" id="cb116-2" title="2"><span class="co">##                          Comparison Difference   SED   LSD    lwr    upr      t</span></a>
+<a class="sourceLine" id="cb116-3" title="3"><span class="co">## 1 Diabetic:innerLV-Diabetic:outerLV     -2.117 0.446 1.111 -3.228 -1.006 -4.750</span></a>
+<a class="sourceLine" id="cb116-4" title="4"><span class="co">## 2  Diabetic:innerLV-Healthy:innerLV     -1.950 0.764 1.906 -3.856 -0.044 -2.551</span></a>
+<a class="sourceLine" id="cb116-5" title="5"><span class="co">## 3  Diabetic:innerLV-Healthy:outerLV     -2.227 0.764 1.906 -4.133 -0.321 -2.913</span></a>
+<a class="sourceLine" id="cb116-6" title="6"><span class="co">## 4  Diabetic:outerLV-Healthy:innerLV      0.167 0.765 1.906 -1.739  2.073  0.218</span></a>
+<a class="sourceLine" id="cb116-7" title="7"><span class="co">## 5  Diabetic:outerLV-Healthy:outerLV     -0.110 0.764 1.906 -2.016  1.796 -0.144</span></a>
+<a class="sourceLine" id="cb116-8" title="8"><span class="co">## 6   Healthy:innerLV-Healthy:outerLV     -0.277 0.446 1.111 -1.388  0.834 -0.621</span></a>
+<a class="sourceLine" id="cb116-9" title="9"><span class="co">##        p</span></a>
+<a class="sourceLine" id="cb116-10" title="10"><span class="co">## 1 0.0038</span></a>
+<a class="sourceLine" id="cb116-11" title="11"><span class="co">## 2 0.0464</span></a>
+<a class="sourceLine" id="cb116-12" title="12"><span class="co">## 3 0.0293</span></a>
+<a class="sourceLine" id="cb116-13" title="13"><span class="co">## 4 0.8352</span></a>
+<a class="sourceLine" id="cb116-14" title="14"><span class="co">## 5 0.8907</span></a>
+<a class="sourceLine" id="cb116-15" title="15"><span class="co">## 6 0.5592</span></a></code></pre></div>
 <p>What do the CI coverages indicate?</p>
 <p>We can also use <code>emmeans</code> to plot the pairwise comparisons</p>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="linear-mixed-effect-models-lmms.html#cb117-1" aria-hidden="true" tabindex="-1"></a>em <span class="ot">&lt;-</span> emmeans<span class="sc">::</span><span class="fu">emmeans</span>(lmer, <span class="sc">~</span>Disease<span class="sc">*</span>Organ)</span>
-<span id="cb117-2"><a href="linear-mixed-effect-models-lmms.html#cb117-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(em, <span class="at">pairwise =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" title="1">em &lt;-<span class="st"> </span>emmeans<span class="op">::</span><span class="kw">emmeans</span>(lmer, <span class="op">~</span>Disease<span class="op">*</span>Organ)</a>
+<a class="sourceLine" id="cb117-2" title="2"><span class="kw">plot</span>(em, <span class="dt">pairwise =</span> <span class="ot">TRUE</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>()</a></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-146-1.png" width="672" /></p>
 <p>From all the output above, what do you conclude about the interaction effect, if any!</p>
 </div>
@@ -1059,90 +1024,90 @@ outerLV
 <div id="a-repeated-measures-design" class="section level3 hasAnchor">
 <h3>A repeated measures design<a href="linear-mixed-effect-models-lmms.html#a-repeated-measures-design" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Here we will use time points as factors. To read these data directly into <code>R</code> use</p>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="linear-mixed-effect-models-lmms.html#cb118-1" aria-hidden="true" tabindex="-1"></a>liver <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/repeated_measures_liver.csv&quot;</span>)</span>
-<span id="cb118-2"><a href="linear-mixed-effect-models-lmms.html#cb118-2" aria-hidden="true" tabindex="-1"></a>liver <span class="ot">&lt;-</span> liver <span class="sc">%&gt;%</span></span>
-<span id="cb118-3"><a href="linear-mixed-effect-models-lmms.html#cb118-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Time =</span> <span class="fu">as.factor</span>(Time)) <span class="sc">%&gt;%</span></span>
-<span id="cb118-4"><a href="linear-mixed-effect-models-lmms.html#cb118-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Treatment =</span> <span class="fu">as.factor</span>(Treatment)) </span>
-<span id="cb118-5"><a href="linear-mixed-effect-models-lmms.html#cb118-5" aria-hidden="true" tabindex="-1"></a>liver</span>
-<span id="cb118-6"><a href="linear-mixed-effect-models-lmms.html#cb118-6" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 210 × 4</span></span>
-<span id="cb118-7"><a href="linear-mixed-effect-models-lmms.html#cb118-7" aria-hidden="true" tabindex="-1"></a><span class="do">##    Animal   Treatment Time  Glucose</span></span>
-<span id="cb118-8"><a href="linear-mixed-effect-models-lmms.html#cb118-8" aria-hidden="true" tabindex="-1"></a><span class="do">##    &lt;chr&gt;    &lt;fct&gt;     &lt;fct&gt;   &lt;dbl&gt;</span></span>
-<span id="cb118-9"><a href="linear-mixed-effect-models-lmms.html#cb118-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  1 Control1 Control   0        1.60</span></span>
-<span id="cb118-10"><a href="linear-mixed-effect-models-lmms.html#cb118-10" aria-hidden="true" tabindex="-1"></a><span class="do">##  2 Control1 Control   5        1.28</span></span>
-<span id="cb118-11"><a href="linear-mixed-effect-models-lmms.html#cb118-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  3 Control1 Control   10       1.60</span></span>
-<span id="cb118-12"><a href="linear-mixed-effect-models-lmms.html#cb118-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  4 Control1 Control   15       1.58</span></span>
-<span id="cb118-13"><a href="linear-mixed-effect-models-lmms.html#cb118-13" aria-hidden="true" tabindex="-1"></a><span class="do">##  5 Control1 Control   20       1.28</span></span>
-<span id="cb118-14"><a href="linear-mixed-effect-models-lmms.html#cb118-14" aria-hidden="true" tabindex="-1"></a><span class="do">##  6 Control1 Control   25       1.44</span></span>
-<span id="cb118-15"><a href="linear-mixed-effect-models-lmms.html#cb118-15" aria-hidden="true" tabindex="-1"></a><span class="do">##  7 Control1 Control   30       1.18</span></span>
-<span id="cb118-16"><a href="linear-mixed-effect-models-lmms.html#cb118-16" aria-hidden="true" tabindex="-1"></a><span class="do">##  8 Control2 Control   0        0.84</span></span>
-<span id="cb118-17"><a href="linear-mixed-effect-models-lmms.html#cb118-17" aria-hidden="true" tabindex="-1"></a><span class="do">##  9 Control2 Control   5        0.64</span></span>
-<span id="cb118-18"><a href="linear-mixed-effect-models-lmms.html#cb118-18" aria-hidden="true" tabindex="-1"></a><span class="do">## 10 Control2 Control   10       0.7 </span></span>
-<span id="cb118-19"><a href="linear-mixed-effect-models-lmms.html#cb118-19" aria-hidden="true" tabindex="-1"></a><span class="do">## # ℹ 200 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb118-1" title="1">liver &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/repeated_measures_liver.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb118-2" title="2">liver &lt;-<span class="st"> </span>liver <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb118-3" title="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Time =</span> <span class="kw">as.factor</span>(Time)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb118-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Treatment =</span> <span class="kw">as.factor</span>(Treatment)) </a>
+<a class="sourceLine" id="cb118-5" title="5">liver</a>
+<a class="sourceLine" id="cb118-6" title="6"><span class="co">## # A tibble: 210 × 4</span></a>
+<a class="sourceLine" id="cb118-7" title="7"><span class="co">##    Animal   Treatment Time  Glucose</span></a>
+<a class="sourceLine" id="cb118-8" title="8"><span class="co">##    &lt;chr&gt;    &lt;fct&gt;     &lt;fct&gt;   &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb118-9" title="9"><span class="co">##  1 Control1 Control   0        1.60</span></a>
+<a class="sourceLine" id="cb118-10" title="10"><span class="co">##  2 Control1 Control   5        1.28</span></a>
+<a class="sourceLine" id="cb118-11" title="11"><span class="co">##  3 Control1 Control   10       1.60</span></a>
+<a class="sourceLine" id="cb118-12" title="12"><span class="co">##  4 Control1 Control   15       1.58</span></a>
+<a class="sourceLine" id="cb118-13" title="13"><span class="co">##  5 Control1 Control   20       1.28</span></a>
+<a class="sourceLine" id="cb118-14" title="14"><span class="co">##  6 Control1 Control   25       1.44</span></a>
+<a class="sourceLine" id="cb118-15" title="15"><span class="co">##  7 Control1 Control   30       1.18</span></a>
+<a class="sourceLine" id="cb118-16" title="16"><span class="co">##  8 Control2 Control   0        0.84</span></a>
+<a class="sourceLine" id="cb118-17" title="17"><span class="co">##  9 Control2 Control   5        0.64</span></a>
+<a class="sourceLine" id="cb118-18" title="18"><span class="co">## 10 Control2 Control   10       0.7 </span></a>
+<a class="sourceLine" id="cb118-19" title="19"><span class="co">## # ℹ 200 more rows</span></a></code></pre></div>
 <p>Below these data are plotted.</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-148-1.png" width="672" /><img src="_main_files/figure-html/unnamed-chunk-148-2.png" width="672" /></p>
 <div id="animal-as-a-random-effect-1" class="section level4 hasAnchor">
 <h4><code>Animal</code> as a random effect<a href="linear-mixed-effect-models-lmms.html#animal-as-a-random-effect-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><strong>Using <code>aov()</code></strong></p>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="linear-mixed-effect-models-lmms.html#cb119-1" aria-hidden="true" tabindex="-1"></a>re_aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(Glucose <span class="sc">~</span> Treatment<span class="sc">*</span>Time <span class="sc">+</span> <span class="fu">Error</span>(Animal),<span class="at">data =</span> liver)</span>
-<span id="cb119-2"><a href="linear-mixed-effect-models-lmms.html#cb119-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(re_aov)</span>
-<span id="cb119-3"><a href="linear-mixed-effect-models-lmms.html#cb119-3" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb119-4"><a href="linear-mixed-effect-models-lmms.html#cb119-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Error: Animal</span></span>
-<span id="cb119-5"><a href="linear-mixed-effect-models-lmms.html#cb119-5" aria-hidden="true" tabindex="-1"></a><span class="do">##           Df Sum Sq Mean Sq F value Pr(&gt;F)</span></span>
-<span id="cb119-6"><a href="linear-mixed-effect-models-lmms.html#cb119-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Treatment  3   1.90  0.6335   1.407  0.263</span></span>
-<span id="cb119-7"><a href="linear-mixed-effect-models-lmms.html#cb119-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Residuals 26  11.71  0.4503               </span></span>
-<span id="cb119-8"><a href="linear-mixed-effect-models-lmms.html#cb119-8" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb119-9"><a href="linear-mixed-effect-models-lmms.html#cb119-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Error: Within</span></span>
-<span id="cb119-10"><a href="linear-mixed-effect-models-lmms.html#cb119-10" aria-hidden="true" tabindex="-1"></a><span class="do">##                 Df Sum Sq Mean Sq F value       Pr(&gt;F)    </span></span>
-<span id="cb119-11"><a href="linear-mixed-effect-models-lmms.html#cb119-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Time             6 0.7973 0.13289   8.732 0.0000000334 ***</span></span>
-<span id="cb119-12"><a href="linear-mixed-effect-models-lmms.html#cb119-12" aria-hidden="true" tabindex="-1"></a><span class="do">## Treatment:Time  18 0.2539 0.01411   0.927        0.547    </span></span>
-<span id="cb119-13"><a href="linear-mixed-effect-models-lmms.html#cb119-13" aria-hidden="true" tabindex="-1"></a><span class="do">## Residuals      156 2.3741 0.01522                         </span></span>
-<span id="cb119-14"><a href="linear-mixed-effect-models-lmms.html#cb119-14" aria-hidden="true" tabindex="-1"></a><span class="do">## ---</span></span>
-<span id="cb119-15"><a href="linear-mixed-effect-models-lmms.html#cb119-15" aria-hidden="true" tabindex="-1"></a><span class="do">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" title="1">re_aov &lt;-<span class="st"> </span><span class="kw">aov</span>(Glucose <span class="op">~</span><span class="st"> </span>Treatment<span class="op">*</span>Time <span class="op">+</span><span class="st"> </span><span class="kw">Error</span>(Animal),<span class="dt">data =</span> liver)</a>
+<a class="sourceLine" id="cb119-2" title="2"><span class="kw">summary</span>(re_aov)</a>
+<a class="sourceLine" id="cb119-3" title="3"><span class="co">## </span></a>
+<a class="sourceLine" id="cb119-4" title="4"><span class="co">## Error: Animal</span></a>
+<a class="sourceLine" id="cb119-5" title="5"><span class="co">##           Df Sum Sq Mean Sq F value Pr(&gt;F)</span></a>
+<a class="sourceLine" id="cb119-6" title="6"><span class="co">## Treatment  3   1.90  0.6335   1.407  0.263</span></a>
+<a class="sourceLine" id="cb119-7" title="7"><span class="co">## Residuals 26  11.71  0.4503               </span></a>
+<a class="sourceLine" id="cb119-8" title="8"><span class="co">## </span></a>
+<a class="sourceLine" id="cb119-9" title="9"><span class="co">## Error: Within</span></a>
+<a class="sourceLine" id="cb119-10" title="10"><span class="co">##                 Df Sum Sq Mean Sq F value       Pr(&gt;F)    </span></a>
+<a class="sourceLine" id="cb119-11" title="11"><span class="co">## Time             6 0.7973 0.13289   8.732 0.0000000334 ***</span></a>
+<a class="sourceLine" id="cb119-12" title="12"><span class="co">## Treatment:Time  18 0.2539 0.01411   0.927        0.547    </span></a>
+<a class="sourceLine" id="cb119-13" title="13"><span class="co">## Residuals      156 2.3741 0.01522                         </span></a>
+<a class="sourceLine" id="cb119-14" title="14"><span class="co">## ---</span></a>
+<a class="sourceLine" id="cb119-15" title="15"><span class="co">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a></code></pre></div>
 <p><strong>Using <code>lmer()</code> (from <code>lmerTest</code> and <code>lme4</code>)</strong></p>
 <p>Recall that specifying the type of <span class="math inline">\(SS\)</span> (e.g., Type I, II, or III) in an <code>anova</code> call <strong>only</strong> works with a model fitted using <code>lmerTest::lmer</code>. As we now have specified an interaction model then the type of <span class="math inline">\(SS\)</span> calculated will have an effect on inference for unbalanced designs.</p>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="linear-mixed-effect-models-lmms.html#cb120-1" aria-hidden="true" tabindex="-1"></a>re_lmer <span class="ot">&lt;-</span> lmerTest<span class="sc">::</span><span class="fu">lmer</span>(Glucose <span class="sc">~</span> Treatment<span class="sc">*</span>Time <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>Animal), <span class="at">data =</span> liver)</span>
-<span id="cb120-2"><a href="linear-mixed-effect-models-lmms.html#cb120-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(re_lmer,<span class="at">type =</span> <span class="dv">2</span>)</span>
-<span id="cb120-3"><a href="linear-mixed-effect-models-lmms.html#cb120-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Type II Analysis of Variance Table with Satterthwaite&#39;s method</span></span>
-<span id="cb120-4"><a href="linear-mixed-effect-models-lmms.html#cb120-4" aria-hidden="true" tabindex="-1"></a><span class="do">##                 Sum Sq  Mean Sq NumDF DenDF F value        Pr(&gt;F)    </span></span>
-<span id="cb120-5"><a href="linear-mixed-effect-models-lmms.html#cb120-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Treatment      0.06423 0.021409     3    26  1.4068        0.2632    </span></span>
-<span id="cb120-6"><a href="linear-mixed-effect-models-lmms.html#cb120-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Time           0.79731 0.132885     6   156  8.7318 0.00000003345 ***</span></span>
-<span id="cb120-7"><a href="linear-mixed-effect-models-lmms.html#cb120-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Treatment:Time 0.25390 0.014105    18   156  0.9269        0.5474    </span></span>
-<span id="cb120-8"><a href="linear-mixed-effect-models-lmms.html#cb120-8" aria-hidden="true" tabindex="-1"></a><span class="do">## ---</span></span>
-<span id="cb120-9"><a href="linear-mixed-effect-models-lmms.html#cb120-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" title="1">re_lmer &lt;-<span class="st"> </span>lmerTest<span class="op">::</span><span class="kw">lmer</span>(Glucose <span class="op">~</span><span class="st"> </span>Treatment<span class="op">*</span>Time <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span><span class="op">|</span>Animal), <span class="dt">data =</span> liver)</a>
+<a class="sourceLine" id="cb120-2" title="2"><span class="kw">anova</span>(re_lmer,<span class="dt">type =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb120-3" title="3"><span class="co">## Type II Analysis of Variance Table with Satterthwaite&#39;s method</span></a>
+<a class="sourceLine" id="cb120-4" title="4"><span class="co">##                 Sum Sq  Mean Sq NumDF DenDF F value        Pr(&gt;F)    </span></a>
+<a class="sourceLine" id="cb120-5" title="5"><span class="co">## Treatment      0.06423 0.021409     3    26  1.4068        0.2632    </span></a>
+<a class="sourceLine" id="cb120-6" title="6"><span class="co">## Time           0.79731 0.132885     6   156  8.7318 0.00000003345 ***</span></a>
+<a class="sourceLine" id="cb120-7" title="7"><span class="co">## Treatment:Time 0.25390 0.014105    18   156  0.9269        0.5474    </span></a>
+<a class="sourceLine" id="cb120-8" title="8"><span class="co">## ---</span></a>
+<a class="sourceLine" id="cb120-9" title="9"><span class="co">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a></code></pre></div>
 <p><strong>Pairwise comparison of time means</strong></p>
 <p>As above, when a design has blocking, to get summary stats using <code>predictmeans</code> you should fit the model using <code>lme4::lmer()</code>:</p>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="linear-mixed-effect-models-lmms.html#cb121-1" aria-hidden="true" tabindex="-1"></a>re_lmer4 <span class="ot">&lt;-</span> lme4<span class="sc">::</span><span class="fu">lmer</span>(Glucose <span class="sc">~</span> Treatment<span class="sc">*</span>Time <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>Animal),<span class="at">data =</span> liver) </span>
-<span id="cb121-2"><a href="linear-mixed-effect-models-lmms.html#cb121-2" aria-hidden="true" tabindex="-1"></a>predmeans <span class="ot">&lt;-</span> predictmeans<span class="sc">::</span><span class="fu">predictmeans</span>(<span class="at">model =</span> re_lmer4 ,<span class="at">modelterm =</span> <span class="st">&quot;Time&quot;</span>,</span>
-<span id="cb121-3"><a href="linear-mixed-effect-models-lmms.html#cb121-3" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">pairwise =</span> <span class="cn">TRUE</span>, <span class="at">plot =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" title="1">re_lmer4 &lt;-<span class="st"> </span>lme4<span class="op">::</span><span class="kw">lmer</span>(Glucose <span class="op">~</span><span class="st"> </span>Treatment<span class="op">*</span>Time <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span><span class="op">|</span>Animal),<span class="dt">data =</span> liver) </a>
+<a class="sourceLine" id="cb121-2" title="2">predmeans &lt;-<span class="st"> </span>predictmeans<span class="op">::</span><span class="kw">predictmeans</span>(<span class="dt">model =</span> re_lmer4 ,<span class="dt">modelterm =</span> <span class="st">&quot;Time&quot;</span>,</a>
+<a class="sourceLine" id="cb121-3" title="3">                                        <span class="dt">pairwise =</span> <span class="ot">TRUE</span>, <span class="dt">plot =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p><strong>How</strong> would be interpret the above plot?</p>
 <p>What about the pairwise comparison table?</p>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="linear-mixed-effect-models-lmms.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">comparisons</span>(predmeans)</span>
-<span id="cb122-2"><a href="linear-mixed-effect-models-lmms.html#cb122-2" aria-hidden="true" tabindex="-1"></a><span class="do">##    Comparison Difference   SED   LSD    lwr   upr      t      p</span></span>
-<span id="cb122-3"><a href="linear-mixed-effect-models-lmms.html#cb122-3" aria-hidden="true" tabindex="-1"></a><span class="do">## 1         0-5      0.058 0.032 0.065 -0.006 0.123  1.830 0.0752</span></span>
-<span id="cb122-4"><a href="linear-mixed-effect-models-lmms.html#cb122-4" aria-hidden="true" tabindex="-1"></a><span class="do">## 2        0-10      0.080 0.032 0.065  0.016 0.145  2.512 0.0164</span></span>
-<span id="cb122-5"><a href="linear-mixed-effect-models-lmms.html#cb122-5" aria-hidden="true" tabindex="-1"></a><span class="do">## 3        0-15      0.111 0.032 0.065  0.046 0.176  3.473 0.0013</span></span>
-<span id="cb122-6"><a href="linear-mixed-effect-models-lmms.html#cb122-6" aria-hidden="true" tabindex="-1"></a><span class="do">## 4        0-20      0.149 0.032 0.065  0.085 0.214  4.675 0.0000</span></span>
-<span id="cb122-7"><a href="linear-mixed-effect-models-lmms.html#cb122-7" aria-hidden="true" tabindex="-1"></a><span class="do">## 5        0-25      0.145 0.032 0.065  0.080 0.209  4.531 0.0001</span></span>
-<span id="cb122-8"><a href="linear-mixed-effect-models-lmms.html#cb122-8" aria-hidden="true" tabindex="-1"></a><span class="do">## 6        0-30      0.205 0.032 0.065  0.140 0.270  6.421 0.0000</span></span>
-<span id="cb122-9"><a href="linear-mixed-effect-models-lmms.html#cb122-9" aria-hidden="true" tabindex="-1"></a><span class="do">## 7        5-10      0.022 0.032 0.065 -0.043 0.086  0.682 0.4993</span></span>
-<span id="cb122-10"><a href="linear-mixed-effect-models-lmms.html#cb122-10" aria-hidden="true" tabindex="-1"></a><span class="do">## 8        5-15      0.052 0.032 0.065 -0.012 0.117  1.643 0.1089</span></span>
-<span id="cb122-11"><a href="linear-mixed-effect-models-lmms.html#cb122-11" aria-hidden="true" tabindex="-1"></a><span class="do">## 9        5-20      0.091 0.032 0.065  0.026 0.155  2.845 0.0072</span></span>
-<span id="cb122-12"><a href="linear-mixed-effect-models-lmms.html#cb122-12" aria-hidden="true" tabindex="-1"></a><span class="do">## 10       5-25      0.086 0.032 0.065  0.022 0.151  2.701 0.0103</span></span>
-<span id="cb122-13"><a href="linear-mixed-effect-models-lmms.html#cb122-13" aria-hidden="true" tabindex="-1"></a><span class="do">## 11       5-30      0.147 0.032 0.065  0.082 0.211  4.591 0.0000</span></span>
-<span id="cb122-14"><a href="linear-mixed-effect-models-lmms.html#cb122-14" aria-hidden="true" tabindex="-1"></a><span class="do">## 12      10-15      0.031 0.032 0.065 -0.034 0.095  0.960 0.3431</span></span>
-<span id="cb122-15"><a href="linear-mixed-effect-models-lmms.html#cb122-15" aria-hidden="true" tabindex="-1"></a><span class="do">## 13      10-20      0.069 0.032 0.065  0.004 0.134  2.163 0.0370</span></span>
-<span id="cb122-16"><a href="linear-mixed-effect-models-lmms.html#cb122-16" aria-hidden="true" tabindex="-1"></a><span class="do">## 14      10-25      0.064 0.032 0.065  0.000 0.129  2.018 0.0508</span></span>
-<span id="cb122-17"><a href="linear-mixed-effect-models-lmms.html#cb122-17" aria-hidden="true" tabindex="-1"></a><span class="do">## 15      10-30      0.125 0.032 0.065  0.060 0.189  3.909 0.0004</span></span>
-<span id="cb122-18"><a href="linear-mixed-effect-models-lmms.html#cb122-18" aria-hidden="true" tabindex="-1"></a><span class="do">## 16      15-20      0.038 0.032 0.065 -0.026 0.103  1.202 0.2367</span></span>
-<span id="cb122-19"><a href="linear-mixed-effect-models-lmms.html#cb122-19" aria-hidden="true" tabindex="-1"></a><span class="do">## 17      15-25      0.034 0.032 0.065 -0.031 0.098  1.058 0.2968</span></span>
-<span id="cb122-20"><a href="linear-mixed-effect-models-lmms.html#cb122-20" aria-hidden="true" tabindex="-1"></a><span class="do">## 18      15-30      0.094 0.032 0.065  0.029 0.159  2.948 0.0055</span></span>
-<span id="cb122-21"><a href="linear-mixed-effect-models-lmms.html#cb122-21" aria-hidden="true" tabindex="-1"></a><span class="do">## 19      20-25     -0.005 0.032 0.065 -0.069 0.060 -0.144 0.8859</span></span>
-<span id="cb122-22"><a href="linear-mixed-effect-models-lmms.html#cb122-22" aria-hidden="true" tabindex="-1"></a><span class="do">## 20      20-30      0.056 0.032 0.065 -0.009 0.120  1.746 0.0891</span></span>
-<span id="cb122-23"><a href="linear-mixed-effect-models-lmms.html#cb122-23" aria-hidden="true" tabindex="-1"></a><span class="do">## 21      25-30      0.060 0.032 0.065 -0.004 0.125  1.890 0.0665</span></span></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" title="1"><span class="kw">comparisons</span>(predmeans)</a>
+<a class="sourceLine" id="cb122-2" title="2"><span class="co">##    Comparison Difference   SED   LSD    lwr   upr      t      p</span></a>
+<a class="sourceLine" id="cb122-3" title="3"><span class="co">## 1         0-5      0.058 0.032 0.065 -0.006 0.123  1.830 0.0752</span></a>
+<a class="sourceLine" id="cb122-4" title="4"><span class="co">## 2        0-10      0.080 0.032 0.065  0.016 0.145  2.512 0.0164</span></a>
+<a class="sourceLine" id="cb122-5" title="5"><span class="co">## 3        0-15      0.111 0.032 0.065  0.046 0.176  3.473 0.0013</span></a>
+<a class="sourceLine" id="cb122-6" title="6"><span class="co">## 4        0-20      0.149 0.032 0.065  0.085 0.214  4.675 0.0000</span></a>
+<a class="sourceLine" id="cb122-7" title="7"><span class="co">## 5        0-25      0.145 0.032 0.065  0.080 0.209  4.531 0.0001</span></a>
+<a class="sourceLine" id="cb122-8" title="8"><span class="co">## 6        0-30      0.205 0.032 0.065  0.140 0.270  6.421 0.0000</span></a>
+<a class="sourceLine" id="cb122-9" title="9"><span class="co">## 7        5-10      0.022 0.032 0.065 -0.043 0.086  0.682 0.4993</span></a>
+<a class="sourceLine" id="cb122-10" title="10"><span class="co">## 8        5-15      0.052 0.032 0.065 -0.012 0.117  1.643 0.1089</span></a>
+<a class="sourceLine" id="cb122-11" title="11"><span class="co">## 9        5-20      0.091 0.032 0.065  0.026 0.155  2.845 0.0072</span></a>
+<a class="sourceLine" id="cb122-12" title="12"><span class="co">## 10       5-25      0.086 0.032 0.065  0.022 0.151  2.701 0.0103</span></a>
+<a class="sourceLine" id="cb122-13" title="13"><span class="co">## 11       5-30      0.147 0.032 0.065  0.082 0.211  4.591 0.0000</span></a>
+<a class="sourceLine" id="cb122-14" title="14"><span class="co">## 12      10-15      0.031 0.032 0.065 -0.034 0.095  0.960 0.3431</span></a>
+<a class="sourceLine" id="cb122-15" title="15"><span class="co">## 13      10-20      0.069 0.032 0.065  0.004 0.134  2.163 0.0370</span></a>
+<a class="sourceLine" id="cb122-16" title="16"><span class="co">## 14      10-25      0.064 0.032 0.065  0.000 0.129  2.018 0.0508</span></a>
+<a class="sourceLine" id="cb122-17" title="17"><span class="co">## 15      10-30      0.125 0.032 0.065  0.060 0.189  3.909 0.0004</span></a>
+<a class="sourceLine" id="cb122-18" title="18"><span class="co">## 16      15-20      0.038 0.032 0.065 -0.026 0.103  1.202 0.2367</span></a>
+<a class="sourceLine" id="cb122-19" title="19"><span class="co">## 17      15-25      0.034 0.032 0.065 -0.031 0.098  1.058 0.2968</span></a>
+<a class="sourceLine" id="cb122-20" title="20"><span class="co">## 18      15-30      0.094 0.032 0.065  0.029 0.159  2.948 0.0055</span></a>
+<a class="sourceLine" id="cb122-21" title="21"><span class="co">## 19      20-25     -0.005 0.032 0.065 -0.069 0.060 -0.144 0.8859</span></a>
+<a class="sourceLine" id="cb122-22" title="22"><span class="co">## 20      20-30      0.056 0.032 0.065 -0.009 0.120  1.746 0.0891</span></a>
+<a class="sourceLine" id="cb122-23" title="23"><span class="co">## 21      25-30      0.060 0.032 0.065 -0.004 0.125  1.890 0.0665</span></a></code></pre></div>
 <p>What do the CI coverages indicate?</p>
 <p>We can also use <code>emmeans</code> to plot the pairwise comparisons</p>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="linear-mixed-effect-models-lmms.html#cb123-1" aria-hidden="true" tabindex="-1"></a>em <span class="ot">&lt;-</span> emmeans<span class="sc">::</span><span class="fu">emmeans</span>(re_lmer4, <span class="sc">~</span>Treatment<span class="sc">*</span>Time)</span>
-<span id="cb123-2"><a href="linear-mixed-effect-models-lmms.html#cb123-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(em, <span class="at">pairwise =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>Treatment)</span></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" title="1">em &lt;-<span class="st"> </span>emmeans<span class="op">::</span><span class="kw">emmeans</span>(re_lmer4, <span class="op">~</span>Treatment<span class="op">*</span>Time)</a>
+<a class="sourceLine" id="cb123-2" title="2"><span class="kw">plot</span>(em, <span class="dt">pairwise =</span> <span class="ot">TRUE</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span>Treatment)</a></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-153-1.png" width="672" /></p>
 
 </div>

@@ -1,0 +1,438 @@
+## Modelling experimental data
+
+### A completely randomised design (CRD) as a linear model
+
+As we've seen in the previous module that we can write a linear model with a single explanatory variable as 
+
+$$Y_i = \alpha + \beta_1x_i + \epsilon_i$$
+
+When dealing with factor variables we use dummy variables and can write the above as
+ 
+ 
+ $$Y_{ik} = \alpha + \tau_k + \epsilon_{ik}$$ where $\tau_k$ is called an *effect* and represents the difference between the overall average, $\alpha$, and the average at the $k_{th}$ treatment level. The errors $\epsilon_{ik}$ are again assumed to be normally distributed and independent due to the randomisation (i.e., $\epsilon_{ik} \sim N(0, \sigma^2)$.
+
+
+Or you might think of the model as
+
+$$Y_{ik} = \mu_k + \epsilon_{ik}$$
+
+where $Y_{ik}$ is the response (i.e., observed coffee opacity) for the $i^{th}$ experimental unit (i.e., coffee cup) subjected to the $k^{th}$ level of the treatment factor (i.e., coffee type).  Here $\mu_k$ are the different (cell) means for each level of the treatment factor. See below for an illustration of this for three factor treatment levels (as in the coffee example above).
+
+```{r, echo = FALSE, fig.height=5}
+library(tidyverse)
+ggplot(data.frame(x = c(-4, 17)), aes(x)) + 
+  stat_function(fun = dnorm, args = list(mean = 0, sd = 1)) +
+  stat_function(fun = dnorm, args = list(mean = 5, sd = 1))+
+  stat_function(fun = dnorm, args = list(mean = 12, sd = 1)) +
+  theme_classic() +
+  scale_x_continuous(breaks = c(0, 5, 12), labels = c(expression(mu[1]), expression(mu[2]), expression(mu[3]))) +
+  xlab("") + ylab("") + theme(axis.text.y = element_blank(), axis.ticks.y = element_blank())
+```
+
+
+
+### Analysis of a CRD in `R`
+
+In this section we again consider the data containing logAUC values for 12 rats subjected to three different treatments (`Surgery`), `C`, `P`, and `S`:
+
+```{r, message = FALSE, echo = FALSE}
+library(tidyverse)
+rats <- read_csv("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/crd_rats_data.csv")
+rats$Surgery <- as_factor(rats$Surgery)
+kableExtra::kable(rats) %>%
+  kableExtra::kable_classic(full_width = FALSE, html_font = "Cambria")
+```
+
+To read the data directly into `R` you can use
+
+```{r, eval = FALSE}
+readr::read_csv("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/crd_rats_data.csv")
+```
+
+
+We could analyse these data **using `aov()`**:
+
+```{r aov}
+rats_aov <- aov(logAUC ~ Surgery, data = rats)
+summary(rats_aov)
+```
+
+```{r lm-quiet, echo = FALSE}
+rats_lm <- lm(logAUC ~ Surgery, data = rats)
+```
+
+Hypothesis: We test the Null hypothesis, $H_0$, population (`Surgery`) means are the same on average verses the alternative hypothesis, $H_1$, that **at least one** differs from the others!
+
+Probability of getting an **F-statistic** at least as extreme as the one we observe (think of the area under the tails of the curve below) **p-value** Pr(>F)= `r round(anova(rats_lm)$"Pr(>F)"[1],4)` tells us we have sufficient evidence to reject $H_0$ at the 1% level of significance
+
+
+Alternatively, we could **use `lm()`**:
+
+```{r lm}
+rats_lm <- lm(logAUC ~ Surgery, data = rats)
+summary(rats_lm)$coef
+```
+
+
+So, what does this tell us about which pairs of means are different? 
+
+To carry out a pair-wise comparisons of means we can use two-sample t-tests, calculating our **observed**  t-value where
+$\text{t-value} = \frac{\text{Sample Difference}_{ij} - \text{Difference assuming } H_0 \text{ is true}_{ij}}{\text{SE of } \text{Sample Difference}_{ij}}$. Here, $\text{Sample Difference}_{ij}$ = Difference between pair of sample means. We can then compute the p-value for observed t-value.
+
+The output above has already done this for us:
+
+(Intercept) = $\text{mean}_C$ = `r summary(rats_lm)$coef[1,1]`
+
+SE of (Intercept) = SE of $\text{mean}_C$ = SEM = `r summary(rats_lm)$coef[1,2]`
+
+$\text{Surgery}_P$ = $\text{mean}_P$ – $\text{mean}_C$ = `r summary(rats_lm)$coef[2,1]`
+
+SE of $\text{Surgery}_P$ = SE of ($\text{mean}_P$ - $\text{mean}_C$ ) = SED = `r summary(rats_lm)$coef[2,2]`
+
+```{r, echo = FALSE}
+means <- rats %>% group_by(Surgery) %>% summarise(avg = mean(logAUC))
+means$base <- summary(rats_lm)$coef[1,1]
+ggplot(rats, aes(x = Surgery, y = logAUC)) + 
+    geom_violin()  + 
+  ylab("logAUC") +
+  xlab("Treatment") +
+  geom_point(data = means, aes(x = Surgery, y = avg, color = Surgery), size = 2) +
+  geom_text(data = means, aes(x = Surgery, y = avg + 0.25, color = Surgery, label = paste0("Treatment mean = ",round(avg,3)))) +
+  geom_hline(data = means, aes(yintercept = avg, color = Surgery), alpha = 0.3, lty = 2) +
+  geom_segment(data = means[2:3,], aes(x = Surgery, y = avg, xend = Surgery, yend = base,color = Surgery), size = 1) +
+  geom_text(data = means[2:3,], aes(x = Surgery, y = base - 0.25, color = Surgery, label = paste0("diff to baseline = ",round(avg - base,3)))) +
+  geom_hline(data = means[1,], aes(yintercept = avg, color = Surgery)) +
+  geom_text(data = means[1,],aes(x = Surgery, y = base - 0.25, color = Surgery, label = paste0("Baseline = ",round(avg,3))))
+  
+```
+
+
+**Hypotheses being tested**
+
+The `t` value and `Pr (>|t|)` are the t-statistic and p-value for testing the null hypotheses listed below
+	1. Mean abundance is zero for `C` population
+	2. No difference between the population means of `P` and `C`
+	3. No difference between the population means of `S` and `C`
+
+We're interested in 2 and 3, but not necessarily 1!
+
+**F-test:**
+
+```{r lmsum2}
+anova(rats_lm)
+```
+	
+**The same as `aov()`** in fact `aov()` is calling `lm()` in the background.
+
+#### Diagnostic plots
+
+Carrying out any linear regression recall that we have some **key assumptions**
+
++ **Independence** 
++ There is a **linear relationship** between the response and the explanatory variables
++ The residuals have **constant variance**
++ The **residuals** are normally distributed
+
+```{r,echo = FALSE}
+options(warn=-1)
+```
+
+```{r qqnorm, warning=FALSE, message=FALSE}
+gglm::gglm(rats_lm) # Plot the four main diagnostic plots
+```
+
+What do you think? Look back at module 2.
+
+### A Factorial experiment (as a CRD)
+
+<p align="center">![](https://magoosh.com/statistics/files/2018/04/297r7s.jpg){width=30%}</p>
+
+
+#### Equal replications (balanced design)
+
+**Data** Global metabolic profiling and comparison of relative abundances of proteins (`logAUC`) in the inner and outer left ventricle (`innerLV` and `outerLV`) wall of diabetic and healthy male Wistar rats. To read the data directly into `R` you can use
+
+```{r, eval = FALSE}
+readr::read_csv("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/factorial_expt.csv")
+```
+
+
+```{r, echo = FALSE, message = FALSE}
+library(tidyverse)
+factorial <-  read_csv("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/factorial_expt.csv")
+factorial %>%
+  dplyr::select(c(Disease, Organ)) %>%
+  group_by(Disease, Organ) %>%
+  tally() %>%
+  mutate(n = paste("n =", n)) %>%
+  pivot_wider(names_from = Disease, values_from = n) %>%
+  kableExtra::kable(.) %>%
+  kableExtra::kable_classic(full_width = FALSE, html_font = "Cambria")
+kableExtra::kable(factorial) %>%
+  kableExtra::kable_classic(full_width = FALSE, html_font = "Cambria")
+```
+
+**Fitting models with interactions using `lm()`**
+
+```{r}
+## change to factors (saves errors later on)
+factorial$Disease <- as.factor(factorial$Disease)
+factorial$Organ <- as.factor(factorial$Organ)
+fac_lm <- lm(logAUC ~ Disease*Organ, data = factorial)
+summary(fac_lm)$coefficients
+```
+
+So, the full model is
+
+```{r, echo = FALSE, results='asis'}
+equatiomatic::extract_eq(fac_lm, wrap = TRUE, use_coefs = TRUE)
+```
+
+The three **gobal** null hypotheses being tested are
+
+  1. $H_0: \hat{\mu}_{\text{Diabetic}} = \hat{\mu}_{\text{Healthy}}$
+  2. $H_0: \hat{\mu}_{\text{innerLV}} = \hat{\mu}_{\text{outerLV}}$
+  3. $H_0: \hat{\mu}_{\text{Diabetic,innerLV}} = \hat{\mu}_{\text{Diabetic,outerLV}} = \hat{\mu}_{\text{Healthy,innerLV}} = \hat{\mu}_{\text{Healthy,outerLV}}$
+
+```{r}
+anova(fac_lm)
+```
+
+
+What conclusions do you draw?
+
+**Note** with a balanced design ordering of term doesn't matter. For example,
+
+```{r}
+fac_lm <- lm(logAUC ~ Disease*Organ, data = factorial)
+anova(fac_lm)
+fac_lm_2 <- lm(logAUC ~ Organ*Disease, data = factorial)
+anova(fac_lm_2)
+``` 
+
+### Unqual replications (unbalanced design)
+
+Here, we consider a subset of the data above.
+
+```{r, message = FALSE, echo = FALSE}
+unbalanced <- factorial 
+unbalanced$logAUC[c(1:3,10)] <- NA
+unbalanced_nafree <- unbalanced %>% drop_na()
+unbalanced_nafree %>%
+	dplyr::select(c(Disease, Organ)) %>%
+  group_by(Disease, Organ) %>%
+  tally() %>%
+  mutate(n = paste("n =", n)) %>%
+  pivot_wider(names_from = Disease, values_from = n) %>%
+  kableExtra::kable(.) %>%
+  kableExtra::kable_classic(full_width = FALSE, html_font = "Cambria")
+kableExtra::kable(unbalanced_nafree) %>%
+  kableExtra::kable_classic(full_width = FALSE, html_font = "Cambria")
+```
+
+**Fitting models with interactions using `lm()`**
+
+**Note**: order matters. For example,
+
+```{r}
+fac_lm <- lm(logAUC ~ Disease*Organ, data = unbalanced_nafree)
+anova(fac_lm)
+fac_lm_2 <- lm(logAUC ~ Organ*Disease, data = unbalanced_nafree)
+anova(fac_lm_2)
+```
+
+The three **global** null hypotheses being tested are (essentially) the same
+
+  1. $H_0: \hat{\mu}_{\text{Diabetic}} = \hat{\mu}_{\text{Healthy}}$
+  2. $H_0: \hat{\mu}_{\text{innerLV}} = \hat{\mu}_{\text{outerLV}}$
+  3. $H_0: \hat{\mu}_{\text{Diabetic,innerLV}} = \hat{\mu}_{\text{Diabetic,outerLV}} = \hat{\mu}_{\text{Healthy,innerLV}} = \hat{\mu}_{\text{Healthy,outerLV}}$
+  
+However, now the **order the terms affects** the estimation. Look carefully at the `anova()` outputs above; what to you notice about the sums of squares (`Sum Sq`) values?
+
+For a **balanced**  two-factor experiment (e.g., in the previous section) partitioning of the sums of squares ($SS$) is additive:
+
+ $$SS_\text{Treatment} = SS_\text{Disease} + SS_\text{Organ} + SS_\text{Disease:Organ}.$$
+
+The order in which the main effects are added to the model does not matter. **However**, for an **unbalanced design** this is not the case as the sums of squares are calculated **sequentially**. Note that sequentially calculated $SS$ are known as Type I $SS$.
+
+### Sums of squares ($SS$)
+
+#### Sequential (Type I $SS$)
+
+As a term enters the model its $SS$ is calculated, which is then subtracted from the total $SS$. This then reduces the available $SS$ for the next term entering the model. When treatment combinations in a factorial experiment are unequally replicated, their effects are not mutually independent, so that the order in which terms enter the model matters.
+
+Considering the data above if we include `Disease` as a main effect first (i.e., `Disease*Organ`) then the $SS_\text{Disease}$ is calculated first **ignoring** the `Organ` main effect. Here, some `Organ` information is confounded with `Disease` information  (i.e., variation due to `Organ` confounded by the variation due to `Disease`). Then $SS_\text{Organ}$ are calculated having been adjusted for the `Diease` main effect. This now only contains `Organ` information (i.e., variation due to `Organ` effect) since all the `Disease` information was eliminated in previous step. Finally, $SS_\text{Disease:Organ}$ are calculated adjusted for both $SS_\text{Disease}$ and $SS_\text{Organ}$. Here, there is no information left relating to `Disease` or `Organ` main effects.
+
+What does this look like?
+
+For `Disease*Organ` we calculate $SS_\text{Disease}$ ignoring any `Organ` effect (if you are unsure what each line of code is doing I suggest you run it line by line to see what's being done at each step). 
+
+```{r}
+unbalanced_nafree %>% 
+  mutate(grand_mean = mean(logAUC)) %>%
+  group_by(Disease) %>%
+  summarise(n = n(),
+         treatment_mean = mean(logAUC),
+         grand_mean = mean(grand_mean)) %>%
+  mutate(ss_disease = n * (treatment_mean - grand_mean)^2) %>%
+  pull(ss_disease) %>%
+  sum()
+```
+
+This matches, as we'd expect, $SS_\text{Disease}$ calculated from the `Disease*Organ` model above. 
+
+
+But, that about the sequential $SS$, a simple way to think about this is in terms of sequential models:  
+
+
+
+```{r}
+## Null model.
+fit.null <- lm(logAUC ~ 1,  data = unbalanced_nafree)
+## Only Factor Disease.
+fit.a <- lm(logAUC ~ Disease,  data = unbalanced_nafree)
+## Factors Disease and Organ.
+fit.ab <- lm(logAUC ~ Disease + Organ,  data = unbalanced_nafree)
+## Factors Disease and Organ with interaction.
+fit.abi <- lm(logAUC ~ Disease*Organ,  data = unbalanced_nafree)
+## ANOVA table, as above
+anova(fit.abi)
+
+## First line.
+sum(residuals(fit.null)^2) - sum(residuals(fit.a)^2)
+## Second line.
+sum(residuals(fit.a)^2) - sum(residuals(fit.ab)^2)
+## Third line.
+sum(residuals(fit.ab)^2) - sum(residuals(fit.abi)^2)
+## Final line.
+sum(residuals(fit.abi)^2)
+```
+
+
+
+#### Type II $SS$
+
+Rather than calculating $SS$ sequentially we can calculate the $SS$ for a given effect adjusting for all other effects listed in the model. This means that the $SS_\text{A}$ and $SS_\text{B}$ main effects will both be adjusted for each other (since neither contains the other), but will not be adjusted for $SS_\text{A:B}$ (since it contains both A and B). $SS_\text{A:B}$ will be adjusted for both main effects.
+
+In our example above $SS_\text{Disease}$ and $SS_\text{Organ}$ main effects will both be adjusted for each other, but will not be adjusted for $SS_\text{A:B}$ and $SS_\text{Disease:Organ}$ will be adjusted for both main effects.
+
+We can calculate the Type II $SS$ table in `R` buy either 
+
+1) Extracting the main effect rows that have been adjusted for the other model terms from two Type I $SS$ tables (each one having the terms specified in a different order):
+
+```{r}
+## Type II Organ SS
+anova(fac_lm)[2, ]
+## Type II Disease SS
+anova(fac_lm_2)[2, ]
+## Type II Organ:Disease/Disease:Organ
+anova(fac_lm_2)[3, ]
+```
+
+
+or,
+
+2) Using an inbuilt `R` function (does not matter which order the model has the terms specified):
+
+```{r}
+car::Anova(fac_lm, type = 2)
+```
+
+
+**Note:** Type III $SS$ and beyond are not covered in this course but I would recommend reading [this recent paper](https://besjournals.onlinelibrary.wiley.com/doi/10.1111/j.1365-2656.2009.01634.x) for an intuitive overview.
+
+#### Marginal means
+
+**Balanced design**
+
+```{r, echo = FALSE, message = FALSE, warning=FALSE}
+factorial %>%
+  dplyr::select(c(Disease, Organ, logAUC)) %>%
+  kableExtra::kable(., caption = "logAUC data from a balanced design") %>%
+  kableExtra::kable_classic(full_width = FALSE, html_font = "Cambria")
+factorial %>%
+	summarise("Grand mean" = mean(logAUC)) %>%
+   kableExtra::kable(., digits = 3) %>%
+   kableExtra::kable_classic(full_width = FALSE, html_font = "Cambria")
+factorial %>%
+   dplyr::select(c(Disease, Organ, logAUC)) %>%
+   group_by(Disease, Organ) %>%
+	summarise("log AUC mean" = mean(logAUC)) %>%
+   kableExtra::kable(., digits = 3, caption = "Cell means") %>%
+   kableExtra::kable_classic(full_width = FALSE, html_font = "Cambria")
+factorial %>%
+   dplyr::select(c(Organ, logAUC)) %>%
+   group_by(Organ) %>%
+   summarise("log AUC mean" = mean(logAUC)) %>%
+   kableExtra::kable(., digits = 3, caption = "Marginal (organ) mean") %>%
+   kableExtra::kable_classic(full_width = FALSE, html_font = "Cambria")
+
+factorial %>%
+   dplyr::select(c(Disease, logAUC)) %>%
+   group_by(Disease) %>%
+   summarise("log AUC mean" = mean(logAUC)) %>%
+   kableExtra::kable(., digits = 3, caption = "Marginal (disease) mean") %>%
+   kableExtra::kable_classic(full_width = FALSE, html_font = "Cambria")
+
+```
+
+**Unbalanced design** (Unequal replication due to missing data)
+
+```{r, echo = FALSE}
+unbalanced %>%
+  dplyr::select(c(Disease, Organ, logAUC)) %>%
+  kableExtra::kable(., caption = "logAUC data from an unbalanced design") %>%
+  kableExtra::kable_classic(full_width = FALSE, html_font = "Cambria")
+```
+```{r, echo = FALSE}
+unbalanced_nafree %>%
+	summarise("Grand mean" = mean(logAUC)) %>%
+   kableExtra::kable(., digits = 3) %>%
+   kableExtra::kable_classic(full_width = FALSE, html_font = "Cambria")
+```
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+unbalanced_nafree %>%
+   dplyr::select(c(Disease, Organ, logAUC)) %>%
+   group_by(Disease, Organ) %>%
+	 summarise("log AUC mean" = mean(logAUC)) %>%
+   kableExtra::kable(., digits = 3, caption = "Cell means") %>%
+   kableExtra::kable_classic(full_width = FALSE, html_font = "Cambria")
+```
+
+Everything is as we'd expect up until now, but what about the marginal means? The, perhaps, most obvious way would be to do the following (i.e., ignore subgroups, hence give all observations equal weight)?
+
+```{r}
+unbalanced_nafree %>%
+   dplyr::select(c(Disease, logAUC)) %>%
+   group_by(Disease) %>%
+   summarise(Mean = mean(logAUC))
+```
+
+However, as a result of this the means are **biased** towards groups with greater replication! To avoid this we give the subgroups (`Organ`) cell means equal weight (this is sometimes called the *least squares* mean):
+
+```{r, message = FALSE, warning = FALSE}
+unbalanced_nafree %>%
+   dplyr::select(c(Disease, Organ, logAUC)) %>%
+   group_by(Organ, Disease) %>%
+	 mutate(n = n()) %>% ## count observations in each group
+	## then calculate weighted mean based on the no. observations
+   summarise(weighted_mean = weighted.mean(logAUC, w = 1/n)) %>%
+	 group_by(Disease) %>% ## calculate mean of weighted means
+	 summarise(mean = mean(weighted_mean))
+```
+Now see if you can do the same across `Organ` to get
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+unbalanced_nafree %>%
+   dplyr::select(c(Disease, Organ, logAUC)) %>%
+   group_by(Disease, Organ) %>%
+	 mutate(n = n()) %>% 
+   summarise(weighted_mean = weighted.mean(logAUC, w = 1/n)) %>%
+	 group_by(Organ) %>% 
+	 summarise(mean = mean(weighted_mean)) %>%
+   kableExtra::kable(., digits = 3, caption = "Marginal (organ) means") %>%
+   kableExtra::kable_classic(full_width = FALSE, html_font = "Cambria")
+```
+
+**What does all of this tell us?** When calculating marginal means for unbalanced designs we need to be careful! Luckily there are inbuilt functions in `R` that do this correctly for us! See the next section for an example using the `predictmeans` function from the `predictmeans` package.

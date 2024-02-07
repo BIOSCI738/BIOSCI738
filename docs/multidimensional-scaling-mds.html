@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Multidimensional Scaling (MDS) | Advanced Biological Data Analysis</title>
   <meta name="description" content="Multidimensional Scaling (MDS) | Advanced Biological Data Analysis" />
-  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Multidimensional Scaling (MDS) | Advanced Biological Data Analysis" />
   <meta property="og:type" content="book" />
@@ -20,6 +20,7 @@
   
   
 
+<meta name="author" content="" />
 
 
 
@@ -55,27 +56,25 @@
 
 
 <style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -84,9 +83,9 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  {  }
 @media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+a.sourceLine::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -140,67 +139,54 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Nau mai, haere mai. Welcome to BIOSCI 738</a></li>
-<li class="chapter" data-level="" data-path="key-information.html"><a href="key-information.html"><i class="fa fa-check"></i>Key Information</a>
-<ul>
+<li class="chapter" data-level="" data-path="key-information.html"><a href="key-information.html"><i class="fa fa-check"></i>Key Information</a><ul>
 <li class="chapter" data-level="" data-path="key-information.html"><a href="key-information.html#overview"><i class="fa fa-check"></i>Overview</a></li>
 <li class="chapter" data-level="" data-path="key-information.html"><a href="key-information.html#prerequisites"><i class="fa fa-check"></i>Prerequisites</a></li>
 <li class="chapter" data-level="" data-path="key-information.html"><a href="key-information.html#lectures"><i class="fa fa-check"></i>Lectures</a></li>
 <li class="chapter" data-level="" data-path="key-information.html"><a href="key-information.html#assessment"><i class="fa fa-check"></i>Assessment</a></li>
 <li class="chapter" data-level="" data-path="key-information.html"><a href="key-information.html#course-policies"><i class="fa fa-check"></i>Course policies</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-1.html"><a href="module-1.html"><i class="fa fa-check"></i>Module 1</a>
-<ul>
-<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html"><i class="fa fa-check"></i><code>R</code> and <code>RStudio</code></a>
-<ul>
+<li class="chapter" data-level="" data-path="module-1.html"><a href="module-1.html"><i class="fa fa-check"></i>Module 1</a><ul>
+<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html"><i class="fa fa-check"></i><code>R</code> and <code>RStudio</code></a><ul>
 <li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#recap-r-terminology"><i class="fa fa-check"></i>Recap: <code>R</code> terminology</a></li>
 <li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#which-r-syntax"><i class="fa fa-check"></i>Which <code>R</code> syntax?</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="error-handling-and-debugging.html"><a href="error-handling-and-debugging.html"><i class="fa fa-check"></i>Error handling and debugging</a></li>
-<li class="chapter" data-level="" data-path="accuracy-and-honesty.html"><a href="accuracy-and-honesty.html"><i class="fa fa-check"></i>Accuracy and Honesty</a>
-<ul>
+<li class="chapter" data-level="" data-path="accuracy-and-honesty.html"><a href="accuracy-and-honesty.html"><i class="fa fa-check"></i>Accuracy and Honesty</a><ul>
 <li class="chapter" data-level="" data-path="accuracy-and-honesty.html"><a href="accuracy-and-honesty.html#reproducible-research"><i class="fa fa-check"></i>Reproducible research</a></li>
 <li class="chapter" data-level="" data-path="accuracy-and-honesty.html"><a href="accuracy-and-honesty.html#good-coding-practice"><i class="fa fa-check"></i>Good coding practice</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html"><i class="fa fa-check"></i>Version control with <code>git</code> and GitHub</a>
-<ul>
+<li class="chapter" data-level="" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html"><i class="fa fa-check"></i>Version control with <code>git</code> and GitHub</a><ul>
 <li class="chapter" data-level="" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#setting-up"><i class="fa fa-check"></i>Setting up</a></li>
 <li class="chapter" data-level="" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#cloning-a-repository-from-github-using-rstudio"><i class="fa fa-check"></i>Cloning a repository from <code>GitHub</code> using <code>RStudio</code></a></li>
 <li class="chapter" data-level="" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#commiting-and-pushing-changes"><i class="fa fa-check"></i>Commiting and pushing changes</a></li>
 <li class="chapter" data-level="" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#system-specific-hurdles"><i class="fa fa-check"></i>System specific hurdles</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="respectful-handling-of-data.html"><a href="respectful-handling-of-data.html"><i class="fa fa-check"></i>Respectful Handling of Data</a>
-<ul>
+<li class="chapter" data-level="" data-path="respectful-handling-of-data.html"><a href="respectful-handling-of-data.html"><i class="fa fa-check"></i>Respectful Handling of Data</a><ul>
 <li class="chapter" data-level="" data-path="respectful-handling-of-data.html"><a href="respectful-handling-of-data.html#data-sovereignty"><i class="fa fa-check"></i>Data sovereignty</a></li>
 <li class="chapter" data-level="" data-path="respectful-handling-of-data.html"><a href="respectful-handling-of-data.html#māori-data-sovereignty-principles"><i class="fa fa-check"></i>Māori Data Sovereignty principles</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="awareness-of-consequences.html"><a href="awareness-of-consequences.html"><i class="fa fa-check"></i>Awareness of Consequences</a>
-<ul>
+<li class="chapter" data-level="" data-path="awareness-of-consequences.html"><a href="awareness-of-consequences.html"><i class="fa fa-check"></i>Awareness of Consequences</a><ul>
 <li class="chapter" data-level="" data-path="awareness-of-consequences.html"><a href="awareness-of-consequences.html#case-study"><i class="fa fa-check"></i>Case study</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i>Data Visualization</a>
-<ul>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i>Data Visualization</a><ul>
 <li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#exploratory-plots-for-your-own-purposes"><i class="fa fa-check"></i>Exploratory plots (for your own purposes)</a></li>
 <li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#explanatory-plots"><i class="fa fa-check"></i>Explanatory plots</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-2.html"><a href="module-2.html"><i class="fa fa-check"></i>Module 2</a>
-<ul>
-<li class="chapter" data-level="" data-path="permutation-and-randomisation-tests.html"><a href="permutation-and-randomisation-tests.html"><i class="fa fa-check"></i>Permutation and randomisation tests</a>
-<ul>
+<li class="chapter" data-level="" data-path="module-2.html"><a href="module-2.html"><i class="fa fa-check"></i>Module 2</a><ul>
+<li class="chapter" data-level="" data-path="permutation-and-randomisation-tests.html"><a href="permutation-and-randomisation-tests.html"><i class="fa fa-check"></i>Permutation and randomisation tests</a><ul>
 <li class="chapter" data-level="" data-path="permutation-and-randomisation-tests.html"><a href="permutation-and-randomisation-tests.html#a-permutation-test-jackal-mandible-lengths"><i class="fa fa-check"></i>A permutation test: Jackal mandible lengths</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="bootstrap-resampling.html"><a href="bootstrap-resampling.html"><i class="fa fa-check"></i>Bootstrap resampling</a>
-<ul>
+<li class="chapter" data-level="" data-path="bootstrap-resampling.html"><a href="bootstrap-resampling.html"><i class="fa fa-check"></i>Bootstrap resampling</a><ul>
 <li class="chapter" data-level="" data-path="bootstrap-resampling.html"><a href="bootstrap-resampling.html#example-constructing-bootstrap-confidence-intervals"><i class="fa fa-check"></i>Example: constructing bootstrap confidence intervals</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="parametric-hypothesis-testing.html"><a href="parametric-hypothesis-testing.html"><i class="fa fa-check"></i>Parametric hypothesis testing</a>
-<ul>
+<li class="chapter" data-level="" data-path="parametric-hypothesis-testing.html"><a href="parametric-hypothesis-testing.html"><i class="fa fa-check"></i>Parametric hypothesis testing</a><ul>
 <li class="chapter" data-level="" data-path="parametric-hypothesis-testing.html"><a href="parametric-hypothesis-testing.html#the-vocabulary-of-hypothesis-testing"><i class="fa fa-check"></i>The vocabulary of hypothesis testing</a></li>
 <li class="chapter" data-level="" data-path="parametric-hypothesis-testing.html"><a href="parametric-hypothesis-testing.html#example"><i class="fa fa-check"></i>Example</a></li>
 <li class="chapter" data-level="" data-path="parametric-hypothesis-testing.html"><a href="parametric-hypothesis-testing.html#differences-between-two-means"><i class="fa fa-check"></i>Differences between two means</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i>Linear regression</a>
-<ul>
+<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i>Linear regression</a><ul>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#model-formula-syntax-in-r"><i class="fa fa-check"></i>Model formula syntax in <code>R</code></a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#some-mathematical-notation"><i class="fa fa-check"></i>Some mathematical notation</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#modeling-bill-depth"><i class="fa fa-check"></i>Modeling Bill Depth</a></li>
@@ -209,21 +195,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#one-factor-and-a-continuous-variable"><i class="fa fa-check"></i>One factor and a continuous variable</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#interactions"><i class="fa fa-check"></i>Interactions</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html"><i class="fa fa-check"></i>Model diagnostics for a linear model</a>
-<ul>
+<li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html"><i class="fa fa-check"></i>Model diagnostics for a linear model</a><ul>
 <li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html#marginal-predictions"><i class="fa fa-check"></i>Marginal predictions</a></li>
 <li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html#model-selection"><i class="fa fa-check"></i>Model selection</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="inference-for-a-linear-model.html"><a href="inference-for-a-linear-model.html"><i class="fa fa-check"></i>Inference for a linear model</a>
-<ul>
+<li class="chapter" data-level="" data-path="inference-for-a-linear-model.html"><a href="inference-for-a-linear-model.html"><i class="fa fa-check"></i>Inference for a linear model</a><ul>
 <li class="chapter" data-level="" data-path="inference-for-a-linear-model.html"><a href="inference-for-a-linear-model.html#point-prediction"><i class="fa fa-check"></i>Point prediction</a></li>
 <li class="chapter" data-level="" data-path="inference-for-a-linear-model.html"><a href="inference-for-a-linear-model.html#confidence-intervals-for-parameters"><i class="fa fa-check"></i>Confidence intervals for parameters</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-3.html"><a href="module-3.html"><i class="fa fa-check"></i>Module 3</a>
-<ul>
-<li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html"><i class="fa fa-check"></i>Introduction to the design and analysis of experiments</a>
-<ul>
+<li class="chapter" data-level="" data-path="module-3.html"><a href="module-3.html"><i class="fa fa-check"></i>Module 3</a><ul>
+<li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html"><i class="fa fa-check"></i>Introduction to the design and analysis of experiments</a><ul>
 <li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#key-phrases"><i class="fa fa-check"></i>Key phrases</a></li>
 <li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#the-three-key-principles"><i class="fa fa-check"></i>The three key principles:</a></li>
 <li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#replication"><i class="fa fa-check"></i>Replication</a></li>
@@ -231,95 +213,77 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#blocking"><i class="fa fa-check"></i>Blocking</a></li>
 <li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#setting-up-an-experiment"><i class="fa fa-check"></i>Setting up an experiment</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html"><i class="fa fa-check"></i>Some basic experimental designs</a>
-<ul>
+<li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html"><i class="fa fa-check"></i>Some basic experimental designs</a><ul>
 <li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html#completely-randomised-design-crd"><i class="fa fa-check"></i>Completely randomised design (CRD)</a></li>
 <li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html#randomised-complete-block-design-rcbd"><i class="fa fa-check"></i>Randomised complete block design (RCBD)</a></li>
 <li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html#factorial-design"><i class="fa fa-check"></i>Factorial design</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html"><i class="fa fa-check"></i>Modelling experimental data</a>
-<ul>
+<li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html"><i class="fa fa-check"></i>Modelling experimental data</a><ul>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-completely-randomised-design-crd-as-a-linear-model"><i class="fa fa-check"></i>A completely randomised design (CRD) as a linear model</a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#analysis-of-a-crd-in-r"><i class="fa fa-check"></i>Analysis of a CRD in <code>R</code></a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-factorial-experiment-as-a-crd"><i class="fa fa-check"></i>A Factorial experiment (as a CRD)</a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#unqual-replications-unbalanced-design"><i class="fa fa-check"></i>Unqual replications (unbalanced design)</a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#sums-of-squares-ss"><i class="fa fa-check"></i>Sums of squares (<span class="math inline">\(SS\)</span>)</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html"><i class="fa fa-check"></i>Multiple comparisons</a>
-<ul>
+<li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html"><i class="fa fa-check"></i>Multiple comparisons</a><ul>
 <li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html#adjustments-for-multiple-testing"><i class="fa fa-check"></i>Adjustments for multiple testing</a></li>
 <li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html#classification-of-multiple-hypothesis-tests"><i class="fa fa-check"></i>Classification of multiple hypothesis tests</a></li>
 <li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html#multiple-comparison-procedures"><i class="fa fa-check"></i>Multiple comparison procedures</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html"><i class="fa fa-check"></i>Linear mixed-effect models (LMMs)</a>
-<ul>
+<li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html"><i class="fa fa-check"></i>Linear mixed-effect models (LMMs)</a><ul>
 <li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html#a-randomised-controlled-block-design-rcbd"><i class="fa fa-check"></i>A Randomised Controlled Block Design (RCBD)</a></li>
 <li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html#a-split-plot-design"><i class="fa fa-check"></i>A Split-plot design</a></li>
 <li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html#a-repeated-measures-design"><i class="fa fa-check"></i>A repeated measures design</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-4.html"><a href="module-4.html"><i class="fa fa-check"></i>Module 4</a>
-<ul>
+<li class="chapter" data-level="" data-path="module-4.html"><a href="module-4.html"><i class="fa fa-check"></i>Module 4</a><ul>
 <li class="chapter" data-level="" data-path="introduction-to-generalised-linear-models-glms.html"><a href="introduction-to-generalised-linear-models-glms.html"><i class="fa fa-check"></i>Introduction to generalised linear models (GLMs)</a></li>
-<li class="chapter" data-level="" data-path="poisson-regression.html"><a href="poisson-regression.html"><i class="fa fa-check"></i>Poisson regression</a>
-<ul>
+<li class="chapter" data-level="" data-path="poisson-regression.html"><a href="poisson-regression.html"><i class="fa fa-check"></i>Poisson regression</a><ul>
 <li class="chapter" data-level="" data-path="poisson-regression.html"><a href="poisson-regression.html#an-example-bird-abundance"><i class="fa fa-check"></i>An example: bird abundance</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i>Logistic regression</a>
-<ul>
+<li class="chapter" data-level="" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i>Logistic regression</a><ul>
 <li class="chapter" data-level="" data-path="logistic-regression.html"><a href="logistic-regression.html#an-example-lobsters"><i class="fa fa-check"></i>An example: lobsters</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="model-diagnostics.html"><a href="model-diagnostics.html"><i class="fa fa-check"></i>Model diagnostics</a>
-<ul>
+<li class="chapter" data-level="" data-path="model-diagnostics.html"><a href="model-diagnostics.html"><i class="fa fa-check"></i>Model diagnostics</a><ul>
 <li class="chapter" data-level="" data-path="model-diagnostics.html"><a href="model-diagnostics.html#residuals"><i class="fa fa-check"></i>Residuals</a></li>
 <li class="chapter" data-level="" data-path="model-diagnostics.html"><a href="model-diagnostics.html#the-quantile-residual-q-q-plot"><i class="fa fa-check"></i>The quantile residual Q-Q plot</a></li>
 <li class="chapter" data-level="" data-path="model-diagnostics.html"><a href="model-diagnostics.html#deviance-using-the-chi-squared-approach"><i class="fa fa-check"></i>Deviance (using the chi-squared approach)</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="a-summary-of-glms.html"><a href="a-summary-of-glms.html"><i class="fa fa-check"></i>A summary of GLMs</a></li>
-<li class="chapter" data-level="" data-path="generalised-linear-mixed-effects-models-glmmms.html"><a href="generalised-linear-mixed-effects-models-glmmms.html"><i class="fa fa-check"></i>Generalised linear mixed-effects models (GLMMMs)</a>
-<ul>
+<li class="chapter" data-level="" data-path="generalised-linear-mixed-effects-models-glmmms.html"><a href="generalised-linear-mixed-effects-models-glmmms.html"><i class="fa fa-check"></i>Generalised linear mixed-effects models (GLMMMs)</a><ul>
 <li class="chapter" data-level="" data-path="generalised-linear-mixed-effects-models-glmmms.html"><a href="generalised-linear-mixed-effects-models-glmmms.html#fitting-a-glmm"><i class="fa fa-check"></i>Fitting a GLMM</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-5.html"><a href="module-5.html"><i class="fa fa-check"></i>Module 5</a>
-<ul>
-<li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i>Clustering</a>
-<ul>
+<li class="chapter" data-level="" data-path="module-5.html"><a href="module-5.html"><i class="fa fa-check"></i>Module 5</a><ul>
+<li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i>Clustering</a><ul>
 <li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#divisive-partitioning-methods."><i class="fa fa-check"></i>Divisive (partitioning) methods.</a></li>
 <li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#k-means-an-example-using-the-palmerpenguins-data"><i class="fa fa-check"></i>K-means: an example using the <code>palmerpenguins</code> data</a></li>
 <li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#hierarchical-agglomerative-clustering."><i class="fa fa-check"></i>Hierarchical agglomerative clustering.</a></li>
 <li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#hierarchical-clustering-an-example"><i class="fa fa-check"></i>Hierarchical clustering: an example</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="principal-component-analysis-pca.html"><a href="principal-component-analysis-pca.html"><i class="fa fa-check"></i>Principal Component Analysis (PCA)</a>
-<ul>
+<li class="chapter" data-level="" data-path="principal-component-analysis-pca.html"><a href="principal-component-analysis-pca.html"><i class="fa fa-check"></i>Principal Component Analysis (PCA)</a><ul>
 <li class="chapter" data-level="" data-path="principal-component-analysis-pca.html"><a href="principal-component-analysis-pca.html#examples-in-r"><i class="fa fa-check"></i>Examples in <code>R</code></a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html"><i class="fa fa-check"></i>Multidimensional Scaling (MDS)</a>
-<ul>
+<li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html"><i class="fa fa-check"></i>Multidimensional Scaling (MDS)</a><ul>
 <li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html#metric-scaling"><i class="fa fa-check"></i>Metric Scaling</a></li>
 <li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html#correspondence-analysis-ca"><i class="fa fa-check"></i>Correspondence Analysis (CA)</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="non-metric-multidimensional-scaling.html"><a href="non-metric-multidimensional-scaling.html"><i class="fa fa-check"></i>Non-metric Multidimensional Scaling</a>
-<ul>
+<li class="chapter" data-level="" data-path="non-metric-multidimensional-scaling.html"><a href="non-metric-multidimensional-scaling.html"><i class="fa fa-check"></i>Non-metric Multidimensional Scaling</a><ul>
 <li class="chapter" data-level="" data-path="non-metric-multidimensional-scaling.html"><a href="non-metric-multidimensional-scaling.html#examples-in-r-2"><i class="fa fa-check"></i>Examples in <code>R</code></a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html"><i class="fa fa-check"></i>Linear Discriminant Analysis (LDA)</a>
-<ul>
+<li class="chapter" data-level="" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html"><i class="fa fa-check"></i>Linear Discriminant Analysis (LDA)</a><ul>
 <li class="chapter" data-level="" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html#example-in-r"><i class="fa fa-check"></i>Example in <code>R</code></a></li>
 <li class="chapter" data-level="" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html#prediction"><i class="fa fa-check"></i>Prediction</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-6.html"><a href="module-6.html"><i class="fa fa-check"></i>Module 6</a>
-<ul>
-<li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html"><i class="fa fa-check"></i>Least Squares Estimation</a>
-<ul>
+<li class="chapter" data-level="" data-path="module-6.html"><a href="module-6.html"><i class="fa fa-check"></i>Module 6</a><ul>
+<li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html"><i class="fa fa-check"></i>Least Squares Estimation</a><ul>
 <li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html#some-basic-matrix-algebra"><i class="fa fa-check"></i>Some basic matrix algebra</a></li>
 <li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html#linear-least-squares"><i class="fa fa-check"></i>Linear least squares</a></li>
 <li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html#matrix-representation-of-a-crd"><i class="fa fa-check"></i>Matrix representation of a CRD</a></li>
 <li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html#a-numeric-example"><i class="fa fa-check"></i>A numeric example</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html"><i class="fa fa-check"></i>Maximum likelihood estimation</a>
-<ul>
+<li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html"><i class="fa fa-check"></i>Maximum likelihood estimation</a><ul>
 <li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#differeniation-rules"><i class="fa fa-check"></i>Differeniation rules</a></li>
 <li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#logarithm-rules"><i class="fa fa-check"></i>Logarithm rules</a></li>
 <li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#maximum-likelihood-estimation-for-a-binomial-distribution"><i class="fa fa-check"></i>Maximum likelihood estimation for a Binomial distribution</a></li>
@@ -328,8 +292,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#maximum-likelihood-estimation-for-a-poisson-distribution"><i class="fa fa-check"></i>Maximum likelihood estimation for a Poisson distribution</a></li>
 <li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#maximum-likelihood-estimation-for-a-continuous-random-variable"><i class="fa fa-check"></i>Maximum likelihood estimation for a continuous random variable</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html"><i class="fa fa-check"></i>Introduction to Bayesian statistics</a>
-<ul>
+<li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html"><i class="fa fa-check"></i>Introduction to Bayesian statistics</a><ul>
 <li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html#conditional-probability"><i class="fa fa-check"></i>Conditional probability</a></li>
 <li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html#bayes-rule"><i class="fa fa-check"></i>Bayes’ rule</a></li>
 </ul></li>
@@ -368,124 +331,128 @@ dissimilarity matrix as closely as possible. Principal coordinates (PCO) is one 
 <h4>Examples in <code>R</code><a href="multidimensional-scaling-mds.html#examples-in-r-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Consider data which are not represented as points in a feature space:</p>
 <ul>
-<li>Where we are only provided with (dis)similarity matrices between objects (e.g., chemical compounds, images, trees, or other complex objects)</li>
+<li>Where we are only provided with (dis)similarity matrices between objects (e.g., chemical compounds, images, trees, or other complex objects)
+<ul>
 <li>Where there are no obvious coordinates in (continuous) n-dimensional space .</li>
+</ul></li>
 </ul>
 <div id="distances-in-km-between-north-island-cities" class="section level5 hasAnchor">
 <h5>Distances (in km) between North Island cities<a href="multidimensional-scaling-mds.html#distances-in-km-between-north-island-cities" class="anchor-section" aria-label="Anchor link to header"></a></h5>
-<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="multidimensional-scaling-mds.html#cb179-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb179-2"><a href="multidimensional-scaling-mds.html#cb179-2" aria-hidden="true" tabindex="-1"></a>ni <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/north_islands_distances.csv&quot;</span>)</span>
-<span id="cb179-3"><a href="multidimensional-scaling-mds.html#cb179-3" aria-hidden="true" tabindex="-1"></a>ni <span class="ot">&lt;-</span> ni <span class="sc">%&gt;%</span> <span class="fu">column_to_rownames</span>(<span class="at">var =</span> <span class="st">&quot;...1&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="multidimensional-scaling-mds.html#cb180-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pheatmap)</span>
-<span id="cb180-2"><a href="multidimensional-scaling-mds.html#cb180-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pheatmap</span>(ni, <span class="at">cluster_rows =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb180-3"><a href="multidimensional-scaling-mds.html#cb180-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">treeheight_row =</span> <span class="dv">2</span>, <span class="at">treeheight_col =</span> <span class="dv">2</span>,</span>
-<span id="cb180-4"><a href="multidimensional-scaling-mds.html#cb180-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">fontsize_row =</span> <span class="dv">12</span>, <span class="at">fontsize_col =</span> <span class="dv">12</span>,</span>
-<span id="cb180-5"><a href="multidimensional-scaling-mds.html#cb180-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">cellwidth =</span> <span class="dv">26</span>, <span class="at">cellheight =</span> <span class="dv">26</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb179-1" title="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb179-2" title="2">ni &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/north_islands_distances.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb179-3" title="3">ni &lt;-<span class="st"> </span>ni <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">column_to_rownames</span>(<span class="dt">var =</span> <span class="st">&quot;...1&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb180-1" title="1"><span class="kw">library</span>(pheatmap)</a>
+<a class="sourceLine" id="cb180-2" title="2"><span class="kw">pheatmap</span>(ni, <span class="dt">cluster_rows =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb180-3" title="3">         <span class="dt">treeheight_row =</span> <span class="dv">2</span>, <span class="dt">treeheight_col =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb180-4" title="4">         <span class="dt">fontsize_row =</span> <span class="dv">12</span>, <span class="dt">fontsize_col =</span> <span class="dv">12</span>,</a>
+<a class="sourceLine" id="cb180-5" title="5">         <span class="dt">cellwidth =</span> <span class="dv">26</span>, <span class="dt">cellheight =</span> <span class="dv">26</span>)</a></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-220-1.png" width="672" /></p>
-<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="multidimensional-scaling-mds.html#cb181-1" aria-hidden="true" tabindex="-1"></a>mds <span class="ot">&lt;-</span> <span class="fu">cmdscale</span>(ni, <span class="at">eig =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb181-2"><a href="multidimensional-scaling-mds.html#cb181-2" aria-hidden="true" tabindex="-1"></a>mds</span>
-<span id="cb181-3"><a href="multidimensional-scaling-mds.html#cb181-3" aria-hidden="true" tabindex="-1"></a><span class="do">## $points</span></span>
-<span id="cb181-4"><a href="multidimensional-scaling-mds.html#cb181-4" aria-hidden="true" tabindex="-1"></a><span class="do">##                  [,1]       [,2]</span></span>
-<span id="cb181-5"><a href="multidimensional-scaling-mds.html#cb181-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Auckland    259.23245   67.43013</span></span>
-<span id="cb181-6"><a href="multidimensional-scaling-mds.html#cb181-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Gisborne   -107.54173 -285.70950</span></span>
-<span id="cb181-7"><a href="multidimensional-scaling-mds.html#cb181-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Hamilton    129.07943   42.71295</span></span>
-<span id="cb181-8"><a href="multidimensional-scaling-mds.html#cb181-8" aria-hidden="true" tabindex="-1"></a><span class="do">## Hastings   -173.12950  -25.15974</span></span>
-<span id="cb181-9"><a href="multidimensional-scaling-mds.html#cb181-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Napier     -150.83765  -34.70680</span></span>
-<span id="cb181-10"><a href="multidimensional-scaling-mds.html#cb181-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Rotorua      37.39858  -18.39760</span></span>
-<span id="cb181-11"><a href="multidimensional-scaling-mds.html#cb181-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Tauranga    118.78535  -85.88683</span></span>
-<span id="cb181-12"><a href="multidimensional-scaling-mds.html#cb181-12" aria-hidden="true" tabindex="-1"></a><span class="do">## Whanganui  -192.73988  181.50600</span></span>
-<span id="cb181-13"><a href="multidimensional-scaling-mds.html#cb181-13" aria-hidden="true" tabindex="-1"></a><span class="do">## Wellington -385.83172  167.76477</span></span>
-<span id="cb181-14"><a href="multidimensional-scaling-mds.html#cb181-14" aria-hidden="true" tabindex="-1"></a><span class="do">## Whakatane    49.93256 -140.17112</span></span>
-<span id="cb181-15"><a href="multidimensional-scaling-mds.html#cb181-15" aria-hidden="true" tabindex="-1"></a><span class="do">## Whangarei   415.65212  130.61774</span></span>
-<span id="cb181-16"><a href="multidimensional-scaling-mds.html#cb181-16" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb181-17"><a href="multidimensional-scaling-mds.html#cb181-17" aria-hidden="true" tabindex="-1"></a><span class="do">## $eig</span></span>
-<span id="cb181-18"><a href="multidimensional-scaling-mds.html#cb181-18" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1]  5.249373e+05  1.953521e+05  4.217767e+04  1.872276e+04  1.222717e+03</span></span>
-<span id="cb181-19"><a href="multidimensional-scaling-mds.html#cb181-19" aria-hidden="true" tabindex="-1"></a><span class="do">##  [6]  2.910383e-11 -1.399691e+02 -4.733140e+02 -1.103819e+04 -1.883151e+04</span></span>
-<span id="cb181-20"><a href="multidimensional-scaling-mds.html#cb181-20" aria-hidden="true" tabindex="-1"></a><span class="do">## [11] -2.462990e+04</span></span>
-<span id="cb181-21"><a href="multidimensional-scaling-mds.html#cb181-21" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb181-22"><a href="multidimensional-scaling-mds.html#cb181-22" aria-hidden="true" tabindex="-1"></a><span class="do">## $x</span></span>
-<span id="cb181-23"><a href="multidimensional-scaling-mds.html#cb181-23" aria-hidden="true" tabindex="-1"></a><span class="do">## NULL</span></span>
-<span id="cb181-24"><a href="multidimensional-scaling-mds.html#cb181-24" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb181-25"><a href="multidimensional-scaling-mds.html#cb181-25" aria-hidden="true" tabindex="-1"></a><span class="do">## $ac</span></span>
-<span id="cb181-26"><a href="multidimensional-scaling-mds.html#cb181-26" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 0</span></span>
-<span id="cb181-27"><a href="multidimensional-scaling-mds.html#cb181-27" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb181-28"><a href="multidimensional-scaling-mds.html#cb181-28" aria-hidden="true" tabindex="-1"></a><span class="do">## $GOF</span></span>
-<span id="cb181-29"><a href="multidimensional-scaling-mds.html#cb181-29" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 0.8600209 0.9206005</span></span></code></pre></div>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb181-1" title="1">mds &lt;-<span class="st"> </span><span class="kw">cmdscale</span>(ni, <span class="dt">eig =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb181-2" title="2">mds</a>
+<a class="sourceLine" id="cb181-3" title="3"><span class="co">## $points</span></a>
+<a class="sourceLine" id="cb181-4" title="4"><span class="co">##                  [,1]       [,2]</span></a>
+<a class="sourceLine" id="cb181-5" title="5"><span class="co">## Auckland    259.23245   67.43013</span></a>
+<a class="sourceLine" id="cb181-6" title="6"><span class="co">## Gisborne   -107.54173 -285.70950</span></a>
+<a class="sourceLine" id="cb181-7" title="7"><span class="co">## Hamilton    129.07943   42.71295</span></a>
+<a class="sourceLine" id="cb181-8" title="8"><span class="co">## Hastings   -173.12950  -25.15974</span></a>
+<a class="sourceLine" id="cb181-9" title="9"><span class="co">## Napier     -150.83765  -34.70680</span></a>
+<a class="sourceLine" id="cb181-10" title="10"><span class="co">## Rotorua      37.39858  -18.39760</span></a>
+<a class="sourceLine" id="cb181-11" title="11"><span class="co">## Tauranga    118.78535  -85.88683</span></a>
+<a class="sourceLine" id="cb181-12" title="12"><span class="co">## Whanganui  -192.73988  181.50600</span></a>
+<a class="sourceLine" id="cb181-13" title="13"><span class="co">## Wellington -385.83172  167.76477</span></a>
+<a class="sourceLine" id="cb181-14" title="14"><span class="co">## Whakatane    49.93256 -140.17112</span></a>
+<a class="sourceLine" id="cb181-15" title="15"><span class="co">## Whangarei   415.65212  130.61774</span></a>
+<a class="sourceLine" id="cb181-16" title="16"><span class="co">## </span></a>
+<a class="sourceLine" id="cb181-17" title="17"><span class="co">## $eig</span></a>
+<a class="sourceLine" id="cb181-18" title="18"><span class="co">##  [1]  5.249373e+05  1.953521e+05  4.217767e+04  1.872276e+04  1.222717e+03</span></a>
+<a class="sourceLine" id="cb181-19" title="19"><span class="co">##  [6]  2.910383e-11 -1.399691e+02 -4.733140e+02 -1.103819e+04 -1.883151e+04</span></a>
+<a class="sourceLine" id="cb181-20" title="20"><span class="co">## [11] -2.462990e+04</span></a>
+<a class="sourceLine" id="cb181-21" title="21"><span class="co">## </span></a>
+<a class="sourceLine" id="cb181-22" title="22"><span class="co">## $x</span></a>
+<a class="sourceLine" id="cb181-23" title="23"><span class="co">## NULL</span></a>
+<a class="sourceLine" id="cb181-24" title="24"><span class="co">## </span></a>
+<a class="sourceLine" id="cb181-25" title="25"><span class="co">## $ac</span></a>
+<a class="sourceLine" id="cb181-26" title="26"><span class="co">## [1] 0</span></a>
+<a class="sourceLine" id="cb181-27" title="27"><span class="co">## </span></a>
+<a class="sourceLine" id="cb181-28" title="28"><span class="co">## $GOF</span></a>
+<a class="sourceLine" id="cb181-29" title="29"><span class="co">## [1] 0.8600209 0.9206005</span></a></code></pre></div>
 </div>
 <div id="eckmans-colour-perception-1954" class="section level5 hasAnchor">
 <h5>Eckmans colour perception (1954)<a href="multidimensional-scaling-mds.html#eckmans-colour-perception-1954" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>Data may from objects for which we have similarities but no underlying (geometric) space. Here the goal is to understand the underlying dimensionality of colour perception.</p>
 <ul>
-<li>Similarities for 14 colours, with wavelengths from 434 to 674nm based on rating by 31 subjects</li>
+<li>Similarities for 14 colours, with wavelengths from 434 to 674nm based on rating by 31 subjects
+<ul>
 <li>Each pair of colours was rated on a 5-point scale:
 <ul>
 <li>0 = no similarity up to 4 = identical.</li>
 </ul></li>
 <li>After averaging over 31 raters the similarities were divided by 4 such that they are within the unit interval.</li>
+</ul></li>
 </ul>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="multidimensional-scaling-mds.html#cb182-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb182-2"><a href="multidimensional-scaling-mds.html#cb182-2" aria-hidden="true" tabindex="-1"></a>ekman <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/ekman.csv&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="multidimensional-scaling-mds.html#cb183-1" aria-hidden="true" tabindex="-1"></a>ekman.mds <span class="ot">&lt;-</span> <span class="fu">cmdscale</span>(ekman, <span class="at">eig =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb183-2"><a href="multidimensional-scaling-mds.html#cb183-2" aria-hidden="true" tabindex="-1"></a>ekman.mds</span>
-<span id="cb183-3"><a href="multidimensional-scaling-mds.html#cb183-3" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(ekman.mds<span class="sc">$</span>eig,<span class="dv">2</span>)</span>
-<span id="cb183-4"><a href="multidimensional-scaling-mds.html#cb183-4" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(ekman.mds)</span></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb182-1" title="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb182-2" title="2">ekman &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/ekman.csv&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb183-1" title="1">ekman.mds &lt;-<span class="st"> </span><span class="kw">cmdscale</span>(ekman, <span class="dt">eig =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb183-2" title="2">ekman.mds</a>
+<a class="sourceLine" id="cb183-3" title="3"><span class="kw">round</span>(ekman.mds<span class="op">$</span>eig,<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb183-4" title="4"><span class="kw">autoplot</span>(ekman.mds)</a></code></pre></div>
 </div>
 <div id="distances-in-km-between-21-cities-in-europe" class="section level5 hasAnchor">
 <h5>Distances (in km) between 21 cities in Europe<a href="multidimensional-scaling-mds.html#distances-in-km-between-21-cities-in-europe" class="anchor-section" aria-label="Anchor link to header"></a></h5>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="multidimensional-scaling-mds.html#cb184-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggfortify)</span>
-<span id="cb184-2"><a href="multidimensional-scaling-mds.html#cb184-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Plotting Multidimensional Scaling (for interest)</span></span>
-<span id="cb184-3"><a href="multidimensional-scaling-mds.html#cb184-3" aria-hidden="true" tabindex="-1"></a><span class="do">## stats::cmdscale performs Classical MDS</span></span>
-<span id="cb184-4"><a href="multidimensional-scaling-mds.html#cb184-4" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;eurodist&quot;</span>) <span class="do">## road distances (in km) between 21 cities in Europe.</span></span>
-<span id="cb184-5"><a href="multidimensional-scaling-mds.html#cb184-5" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(eurodist)</span>
-<span id="cb184-6"><a href="multidimensional-scaling-mds.html#cb184-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Plotting Classical (Metric) Multidimensional Scaling</span></span>
-<span id="cb184-7"><a href="multidimensional-scaling-mds.html#cb184-7" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(<span class="fu">cmdscale</span>(eurodist, <span class="at">eig =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb184-8"><a href="multidimensional-scaling-mds.html#cb184-8" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(<span class="fu">cmdscale</span>(eurodist, <span class="at">eig =</span> <span class="cn">TRUE</span>), <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">shape =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb184-9"><a href="multidimensional-scaling-mds.html#cb184-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">label.size =</span> <span class="dv">3</span>)</span>
-<span id="cb184-10"><a href="multidimensional-scaling-mds.html#cb184-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Plotting Non-metric Multidimensional Scaling</span></span>
-<span id="cb184-11"><a href="multidimensional-scaling-mds.html#cb184-11" aria-hidden="true" tabindex="-1"></a><span class="do">## MASS::isoMDS and MASS::sammon perform Non-metric MDS</span></span>
-<span id="cb184-12"><a href="multidimensional-scaling-mds.html#cb184-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
-<span id="cb184-13"><a href="multidimensional-scaling-mds.html#cb184-13" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(<span class="fu">sammon</span>(eurodist))</span>
-<span id="cb184-14"><a href="multidimensional-scaling-mds.html#cb184-14" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(<span class="fu">sammon</span>(eurodist), <span class="at">shape =</span> <span class="cn">FALSE</span>, <span class="at">label =</span> <span class="cn">TRUE</span>,<span class="at">label.size =</span> <span class="dv">3</span>)</span>
-<span id="cb184-15"><a href="multidimensional-scaling-mds.html#cb184-15" aria-hidden="true" tabindex="-1"></a><span class="do">## Have a go at interpreting these plots based on the geography of the cities :-)</span></span></code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb184-1" title="1"><span class="kw">library</span>(ggfortify)</a>
+<a class="sourceLine" id="cb184-2" title="2"><span class="co">## Plotting Multidimensional Scaling (for interest)</span></a>
+<a class="sourceLine" id="cb184-3" title="3"><span class="co">## stats::cmdscale performs Classical MDS</span></a>
+<a class="sourceLine" id="cb184-4" title="4"><span class="kw">data</span>(<span class="st">&quot;eurodist&quot;</span>) <span class="co">## road distances (in km) between 21 cities in Europe.</span></a>
+<a class="sourceLine" id="cb184-5" title="5"><span class="kw">autoplot</span>(eurodist)</a>
+<a class="sourceLine" id="cb184-6" title="6"><span class="co">## Plotting Classical (Metric) Multidimensional Scaling</span></a>
+<a class="sourceLine" id="cb184-7" title="7"><span class="kw">autoplot</span>(<span class="kw">cmdscale</span>(eurodist, <span class="dt">eig =</span> <span class="ot">TRUE</span>))</a>
+<a class="sourceLine" id="cb184-8" title="8"><span class="kw">autoplot</span>(<span class="kw">cmdscale</span>(eurodist, <span class="dt">eig =</span> <span class="ot">TRUE</span>), <span class="dt">label =</span> <span class="ot">TRUE</span>, <span class="dt">shape =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb184-9" title="9">         <span class="dt">label.size =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb184-10" title="10"><span class="co">## Plotting Non-metric Multidimensional Scaling</span></a>
+<a class="sourceLine" id="cb184-11" title="11"><span class="co">## MASS::isoMDS and MASS::sammon perform Non-metric MDS</span></a>
+<a class="sourceLine" id="cb184-12" title="12"><span class="kw">library</span>(MASS)</a>
+<a class="sourceLine" id="cb184-13" title="13"><span class="kw">autoplot</span>(<span class="kw">sammon</span>(eurodist))</a>
+<a class="sourceLine" id="cb184-14" title="14"><span class="kw">autoplot</span>(<span class="kw">sammon</span>(eurodist), <span class="dt">shape =</span> <span class="ot">FALSE</span>, <span class="dt">label =</span> <span class="ot">TRUE</span>,<span class="dt">label.size =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb184-15" title="15"><span class="co">## Have a go at interpreting these plots based on the geography of the cities :-)</span></a></code></pre></div>
 </div>
 </div>
 </div>
 <div id="correspondence-analysis-ca" class="section level3 hasAnchor">
 <h3>Correspondence Analysis (CA)<a href="multidimensional-scaling-mds.html#correspondence-analysis-ca" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>CA is a special case of metric MDS where the distance measure is the chi-square distance. It is conceptually similar to principal component analysis but where the data are categorical, counts, rather than continuous. CA is traditionally applied to contingency tables where rows and columns are treated equivalently; it decomposes the chi-square statistic associated with this table into orthogonal factors. Correspondence analysis is usually the best way to follow up on a <em>significant</em> chi-square test.</p>
-<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="multidimensional-scaling-mds.html#cb185-1" aria-hidden="true" tabindex="-1"></a>HairEyeColor</span>
-<span id="cb185-2"><a href="multidimensional-scaling-mds.html#cb185-2" aria-hidden="true" tabindex="-1"></a><span class="do">## , , Sex = Male</span></span>
-<span id="cb185-3"><a href="multidimensional-scaling-mds.html#cb185-3" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb185-4"><a href="multidimensional-scaling-mds.html#cb185-4" aria-hidden="true" tabindex="-1"></a><span class="do">##        Eye</span></span>
-<span id="cb185-5"><a href="multidimensional-scaling-mds.html#cb185-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Hair    Brown Blue Hazel Green</span></span>
-<span id="cb185-6"><a href="multidimensional-scaling-mds.html#cb185-6" aria-hidden="true" tabindex="-1"></a><span class="do">##   Black    32   11    10     3</span></span>
-<span id="cb185-7"><a href="multidimensional-scaling-mds.html#cb185-7" aria-hidden="true" tabindex="-1"></a><span class="do">##   Brown    53   50    25    15</span></span>
-<span id="cb185-8"><a href="multidimensional-scaling-mds.html#cb185-8" aria-hidden="true" tabindex="-1"></a><span class="do">##   Red      10   10     7     7</span></span>
-<span id="cb185-9"><a href="multidimensional-scaling-mds.html#cb185-9" aria-hidden="true" tabindex="-1"></a><span class="do">##   Blond     3   30     5     8</span></span>
-<span id="cb185-10"><a href="multidimensional-scaling-mds.html#cb185-10" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb185-11"><a href="multidimensional-scaling-mds.html#cb185-11" aria-hidden="true" tabindex="-1"></a><span class="do">## , , Sex = Female</span></span>
-<span id="cb185-12"><a href="multidimensional-scaling-mds.html#cb185-12" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb185-13"><a href="multidimensional-scaling-mds.html#cb185-13" aria-hidden="true" tabindex="-1"></a><span class="do">##        Eye</span></span>
-<span id="cb185-14"><a href="multidimensional-scaling-mds.html#cb185-14" aria-hidden="true" tabindex="-1"></a><span class="do">## Hair    Brown Blue Hazel Green</span></span>
-<span id="cb185-15"><a href="multidimensional-scaling-mds.html#cb185-15" aria-hidden="true" tabindex="-1"></a><span class="do">##   Black    36    9     5     2</span></span>
-<span id="cb185-16"><a href="multidimensional-scaling-mds.html#cb185-16" aria-hidden="true" tabindex="-1"></a><span class="do">##   Brown    66   34    29    14</span></span>
-<span id="cb185-17"><a href="multidimensional-scaling-mds.html#cb185-17" aria-hidden="true" tabindex="-1"></a><span class="do">##   Red      16    7     7     7</span></span>
-<span id="cb185-18"><a href="multidimensional-scaling-mds.html#cb185-18" aria-hidden="true" tabindex="-1"></a><span class="do">##   Blond     4   64     5     8</span></span>
-<span id="cb185-19"><a href="multidimensional-scaling-mds.html#cb185-19" aria-hidden="true" tabindex="-1"></a>HC.df <span class="ot">&lt;-</span> <span class="fu">as.data.frame.matrix</span>(HairEyeColor[ , , <span class="dv">2</span>])</span>
-<span id="cb185-20"><a href="multidimensional-scaling-mds.html#cb185-20" aria-hidden="true" tabindex="-1"></a>HC.df</span>
-<span id="cb185-21"><a href="multidimensional-scaling-mds.html#cb185-21" aria-hidden="true" tabindex="-1"></a><span class="do">##       Brown Blue Hazel Green</span></span>
-<span id="cb185-22"><a href="multidimensional-scaling-mds.html#cb185-22" aria-hidden="true" tabindex="-1"></a><span class="do">## Black    36    9     5     2</span></span>
-<span id="cb185-23"><a href="multidimensional-scaling-mds.html#cb185-23" aria-hidden="true" tabindex="-1"></a><span class="do">## Brown    66   34    29    14</span></span>
-<span id="cb185-24"><a href="multidimensional-scaling-mds.html#cb185-24" aria-hidden="true" tabindex="-1"></a><span class="do">## Red      16    7     7     7</span></span>
-<span id="cb185-25"><a href="multidimensional-scaling-mds.html#cb185-25" aria-hidden="true" tabindex="-1"></a><span class="do">## Blond     4   64     5     8</span></span>
-<span id="cb185-26"><a href="multidimensional-scaling-mds.html#cb185-26" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(HC.df)</span>
-<span id="cb185-27"><a href="multidimensional-scaling-mds.html#cb185-27" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb185-28"><a href="multidimensional-scaling-mds.html#cb185-28" aria-hidden="true" tabindex="-1"></a><span class="do">##  Pearson&#39;s Chi-squared test</span></span>
-<span id="cb185-29"><a href="multidimensional-scaling-mds.html#cb185-29" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb185-30"><a href="multidimensional-scaling-mds.html#cb185-30" aria-hidden="true" tabindex="-1"></a><span class="do">## data:  HC.df</span></span>
-<span id="cb185-31"><a href="multidimensional-scaling-mds.html#cb185-31" aria-hidden="true" tabindex="-1"></a><span class="do">## X-squared = 106.66, df = 9, p-value &lt; 2.2e-16</span></span></code></pre></div>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="multidimensional-scaling-mds.html#cb186-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ade4)</span>
-<span id="cb186-2"><a href="multidimensional-scaling-mds.html#cb186-2" aria-hidden="true" tabindex="-1"></a>coaHC <span class="ot">&lt;-</span> <span class="fu">dudi.coa</span>(HC.df, <span class="at">scannf =</span> <span class="cn">FALSE</span>, <span class="at">nf =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb185-1" title="1">HairEyeColor</a>
+<a class="sourceLine" id="cb185-2" title="2"><span class="co">## , , Sex = Male</span></a>
+<a class="sourceLine" id="cb185-3" title="3"><span class="co">## </span></a>
+<a class="sourceLine" id="cb185-4" title="4"><span class="co">##        Eye</span></a>
+<a class="sourceLine" id="cb185-5" title="5"><span class="co">## Hair    Brown Blue Hazel Green</span></a>
+<a class="sourceLine" id="cb185-6" title="6"><span class="co">##   Black    32   11    10     3</span></a>
+<a class="sourceLine" id="cb185-7" title="7"><span class="co">##   Brown    53   50    25    15</span></a>
+<a class="sourceLine" id="cb185-8" title="8"><span class="co">##   Red      10   10     7     7</span></a>
+<a class="sourceLine" id="cb185-9" title="9"><span class="co">##   Blond     3   30     5     8</span></a>
+<a class="sourceLine" id="cb185-10" title="10"><span class="co">## </span></a>
+<a class="sourceLine" id="cb185-11" title="11"><span class="co">## , , Sex = Female</span></a>
+<a class="sourceLine" id="cb185-12" title="12"><span class="co">## </span></a>
+<a class="sourceLine" id="cb185-13" title="13"><span class="co">##        Eye</span></a>
+<a class="sourceLine" id="cb185-14" title="14"><span class="co">## Hair    Brown Blue Hazel Green</span></a>
+<a class="sourceLine" id="cb185-15" title="15"><span class="co">##   Black    36    9     5     2</span></a>
+<a class="sourceLine" id="cb185-16" title="16"><span class="co">##   Brown    66   34    29    14</span></a>
+<a class="sourceLine" id="cb185-17" title="17"><span class="co">##   Red      16    7     7     7</span></a>
+<a class="sourceLine" id="cb185-18" title="18"><span class="co">##   Blond     4   64     5     8</span></a>
+<a class="sourceLine" id="cb185-19" title="19">HC.df &lt;-<span class="st"> </span><span class="kw">as.data.frame.matrix</span>(HairEyeColor[ , , <span class="dv">2</span>])</a>
+<a class="sourceLine" id="cb185-20" title="20">HC.df</a>
+<a class="sourceLine" id="cb185-21" title="21"><span class="co">##       Brown Blue Hazel Green</span></a>
+<a class="sourceLine" id="cb185-22" title="22"><span class="co">## Black    36    9     5     2</span></a>
+<a class="sourceLine" id="cb185-23" title="23"><span class="co">## Brown    66   34    29    14</span></a>
+<a class="sourceLine" id="cb185-24" title="24"><span class="co">## Red      16    7     7     7</span></a>
+<a class="sourceLine" id="cb185-25" title="25"><span class="co">## Blond     4   64     5     8</span></a>
+<a class="sourceLine" id="cb185-26" title="26"><span class="kw">chisq.test</span>(HC.df)</a>
+<a class="sourceLine" id="cb185-27" title="27"><span class="co">## </span></a>
+<a class="sourceLine" id="cb185-28" title="28"><span class="co">##  Pearson&#39;s Chi-squared test</span></a>
+<a class="sourceLine" id="cb185-29" title="29"><span class="co">## </span></a>
+<a class="sourceLine" id="cb185-30" title="30"><span class="co">## data:  HC.df</span></a>
+<a class="sourceLine" id="cb185-31" title="31"><span class="co">## X-squared = 106.66, df = 9, p-value &lt; 2.2e-16</span></a></code></pre></div>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb186-1" title="1"><span class="kw">library</span>(ade4)</a>
+<a class="sourceLine" id="cb186-2" title="2">coaHC &lt;-<span class="st"> </span><span class="kw">dudi.coa</span>(HC.df, <span class="dt">scannf =</span> <span class="ot">FALSE</span>, <span class="dt">nf =</span> <span class="dv">2</span>)</a></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-227-1.png" width="672" /></p>
 <p>The first axis shows a contrast between black haired and blonde haired students, mirrored by the brown eye, blue eye contrast. In CA the two categories, rows and columns play
 symmetric roles and we interpret the proximity of Blue eyes and Blond hair as showing strong co-occurence of these categories.</p>

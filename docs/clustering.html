@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Clustering | Advanced Biological Data Analysis</title>
   <meta name="description" content="Clustering | Advanced Biological Data Analysis" />
-  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Clustering | Advanced Biological Data Analysis" />
   <meta property="og:type" content="book" />
@@ -20,6 +20,7 @@
   
   
 
+<meta name="author" content="" />
 
 
 
@@ -55,27 +56,25 @@
 
 
 <style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -84,9 +83,9 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  {  }
 @media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+a.sourceLine::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -140,67 +139,54 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Nau mai, haere mai. Welcome to BIOSCI 738</a></li>
-<li class="chapter" data-level="" data-path="key-information.html"><a href="key-information.html"><i class="fa fa-check"></i>Key Information</a>
-<ul>
+<li class="chapter" data-level="" data-path="key-information.html"><a href="key-information.html"><i class="fa fa-check"></i>Key Information</a><ul>
 <li class="chapter" data-level="" data-path="key-information.html"><a href="key-information.html#overview"><i class="fa fa-check"></i>Overview</a></li>
 <li class="chapter" data-level="" data-path="key-information.html"><a href="key-information.html#prerequisites"><i class="fa fa-check"></i>Prerequisites</a></li>
 <li class="chapter" data-level="" data-path="key-information.html"><a href="key-information.html#lectures"><i class="fa fa-check"></i>Lectures</a></li>
 <li class="chapter" data-level="" data-path="key-information.html"><a href="key-information.html#assessment"><i class="fa fa-check"></i>Assessment</a></li>
 <li class="chapter" data-level="" data-path="key-information.html"><a href="key-information.html#course-policies"><i class="fa fa-check"></i>Course policies</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-1.html"><a href="module-1.html"><i class="fa fa-check"></i>Module 1</a>
-<ul>
-<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html"><i class="fa fa-check"></i><code>R</code> and <code>RStudio</code></a>
-<ul>
+<li class="chapter" data-level="" data-path="module-1.html"><a href="module-1.html"><i class="fa fa-check"></i>Module 1</a><ul>
+<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html"><i class="fa fa-check"></i><code>R</code> and <code>RStudio</code></a><ul>
 <li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#recap-r-terminology"><i class="fa fa-check"></i>Recap: <code>R</code> terminology</a></li>
 <li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#which-r-syntax"><i class="fa fa-check"></i>Which <code>R</code> syntax?</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="error-handling-and-debugging.html"><a href="error-handling-and-debugging.html"><i class="fa fa-check"></i>Error handling and debugging</a></li>
-<li class="chapter" data-level="" data-path="accuracy-and-honesty.html"><a href="accuracy-and-honesty.html"><i class="fa fa-check"></i>Accuracy and Honesty</a>
-<ul>
+<li class="chapter" data-level="" data-path="accuracy-and-honesty.html"><a href="accuracy-and-honesty.html"><i class="fa fa-check"></i>Accuracy and Honesty</a><ul>
 <li class="chapter" data-level="" data-path="accuracy-and-honesty.html"><a href="accuracy-and-honesty.html#reproducible-research"><i class="fa fa-check"></i>Reproducible research</a></li>
 <li class="chapter" data-level="" data-path="accuracy-and-honesty.html"><a href="accuracy-and-honesty.html#good-coding-practice"><i class="fa fa-check"></i>Good coding practice</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html"><i class="fa fa-check"></i>Version control with <code>git</code> and GitHub</a>
-<ul>
+<li class="chapter" data-level="" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html"><i class="fa fa-check"></i>Version control with <code>git</code> and GitHub</a><ul>
 <li class="chapter" data-level="" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#setting-up"><i class="fa fa-check"></i>Setting up</a></li>
 <li class="chapter" data-level="" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#cloning-a-repository-from-github-using-rstudio"><i class="fa fa-check"></i>Cloning a repository from <code>GitHub</code> using <code>RStudio</code></a></li>
 <li class="chapter" data-level="" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#commiting-and-pushing-changes"><i class="fa fa-check"></i>Commiting and pushing changes</a></li>
 <li class="chapter" data-level="" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#system-specific-hurdles"><i class="fa fa-check"></i>System specific hurdles</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="respectful-handling-of-data.html"><a href="respectful-handling-of-data.html"><i class="fa fa-check"></i>Respectful Handling of Data</a>
-<ul>
+<li class="chapter" data-level="" data-path="respectful-handling-of-data.html"><a href="respectful-handling-of-data.html"><i class="fa fa-check"></i>Respectful Handling of Data</a><ul>
 <li class="chapter" data-level="" data-path="respectful-handling-of-data.html"><a href="respectful-handling-of-data.html#data-sovereignty"><i class="fa fa-check"></i>Data sovereignty</a></li>
 <li class="chapter" data-level="" data-path="respectful-handling-of-data.html"><a href="respectful-handling-of-data.html#māori-data-sovereignty-principles"><i class="fa fa-check"></i>Māori Data Sovereignty principles</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="awareness-of-consequences.html"><a href="awareness-of-consequences.html"><i class="fa fa-check"></i>Awareness of Consequences</a>
-<ul>
+<li class="chapter" data-level="" data-path="awareness-of-consequences.html"><a href="awareness-of-consequences.html"><i class="fa fa-check"></i>Awareness of Consequences</a><ul>
 <li class="chapter" data-level="" data-path="awareness-of-consequences.html"><a href="awareness-of-consequences.html#case-study"><i class="fa fa-check"></i>Case study</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i>Data Visualization</a>
-<ul>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i>Data Visualization</a><ul>
 <li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#exploratory-plots-for-your-own-purposes"><i class="fa fa-check"></i>Exploratory plots (for your own purposes)</a></li>
 <li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#explanatory-plots"><i class="fa fa-check"></i>Explanatory plots</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-2.html"><a href="module-2.html"><i class="fa fa-check"></i>Module 2</a>
-<ul>
-<li class="chapter" data-level="" data-path="permutation-and-randomisation-tests.html"><a href="permutation-and-randomisation-tests.html"><i class="fa fa-check"></i>Permutation and randomisation tests</a>
-<ul>
+<li class="chapter" data-level="" data-path="module-2.html"><a href="module-2.html"><i class="fa fa-check"></i>Module 2</a><ul>
+<li class="chapter" data-level="" data-path="permutation-and-randomisation-tests.html"><a href="permutation-and-randomisation-tests.html"><i class="fa fa-check"></i>Permutation and randomisation tests</a><ul>
 <li class="chapter" data-level="" data-path="permutation-and-randomisation-tests.html"><a href="permutation-and-randomisation-tests.html#a-permutation-test-jackal-mandible-lengths"><i class="fa fa-check"></i>A permutation test: Jackal mandible lengths</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="bootstrap-resampling.html"><a href="bootstrap-resampling.html"><i class="fa fa-check"></i>Bootstrap resampling</a>
-<ul>
+<li class="chapter" data-level="" data-path="bootstrap-resampling.html"><a href="bootstrap-resampling.html"><i class="fa fa-check"></i>Bootstrap resampling</a><ul>
 <li class="chapter" data-level="" data-path="bootstrap-resampling.html"><a href="bootstrap-resampling.html#example-constructing-bootstrap-confidence-intervals"><i class="fa fa-check"></i>Example: constructing bootstrap confidence intervals</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="parametric-hypothesis-testing.html"><a href="parametric-hypothesis-testing.html"><i class="fa fa-check"></i>Parametric hypothesis testing</a>
-<ul>
+<li class="chapter" data-level="" data-path="parametric-hypothesis-testing.html"><a href="parametric-hypothesis-testing.html"><i class="fa fa-check"></i>Parametric hypothesis testing</a><ul>
 <li class="chapter" data-level="" data-path="parametric-hypothesis-testing.html"><a href="parametric-hypothesis-testing.html#the-vocabulary-of-hypothesis-testing"><i class="fa fa-check"></i>The vocabulary of hypothesis testing</a></li>
 <li class="chapter" data-level="" data-path="parametric-hypothesis-testing.html"><a href="parametric-hypothesis-testing.html#example"><i class="fa fa-check"></i>Example</a></li>
 <li class="chapter" data-level="" data-path="parametric-hypothesis-testing.html"><a href="parametric-hypothesis-testing.html#differences-between-two-means"><i class="fa fa-check"></i>Differences between two means</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i>Linear regression</a>
-<ul>
+<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i>Linear regression</a><ul>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#model-formula-syntax-in-r"><i class="fa fa-check"></i>Model formula syntax in <code>R</code></a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#some-mathematical-notation"><i class="fa fa-check"></i>Some mathematical notation</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#modeling-bill-depth"><i class="fa fa-check"></i>Modeling Bill Depth</a></li>
@@ -209,21 +195,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#one-factor-and-a-continuous-variable"><i class="fa fa-check"></i>One factor and a continuous variable</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#interactions"><i class="fa fa-check"></i>Interactions</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html"><i class="fa fa-check"></i>Model diagnostics for a linear model</a>
-<ul>
+<li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html"><i class="fa fa-check"></i>Model diagnostics for a linear model</a><ul>
 <li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html#marginal-predictions"><i class="fa fa-check"></i>Marginal predictions</a></li>
 <li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html#model-selection"><i class="fa fa-check"></i>Model selection</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="inference-for-a-linear-model.html"><a href="inference-for-a-linear-model.html"><i class="fa fa-check"></i>Inference for a linear model</a>
-<ul>
+<li class="chapter" data-level="" data-path="inference-for-a-linear-model.html"><a href="inference-for-a-linear-model.html"><i class="fa fa-check"></i>Inference for a linear model</a><ul>
 <li class="chapter" data-level="" data-path="inference-for-a-linear-model.html"><a href="inference-for-a-linear-model.html#point-prediction"><i class="fa fa-check"></i>Point prediction</a></li>
 <li class="chapter" data-level="" data-path="inference-for-a-linear-model.html"><a href="inference-for-a-linear-model.html#confidence-intervals-for-parameters"><i class="fa fa-check"></i>Confidence intervals for parameters</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-3.html"><a href="module-3.html"><i class="fa fa-check"></i>Module 3</a>
-<ul>
-<li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html"><i class="fa fa-check"></i>Introduction to the design and analysis of experiments</a>
-<ul>
+<li class="chapter" data-level="" data-path="module-3.html"><a href="module-3.html"><i class="fa fa-check"></i>Module 3</a><ul>
+<li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html"><i class="fa fa-check"></i>Introduction to the design and analysis of experiments</a><ul>
 <li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#key-phrases"><i class="fa fa-check"></i>Key phrases</a></li>
 <li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#the-three-key-principles"><i class="fa fa-check"></i>The three key principles:</a></li>
 <li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#replication"><i class="fa fa-check"></i>Replication</a></li>
@@ -231,95 +213,77 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#blocking"><i class="fa fa-check"></i>Blocking</a></li>
 <li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#setting-up-an-experiment"><i class="fa fa-check"></i>Setting up an experiment</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html"><i class="fa fa-check"></i>Some basic experimental designs</a>
-<ul>
+<li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html"><i class="fa fa-check"></i>Some basic experimental designs</a><ul>
 <li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html#completely-randomised-design-crd"><i class="fa fa-check"></i>Completely randomised design (CRD)</a></li>
 <li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html#randomised-complete-block-design-rcbd"><i class="fa fa-check"></i>Randomised complete block design (RCBD)</a></li>
 <li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html#factorial-design"><i class="fa fa-check"></i>Factorial design</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html"><i class="fa fa-check"></i>Modelling experimental data</a>
-<ul>
+<li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html"><i class="fa fa-check"></i>Modelling experimental data</a><ul>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-completely-randomised-design-crd-as-a-linear-model"><i class="fa fa-check"></i>A completely randomised design (CRD) as a linear model</a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#analysis-of-a-crd-in-r"><i class="fa fa-check"></i>Analysis of a CRD in <code>R</code></a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-factorial-experiment-as-a-crd"><i class="fa fa-check"></i>A Factorial experiment (as a CRD)</a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#unqual-replications-unbalanced-design"><i class="fa fa-check"></i>Unqual replications (unbalanced design)</a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#sums-of-squares-ss"><i class="fa fa-check"></i>Sums of squares (<span class="math inline">\(SS\)</span>)</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html"><i class="fa fa-check"></i>Multiple comparisons</a>
-<ul>
+<li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html"><i class="fa fa-check"></i>Multiple comparisons</a><ul>
 <li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html#adjustments-for-multiple-testing"><i class="fa fa-check"></i>Adjustments for multiple testing</a></li>
 <li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html#classification-of-multiple-hypothesis-tests"><i class="fa fa-check"></i>Classification of multiple hypothesis tests</a></li>
 <li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html#multiple-comparison-procedures"><i class="fa fa-check"></i>Multiple comparison procedures</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html"><i class="fa fa-check"></i>Linear mixed-effect models (LMMs)</a>
-<ul>
+<li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html"><i class="fa fa-check"></i>Linear mixed-effect models (LMMs)</a><ul>
 <li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html#a-randomised-controlled-block-design-rcbd"><i class="fa fa-check"></i>A Randomised Controlled Block Design (RCBD)</a></li>
 <li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html#a-split-plot-design"><i class="fa fa-check"></i>A Split-plot design</a></li>
 <li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html#a-repeated-measures-design"><i class="fa fa-check"></i>A repeated measures design</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-4.html"><a href="module-4.html"><i class="fa fa-check"></i>Module 4</a>
-<ul>
+<li class="chapter" data-level="" data-path="module-4.html"><a href="module-4.html"><i class="fa fa-check"></i>Module 4</a><ul>
 <li class="chapter" data-level="" data-path="introduction-to-generalised-linear-models-glms.html"><a href="introduction-to-generalised-linear-models-glms.html"><i class="fa fa-check"></i>Introduction to generalised linear models (GLMs)</a></li>
-<li class="chapter" data-level="" data-path="poisson-regression.html"><a href="poisson-regression.html"><i class="fa fa-check"></i>Poisson regression</a>
-<ul>
+<li class="chapter" data-level="" data-path="poisson-regression.html"><a href="poisson-regression.html"><i class="fa fa-check"></i>Poisson regression</a><ul>
 <li class="chapter" data-level="" data-path="poisson-regression.html"><a href="poisson-regression.html#an-example-bird-abundance"><i class="fa fa-check"></i>An example: bird abundance</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i>Logistic regression</a>
-<ul>
+<li class="chapter" data-level="" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i>Logistic regression</a><ul>
 <li class="chapter" data-level="" data-path="logistic-regression.html"><a href="logistic-regression.html#an-example-lobsters"><i class="fa fa-check"></i>An example: lobsters</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="model-diagnostics.html"><a href="model-diagnostics.html"><i class="fa fa-check"></i>Model diagnostics</a>
-<ul>
+<li class="chapter" data-level="" data-path="model-diagnostics.html"><a href="model-diagnostics.html"><i class="fa fa-check"></i>Model diagnostics</a><ul>
 <li class="chapter" data-level="" data-path="model-diagnostics.html"><a href="model-diagnostics.html#residuals"><i class="fa fa-check"></i>Residuals</a></li>
 <li class="chapter" data-level="" data-path="model-diagnostics.html"><a href="model-diagnostics.html#the-quantile-residual-q-q-plot"><i class="fa fa-check"></i>The quantile residual Q-Q plot</a></li>
 <li class="chapter" data-level="" data-path="model-diagnostics.html"><a href="model-diagnostics.html#deviance-using-the-chi-squared-approach"><i class="fa fa-check"></i>Deviance (using the chi-squared approach)</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="a-summary-of-glms.html"><a href="a-summary-of-glms.html"><i class="fa fa-check"></i>A summary of GLMs</a></li>
-<li class="chapter" data-level="" data-path="generalised-linear-mixed-effects-models-glmmms.html"><a href="generalised-linear-mixed-effects-models-glmmms.html"><i class="fa fa-check"></i>Generalised linear mixed-effects models (GLMMMs)</a>
-<ul>
+<li class="chapter" data-level="" data-path="generalised-linear-mixed-effects-models-glmmms.html"><a href="generalised-linear-mixed-effects-models-glmmms.html"><i class="fa fa-check"></i>Generalised linear mixed-effects models (GLMMMs)</a><ul>
 <li class="chapter" data-level="" data-path="generalised-linear-mixed-effects-models-glmmms.html"><a href="generalised-linear-mixed-effects-models-glmmms.html#fitting-a-glmm"><i class="fa fa-check"></i>Fitting a GLMM</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-5.html"><a href="module-5.html"><i class="fa fa-check"></i>Module 5</a>
-<ul>
-<li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i>Clustering</a>
-<ul>
+<li class="chapter" data-level="" data-path="module-5.html"><a href="module-5.html"><i class="fa fa-check"></i>Module 5</a><ul>
+<li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i>Clustering</a><ul>
 <li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#divisive-partitioning-methods."><i class="fa fa-check"></i>Divisive (partitioning) methods.</a></li>
 <li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#k-means-an-example-using-the-palmerpenguins-data"><i class="fa fa-check"></i>K-means: an example using the <code>palmerpenguins</code> data</a></li>
 <li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#hierarchical-agglomerative-clustering."><i class="fa fa-check"></i>Hierarchical agglomerative clustering.</a></li>
 <li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#hierarchical-clustering-an-example"><i class="fa fa-check"></i>Hierarchical clustering: an example</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="principal-component-analysis-pca.html"><a href="principal-component-analysis-pca.html"><i class="fa fa-check"></i>Principal Component Analysis (PCA)</a>
-<ul>
+<li class="chapter" data-level="" data-path="principal-component-analysis-pca.html"><a href="principal-component-analysis-pca.html"><i class="fa fa-check"></i>Principal Component Analysis (PCA)</a><ul>
 <li class="chapter" data-level="" data-path="principal-component-analysis-pca.html"><a href="principal-component-analysis-pca.html#examples-in-r"><i class="fa fa-check"></i>Examples in <code>R</code></a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html"><i class="fa fa-check"></i>Multidimensional Scaling (MDS)</a>
-<ul>
+<li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html"><i class="fa fa-check"></i>Multidimensional Scaling (MDS)</a><ul>
 <li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html#metric-scaling"><i class="fa fa-check"></i>Metric Scaling</a></li>
 <li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html#correspondence-analysis-ca"><i class="fa fa-check"></i>Correspondence Analysis (CA)</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="non-metric-multidimensional-scaling.html"><a href="non-metric-multidimensional-scaling.html"><i class="fa fa-check"></i>Non-metric Multidimensional Scaling</a>
-<ul>
+<li class="chapter" data-level="" data-path="non-metric-multidimensional-scaling.html"><a href="non-metric-multidimensional-scaling.html"><i class="fa fa-check"></i>Non-metric Multidimensional Scaling</a><ul>
 <li class="chapter" data-level="" data-path="non-metric-multidimensional-scaling.html"><a href="non-metric-multidimensional-scaling.html#examples-in-r-2"><i class="fa fa-check"></i>Examples in <code>R</code></a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html"><i class="fa fa-check"></i>Linear Discriminant Analysis (LDA)</a>
-<ul>
+<li class="chapter" data-level="" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html"><i class="fa fa-check"></i>Linear Discriminant Analysis (LDA)</a><ul>
 <li class="chapter" data-level="" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html#example-in-r"><i class="fa fa-check"></i>Example in <code>R</code></a></li>
 <li class="chapter" data-level="" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html#prediction"><i class="fa fa-check"></i>Prediction</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-6.html"><a href="module-6.html"><i class="fa fa-check"></i>Module 6</a>
-<ul>
-<li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html"><i class="fa fa-check"></i>Least Squares Estimation</a>
-<ul>
+<li class="chapter" data-level="" data-path="module-6.html"><a href="module-6.html"><i class="fa fa-check"></i>Module 6</a><ul>
+<li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html"><i class="fa fa-check"></i>Least Squares Estimation</a><ul>
 <li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html#some-basic-matrix-algebra"><i class="fa fa-check"></i>Some basic matrix algebra</a></li>
 <li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html#linear-least-squares"><i class="fa fa-check"></i>Linear least squares</a></li>
 <li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html#matrix-representation-of-a-crd"><i class="fa fa-check"></i>Matrix representation of a CRD</a></li>
 <li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html#a-numeric-example"><i class="fa fa-check"></i>A numeric example</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html"><i class="fa fa-check"></i>Maximum likelihood estimation</a>
-<ul>
+<li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html"><i class="fa fa-check"></i>Maximum likelihood estimation</a><ul>
 <li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#differeniation-rules"><i class="fa fa-check"></i>Differeniation rules</a></li>
 <li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#logarithm-rules"><i class="fa fa-check"></i>Logarithm rules</a></li>
 <li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#maximum-likelihood-estimation-for-a-binomial-distribution"><i class="fa fa-check"></i>Maximum likelihood estimation for a Binomial distribution</a></li>
@@ -328,8 +292,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#maximum-likelihood-estimation-for-a-poisson-distribution"><i class="fa fa-check"></i>Maximum likelihood estimation for a Poisson distribution</a></li>
 <li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#maximum-likelihood-estimation-for-a-continuous-random-variable"><i class="fa fa-check"></i>Maximum likelihood estimation for a continuous random variable</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html"><i class="fa fa-check"></i>Introduction to Bayesian statistics</a>
-<ul>
+<li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html"><i class="fa fa-check"></i>Introduction to Bayesian statistics</a><ul>
 <li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html#conditional-probability"><i class="fa fa-check"></i>Conditional probability</a></li>
 <li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html#bayes-rule"><i class="fa fa-check"></i>Bayes’ rule</a></li>
 </ul></li>
@@ -398,36 +361,36 @@ clusters. This is repeated until there is no further improvement.</li>
 </div>
 <div id="k-means-an-example-using-the-palmerpenguins-data" class="section level3 hasAnchor">
 <h3>K-means: an example using the <code>palmerpenguins</code> data<a href="clustering.html#k-means-an-example-using-the-palmerpenguins-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="clustering.html#cb148-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb148-2"><a href="clustering.html#cb148-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
-<span id="cb148-3"><a href="clustering.html#cb148-3" aria-hidden="true" tabindex="-1"></a><span class="do">## getting rid of NAs</span></span>
-<span id="cb148-4"><a href="clustering.html#cb148-4" aria-hidden="true" tabindex="-1"></a>penguins_nafree <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>()</span></code></pre></div>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="clustering.html#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="do">## introducing a new package GGally, please install</span></span>
-<span id="cb149-2"><a href="clustering.html#cb149-2" aria-hidden="true" tabindex="-1"></a><span class="do">## using install.packages(&quot;GGally&quot;)</span></span>
-<span id="cb149-3"><a href="clustering.html#cb149-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GGally)</span>
-<span id="cb149-4"><a href="clustering.html#cb149-4" aria-hidden="true" tabindex="-1"></a>penguins_nafree <span class="sc">%&gt;%</span></span>
-<span id="cb149-5"><a href="clustering.html#cb149-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(species, <span class="fu">where</span>(is.numeric)) <span class="sc">%&gt;%</span> </span>
-<span id="cb149-6"><a href="clustering.html#cb149-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggpairs</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="st">&quot;flipper_length_mm&quot;</span>, <span class="st">&quot;body_mass_g&quot;</span>, </span>
-<span id="cb149-7"><a href="clustering.html#cb149-7" aria-hidden="true" tabindex="-1"></a>                     <span class="st">&quot;bill_length_mm&quot;</span>, <span class="st">&quot;bill_depth_mm&quot;</span>)) </span></code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb148-1" title="1"></a>
+<a class="sourceLine" id="cb148-2" title="2"><span class="kw">library</span>(palmerpenguins)</a>
+<a class="sourceLine" id="cb148-3" title="3"><span class="co">## getting rid of NAs</span></a>
+<a class="sourceLine" id="cb148-4" title="4">penguins_nafree &lt;-<span class="st"> </span>penguins <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">drop_na</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb149-1" title="1"><span class="co">## introducing a new package GGally, please install</span></a>
+<a class="sourceLine" id="cb149-2" title="2"><span class="co">## using install.packages(&quot;GGally&quot;)</span></a>
+<a class="sourceLine" id="cb149-3" title="3"><span class="kw">library</span>(GGally)</a>
+<a class="sourceLine" id="cb149-4" title="4">penguins_nafree <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb149-5" title="5"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(species, <span class="kw">where</span>(is.numeric)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb149-6" title="6"><span class="st">  </span><span class="kw">ggpairs</span>(<span class="dt">columns =</span> <span class="kw">c</span>(<span class="st">&quot;flipper_length_mm&quot;</span>, <span class="st">&quot;body_mass_g&quot;</span>, </a>
+<a class="sourceLine" id="cb149-7" title="7">                     <span class="st">&quot;bill_length_mm&quot;</span>, <span class="st">&quot;bill_depth_mm&quot;</span>)) </a></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-190-1.png" width="672" /></p>
 <p>We see that a lot of these variables (e.g., <code>flipper_length_mm</code>, <code>body_mass_g</code>, and <code>bill_length_mm</code>) are relatively strongly (positively) related to one another. Could they actually be telling us the same information? Combined we could think of these three variables all telling us a little about <em>bigness</em> of penguin. Is there a way we could reduce these three variables, into say 1, to represent the <em>bigness</em> of a penguin. We may not need <em>all</em> the information (variation) captured by these variables, but could get away with fewer <em>new uncorrelated</em> variables that represent basically the same information (e.g., penguin <em>bigness</em>), thereby, <strong>reducing the dimensionality of the data</strong> (more on this later).</p>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="clustering.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="do">## create a data frame of what we&#39;re interested in</span></span>
-<span id="cb150-2"><a href="clustering.html#cb150-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> penguins_nafree <span class="sc">%&gt;%</span></span>
-<span id="cb150-3"><a href="clustering.html#cb150-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">where</span>(is.numeric), <span class="sc">-</span>year)</span></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb150-1" title="1"><span class="co">## create a data frame of what we&#39;re interested in</span></a>
+<a class="sourceLine" id="cb150-2" title="2">df &lt;-<span class="st"> </span>penguins_nafree <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb150-3" title="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="kw">where</span>(is.numeric), <span class="op">-</span>year)</a></code></pre></div>
 <p>We use the <code>kmeans()</code> function.</p>
 <p>The first argument of <code>kmeans()</code> should be the dataset you wish to cluster. Below we use data frame <code>df</code>, the penguin data discussed above. But how many clusters do we choose? Let’s try 1 to 5… (i.e., using the <code>centers</code> argument). Setting <code>nstart = 25</code> means that R will try 25 different random starting assignments and then select the best results corresponding to the one with the lowest within cluster variation.</p>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="clustering.html#cb151-1" aria-hidden="true" tabindex="-1"></a><span class="do">## set the seed so we all start off in the same place</span></span>
-<span id="cb151-2"><a href="clustering.html#cb151-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">4321</span>)</span>
-<span id="cb151-3"><a href="clustering.html#cb151-3" aria-hidden="true" tabindex="-1"></a><span class="do">## one cluster</span></span>
-<span id="cb151-4"><a href="clustering.html#cb151-4" aria-hidden="true" tabindex="-1"></a>k1 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(df, <span class="at">centers =</span> <span class="dv">1</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span>
-<span id="cb151-5"><a href="clustering.html#cb151-5" aria-hidden="true" tabindex="-1"></a><span class="do">## two clusters</span></span>
-<span id="cb151-6"><a href="clustering.html#cb151-6" aria-hidden="true" tabindex="-1"></a>k2 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(df, <span class="at">centers =</span> <span class="dv">2</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span>
-<span id="cb151-7"><a href="clustering.html#cb151-7" aria-hidden="true" tabindex="-1"></a><span class="do">## three clusters</span></span>
-<span id="cb151-8"><a href="clustering.html#cb151-8" aria-hidden="true" tabindex="-1"></a>k3 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(df, <span class="at">centers =</span> <span class="dv">3</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span>
-<span id="cb151-9"><a href="clustering.html#cb151-9" aria-hidden="true" tabindex="-1"></a><span class="do">## four clusters</span></span>
-<span id="cb151-10"><a href="clustering.html#cb151-10" aria-hidden="true" tabindex="-1"></a>k4 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(df, <span class="at">centers =</span> <span class="dv">4</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span>
-<span id="cb151-11"><a href="clustering.html#cb151-11" aria-hidden="true" tabindex="-1"></a><span class="do">## five clusters</span></span>
-<span id="cb151-12"><a href="clustering.html#cb151-12" aria-hidden="true" tabindex="-1"></a>k5 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(df, <span class="at">centers =</span> <span class="dv">5</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb151-1" title="1"><span class="co">## set the seed so we all start off in the same place</span></a>
+<a class="sourceLine" id="cb151-2" title="2"><span class="kw">set.seed</span>(<span class="dv">4321</span>)</a>
+<a class="sourceLine" id="cb151-3" title="3"><span class="co">## one cluster</span></a>
+<a class="sourceLine" id="cb151-4" title="4">k1 &lt;-<span class="st"> </span><span class="kw">kmeans</span>(df, <span class="dt">centers =</span> <span class="dv">1</span>, <span class="dt">nstart =</span> <span class="dv">25</span>)</a>
+<a class="sourceLine" id="cb151-5" title="5"><span class="co">## two clusters</span></a>
+<a class="sourceLine" id="cb151-6" title="6">k2 &lt;-<span class="st"> </span><span class="kw">kmeans</span>(df, <span class="dt">centers =</span> <span class="dv">2</span>, <span class="dt">nstart =</span> <span class="dv">25</span>)</a>
+<a class="sourceLine" id="cb151-7" title="7"><span class="co">## three clusters</span></a>
+<a class="sourceLine" id="cb151-8" title="8">k3 &lt;-<span class="st"> </span><span class="kw">kmeans</span>(df, <span class="dt">centers =</span> <span class="dv">3</span>, <span class="dt">nstart =</span> <span class="dv">25</span>)</a>
+<a class="sourceLine" id="cb151-9" title="9"><span class="co">## four clusters</span></a>
+<a class="sourceLine" id="cb151-10" title="10">k4 &lt;-<span class="st"> </span><span class="kw">kmeans</span>(df, <span class="dt">centers =</span> <span class="dv">4</span>, <span class="dt">nstart =</span> <span class="dv">25</span>)</a>
+<a class="sourceLine" id="cb151-11" title="11"><span class="co">## five clusters</span></a>
+<a class="sourceLine" id="cb151-12" title="12">k5 &lt;-<span class="st"> </span><span class="kw">kmeans</span>(df, <span class="dt">centers =</span> <span class="dv">5</span>, <span class="dt">nstart =</span> <span class="dv">25</span>)</a></code></pre></div>
 <p>The <code>kmeans()</code> function returns a list of components:</p>
 <ul>
 <li><code>cluster</code>, integers indicating the cluster to which each observation is allocated</li>
@@ -442,47 +405,47 @@ clusters. This is repeated until there is no further improvement.</li>
 <h4>Choosing the number of clusters<a href="clustering.html#choosing-the-number-of-clusters" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>We have an idea there may be 3 clusters, perhaps, but how do we know this is the best fit? Remember it’s a <strong>subjective choice</strong> and we’ll be looking at a few pointers</p>
 <p><strong>Visual inspection</strong> method</p>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="clustering.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(factoextra) <span class="do">## a new package for kmeans viz, please install</span></span>
-<span id="cb152-2"><a href="clustering.html#cb152-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">fviz_cluster</span>(k1, <span class="at">data =</span> df)</span>
-<span id="cb152-3"><a href="clustering.html#cb152-3" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">fviz_cluster</span>(k2, <span class="at">data =</span> df)</span>
-<span id="cb152-4"><a href="clustering.html#cb152-4" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">fviz_cluster</span>(k3, <span class="at">data =</span> df)</span>
-<span id="cb152-5"><a href="clustering.html#cb152-5" aria-hidden="true" tabindex="-1"></a>p4 <span class="ot">&lt;-</span> <span class="fu">fviz_cluster</span>(k4, <span class="at">data =</span> df)</span>
-<span id="cb152-6"><a href="clustering.html#cb152-6" aria-hidden="true" tabindex="-1"></a>p5 <span class="ot">&lt;-</span> <span class="fu">fviz_cluster</span>(k5, <span class="at">data =</span> df)</span>
-<span id="cb152-7"><a href="clustering.html#cb152-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb152-8"><a href="clustering.html#cb152-8" aria-hidden="true" tabindex="-1"></a><span class="do">## for arranging plots</span></span>
-<span id="cb152-9"><a href="clustering.html#cb152-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork) </span>
-<span id="cb152-10"><a href="clustering.html#cb152-10" aria-hidden="true" tabindex="-1"></a>(p1<span class="sc">|</span> p2<span class="sc">|</span> p3)<span class="sc">/</span> (p4 <span class="sc">|</span> p5)</span></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb152-1" title="1"><span class="kw">library</span>(factoextra) <span class="co">## a new package for kmeans viz, please install</span></a>
+<a class="sourceLine" id="cb152-2" title="2">p1 &lt;-<span class="st"> </span><span class="kw">fviz_cluster</span>(k1, <span class="dt">data =</span> df)</a>
+<a class="sourceLine" id="cb152-3" title="3">p2 &lt;-<span class="st"> </span><span class="kw">fviz_cluster</span>(k2, <span class="dt">data =</span> df)</a>
+<a class="sourceLine" id="cb152-4" title="4">p3 &lt;-<span class="st"> </span><span class="kw">fviz_cluster</span>(k3, <span class="dt">data =</span> df)</a>
+<a class="sourceLine" id="cb152-5" title="5">p4 &lt;-<span class="st"> </span><span class="kw">fviz_cluster</span>(k4, <span class="dt">data =</span> df)</a>
+<a class="sourceLine" id="cb152-6" title="6">p5 &lt;-<span class="st"> </span><span class="kw">fviz_cluster</span>(k5, <span class="dt">data =</span> df)</a>
+<a class="sourceLine" id="cb152-7" title="7"></a>
+<a class="sourceLine" id="cb152-8" title="8"><span class="co">## for arranging plots</span></a>
+<a class="sourceLine" id="cb152-9" title="9"><span class="kw">library</span>(patchwork) </a>
+<a class="sourceLine" id="cb152-10" title="10">(p1<span class="op">|</span><span class="st"> </span>p2<span class="op">|</span><span class="st"> </span>p3)<span class="op">/</span><span class="st"> </span>(p4 <span class="op">|</span><span class="st"> </span>p5)</a></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-193-1.png" width="672" /></p>
 <p>Alternatively, you can use standard pairwise scatter plots to illustrate the clusters compared to the original variables.</p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="clustering.html#cb153-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb153-2"><a href="clustering.html#cb153-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cluster =</span> k3<span class="sc">$</span>cluster,</span>
-<span id="cb153-3"><a href="clustering.html#cb153-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">species =</span> penguins_nafree<span class="sc">$</span>species) <span class="sc">%&gt;%</span></span>
-<span id="cb153-4"><a href="clustering.html#cb153-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(flipper_length_mm, bill_depth_mm, <span class="at">color =</span> <span class="fu">factor</span>(cluster), <span class="at">label =</span> species)) <span class="sc">+</span></span>
-<span id="cb153-5"><a href="clustering.html#cb153-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb153-1" title="1">df <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb153-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">cluster =</span> k3<span class="op">$</span>cluster,</a>
+<a class="sourceLine" id="cb153-3" title="3">         <span class="dt">species =</span> penguins_nafree<span class="op">$</span>species) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb153-4" title="4"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(flipper_length_mm, bill_depth_mm, <span class="dt">color =</span> <span class="kw">factor</span>(cluster), <span class="dt">label =</span> species)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb153-5" title="5"><span class="st">  </span><span class="kw">geom_text</span>()</a></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-194-1.png" width="672" /></p>
 <p><strong>Elbow</strong> method</p>
 <p>Optimal clusters are at the point in which the knee “bends” or in mathematical terms when the marginal total within sum of squares (<code>tot.withinss</code>) for an additional cluster begins to decrease at a linear rate</p>
 <p>This is easier to see via a plot:</p>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="clustering.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_nbclust</span>(df, kmeans, <span class="at">method =</span> <span class="st">&quot;wss&quot;</span>) <span class="sc">+</span></span>
-<span id="cb154-2"><a href="clustering.html#cb154-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">&quot;Elbow method&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb154-1" title="1"><span class="kw">fviz_nbclust</span>(df, kmeans, <span class="dt">method =</span> <span class="st">&quot;wss&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb154-2" title="2"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">subtitle =</span> <span class="st">&quot;Elbow method&quot;</span>)</a></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-195-1.png" width="672" /></p>
 <p>There is a pretty obvious inflection (elbow) at 2 clusters, but maybe at 3 too. We can rule out an optimal number of clusters above 3 as there is then only a minimal marginal reduction in total within sum of squares. However, the model is ambiguous on whether 2 or 3 clusters is optimal…</p>
 <p><strong>Silhouette</strong> method</p>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="clustering.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Silhouette method</span></span>
-<span id="cb155-2"><a href="clustering.html#cb155-2" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_nbclust</span>(df, kmeans, <span class="at">method =</span> <span class="st">&quot;silhouette&quot;</span>)<span class="sc">+</span></span>
-<span id="cb155-3"><a href="clustering.html#cb155-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">&quot;Silhouette method&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb155-1" title="1"><span class="co"># Silhouette method</span></a>
+<a class="sourceLine" id="cb155-2" title="2"><span class="kw">fviz_nbclust</span>(df, kmeans, <span class="dt">method =</span> <span class="st">&quot;silhouette&quot;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb155-3" title="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">subtitle =</span> <span class="st">&quot;Silhouette method&quot;</span>)</a></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-196-1.png" width="672" /></p>
 <p><strong>Gap</strong> method</p>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="clustering.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gap statistic</span></span>
-<span id="cb156-2"><a href="clustering.html#cb156-2" aria-hidden="true" tabindex="-1"></a><span class="co"># recommended value: nboot = 500 for your analysis (it will take a while)</span></span>
-<span id="cb156-3"><a href="clustering.html#cb156-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>) <span class="do">## remove this</span></span>
-<span id="cb156-4"><a href="clustering.html#cb156-4" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_nbclust</span>(df, kmeans, <span class="at">nstart =</span> <span class="dv">25</span>,  <span class="at">method =</span> <span class="st">&quot;gap_stat&quot;</span>, <span class="at">nboot =</span> <span class="dv">50</span>)<span class="sc">+</span></span>
-<span id="cb156-5"><a href="clustering.html#cb156-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">&quot;Gap statistic method&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb156-1" title="1"><span class="co"># Gap statistic</span></a>
+<a class="sourceLine" id="cb156-2" title="2"><span class="co"># recommended value: nboot = 500 for your analysis (it will take a while)</span></a>
+<a class="sourceLine" id="cb156-3" title="3"><span class="kw">set.seed</span>(<span class="dv">123</span>) <span class="co">## remove this</span></a>
+<a class="sourceLine" id="cb156-4" title="4"><span class="kw">fviz_nbclust</span>(df, kmeans, <span class="dt">nstart =</span> <span class="dv">25</span>,  <span class="dt">method =</span> <span class="st">&quot;gap_stat&quot;</span>, <span class="dt">nboot =</span> <span class="dv">50</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb156-5" title="5"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">subtitle =</span> <span class="st">&quot;Gap statistic method&quot;</span>)</a></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-197-1.png" width="672" /></p>
 <p><strong>Basically it’s up to you to collate all the suggestions and make and informed decision</strong></p>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="clustering.html#cb157-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Trying all the cluster indecies AHHHHH</span></span>
-<span id="cb157-2"><a href="clustering.html#cb157-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(NbClust)</span>
-<span id="cb157-3"><a href="clustering.html#cb157-3" aria-hidden="true" tabindex="-1"></a>cluster_30_indexes <span class="ot">&lt;-</span> <span class="fu">NbClust</span>(<span class="at">data =</span> df, <span class="at">distance =</span> <span class="st">&quot;euclidean&quot;</span>, <span class="at">min.nc =</span> <span class="dv">2</span>, <span class="at">max.nc =</span> <span class="dv">9</span>, <span class="at">method =</span> <span class="st">&quot;complete&quot;</span>, <span class="at">index =</span><span class="st">&quot;all&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb157-1" title="1"><span class="co">## Trying all the cluster indecies AHHHHH</span></a>
+<a class="sourceLine" id="cb157-2" title="2"><span class="kw">library</span>(NbClust)</a>
+<a class="sourceLine" id="cb157-3" title="3">cluster_<span class="dv">30</span>_indexes &lt;-<span class="st"> </span><span class="kw">NbClust</span>(<span class="dt">data =</span> df, <span class="dt">distance =</span> <span class="st">&quot;euclidean&quot;</span>, <span class="dt">min.nc =</span> <span class="dv">2</span>, <span class="dt">max.nc =</span> <span class="dv">9</span>, <span class="dt">method =</span> <span class="st">&quot;complete&quot;</span>, <span class="dt">index =</span><span class="st">&quot;all&quot;</span>)</a></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-198-1.png" width="672" /></p>
 <pre><code>## *** : The Hubert index is a graphical method of determining the number of clusters.
 ##                 In the plot of Hubert index, we seek a significant knee that corresponds to a 
@@ -567,13 +530,15 @@ of clusters. Its chief flaw is a tendency to form clusters of equal size, regard
 <h3>Hierarchical clustering: an example<a href="clustering.html#hierarchical-clustering-an-example" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><strong>In summary</strong></p>
 <ul>
-<li>Start with a matrix of distances, (or similarities) between pairs of observations (cases)</li>
+<li>Start with a matrix of distances, (or similarities) between pairs of observations (cases)
+<ul>
 <li>Choice of distance measure key first step</li>
 <li>Algorithm:
 <ul>
 <li>Initial <span class="math inline">\(n\)</span> singleton clusters</li>
 <li>Scan distance matrix for two closest individuals, group them together</li>
 <li>Compute distance from cluster of size 2 to remaining <span class="math inline">\(n-1\)</span> singleton clusters</li>
+</ul></li>
 </ul></li>
 </ul>
 <table>
@@ -615,70 +580,70 @@ of clusters. Its chief flaw is a tendency to form clusters of equal size, regard
 <div id="ants" class="section level4 hasAnchor">
 <h4>Ants<a href="clustering.html#ants" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Data were collected on the distribution of ant species at 30 sites across the Auckland region using pitfall traps. Twenty pitfall traps at each site were left open for ten days and the number of individuals captured counted for the four most abundant species: <em>Nylanderia spp</em>, <em>Pheidole rugosula</em>, <em>Tetramorium grassii</em>, and <em>Pachycondyla sp</em>.</p>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="clustering.html#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb160-2"><a href="clustering.html#cb160-2" aria-hidden="true" tabindex="-1"></a>ants <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/pitfalls.csv&quot;</span>)</span>
-<span id="cb160-3"><a href="clustering.html#cb160-3" aria-hidden="true" tabindex="-1"></a>ants</span>
-<span id="cb160-4"><a href="clustering.html#cb160-4" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 30 × 8</span></span>
-<span id="cb160-5"><a href="clustering.html#cb160-5" aria-hidden="true" tabindex="-1"></a><span class="do">##    Location Habitat Month Site    Nyl   Phe   Tet   Pac</span></span>
-<span id="cb160-6"><a href="clustering.html#cb160-6" aria-hidden="true" tabindex="-1"></a><span class="do">##    &lt;chr&gt;    &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></span>
-<span id="cb160-7"><a href="clustering.html#cb160-7" aria-hidden="true" tabindex="-1"></a><span class="do">##  1 West     Forest      1 WF1       0     0     0   157</span></span>
-<span id="cb160-8"><a href="clustering.html#cb160-8" aria-hidden="true" tabindex="-1"></a><span class="do">##  2 West     Grass       1 WG1       0     2     7    37</span></span>
-<span id="cb160-9"><a href="clustering.html#cb160-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  3 West     Urban       1 WU1       3     7     0     0</span></span>
-<span id="cb160-10"><a href="clustering.html#cb160-10" aria-hidden="true" tabindex="-1"></a><span class="do">##  4 West     Forest      2 WF2       0     0     0    31</span></span>
-<span id="cb160-11"><a href="clustering.html#cb160-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  5 West     Grass       2 WG2       5     0    25     0</span></span>
-<span id="cb160-12"><a href="clustering.html#cb160-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  6 West     Forest      3 WF3       0     0     0    21</span></span>
-<span id="cb160-13"><a href="clustering.html#cb160-13" aria-hidden="true" tabindex="-1"></a><span class="do">##  7 West     Grass       3 WG3       0     3     2     1</span></span>
-<span id="cb160-14"><a href="clustering.html#cb160-14" aria-hidden="true" tabindex="-1"></a><span class="do">##  8 West     Urban       3 WU3       0     1     0     0</span></span>
-<span id="cb160-15"><a href="clustering.html#cb160-15" aria-hidden="true" tabindex="-1"></a><span class="do">##  9 Central  Forest      1 CF1       0     0     0     1</span></span>
-<span id="cb160-16"><a href="clustering.html#cb160-16" aria-hidden="true" tabindex="-1"></a><span class="do">## 10 Central  Grass       1 CG1       0     3    22     2</span></span>
-<span id="cb160-17"><a href="clustering.html#cb160-17" aria-hidden="true" tabindex="-1"></a><span class="do">## # ℹ 20 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb160-1" title="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb160-2" title="2">ants &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/pitfalls.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb160-3" title="3">ants</a>
+<a class="sourceLine" id="cb160-4" title="4"><span class="co">## # A tibble: 30 × 8</span></a>
+<a class="sourceLine" id="cb160-5" title="5"><span class="co">##    Location Habitat Month Site    Nyl   Phe   Tet   Pac</span></a>
+<a class="sourceLine" id="cb160-6" title="6"><span class="co">##    &lt;chr&gt;    &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb160-7" title="7"><span class="co">##  1 West     Forest      1 WF1       0     0     0   157</span></a>
+<a class="sourceLine" id="cb160-8" title="8"><span class="co">##  2 West     Grass       1 WG1       0     2     7    37</span></a>
+<a class="sourceLine" id="cb160-9" title="9"><span class="co">##  3 West     Urban       1 WU1       3     7     0     0</span></a>
+<a class="sourceLine" id="cb160-10" title="10"><span class="co">##  4 West     Forest      2 WF2       0     0     0    31</span></a>
+<a class="sourceLine" id="cb160-11" title="11"><span class="co">##  5 West     Grass       2 WG2       5     0    25     0</span></a>
+<a class="sourceLine" id="cb160-12" title="12"><span class="co">##  6 West     Forest      3 WF3       0     0     0    21</span></a>
+<a class="sourceLine" id="cb160-13" title="13"><span class="co">##  7 West     Grass       3 WG3       0     3     2     1</span></a>
+<a class="sourceLine" id="cb160-14" title="14"><span class="co">##  8 West     Urban       3 WU3       0     1     0     0</span></a>
+<a class="sourceLine" id="cb160-15" title="15"><span class="co">##  9 Central  Forest      1 CF1       0     0     0     1</span></a>
+<a class="sourceLine" id="cb160-16" title="16"><span class="co">## 10 Central  Grass       1 CG1       0     3    22     2</span></a>
+<a class="sourceLine" id="cb160-17" title="17"><span class="co">## # ℹ 20 more rows</span></a></code></pre></div>
 <p>Data are species counts, so we will use Bray Curtis measure:</p>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="clustering.html#cb161-1" aria-hidden="true" tabindex="-1"></a>pitfall.dist <span class="ot">&lt;-</span> vegan<span class="sc">::</span><span class="fu">vegdist</span>(ants[,<span class="dv">5</span><span class="sc">:</span><span class="dv">8</span>], <span class="at">method =</span> <span class="st">&quot;bray&quot;</span>, <span class="at">binary =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb161-2"><a href="clustering.html#cb161-2" aria-hidden="true" tabindex="-1"></a>factoextra<span class="sc">::</span><span class="fu">fviz_dist</span>(pitfall.dist)</span></code></pre></div>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb161-1" title="1">pitfall.dist &lt;-<span class="st"> </span>vegan<span class="op">::</span><span class="kw">vegdist</span>(ants[,<span class="dv">5</span><span class="op">:</span><span class="dv">8</span>], <span class="dt">method =</span> <span class="st">&quot;bray&quot;</span>, <span class="dt">binary =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb161-2" title="2">factoextra<span class="op">::</span><span class="kw">fviz_dist</span>(pitfall.dist)</a></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-200-1.png" width="672" /></p>
 </div>
 <div id="single-linkage" class="section level4 hasAnchor">
 <h4>Single-linkage<a href="clustering.html#single-linkage" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="clustering.html#cb162-1" aria-hidden="true" tabindex="-1"></a>single <span class="ot">&lt;-</span> ants[,<span class="dv">5</span><span class="sc">:</span><span class="dv">8</span>] <span class="sc">%&gt;%</span></span>
-<span id="cb162-2"><a href="clustering.html#cb162-2" aria-hidden="true" tabindex="-1"></a>  vegan<span class="sc">::</span><span class="fu">vegdist</span>(., <span class="at">method =</span> <span class="st">&quot;bray&quot;</span>, <span class="at">binary =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb162-3"><a href="clustering.html#cb162-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hclust</span>(<span class="at">method =</span> <span class="st">&quot;single&quot;</span>)</span>
-<span id="cb162-4"><a href="clustering.html#cb162-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(single, <span class="at">labels =</span> ants<span class="sc">$</span>Site)</span></code></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb162-1" title="1">single &lt;-<span class="st"> </span>ants[,<span class="dv">5</span><span class="op">:</span><span class="dv">8</span>] <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb162-2" title="2"><span class="st">  </span>vegan<span class="op">::</span><span class="kw">vegdist</span>(., <span class="dt">method =</span> <span class="st">&quot;bray&quot;</span>, <span class="dt">binary =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb162-3" title="3"><span class="st">  </span><span class="kw">hclust</span>(<span class="dt">method =</span> <span class="st">&quot;single&quot;</span>)</a>
+<a class="sourceLine" id="cb162-4" title="4"><span class="kw">plot</span>(single, <span class="dt">labels =</span> ants<span class="op">$</span>Site)</a></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-201-1.png" width="672" /></p>
 </div>
 <div id="maximum-linkage" class="section level4 hasAnchor">
 <h4>Maximum linkage<a href="clustering.html#maximum-linkage" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="clustering.html#cb163-1" aria-hidden="true" tabindex="-1"></a>complete <span class="ot">&lt;-</span> ants[,<span class="dv">5</span><span class="sc">:</span><span class="dv">8</span>] <span class="sc">%&gt;%</span></span>
-<span id="cb163-2"><a href="clustering.html#cb163-2" aria-hidden="true" tabindex="-1"></a>  vegan<span class="sc">::</span><span class="fu">vegdist</span>(., <span class="at">method =</span> <span class="st">&quot;bray&quot;</span>, <span class="at">binary =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb163-3"><a href="clustering.html#cb163-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hclust</span>(<span class="at">method =</span> <span class="st">&quot;complete&quot;</span>)</span>
-<span id="cb163-4"><a href="clustering.html#cb163-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(complete, <span class="at">labels =</span> ants<span class="sc">$</span>Site)</span></code></pre></div>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb163-1" title="1">complete &lt;-<span class="st"> </span>ants[,<span class="dv">5</span><span class="op">:</span><span class="dv">8</span>] <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb163-2" title="2"><span class="st">  </span>vegan<span class="op">::</span><span class="kw">vegdist</span>(., <span class="dt">method =</span> <span class="st">&quot;bray&quot;</span>, <span class="dt">binary =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb163-3" title="3"><span class="st">  </span><span class="kw">hclust</span>(<span class="dt">method =</span> <span class="st">&quot;complete&quot;</span>)</a>
+<a class="sourceLine" id="cb163-4" title="4"><span class="kw">plot</span>(complete, <span class="dt">labels =</span> ants<span class="op">$</span>Site)</a></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-202-1.png" width="672" /></p>
 </div>
 <div id="average-linkage-upgma" class="section level4 hasAnchor">
 <h4>Average linkage (UPGMA)<a href="clustering.html#average-linkage-upgma" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="clustering.html#cb164-1" aria-hidden="true" tabindex="-1"></a>average <span class="ot">&lt;-</span> ants[,<span class="dv">5</span><span class="sc">:</span><span class="dv">8</span>] <span class="sc">%&gt;%</span></span>
-<span id="cb164-2"><a href="clustering.html#cb164-2" aria-hidden="true" tabindex="-1"></a>  vegan<span class="sc">::</span><span class="fu">vegdist</span>(., <span class="at">method =</span> <span class="st">&quot;bray&quot;</span>, <span class="at">binary =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb164-3"><a href="clustering.html#cb164-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hclust</span>(<span class="at">method =</span> <span class="st">&quot;average&quot;</span>)</span>
-<span id="cb164-4"><a href="clustering.html#cb164-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(average, <span class="at">labels =</span> ants<span class="sc">$</span>Site)</span></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb164-1" title="1">average &lt;-<span class="st"> </span>ants[,<span class="dv">5</span><span class="op">:</span><span class="dv">8</span>] <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb164-2" title="2"><span class="st">  </span>vegan<span class="op">::</span><span class="kw">vegdist</span>(., <span class="dt">method =</span> <span class="st">&quot;bray&quot;</span>, <span class="dt">binary =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb164-3" title="3"><span class="st">  </span><span class="kw">hclust</span>(<span class="dt">method =</span> <span class="st">&quot;average&quot;</span>)</a>
+<a class="sourceLine" id="cb164-4" title="4"><span class="kw">plot</span>(average, <span class="dt">labels =</span> ants<span class="op">$</span>Site)</a></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-203-1.png" width="672" /></p>
 </div>
 <div id="wards-method" class="section level4 hasAnchor">
 <h4>Ward’s method<a href="clustering.html#wards-method" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="clustering.html#cb165-1" aria-hidden="true" tabindex="-1"></a>ward <span class="ot">&lt;-</span> ants[,<span class="dv">5</span><span class="sc">:</span><span class="dv">8</span>] <span class="sc">%&gt;%</span></span>
-<span id="cb165-2"><a href="clustering.html#cb165-2" aria-hidden="true" tabindex="-1"></a>  vegan<span class="sc">::</span><span class="fu">vegdist</span>(., <span class="at">method =</span> <span class="st">&quot;bray&quot;</span>, <span class="at">binary =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb165-3"><a href="clustering.html#cb165-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hclust</span>(<span class="at">method =</span> <span class="st">&quot;ward.D&quot;</span>)</span>
-<span id="cb165-4"><a href="clustering.html#cb165-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ward, <span class="at">labels =</span> ants<span class="sc">$</span>Site)</span></code></pre></div>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb165-1" title="1">ward &lt;-<span class="st"> </span>ants[,<span class="dv">5</span><span class="op">:</span><span class="dv">8</span>] <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb165-2" title="2"><span class="st">  </span>vegan<span class="op">::</span><span class="kw">vegdist</span>(., <span class="dt">method =</span> <span class="st">&quot;bray&quot;</span>, <span class="dt">binary =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb165-3" title="3"><span class="st">  </span><span class="kw">hclust</span>(<span class="dt">method =</span> <span class="st">&quot;ward.D&quot;</span>)</a>
+<a class="sourceLine" id="cb165-4" title="4"><span class="kw">plot</span>(ward, <span class="dt">labels =</span> ants<span class="op">$</span>Site)</a></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-204-1.png" width="672" /></p>
 </div>
 <div id="what-are-dendrograms-good-for-suggesting-clusters-for-further-study" class="section level4 hasAnchor">
 <h4>WHAT ARE DENDROGRAMS GOOD FOR? <em>Suggesting clusters for further study…</em><a href="clustering.html#what-are-dendrograms-good-for-suggesting-clusters-for-further-study" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Using the function <code>cutree()</code> to split into clusters and plot:</p>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="clustering.html#cb166-1" aria-hidden="true" tabindex="-1"></a>ants<span class="sc">$</span>clust4 <span class="ot">&lt;-</span> <span class="fu">cutree</span>(ward, <span class="at">k =</span> <span class="dv">4</span>)</span>
-<span id="cb166-2"><a href="clustering.html#cb166-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ape)   <span class="do">## install</span></span>
-<span id="cb166-3"><a href="clustering.html#cb166-3" aria-hidden="true" tabindex="-1"></a>pitfall.phylo <span class="ot">&lt;-</span> <span class="fu">as.phylo</span>(ward)</span>
-<span id="cb166-4"><a href="clustering.html#cb166-4" aria-hidden="true" tabindex="-1"></a>pitfall.phylo<span class="sc">$</span>tip.label <span class="ot">&lt;-</span> ants<span class="sc">$</span>Site</span>
-<span id="cb166-5"><a href="clustering.html#cb166-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Set colours </span></span>
-<span id="cb166-6"><a href="clustering.html#cb166-6" aria-hidden="true" tabindex="-1"></a>colours  <span class="ot">&lt;-</span>  <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>,<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;green&quot;</span>,<span class="st">&quot;black&quot;</span>)</span>
-<span id="cb166-7"><a href="clustering.html#cb166-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pitfall.phylo, <span class="at">cex =</span> <span class="fl">0.6</span>, <span class="at">tip.color =</span> colours[ants<span class="sc">$</span>clust4], <span class="at">label.offset =</span> <span class="fl">0.05</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb166-1" title="1">ants<span class="op">$</span>clust4 &lt;-<span class="st"> </span><span class="kw">cutree</span>(ward, <span class="dt">k =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb166-2" title="2"><span class="kw">library</span>(ape)   <span class="co">## install</span></a>
+<a class="sourceLine" id="cb166-3" title="3">pitfall.phylo &lt;-<span class="st"> </span><span class="kw">as.phylo</span>(ward)</a>
+<a class="sourceLine" id="cb166-4" title="4">pitfall.phylo<span class="op">$</span>tip.label &lt;-<span class="st"> </span>ants<span class="op">$</span>Site</a>
+<a class="sourceLine" id="cb166-5" title="5"><span class="co">## Set colours </span></a>
+<a class="sourceLine" id="cb166-6" title="6">colours  &lt;-<span class="st">  </span><span class="kw">c</span>(<span class="st">&quot;red&quot;</span>,<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;green&quot;</span>,<span class="st">&quot;black&quot;</span>)</a>
+<a class="sourceLine" id="cb166-7" title="7"><span class="kw">plot</span>(pitfall.phylo, <span class="dt">cex =</span> <span class="fl">0.6</span>, <span class="dt">tip.color =</span> colours[ants<span class="op">$</span>clust4], <span class="dt">label.offset =</span> <span class="fl">0.05</span>) </a></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-205-1.png" width="672" /></p>
 
 </div>

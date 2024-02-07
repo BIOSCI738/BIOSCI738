@@ -1,0 +1,580 @@
+## Introduction to generalised linear models (GLMs)
+
+> "Ecology has increasingly become a data- and model-centric discipline..." `r tufte::quote_footer('---  Trends in ecology and conservation over eight decades')`
+
+<p align="center">![[Figure 5: Data analysis, statistical methods, and genetics n-grams from 1930 to 2010](https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/fee.2320#.YQfyCkjJsto.twitter)](https://esajournals.onlinelibrary.wiley.com/cms/asset/b3db55eb-1087-451a-8c4e-179d95e0d269/fee2320-fig-0005-m.jpg){width=50%}</p>
+
+Recall, the simple linear regression model from module 2:
+  
+$$Y_i = \alpha + \beta_1x_i + \epsilon_i$$
+where
+
+$$\epsilon_i \sim \text{Normal}(0,\sigma^2).$$
+
+Here for observation $i$
+
+  + $Y_i$ is the value of the response 
+  + $x_i$ is the value of the explanatory variable 
+  + $\epsilon_i$ is the error term: the difference between $Y_i$ and its expected value
+  + $\alpha$ is the intercept term (a parameter to be estimated), and 
+  + $\beta_1$ is the slope: coefficient of the explanatory variable (a parameter to be estimated)
+  
+We also saw a different specification of this model in module 3:
+
+ There is an alternative, equivalent way of specifying the linear regression model which attributes the randomness directly to the response variable rather than the error $\epsilon_i$:
+  
+
+  $$Y_i \sim \text{Normal}(\alpha + \beta_1 x_i, \sigma^2).$$
+  
+That is, we assume the $i^{th}$ observation's response, $Y_i$, comes from a normal distribution with mean $\mu_i = \alpha + \beta_1 x_i$ and variance $\sigma^2$.
+
+In this case we assume that
+
+  + the $i^{th}$ observation's response, $Y_i$, comes from a normal distribution,
+  + the mean of $Y_i$ is a **linear** combination of the explanatory terms,
+  + the variance of $Y_i$, $\sigma^2$, is the **same** for all observations, and
+  + that each observation's response is **independent** of all others.
+
+
+But, what if we want to be a little more flexible and move away from some of these assumptions? What if we want to rid ourselves from a model with normal errors? The answer, **Generalised Linear Models** (GLMs).
+
+
+## Poisson regression
+
+Poisson regression is commonly used as a  distribution for counts. It is a discrete distribution (of positive values only) and has  $\text{Var}(Y_i) = \mu_i$ (i.e., we expect the variance to increase with the mean).
+
+If we were to assume (as previously) that $\mu_i = \alpha + \beta_1 x_i$ then we would be allowing $\mu < 0$, which is not supported by the Poisson distribution. So, we use a link function to map between $\mu_i$ and the real number line:
+  
+$$\text{log}(\mu_i) = \alpha + \beta_1 x_i.$$
+  
+So, $\mu_i  \geq 0$ and $-\infty < \text{log}(\mu_i) < \infty$; however negative the linear predictor $\alpha + \beta_1 x_i$ gets $\mu_i$ will always be positive.
+
+  
+
+Equivalently,
+  $$ \mu_i = \text{exp}(\alpha + \beta_1 x_i)$$
+  
+  and
+  
+  $$Y_i \sim \text{Poisson}(\mu_i)$$
+
+
+#### Interpreting coefficients
+
+Recall, for a linear regression model $\mu = \alpha + \beta_1x$,  when $x=0$  $y = \alpha$ and for every one-unit increase in $x$, $y$ increases by amount $\beta_1$.
+
+For a Poisson regression model we have $\text{log}(\mu) = \alpha + \beta_1 x.$ 
+
+ We can interpret this in the same way! That is, when $x$ is zero, the log of the expected value of the response equals $\alpha$ and for every one-unit increase in $x$, the log of the expected value of the response increases by amount $\beta_1$. But interpreting the effect of $x$ on the log of the expected value is not straightforward.
+ 
+Now, we have
+
+$$\mu = \text{e}^{ \alpha + \beta_1 x} = \text{e}^{ \alpha}(\text{e}^{\beta_1})^{ x}.$$ 
+This implies that
+
+ + when $x = 0$ $\mu = \text{e}^{ \alpha}(\text{e}^{\beta_1})^{0} =  \text{e}^{ \alpha}\times 1 = \text{e}^{ \alpha},$
+ +  when  $x = 1$ $\mu = \text{e}^{ \alpha}(\text{e}^{\beta_1})^{1} = \text{e}^{ \alpha}\text{e}^{\beta_1} = \text{e}^{ \alpha + \beta_1},$
+ + when  $x = 2$ $\mu = \text{e}^{ \alpha}(\text{e}^{\beta_1})^{2} = \text{e}^{ \alpha}\text{e}^{\beta_1} \text{e}^{\beta_1} = \text{e}^{ \alpha + \beta_1 + \beta_1},$
+ + when  $x = 3$ $\mu = \text{e}^{ \alpha}(\text{e}^{\beta_1})^{3} = \text{e}^{ \alpha}\text{e}^{\beta_1} \text{e}^{\beta_1}\text{e}^{\beta_1}  = \text{e}^{ \alpha + \beta_1 + \beta_1 + \beta_1},$ and
+ + so on ...
+ 
+Therefore, for every n-unit increase in x, the expected value of the response is **multiplied** by $\text{e}^{n\beta_1}.$
+
+#### Goodness-of-fit
+
+Typically, we use Poisson regression to
+
+ 1. ensure the expected value is $>0$,
+ 2. account for non-constant variance, and
+ 3. assume a discrete distribution for a discrete response.
+ 
+But, how do we assess if our choice was appropriate? *Use the **deviance**!*
+
+For a fitted Poisson regression the deviance, $D$, is 
+
+$$D = 2 \sum^{n}_{i=1} \{ Y_{i} \log(Y_{i}/\mu_{i}) - (Y_{i}-\mu_{i}) \}$$
+
+where if $Y_i=0$, the $Y_{i} \log(Y_{i}/\mu_{i})$ term is taken to be zero, and $\mu_{i} = \exp(\hat{\beta}_{0} + \hat{\beta}_{1}X_{1} + ... + \hat{\beta}_{p} X_{p})$ is the predicted mean for observation $i$ based on the estimated model parameters. 
+
+The deviance is a measure of how well the model fits the data. That is, if the model fits well, the observed values $Y_{i}$ will be close to their predicted means $\mu_{i}$, causing both of the terms in $D$ to be small, and so the deviance to be small. The flip side of this is that a large deviance indicates a bad fitting model.
+
+Formally, we can test the null hypothesis that the model is correct by calculating a p-value using
+$$ p = \Pr(\chi^2_{n - k} > D).$$
+
+**Conditions of the chi-squared approximation**
+  
+The distribution of the deviance under the null hypothesis is approximately chi-squared if the response of each observation is well approximated by a normal distribution. This holds for Poisson random variables with $\mu_i > 5$.
+
+However, if our chi-squared approximation assumptions are not met we should find another way.
+ 
+### An example: bird abundance
+
+
+A recent publication [Partitioning beta diversity to untangle mechanisms underlying the assembly of bird communities in Mediterranean olive groves](https://onlinelibrary.wiley.com/doi/10.1111/ddi.13445) investigates bird abundance data for a number of olive farms. Each farm is catalogued according to the level of landscape complexity (high; intermediate; low) and the type of management of the ground cover (extensive or intensive).
+
+
+```{r, message = FALSE, warnings = FALSE}
+library(tidyverse)
+data <- read_delim("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/bird_abundance.csv")
+birds <- data %>%
+  dplyr::select(c("OliveFarm","Management","Turdus_merula","Phylloscopus_collybita")) %>%
+  pivot_longer(., c(-OliveFarm, -Management), names_to = "Species", values_to = "Count") 
+birds
+```
+
+```{r, echo = FALSE}
+birds %>%
+  ggplot(., aes(x = Species, y = Count, fill = Species)) +
+  geom_violin() + xlab("") + ggtitle("Bird abundance by species ") +
+  theme_linedraw() + geom_jitter(alpha = 0.5) + scale_fill_brewer(type = "div", palette = "Set2") +
+  theme(legend.position = "none")
+```
+
+Fitting a poisson model we specify `family = "poisson"` in a call to `glm()`. Note that the default link function for `family = "poisson"` is the log link; we could also use the equivalent syntax `poisson(link = log)` to specify this model.  Or, we could change the link function to something else (e.g., `poisson(link = identity)`) that makes sense.
+
+
+```{r}
+glm_bird <- glm(Count ~ Species, data = birds, family = "poisson")
+summary(glm_bird)
+```
+
+The fitted model is therefore
+
+```{r, echo = FALSE}
+equatiomatic::extract_eq(glm_bird, use_coefs = TRUE, coef_digits = 3)
+```
+
+
+#### Interpreting the coefficients
+
+
+
+Interpreting the coefficients above  we estimate that the **log** of the expected number of *Phylloscopus collybita* is `r round(coef(glm_bird)[1], 2)` and the **log** of the expected number of *Turdus merula* is `r round(coef(glm_bird)[1] + coef(glm_bird)[2], 2)`.
+
+But what about the expected number?
+
+```{r}
+exp(coef(glm_bird))
+```
+
+Therefore, we estimate that the expected average number of *Phylloscopus collybita* is `r round(exp(coef(glm_bird)[1]), 2)` and the expected average number of *Turdus merula* is `r round(exp(coef(glm_bird)[1] + coef(glm_bird)[2]), 2)`.
+
+Using confidence intervals:
+
+```{r, message=FALSE}
+confint <- exp(confint(glm_bird)[1,])
+confint
+```
+
+Therefore, we estimate that the expected average number of *Phylloscopus collybita* is between `r round(confint[1], 2)` and  `r round(confint[2], 2)`.
+
+For a **multiplicative interpretation** of the effect use $\text{exp}(\beta_1)$
+
+```{r, message=FALSE}
+exp(coef(glm_bird)[2])
+```
+
+Therefore, we estimate that the expected number of *Turdus merula* is  `r round(exp(coef(glm_bird)[2]), 2)` $\times$ greater than *Phylloscopus collybita*.
+
+For a **percentage-change interpretation** use $100 \times \left (\text{exp}(\beta_1)−1 \right )$:
+
+```{r, message=FALSE}
+100*(exp(coef(glm_bird)[2]) - 1)
+```
+
+Therefore, we estimate that expected number of *Turdus merula* is  `r round(100*(exp(coef(glm_bird)[2]) - 1), 2)`\% greater than *Phylloscopus collybita*.
+
+
+Using 95\% **confidence intervals**:
+
+```{r, message=FALSE}
+confint <- 100*(exp(confint(glm_bird)[2, ]) - 1)
+confint
+```
+
+So, we estimate that expected number of *Turdus merula* is  between `r round(confint[1], 2)`\% and  `r round(confint[2], 2)`\% greater than *Phylloscopus collybita*.
+
+
+```{r,echo = FALSE, warning = FALSE, message=FALSE}
+coefs <- coef(glm_bird)
+birds %>%
+  ggplot(., aes(x = Species, y = Count, fill = Species)) +
+  geom_violin(alpha = 0.5) + xlab("") + ggtitle("Fitted bird abundance model") +
+  theme_linedraw() + geom_jitter(alpha = 0.5) + 
+  theme(legend.position = "none") + geom_hline(yintercept = exp(coefs[1]), size = 2, col = "#66C2A5") +
+  geom_hline(yintercept = exp(coefs[2] + coefs[1]), size = 2, col = "#FC8D62") +
+  annotate(geom = "text", x = 1, y = 110, 
+           label = bquote(hat(mu)["Phylloscopus collybita"] ==  ~hat(alpha) == ~.(exp(coefs[1]))), 
+           col = "#66C2A5") + scale_fill_brewer(type = "div", palette = "Set2") +
+  theme(legend.position = "none") +
+  annotate(geom = "text", x = 1, y = 125, 
+           label = bquote(hat(mu)["Turdus_merula"] ==  ~hat(alpha) + hat(beta[1])== ~.(exp(coefs[1] + coefs[2]))), 
+           col = "#FC8D62")
+```
+
+## Logistic regression
+  
+We define a random variable, $Y_i$, to have a binomial distribution if it is the number of successes from a number of **independent** trials, $n$, each with the same probability of success, $p$. It is a discrete distribution, which notes that the number of successes associated with the $i^{th}$ observation must be an integer between $0$ and $n_i$. In addition, it builds in the non-constant variance of $Y_i$ and $\frac{Y_i}{n_i}$: $\text{Var}(Y_i)=n_ip_i(1−p_i)$ and $\text{Var}(\frac{Y_i}{n_i}) = \frac{p_i(1−p_i)}{n_i}$.
+   
+  
+If we were to assume a linear relationship (as previously) that $p_i = \alpha + \beta_1 x_i$ then we would be allowing $p < 0$ and $p>1$, which is not supported by the binomial distribution. So, we use a link function to map between $p$ and the real number line:
+ 
+$$\text{logit}(p_i) = \text{log}\left (\frac{p_i}{1 - p_i}\right ) = \alpha + \beta_1x_i.$$ This leads to
+ $$p_i = \frac{\exp(\alpha + \beta_1x_i)}{1 + \exp(\alpha + \beta_1x_i)}.$$
+  and 
+    
+  $$Y_i \sim \text{Binomial}(n_i, p_i)$$
+  
+#### Interpreting coefficients
+
+Recap, for probability $p$ the **odds** are $\frac{p}{1-p}$ and the **log-odds** are $\text{log}\left (\frac{p}{1-p}\right )$:
+
+ + when $p=0.5$ the **odds** $=1$ and the **log-odds** $= 0$
+ + when $p=1$ the **odds** $\infty$ and the **log-odds** $= \infty$
+ + when $p=0$ the **odds** $=0$ and the **log-odds** $= -\infty$
+
+Recall, for a linear regression model $\mu = \alpha + \beta_1x$,  when $x=0$  $y = \alpha$ and for every one-unit increase in $x$, $y$ increases by amount $\beta_1$.
+
+For a logistic regression model we have 
+$$\begin{array}{rl}
+\text{logit}(p) = \alpha + \beta_1 x \\
+\text{log}\left (\frac{p}{1-p}\right ) = \alpha + \beta_1 x \\
+\text{log}\left (\text{odds}\right ) = \alpha + \beta_1 x \\
+\end{array}$$ 
+
+We can interpret this as when $x = 0$, the log-odds of success are equal to $\alpha$ and that for every one-unit increase in $x$ the log-odds of success increase by $\beta_1$.  But, interpreting the effect of $x$ on the log-odds of success is not straightforward.
+
+Now, we have
+
+$$\text{odds} = \text{e}^{ \alpha + \beta_1 x} = \text{e}^{ \alpha}(\text{e}^{\beta_1})^{ x}.$$ 
+This implies that
+
+ + when $x = 0$ $\text{odds} = \text{e}^{ \alpha}(\text{e}^{\beta_1})^{0} \text{e}^{ \alpha}\times 1 = \text{e}^{ \alpha},$
+ +  when  $x = 1$ $\text{odds} = \text{e}^{ \alpha}(\text{e}^{\beta_1})^{1} = \text{e}^{ \alpha}\text{e}^{\beta_1} = \text{e}^{ \alpha + \beta_1},$
+ + when  $x = 2$ $\text{odds} = \text{e}^{ \alpha}(\text{e}^{\beta_1})^{2} = \text{e}^{ \alpha}\text{e}^{\beta_1} \text{e}^{\beta_1} = \text{e}^{ \alpha + \beta_1 + \beta_1},$
+ + when  $x = 3$ $\text{odds} = \text{e}^{ \alpha}(\text{e}^{\beta_1})^{3} = \text{e}^{ \alpha}\text{e}^{\beta_1} \text{e}^{\beta_1}\text{e}^{\beta_1}  = \text{e}^{ \alpha + \beta_1 + \beta_1 + \beta_1},$ and
+ + so on ...
+ 
+ 
+#### Goodness-of-fit
+
+Typically, we use logistic regression to model if we have a binary, or proportional response (e.g., success vs. failure). But, how do we assess if our choice was appropriate? *Using the **deviance**?* 
+
+Formally, we can test the null hypothesis that the model is correct by calculating a p-value using
+$$ p = \Pr(\chi^2_{n - k} > D).$$
+
+**Conditions of the chi-squared approximation**
+  
+The distribution of the deviance under the null hypothesis is approximately chi-squared if the response of each observation is well approximated by a normal distribution. This holds for binomial random variables if the number of trials, $n_i$, is large enough:
+
+   + when $p_i$ is close to 0.5, $n_i \geq 5$ is probably sufficient,
+   + but if $p_i$ is close to 0 or 1, $n_i$ must be much larger.
+
+However, if our chi-squared approximation assumptions are not met we should find another way.
+
+### An example: lobsters
+
+Let us, again, consider data from the published article [Influence of predator identity on the strength of predator avoidance responses in lobsters.](https://www.sciencedirect.com/science/article/pii/S0022098115000039).
+
+The authors were interested in how a juvenile lobster's size was related to its vulnerability to predation. In total, 159 juvenile lobsters were collected from their natural habitat in the Gulf of Maine, USA, and the length of each lobster's carapace (upper shell) was measured to the nearest 3 mm, `size`. The lobsters were then tethered to the ocean floor for 24 hours. Any missing lobsters were assumed to have been consumed by a predator, while the surviving lobsters were released (i.e., `survived` = 1 if lobster survived, 0 otherwise).
+
+```{r, message = FALSE, warnings = FALSE}
+library(tidyverse)
+data <- read_csv("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/lobster.csv")
+data 
+```
+
+#### Ungrouped model
+
+Fitting a binomial model we specify `family = "binomial"` in our `glm` call. Note that the default link function for `family = "binomial"` is the logit link; we could also use the equivalent syntax `binomial(link = logit)`to specify this model.
+
+
+```{r}
+glm_mod_ug <- glm(survived ~ size, family = "binomial", data = data)
+summary(glm_mod_ug)
+```
+
+The fitted model is therefore
+
+```{r, echo = FALSE}
+equatiomatic::extract_eq(glm_mod_ug, use_coefs = TRUE, coef_digits = 3)
+```
+
+
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+ggplot(data, aes(x = size, y = survived)) + 
+  geom_point(alpha = .5) +
+  stat_smooth(method="glm", se = FALSE, method.args = list(family=binomial), col = "#782c26") + 
+  xlab("Carapace length (mm)") +
+  ylab("Juvenile lobster survival") + ggtitle("Fitted logistic regression model") +
+  theme_classic()
+```
+
+
+
+#### Grouped model
+
+The data are currently ungrouped, despite many lobsters sharing the same carapace size. Therefore, we rearrange the data set so that it is grouped:
+
+```{r}
+grouped <- data %>%
+  group_by(size) %>%
+  summarise(y = sum(survived), n = length(survived), p = mean(survived))
+grouped
+```
+
+Where,
+
+  + `size` is as above,
+  + `y` is the number of lobsters of each size that survived,
+  + `t` is the total number of lobsters of each size, and
+  + `p`is the proportion of lobsters of each size that survived.
+
+
+```{r, echo = FALSE}
+grouped %>%
+  ggplot(., aes(x = size, y = p)) +
+  geom_point() + xlab("Carapace length (mm)") +
+  ylab("Proportion survived") + ggtitle("Survival rates of juvenile lobsters") +
+  theme_classic()
+```
+
+Fitting a binomial model again we specify `family = "binomial"` in our `glm` call and specify our response as `cbind(y, n - y)`:
+
+```{r}
+glm_mod_gr <- glm(cbind(y, n - y) ~ size, family = "binomial", data = grouped)
+summary(glm_mod_gr)
+```
+
+The fitted model is again
+
+```{r, echo = FALSE}
+equatiomatic::extract_eq(glm_mod_ug, use_coefs = TRUE, coef_digits = 3)
+```
+
+#### Interpreting the coefficients
+
+
+Interpreting the coefficients above we estimate that the log-odds of a juvenile lobster surviving are `r round(coef(glm_mod_gr)[1],)` (use your common sense to ascertain if interpreting the intercept is sensible). 
+
+We estimate that for every 1mm increase in  carapace length the log-odds of a juvenile lobster surviving **increase** by `r round(coef(glm_mod_gr)[2],3)`. 
+
+What about the odds?
+
+```{r}
+exp(coef(glm_mod_gr))
+```
+
+Therefore, we estimate that the odds of a juvenile lobster surviving are `r round(exp(coef(glm_mod_gr)[1]),6)` (use your common sense to ascertain if interpreting the intercept is sensible). 
+
+We estimate that for every 1mm increase in  carapace length the odds of a juvenile lobster surviving are **multiplied** by `r round(exp(coef(glm_mod_gr)[2]),2)`. 
+
+What about for a 5mm increase in carapace length?
+
+```{r}
+exp(5*coef(glm_mod_gr)[2])
+```
+
+Therefore, we estimate that for every 5mm increase in  carapace length the odds of a juvenile lobster surviving are **multiplied** by `r round(exp(5*coef(glm_mod_gr)[2]),2)`. 
+
+
+Using 95\% **confidence intervals**:
+
+```{r, message = FALSE}
+ci <- exp(5*confint(glm_mod_gr)[2,])
+ci
+```
+
+Therefore, we estimate that for every 5mm increase in  carapace length the odds of a juvenile lobster surviving are **multiplied** by between `r round(ci[1],2)` and `r round(ci[2],2)`. 
+
+For a **percentage-change** interpretation we use $100 \times \left (\text{exp}(x\beta_1)−1 \right )$:
+
+```{r, message = FALSE}
+100*(exp(5*coef(glm_mod_gr)[2]) - 1)
+confint <- 100*(exp(5*confint(glm_mod_gr)[2, ]) - 1)
+confint
+```
+
+We estimate that for every 5mm increase in  carapace length the **odds** of a juvenile lobster surviving **increase** by `r round(100*(exp(5*coef(glm_mod_gr)[2]) - 1),2)`\%. We estimate that for every 5mm increase in  carapace length the odds of a juvenile lobster surviving **increase** between `r round(100*(exp(5*confint(glm_mod_gr)[2, 1]) - 1),2)`\% and `r round(100*(exp(5*confint(glm_mod_gr)[2, 2]) - 1),2)`\%.
+
+
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+ggplot(grouped, aes(x = size, y = p)) + 
+  geom_point(alpha = .5) +
+  stat_smooth(method = "glm", se = FALSE,
+              method.args = list(family=binomial), 
+              col = "#782c26") + 
+  xlab("Carapace length (mm)") +
+  ylab("Proportion survived") + ggtitle("Fitted logistic regression model") +
+  theme_classic()
+```
+
+## Model diagnostics
+
+### Residuals
+
+
+Recall from module 2, where we looked at residual plots to check our assumptions for a linear model. In a similar way we can use residuals to check how appropriate our GLM is (i.e., to help diagnose the overall goodness-of-fit and to see if our model assumptions are met). Often, Pearson and deviance residuals are used in model diagnostics for generalized linear models. 
+
+**Response residuals** are the *conventional* residual on the response level. That is, the fitted residuals are transformed by taking the inverse of the link function. Think back to linear models where the link function was set as the identity. 
+
+**Deviance residuals** represent the contributions of individual samples to the deviance, *D* (see above).
+
+**Pearson residuals** are calculated by normalizing the raw residuals (i.e., expected - estimate) by the square root of the estimate.
+
+
+Luckily, we can calculate all three directly in `R`. Below we do that for the bird abundance model.
+
+```{r}
+## response residuals
+resids_response <- residuals(glm_bird, type = "response")
+## deviance residuals
+resids_deviance <- residuals(glm_bird, type = "deviance")
+## pearson residuals
+resids_pearson <- residuals(glm_bird, type = "pearson")
+```
+
+Plotting all three types we can asses how appropriate our chosen model is.
+
+```{r, echo = FALSE}
+resids <- data.frame(Fitted = glm_bird$fitted.values,
+										 "Response_residuals" = resids_response,
+										 "Deviance_residuals" = resids_deviance,
+										 "Pearson_residuals" = resids_pearson)
+r <- ggplot(resids, aes(x = Fitted, y = Response_residuals)) +
+	geom_point() + geom_hline(yintercept = 0) + theme_linedraw() + ylab("Response residuals")
+d <- ggplot(resids, aes(x = Fitted, y = Deviance_residuals)) +
+	geom_point() + geom_hline(yintercept = 0) + theme_linedraw() + ylab("Deviance residuals")
+p <- ggplot(resids, aes(x = Fitted, y = Pearson_residuals)) +
+	geom_point() + geom_hline(yintercept = 0) + theme_linedraw() + ylab("Pearson residuals")
+require(patchwork)
+r + d + p
+
+```
+
+So, what do you see? Look back at the assumptions of a Poisson model. What do you conclude from the plots above?
+
+### The quantile residual Q-Q plot
+
+Recall from Module 2 that a Normal quantile-quantile (Q-Q) plot is used to check overall similarity of the observed distribution of the residuals to that expected under the model (i.e., Gaussian). An alternative to a Normal Q-Q plot for a GLM fit is a quantile residual Q-Q plot of observed versus expected **quantile residuals**. Quantile residuals are, typically, the residuals of choice for GLMs when the deviance and Pearson residuals can be grossly non-normal. It is suggested that quantile residuals are the only useful residuals for binomial or Poisson data when the response takes on only a small number of distinct values. We can use the `statmod::qresiduals()` function to compute these residuals.
+
+
+### Deviance (using the chi-squared approach)
+
+#### For our Poisson model
+
+
+```{r}
+## extract the residual deviance
+D <- glm_bird$deviance
+D
+## extract the residual degrees of freedom (n-k)
+df <- glm_bird$df.residual
+df
+```
+
+Therefore, to test the relevant null hypothesis (that the model is correct) we use
+
+```{r}
+1 - pchisq(D, df)
+```
+
+We have strong evidence to reject the null hypothesis; suggesting a lack of fit! **BUT** are our chi-squared approximation assumptions met? If not, we might take a **simulation based approach**. This is, however, beyond the scope of this course.
+
+
+#### For our binomial model
+
+```{r}
+## extract the residual deviance
+D <- glm_mod_gr$deviance
+D
+## extract the residual degrees of freedom (n-k)
+df <- glm_mod_gr$df.residual
+df
+```
+
+Therefore, to test the relevant null hypothesis (that the model is correct) we use
+
+```{r}
+1 - pchisq(D, df)
+```
+
+Here, we have no evidence to against our model being "correct". **BUT** are our chi-squared approximation assumptions met? If not, we might take a **simulation based approach**. This is, however, beyond the scope of this course.
+
+
+## A summary of GLMs
+  
+The three distributions we've covered are given below.
+
+<p align="center">  **Linear regression:** $Y_i \sim \text{Normal}(\mu_i, \sigma^2)$ where $\mu_i = \alpha + \beta_1 x_i$</p>
+
+<p align="center">**Poisson regression:** $Y_i \sim \text{Poisson}(\mu_i)$ where $\text{log}(\mu_i) = \alpha + \beta_1 x_i$ </p>
+  
+<p align="center">**Logistic regression:** $Y_i \sim \text{Binomial}(n_i, p_i)$ where $\text{logit}(p_i) = \alpha + \beta_1 x_i$ </p>
+
+What would happen if we wanted to add extra explanatory terms (e.g., $z_i$)? Then,
+
+<p align="center">**Linear regression:** $Y_i \sim \text{Normal}(\mu_i, \sigma^2)$ where $\mu_i = \alpha + \beta_1 x_i + \beta_2 z_i$</p>
+  
+<p align="center">**Poisson regression:** $Y_i \sim \text{Poisson}(\mu_i)$ where $\text{log}(\mu_i) = \alpha + \beta_1 x_i+ \beta_2 z_i$ </p>
+
+<p align="center">**Logistic regression:** $Y_i \sim \text{Binomial}(n_i, p_i)$ where $\text{logit}(p_i) = \alpha + \beta_1 x_i+ \beta_2 z_i$</p>
+
+What about interactions (e.g., $x_iz_i$)?
+
+<p align="center"> **Linear regression:** $Y_i \sim \text{Normal}(\mu_i, \sigma^2)$ where $\mu_i = \alpha + \beta_1 x_i + \beta_2 z_i + \beta_3 x_iz_i$</p>
+  
+<p align="center">**Poisson regression:** $Y_i \sim \text{Poisson}(\mu_i)$ where $\text{log}(\mu_i) = \alpha + \beta_1 x_i+ \beta_2 z_i + \beta_3 x_iz_i$ </p>
+
+<p align="center">**Logistic regression:** $Y_i \sim \text{Binomial}(n_i, p_i)$ where $\text{logit}(p_i) = \alpha + \beta_1 x_i+ \beta_2 z_i + \beta_3 x_iz_i$</p>
+
+
+
+#### Building a GLM
+
+Assume the observations are independent of one another, then,
+
+  1. Choose a distribution for the response. For example, <span style="color:red">Normal</span>, <span style="color:green">Poisson</span>, or <span style="color:blue">Binomial</span>.
+    
+  2. Choose a parameter to relate to explanatory terms. For example, <span style="color:red">$\mu_i$</span>, <span style="color:green">$\mu_i$</span>, or <span style="color:blue">$p_i$</span>.
+    
+  3. Choose a link function. For example, <span style="color:red">identity</span>, <span style="color:green">log</span>, or <span style="color:blue">logit</span>.
+    
+  4. Choose explanatory terms 
+  
+  5. Estimate additional parameters. For example, <span style="color:red">$\sigma^2$</span>.
+  
+#### Other distributions
+  
+We are not restricted to the three distributions above. Many others exist:
+  
+  + **Gamma** and **inverse-Gaussian**, for continuous responses on the interval $[0,\infty)$ 
+  + **Beta**, for continuous responses on the interval $[0,1]$
+  + **Quasi-Poisson**$^{+}$, typically for modelling overdispersed count data (i.e., when $\text{Var}(Y) > E(Y)$) where $\text{Var}(Y)$ is a linear function of $E(Y)$
+  + **Negative binomial**, for discrete responses on $(0,1,2,\cdots)$ (can also be used for overdispersed count data), with $\text{Var}(Y) \geq E(Y)$ and where $\text{Var}(Y)$ is a quadratic function of $E(Y)$
+  + **Quasi-binomial**$^{+}$, a model for situation when $\text{Var}(Y) > \text{Var}(Y_{Y \sim \text{Binomial}})$
+  + **Beta-binomial**, a Binomial-type model where $p \sim \text{Beta}(a, b)$
+  + ...
+  
+<div style="overflow:auto;">
+  
+| **Distribution**  | **Notation**  | **Mean** $\mu = E(Y)$  | **Variance** $\sigma^2 = \text{Var}(Y)$ | **Linear predictor** (w. a typical <span style="color:pink">link</span> function) |
+|-------------------|---------------|------------------------|-----------------------------------------|-----------------------------------------------------------------------------------|
+| Gaussian          | $Y\sim\textbf{Normal}(\mu, \sigma^2)$  |  $\mu$ | $\sigma^2$  | <span style="color:pink">I</span>$(\mu) = \alpha + \Sigma_{j=1}^{n_\text{covariates}}\beta_j x_j$  |
+| Poisson           | $Y \sim \textbf{Poisson}(\mu)$ where $\mu = \text{rate}$ | $\mu$  | $\mu$  |  <span style="color:pink">log</span>$(\mu) = \alpha + \Sigma_{j=1}^{n_\text{covariates}}\beta_j x_j$ |
+| Binomial          | $Y \sim \textbf{Bonomial}(\text{n}, p)$ where $\text{n} = \text{number of trials}$ and $p = \text{probability of sucess}$  | $\text{n}p$  | $\text{n}p (1-p)$  |  <span style="color:pink">logit</span>$(p) = \alpha + \Sigma_{j=1}^{n_\text{covariates}}\beta_j x_j$ |
+| Gamma             | $Y \sim \textbf{Gamma}(k, \theta = \frac{1}{\text{rate}})$ where $k = \text{shape}$ and $\theta = \text{scale}$ |  $k\theta$ | $k\theta^2$  |<span style="color:pink">log</span>$(E(Y)) = \alpha + \Sigma_{j=1}^{n_\text{covariates}}\beta_j x_j$ |
+| Beta              | $Y \sim \textbf{Beta}(a, b)$  where $a = \text{shape}$ and $b = \text{scale}$ | $\frac{a}{a+b}$  | $\frac{ab}{(a+b)^2(a+b+1)}$  | <span style="color:pink">log</span>$(E(Y)) = \alpha + \Sigma_{j=1}^{n_\text{covariates}}\beta_j x_j$  |
+| Negative binomial | $Y \sim \textbf{NB}(r, p)$ where $\text{r} = \text{number of successes until the experiment is stopped}$ and $p = \text{probability of sucess}$ or $Y \sim \textbf{NB}(k, p)$ where $\text{k} = \text{number of failures}$ given $p = \text{probability of sucess}$     | $\frac{r(1-p)}{p}$ or $\mu = k\frac{p}{1-p}$  | $\frac{r(1-p)}{p^2}$ or $\mu + \frac{\mu^2}{k}$ | <span style="color:pink">log</span>$(E(Y)) = \alpha + \Sigma_{j=1}^{n_\text{covariates}}\beta_j x_j$  |
+| Beta-binomial     |$Y \sim \textbf{BetaBin}(\text{n},a, b)$ where $\text{n} = \text{number of trials}$ and  $p = \frac{a}{a + b}, \text{the probability of success}$  |  $\frac{\text{n} a}{a+b}=  \text{n}p$  | $\frac{\text{n} a b(a + b + \text{n})}{(a+b)^2(a + b + 1)}$ | <span style="color:pink">logit</span>$(p) = \alpha + \Sigma_{j=1}^{n_\text{covariates}}\beta_j x_j$  |
+</div>
+
+$^{+}$ Note that the Quasi-... distributions are not really *proper* distributions; they are simply models describing a mean-variance relationship beyond that offered by the base distribution.
+
+#### Other modelling approaches (not examinable)
+
+| `R` function    | Use                    | 
+| --------------- |------------------------|
+| `gam()`         | Fit a generalised additive model. The R package `mgcv` must be loaded |
+| `nlme()`        | Fit linear and non-linear mixed effects models. The R package `nlme` must be loaded 
+| `gls()`         | Fit generalised least squares models. The R package `nlme` must be loaded |

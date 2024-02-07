@@ -1,0 +1,28 @@
+# Module 1 {-}
+
+<div class="alert alert-success" role="alert">
+![](https://github.com/BIOSCI738/cowstats/blob/main/img/code_bell.png?raw=true){width=10%} <strong>Key topics</strong> 
+
+<ul>
+   <li>Error handling and debugging</li>
+   <li>Good coding practice</li>
+   <li>Ethical data practice</li>
+ </ul>
+
+</div>
+
+This course is **not** designed as a course in `R`. Throughout we use `R` and RStudio as tools to carry out statistical inference, but it is assumed that you are already familiar with the basics of these software. You will be led through multiple examples in the chapters to come and it is expected that you invest time working through them, working out what each line of code does. It is inadvisable that you simply copy \& paste the examples without an idea of what is being asked. Figuring out the code for yourself will be a huge help when you come to modify it to suit your own purposes. 
+
+Rather than *telling* you how to carry out specific operations this section of the course guide outlines practices and tools focusing on employing good scientific practice. We discuss the best practices we should employ when dealing with data, code, and our obligations in drawing inferences from our analyses. There are many ongoing discussions in the scientific community around **ethical data practice** and what it entails. It is a hugely important subject, and in many ways has a long way to go. We only touch briefly on some aspects of ethical data practice in this section, presenting the suggestions and thoughts of the relevalnt communities and organisations in those areas.
+
+ 1.  **Accuracy and Honesty:** Being accurate and honest in your analyses and conclusions.
+
+ 2.  **Respectful Handling of Data:** Recognize that data may represents people or beliefs or behaviour and be respectful of this.
+
+ 3.  **Awareness of Consequences:** Considering the ethical implications and societal impact of your research.
+
+
+
+<div class="alert alert-warning">
+  <strong>TASK</strong> Read [Ethical Guidelines for Statistical Practice](https://www.amstat.org/your-career/ethical-guidelines-for-statistical-practice) and outline which principle(s) you feel directly relate to your current career pathway.
+</div>

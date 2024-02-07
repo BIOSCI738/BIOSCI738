@@ -1,0 +1,14 @@
+# Module 4
+
+**Learning objectives**
+ 
+ + **Describe** the following components of a generalised linear model
+    + the response variable
+    + the response distribution
+    + the link function
+ + **Fit** Poisson and logistic regression models using `R`
+ + **Interpret** estimated effects with reference to confidence intervals from Poisson and logistic regression models
+ + **Determine** a sensible response distribution to use for a generalised linear model fitted to a particular data set
+ + **Include** and **interpret** interaction effects in a generalised linear model using `R`
+
+
