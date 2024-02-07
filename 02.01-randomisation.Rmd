@@ -29,7 +29,7 @@ Below are data specifying mandible lengths (mm) for golden jackals (*Canis aureu
 ## Mandible lengths (mm) for  golden jackals (Canis aureus) of each sex from the British Museum
 jackal <- data.frame(mandible_length_mm = c(120, 107, 110, 116, 114, 111, 113, 117, 114, 112,
                                             110, 111, 107, 108, 110, 105, 107, 106, 111, 111),
-                     sex = rep(c("Male","Female"), each = 10))
+                     sex = rep(c("Male","Female"), each = 10)) 
 kableExtra::kable(jackal, col.names = c("Mandible length (mm)", "Biological sex")) %>%
   kableExtra::kable_classic(full_width = FALSE, html_font = "Cambria")
 ```

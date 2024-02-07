@@ -100,9 +100,9 @@ Below are some key terms you will undoubtedly hear when delving into the git--Gi
 
 The table below gives [Ten Simple Rules for Taking Advantage of Git and GitHub](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1004947), which outline how to get the most out of using these softwares.
 
-|        | Title                                                                      |Why       |
-|-------|-----------------------------------------------------------------------------|----------|
-| Rule 1 | Use GitHub to Track Your Projects                                          | Keeps your work backed up and in order |
+|        | Title                              |Why                     |
+|--------|------------------------------------|------------------------|
+| Rule 1 | Use GitHub to Track Your Projects                           | Keeps your work backed up and in order |
 | Rule 2 | GitHub for Single Users, Teams, and Organizations                          | Flexible repo rights helps project management | 
 | Rule 3 | Developing and Collaborating on New Features: Branching and Forking         | Easily copy and create your own version of a project to modify |
 | Rule 4 | Naming Branches and Commits: Tags and Semantic Versions                     | Consistency helps your collaborators and end-users |
@@ -188,14 +188,17 @@ Assuming your current working directory is at the top level of your repo/project
 
  1. Then choose  the <i class="fas fa-cog"></i>**More** tab and the **Show Hidden Files** option:
 
- ![](img/hidden_files.png)
+ <p align="center"> ![](img/hidden_files.png){width="50%"}</p>
 
  2. Navigate to the `.git` folder and open the file named `config`:
  
- ![](img/config.png)
+ <p align="center">![](img/config.png){width="50%"}</p>
  
  3. Open `config` and add the following code replacing the relevant bits with your GitHub username/handle and email.
  
+
+
+
 ```
 [user]
 
@@ -203,6 +206,8 @@ name = <adding your GitHub username here>
 
 email = <adding your GitHub email here>
 ```
+
+
 
  4. Save the changes to this file and you should be all good to commit!
  
