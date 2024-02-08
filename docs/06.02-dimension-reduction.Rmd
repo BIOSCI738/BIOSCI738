@@ -6,10 +6,7 @@ So the aim is to **find the best low-dimensional representation of the variation
 
 PCA is a member of a family of techniques for dimension reduction (ordination).
 
-The word ordination was applied to dimension reduction techniques by botanical ecologists whose
-aim was to identify gradients in species composition in the field. For this reason they wanted to
-reduce the quadrat × species (observations × variables) data matrix to a single ordering (hence
-ordination) of the quadrats which they hoped would reflect the underlying ecological gradient.
+The word ordination was applied to dimension reduction techniques by botanical ecologists whose aim was to identify gradients in species composition in the field. For this reason they wanted to reduce the quadrat × species (observations × variables) data matrix to a single ordering (hence ordination) of the quadrats which they hoped would reflect the underlying ecological gradient.
 
 One way is termed Principal Component Analysis (PCA). PCA is a **feature extraction** method that **reduces the dimensionality of the data** (number of variables) by creating new uncorrelated variables while minimizing loss of information on the original variables. It is a technique for the analysis of an unstructured sample of multivariate data. Its aim is to display the relative positions of the observations in the data cloud in fewer dimensions (while losing as little information as possible) and to help give insight into the way the observations vary. It is not a hypothesis testing technique (like t-test or Analysis of Variance); it is an exploratory, hypothesis generating tool that describes patterns of variation, and suggests relationships that should be investigated further.
 
@@ -24,8 +21,6 @@ Now rather than a baguette think of data; the baguette above represent the *shap
 ![](https://raw.githubusercontent.com/cmjt/statbiscuits/master/figs_n_gifs/perp.gif)
 
 Luckily we can do this all in `R`!
-
-
 
 
 One problem with PCA is that the components are not scale invariant. That means if we change
@@ -45,16 +40,11 @@ results from the two analyses will usually be very different, see below.
 
 #### The `palmerpenguins` data
 
-```{r}
-## getting rid of NAs
-penguins_nafree <- penguins %>% drop_na()
-```
-
 When carrying out PCA we're only interested in numeric variables, so let's just plot those. We can use the piping operator `%>%` to do this with out creating a new data frame
 
 ```{r}
 library(GGally)
-penguins_nafree %>%
+penguins %>%
   dplyr::select(species, where(is.numeric)) %>% 
   ggpairs(aes(color = species),
         columns = c("flipper_length_mm", "body_mass_g", 
@@ -76,7 +66,7 @@ There are three basic types of information we obtain from Principal Component An
 Before we carry out PCA we **should** scale out data. **WHY?**
   
 ```{r}
-pca <- penguins_nafree %>% 
+pca <- penguins %>% 
   dplyr::select(where(is.numeric), -year) %>% ## year makes no sense here so we remove it and keep the other numeric variables
   scale() %>% ## scale the variables
   prcomp()
@@ -155,7 +145,7 @@ loadings1
 Therefore, the first Principle Component will be $0.454\times Z1 -0.399 \times Z2 + 0.5768 \times Z3 + 0.5497 \times Z3$ where $Z1$, $Z2$, $Z3$. and $Z4$ are the scaled numerical variables form the penguins dataset (i.e., `r names(loadings1)`). To compute this we use `R`:
 
 ```{r}
-scaled_vars <- penguins_nafree %>% 
+scaled_vars <- penguins %>% 
   dplyr::select(where(is.numeric), -year) %>% 
   scale() %>%
   as_tibble()
@@ -170,25 +160,13 @@ plot(by_hand,pc1)
 ```
 
 
-#### Reality check: reducing white noise...
 
+<div class="alert alert-warning">
+  <strong>TASK</strong> Simulate some white noise using the code below. Now investigate any potential correlations in the data and carry out PCA. What do you conclude?
 ```{r}
 set.seed(1234) ## just for reproduciblity
 noise <- as_tibble(replicate(10,rnorm(200, mean = 50, sd = 10)))
-noise
-corrplot::corrplot(cor(noise), method = "ellipse",type = "upper")
 ```
+</div>
 
-```{r}
-pca <- noise %>%
-  scale() %>%
-  prcomp()
-summary(pca)
-```
 
-```{r, message=FALSE}
-fviz_screeplot(pca, choice = "eigenvalue") +
-  geom_hline(yintercept = 1)
-```
-
-What does this show? 

@@ -129,17 +129,16 @@ $$(\boldsymbol{X^{'}X})^{-1}\boldsymbol{X^{'}y} = \boldsymbol{\hat{\beta}}= \beg
 
 ### A numeric example
 
-Using the coffee data from the previous chapter we have
+Using a simple simulated example, let
 
-```{r, results='asis',echo = FALSE}
+```{r,}
 set.seed(5469)
-type <- factor(rep(paste("Type", 1:3), each = 4))
-df <- data.frame(Beans = type, Strength = round(c(rnorm(4, 5), rnorm(4, 7), rnorm(4, 9)), 1))
-kableExtra::kable(df) %>%
-  kableExtra::kable_classic(full_width = FALSE, html_font = "Cambria")
+type <- factor(rep(paste("group", 1:3), each = 4))
+df <- data.frame(Group = type, Response = round(c(rnorm(4, 5), rnorm(4, 7), rnorm(4, 9)), 1))
+glimpse(df)
 ```
 
-#### Using our matrix algebra
+**Using our matrix algebra**
 
 ```{r, eval = TRUE, echo = FALSE}
 write_mat <- function(x) {
@@ -155,8 +154,12 @@ write_mat <- function(x) {
   paste(c(begin, X, end), collapse = "")
 }
 x <- matrix(c(rep(1, 12), rep(c(0, 1, 0), each = 4), rep(0, 8), rep(1, 4)), ncol = 3)
-y <- df$Strength
+y <- matrix(df$Response, ncol = 1)
 ```
+
+We have
+
+$\boldsymbol{y} = `r write_mat(y)`$, $\boldsymbol{X} = `r write_mat(x)`$, and $\boldsymbol{X^{'}} = `r write_mat(t(x))`$
 
 so 
 
@@ -173,6 +176,10 @@ $$\boldsymbol{\hat{\beta}} = (\boldsymbol{X^{'}X})^{-1}\boldsymbol{X^{'}y} = \be
 Linear least squares estimation can be carried out in `R` by simply using the function `lm()`:
 
 ```{r}
-mod <- lm(Strength ~ Beans, data = df)
+mod <- lm(Response ~ Group, data = df)
 summary(mod)$coefficients
 ```
+
+<div class="alert alert-warning">
+  <strong>TASK</strong> Using a (manageable) dataset carry out the matric operations above and compare your answers to the output from `lm()`.
+</div>

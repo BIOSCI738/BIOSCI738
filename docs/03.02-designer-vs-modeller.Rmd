@@ -19,7 +19,6 @@ $$Y_{ik} = \mu_k + \epsilon_{ik}$$
 where $Y_{ik}$ is the response (i.e., observed coffee opacity) for the $i^{th}$ experimental unit (i.e., coffee cup) subjected to the $k^{th}$ level of the treatment factor (i.e., coffee type).  Here $\mu_k$ are the different (cell) means for each level of the treatment factor. See below for an illustration of this for three factor treatment levels (as in the coffee example above).
 
 ```{r, echo = FALSE, fig.height=5}
-library(tidyverse)
 ggplot(data.frame(x = c(-4, 17)), aes(x)) + 
   stat_function(fun = dnorm, args = list(mean = 0, sd = 1)) +
   stat_function(fun = dnorm, args = list(mean = 5, sd = 1))+
@@ -33,20 +32,10 @@ ggplot(data.frame(x = c(-4, 17)), aes(x)) +
 
 ### Analysis of a CRD in `R`
 
-In this section we again consider the data containing logAUC values for 12 rats subjected to three different treatments (`Surgery`), `C`, `P`, and `S`:
+In this section we will again consider the `rats` data containing logAUC values for 12 rats subjected to three different treatments (`Surgery`), `C`, `P`, and `S`:
 
 ```{r, message = FALSE, echo = FALSE}
-library(tidyverse)
-rats <- read_csv("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/crd_rats_data.csv")
-rats$Surgery <- as_factor(rats$Surgery)
-kableExtra::kable(rats) %>%
-  kableExtra::kable_classic(full_width = FALSE, html_font = "Cambria")
-```
-
-To read the data directly into `R` you can use
-
-```{r, eval = FALSE}
-readr::read_csv("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/crd_rats_data.csv")
+glimpse(rats)
 ```
 
 
@@ -137,29 +126,28 @@ Carrying out any linear regression recall that we have some **key assumptions**
 options(warn=-1)
 ```
 
-```{r qqnorm, warning=FALSE, message=FALSE}
-gglm::gglm(rats_lm) # Plot the four main diagnostic plots
+<div class="alert alert-warning">
+  <strong>TASK</strong> Check and comment on the assumptions of this model using the code below.
+
+```{r qqnorm, warning=FALSE, message=FALSE, eval = FALSE}
+gglm(rats_lm) # Plot the four main diagnostic plots
 ```
 
-What do you think? Look back at module 2.
+</div>
 
 ### A Factorial experiment (as a CRD)
-
-<p align="center">![](https://magoosh.com/statistics/files/2018/04/297r7s.jpg){width=30%}</p>
 
 
 #### Equal replications (balanced design)
 
-**Data** Global metabolic profiling and comparison of relative abundances of proteins (`logAUC`) in the inner and outer left ventricle (`innerLV` and `outerLV`) wall of diabetic and healthy male Wistar rats. To read the data directly into `R` you can use
+The `factorial` data contain observations of global metabolic profiling and comparison of relative abundances of proteins (`logAUC`) in the inner and outer left ventricle (`innerLV` and `outerLV`) wall of diabetic and healthy male Wistar rats:
 
 ```{r, eval = FALSE}
-readr::read_csv("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/factorial_expt.csv")
+glimpse(factorial)
 ```
 
 
 ```{r, echo = FALSE, message = FALSE}
-library(tidyverse)
-factorial <-  read_csv("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/factorial_expt.csv")
 factorial %>%
   dplyr::select(c(Disease, Organ)) %>%
   group_by(Disease, Organ) %>%
@@ -167,8 +155,6 @@ factorial %>%
   mutate(n = paste("n =", n)) %>%
   pivot_wider(names_from = Disease, values_from = n) %>%
   kableExtra::kable(.) %>%
-  kableExtra::kable_classic(full_width = FALSE, html_font = "Cambria")
-kableExtra::kable(factorial) %>%
   kableExtra::kable_classic(full_width = FALSE, html_font = "Cambria")
 ```
 
@@ -198,8 +184,14 @@ The three **gobal** null hypotheses being tested are
 anova(fac_lm)
 ```
 
+<div class="alert alert-warning">
+  <strong>TASK</strong> Using the outputs above state your inference regarding the listed hypotheses.
+</div>
 
-What conclusions do you draw?
+
+<div class="alert alert-info">
+
+![](https://github.com/BIOSCI738/cowstats/blob/main/img/code_tag.png?raw=true){width=10%}
 
 **Note** with a balanced design ordering of term doesn't matter. For example,
 
@@ -209,37 +201,34 @@ anova(fac_lm)
 fac_lm_2 <- lm(logAUC ~ Organ*Disease, data = factorial)
 anova(fac_lm_2)
 ``` 
+</div>
+
 
 ### Unqual replications (unbalanced design)
 
-Here, we consider a subset of the data above.
+Here, we will consider a subset of the data above (i.e., an artificially unbalanced study).
 
-```{r, message = FALSE, echo = FALSE}
-unbalanced <- factorial 
-unbalanced$logAUC[c(1:3,10)] <- NA
-unbalanced_nafree <- unbalanced %>% drop_na()
-unbalanced_nafree %>%
-	dplyr::select(c(Disease, Organ)) %>%
-  group_by(Disease, Organ) %>%
-  tally() %>%
-  mutate(n = paste("n =", n)) %>%
-  pivot_wider(names_from = Disease, values_from = n) %>%
-  kableExtra::kable(.) %>%
-  kableExtra::kable_classic(full_width = FALSE, html_font = "Cambria")
-kableExtra::kable(unbalanced_nafree) %>%
-  kableExtra::kable_classic(full_width = FALSE, html_font = "Cambria")
+```{r, message = FALSE}
+unbalanced <- factorial[- c(1:3,10), ]
+glimpse(unbalanced)
 ```
 
 **Fitting models with interactions using `lm()`**
 
-**Note**: order matters. For example,
+<div class="alert alert-info">
+
+![](https://github.com/BIOSCI738/cowstats/blob/main/img/code_tag.png?raw=true){width=10%}
+
+**Note** with an unbalanced design ordering of the terms DOES matter. For example,
 
 ```{r}
-fac_lm <- lm(logAUC ~ Disease*Organ, data = unbalanced_nafree)
+fac_lm <- lm(logAUC ~ Disease*Organ, data = unbalanced)
 anova(fac_lm)
-fac_lm_2 <- lm(logAUC ~ Organ*Disease, data = unbalanced_nafree)
+fac_lm_2 <- lm(logAUC ~ Organ*Disease, data = unbalanced)
 anova(fac_lm_2)
 ```
+
+</div>
 
 The three **global** null hypotheses being tested are (essentially) the same
 
@@ -268,7 +257,7 @@ What does this look like?
 For `Disease*Organ` we calculate $SS_\text{Disease}$ ignoring any `Organ` effect (if you are unsure what each line of code is doing I suggest you run it line by line to see what's being done at each step). 
 
 ```{r}
-unbalanced_nafree %>% 
+unbalanced %>% 
   mutate(grand_mean = mean(logAUC)) %>%
   group_by(Disease) %>%
   summarise(n = n(),
@@ -288,13 +277,13 @@ But, that about the sequential $SS$, a simple way to think about this is in term
 
 ```{r}
 ## Null model.
-fit.null <- lm(logAUC ~ 1,  data = unbalanced_nafree)
+fit.null <- lm(logAUC ~ 1,  data = unbalanced)
 ## Only Factor Disease.
-fit.a <- lm(logAUC ~ Disease,  data = unbalanced_nafree)
+fit.a <- lm(logAUC ~ Disease,  data = unbalanced)
 ## Factors Disease and Organ.
-fit.ab <- lm(logAUC ~ Disease + Organ,  data = unbalanced_nafree)
+fit.ab <- lm(logAUC ~ Disease + Organ,  data = unbalanced)
 ## Factors Disease and Organ with interaction.
-fit.abi <- lm(logAUC ~ Disease*Organ,  data = unbalanced_nafree)
+fit.abi <- lm(logAUC ~ Disease*Organ,  data = unbalanced)
 ## ANOVA table, as above
 anova(fit.abi)
 
@@ -385,14 +374,14 @@ unbalanced %>%
   kableExtra::kable_classic(full_width = FALSE, html_font = "Cambria")
 ```
 ```{r, echo = FALSE}
-unbalanced_nafree %>%
+unbalanced %>%
 	summarise("Grand mean" = mean(logAUC)) %>%
    kableExtra::kable(., digits = 3) %>%
    kableExtra::kable_classic(full_width = FALSE, html_font = "Cambria")
 ```
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE}
-unbalanced_nafree %>%
+unbalanced %>%
    dplyr::select(c(Disease, Organ, logAUC)) %>%
    group_by(Disease, Organ) %>%
 	 summarise("log AUC mean" = mean(logAUC)) %>%
@@ -403,7 +392,7 @@ unbalanced_nafree %>%
 Everything is as we'd expect up until now, but what about the marginal means? The, perhaps, most obvious way would be to do the following (i.e., ignore subgroups, hence give all observations equal weight)?
 
 ```{r}
-unbalanced_nafree %>%
+unbalanced %>%
    dplyr::select(c(Disease, logAUC)) %>%
    group_by(Disease) %>%
    summarise(Mean = mean(logAUC))
@@ -412,7 +401,7 @@ unbalanced_nafree %>%
 However, as a result of this the means are **biased** towards groups with greater replication! To avoid this we give the subgroups (`Organ`) cell means equal weight (this is sometimes called the *least squares* mean):
 
 ```{r, message = FALSE, warning = FALSE}
-unbalanced_nafree %>%
+unbalanced %>%
    dplyr::select(c(Disease, Organ, logAUC)) %>%
    group_by(Organ, Disease) %>%
 	 mutate(n = n()) %>% ## count observations in each group
@@ -424,7 +413,7 @@ unbalanced_nafree %>%
 Now see if you can do the same across `Organ` to get
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE}
-unbalanced_nafree %>%
+unbalanced %>%
    dplyr::select(c(Disease, Organ, logAUC)) %>%
    group_by(Disease, Organ) %>%
 	 mutate(n = n()) %>% 

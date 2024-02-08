@@ -49,40 +49,36 @@ Here for observation $i$
   + $\alpha$ is the intercept term (a parameter to be estimated), and 
   + $\beta_1$ is the slope: coefficient of the explanatory variable (a parameter to be estimated)
 
-
-
-
-### Modeling Bill Depth 
-
-**Remember the penguins from the first module**?
-
-![](https://cran.r-project.org/web/packages/palmerpenguins/readme/man/figures/culmen_depth.png){width=30%}
-
-**Key assumptions**
+When we fit a linear model we make some **key assumptions**:
 
 + **Independence** 
 + There is a **linear relationship** between the response and the explanatory variables
 + The residuals have **constant variance**
 + The **residuals** are normally distributed
 
-```{r, message = FALSE, warning=FALSE}
-library(tidyverse)
-library(palmerpenguins)
-penguins_nafree <- penguins %>% drop_na()
+In [Module 4] you will learn that we have tools that enable us to relax some of these assumptions, after all these assumptions only very rarely hold for real-world data.
+
+In the sections below we use the `penguins` data from the `palmerpenguins` package to fit a number of different models using bill Depth (mm) of penguins as the response variable. We first remove the NA values for the response variable:
+
+```{r}
+penguins <- filter(penguins, !is.na(penguins$bill_depth_mm))
 ```
 
+### A Null model
+
+
 ```{r, message=FALSE}
-ggplot(data = penguins_nafree, aes(x = bill_depth_mm)) +
+ggplot(data = penguins, aes(x = bill_depth_mm)) +
   geom_histogram() + theme_classic() +
   xlab("Bill depth (mm)")
 
 ```
 
 
-**First off let's fit a null (intercept only)  model.** This in *old money* would be called a one sample t-test. 
+**Let's fit a null (intercept only)  model.** This in *old money* would be called a one sample t-test. 
 
 ```{r null}
-slm_null <- lm(bill_depth_mm ~ 1, data = penguins_nafree)
+slm_null <- lm(bill_depth_mm ~ 1, data = penguins)
 summary(slm_null)$coef
 ```
 
@@ -98,7 +94,7 @@ Here for observation $i$ $Y_i$ is the value of the response (`bill_depth_mm`) an
 The `(Intercept)` term, `r summary(slm_null)$coef[1,1]`, tells us the (estimated) average value of the response (`bill_depth_mm`), see
 
 ```{r av}
-penguins_nafree %>% summarise(average_bill_depth = mean(bill_depth_mm))
+penguins %>% summarise(average_bill_depth = mean(bill_depth_mm))
 ```
 
 The SEM (`Std. Error`) = `r summary(slm_null)$coef[1,2]`. 
@@ -117,14 +113,14 @@ So the probability of observing a t-statistic as least as extreme given under th
 **Does `bill_length_mm` help explain some of the variation in `bill_depth_mm`?**
 
 ```{r}
-p1 <- ggplot(data = penguins_nafree, aes(x = bill_length_mm, y = bill_depth_mm)) +
+p1 <- ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
   geom_point() + ylab("Bill depth (mm)") +
   xlab("Bill length (mm)") + theme_classic()
 p1
 ```
 
 ```{r slm}
-slm <- lm(bill_depth_mm ~ bill_length_mm, data = penguins_nafree)
+slm <- lm(bill_depth_mm ~ bill_length_mm, data = penguins)
 ```
 
 
@@ -153,9 +149,9 @@ The `bill_length_mm` : `Estimate` ($\beta_1$ above) is the slope associated with
 
 ```{r}
 ## calculate predicted values
-penguins_nafree$pred_vals <- predict(slm)
+penguins$pred_vals <- predict(slm)
 ## plot
-ggplot(data = penguins_nafree, aes(x = bill_length_mm, y = bill_depth_mm)) +
+ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
   geom_point() + ylab("Bill depth (mm)") +
   xlab("Bill length (mm)") + theme_classic() +
   geom_line(aes(y = pred_vals))
@@ -167,14 +163,14 @@ ggplot(data = penguins_nafree, aes(x = bill_length_mm, y = bill_depth_mm)) +
 **Does `bill_depth_mm` vary between species?** Think of ANOVA.
 
 ```{r}
-p1 <- ggplot(data = penguins_nafree, aes(x = species, y = bill_depth_mm)) +
+p1 <- ggplot(data = penguins, aes(x = species, y = bill_depth_mm)) +
   geom_violin() + ylab("Bill depth (mm)") +
   xlab("Species") + theme_classic() + stat_summary(stat = "mean")
 p1
 ```
 
 ```{r sflm}
-sflm <- lm(bill_depth_mm ~ species, data = penguins_nafree)
+sflm <- lm(bill_depth_mm ~ species, data = penguins)
 ```
 
 **Model formula**
@@ -200,9 +196,9 @@ Here, the `(Intercept)`: `Estimate` ($\alpha$ above) gives us the estimated aver
 
 ```{r}
 ## calculate predicted values
-penguins_nafree$pred_vals <- predict(sflm)
+penguins$pred_vals <- predict(sflm)
 ## plot
-ggplot(data = penguins_nafree, aes(x = species, y = bill_depth_mm, fill = species)) +
+ggplot(data = penguins, aes(x = species, y = bill_depth_mm, fill = species)) +
   geom_violin() + ylab("Bill depth (mm)") +
   xlab("Species") + theme_classic() +
   geom_hline(aes(yintercept = pred_vals, col = species), linewidth = 2) +
@@ -215,7 +211,7 @@ ggplot(data = penguins_nafree, aes(x = species, y = bill_depth_mm, fill = specie
 
 
 ```{r}
-p2 <- ggplot(data = penguins_nafree,
+p2 <- ggplot(data = penguins,
              aes(y = bill_depth_mm, x = bill_length_mm, color = species)) +
   geom_point() + ylab("Bill depth (mm)") +
   xlab("Bill length (mm)") + theme_classic()
@@ -223,7 +219,7 @@ p2
 ```
 
 ```{r}
-slm_sp <- lm(bill_depth_mm ~ bill_length_mm + species, data = penguins_nafree)
+slm_sp <- lm(bill_depth_mm ~ bill_length_mm + species, data = penguins)
 ```
 
 
@@ -270,9 +266,9 @@ What about the coefficient of the other species levels? Look at the plot below, 
 
 ```{r}
 ## calculate predicted values
-penguins_nafree$pred_vals <- predict(slm_sp)
+penguins$pred_vals <- predict(slm_sp)
 ## plot
-ggplot(data = penguins_nafree, aes(y = bill_depth_mm, x = bill_length_mm, color = species)) +
+ggplot(data = penguins, aes(y = bill_depth_mm, x = bill_length_mm, color = species)) +
   geom_point() + ylab("Bill depth (mm)") +
   xlab("Bill length (mm)") + theme_classic()  +
   geom_line(aes(y = pred_vals))
@@ -303,7 +299,7 @@ $$Y_i = \beta_0 + \beta_1z_i + \beta_2x_i + \beta_3z_ix_i + \epsilon_i$$
 To specify a model with additive and interaction effects we use
 
 ```{r}
-slm_int <- lm(bill_depth_mm ~ bill_length_mm*species, data = penguins_nafree)
+slm_int <- lm(bill_depth_mm ~ bill_length_mm*species, data = penguins)
 
 ```
 
@@ -354,9 +350,9 @@ But, now we've specified this *all singing and dancing* interaction model we mig
 
 ```{r, echo = FALSE}
 ## calculate predicted values
-penguins_nafree$pred_vals <- predict(slm_int)
+penguins$pred_vals <- predict(slm_int)
 ## plot
-ggplot(data = penguins_nafree, aes(y = bill_depth_mm, x = bill_length_mm, color = species)) +
+ggplot(data = penguins, aes(y = bill_depth_mm, x = bill_length_mm, color = species)) +
   geom_point() + ylab("Bill depth (mm)") +
   xlab("Bill length (mm)") + theme_classic()  +
   geom_line(aes(y = pred_vals))
@@ -370,9 +366,9 @@ ggplot(data = penguins_nafree, aes(y = bill_depth_mm, x = bill_length_mm, color 
 
 ![](https://github.com/BIOSCI738/cowstats/blob/main/img/code_tag.png?raw=true){width=10%}
 
-<strong>Other possible models</strong>
+<strong>Other possible relationships</strong>
 
-Let's assume that we have the same data types as in the previous section, specifically, a continuous response ($y$) and one factor ($f$, with two levels $A$ and $B$) and one continuous ($x$) explanatory variable. Assuming that $A$ is the baseline for $f$ the possible models are depicted below.
+Let's assume that we have the same data types as above, specifically, a continuous response ($y$) and one factor ($f$, with two levels $A$ and $B$) and one continuous ($x$) explanatory variable. Assuming that $A$ is the baseline for $f$ the possible models are depicted below.
 
 ```{r, echo = FALSE, fig.height = 6, fig.width = 10}
 library(patchwork)

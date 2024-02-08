@@ -74,18 +74,13 @@ where $P(\theta∣\text{data})$ represents what you know after having seen the d
 $$P(\text{data}) = \int P(\text{data}|\theta)P(\theta)d\theta$$
 is typically a high-dimensional integral, difficult if not impossible to calculate. 
 
-**A simple example:** lobsters
+**An example using the `lobster` data**
 
-Again we consider data from the published article [Influence of predator identity on the strength of predator avoidance responses in lobsters.](https://www.sciencedirect.com/science/article/pii/S0022098115000039).
-
-Recall that the authors were interested in how a juvenile lobster's size was related to its vulnerability to predation. In total, 159 juvenile lobsters were collected from their natural habitat in the Gulf of Maine, USA, and the length of each lobster's carapace (upper shell) was measured to the nearest 3 mm. The lobsters were then tethered to the ocean floor for 24 hours. Any missing lobsters were assumed to have been consumed by a predator, while the surviving lobsters were released.
 
  We define large juvenile's as those with carapace $\geq$ 40 mm, and otherwise we class them as small. 
 
 ```{r, message = FALSE, warnings = FALSE}
-library(tidyverse)
-data <- read_csv("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/lobster.csv")
-lobsters <- data %>%
+lobsters <- lobster %>%
   mutate(size = ifelse(size >= 40, "large", "small")) %>%
   mutate(survived = ifelse(survived == 0, "consumed", "alive")) %>%
   group_by(size, survived) %>%

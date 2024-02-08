@@ -1,10 +1,7 @@
 ## Introduction to generalised linear models (GLMs)
 
-> "Ecology has increasingly become a data- and model-centric discipline..." `r tufte::quote_footer('---  Trends in ecology and conservation over eight decades')`
 
-<p align="center">![[Figure 5: Data analysis, statistical methods, and genetics n-grams from 1930 to 2010](https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/fee.2320#.YQfyCkjJsto.twitter)](https://esajournals.onlinelibrary.wiley.com/cms/asset/b3db55eb-1087-451a-8c4e-179d95e0d269/fee2320-fig-0005-m.jpg){width=50%}</p>
-
-Recall, the simple linear regression model from module 2:
+Recall, the simple linear regression model from [Module 3]:
   
 $$Y_i = \alpha + \beta_1x_i + \epsilon_i$$
 where
@@ -110,16 +107,11 @@ However, if our chi-squared approximation assumptions are not met we should find
 ### An example: bird abundance
 
 
-A recent publication [Partitioning beta diversity to untangle mechanisms underlying the assembly of bird communities in Mediterranean olive groves](https://onlinelibrary.wiley.com/doi/10.1111/ddi.13445) investigates bird abundance data for a number of olive farms. Each farm is catalogued according to the level of landscape complexity (high; intermediate; low) and the type of management of the ground cover (extensive or intensive).
+A recent publication [Partitioning beta diversity to untangle mechanisms underlying the assembly of bird communities in Mediterranean olive groves](https://onlinelibrary.wiley.com/doi/10.1111/ddi.13445) investigates bird abundance data for a number of olive farms. Each farm is catalogued according to the level of landscape complexity (high; intermediate; low) and the type of management of the ground cover (extensive or intensive). These data are available in the `birds` dataset:
 
 
 ```{r, message = FALSE, warnings = FALSE}
-library(tidyverse)
-data <- read_delim("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/bird_abundance.csv")
-birds <- data %>%
-  dplyr::select(c("OliveFarm","Management","Turdus_merula","Phylloscopus_collybita")) %>%
-  pivot_longer(., c(-OliveFarm, -Management), names_to = "Species", values_to = "Count") 
-birds
+glimpse(birds)
 ```
 
 ```{r, echo = FALSE}
@@ -276,12 +268,10 @@ However, if our chi-squared approximation assumptions are not met we should find
 
 Let us, again, consider data from the published article [Influence of predator identity on the strength of predator avoidance responses in lobsters.](https://www.sciencedirect.com/science/article/pii/S0022098115000039).
 
-The authors were interested in how a juvenile lobster's size was related to its vulnerability to predation. In total, 159 juvenile lobsters were collected from their natural habitat in the Gulf of Maine, USA, and the length of each lobster's carapace (upper shell) was measured to the nearest 3 mm, `size`. The lobsters were then tethered to the ocean floor for 24 hours. Any missing lobsters were assumed to have been consumed by a predator, while the surviving lobsters were released (i.e., `survived` = 1 if lobster survived, 0 otherwise).
+The authors were interested in how a juvenile lobster's size was related to its vulnerability to predation. In total, 159 juvenile lobsters were collected from their natural habitat in the Gulf of Maine, USA, and the length of each lobster's carapace (upper shell) was measured to the nearest 3 mm, `size`. The lobsters were then tethered to the ocean floor for 24 hours. Any missing lobsters were assumed to have been consumed by a predator, while the surviving lobsters were released (i.e., `survived` = 1 if lobster survived, 0 otherwise). These data are available in the `lobster` dataset:
 
 ```{r, message = FALSE, warnings = FALSE}
-library(tidyverse)
-data <- read_csv("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/lobster.csv")
-data 
+glimpse(lobster)
 ```
 
 #### Ungrouped model
@@ -290,7 +280,7 @@ Fitting a binomial model we specify `family = "binomial"` in our `glm` call. Not
 
 
 ```{r}
-glm_mod_ug <- glm(survived ~ size, family = "binomial", data = data)
+glm_mod_ug <- glm(survived ~ size, family = "binomial", data = lobster)
 summary(glm_mod_ug)
 ```
 
@@ -302,7 +292,7 @@ equatiomatic::extract_eq(glm_mod_ug, use_coefs = TRUE, coef_digits = 3)
 
 
 ```{r, echo = FALSE, warning = FALSE, message = FALSE}
-ggplot(data, aes(x = size, y = survived)) + 
+ggplot(lobster, aes(x = size, y = survived)) + 
   geom_point(alpha = .5) +
   stat_smooth(method="glm", se = FALSE, method.args = list(family=binomial), col = "#782c26") + 
   xlab("Carapace length (mm)") +
@@ -317,7 +307,7 @@ ggplot(data, aes(x = size, y = survived)) +
 The data are currently ungrouped, despite many lobsters sharing the same carapace size. Therefore, we rearrange the data set so that it is grouped:
 
 ```{r}
-grouped <- data %>%
+grouped <- lobster %>%
   group_by(size) %>%
   summarise(y = sum(survived), n = length(survived), p = mean(survived))
 grouped
@@ -502,35 +492,39 @@ Therefore, to test the relevant null hypothesis (that the model is correct) we u
 Here, we have no evidence to against our model being "correct". **BUT** are our chi-squared approximation assumptions met? If not, we might take a **simulation based approach**. This is, however, beyond the scope of this course.
 
 
+
+
 ## A summary of GLMs
   
-The three distributions we've covered are given below.
+The three distributions we've covered above are:
 
-<p align="center">  **Linear regression:** $Y_i \sim \text{Normal}(\mu_i, \sigma^2)$ where $\mu_i = \alpha + \beta_1 x_i$</p>
-
-<p align="center">**Poisson regression:** $Y_i \sim \text{Poisson}(\mu_i)$ where $\text{log}(\mu_i) = \alpha + \beta_1 x_i$ </p>
-  
-<p align="center">**Logistic regression:** $Y_i \sim \text{Binomial}(n_i, p_i)$ where $\text{logit}(p_i) = \alpha + \beta_1 x_i$ </p>
+<ol>
+<li>**Linear regression:** $Y_i \sim \text{Normal}(\mu_i, \sigma^2)$ where $\mu_i = \alpha + \beta_1 x_i$</li>
+<li>**Poisson regression:** $Y_i \sim \text{Poisson}(\mu_i)$ where $\text{log}(\mu_i) = \alpha + \beta_1 x_i$ </li>
+<li>**Logistic regression:** $Y_i \sim \text{Binomial}(n_i, p_i)$ where $\text{logit}(p_i) = \alpha + \beta_1 x_i$ </li>
+</ol>
 
 What would happen if we wanted to add extra explanatory terms (e.g., $z_i$)? Then,
 
-<p align="center">**Linear regression:** $Y_i \sim \text{Normal}(\mu_i, \sigma^2)$ where $\mu_i = \alpha + \beta_1 x_i + \beta_2 z_i$</p>
-  
-<p align="center">**Poisson regression:** $Y_i \sim \text{Poisson}(\mu_i)$ where $\text{log}(\mu_i) = \alpha + \beta_1 x_i+ \beta_2 z_i$ </p>
-
-<p align="center">**Logistic regression:** $Y_i \sim \text{Binomial}(n_i, p_i)$ where $\text{logit}(p_i) = \alpha + \beta_1 x_i+ \beta_2 z_i$</p>
+<ol>
+<li>**Linear regression:** $Y_i \sim \text{Normal}(\mu_i, \sigma^2)$ where $\mu_i = \alpha + \beta_1 x_i + \beta_2 z_i$</li>
+<li>**Poisson regression:** $Y_i \sim \text{Poisson}(\mu_i)$ where $\text{log}(\mu_i) = \alpha + \beta_1 x_i+ \beta_2 z_i$ </li>
+<li>**Logistic regression:** $Y_i \sim \text{Binomial}(n_i, p_i)$ where $\text{logit}(p_i) = \alpha + \beta_1 x_i+ \beta_2 z_i$</li>
+</ol>
 
 What about interactions (e.g., $x_iz_i$)?
 
-<p align="center"> **Linear regression:** $Y_i \sim \text{Normal}(\mu_i, \sigma^2)$ where $\mu_i = \alpha + \beta_1 x_i + \beta_2 z_i + \beta_3 x_iz_i$</p>
-  
-<p align="center">**Poisson regression:** $Y_i \sim \text{Poisson}(\mu_i)$ where $\text{log}(\mu_i) = \alpha + \beta_1 x_i+ \beta_2 z_i + \beta_3 x_iz_i$ </p>
+<ol>
+<li> **Linear regression:** $Y_i \sim \text{Normal}(\mu_i, \sigma^2)$ where $\mu_i = \alpha + \beta_1 x_i + \beta_2 z_i + \beta_3 x_iz_i$</li>
+<li>**Poisson regression:** $Y_i \sim \text{Poisson}(\mu_i)$ where $\text{log}(\mu_i) = \alpha + \beta_1 x_i+ \beta_2 z_i + \beta_3 x_iz_i$ </li>
+<li>**Logistic regression:** $Y_i \sim \text{Binomial}(n_i, p_i)$ where $\text{logit}(p_i) = \alpha + \beta_1 x_i+ \beta_2 z_i + \beta_3 x_iz_i$</li>
+</ol>
 
-<p align="center">**Logistic regression:** $Y_i \sim \text{Binomial}(n_i, p_i)$ where $\text{logit}(p_i) = \alpha + \beta_1 x_i+ \beta_2 z_i + \beta_3 x_iz_i$</p>
+<div class="alert alert-info">
 
+![](https://github.com/BIOSCI738/cowstats/blob/main/img/code_tag.png?raw=true){width=10%}
 
-
-#### Building a GLM
+<strong> Building a GLM</strong>
 
 Assume the observations are independent of one another, then,
 
@@ -543,8 +537,10 @@ Assume the observations are independent of one another, then,
   4. Choose explanatory terms 
   
   5. Estimate additional parameters. For example, <span style="color:red">$\sigma^2$</span>.
-  
-#### Other distributions
+
+</div> 
+
+### Other distributions
   
 We are not restricted to the three distributions above. Many others exist:
   
@@ -558,23 +554,35 @@ We are not restricted to the three distributions above. Many others exist:
   
 <div style="overflow:auto;">
   
-| **Distribution**  | **Notation**  | **Mean** $\mu = E(Y)$  | **Variance** $\sigma^2 = \text{Var}(Y)$ | **Linear predictor** (w. a typical <span style="color:pink">link</span> function) |
+| **Distribution**  | **Notation**  | **Mean** $\mu = E(Y)$  | **Variance** $\sigma^2 = \text{Var}(Y)$ | **Linear predictor** (w. a typical <span style="color:orange">link</span> function) |
 |-------------------|---------------|------------------------|-----------------------------------------|-----------------------------------------------------------------------------------|
-| Gaussian          | $Y\sim\textbf{Normal}(\mu, \sigma^2)$  |  $\mu$ | $\sigma^2$  | <span style="color:pink">I</span>$(\mu) = \alpha + \Sigma_{j=1}^{n_\text{covariates}}\beta_j x_j$  |
-| Poisson           | $Y \sim \textbf{Poisson}(\mu)$ where $\mu = \text{rate}$ | $\mu$  | $\mu$  |  <span style="color:pink">log</span>$(\mu) = \alpha + \Sigma_{j=1}^{n_\text{covariates}}\beta_j x_j$ |
-| Binomial          | $Y \sim \textbf{Bonomial}(\text{n}, p)$ where $\text{n} = \text{number of trials}$ and $p = \text{probability of sucess}$  | $\text{n}p$  | $\text{n}p (1-p)$  |  <span style="color:pink">logit</span>$(p) = \alpha + \Sigma_{j=1}^{n_\text{covariates}}\beta_j x_j$ |
-| Gamma             | $Y \sim \textbf{Gamma}(k, \theta = \frac{1}{\text{rate}})$ where $k = \text{shape}$ and $\theta = \text{scale}$ |  $k\theta$ | $k\theta^2$  |<span style="color:pink">log</span>$(E(Y)) = \alpha + \Sigma_{j=1}^{n_\text{covariates}}\beta_j x_j$ |
-| Beta              | $Y \sim \textbf{Beta}(a, b)$  where $a = \text{shape}$ and $b = \text{scale}$ | $\frac{a}{a+b}$  | $\frac{ab}{(a+b)^2(a+b+1)}$  | <span style="color:pink">log</span>$(E(Y)) = \alpha + \Sigma_{j=1}^{n_\text{covariates}}\beta_j x_j$  |
-| Negative binomial | $Y \sim \textbf{NB}(r, p)$ where $\text{r} = \text{number of successes until the experiment is stopped}$ and $p = \text{probability of sucess}$ or $Y \sim \textbf{NB}(k, p)$ where $\text{k} = \text{number of failures}$ given $p = \text{probability of sucess}$     | $\frac{r(1-p)}{p}$ or $\mu = k\frac{p}{1-p}$  | $\frac{r(1-p)}{p^2}$ or $\mu + \frac{\mu^2}{k}$ | <span style="color:pink">log</span>$(E(Y)) = \alpha + \Sigma_{j=1}^{n_\text{covariates}}\beta_j x_j$  |
-| Beta-binomial     |$Y \sim \textbf{BetaBin}(\text{n},a, b)$ where $\text{n} = \text{number of trials}$ and  $p = \frac{a}{a + b}, \text{the probability of success}$  |  $\frac{\text{n} a}{a+b}=  \text{n}p$  | $\frac{\text{n} a b(a + b + \text{n})}{(a+b)^2(a + b + 1)}$ | <span style="color:pink">logit</span>$(p) = \alpha + \Sigma_{j=1}^{n_\text{covariates}}\beta_j x_j$  |
+| Gaussian          | $Y\sim\textbf{Normal}(\mu, \sigma^2)$  |  $\mu$ | $\sigma^2$  | <span style="color:orange">I</span>$(\mu) = \alpha + \Sigma_{j=1}^{n_\text{covariates}}\beta_j x_j$  |
+| Poisson           | $Y \sim \textbf{Poisson}(\mu)$ where $\mu = \text{rate}$ | $\mu$  | $\mu$  |  <span style="color:orange">log</span>$(\mu) = \alpha + \Sigma_{j=1}^{n_\text{covariates}}\beta_j x_j$ |
+| Binomial          | $Y \sim \textbf{Bonomial}(\text{n}, p)$ where $\text{n} = \text{number of trials}$ and $p = \text{probability of sucess}$  | $\text{n}p$  | $\text{n}p (1-p)$  |  <span style="color:orange">logit</span>$(p) = \alpha + \Sigma_{j=1}^{n_\text{covariates}}\beta_j x_j$ |
+| Gamma             | $Y \sim \textbf{Gamma}(k, \theta = \frac{1}{\text{rate}})$ where $k = \text{shape}$ and $\theta = \text{scale}$ |  $k\theta$ | $k\theta^2$  |<span style="color:orange">log</span>$(E(Y)) = \alpha + \Sigma_{j=1}^{n_\text{covariates}}\beta_j x_j$ |
+| Beta              | $Y \sim \textbf{Beta}(a, b)$  where $a = \text{shape}$ and $b = \text{scale}$ | $\frac{a}{a+b}$  | $\frac{ab}{(a+b)^2(a+b+1)}$  | <span style="color:orange">log</span>$(E(Y)) = \alpha + \Sigma_{j=1}^{n_\text{covariates}}\beta_j x_j$  |
+| Negative binomial | $Y \sim \textbf{NB}(r, p)$ where $\text{r} = \text{number of successes until the experiment is stopped}$ and $p = \text{probability of sucess}$ or $Y \sim \textbf{NB}(k, p)$ where $\text{k} = \text{number of failures}$ given $p = \text{probability of sucess}$     | $\frac{r(1-p)}{p}$ or $\mu = k\frac{p}{1-p}$  | $\frac{r(1-p)}{p^2}$ or $\mu + \frac{\mu^2}{k}$ | <span style="color:orange">log</span>$(E(Y)) = \alpha + \Sigma_{j=1}^{n_\text{covariates}}\beta_j x_j$  |
+| Beta-binomial     |$Y \sim \textbf{BetaBin}(\text{n},a, b)$ where $\text{n} = \text{number of trials}$ and  $p = \frac{a}{a + b}, \text{the probability of success}$  |  $\frac{\text{n} a}{a+b}=  \text{n}p$  | $\frac{\text{n} a b(a + b + \text{n})}{(a+b)^2(a + b + 1)}$ | <span style="color:orange">logit</span>$(p) = \alpha + \Sigma_{j=1}^{n_\text{covariates}}\beta_j x_j$  |
 </div>
 
 $^{+}$ Note that the Quasi-... distributions are not really *proper* distributions; they are simply models describing a mean-variance relationship beyond that offered by the base distribution.
 
-#### Other modelling approaches (not examinable)
+
+<div class="alert alert-warning">
+  <strong>TASK</strong>  Study [this cheatsheet](https://github.com/BIOSCI738/cowstats/blob/main/img/distributions.png?raw=true) and find relevant examples of response variables from your field of study for each distribution.
+</div>
+
+
+<div class="alert alert-info">
+
+![](https://github.com/BIOSCI738/cowstats/blob/main/img/code_tag.png?raw=true){width=10%}
+
+<strong>Note</strong> `glm()` is only the beginning.
 
 | `R` function    | Use                    | 
 | --------------- |------------------------|
 | `gam()`         | Fit a generalised additive model. The R package `mgcv` must be loaded |
 | `nlme()`        | Fit linear and non-linear mixed effects models. The R package `nlme` must be loaded 
 | `gls()`         | Fit generalised least squares models. The R package `nlme` must be loaded |
+
+</div>

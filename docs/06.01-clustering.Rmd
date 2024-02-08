@@ -41,17 +41,15 @@ There are assorted methodologies to identify the appropriate $k$. Tests range fr
 ### K-means: an example using the `palmerpenguins` data
 
 ```{r}
-
-library(palmerpenguins)
-## getting rid of NAs
-penguins_nafree <- penguins %>% drop_na()
+## getting rid of all NAs 
+penguins <- penguins %>% drop_na()
 ```
 
 ```{r}
 ## introducing a new package GGally, please install
 ## using install.packages("GGally")
 library(GGally)
-penguins_nafree %>%
+penguins %>%
   dplyr::select(species, where(is.numeric)) %>% 
   ggpairs(columns = c("flipper_length_mm", "body_mass_g", 
                      "bill_length_mm", "bill_depth_mm")) 
@@ -62,7 +60,7 @@ We see that a lot of these variables (e.g., `flipper_length_mm`, `body_mass_g`, 
 
 ```{r, message = FALSE}
 ## create a data frame of what we're interested in
-df <- penguins_nafree %>%
+df <- penguins %>%
   dplyr::select(where(is.numeric), -year)
 ```
 We use the `kmeans()` function.
@@ -120,7 +118,7 @@ Alternatively, you can use standard pairwise scatter plots to illustrate the clu
 ```{r, echo = TRUE}
 df %>%
   mutate(cluster = k3$cluster,
-         species = penguins_nafree$species) %>%
+         species = penguins$species) %>%
   ggplot(aes(flipper_length_mm, bill_depth_mm, color = factor(cluster), label = species)) +
   geom_text()
 ```
@@ -251,9 +249,7 @@ of clusters. Its chief flaw is a tendency to form clusters of equal size, regard
 Data were collected on the distribution of ant species at 30 sites across the Auckland region using pitfall traps.  Twenty pitfall traps at each site were left open for ten days and the number of individuals captured counted for the four most abundant species: *Nylanderia spp*, *Pheidole rugosula*, *Tetramorium grassii*, and *Pachycondyla sp*. 
 
 ```{r, message = FALSE, warnings = FALSE}
-library(tidyverse)
-ants <- read_csv("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/pitfalls.csv")
-ants
+glimpse(ants)
 ```
 
 

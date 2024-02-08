@@ -1,14 +1,57 @@
 # Module 4
 
-**Learning objectives**
- 
- + **Describe** the following components of a generalised linear model
-    + the response variable
-    + the response distribution
-    + the link function
- + **Fit** Poisson and logistic regression models using `R`
- + **Interpret** estimated effects with reference to confidence intervals from Poisson and logistic regression models
- + **Determine** a sensible response distribution to use for a generalised linear model fitted to a particular data set
- + **Include** and **interpret** interaction effects in a generalised linear model using `R`
+<div class="alert alert-success" role="alert">
+![](https://github.com/BIOSCI738/cowstats/blob/main/img/code_bell.png?raw=true){width=10%} <strong>Key topics</strong> 
+
+<ul>
+   
+   <li>Poisson regression</li>
+   <li>Logistic regression</li>
+   <li>Generalised linear models </li>
+   <li>Generalised linear mixed-effects models </li>
+ </ul>
+
+</div>
+
+> "Ecology has increasingly become a data- and model-centric discipline..." `r tufte::quote_footer('---  Trends in ecology and conservation over eight decades')`
+
+<p align="center">![[Figure 5: Data analysis, statistical methods, and genetics n-grams from 1930 to 2010](https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/fee.2320#.YQfyCkjJsto.twitter)](https://esajournals.onlinelibrary.wiley.com/cms/asset/b3db55eb-1087-451a-8c4e-179d95e0d269/fee2320-fig-0005-m.jpg){width=50%}</p>
 
 
+#### `R` packages and datasets
+
+It is assumed in all following examples of this module that the following code has been executed successfully.
+
+**packages used in this module**
+
+```{r, eval = FALSE}
+library(tidyverse) ## general functionality
+library(lme4) ## mixed effects models
+```
+
+**datasets used in this module**
+
+```{r}
+base_url <- "https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/"
+```
+
+1. `birds`^[Source: [Partitioning beta diversity to untangle mechanisms underlying the assembly of bird communities in Mediterranean olive groves](https://onlinelibrary.wiley.com/doi/10.1111/ddi.13445)]
+
+```{r}
+birds <- read_delim(paste(base_url, "bird_abundance.csv", sep = "")) %>%
+  dplyr::select(c("OliveFarm","Management","Turdus_merula","Phylloscopus_collybita")) %>%
+  pivot_longer(., c(-OliveFarm, -Management), names_to = "Species", values_to = "Count") 
+
+```
+
+2. `lobster`^[Source: [Influence of predator identity on the strength of predator avoidance responses in lobsters.](https://www.sciencedirect.com/science/article/pii/S0022098115000039)]
+
+```{r}
+lobster <- read_csv(paste(base_url, "lobster.csv", sep = ""))
+```
+
+3. `mice`^[Source: [Human Gut Microbiota from Autism Spectrum Disorder Promote Behavioral Symptoms in Mice](https://pubmed.ncbi.nlm.nih.gov/31150625/)]
+
+```{r}
+mice <- read_csv(paste(base_url, "autism.csv", sep = ""))
+```

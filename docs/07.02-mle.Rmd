@@ -48,15 +48,13 @@ This section is a recap only, if you need a more in-depth overview of log rules 
 
 The process of using observations to suggest a value for a parameter is called estimation. The value suggested is called the **estimate** of the parameter.
 
-Let us consider data from the published article [Influence of predator identity on the strength of predator avoidance responses in lobsters.](https://www.sciencedirect.com/science/article/pii/S0022098115000039).
+Let us again consider data from the published article [Influence of predator identity on the strength of predator avoidance responses in lobsters.](https://www.sciencedirect.com/science/article/pii/S0022098115000039), `lobster`.
 
-The authors were interested in how a juvenile lobster's size was related to its vulnerability to predation. In total, 159 juvenile lobsters were collected from their natural habitat in the Gulf of Maine, USA, and the length of each lobster's carapace (upper shell) was measured to the nearest 3 mm. The lobsters were then tethered to the ocean floor for 24 hours. Any missing lobsters were assumed to have been consumed by a predator, while the surviving lobsters were released.
+Recall that the authors were interested in how a juvenile lobster's size was related to its vulnerability to predation. In total, 159 juvenile lobsters were collected from their natural habitat in the Gulf of Maine, USA, and the length of each lobster's carapace (upper shell) was measured to the nearest 3 mm. The lobsters were then tethered to the ocean floor for 24 hours. Any missing lobsters were assumed to have been consumed by a predator, while the surviving lobsters were released.
 
 
 ```{r, message = FALSE, warnings = FALSE}
-library(tidyverse)
-data <- read_csv("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/lobster.csv")
-data %>%
+lobsters <- lobster %>%
   mutate(survived = ifelse(survived == 0, "consumed", "alive")) %>%
   group_by(survived) %>%
   tally() %>%

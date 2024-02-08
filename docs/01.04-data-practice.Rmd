@@ -90,3 +90,9 @@ The table below summarises [Ten Simple Rules for Better Figures](https://journal
 <div class="alert alert-warning">
   <strong>TASK</strong> Read [this short paper](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003833) and find examples in your choice of literature of one or more of the rules in action.
 </div>
+
+<div class="alert alert-warning">
+  <strong>TASK</strong> Put your data wrangling and visualization skills to the test and find the hidden picture in [this dataset](https://osf.io/nzrfx).
+  
+</div>
+ 

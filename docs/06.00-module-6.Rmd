@@ -1,24 +1,86 @@
 # Module 5
 
-**Learning objectives**
+<div class="alert alert-success" role="alert">
+![](https://github.com/BIOSCI738/cowstats/blob/main/img/code_bell.png?raw=true){width=10%} <strong>Key topics</strong> 
 
-+ **Explain** the aims and motivation behind cluster analysis and its relevance in biology
-+ **Write** `R` code to **carry out** hierarchical and k-means cluster analysis
-+ **Interpret** `R` output from hierarchical and k-means cluster analysis
-+ **Interpret** and **communicate**, to both a statistical and non-statistical audience, clustering techniques, specifically,
-    + *Divisive methods*, nonparametric algorithms such as k-means 
-    + *Agglomerative methods*, clustering cases and/or variables into a hierarchy of sets (i.e., hierarchical clustering)
-+ **Explain** the aims and motivation behind Principal Component Analysis (PCA) and its relevance in biology
-+ **Write** `R` code to carry out PCA
-+ **Interpret** and **communicate**, to both a statistical and non-statistical audience, dimension reduction techniques
+<ul>
+   <li>Clustering </li>
+   <li>Principal Component Analysis</li>
+   <li>Multidimensional Scaling</li>
+   <li>Linear Discriminant Analysis</li>
+ </ul>
+
+</div>
 
 
+#### `R` packages and datasets
 
-**Other resources**
+It is assumed in all following examples of this module that the following code has been executed successfully.
 
-+ [Eigenfaces](https://cmjt.github.io/statbiscuits/eigenfaces.html)
-+ [ClusterDucks](https://cmjt.github.io/statbiscuits/clusterducks.html)
-+ [K-means cluster analysis](https://uc-r.github.io/kmeans_clustering)
-+ [Little book for Multivariate Analysis](https://little-book-of-r-for-multivariate-analysis.readthedocs.io/en/latest/index.html)
-+ ['explor' is an R package to allow interactive exploration of multivariate analysis results](https://juba.github.io/explor/)
-+ [The Mathematics Behind Principal Component Analysis (6 min read)](https://towardsdatascience.com/the-mathematics-behind-principal-component-analysis-fff2d7f4b643)
+**packages used in this module**
+
+```{r, eval = FALSE}
+library(tidyverse) ## general functionality
+library(palmerpenguins) ## penguins data
+library(GGally) ## nice looking pairs plots
+library(factoextra) ## multivariate analysis
+library(vegan) ## multivariate analysis
+library(ape) ## dendograms
+library(MASS) ## linear discriminant analysis
+library(ggfortify) ## plotting
+library(pheatmap) ## plotting
+library(ade4) ## plotting
+```
+
+
+**datasets used in this module**
+
+```{r}
+base_url <- "https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/"
+```
+
+1. `palmerpenguins::penguins`
+
+```{r}
+data(penguins, package = "palmerpenguins")
+```
+
+2. `ants`
+
+```{r}
+ants <- read_csv(paste(base_url, "pitfalls.csv", sep = ""))
+```
+
+3. `north_island`
+
+
+```{r}
+north_island <- read_csv(paste(base_url, "north_islands_distances.csv", sep = "")) %>% 
+  column_to_rownames(var = "...1")
+```
+
+4. `ekman`^[Source: [Dimensions of color vision](https://psycnet.apa.org/doi/10.1080/00223980.1954.9712953)]
+
+```{r}
+ekman <- read_csv(paste(base_url, "ekman.csv", sep = ""))
+```
+
+5. `eurodist`
+
+```{r}
+data("eurodist", package = "datasets")
+```
+
+6. `HairEyeColor`^[Source: [Graphical display of two-way contingency tables](https://doi.org/10.2307/2683520) and [Graphical methods for categorical data](http://www.math.yorku.ca/SCS/sugi/sugi17-paper.html)]
+
+```{r}
+data("HairEyeColor", package = "datasets")
+```
+
+7. `diabetes`
+
+```{r}
+diabetes <- read_csv(paste(base_url, "diabetes.csv", sep = ""))
+```
+
+

@@ -1,39 +1,76 @@
 # Module 3
 
-**Learning objectives**
+<div class="alert alert-success" role="alert">
+![](https://github.com/BIOSCI738/cowstats/blob/main/img/code_bell.png?raw=true){width=10%} <strong>Key topics</strong> 
 
-   + **Identify** the experimental unit(s) and the observational unit(s) for a given experimental design
-   + **List** and **describe** the three main principals of experimental design
-       + randomization
-       + replication
-       + blocking
-   + **Calculate** Sums of Squares (between and within groups) given the observations 
-   + **Define** and **state** the appropriate degrees of freedom in a one-way ANOVA scenario
-   + **Calculate** the F-statistics given the appropriate Sums of Squares and degrees of freedom
-   + **Interpret** and **discuss** a given *p-value* in the context of a stated hypothesis test
-   + **Explain** between group and within group variation
-   + **Communicate** statistical concepts and experimental outcomes clearly using language appropriate for both a **scientific** and **non-scientific** audience
-   + **Describe** a Completely Randomised (experimental) Design 
-   + **Carry** out linear regression in `R` with one categorical explanatory variable (one-way ANOVA) and **draw** the appropriate inference
-   + **Describe** and **discuss** factorial experiments with both equal and unequal replication
-   + **Carry** out linear regression in `R` with two categorical explanatory variables and an interaction (two-way ANOVA with interaction) and **draw** the appropriate inference
-   + **Calculate** the marginal means for a balanced and unbalanced design
-   + **Carry** out analysis of the above designs in `R` using `aov()`, `lm()`, and `lmer()` and **discuss** and **compare** the three
-   + **Define** a fixed and random effect in the context of experimental design
-   + **Describe** and **discuss** split-plot experimental design
-   + **Describe** and **discuss** repeated measures experiments
-   + **Write** `R` code to **visualise** repeated measures data 
-   + **Carry** out appropriate analysis in `R` and **draw** the appropriate inference
-   + **Discuss** and **critique** methods for controlling errors in hypothesis testing, for example Fisher’s LSD and the Bonferroni Correction
-   + **Detail** and **draw** inference form multiple comparison procedures such as Tukey’s HSD and Dunnett's test
-   + **Describe** the family wise error rate (FWER) and false discover rate (FDR) in the context of multiple comparisons
-   + **Calculate** the marginal means for a balanced and unbalanced design
-   
- 
+<ul>
+   <li>Principles of experimental design</li>
+   <li>Multiple comparisons</li>
+   <li>Sums of Squares</li>
+   <li>Mixed/random effects</li>
+ </ul>
 
-**Other resources**
+</div>
 
-+ [Glass, David J. Experimental Design for Biologists. Second ed. 2014. Print.](https://catalogue.library.auckland.ac.nz/primo-explore/fulldisplay?docid=uoa_alma21237737730002091&search_scope=Combined_Local&tab=books&vid=NEWUI&context=L)
-+ [Welham, S. J. Statistical Methods in Biology : Design and Analysis of Experiments and Regression. 2015. Print.](https://catalogue.library.auckland.ac.nz/primo-explore/fulldisplay?docid=uoa_alma21237737830002091&search_scope=Combined_Local&tab=books&vid=NEWUI&context=L)
-+ [Fisher, Ronald Aylmer. The Design of Experiments. 8th ed. Edinburgh: Oliver & Boyd, 1966. Print. O & B Paperbacks.](https://catalogue.library.auckland.ac.nz/primo-explore/fulldisplay?docid=uoa_alma21198532990002091&context=L&vid=NEWUI&lang=en_US&search_scope=Combined_Local&adaptor=Local%20Search%20Engine&isFrbr=true&tab=books&query=any,contains,The_Design_of_Experiments&sortby=date&facet=frbrgroupid,include,627497507&offset=0)
-+ [Analysis of variance with unbalanced data: an update for ecology & evolution - Hector - 2010 - Journal of Animal Ecology](https://besjournals.onlinelibrary.wiley.com/doi/10.1111/j.1365-2656.2009.01634.x)
+We now know how to deal with data in `R`; however, before we start drawing conclusions we need to know how the data were collected and more importantly. perhaps, collect data ourselves. Generally, data is either observational (data collected where researchers don't control the environment, but simply observe outcomes) or experimental (data collected where researchers introduce some intervention and control the environment in order to draw inference).
+
+
+<div class="alert alert-warning">
+  <strong>TASK</strong>
+[R. A. Fisher](https://en.wikipedia.org/wiki/Ronald_Fisher)'s work in the area of experimental design is, perhaps, the most well known in the field. The principles he devised we still abide by today. Note, however, to give a balanced view of the celebrated mathematician many of his views (on eugenics and race in particular) are detested by many. I would urge you to [read up on his work in this area and come to your own conclusions](https://www.nature.com/articles/s41437-020-00394-6).
+</div>
+
+
+#### `R` packages and datasets
+
+It is assumed in all following examples of this module that the following code has been executed successfully.
+
+**packages used in this module**
+
+```{r, eval = FALSE}
+library(tidyverse) ## general functionality
+library(edibble) ## experiment setup
+library(gglm) ## nice lm() diagnostic plots
+library(emmeans) ## pairwise contrasts
+library(lme4) ## mixed effects models
+library(lmerTest) ## mixed effects models
+library(predictmeans) ## pairwise comparisons
+```
+
+
+**datasets used in this module**
+
+```{r}
+base_url <- "https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/"
+```
+
+1. `rats`
+
+```{r}
+rats <- read_csv(paste(base_url, "crd_rats_data.csv", sep = ""))
+rats$Surgery <- as_factor(rats$Surgery)
+```
+
+2. `factorial`
+
+```{r}
+factorial <- read_csv(paste(base_url, "factorial_expt.csv", sep = ""))
+```
+
+3. `rcbd`
+
+```{r}
+rcbd <- read_csv(paste(base_url, "rcbd.csv", sep = ""))
+```
+
+4. `split_plot`
+
+```{r}
+split_plot <- read_csv(paste(base_url, "split_plot.csv", sep = ""))
+```
+
+5. `liver`
+
+```{r}
+liver <- read_csv(paste(base_url, "repeated_measures_liver.csv", sep = ""))
+```

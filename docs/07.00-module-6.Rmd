@@ -1,23 +1,36 @@
 # Module 6
 
-**Learning objectives**
+<div class="alert alert-success" role="alert">
+![](https://github.com/BIOSCI738/cowstats/blob/main/img/code_bell.png?raw=true){width=10%} <strong>Key topics</strong> 
 
- + **Define**, **state**, and **critique** the motivation(s) behind the three following estimation techniques
-    + least squares estimation
-    + maximum likelihood estimation
-    + Bayesian inference
- + **Carry out** *by-hand* parameter estimation for the three following estimation techniques
-    + least squares estimation
-    + maximum likelihood estimation
-    + Bayesian inference
- + **Carry out** parameter estimation in `R` for the following estimation techniques
-    + least squares estimation
-    + maximum likelihood estimation
+<ul>
+   <li>Least squares estimation</li>
+   <li>Maximum likelihood estimation</li>
+   <li>Bayesian inference</li>
+ </ul>
 
-**Other resources**
+</div>
 
- + [Basic differentiation rules](https://libraryguides.centennialcollege.ca/c.php?g=717032&p=5123102)
- + [Basic matrix operations](https://www.georgebrown.ca/sites/default/files/uploadedfiles/tlc/_documents/Basic_Matrix_Operations.pdf)
- + [An introduction to Bayesian thinking](https://statswithr.github.io/book/the-basics-of-bayesian-statistics.html)
- + [Beginner's Guide To Maximum Likelihood Estimation](https://www.aptech.com/blog/beginners-guide-to-maximum-likelihood-estimation-in-gauss/)
- + [Bayesian statistics with R](https://oliviergimenez.github.io/bayesian-stats-with-R/)
+#### `R` packages and datasets
+
+It is assumed in all following examples of this module that the following code has been executed successfully.
+
+**packages used in this module**
+
+```{r, eval = FALSE}
+library(tidyverse) ## general functionality
+
+```
+
+
+**datasets used in this module**
+
+```{r}
+base_url <- "https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/"
+```
+
+1.  `lobster`^[Source: [Influence of predator identity on the strength of predator avoidance responses in lobsters.](https://www.sciencedirect.com/science/article/pii/S0022098115000039)]
+
+```{r}
+lobster <- read_csv(paste(base_url, "lobster.csv", sep = ""))
+```

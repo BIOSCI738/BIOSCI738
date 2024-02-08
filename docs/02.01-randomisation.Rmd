@@ -23,16 +23,9 @@ The basic approach to a randomisation tests is straightforward:
 
 ### A permutation test: Jackal mandible lengths
 
-Below are data specifying mandible lengths (mm) for golden jackals (*Canis aureus*) of each sex from the British Museum
+The `jackal` data contain mandible lengths (mm) for golden jackals (*Canis aureus*) of each sex, these data were collected from the British Museum's archives.
 
-```{r, echo = FALSE}
-## Mandible lengths (mm) for  golden jackals (Canis aureus) of each sex from the British Museum
-jackal <- data.frame(mandible_length_mm = c(120, 107, 110, 116, 114, 111, 113, 117, 114, 112,
-                                            110, 111, 107, 108, 110, 105, 107, 106, 111, 111),
-                     sex = rep(c("Male","Female"), each = 10)) 
-kableExtra::kable(jackal, col.names = c("Mandible length (mm)", "Biological sex")) %>%
-  kableExtra::kable_classic(full_width = FALSE, html_font = "Cambria")
-```
+
 
 ```{r, echo = FALSE}
 ggplot(jackal, aes(x = sex, y = mandible_length_mm, pch = sex)) +
@@ -56,10 +49,6 @@ Let us first calculate the observed test statistic:
 
 
 ```{r}
-## the data
-jackal <- data.frame(mandible_length_mm = c(120, 107, 110, 116, 114, 111, 113, 117, 114, 112,
-                                            110, 111, 107, 108, 110, 105, 107, 106, 111, 111),
-                     sex = rep(c("Male","Female"), each = 10))
 ## observed statistic
 jackal_mean_diff <- jackal %>%
   group_by(sex) %>%
@@ -115,18 +104,17 @@ How does this compare to the exact (permutation) results above? Try increasing t
 #### A randomisation test:  Pāua shell length
 
 
-Remember the Pāua data from the previous module? The dataset contains the following variables
+The `paua` dataset contains the following variables
 
  + `Age` of  P$\overline{\text{a}}$ua in years (calculated from counting rings in the cone) 
  + `Length` of  P$\overline{\text{a}}$ua shell in centimeters
  + `Species` of  P$\overline{\text{a}}$ua: *Haliotis iris* (typically found in NZ) and *Haliotis australis* (less commonly found in NZ) 
- 
-One question we may want to ask is if on average the shell length differs between Species? 
 
-```{r, echo = TRUE, message = FALSE}
-library(tidyverse)
-paua <- read_csv("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/paua.csv")
+```{r}
+glimpse(paua)
 ```
+
+One question we may want to ask is if on average the shell length differs between Species? 
 
 **Scientific question**: Are the shell lengths of shells the same in both species?
 **Null hypothesis**: The distribution of shell lengths in *Haliotis iris* the same as in *Haliotis australis*
@@ -189,7 +177,7 @@ results <- data.frame(results = c(randomisation_difference_mean, diff_in_means))
 #### 3. Locate the observed statistic (i.e., from our observed random sample) in the sampling distribution
 
 
-Let's calculate how many randomised differences in means are *as least as extreme* as the one we observed. Note that we library the absolute value as dealing with a two tailed test.
+Let's calculate how many randomised differences in means are *as least as extreme* as the one we observed. Note that we use the absolute value as dealing with a two tailed test.
 
 ```{r pval}
 n_exceed <- sum(abs(results$results) >= abs(diff_in_means))
@@ -212,6 +200,11 @@ ggplot(results, aes(x = results)) +
 
 **NOTE: We can extend the randomization test to make inference about any sample statistic (not just the mean)**
 
+<div class="alert alert-warning">
+  <strong>TASK</strong> Carry out a randomisation test in place of the permutation test carried out for the `jackal` data. WHat do you conclude?
+  
+</div>
+
 ## Bootstrap resampling
 
 A sampling distribution shows us what would happen if we took very many samples under the same conditions. The bootstrap is a procedure for finding the (approximate) sampling distribution from just one sample.
@@ -227,8 +220,7 @@ The original sample represents the **distribution of the population** from which
 **Old faithful** is a gyser located in Yellowstone National Park, Wyoming. Below is a histogram of the duration of 299 consecutive eruptions. Clearly the distribution is bimodal (has two modes)!
 
 ```{r,message = FALSE, warning = FALSE}
-library(tidyverse)
-ggplot(data = MASS::geyser, aes(x = duration)) +
+ggplot(data = geyser, aes(x = duration)) +
   geom_histogram() +
   xlab("Duration of eruptions (m)") +
   theme_linedraw()
@@ -238,7 +230,7 @@ ggplot(data = MASS::geyser, aes(x = duration)) +
 **Step 1:** Calculating the observed mean eruption duration time:
 
 ```{r}
-mean <- MASS::geyser %>%
+mean <- geyser %>%
   summarise(mean = mean(duration))
 mean
 
@@ -256,7 +248,7 @@ set.seed(1234) ## *****Remove this line for actual analyses*****
 ## agree with the printout that I show.
 for (i in 1:nreps) {
   ## bootstrap. note with replacement
-  bootstrap_sample <- sample(MASS::geyser$duration, replace = TRUE)
+  bootstrap_sample <- sample(geyser$duration, replace = TRUE)
   ##  bootstrapped mean resample
   bootstrap_means[i] <- mean(bootstrap_sample)
 }

@@ -44,9 +44,9 @@ What does this look like on a plot?
 
 ```{r, echo = FALSE}
 ## calculate predicted values
-penguins_nafree$pred_vals <- predict(slm_sp)
+penguins$pred_vals <- predict(slm_sp)
 pred_data <- data.frame(x = c(-Inf,50), y = c(predict(slm_sp, newdata = newdata),-Inf))
-ggplot(data = penguins_nafree, aes(y = bill_depth_mm, x = bill_length_mm, color = species)) +
+ggplot(data = penguins, aes(y = bill_depth_mm, x = bill_length_mm, color = species)) +
   geom_point() + ylab("Bill depth (mm)") +
   xlab("Bill length (mm)") + theme_classic()  +
   geom_line(aes(y = pred_vals)) + 
@@ -71,3 +71,27 @@ So this tells us that For every 1mm increase in bill length we estimate the expe
 
 We estimate that the expected bill depth of a Chinstrap penguin is between
 `r -1*round(cis[3,2],1)` and `r -1*round(cis[3,1],1)` mm shallower than the Adelie penguin
+
+### Marginal predictions
+
+One other thing we may want to do is give marginal precictions which show the marginal effect of a predictor, holding other variables constant.
+
+The `ggpredict()` function from the `ggeffects` package can be used for this:
+
+```{r}
+ggpredict(slm_sp, terms = "species")
+```
+
+We can even plot the marginal effects:
+
+```{r}
+ggpredict(slm_sp, terms = "species") %>% 
+  ggplot(aes(x = x, y = predicted, label = round(predicted, 3))) +
+  geom_point() +
+  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = .5) +
+  geom_text(hjust = -.2) +
+  ylab( "Predicted bill depth (mm)") + xlab("") +
+  ggtitle("Fitted means for each species with 95% CIs", subtitle = "Adjusted for bill_length_mm = 43.99") +
+  theme_classic()
+
+```

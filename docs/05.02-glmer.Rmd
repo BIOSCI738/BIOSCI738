@@ -13,15 +13,13 @@ Recall module 3 when we covered fitting linear models with random effects (`lmer
 The authors of [this paper](https://pubmed.ncbi.nlm.nih.gov/31150625/) transplanted gut microbiota from human donors with Autism Spectrum Disorder (ASD) or typically developing (TD) controls into germ-free mice. Faecal samples were collected from three TD and five ASD donors and were used to colonise GF male and female mice from strain C57BL/6LJ. Individuals colonized by the same donor were allowed to breed. Adult offspring mice were behavior tested; tests included marble burying (MB), open-field testing (OFT), and ultrasonic vocalization (USV).
 
 ```{r, message = FALSE, warnings = FALSE}
-library(tidyverse)
-data <- read_csv("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/autism.csv")
-data
+glimpse(mice)
 ```
 
 We should separate out the treatment values:
 
 ```{r}
-mice <- data %>%
+mice <- mice %>%
   separate(., col = Treatment, into = c("Diagnosis", "Sex"))
 mice
 ```
@@ -49,6 +47,10 @@ mice %>%
   ylab("Residuals") + xlab("")  + theme_bw() + theme(axis.ticks.x = element_blank(), axis.text.x = element_blank()) 
 ```
 
+<div class="alert alert-warning">
+  <strong>TASK</strong>  Looking at the output above, do you think the assumptions of the linear model are met?
+</div>
+
 
 #### Using `glmer`
 
@@ -68,3 +70,8 @@ mice %>%
   geom_point() +geom_abline(intercept = 0, slope = 0) +
   ylab("Residuals") + xlab("") + theme(axis.ticks.x = element_blank(), axis.text.x = element_blank()) 
 ```
+
+
+<div class="alert alert-warning">
+  <strong>TASK</strong>  Looking at the output above, do you think the assumptions of the Poisson model are met?
+</div>

@@ -22,15 +22,17 @@ Consider data which are not represented as points in a feature space:
 
 ##### Distances (in km) between North Island cities
 
+<div class="alert alert-warning">
+  <strong>TASK</strong>  On a piece of paper roughly draw the shape of the North Island (of Aotearoa | New Zealand). From memory alone mark the location of the following cities Auckland, Gisborne, Hamilton, Hastings, Napier, Rotorua, Tauranga, Whanganui, Wellington, Whakatane, and Whangarei.
+</div>
+
+
 ```{r}
-library(tidyverse)
-ni <- read_csv("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/north_islands_distances.csv")
-ni <- ni %>% column_to_rownames(var = "...1")
+glimpse(north_island) 
 ```
 
 ```{r}
-library(pheatmap)
-pheatmap(ni, cluster_rows = TRUE,
+pheatmap(north_island, cluster_rows = TRUE,
          treeheight_row = 2, treeheight_col = 2,
          fontsize_row = 12, fontsize_col = 12,
          cellwidth = 26, cellheight = 26)
@@ -39,7 +41,7 @@ pheatmap(ni, cluster_rows = TRUE,
 ```
 
 ```{r}
-mds <- cmdscale(ni, eig = TRUE)
+mds <- cmdscale(north_island, eig = TRUE)
 mds
 ```
 
@@ -55,8 +57,7 @@ Data may from objects for which we have similarities but no underlying (geometri
 
 
 ```{r}
-library(tidyverse)
-ekman <- read_csv("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/ekman.csv")
+glimpse(ekman) 
 ```
 
 
@@ -69,11 +70,14 @@ autoplot(ekman.mds)
 
 ##### Distances (in km) between 21 cities in Europe
 
+<div class="alert alert-warning">
+  <strong>TASK</strong>  On a piece of paper roughly draw the shape of Europe. From memory alone mark the location of the following cities Athens, Barcelona, Brussels, Calais, Cherbourg, Cologne, Copenhagen, Geneva, Gibraltar, Hamburg, Hook of Holland, Lisbon, Lyons, Madrid, Marseilles, Milan, Munich, Paris, Rome, Stockholm, and Vienna.
+</div>
+
+
 ```{r,eval = FALSE}
-library(ggfortify)
 ## Plotting Multidimensional Scaling (for interest)
 ## stats::cmdscale performs Classical MDS
-data("eurodist") ## road distances (in km) between 21 cities in Europe.
 autoplot(eurodist)
 ## Plotting Classical (Metric) Multidimensional Scaling
 autoplot(cmdscale(eurodist, eig = TRUE))
@@ -81,7 +85,6 @@ autoplot(cmdscale(eurodist, eig = TRUE), label = TRUE, shape = FALSE,
          label.size = 3)
 ## Plotting Non-metric Multidimensional Scaling
 ## MASS::isoMDS and MASS::sammon perform Non-metric MDS
-library(MASS)
 autoplot(sammon(eurodist))
 autoplot(sammon(eurodist), shape = FALSE, label = TRUE,label.size = 3)
 ## Have a go at interpreting these plots based on the geography of the cities :-)
@@ -92,19 +95,17 @@ autoplot(sammon(eurodist), shape = FALSE, label = TRUE,label.size = 3)
 CA is a special case of metric MDS where the distance measure is the chi-square distance. It is conceptually similar to principal component analysis but where the data are categorical, counts, rather than continuous. CA is traditionally applied to contingency tables where rows and columns are treated equivalently; it decomposes the chi-square statistic associated with this table into orthogonal factors. Correspondence analysis is usually the best way to follow up on a *significant* chi-square test.
 
 ```{r}
-HairEyeColor
+glimpse(HairEyeColor)
 HC.df <- as.data.frame.matrix(HairEyeColor[ , , 2])
 HC.df
 chisq.test(HC.df)
 ```
 
 ```{r}
-library(ade4)
 coaHC <- dudi.coa(HC.df, scannf = FALSE, nf = 2)
 ```
 
 ```{r, echo = FALSE}
-library(factoextra)
 fviz_ca_biplot(coaHC, repel = TRUE, col.col = "brown", col.row = "purple",
                labelsize = 5, pointsize = 5) + ggtitle("") +
   theme(legend.text = element_text(size = 25),
@@ -125,16 +126,12 @@ symmetric roles and we interpret the proximity of Blue eyes and Blond hair as sh
  + The Blond row point is very heavily weighted so Blond hair and Blue eyes close together
 
 
-## Non-metric Multidimensional Scaling
+### Non-metric Multidimensional Scaling
 
 Multidimensional scaling aims to minimize the difference between the squared distances $D^2$ from the distance matrix $D$, and the squared distances between the points with their new coordinates. Unfortunately, this objective tends to be sensitive to outliers: one single data point with large distances to everyone else can dominate, and thus skew, the whole analysis.
 
 
-Under certain circumstances trying to preserve the actual dissimilarities might be too restrictive or
-even pointless. For example if there is large error in the dissimilarity estimates, if the dissimilarities
-or the data they were based on were ranks (ordinal), then the magnitude of the distances are too
-crude to be worth preserving. A method that preserved only the rank order of the dissimilarities
-would be more appropriate. The algorithm to do this is virtually the same as the one given above for metric scaling. The sole difference is that the linear regression that fitted the estimated distances for the solution to the dissimilarities is now replaced with an order preserving regression.
+Under certain circumstances trying to preserve the actual dissimilarities might be too restrictive or even pointless. For example if there is large error in the dissimilarity estimates, if the dissimilarities or the data they were based on were ranks (ordinal), then the magnitude of the distances are too crude to be worth preserving. A method that preserved only the rank order of the dissimilarities would be more appropriate. The algorithm to do this is virtually the same as the one given above for metric scaling. The sole difference is that the linear regression that fitted the estimated distances for the solution to the dissimilarities is now replaced with an order preserving regression.
 
 Robust ordination, or non-metric multidimensional scaling (NMDS), attempts to embed the points in a new space such that the order of the reconstructed distances in the new map is the same as the ordering of the original distance matrix. NMDS looks for a transformation `f()` of the given dissimilarities, distances d. The quality of the approximation can be measured by the standardized residual sum of
 squares (STRESS) function: $\text{Stress}^2 = \frac{\Sigma(f(d) - \tilde{d})^2}{\Sigma d^2}$ where $f(d)\approx  \tilde{d}$.
@@ -142,14 +139,14 @@ squares (STRESS) function: $\text{Stress}^2 = \frac{\Sigma(f(d) - \tilde{d})^2}{
 
 NMDS is not sequential:
 
-+ we have to specify the underlying dimensionality k at the outset (like kmeans)
-+ optimization is run to maximize the reconstruction of the distances in k dimensions.
-+ there is no notion of percentage of variation explained by individual axes as provided in PCA.
-+ as for kmeans Make a screeplot for $k = 1,2,3,...$ and looking at how well the STRESS drops.
-+ because each calculation of a NMDS result librarys a new optimization that is both random and dependent on the value of k, we repeat the process M times
+ + we have to specify the underlying dimensionality k at the outset (like kmeans)
+ + optimization is run to maximize the reconstruction of the distances in k dimensions.
+ + there is no notion of percentage of variation explained by individual axes as provided in PCA.
+ + as for kmeans Make a screeplot for $k = 1,2,3,...$ and looking at how well the STRESS drops.
+ + because each calculation of a NMDS result librarys a new optimization that is both random and dependent on the value of k, we repeat the process M times
 
 
-### Examples in `R`
+#### Examples in `R`
 
 Use the function `metaMDS` from the `vegan` package; `metaMDS` performs NMDS, and tries to find a stable solution using several random starts. In addition, it standardizes the scaling in the result, so
 that the configurations are easier to interpret.
@@ -157,7 +154,6 @@ that the configurations are easier to interpret.
 **Illustration with k = 2**
 
 ```{r, message = FALSE, results='hide'}
-library(vegan)
 nMDS.2 <- replicate(100, metaMDS(ekman, k = 2, autotransform = FALSE)) 
 ```
 

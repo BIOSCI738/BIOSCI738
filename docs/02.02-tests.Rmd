@@ -8,7 +8,6 @@
 > "Type I Zoom error: you think people can hear you, but you’re actually on mute.  Type II Zoom error: you think your muted, but actually people can hear you." `r tufte::quote_footer('--- @CynPeacock, Twitter')`
 
 
-
 A **Type I** error (false positive): declare a difference (i.e., reject $H_0$) when there is no difference (i.e. $H_0$ is true). Risk of the Type I error is determined by the *level of significance* (which we set!) (i.e., $\alpha =\text{ P(Type I error)} = \text{P(false positive)}$.
 
 A **Type II** error (false negative): difference not declared (i.e., $H_0$ not rejected) when there is a difference (i.e., $H_0$ is false). Let $\beta =$ P(do not reject $H_0$ when $H_0$ is false); so, $1-\beta$ = P(reject $H_0$ when $H_0$ is false) = P(a true positive), which is the statistical **power** of the test.
@@ -91,8 +90,8 @@ Remember that **statistical significance does not imply practical significance**
 | Question                                                         | Answer                                                                     |
 |------------------------------------------------------------------|----------------------------------------------------------------------------|
 | **Why do so many colleges and grad schools teach *p-val*=0.05?** | Because that's still what the scientific community and journal editors use.  **BUT IT SHOULDN'T BE** |
-
 | **Why do so many people still use *p-val*=0.05?**             | Because that's what they were rote taught in college or grad school. **BUT THEY SHOULDN'T BE** |
+
 
 
 <div class="alert alert-warning">
@@ -102,21 +101,12 @@ Remember that **statistical significance does not imply practical significance**
 
 ### Example
 
-Recall, the P$\overline{\text{a}}$ua dataset. It contains the following variables
+Recall the `paua` dataset, which contains the following variables
 
  + `Age` of  P$\overline{\text{a}}$ua in years (calculated from counting rings in the cone) 
  + `Length` of  P$\overline{\text{a}}$ua shell in centimeters
- + `Species` of  P$\overline{\text{a}}$ua: *Haliotis iris* (typically found in NZ) and
-*Haliotis australis* (less commonly found in NZ) 
+ + `Species` of  P$\overline{\text{a}}$ua: *Haliotis iris* (typically found in NZ) and *Haliotis australis* (less commonly found in NZ) 
 
-```{r, echo = TRUE, message = FALSE}
-library(tidyverse)
-paua <- read_csv("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/paua.csv")
-```
-
-```{r}
-glimpse(paua)
-```
 
 #### A one-sample t-test
 
@@ -349,25 +339,28 @@ test$p.value
 Listed are the t-statistic, `t` = `r test$statistic` and the p-value, `p-value` = `r round(test$p.value,6)` for the hypothesis test outlined above. What would you conclude?
 
 
+<div class="alert alert-warning">
+  <strong>TASK</strong> Are you a fan of NFL or Taylor Swift, or maybe both. Download the following data and answer, if you can, [How much better is Chiefs star with his girlfriend in attendance?](https://www.sportingnews.com/us/nfl/news/travis-kelce-stats-taylor-swift-chiefs-games/ebc0a5f22eed44a5107d31f5) 
+  
+```{r}
+base_url <- "https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/"
+data <- read_csv(paste(base_url, "swift_kelce.csv", sep = ""))
+```
+  
+</div>
+
+
+
 #### One-Way Analysis of Variance (ANOVA)
 
 What if we had more than two groups?
 
-In this section we consider the following data of the calculated logAUC for 12 rats subjected to three different treatments (`Surgery`), `C`, `P`, and `S`: 
+In this section we consider the `rats` data, which contains calculated logAUC for 12 rats subjected to three different treatments (`Surgery`), `C`, `P`, and `S`.
 
-```{r data-quiet, message = FALSE, echo = FALSE}
-library(tidyverse)
-rats <- read_csv("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/crd_rats_data.csv")
-rats$Surgery <- as_factor(rats$Surgery)
-kableExtra::kable(rats) %>%
-  kableExtra::kable_classic(full_width = FALSE, html_font = "Cambria")
+```{r}
+glimpse(rats)
 ```
 
-To read the data directly into `R` you can use
-
-```{r, eval = FALSE}
-readr::read_csv("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/crd_rats_data.csv")
-```
 
 ##### Between group SS (SSB)
 

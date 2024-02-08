@@ -1,15 +1,14 @@
 ## Model diagnostics for a linear model
 
-Remember that it is always is imperative that we **check the underlying assumptions** of our model! If our assumptions are not met then basically the maths falls over and we can't reliably draw inference from the model (e.g., can't trust the parameter estimates etc.). Two of the most important assumption are:
+It is always is imperative that we **check the underlying assumptions** of our model! If our assumptions are not met then basically the maths falls over and we can't reliably draw inference from the model (e.g., can't trust the parameter estimates etc.). Two of the most important assumption are:
 
   + equal variances (homogeneity of variance), and 
-  
   + normality of residuals. 
   
-Let's look at the fit of the `slm` model (single continuous explanatory variable)
+Let's look at the fit of the `slm` model (single continuous explanatory variable), the `gglm` function from the `gglm` package produces a nice panel plot of our model residuals:
 
 ```{r}
-gglm::gglm(slm_sp) # Plot the four main diagnostic plots
+gglm(slm_sp)
 ```
 
 **Residuals vs Fitted** plot
@@ -32,29 +31,6 @@ This can help detect outliers in a linear regression model. For linear regressio
 
 Do you think the residuals are Normally distributed (look at the QQ plot)? Think of what this model is, do you think it's the best we can do? 
 
-### Marginal predictions
-
-If the residuals do not show a violation of our model assumptions (let's just pretend the plots above don't show anything for concern) we can produce margins plots, which show the marginal effect of a predictor, holding other variables constant.
-
-The `ggpredict()` function from the `ggeffects` package can be used for this:
-
-```{r}
-ggeffects::ggpredict(slm_sp, terms = "species")
-```
-
-We can even plot the marginal effects:
-
-```{r}
-ggeffects::ggpredict(slm_sp, terms = "species") %>% 
-  ggplot(aes(x = x, y = predicted, label = round(predicted, 3))) +
-  geom_point() +
-  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = .5) +
-  geom_text(hjust = -.2) +
-  ylab( "Predicted bill depth (mm)") + xlab("") +
-  ggtitle("Fitted means for each species with 95% CIs", subtitle = "Adjusted for bill_length_mm = 43.99") +
-  theme_classic()
-
-```
 
 ### Model selection
 
@@ -97,16 +73,14 @@ AIC(slm,slm_sp,slm_int)
 
 This backs up what our ANOVA suggested model `slm_sp` as that preferred! As always it's important to do a sanity check! Does this make sense? Have a look at the outputs from these models and see what you think.
 
-Just because we've chosen a model (*the best of a bad bunch* perhaps) this doesn't let us off the hook. We should check our assumptions
+
+<div class="alert alert-warning">
+  <strong>TASK</strong>
+  
+Just because we've chosen a model (*the best of a bad bunch* perhaps) this doesn't let us off the hook. We should check our assumptions. Use the plot below and briefly comment on whether you think the model assumptions are met.
 
 ```{r}
-gglm::gglm(slm_sp) # Plot the four main diagnostic plots
+gglm(slm_sp) 
 ```
 
-**Residuals vs Fitted** plot: equal spread? Doesn't look too trumpety! 
-
-**Normal quantile-quantile (QQ)** plot: skewed? Maybe slightly right skewed (deviation upwards from the right tail)
-
-**Scale-Location** plot: equal spared? I'd say so.
-
-**Residuals vs Leverage**: ? Maybe a couple of points with high leverage.
+</div>

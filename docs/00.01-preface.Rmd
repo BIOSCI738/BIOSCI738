@@ -126,7 +126,8 @@ The due dates for assignments are there to help you keep up with the course mate
 pkgs <- c("tidyverse", "palmerpenguins", "patchwork", "equatiomatic", "vegan",
           "GGally", "ggeffects", "NbClust", "MASS", "png", "factoextra", "lme4",
           "pheatmap", "ade4", "ggfortify", "ape", "distributional", "emmeans", "tufte",
-          "kableExtra","devtools", "gglm", "remotes", "predictmeans", "lmerTest", "animation")
+          "kableExtra","devtools", "gglm", "remotes", "predictmeans", "lmerTest", "animation",
+          "edibble")
 options(warn = -1)
 for (i in pkgs){
     if (!require(i, quietly = TRUE, character.only = TRUE)){

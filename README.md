@@ -1,16 +1,10 @@
-# 🐙 Course materials for BIOSCI738 🐙
+# <img src="https://github.com/BIOSCI738/cowstats/blob/main/img/coxhex.png?raw=true" width="100" height="100"> BIOSCI 738: Advanced Biological Data Analysis
 
-#### All source files for the course book are in `docs/`. Course book is hosted @ [https://stats-uoa.github.io/BIOSCI738/](https://stats-uoa.github.io/BIOSCI738/)
+### Overview
 
- + To render the coursebook manually run the bash script `./render.sh -b docs/`
+ + [Course book is hosted here](biosci738.github.io/BIOSCI738/)
+ + All source `.Rmd` files for the course book are in the `docs/` folder
+ + To render the coursebook (in `docs`) run the bash script `./render.sh` 
  
-## Copyright
 
-All files are (C)Copyright by the University of Auckland unless explicitly stated otherwise. Distrubution without prior written permission is prohibited.
-
-## Contact
-
-+ Charlotte M. Jones-Todd
-  - [c.jonestodd@auckland.ac.nz](c.jonestodd@auckland.ac.nz)
-  - Office 318, building 303
-
+© 2024, Dr. C. M. Jones-Todd

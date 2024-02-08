@@ -145,19 +145,10 @@ Suppose we have a number $m$ of null hypotheses, $H_1, H_2, ..., H_m$. Using the
 options(warn=-1)
 ```
 
-Recall the CRD `rats` data
+Recall the CRD `rats` data:
 
-```{r, message = FALSE, echo = FALSE}
-library(tidyverse)
-rats <-  read_csv("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/crd_rats_data.csv")
-kableExtra::kable(rats) %>%
-  kableExtra::kable_classic(full_width = FALSE, html_font = "Cambria")
-```
-
-You can read this data directly into `R` using
-
-```{r, eval = FALSE}
-rats <- readr::read_csv("https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/crd_rats_data.csv")
+```{r}
+glimpse(rats)
 ```
 
 To use `predictmeans` later on we have to ensure that the relevant variables are coded as factors:
@@ -183,12 +174,12 @@ library(equatiomatic)
 extract_eq(rats_lm, wrap = TRUE, use_coefs = TRUE)
 ```
 
-**Using** `predictmeans`
+**Using** `predictmeans` from the `predictmeans` package
 
 By default Fisher's comparisons are made.
 
 ```{r}
-pm <- predictmeans::predictmeans(rats_lm , modelterm = "Surgery", 
+pm <- predictmeans(rats_lm , modelterm = "Surgery", 
                                      pairwise = TRUE, plot = FALSE)
 str(pm)
 ```
