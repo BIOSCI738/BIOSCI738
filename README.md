@@ -2,7 +2,7 @@
 
 ### Overview
 
- + [Course book is hosted here](biosci738.github.io/BIOSCI738/)
+ + [Course book is hosted here](https://biosci738.github.io/BIOSCI738/)
  + All source `.Rmd` files for the course book are in the `docs/` folder
  + To render the coursebook (in `docs`) run the bash script `./render.sh` 
  
