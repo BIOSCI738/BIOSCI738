@@ -4,7 +4,7 @@ Throughout this course we will be programming using `R`. `R` is a **free** **ope
 
 
 <div class="alert alert-warning">
-  <strong>TASK</strong> Go to the Statistics Department display in the science building foyer (building 303) to see a CD-Rom with the **first** ever version of `R`.
+  <strong>TASK</strong> Go to the Statistics Department display in the science building foyer (building 302) to see a CD-Rom with the **first** ever version of `R`.
 </div>
 
 `RStudio` is an integrated development environment (IDE) for the `R` programming language. It serves as a user-friendly workspace, offering additional tools for coding, data visualization, and project management. `RStudio` simplifies the process of learning `R` by providing a structured interface with many built-in tools to help organize workflow, fostering a systematic approach to data analysis and research. 
