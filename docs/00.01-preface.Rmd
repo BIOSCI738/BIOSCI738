@@ -14,12 +14,12 @@ The course builds on assumed knowledge of some fundamental statistical concepts.
 
 <div class="alert alert-danger" role="alert">
 
-<span><strong>Before the course begins you are required to complete the [pre-course tasks](https://canvas.auckland.ac.nz/courses/103658/modules).</span></strong>
+<span><strong>Before the course begins you are required to complete the pre-course tasks.</span></strong>
 
 
 </div>
 
-These [tasks]((https://canvas.auckland.ac.nz/courses/103658/modules)) are designed for you to self-assess your `R` and statistics knowledge. If you fail to complete the coding task and score less than 70% on the quiz you will likely struggle with the pace and content of the course. This does not preclude you from taking the course, however, you should expect to invest time on top of what is expected for a postgraduate course into ensuring that you understand the material.
+These takss are designed for you to self-assess your `R` and statistics knowledge. If you fail to complete the coding task and score less than 70% on the quiz you will likely struggle with the pace and content of the course. This does not preclude you from taking the course, however, you should expect to invest time on top of what is expected for a postgraduate course into ensuring that you understand the material.
 
 ### Lectures {-}
 
@@ -27,12 +27,12 @@ These [tasks]((https://canvas.auckland.ac.nz/courses/103658/modules)) are design
 
 <span><strong>Lectures are weekly</span></strong> (weeks 2–12)
  <ul>
-  <li>**Tuesdays**: 4–6 pm (303-B05), and </li>
-  <li>**Wednesdays**: 4–6 pm (303-B09). </li>
+  <li>**Mondays**: 9–11 am (Sci Maths & Physics, Room B05), and </li>
+  <li>**Fridays**: 2–4 pm (B201, Room 3429). </li>
 </ul>
 </div>
 
-You are expected to attend all lectures and your attendance will be recorded. 
+You are expected to attend all lectures. Each 2-hour lecture will involve a mixture of group work and practical tasks that focus on building computational and inference skills.
 
 ### Assessment {-}
 
@@ -41,57 +41,13 @@ You are expected to attend all lectures and your attendance will be recorded.
 <span><strong>There is no test or exam for this course</span></strong> 
 
 Assessment summary:
- <ul>
-  <li> Assignments (x3), 60% in total;</li>
-  <li> R-tasks (x10), 5% in total; and</li>
-  <li> Project, 35%.</li>
-</ul>
+
+![](img/assessment_overview.png)
+
 </div>
 
 
-<table border="1">
-  <thead>
-    <tr>
-      <th>Assignments</th>
-      <th>R-tasks</th>
-      <th>Project</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        <ul>
-          <li>3 in total</li>
-          <li>Weighted 20% per assessment</li>
-          <li>Total combined weighting 60%</li>
-          <li>*A portion of each assignment will be graded based on your peer feedback*</li>
-        </ul>
-      </td>
-      <td>
-        <ul>
-          <li>10 in total</li>
-          <li>Weighted 0.5% per assessment</li>
-          <li>Total combined weighting 5%</li>
-          <li>*Must complete 7 out of the 10 tasks or a DNC grade will be given*</li>
-        </ul>
-      </td>
-      <td>
-        <ul>
-          <li>4 components in total:</li>
-          <ul>
-            <li>Elevator pitch (10%)</li>
-            <li>Project essay (15%)</li>
-            <li>Project code repo (10%)</li>
-            <li>Project presentation (*must complete to receive Project grade*)</li>
-          </ul>
-          <li>Total combined weighting 35%</li>
-        </ul>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-<center>![](img/gnatt.png)</center>
+![](img/gnatt.png)
  
 
 ### Course policies {-}
@@ -111,12 +67,12 @@ Assessment summary:
 Please abide by the following as you work on assignments in this course:
 
  + You may **discuss** individual homework and lab assignments with other students; however, you may not directly share (or copy) code or write up with other students. For team assignments, you may collaborate freely within your team. You may discuss the assignment with other teams; however, you may not directly share (or copy) code or write up with another team. Unauthorized sharing (or copying) of the code or write up will be considered a violation for all students involved.
- + **Reusing code** Unless explicitly stated otherwise, you may make use of online resources (e.g., StackOverflow) for coding examples on assignments. If you directly use code from an outside source (or use it as inspiration), you must explicitly cite where you obtained the code. Any recycled code that is discovered and is not explicitly cited will be treated as plagiarism.
+ + **Reusing code** Unless explicitly stated otherwise, you may make use of online resources (e.g., StackOverflow or CoPilot etc.) for coding examples on assignments. If you directly use code from an outside source (or use it as inspiration), you must explicitly cite where you obtained the code. Any recycled code that is discovered and is not explicitly cited will be treated as plagiarism.
  
 
 #### Late work & extensions {-}
 
-The due dates for assignments are there to help you keep up with the course material and to ensure the teaching team can provide feedback within a timely manner. However, I understand that things come up periodically that could make it difficult to submit an assignment by the deadline. If this is the case for you it is imperative that you get in contact with me **as soon as possible** so that we might make alternative arrangements.
+The due dates for assignments are there to help you keep up with the course material and to ensure the I can provide feedback within a timely manner. However, I understand that things come up periodically that could make it difficult to submit an assignment by the deadline. If this is the case for you it is imperative that you get in contact with me **as soon as possible** so that we might make alternative arrangements.
 
 
 

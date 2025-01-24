@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Logistic regression | Advanced Biological Data Analysis</title>
   <meta name="description" content="Logistic regression | Advanced Biological Data Analysis" />
-  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Logistic regression | Advanced Biological Data Analysis" />
   <meta property="og:type" content="book" />
@@ -20,7 +20,6 @@
   
   
 
-<meta name="author" content="" />
 
 
 
@@ -48,6 +47,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
@@ -56,25 +56,26 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -83,9 +84,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -139,54 +140,67 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Nau mai, haere mai. Welcome to BIOSCI 738</a></li>
-<li class="chapter" data-level="" data-path="key-information.html"><a href="key-information.html"><i class="fa fa-check"></i>Key Information</a><ul>
+<li class="chapter" data-level="" data-path="key-information.html"><a href="key-information.html"><i class="fa fa-check"></i>Key Information</a>
+<ul>
 <li class="chapter" data-level="" data-path="key-information.html"><a href="key-information.html#overview"><i class="fa fa-check"></i>Overview</a></li>
 <li class="chapter" data-level="" data-path="key-information.html"><a href="key-information.html#prerequisites"><i class="fa fa-check"></i>Prerequisites</a></li>
 <li class="chapter" data-level="" data-path="key-information.html"><a href="key-information.html#lectures"><i class="fa fa-check"></i>Lectures</a></li>
 <li class="chapter" data-level="" data-path="key-information.html"><a href="key-information.html#assessment"><i class="fa fa-check"></i>Assessment</a></li>
 <li class="chapter" data-level="" data-path="key-information.html"><a href="key-information.html#course-policies"><i class="fa fa-check"></i>Course policies</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-1.html"><a href="module-1.html"><i class="fa fa-check"></i>Module 1</a><ul>
-<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html"><i class="fa fa-check"></i><code>R</code> and <code>RStudio</code></a><ul>
+<li class="chapter" data-level="" data-path="module-1.html"><a href="module-1.html"><i class="fa fa-check"></i>Module 1</a>
+<ul>
+<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html"><i class="fa fa-check"></i><code>R</code> and <code>RStudio</code></a>
+<ul>
 <li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#recap-r-terminology"><i class="fa fa-check"></i>Recap: <code>R</code> terminology</a></li>
 <li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#which-r-syntax"><i class="fa fa-check"></i>Which <code>R</code> syntax?</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="error-handling-and-debugging.html"><a href="error-handling-and-debugging.html"><i class="fa fa-check"></i>Error handling and debugging</a></li>
-<li class="chapter" data-level="" data-path="accuracy-and-honesty.html"><a href="accuracy-and-honesty.html"><i class="fa fa-check"></i>Accuracy and Honesty</a><ul>
+<li class="chapter" data-level="" data-path="accuracy-and-honesty.html"><a href="accuracy-and-honesty.html"><i class="fa fa-check"></i>Accuracy and Honesty</a>
+<ul>
 <li class="chapter" data-level="" data-path="accuracy-and-honesty.html"><a href="accuracy-and-honesty.html#reproducible-research"><i class="fa fa-check"></i>Reproducible research</a></li>
 <li class="chapter" data-level="" data-path="accuracy-and-honesty.html"><a href="accuracy-and-honesty.html#good-coding-practice"><i class="fa fa-check"></i>Good coding practice</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html"><i class="fa fa-check"></i>Version control with <code>git</code> and GitHub</a><ul>
+<li class="chapter" data-level="" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html"><i class="fa fa-check"></i>Version control with <code>git</code> and GitHub</a>
+<ul>
 <li class="chapter" data-level="" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#setting-up"><i class="fa fa-check"></i>Setting up</a></li>
 <li class="chapter" data-level="" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#cloning-a-repository-from-github-using-rstudio"><i class="fa fa-check"></i>Cloning a repository from <code>GitHub</code> using <code>RStudio</code></a></li>
 <li class="chapter" data-level="" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#commiting-and-pushing-changes"><i class="fa fa-check"></i>Commiting and pushing changes</a></li>
 <li class="chapter" data-level="" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#system-specific-hurdles"><i class="fa fa-check"></i>System specific hurdles</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="respectful-handling-of-data.html"><a href="respectful-handling-of-data.html"><i class="fa fa-check"></i>Respectful Handling of Data</a><ul>
+<li class="chapter" data-level="" data-path="respectful-handling-of-data.html"><a href="respectful-handling-of-data.html"><i class="fa fa-check"></i>Respectful Handling of Data</a>
+<ul>
 <li class="chapter" data-level="" data-path="respectful-handling-of-data.html"><a href="respectful-handling-of-data.html#data-sovereignty"><i class="fa fa-check"></i>Data sovereignty</a></li>
 <li class="chapter" data-level="" data-path="respectful-handling-of-data.html"><a href="respectful-handling-of-data.html#māori-data-sovereignty-principles"><i class="fa fa-check"></i>Māori Data Sovereignty principles</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="awareness-of-consequences.html"><a href="awareness-of-consequences.html"><i class="fa fa-check"></i>Awareness of Consequences</a><ul>
+<li class="chapter" data-level="" data-path="awareness-of-consequences.html"><a href="awareness-of-consequences.html"><i class="fa fa-check"></i>Awareness of Consequences</a>
+<ul>
 <li class="chapter" data-level="" data-path="awareness-of-consequences.html"><a href="awareness-of-consequences.html#case-study"><i class="fa fa-check"></i>Case study</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i>Data Visualization</a><ul>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i>Data Visualization</a>
+<ul>
 <li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#exploratory-plots-for-your-own-purposes"><i class="fa fa-check"></i>Exploratory plots (for your own purposes)</a></li>
 <li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#explanatory-plots"><i class="fa fa-check"></i>Explanatory plots</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-2.html"><a href="module-2.html"><i class="fa fa-check"></i>Module 2</a><ul>
-<li class="chapter" data-level="" data-path="permutation-and-randomisation-tests.html"><a href="permutation-and-randomisation-tests.html"><i class="fa fa-check"></i>Permutation and randomisation tests</a><ul>
+<li class="chapter" data-level="" data-path="module-2.html"><a href="module-2.html"><i class="fa fa-check"></i>Module 2</a>
+<ul>
+<li class="chapter" data-level="" data-path="permutation-and-randomisation-tests.html"><a href="permutation-and-randomisation-tests.html"><i class="fa fa-check"></i>Permutation and randomisation tests</a>
+<ul>
 <li class="chapter" data-level="" data-path="permutation-and-randomisation-tests.html"><a href="permutation-and-randomisation-tests.html#a-permutation-test-jackal-mandible-lengths"><i class="fa fa-check"></i>A permutation test: Jackal mandible lengths</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="bootstrap-resampling.html"><a href="bootstrap-resampling.html"><i class="fa fa-check"></i>Bootstrap resampling</a><ul>
+<li class="chapter" data-level="" data-path="bootstrap-resampling.html"><a href="bootstrap-resampling.html"><i class="fa fa-check"></i>Bootstrap resampling</a>
+<ul>
 <li class="chapter" data-level="" data-path="bootstrap-resampling.html"><a href="bootstrap-resampling.html#example-constructing-bootstrap-confidence-intervals"><i class="fa fa-check"></i>Example: constructing bootstrap confidence intervals</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="parametric-hypothesis-testing.html"><a href="parametric-hypothesis-testing.html"><i class="fa fa-check"></i>Parametric hypothesis testing</a><ul>
+<li class="chapter" data-level="" data-path="parametric-hypothesis-testing.html"><a href="parametric-hypothesis-testing.html"><i class="fa fa-check"></i>Parametric hypothesis testing</a>
+<ul>
 <li class="chapter" data-level="" data-path="parametric-hypothesis-testing.html"><a href="parametric-hypothesis-testing.html#the-vocabulary-of-hypothesis-testing"><i class="fa fa-check"></i>The vocabulary of hypothesis testing</a></li>
 <li class="chapter" data-level="" data-path="parametric-hypothesis-testing.html"><a href="parametric-hypothesis-testing.html#example"><i class="fa fa-check"></i>Example</a></li>
 <li class="chapter" data-level="" data-path="parametric-hypothesis-testing.html"><a href="parametric-hypothesis-testing.html#differences-between-two-means"><i class="fa fa-check"></i>Differences between two means</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i>Linear regression</a><ul>
+<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i>Linear regression</a>
+<ul>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#model-formula-syntax-in-r"><i class="fa fa-check"></i>Model formula syntax in <code>R</code></a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#some-mathematical-notation"><i class="fa fa-check"></i>Some mathematical notation</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#a-null-model"><i class="fa fa-check"></i>A Null model</a></li>
@@ -195,92 +209,114 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#one-factor-and-a-continuous-variable"><i class="fa fa-check"></i>One factor and a continuous variable</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#interactions"><i class="fa fa-check"></i>Interactions</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html"><i class="fa fa-check"></i>Model diagnostics for a linear model</a><ul>
+<li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html"><i class="fa fa-check"></i>Model diagnostics for a linear model</a>
+<ul>
 <li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html#model-selection"><i class="fa fa-check"></i>Model selection</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="inference-for-a-linear-model.html"><a href="inference-for-a-linear-model.html"><i class="fa fa-check"></i>Inference for a linear model</a><ul>
+<li class="chapter" data-level="" data-path="inference-for-a-linear-model.html"><a href="inference-for-a-linear-model.html"><i class="fa fa-check"></i>Inference for a linear model</a>
+<ul>
 <li class="chapter" data-level="" data-path="inference-for-a-linear-model.html"><a href="inference-for-a-linear-model.html#point-prediction"><i class="fa fa-check"></i>Point prediction</a></li>
 <li class="chapter" data-level="" data-path="inference-for-a-linear-model.html"><a href="inference-for-a-linear-model.html#confidence-intervals-for-parameters"><i class="fa fa-check"></i>Confidence intervals for parameters</a></li>
 <li class="chapter" data-level="" data-path="inference-for-a-linear-model.html"><a href="inference-for-a-linear-model.html#marginal-predictions"><i class="fa fa-check"></i>Marginal predictions</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-3.html"><a href="module-3.html"><i class="fa fa-check"></i>Module 3</a><ul>
-<li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html"><i class="fa fa-check"></i>Introduction to the design and analysis of experiments</a><ul>
+<li class="chapter" data-level="" data-path="module-3.html"><a href="module-3.html"><i class="fa fa-check"></i>Module 3</a>
+<ul>
+<li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html"><i class="fa fa-check"></i>Introduction to the design and analysis of experiments</a>
+<ul>
 <li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#key-phrases"><i class="fa fa-check"></i>Key phrases</a></li>
 <li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#setting-up-an-experiment"><i class="fa fa-check"></i>Setting up an experiment</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="the-three-main-principles-of-experimental-design.html"><a href="the-three-main-principles-of-experimental-design.html"><i class="fa fa-check"></i>The three (main) principles of experimental design</a></li>
-<li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html"><i class="fa fa-check"></i>Some basic experimental designs</a><ul>
+<li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html"><i class="fa fa-check"></i>Some basic experimental designs</a>
+<ul>
 <li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html#completely-randomised-design-crd"><i class="fa fa-check"></i>Completely randomised design (CRD)</a></li>
 <li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html#randomised-complete-block-design-rcbd"><i class="fa fa-check"></i>Randomised complete block design (RCBD)</a></li>
 <li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html#factorial-design"><i class="fa fa-check"></i>Factorial design</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html"><i class="fa fa-check"></i>Modelling experimental data</a><ul>
+<li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html"><i class="fa fa-check"></i>Modelling experimental data</a>
+<ul>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-completely-randomised-design-crd-as-a-linear-model"><i class="fa fa-check"></i>A completely randomised design (CRD) as a linear model</a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#analysis-of-a-crd-in-r"><i class="fa fa-check"></i>Analysis of a CRD in <code>R</code></a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-factorial-experiment-as-a-crd"><i class="fa fa-check"></i>A Factorial experiment (as a CRD)</a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#unqual-replications-unbalanced-design"><i class="fa fa-check"></i>Unqual replications (unbalanced design)</a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#sums-of-squares-ss"><i class="fa fa-check"></i>Sums of squares (<span class="math inline">\(SS\)</span>)</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html"><i class="fa fa-check"></i>Multiple comparisons</a><ul>
+<li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html"><i class="fa fa-check"></i>Multiple comparisons</a>
+<ul>
 <li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html#adjustments-for-multiple-testing"><i class="fa fa-check"></i>Adjustments for multiple testing</a></li>
 <li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html#classification-of-multiple-hypothesis-tests"><i class="fa fa-check"></i>Classification of multiple hypothesis tests</a></li>
 <li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html#multiple-comparison-procedures"><i class="fa fa-check"></i>Multiple comparison procedures</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html"><i class="fa fa-check"></i>Linear mixed-effect models (LMMs)</a><ul>
+<li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html"><i class="fa fa-check"></i>Linear mixed-effect models (LMMs)</a>
+<ul>
 <li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html#a-randomised-controlled-block-design-rcbd"><i class="fa fa-check"></i>A Randomised Controlled Block Design (RCBD)</a></li>
 <li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html#a-split-plot-design"><i class="fa fa-check"></i>A Split-plot design</a></li>
 <li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html#a-repeated-measures-design"><i class="fa fa-check"></i>A repeated measures design</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-4.html"><a href="module-4.html"><i class="fa fa-check"></i>Module 4</a><ul>
+<li class="chapter" data-level="" data-path="module-4.html"><a href="module-4.html"><i class="fa fa-check"></i>Module 4</a>
+<ul>
 <li class="chapter" data-level="" data-path="introduction-to-generalised-linear-models-glms.html"><a href="introduction-to-generalised-linear-models-glms.html"><i class="fa fa-check"></i>Introduction to generalised linear models (GLMs)</a></li>
-<li class="chapter" data-level="" data-path="poisson-regression.html"><a href="poisson-regression.html"><i class="fa fa-check"></i>Poisson regression</a><ul>
+<li class="chapter" data-level="" data-path="poisson-regression.html"><a href="poisson-regression.html"><i class="fa fa-check"></i>Poisson regression</a>
+<ul>
 <li class="chapter" data-level="" data-path="poisson-regression.html"><a href="poisson-regression.html#an-example-bird-abundance"><i class="fa fa-check"></i>An example: bird abundance</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i>Logistic regression</a><ul>
+<li class="chapter" data-level="" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i>Logistic regression</a>
+<ul>
 <li class="chapter" data-level="" data-path="logistic-regression.html"><a href="logistic-regression.html#an-example-lobsters"><i class="fa fa-check"></i>An example: lobsters</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="model-diagnostics.html"><a href="model-diagnostics.html"><i class="fa fa-check"></i>Model diagnostics</a><ul>
+<li class="chapter" data-level="" data-path="model-diagnostics.html"><a href="model-diagnostics.html"><i class="fa fa-check"></i>Model diagnostics</a>
+<ul>
 <li class="chapter" data-level="" data-path="model-diagnostics.html"><a href="model-diagnostics.html#residuals"><i class="fa fa-check"></i>Residuals</a></li>
 <li class="chapter" data-level="" data-path="model-diagnostics.html"><a href="model-diagnostics.html#the-quantile-residual-q-q-plot"><i class="fa fa-check"></i>The quantile residual Q-Q plot</a></li>
 <li class="chapter" data-level="" data-path="model-diagnostics.html"><a href="model-diagnostics.html#deviance-using-the-chi-squared-approach"><i class="fa fa-check"></i>Deviance (using the chi-squared approach)</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="a-summary-of-glms.html"><a href="a-summary-of-glms.html"><i class="fa fa-check"></i>A summary of GLMs</a><ul>
+<li class="chapter" data-level="" data-path="a-summary-of-glms.html"><a href="a-summary-of-glms.html"><i class="fa fa-check"></i>A summary of GLMs</a>
+<ul>
 <li class="chapter" data-level="" data-path="a-summary-of-glms.html"><a href="a-summary-of-glms.html#other-distributions"><i class="fa fa-check"></i>Other distributions</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="generalised-linear-mixed-effects-models-glmmms.html"><a href="generalised-linear-mixed-effects-models-glmmms.html"><i class="fa fa-check"></i>Generalised linear mixed-effects models (GLMMMs)</a><ul>
+<li class="chapter" data-level="" data-path="generalised-linear-mixed-effects-models-glmmms.html"><a href="generalised-linear-mixed-effects-models-glmmms.html"><i class="fa fa-check"></i>Generalised linear mixed-effects models (GLMMMs)</a>
+<ul>
 <li class="chapter" data-level="" data-path="generalised-linear-mixed-effects-models-glmmms.html"><a href="generalised-linear-mixed-effects-models-glmmms.html#fitting-a-glmm"><i class="fa fa-check"></i>Fitting a GLMM</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-5.html"><a href="module-5.html"><i class="fa fa-check"></i>Module 5</a><ul>
-<li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i>Clustering</a><ul>
+<li class="chapter" data-level="" data-path="module-5.html"><a href="module-5.html"><i class="fa fa-check"></i>Module 5</a>
+<ul>
+<li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i>Clustering</a>
+<ul>
 <li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#divisive-partitioning-methods."><i class="fa fa-check"></i>Divisive (partitioning) methods.</a></li>
 <li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#k-means-an-example-using-the-palmerpenguins-data"><i class="fa fa-check"></i>K-means: an example using the <code>palmerpenguins</code> data</a></li>
 <li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#hierarchical-agglomerative-clustering."><i class="fa fa-check"></i>Hierarchical agglomerative clustering.</a></li>
 <li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#hierarchical-clustering-an-example"><i class="fa fa-check"></i>Hierarchical clustering: an example</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="principal-component-analysis-pca.html"><a href="principal-component-analysis-pca.html"><i class="fa fa-check"></i>Principal Component Analysis (PCA)</a><ul>
+<li class="chapter" data-level="" data-path="principal-component-analysis-pca.html"><a href="principal-component-analysis-pca.html"><i class="fa fa-check"></i>Principal Component Analysis (PCA)</a>
+<ul>
 <li class="chapter" data-level="" data-path="principal-component-analysis-pca.html"><a href="principal-component-analysis-pca.html#examples-in-r"><i class="fa fa-check"></i>Examples in <code>R</code></a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html"><i class="fa fa-check"></i>Multidimensional Scaling (MDS)</a><ul>
+<li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html"><i class="fa fa-check"></i>Multidimensional Scaling (MDS)</a>
+<ul>
 <li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html#metric-scaling"><i class="fa fa-check"></i>Metric Scaling</a></li>
 <li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html#correspondence-analysis-ca"><i class="fa fa-check"></i>Correspondence Analysis (CA)</a></li>
 <li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html#non-metric-multidimensional-scaling"><i class="fa fa-check"></i>Non-metric Multidimensional Scaling</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html"><i class="fa fa-check"></i>Linear Discriminant Analysis (LDA)</a><ul>
+<li class="chapter" data-level="" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html"><i class="fa fa-check"></i>Linear Discriminant Analysis (LDA)</a>
+<ul>
 <li class="chapter" data-level="" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html#example-in-r"><i class="fa fa-check"></i>Example in <code>R</code></a></li>
 <li class="chapter" data-level="" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html#prediction"><i class="fa fa-check"></i>Prediction</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-6.html"><a href="module-6.html"><i class="fa fa-check"></i>Module 6</a><ul>
-<li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html"><i class="fa fa-check"></i>Least Squares Estimation</a><ul>
+<li class="chapter" data-level="" data-path="module-6.html"><a href="module-6.html"><i class="fa fa-check"></i>Module 6</a>
+<ul>
+<li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html"><i class="fa fa-check"></i>Least Squares Estimation</a>
+<ul>
 <li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html#some-basic-matrix-algebra"><i class="fa fa-check"></i>Some basic matrix algebra</a></li>
 <li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html#linear-least-squares"><i class="fa fa-check"></i>Linear least squares</a></li>
 <li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html#matrix-representation-of-a-crd"><i class="fa fa-check"></i>Matrix representation of a CRD</a></li>
 <li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html#a-numeric-example"><i class="fa fa-check"></i>A numeric example</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html"><i class="fa fa-check"></i>Maximum likelihood estimation</a><ul>
+<li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html"><i class="fa fa-check"></i>Maximum likelihood estimation</a>
+<ul>
 <li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#differeniation-rules"><i class="fa fa-check"></i>Differeniation rules</a></li>
 <li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#logarithm-rules"><i class="fa fa-check"></i>Logarithm rules</a></li>
 <li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#maximum-likelihood-estimation-for-a-binomial-distribution"><i class="fa fa-check"></i>Maximum likelihood estimation for a Binomial distribution</a></li>
@@ -289,7 +325,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#maximum-likelihood-estimation-for-a-poisson-distribution"><i class="fa fa-check"></i>Maximum likelihood estimation for a Poisson distribution</a></li>
 <li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#maximum-likelihood-estimation-for-a-continuous-random-variable"><i class="fa fa-check"></i>Maximum likelihood estimation for a continuous random variable</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html"><i class="fa fa-check"></i>Introduction to Bayesian statistics</a><ul>
+<li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html"><i class="fa fa-check"></i>Introduction to Bayesian statistics</a>
+<ul>
 <li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html#conditional-probability"><i class="fa fa-check"></i>Conditional probability</a></li>
 <li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html#bayes-rule"><i class="fa fa-check"></i>Bayes’ rule</a></li>
 </ul></li>
@@ -357,10 +394,8 @@ This implies that</p>
 <p><strong>Conditions of the chi-squared approximation</strong></p>
 <p>The distribution of the deviance under the null hypothesis is approximately chi-squared if the response of each observation is well approximated by a normal distribution. This holds for binomial random variables if the number of trials, <span class="math inline">\(n_i\)</span>, is large enough:</p>
 <ul>
-<li>when <span class="math inline">\(p_i\)</span> is close to 0.5, <span class="math inline">\(n_i \geq 5\)</span> is probably sufficient,
-<ul>
+<li>when <span class="math inline">\(p_i\)</span> is close to 0.5, <span class="math inline">\(n_i \geq 5\)</span> is probably sufficient,</li>
 <li>but if <span class="math inline">\(p_i\)</span> is close to 0 or 1, <span class="math inline">\(n_i\)</span> must be much larger.</li>
-</ul></li>
 </ul>
 <p>However, if our chi-squared approximation assumptions are not met we should find another way.</p>
 </div>
@@ -368,34 +403,34 @@ This implies that</p>
 <h3>An example: lobsters<a href="logistic-regression.html#an-example-lobsters" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Let us, again, consider data from the published article <a href="https://www.sciencedirect.com/science/article/pii/S0022098115000039">Influence of predator identity on the strength of predator avoidance responses in lobsters.</a>.</p>
 <p>The authors were interested in how a juvenile lobster’s size was related to its vulnerability to predation. In total, 159 juvenile lobsters were collected from their natural habitat in the Gulf of Maine, USA, and the length of each lobster’s carapace (upper shell) was measured to the nearest 3 mm, <code>size</code>. The lobsters were then tethered to the ocean floor for 24 hours. Any missing lobsters were assumed to have been consumed by a predator, while the surviving lobsters were released (i.e., <code>survived</code> = 1 if lobster survived, 0 otherwise). These data are available in the <code>lobster</code> dataset:</p>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb151-1" title="1"><span class="kw">glimpse</span>(lobster)</a>
-<a class="sourceLine" id="cb151-2" title="2"><span class="co">## Rows: 159</span></a>
-<a class="sourceLine" id="cb151-3" title="3"><span class="co">## Columns: 2</span></a>
-<a class="sourceLine" id="cb151-4" title="4"><span class="co">## $ size     &lt;dbl&gt; 42, 36, 51, 33, 33, 45, 54, 48, 39, 48, 36, 42, 45, 39, 42, 3…</span></a>
-<a class="sourceLine" id="cb151-5" title="5"><span class="co">## $ survived &lt;dbl&gt; 0, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0, 1…</span></a></code></pre></div>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="logistic-regression.html#cb151-1"></a><span class="kw">glimpse</span>(lobster)</span>
+<span id="cb151-2"><a href="logistic-regression.html#cb151-2"></a><span class="co">## Rows: 159</span></span>
+<span id="cb151-3"><a href="logistic-regression.html#cb151-3"></a><span class="co">## Columns: 2</span></span>
+<span id="cb151-4"><a href="logistic-regression.html#cb151-4"></a><span class="co">## $ size     &lt;dbl&gt; 42, 36, 51, 33, 33, 45, 54, 48, 39, 48, 36, 42, 45, 39, 42, 3…</span></span>
+<span id="cb151-5"><a href="logistic-regression.html#cb151-5"></a><span class="co">## $ survived &lt;dbl&gt; 0, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0, 1…</span></span></code></pre></div>
 <div id="ungrouped-model" class="section level4 hasAnchor">
 <h4>Ungrouped model<a href="logistic-regression.html#ungrouped-model" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Fitting a binomial model we specify <code>family = "binomial"</code> in our <code>glm</code> call. Note that the default link function for <code>family = "binomial"</code> is the logit link; we could also use the equivalent syntax <code>binomial(link = logit)</code>to specify this model.</p>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb152-1" title="1">glm_mod_ug &lt;-<span class="st"> </span><span class="kw">glm</span>(survived <span class="op">~</span><span class="st"> </span>size, <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>, <span class="dt">data =</span> lobster)</a>
-<a class="sourceLine" id="cb152-2" title="2"><span class="kw">summary</span>(glm_mod_ug)</a>
-<a class="sourceLine" id="cb152-3" title="3"><span class="co">## </span></a>
-<a class="sourceLine" id="cb152-4" title="4"><span class="co">## Call:</span></a>
-<a class="sourceLine" id="cb152-5" title="5"><span class="co">## glm(formula = survived ~ size, family = &quot;binomial&quot;, data = lobster)</span></a>
-<a class="sourceLine" id="cb152-6" title="6"><span class="co">## </span></a>
-<a class="sourceLine" id="cb152-7" title="7"><span class="co">## Coefficients:</span></a>
-<a class="sourceLine" id="cb152-8" title="8"><span class="co">##             Estimate Std. Error z value      Pr(&gt;|z|)    </span></a>
-<a class="sourceLine" id="cb152-9" title="9"><span class="co">## (Intercept) -7.89597    1.38501  -5.701 0.00000001191 ***</span></a>
-<a class="sourceLine" id="cb152-10" title="10"><span class="co">## size         0.19586    0.03415   5.735 0.00000000977 ***</span></a>
-<a class="sourceLine" id="cb152-11" title="11"><span class="co">## ---</span></a>
-<a class="sourceLine" id="cb152-12" title="12"><span class="co">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a>
-<a class="sourceLine" id="cb152-13" title="13"><span class="co">## </span></a>
-<a class="sourceLine" id="cb152-14" title="14"><span class="co">## (Dispersion parameter for binomial family taken to be 1)</span></a>
-<a class="sourceLine" id="cb152-15" title="15"><span class="co">## </span></a>
-<a class="sourceLine" id="cb152-16" title="16"><span class="co">##     Null deviance: 220.41  on 158  degrees of freedom</span></a>
-<a class="sourceLine" id="cb152-17" title="17"><span class="co">## Residual deviance: 172.87  on 157  degrees of freedom</span></a>
-<a class="sourceLine" id="cb152-18" title="18"><span class="co">## AIC: 176.87</span></a>
-<a class="sourceLine" id="cb152-19" title="19"><span class="co">## </span></a>
-<a class="sourceLine" id="cb152-20" title="20"><span class="co">## Number of Fisher Scoring iterations: 4</span></a></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="logistic-regression.html#cb152-1"></a>glm_mod_ug &lt;-<span class="st"> </span><span class="kw">glm</span>(survived <span class="op">~</span><span class="st"> </span>size, <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>, <span class="dt">data =</span> lobster)</span>
+<span id="cb152-2"><a href="logistic-regression.html#cb152-2"></a><span class="kw">summary</span>(glm_mod_ug)</span>
+<span id="cb152-3"><a href="logistic-regression.html#cb152-3"></a><span class="co">## </span></span>
+<span id="cb152-4"><a href="logistic-regression.html#cb152-4"></a><span class="co">## Call:</span></span>
+<span id="cb152-5"><a href="logistic-regression.html#cb152-5"></a><span class="co">## glm(formula = survived ~ size, family = &quot;binomial&quot;, data = lobster)</span></span>
+<span id="cb152-6"><a href="logistic-regression.html#cb152-6"></a><span class="co">## </span></span>
+<span id="cb152-7"><a href="logistic-regression.html#cb152-7"></a><span class="co">## Coefficients:</span></span>
+<span id="cb152-8"><a href="logistic-regression.html#cb152-8"></a><span class="co">##             Estimate Std. Error z value      Pr(&gt;|z|)    </span></span>
+<span id="cb152-9"><a href="logistic-regression.html#cb152-9"></a><span class="co">## (Intercept) -7.89597    1.38501  -5.701 0.00000001191 ***</span></span>
+<span id="cb152-10"><a href="logistic-regression.html#cb152-10"></a><span class="co">## size         0.19586    0.03415   5.735 0.00000000977 ***</span></span>
+<span id="cb152-11"><a href="logistic-regression.html#cb152-11"></a><span class="co">## ---</span></span>
+<span id="cb152-12"><a href="logistic-regression.html#cb152-12"></a><span class="co">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
+<span id="cb152-13"><a href="logistic-regression.html#cb152-13"></a><span class="co">## </span></span>
+<span id="cb152-14"><a href="logistic-regression.html#cb152-14"></a><span class="co">## (Dispersion parameter for binomial family taken to be 1)</span></span>
+<span id="cb152-15"><a href="logistic-regression.html#cb152-15"></a><span class="co">## </span></span>
+<span id="cb152-16"><a href="logistic-regression.html#cb152-16"></a><span class="co">##     Null deviance: 220.41  on 158  degrees of freedom</span></span>
+<span id="cb152-17"><a href="logistic-regression.html#cb152-17"></a><span class="co">## Residual deviance: 172.87  on 157  degrees of freedom</span></span>
+<span id="cb152-18"><a href="logistic-regression.html#cb152-18"></a><span class="co">## AIC: 176.87</span></span>
+<span id="cb152-19"><a href="logistic-regression.html#cb152-19"></a><span class="co">## </span></span>
+<span id="cb152-20"><a href="logistic-regression.html#cb152-20"></a><span class="co">## Number of Fisher Scoring iterations: 4</span></span></code></pre></div>
 <p>The fitted model is therefore</p>
 <p><span class="math display">\[
 \log\left[ \frac { \widehat{P( \operatorname{survived} = \operatorname{1} )} }{ 1 - \widehat{P( \operatorname{survived} = \operatorname{1} )} } \right] = -7.896 + 0.196(\operatorname{size})
@@ -405,55 +440,53 @@ This implies that</p>
 <div id="grouped-model" class="section level4 hasAnchor">
 <h4>Grouped model<a href="logistic-regression.html#grouped-model" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The data are currently ungrouped, despite many lobsters sharing the same carapace size. Therefore, we rearrange the data set so that it is grouped:</p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb153-1" title="1">grouped &lt;-<span class="st"> </span>lobster <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb153-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(size) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb153-3" title="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">y =</span> <span class="kw">sum</span>(survived), <span class="dt">n =</span> <span class="kw">length</span>(survived), <span class="dt">p =</span> <span class="kw">mean</span>(survived))</a>
-<a class="sourceLine" id="cb153-4" title="4">grouped</a>
-<a class="sourceLine" id="cb153-5" title="5"><span class="co">## # A tibble: 11 × 4</span></a>
-<a class="sourceLine" id="cb153-6" title="6"><span class="co">##     size     y     n     p</span></a>
-<a class="sourceLine" id="cb153-7" title="7"><span class="co">##    &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb153-8" title="8"><span class="co">##  1    27     0     5 0    </span></a>
-<a class="sourceLine" id="cb153-9" title="9"><span class="co">##  2    30     1    10 0.1  </span></a>
-<a class="sourceLine" id="cb153-10" title="10"><span class="co">##  3    33     3    22 0.136</span></a>
-<a class="sourceLine" id="cb153-11" title="11"><span class="co">##  4    36     7    21 0.333</span></a>
-<a class="sourceLine" id="cb153-12" title="12"><span class="co">##  5    39    12    22 0.545</span></a>
-<a class="sourceLine" id="cb153-13" title="13"><span class="co">##  6    42    17    29 0.586</span></a>
-<a class="sourceLine" id="cb153-14" title="14"><span class="co">##  7    45    13    18 0.722</span></a>
-<a class="sourceLine" id="cb153-15" title="15"><span class="co">##  8    48    12    17 0.706</span></a>
-<a class="sourceLine" id="cb153-16" title="16"><span class="co">##  9    51     7     8 0.875</span></a>
-<a class="sourceLine" id="cb153-17" title="17"><span class="co">## 10    54     6     6 1    </span></a>
-<a class="sourceLine" id="cb153-18" title="18"><span class="co">## 11    57     1     1 1</span></a></code></pre></div>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="logistic-regression.html#cb153-1"></a>grouped &lt;-<span class="st"> </span>lobster <span class="op">%&gt;%</span></span>
+<span id="cb153-2"><a href="logistic-regression.html#cb153-2"></a><span class="st">  </span><span class="kw">group_by</span>(size) <span class="op">%&gt;%</span></span>
+<span id="cb153-3"><a href="logistic-regression.html#cb153-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">y =</span> <span class="kw">sum</span>(survived), <span class="dt">n =</span> <span class="kw">length</span>(survived), <span class="dt">p =</span> <span class="kw">mean</span>(survived))</span>
+<span id="cb153-4"><a href="logistic-regression.html#cb153-4"></a>grouped</span>
+<span id="cb153-5"><a href="logistic-regression.html#cb153-5"></a><span class="co">## # A tibble: 11 × 4</span></span>
+<span id="cb153-6"><a href="logistic-regression.html#cb153-6"></a><span class="co">##     size     y     n     p</span></span>
+<span id="cb153-7"><a href="logistic-regression.html#cb153-7"></a><span class="co">##    &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt;</span></span>
+<span id="cb153-8"><a href="logistic-regression.html#cb153-8"></a><span class="co">##  1    27     0     5 0    </span></span>
+<span id="cb153-9"><a href="logistic-regression.html#cb153-9"></a><span class="co">##  2    30     1    10 0.1  </span></span>
+<span id="cb153-10"><a href="logistic-regression.html#cb153-10"></a><span class="co">##  3    33     3    22 0.136</span></span>
+<span id="cb153-11"><a href="logistic-regression.html#cb153-11"></a><span class="co">##  4    36     7    21 0.333</span></span>
+<span id="cb153-12"><a href="logistic-regression.html#cb153-12"></a><span class="co">##  5    39    12    22 0.545</span></span>
+<span id="cb153-13"><a href="logistic-regression.html#cb153-13"></a><span class="co">##  6    42    17    29 0.586</span></span>
+<span id="cb153-14"><a href="logistic-regression.html#cb153-14"></a><span class="co">##  7    45    13    18 0.722</span></span>
+<span id="cb153-15"><a href="logistic-regression.html#cb153-15"></a><span class="co">##  8    48    12    17 0.706</span></span>
+<span id="cb153-16"><a href="logistic-regression.html#cb153-16"></a><span class="co">##  9    51     7     8 0.875</span></span>
+<span id="cb153-17"><a href="logistic-regression.html#cb153-17"></a><span class="co">## 10    54     6     6 1    </span></span>
+<span id="cb153-18"><a href="logistic-regression.html#cb153-18"></a><span class="co">## 11    57     1     1 1</span></span></code></pre></div>
 <p>Where,</p>
 <ul>
-<li><code>size</code> is as above,
-<ul>
+<li><code>size</code> is as above,</li>
 <li><code>y</code> is the number of lobsters of each size that survived,</li>
 <li><code>t</code> is the total number of lobsters of each size, and</li>
 <li><code>p</code>is the proportion of lobsters of each size that survived.</li>
-</ul></li>
 </ul>
 <p><img src="_main_files/figure-html/unnamed-chunk-182-1.png" width="672" /></p>
 <p>Fitting a binomial model again we specify <code>family = "binomial"</code> in our <code>glm</code> call and specify our response as <code>cbind(y, n - y)</code>:</p>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb154-1" title="1">glm_mod_gr &lt;-<span class="st"> </span><span class="kw">glm</span>(<span class="kw">cbind</span>(y, n <span class="op">-</span><span class="st"> </span>y) <span class="op">~</span><span class="st"> </span>size, <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>, <span class="dt">data =</span> grouped)</a>
-<a class="sourceLine" id="cb154-2" title="2"><span class="kw">summary</span>(glm_mod_gr)</a>
-<a class="sourceLine" id="cb154-3" title="3"><span class="co">## </span></a>
-<a class="sourceLine" id="cb154-4" title="4"><span class="co">## Call:</span></a>
-<a class="sourceLine" id="cb154-5" title="5"><span class="co">## glm(formula = cbind(y, n - y) ~ size, family = &quot;binomial&quot;, data = grouped)</span></a>
-<a class="sourceLine" id="cb154-6" title="6"><span class="co">## </span></a>
-<a class="sourceLine" id="cb154-7" title="7"><span class="co">## Coefficients:</span></a>
-<a class="sourceLine" id="cb154-8" title="8"><span class="co">##             Estimate Std. Error z value      Pr(&gt;|z|)    </span></a>
-<a class="sourceLine" id="cb154-9" title="9"><span class="co">## (Intercept) -7.89597    1.38501  -5.701 0.00000001191 ***</span></a>
-<a class="sourceLine" id="cb154-10" title="10"><span class="co">## size         0.19586    0.03415   5.735 0.00000000977 ***</span></a>
-<a class="sourceLine" id="cb154-11" title="11"><span class="co">## ---</span></a>
-<a class="sourceLine" id="cb154-12" title="12"><span class="co">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a>
-<a class="sourceLine" id="cb154-13" title="13"><span class="co">## </span></a>
-<a class="sourceLine" id="cb154-14" title="14"><span class="co">## (Dispersion parameter for binomial family taken to be 1)</span></a>
-<a class="sourceLine" id="cb154-15" title="15"><span class="co">## </span></a>
-<a class="sourceLine" id="cb154-16" title="16"><span class="co">##     Null deviance: 52.1054  on 10  degrees of freedom</span></a>
-<a class="sourceLine" id="cb154-17" title="17"><span class="co">## Residual deviance:  4.5623  on  9  degrees of freedom</span></a>
-<a class="sourceLine" id="cb154-18" title="18"><span class="co">## AIC: 32.24</span></a>
-<a class="sourceLine" id="cb154-19" title="19"><span class="co">## </span></a>
-<a class="sourceLine" id="cb154-20" title="20"><span class="co">## Number of Fisher Scoring iterations: 4</span></a></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="logistic-regression.html#cb154-1"></a>glm_mod_gr &lt;-<span class="st"> </span><span class="kw">glm</span>(<span class="kw">cbind</span>(y, n <span class="op">-</span><span class="st"> </span>y) <span class="op">~</span><span class="st"> </span>size, <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>, <span class="dt">data =</span> grouped)</span>
+<span id="cb154-2"><a href="logistic-regression.html#cb154-2"></a><span class="kw">summary</span>(glm_mod_gr)</span>
+<span id="cb154-3"><a href="logistic-regression.html#cb154-3"></a><span class="co">## </span></span>
+<span id="cb154-4"><a href="logistic-regression.html#cb154-4"></a><span class="co">## Call:</span></span>
+<span id="cb154-5"><a href="logistic-regression.html#cb154-5"></a><span class="co">## glm(formula = cbind(y, n - y) ~ size, family = &quot;binomial&quot;, data = grouped)</span></span>
+<span id="cb154-6"><a href="logistic-regression.html#cb154-6"></a><span class="co">## </span></span>
+<span id="cb154-7"><a href="logistic-regression.html#cb154-7"></a><span class="co">## Coefficients:</span></span>
+<span id="cb154-8"><a href="logistic-regression.html#cb154-8"></a><span class="co">##             Estimate Std. Error z value      Pr(&gt;|z|)    </span></span>
+<span id="cb154-9"><a href="logistic-regression.html#cb154-9"></a><span class="co">## (Intercept) -7.89597    1.38501  -5.701 0.00000001191 ***</span></span>
+<span id="cb154-10"><a href="logistic-regression.html#cb154-10"></a><span class="co">## size         0.19586    0.03415   5.735 0.00000000977 ***</span></span>
+<span id="cb154-11"><a href="logistic-regression.html#cb154-11"></a><span class="co">## ---</span></span>
+<span id="cb154-12"><a href="logistic-regression.html#cb154-12"></a><span class="co">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
+<span id="cb154-13"><a href="logistic-regression.html#cb154-13"></a><span class="co">## </span></span>
+<span id="cb154-14"><a href="logistic-regression.html#cb154-14"></a><span class="co">## (Dispersion parameter for binomial family taken to be 1)</span></span>
+<span id="cb154-15"><a href="logistic-regression.html#cb154-15"></a><span class="co">## </span></span>
+<span id="cb154-16"><a href="logistic-regression.html#cb154-16"></a><span class="co">##     Null deviance: 52.1054  on 10  degrees of freedom</span></span>
+<span id="cb154-17"><a href="logistic-regression.html#cb154-17"></a><span class="co">## Residual deviance:  4.5623  on  9  degrees of freedom</span></span>
+<span id="cb154-18"><a href="logistic-regression.html#cb154-18"></a><span class="co">## AIC: 32.24</span></span>
+<span id="cb154-19"><a href="logistic-regression.html#cb154-19"></a><span class="co">## </span></span>
+<span id="cb154-20"><a href="logistic-regression.html#cb154-20"></a><span class="co">## Number of Fisher Scoring iterations: 4</span></span></code></pre></div>
 <p>The fitted model is again</p>
 <p><span class="math display">\[
 \log\left[ \frac { \widehat{P( \operatorname{survived} = \operatorname{1} )} }{ 1 - \widehat{P( \operatorname{survived} = \operatorname{1} )} } \right] = -7.896 + 0.196(\operatorname{size})
@@ -464,30 +497,30 @@ This implies that</p>
 <p>Interpreting the coefficients above we estimate that the log-odds of a juvenile lobster surviving are -8 (use your common sense to ascertain if interpreting the intercept is sensible).</p>
 <p>We estimate that for every 1mm increase in carapace length the log-odds of a juvenile lobster surviving <strong>increase</strong> by 0.196.</p>
 <p>What about the odds?</p>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb155-1" title="1"><span class="kw">exp</span>(<span class="kw">coef</span>(glm_mod_gr))</a>
-<a class="sourceLine" id="cb155-2" title="2"><span class="co">##  (Intercept)         size </span></a>
-<a class="sourceLine" id="cb155-3" title="3"><span class="co">## 0.0003722407 1.2163540760</span></a></code></pre></div>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="logistic-regression.html#cb155-1"></a><span class="kw">exp</span>(<span class="kw">coef</span>(glm_mod_gr))</span>
+<span id="cb155-2"><a href="logistic-regression.html#cb155-2"></a><span class="co">##  (Intercept)         size </span></span>
+<span id="cb155-3"><a href="logistic-regression.html#cb155-3"></a><span class="co">## 0.0003722407 1.2163540760</span></span></code></pre></div>
 <p>Therefore, we estimate that the odds of a juvenile lobster surviving are 0.000372 (use your common sense to ascertain if interpreting the intercept is sensible).</p>
 <p>We estimate that for every 1mm increase in carapace length the odds of a juvenile lobster surviving are <strong>multiplied</strong> by 1.22.</p>
 <p>What about for a 5mm increase in carapace length?</p>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb156-1" title="1"><span class="kw">exp</span>(<span class="dv">5</span><span class="op">*</span><span class="kw">coef</span>(glm_mod_gr)[<span class="dv">2</span>])</a>
-<a class="sourceLine" id="cb156-2" title="2"><span class="co">##     size </span></a>
-<a class="sourceLine" id="cb156-3" title="3"><span class="co">## 2.662564</span></a></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="logistic-regression.html#cb156-1"></a><span class="kw">exp</span>(<span class="dv">5</span><span class="op">*</span><span class="kw">coef</span>(glm_mod_gr)[<span class="dv">2</span>])</span>
+<span id="cb156-2"><a href="logistic-regression.html#cb156-2"></a><span class="co">##     size </span></span>
+<span id="cb156-3"><a href="logistic-regression.html#cb156-3"></a><span class="co">## 2.662564</span></span></code></pre></div>
 <p>Therefore, we estimate that for every 5mm increase in carapace length the odds of a juvenile lobster surviving are <strong>multiplied</strong> by 2.66.</p>
 <p>Using 95% <strong>confidence intervals</strong>:</p>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb157-1" title="1">ci &lt;-<span class="st"> </span><span class="kw">exp</span>(<span class="dv">5</span><span class="op">*</span><span class="kw">confint</span>(glm_mod_gr)[<span class="dv">2</span>,])</a>
-<a class="sourceLine" id="cb157-2" title="2">ci</a>
-<a class="sourceLine" id="cb157-3" title="3"><span class="co">##    2.5 %   97.5 % </span></a>
-<a class="sourceLine" id="cb157-4" title="4"><span class="co">## 1.944478 3.811167</span></a></code></pre></div>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="logistic-regression.html#cb157-1"></a>ci &lt;-<span class="st"> </span><span class="kw">exp</span>(<span class="dv">5</span><span class="op">*</span><span class="kw">confint</span>(glm_mod_gr)[<span class="dv">2</span>,])</span>
+<span id="cb157-2"><a href="logistic-regression.html#cb157-2"></a>ci</span>
+<span id="cb157-3"><a href="logistic-regression.html#cb157-3"></a><span class="co">##    2.5 %   97.5 % </span></span>
+<span id="cb157-4"><a href="logistic-regression.html#cb157-4"></a><span class="co">## 1.944478 3.811167</span></span></code></pre></div>
 <p>Therefore, we estimate that for every 5mm increase in carapace length the odds of a juvenile lobster surviving are <strong>multiplied</strong> by between 1.94 and 3.81.</p>
 <p>For a <strong>percentage-change</strong> interpretation we use <span class="math inline">\(100 \times \left (\text{exp}(x\beta_1)−1 \right )\)</span>:</p>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb158-1" title="1"><span class="dv">100</span><span class="op">*</span>(<span class="kw">exp</span>(<span class="dv">5</span><span class="op">*</span><span class="kw">coef</span>(glm_mod_gr)[<span class="dv">2</span>]) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb158-2" title="2"><span class="co">##     size </span></a>
-<a class="sourceLine" id="cb158-3" title="3"><span class="co">## 166.2564</span></a>
-<a class="sourceLine" id="cb158-4" title="4">confint &lt;-<span class="st"> </span><span class="dv">100</span><span class="op">*</span>(<span class="kw">exp</span>(<span class="dv">5</span><span class="op">*</span><span class="kw">confint</span>(glm_mod_gr)[<span class="dv">2</span>, ]) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb158-5" title="5">confint</a>
-<a class="sourceLine" id="cb158-6" title="6"><span class="co">##     2.5 %    97.5 % </span></a>
-<a class="sourceLine" id="cb158-7" title="7"><span class="co">##  94.44778 281.11670</span></a></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="logistic-regression.html#cb158-1"></a><span class="dv">100</span><span class="op">*</span>(<span class="kw">exp</span>(<span class="dv">5</span><span class="op">*</span><span class="kw">coef</span>(glm_mod_gr)[<span class="dv">2</span>]) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)</span>
+<span id="cb158-2"><a href="logistic-regression.html#cb158-2"></a><span class="co">##     size </span></span>
+<span id="cb158-3"><a href="logistic-regression.html#cb158-3"></a><span class="co">## 166.2564</span></span>
+<span id="cb158-4"><a href="logistic-regression.html#cb158-4"></a>confint &lt;-<span class="st"> </span><span class="dv">100</span><span class="op">*</span>(<span class="kw">exp</span>(<span class="dv">5</span><span class="op">*</span><span class="kw">confint</span>(glm_mod_gr)[<span class="dv">2</span>, ]) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)</span>
+<span id="cb158-5"><a href="logistic-regression.html#cb158-5"></a>confint</span>
+<span id="cb158-6"><a href="logistic-regression.html#cb158-6"></a><span class="co">##     2.5 %    97.5 % </span></span>
+<span id="cb158-7"><a href="logistic-regression.html#cb158-7"></a><span class="co">##  94.44778 281.11670</span></span></code></pre></div>
 <p>We estimate that for every 5mm increase in carapace length the <strong>odds</strong> of a juvenile lobster surviving <strong>increase</strong> by 166.26%. We estimate that for every 5mm increase in carapace length the odds of a juvenile lobster surviving <strong>increase</strong> between 94.45% and 281.12%.</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-189-1.png" width="672" /></p>
 </div>

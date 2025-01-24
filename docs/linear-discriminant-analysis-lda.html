@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Linear Discriminant Analysis (LDA) | Advanced Biological Data Analysis</title>
   <meta name="description" content="Linear Discriminant Analysis (LDA) | Advanced Biological Data Analysis" />
-  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Linear Discriminant Analysis (LDA) | Advanced Biological Data Analysis" />
   <meta property="og:type" content="book" />
@@ -20,7 +20,6 @@
   
   
 
-<meta name="author" content="" />
 
 
 
@@ -48,6 +47,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
@@ -56,25 +56,26 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -83,9 +84,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -139,54 +140,67 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Nau mai, haere mai. Welcome to BIOSCI 738</a></li>
-<li class="chapter" data-level="" data-path="key-information.html"><a href="key-information.html"><i class="fa fa-check"></i>Key Information</a><ul>
+<li class="chapter" data-level="" data-path="key-information.html"><a href="key-information.html"><i class="fa fa-check"></i>Key Information</a>
+<ul>
 <li class="chapter" data-level="" data-path="key-information.html"><a href="key-information.html#overview"><i class="fa fa-check"></i>Overview</a></li>
 <li class="chapter" data-level="" data-path="key-information.html"><a href="key-information.html#prerequisites"><i class="fa fa-check"></i>Prerequisites</a></li>
 <li class="chapter" data-level="" data-path="key-information.html"><a href="key-information.html#lectures"><i class="fa fa-check"></i>Lectures</a></li>
 <li class="chapter" data-level="" data-path="key-information.html"><a href="key-information.html#assessment"><i class="fa fa-check"></i>Assessment</a></li>
 <li class="chapter" data-level="" data-path="key-information.html"><a href="key-information.html#course-policies"><i class="fa fa-check"></i>Course policies</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-1.html"><a href="module-1.html"><i class="fa fa-check"></i>Module 1</a><ul>
-<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html"><i class="fa fa-check"></i><code>R</code> and <code>RStudio</code></a><ul>
+<li class="chapter" data-level="" data-path="module-1.html"><a href="module-1.html"><i class="fa fa-check"></i>Module 1</a>
+<ul>
+<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html"><i class="fa fa-check"></i><code>R</code> and <code>RStudio</code></a>
+<ul>
 <li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#recap-r-terminology"><i class="fa fa-check"></i>Recap: <code>R</code> terminology</a></li>
 <li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#which-r-syntax"><i class="fa fa-check"></i>Which <code>R</code> syntax?</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="error-handling-and-debugging.html"><a href="error-handling-and-debugging.html"><i class="fa fa-check"></i>Error handling and debugging</a></li>
-<li class="chapter" data-level="" data-path="accuracy-and-honesty.html"><a href="accuracy-and-honesty.html"><i class="fa fa-check"></i>Accuracy and Honesty</a><ul>
+<li class="chapter" data-level="" data-path="accuracy-and-honesty.html"><a href="accuracy-and-honesty.html"><i class="fa fa-check"></i>Accuracy and Honesty</a>
+<ul>
 <li class="chapter" data-level="" data-path="accuracy-and-honesty.html"><a href="accuracy-and-honesty.html#reproducible-research"><i class="fa fa-check"></i>Reproducible research</a></li>
 <li class="chapter" data-level="" data-path="accuracy-and-honesty.html"><a href="accuracy-and-honesty.html#good-coding-practice"><i class="fa fa-check"></i>Good coding practice</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html"><i class="fa fa-check"></i>Version control with <code>git</code> and GitHub</a><ul>
+<li class="chapter" data-level="" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html"><i class="fa fa-check"></i>Version control with <code>git</code> and GitHub</a>
+<ul>
 <li class="chapter" data-level="" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#setting-up"><i class="fa fa-check"></i>Setting up</a></li>
 <li class="chapter" data-level="" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#cloning-a-repository-from-github-using-rstudio"><i class="fa fa-check"></i>Cloning a repository from <code>GitHub</code> using <code>RStudio</code></a></li>
 <li class="chapter" data-level="" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#commiting-and-pushing-changes"><i class="fa fa-check"></i>Commiting and pushing changes</a></li>
 <li class="chapter" data-level="" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#system-specific-hurdles"><i class="fa fa-check"></i>System specific hurdles</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="respectful-handling-of-data.html"><a href="respectful-handling-of-data.html"><i class="fa fa-check"></i>Respectful Handling of Data</a><ul>
+<li class="chapter" data-level="" data-path="respectful-handling-of-data.html"><a href="respectful-handling-of-data.html"><i class="fa fa-check"></i>Respectful Handling of Data</a>
+<ul>
 <li class="chapter" data-level="" data-path="respectful-handling-of-data.html"><a href="respectful-handling-of-data.html#data-sovereignty"><i class="fa fa-check"></i>Data sovereignty</a></li>
 <li class="chapter" data-level="" data-path="respectful-handling-of-data.html"><a href="respectful-handling-of-data.html#māori-data-sovereignty-principles"><i class="fa fa-check"></i>Māori Data Sovereignty principles</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="awareness-of-consequences.html"><a href="awareness-of-consequences.html"><i class="fa fa-check"></i>Awareness of Consequences</a><ul>
+<li class="chapter" data-level="" data-path="awareness-of-consequences.html"><a href="awareness-of-consequences.html"><i class="fa fa-check"></i>Awareness of Consequences</a>
+<ul>
 <li class="chapter" data-level="" data-path="awareness-of-consequences.html"><a href="awareness-of-consequences.html#case-study"><i class="fa fa-check"></i>Case study</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i>Data Visualization</a><ul>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i>Data Visualization</a>
+<ul>
 <li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#exploratory-plots-for-your-own-purposes"><i class="fa fa-check"></i>Exploratory plots (for your own purposes)</a></li>
 <li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#explanatory-plots"><i class="fa fa-check"></i>Explanatory plots</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-2.html"><a href="module-2.html"><i class="fa fa-check"></i>Module 2</a><ul>
-<li class="chapter" data-level="" data-path="permutation-and-randomisation-tests.html"><a href="permutation-and-randomisation-tests.html"><i class="fa fa-check"></i>Permutation and randomisation tests</a><ul>
+<li class="chapter" data-level="" data-path="module-2.html"><a href="module-2.html"><i class="fa fa-check"></i>Module 2</a>
+<ul>
+<li class="chapter" data-level="" data-path="permutation-and-randomisation-tests.html"><a href="permutation-and-randomisation-tests.html"><i class="fa fa-check"></i>Permutation and randomisation tests</a>
+<ul>
 <li class="chapter" data-level="" data-path="permutation-and-randomisation-tests.html"><a href="permutation-and-randomisation-tests.html#a-permutation-test-jackal-mandible-lengths"><i class="fa fa-check"></i>A permutation test: Jackal mandible lengths</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="bootstrap-resampling.html"><a href="bootstrap-resampling.html"><i class="fa fa-check"></i>Bootstrap resampling</a><ul>
+<li class="chapter" data-level="" data-path="bootstrap-resampling.html"><a href="bootstrap-resampling.html"><i class="fa fa-check"></i>Bootstrap resampling</a>
+<ul>
 <li class="chapter" data-level="" data-path="bootstrap-resampling.html"><a href="bootstrap-resampling.html#example-constructing-bootstrap-confidence-intervals"><i class="fa fa-check"></i>Example: constructing bootstrap confidence intervals</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="parametric-hypothesis-testing.html"><a href="parametric-hypothesis-testing.html"><i class="fa fa-check"></i>Parametric hypothesis testing</a><ul>
+<li class="chapter" data-level="" data-path="parametric-hypothesis-testing.html"><a href="parametric-hypothesis-testing.html"><i class="fa fa-check"></i>Parametric hypothesis testing</a>
+<ul>
 <li class="chapter" data-level="" data-path="parametric-hypothesis-testing.html"><a href="parametric-hypothesis-testing.html#the-vocabulary-of-hypothesis-testing"><i class="fa fa-check"></i>The vocabulary of hypothesis testing</a></li>
 <li class="chapter" data-level="" data-path="parametric-hypothesis-testing.html"><a href="parametric-hypothesis-testing.html#example"><i class="fa fa-check"></i>Example</a></li>
 <li class="chapter" data-level="" data-path="parametric-hypothesis-testing.html"><a href="parametric-hypothesis-testing.html#differences-between-two-means"><i class="fa fa-check"></i>Differences between two means</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i>Linear regression</a><ul>
+<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i>Linear regression</a>
+<ul>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#model-formula-syntax-in-r"><i class="fa fa-check"></i>Model formula syntax in <code>R</code></a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#some-mathematical-notation"><i class="fa fa-check"></i>Some mathematical notation</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#a-null-model"><i class="fa fa-check"></i>A Null model</a></li>
@@ -195,92 +209,114 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#one-factor-and-a-continuous-variable"><i class="fa fa-check"></i>One factor and a continuous variable</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#interactions"><i class="fa fa-check"></i>Interactions</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html"><i class="fa fa-check"></i>Model diagnostics for a linear model</a><ul>
+<li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html"><i class="fa fa-check"></i>Model diagnostics for a linear model</a>
+<ul>
 <li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html#model-selection"><i class="fa fa-check"></i>Model selection</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="inference-for-a-linear-model.html"><a href="inference-for-a-linear-model.html"><i class="fa fa-check"></i>Inference for a linear model</a><ul>
+<li class="chapter" data-level="" data-path="inference-for-a-linear-model.html"><a href="inference-for-a-linear-model.html"><i class="fa fa-check"></i>Inference for a linear model</a>
+<ul>
 <li class="chapter" data-level="" data-path="inference-for-a-linear-model.html"><a href="inference-for-a-linear-model.html#point-prediction"><i class="fa fa-check"></i>Point prediction</a></li>
 <li class="chapter" data-level="" data-path="inference-for-a-linear-model.html"><a href="inference-for-a-linear-model.html#confidence-intervals-for-parameters"><i class="fa fa-check"></i>Confidence intervals for parameters</a></li>
 <li class="chapter" data-level="" data-path="inference-for-a-linear-model.html"><a href="inference-for-a-linear-model.html#marginal-predictions"><i class="fa fa-check"></i>Marginal predictions</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-3.html"><a href="module-3.html"><i class="fa fa-check"></i>Module 3</a><ul>
-<li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html"><i class="fa fa-check"></i>Introduction to the design and analysis of experiments</a><ul>
+<li class="chapter" data-level="" data-path="module-3.html"><a href="module-3.html"><i class="fa fa-check"></i>Module 3</a>
+<ul>
+<li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html"><i class="fa fa-check"></i>Introduction to the design and analysis of experiments</a>
+<ul>
 <li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#key-phrases"><i class="fa fa-check"></i>Key phrases</a></li>
 <li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#setting-up-an-experiment"><i class="fa fa-check"></i>Setting up an experiment</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="the-three-main-principles-of-experimental-design.html"><a href="the-three-main-principles-of-experimental-design.html"><i class="fa fa-check"></i>The three (main) principles of experimental design</a></li>
-<li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html"><i class="fa fa-check"></i>Some basic experimental designs</a><ul>
+<li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html"><i class="fa fa-check"></i>Some basic experimental designs</a>
+<ul>
 <li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html#completely-randomised-design-crd"><i class="fa fa-check"></i>Completely randomised design (CRD)</a></li>
 <li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html#randomised-complete-block-design-rcbd"><i class="fa fa-check"></i>Randomised complete block design (RCBD)</a></li>
 <li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html#factorial-design"><i class="fa fa-check"></i>Factorial design</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html"><i class="fa fa-check"></i>Modelling experimental data</a><ul>
+<li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html"><i class="fa fa-check"></i>Modelling experimental data</a>
+<ul>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-completely-randomised-design-crd-as-a-linear-model"><i class="fa fa-check"></i>A completely randomised design (CRD) as a linear model</a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#analysis-of-a-crd-in-r"><i class="fa fa-check"></i>Analysis of a CRD in <code>R</code></a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-factorial-experiment-as-a-crd"><i class="fa fa-check"></i>A Factorial experiment (as a CRD)</a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#unqual-replications-unbalanced-design"><i class="fa fa-check"></i>Unqual replications (unbalanced design)</a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#sums-of-squares-ss"><i class="fa fa-check"></i>Sums of squares (<span class="math inline">\(SS\)</span>)</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html"><i class="fa fa-check"></i>Multiple comparisons</a><ul>
+<li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html"><i class="fa fa-check"></i>Multiple comparisons</a>
+<ul>
 <li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html#adjustments-for-multiple-testing"><i class="fa fa-check"></i>Adjustments for multiple testing</a></li>
 <li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html#classification-of-multiple-hypothesis-tests"><i class="fa fa-check"></i>Classification of multiple hypothesis tests</a></li>
 <li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html#multiple-comparison-procedures"><i class="fa fa-check"></i>Multiple comparison procedures</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html"><i class="fa fa-check"></i>Linear mixed-effect models (LMMs)</a><ul>
+<li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html"><i class="fa fa-check"></i>Linear mixed-effect models (LMMs)</a>
+<ul>
 <li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html#a-randomised-controlled-block-design-rcbd"><i class="fa fa-check"></i>A Randomised Controlled Block Design (RCBD)</a></li>
 <li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html#a-split-plot-design"><i class="fa fa-check"></i>A Split-plot design</a></li>
 <li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html#a-repeated-measures-design"><i class="fa fa-check"></i>A repeated measures design</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-4.html"><a href="module-4.html"><i class="fa fa-check"></i>Module 4</a><ul>
+<li class="chapter" data-level="" data-path="module-4.html"><a href="module-4.html"><i class="fa fa-check"></i>Module 4</a>
+<ul>
 <li class="chapter" data-level="" data-path="introduction-to-generalised-linear-models-glms.html"><a href="introduction-to-generalised-linear-models-glms.html"><i class="fa fa-check"></i>Introduction to generalised linear models (GLMs)</a></li>
-<li class="chapter" data-level="" data-path="poisson-regression.html"><a href="poisson-regression.html"><i class="fa fa-check"></i>Poisson regression</a><ul>
+<li class="chapter" data-level="" data-path="poisson-regression.html"><a href="poisson-regression.html"><i class="fa fa-check"></i>Poisson regression</a>
+<ul>
 <li class="chapter" data-level="" data-path="poisson-regression.html"><a href="poisson-regression.html#an-example-bird-abundance"><i class="fa fa-check"></i>An example: bird abundance</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i>Logistic regression</a><ul>
+<li class="chapter" data-level="" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i>Logistic regression</a>
+<ul>
 <li class="chapter" data-level="" data-path="logistic-regression.html"><a href="logistic-regression.html#an-example-lobsters"><i class="fa fa-check"></i>An example: lobsters</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="model-diagnostics.html"><a href="model-diagnostics.html"><i class="fa fa-check"></i>Model diagnostics</a><ul>
+<li class="chapter" data-level="" data-path="model-diagnostics.html"><a href="model-diagnostics.html"><i class="fa fa-check"></i>Model diagnostics</a>
+<ul>
 <li class="chapter" data-level="" data-path="model-diagnostics.html"><a href="model-diagnostics.html#residuals"><i class="fa fa-check"></i>Residuals</a></li>
 <li class="chapter" data-level="" data-path="model-diagnostics.html"><a href="model-diagnostics.html#the-quantile-residual-q-q-plot"><i class="fa fa-check"></i>The quantile residual Q-Q plot</a></li>
 <li class="chapter" data-level="" data-path="model-diagnostics.html"><a href="model-diagnostics.html#deviance-using-the-chi-squared-approach"><i class="fa fa-check"></i>Deviance (using the chi-squared approach)</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="a-summary-of-glms.html"><a href="a-summary-of-glms.html"><i class="fa fa-check"></i>A summary of GLMs</a><ul>
+<li class="chapter" data-level="" data-path="a-summary-of-glms.html"><a href="a-summary-of-glms.html"><i class="fa fa-check"></i>A summary of GLMs</a>
+<ul>
 <li class="chapter" data-level="" data-path="a-summary-of-glms.html"><a href="a-summary-of-glms.html#other-distributions"><i class="fa fa-check"></i>Other distributions</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="generalised-linear-mixed-effects-models-glmmms.html"><a href="generalised-linear-mixed-effects-models-glmmms.html"><i class="fa fa-check"></i>Generalised linear mixed-effects models (GLMMMs)</a><ul>
+<li class="chapter" data-level="" data-path="generalised-linear-mixed-effects-models-glmmms.html"><a href="generalised-linear-mixed-effects-models-glmmms.html"><i class="fa fa-check"></i>Generalised linear mixed-effects models (GLMMMs)</a>
+<ul>
 <li class="chapter" data-level="" data-path="generalised-linear-mixed-effects-models-glmmms.html"><a href="generalised-linear-mixed-effects-models-glmmms.html#fitting-a-glmm"><i class="fa fa-check"></i>Fitting a GLMM</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-5.html"><a href="module-5.html"><i class="fa fa-check"></i>Module 5</a><ul>
-<li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i>Clustering</a><ul>
+<li class="chapter" data-level="" data-path="module-5.html"><a href="module-5.html"><i class="fa fa-check"></i>Module 5</a>
+<ul>
+<li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i>Clustering</a>
+<ul>
 <li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#divisive-partitioning-methods."><i class="fa fa-check"></i>Divisive (partitioning) methods.</a></li>
 <li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#k-means-an-example-using-the-palmerpenguins-data"><i class="fa fa-check"></i>K-means: an example using the <code>palmerpenguins</code> data</a></li>
 <li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#hierarchical-agglomerative-clustering."><i class="fa fa-check"></i>Hierarchical agglomerative clustering.</a></li>
 <li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#hierarchical-clustering-an-example"><i class="fa fa-check"></i>Hierarchical clustering: an example</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="principal-component-analysis-pca.html"><a href="principal-component-analysis-pca.html"><i class="fa fa-check"></i>Principal Component Analysis (PCA)</a><ul>
+<li class="chapter" data-level="" data-path="principal-component-analysis-pca.html"><a href="principal-component-analysis-pca.html"><i class="fa fa-check"></i>Principal Component Analysis (PCA)</a>
+<ul>
 <li class="chapter" data-level="" data-path="principal-component-analysis-pca.html"><a href="principal-component-analysis-pca.html#examples-in-r"><i class="fa fa-check"></i>Examples in <code>R</code></a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html"><i class="fa fa-check"></i>Multidimensional Scaling (MDS)</a><ul>
+<li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html"><i class="fa fa-check"></i>Multidimensional Scaling (MDS)</a>
+<ul>
 <li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html#metric-scaling"><i class="fa fa-check"></i>Metric Scaling</a></li>
 <li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html#correspondence-analysis-ca"><i class="fa fa-check"></i>Correspondence Analysis (CA)</a></li>
 <li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html#non-metric-multidimensional-scaling"><i class="fa fa-check"></i>Non-metric Multidimensional Scaling</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html"><i class="fa fa-check"></i>Linear Discriminant Analysis (LDA)</a><ul>
+<li class="chapter" data-level="" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html"><i class="fa fa-check"></i>Linear Discriminant Analysis (LDA)</a>
+<ul>
 <li class="chapter" data-level="" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html#example-in-r"><i class="fa fa-check"></i>Example in <code>R</code></a></li>
 <li class="chapter" data-level="" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html#prediction"><i class="fa fa-check"></i>Prediction</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-6.html"><a href="module-6.html"><i class="fa fa-check"></i>Module 6</a><ul>
-<li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html"><i class="fa fa-check"></i>Least Squares Estimation</a><ul>
+<li class="chapter" data-level="" data-path="module-6.html"><a href="module-6.html"><i class="fa fa-check"></i>Module 6</a>
+<ul>
+<li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html"><i class="fa fa-check"></i>Least Squares Estimation</a>
+<ul>
 <li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html#some-basic-matrix-algebra"><i class="fa fa-check"></i>Some basic matrix algebra</a></li>
 <li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html#linear-least-squares"><i class="fa fa-check"></i>Linear least squares</a></li>
 <li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html#matrix-representation-of-a-crd"><i class="fa fa-check"></i>Matrix representation of a CRD</a></li>
 <li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html#a-numeric-example"><i class="fa fa-check"></i>A numeric example</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html"><i class="fa fa-check"></i>Maximum likelihood estimation</a><ul>
+<li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html"><i class="fa fa-check"></i>Maximum likelihood estimation</a>
+<ul>
 <li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#differeniation-rules"><i class="fa fa-check"></i>Differeniation rules</a></li>
 <li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#logarithm-rules"><i class="fa fa-check"></i>Logarithm rules</a></li>
 <li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#maximum-likelihood-estimation-for-a-binomial-distribution"><i class="fa fa-check"></i>Maximum likelihood estimation for a Binomial distribution</a></li>
@@ -289,7 +325,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#maximum-likelihood-estimation-for-a-poisson-distribution"><i class="fa fa-check"></i>Maximum likelihood estimation for a Poisson distribution</a></li>
 <li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#maximum-likelihood-estimation-for-a-continuous-random-variable"><i class="fa fa-check"></i>Maximum likelihood estimation for a continuous random variable</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html"><i class="fa fa-check"></i>Introduction to Bayesian statistics</a><ul>
+<li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html"><i class="fa fa-check"></i>Introduction to Bayesian statistics</a>
+<ul>
 <li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html#conditional-probability"><i class="fa fa-check"></i>Conditional probability</a></li>
 <li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html#bayes-rule"><i class="fa fa-check"></i>Bayes’ rule</a></li>
 </ul></li>
@@ -319,81 +356,81 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>LDA is a supervised learning technique: The main goal is to predict some feature of interest using sing one or more variables (the predictors)</p>
 <div id="example-in-r" class="section level3 hasAnchor">
 <h3>Example in <code>R</code><a href="linear-discriminant-analysis-lda.html#example-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb215-1" title="1"><span class="kw">glimpse</span>(diabetes)</a>
-<a class="sourceLine" id="cb215-2" title="2"><span class="co">## Rows: 144</span></a>
-<a class="sourceLine" id="cb215-3" title="3"><span class="co">## Columns: 7</span></a>
-<a class="sourceLine" id="cb215-4" title="4"><span class="co">## $ id      &lt;dbl&gt; 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33,…</span></a>
-<a class="sourceLine" id="cb215-5" title="5"><span class="co">## $ relwt   &lt;dbl&gt; 0.81, 0.94, 1.00, 0.91, 0.99, 0.90, 0.96, 0.74, 1.10, 0.83, 0.…</span></a>
-<a class="sourceLine" id="cb215-6" title="6"><span class="co">## $ glufast &lt;dbl&gt; 80, 105, 90, 100, 97, 91, 78, 86, 90, 85, 90, 95, 92, 98, 86, …</span></a>
-<a class="sourceLine" id="cb215-7" title="7"><span class="co">## $ glutest &lt;dbl&gt; 356, 319, 323, 350, 379, 353, 290, 312, 364, 296, 378, 347, 38…</span></a>
-<a class="sourceLine" id="cb215-8" title="8"><span class="co">## $ steady  &lt;dbl&gt; 124, 143, 240, 221, 142, 221, 136, 208, 152, 116, 136, 184, 27…</span></a>
-<a class="sourceLine" id="cb215-9" title="9"><span class="co">## $ insulin &lt;dbl&gt; 55, 105, 143, 119, 98, 53, 142, 68, 76, 60, 47, 91, 74, 158, 1…</span></a>
-<a class="sourceLine" id="cb215-10" title="10"><span class="co">## $ group   &lt;dbl&gt; 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,…</span></a></code></pre></div>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="linear-discriminant-analysis-lda.html#cb215-1"></a><span class="kw">glimpse</span>(diabetes)</span>
+<span id="cb215-2"><a href="linear-discriminant-analysis-lda.html#cb215-2"></a><span class="co">## Rows: 144</span></span>
+<span id="cb215-3"><a href="linear-discriminant-analysis-lda.html#cb215-3"></a><span class="co">## Columns: 7</span></span>
+<span id="cb215-4"><a href="linear-discriminant-analysis-lda.html#cb215-4"></a><span class="co">## $ id      &lt;dbl&gt; 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33,…</span></span>
+<span id="cb215-5"><a href="linear-discriminant-analysis-lda.html#cb215-5"></a><span class="co">## $ relwt   &lt;dbl&gt; 0.81, 0.94, 1.00, 0.91, 0.99, 0.90, 0.96, 0.74, 1.10, 0.83, 0.…</span></span>
+<span id="cb215-6"><a href="linear-discriminant-analysis-lda.html#cb215-6"></a><span class="co">## $ glufast &lt;dbl&gt; 80, 105, 90, 100, 97, 91, 78, 86, 90, 85, 90, 95, 92, 98, 86, …</span></span>
+<span id="cb215-7"><a href="linear-discriminant-analysis-lda.html#cb215-7"></a><span class="co">## $ glutest &lt;dbl&gt; 356, 319, 323, 350, 379, 353, 290, 312, 364, 296, 378, 347, 38…</span></span>
+<span id="cb215-8"><a href="linear-discriminant-analysis-lda.html#cb215-8"></a><span class="co">## $ steady  &lt;dbl&gt; 124, 143, 240, 221, 142, 221, 136, 208, 152, 116, 136, 184, 27…</span></span>
+<span id="cb215-9"><a href="linear-discriminant-analysis-lda.html#cb215-9"></a><span class="co">## $ insulin &lt;dbl&gt; 55, 105, 143, 119, 98, 53, 142, 68, 76, 60, 47, 91, 74, 158, 1…</span></span>
+<span id="cb215-10"><a href="linear-discriminant-analysis-lda.html#cb215-10"></a><span class="co">## $ group   &lt;dbl&gt; 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,…</span></span></code></pre></div>
 <p><strong>The data</strong></p>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb216-1" title="1">diabetes<span class="op">$</span>group &lt;-<span class="st"> </span><span class="kw">factor</span>(diabetes<span class="op">$</span>group)</a>
-<a class="sourceLine" id="cb216-2" title="2">diabetes</a>
-<a class="sourceLine" id="cb216-3" title="3"><span class="co">## # A tibble: 144 × 7</span></a>
-<a class="sourceLine" id="cb216-4" title="4"><span class="co">##       id relwt glufast glutest steady insulin group</span></a>
-<a class="sourceLine" id="cb216-5" title="5"><span class="co">##    &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;fct&gt;</span></a>
-<a class="sourceLine" id="cb216-6" title="6"><span class="co">##  1     1  0.81      80     356    124      55 3    </span></a>
-<a class="sourceLine" id="cb216-7" title="7"><span class="co">##  2     3  0.94     105     319    143     105 3    </span></a>
-<a class="sourceLine" id="cb216-8" title="8"><span class="co">##  3     5  1         90     323    240     143 3    </span></a>
-<a class="sourceLine" id="cb216-9" title="9"><span class="co">##  4     7  0.91     100     350    221     119 3    </span></a>
-<a class="sourceLine" id="cb216-10" title="10"><span class="co">##  5     9  0.99      97     379    142      98 3    </span></a>
-<a class="sourceLine" id="cb216-11" title="11"><span class="co">##  6    11  0.9       91     353    221      53 3    </span></a>
-<a class="sourceLine" id="cb216-12" title="12"><span class="co">##  7    13  0.96      78     290    136     142 3    </span></a>
-<a class="sourceLine" id="cb216-13" title="13"><span class="co">##  8    15  0.74      86     312    208      68 3    </span></a>
-<a class="sourceLine" id="cb216-14" title="14"><span class="co">##  9    17  1.1       90     364    152      76 3    </span></a>
-<a class="sourceLine" id="cb216-15" title="15"><span class="co">## 10    19  0.83      85     296    116      60 3    </span></a>
-<a class="sourceLine" id="cb216-16" title="16"><span class="co">## # ℹ 134 more rows</span></a></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="linear-discriminant-analysis-lda.html#cb216-1"></a>diabetes<span class="op">$</span>group &lt;-<span class="st"> </span><span class="kw">factor</span>(diabetes<span class="op">$</span>group)</span>
+<span id="cb216-2"><a href="linear-discriminant-analysis-lda.html#cb216-2"></a>diabetes</span>
+<span id="cb216-3"><a href="linear-discriminant-analysis-lda.html#cb216-3"></a><span class="co">## # A tibble: 144 × 7</span></span>
+<span id="cb216-4"><a href="linear-discriminant-analysis-lda.html#cb216-4"></a><span class="co">##       id relwt glufast glutest steady insulin group</span></span>
+<span id="cb216-5"><a href="linear-discriminant-analysis-lda.html#cb216-5"></a><span class="co">##    &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;fct&gt;</span></span>
+<span id="cb216-6"><a href="linear-discriminant-analysis-lda.html#cb216-6"></a><span class="co">##  1     1  0.81      80     356    124      55 3    </span></span>
+<span id="cb216-7"><a href="linear-discriminant-analysis-lda.html#cb216-7"></a><span class="co">##  2     3  0.94     105     319    143     105 3    </span></span>
+<span id="cb216-8"><a href="linear-discriminant-analysis-lda.html#cb216-8"></a><span class="co">##  3     5  1         90     323    240     143 3    </span></span>
+<span id="cb216-9"><a href="linear-discriminant-analysis-lda.html#cb216-9"></a><span class="co">##  4     7  0.91     100     350    221     119 3    </span></span>
+<span id="cb216-10"><a href="linear-discriminant-analysis-lda.html#cb216-10"></a><span class="co">##  5     9  0.99      97     379    142      98 3    </span></span>
+<span id="cb216-11"><a href="linear-discriminant-analysis-lda.html#cb216-11"></a><span class="co">##  6    11  0.9       91     353    221      53 3    </span></span>
+<span id="cb216-12"><a href="linear-discriminant-analysis-lda.html#cb216-12"></a><span class="co">##  7    13  0.96      78     290    136     142 3    </span></span>
+<span id="cb216-13"><a href="linear-discriminant-analysis-lda.html#cb216-13"></a><span class="co">##  8    15  0.74      86     312    208      68 3    </span></span>
+<span id="cb216-14"><a href="linear-discriminant-analysis-lda.html#cb216-14"></a><span class="co">##  9    17  1.1       90     364    152      76 3    </span></span>
+<span id="cb216-15"><a href="linear-discriminant-analysis-lda.html#cb216-15"></a><span class="co">## 10    19  0.83      85     296    116      60 3    </span></span>
+<span id="cb216-16"><a href="linear-discriminant-analysis-lda.html#cb216-16"></a><span class="co">## # ℹ 134 more rows</span></span></code></pre></div>
 <p>Some variables can predict group of a patient</p>
-<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb217-1" title="1"><span class="kw">ggplot</span>(reshape2<span class="op">::</span><span class="kw">melt</span>(diabetes, <span class="dt">id.vars =</span> <span class="kw">c</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;group&quot;</span>)),</a>
-<a class="sourceLine" id="cb217-2" title="2">       <span class="kw">aes</span>(<span class="dt">x =</span> value, <span class="dt">col =</span> group)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb217-3" title="3"><span class="st">  </span><span class="kw">geom_density</span>() <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>( <span class="op">~</span>variable, <span class="dt">ncol =</span> <span class="dv">1</span>, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb217-4" title="4"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="linear-discriminant-analysis-lda.html#cb217-1"></a><span class="kw">ggplot</span>(reshape2<span class="op">::</span><span class="kw">melt</span>(diabetes, <span class="dt">id.vars =</span> <span class="kw">c</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;group&quot;</span>)),</span>
+<span id="cb217-2"><a href="linear-discriminant-analysis-lda.html#cb217-2"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> value, <span class="dt">col =</span> group)) <span class="op">+</span></span>
+<span id="cb217-3"><a href="linear-discriminant-analysis-lda.html#cb217-3"></a><span class="st">  </span><span class="kw">geom_density</span>() <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>( <span class="op">~</span>variable, <span class="dt">ncol =</span> <span class="dv">1</span>, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>) <span class="op">+</span></span>
+<span id="cb217-4"><a href="linear-discriminant-analysis-lda.html#cb217-4"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-251-1.png" width="672" /></p>
 <p>Possible classification rules?</p>
-<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb218-1" title="1"><span class="kw">ggplot</span>(diabetes, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> insulin, <span class="dt">y =</span> glutest)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb218-2" title="2"><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb218-3" title="3"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">colour =</span> group), <span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb218-4" title="4"><span class="st">  </span><span class="kw">labs</span>( <span class="dt">x =</span> <span class="st">&quot;insulin&quot;</span> , <span class="dt">y =</span> <span class="st">&quot;glutest&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb218-5" title="5"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.title =</span> <span class="kw">element_text</span>( <span class="dt">size =</span> <span class="dv">16</span>),</a>
-<a class="sourceLine" id="cb218-6" title="6">        <span class="dt">axis.text  =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">12</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="linear-discriminant-analysis-lda.html#cb218-1"></a><span class="kw">ggplot</span>(diabetes, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> insulin, <span class="dt">y =</span> glutest)) <span class="op">+</span></span>
+<span id="cb218-2"><a href="linear-discriminant-analysis-lda.html#cb218-2"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb218-3"><a href="linear-discriminant-analysis-lda.html#cb218-3"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">colour =</span> group), <span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span></span>
+<span id="cb218-4"><a href="linear-discriminant-analysis-lda.html#cb218-4"></a><span class="st">  </span><span class="kw">labs</span>( <span class="dt">x =</span> <span class="st">&quot;insulin&quot;</span> , <span class="dt">y =</span> <span class="st">&quot;glutest&quot;</span>) <span class="op">+</span></span>
+<span id="cb218-5"><a href="linear-discriminant-analysis-lda.html#cb218-5"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.title =</span> <span class="kw">element_text</span>( <span class="dt">size =</span> <span class="dv">16</span>),</span>
+<span id="cb218-6"><a href="linear-discriminant-analysis-lda.html#cb218-6"></a>        <span class="dt">axis.text  =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">12</span>))</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-252-1.png" width="672" /></p>
 <div id="carrying-out-lda" class="section level4 hasAnchor">
 <h4>Carrying out LDA<a href="linear-discriminant-analysis-lda.html#carrying-out-lda" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><strong>Some similarity to regression</strong></p>
-<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb219-1" title="1">diabetes_lda  &lt;-<span class="st">  </span><span class="kw">lda</span>(group <span class="op">~</span><span class="st"> </span>insulin <span class="op">+</span><span class="st"> </span>glutest, <span class="dt">data =</span> diabetes)</a>
-<a class="sourceLine" id="cb219-2" title="2">diabetes_lda</a>
-<a class="sourceLine" id="cb219-3" title="3"><span class="co">## Call:</span></a>
-<a class="sourceLine" id="cb219-4" title="4"><span class="co">## lda(group ~ insulin + glutest, data = diabetes)</span></a>
-<a class="sourceLine" id="cb219-5" title="5"><span class="co">## </span></a>
-<a class="sourceLine" id="cb219-6" title="6"><span class="co">## Prior probabilities of groups:</span></a>
-<a class="sourceLine" id="cb219-7" title="7"><span class="co">##         1         2         3 </span></a>
-<a class="sourceLine" id="cb219-8" title="8"><span class="co">## 0.2222222 0.2500000 0.5277778 </span></a>
-<a class="sourceLine" id="cb219-9" title="9"><span class="co">## </span></a>
-<a class="sourceLine" id="cb219-10" title="10"><span class="co">## Group means:</span></a>
-<a class="sourceLine" id="cb219-11" title="11"><span class="co">##    insulin   glutest</span></a>
-<a class="sourceLine" id="cb219-12" title="12"><span class="co">## 1 320.9375 1027.3750</span></a>
-<a class="sourceLine" id="cb219-13" title="13"><span class="co">## 2 208.9722  493.9444</span></a>
-<a class="sourceLine" id="cb219-14" title="14"><span class="co">## 3 114.0000  349.9737</span></a>
-<a class="sourceLine" id="cb219-15" title="15"><span class="co">## </span></a>
-<a class="sourceLine" id="cb219-16" title="16"><span class="co">## Coefficients of linear discriminants:</span></a>
-<a class="sourceLine" id="cb219-17" title="17"><span class="co">##                  LD1         LD2</span></a>
-<a class="sourceLine" id="cb219-18" title="18"><span class="co">## insulin -0.004463900 -0.01591192</span></a>
-<a class="sourceLine" id="cb219-19" title="19"><span class="co">## glutest -0.005784238  0.00480830</span></a>
-<a class="sourceLine" id="cb219-20" title="20"><span class="co">## </span></a>
-<a class="sourceLine" id="cb219-21" title="21"><span class="co">## Proportion of trace:</span></a>
-<a class="sourceLine" id="cb219-22" title="22"><span class="co">##    LD1    LD2 </span></a>
-<a class="sourceLine" id="cb219-23" title="23"><span class="co">## 0.9677 0.0323</span></a></code></pre></div>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="linear-discriminant-analysis-lda.html#cb219-1"></a>diabetes_lda  &lt;-<span class="st">  </span><span class="kw">lda</span>(group <span class="op">~</span><span class="st"> </span>insulin <span class="op">+</span><span class="st"> </span>glutest, <span class="dt">data =</span> diabetes)</span>
+<span id="cb219-2"><a href="linear-discriminant-analysis-lda.html#cb219-2"></a>diabetes_lda</span>
+<span id="cb219-3"><a href="linear-discriminant-analysis-lda.html#cb219-3"></a><span class="co">## Call:</span></span>
+<span id="cb219-4"><a href="linear-discriminant-analysis-lda.html#cb219-4"></a><span class="co">## lda(group ~ insulin + glutest, data = diabetes)</span></span>
+<span id="cb219-5"><a href="linear-discriminant-analysis-lda.html#cb219-5"></a><span class="co">## </span></span>
+<span id="cb219-6"><a href="linear-discriminant-analysis-lda.html#cb219-6"></a><span class="co">## Prior probabilities of groups:</span></span>
+<span id="cb219-7"><a href="linear-discriminant-analysis-lda.html#cb219-7"></a><span class="co">##         1         2         3 </span></span>
+<span id="cb219-8"><a href="linear-discriminant-analysis-lda.html#cb219-8"></a><span class="co">## 0.2222222 0.2500000 0.5277778 </span></span>
+<span id="cb219-9"><a href="linear-discriminant-analysis-lda.html#cb219-9"></a><span class="co">## </span></span>
+<span id="cb219-10"><a href="linear-discriminant-analysis-lda.html#cb219-10"></a><span class="co">## Group means:</span></span>
+<span id="cb219-11"><a href="linear-discriminant-analysis-lda.html#cb219-11"></a><span class="co">##    insulin   glutest</span></span>
+<span id="cb219-12"><a href="linear-discriminant-analysis-lda.html#cb219-12"></a><span class="co">## 1 320.9375 1027.3750</span></span>
+<span id="cb219-13"><a href="linear-discriminant-analysis-lda.html#cb219-13"></a><span class="co">## 2 208.9722  493.9444</span></span>
+<span id="cb219-14"><a href="linear-discriminant-analysis-lda.html#cb219-14"></a><span class="co">## 3 114.0000  349.9737</span></span>
+<span id="cb219-15"><a href="linear-discriminant-analysis-lda.html#cb219-15"></a><span class="co">## </span></span>
+<span id="cb219-16"><a href="linear-discriminant-analysis-lda.html#cb219-16"></a><span class="co">## Coefficients of linear discriminants:</span></span>
+<span id="cb219-17"><a href="linear-discriminant-analysis-lda.html#cb219-17"></a><span class="co">##                  LD1         LD2</span></span>
+<span id="cb219-18"><a href="linear-discriminant-analysis-lda.html#cb219-18"></a><span class="co">## insulin -0.004463900 -0.01591192</span></span>
+<span id="cb219-19"><a href="linear-discriminant-analysis-lda.html#cb219-19"></a><span class="co">## glutest -0.005784238  0.00480830</span></span>
+<span id="cb219-20"><a href="linear-discriminant-analysis-lda.html#cb219-20"></a><span class="co">## </span></span>
+<span id="cb219-21"><a href="linear-discriminant-analysis-lda.html#cb219-21"></a><span class="co">## Proportion of trace:</span></span>
+<span id="cb219-22"><a href="linear-discriminant-analysis-lda.html#cb219-22"></a><span class="co">##    LD1    LD2 </span></span>
+<span id="cb219-23"><a href="linear-discriminant-analysis-lda.html#cb219-23"></a><span class="co">## 0.9677 0.0323</span></span></code></pre></div>
 <p><strong>Components of <code>diabetes_lda</code></strong></p>
 <ul>
 <li><code>diabetes_lda$prior</code> gives the prior probabilities of belonging to each group. By default these reflect the proportions of membership in the data:</li>
 </ul>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb220-1" title="1"><span class="kw">prop.table</span>(<span class="kw">table</span>(diabetes<span class="op">$</span>group))</a>
-<a class="sourceLine" id="cb220-2" title="2"><span class="co">## </span></a>
-<a class="sourceLine" id="cb220-3" title="3"><span class="co">##         1         2         3 </span></a>
-<a class="sourceLine" id="cb220-4" title="4"><span class="co">## 0.2222222 0.2500000 0.5277778</span></a></code></pre></div>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="linear-discriminant-analysis-lda.html#cb220-1"></a><span class="kw">prop.table</span>(<span class="kw">table</span>(diabetes<span class="op">$</span>group))</span>
+<span id="cb220-2"><a href="linear-discriminant-analysis-lda.html#cb220-2"></a><span class="co">## </span></span>
+<span id="cb220-3"><a href="linear-discriminant-analysis-lda.html#cb220-3"></a><span class="co">##         1         2         3 </span></span>
+<span id="cb220-4"><a href="linear-discriminant-analysis-lda.html#cb220-4"></a><span class="co">## 0.2222222 0.2500000 0.5277778</span></span></code></pre></div>
 <p><em>–&gt; randomly chosen subject has probability 0.52 of coming from group 3</em></p>
 <ul>
 <li><code>diabetes_lda$mean</code> gives the means of each predictor in each group:</li>
@@ -403,44 +440,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><code>Proportion of Trace</code> gives the percentage separation achieved by each discriminant function</p></li>
 <li><p><code>diabetes_lda$scaling</code> contains the linear discriminant functions (i.e., the linear combination of variables giving best separation between groups):</p></li>
 </ul>
-<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb221-1" title="1">diabetes_lda<span class="op">$</span>scaling</a>
-<a class="sourceLine" id="cb221-2" title="2"><span class="co">##                  LD1         LD2</span></a>
-<a class="sourceLine" id="cb221-3" title="3"><span class="co">## insulin -0.004463900 -0.01591192</span></a>
-<a class="sourceLine" id="cb221-4" title="4"><span class="co">## glutest -0.005784238  0.00480830</span></a></code></pre></div>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="linear-discriminant-analysis-lda.html#cb221-1"></a>diabetes_lda<span class="op">$</span>scaling</span>
+<span id="cb221-2"><a href="linear-discriminant-analysis-lda.html#cb221-2"></a><span class="co">##                  LD1         LD2</span></span>
+<span id="cb221-3"><a href="linear-discriminant-analysis-lda.html#cb221-3"></a><span class="co">## insulin -0.004463900 -0.01591192</span></span>
+<span id="cb221-4"><a href="linear-discriminant-analysis-lda.html#cb221-4"></a><span class="co">## glutest -0.005784238  0.00480830</span></span></code></pre></div>
 <p>i.e.,</p>
 <ul>
-<li><p>LD1: <span class="math inline">\(-0.00446 \times \text{insulin} - 0.00578 \times \text{glutest}\)</span></p>
-<ul>
-<li>LD2: <span class="math inline">\(-0.01591 \times \text{insulin} + 0.00481 \times \text{glutest}\)</span></li>
-</ul></li>
+<li><p>LD1: <span class="math inline">\(-0.00446 \times \text{insulin} - 0.00578 \times \text{glutest}\)</span></p></li>
+<li><p>LD2: <span class="math inline">\(-0.01591 \times \text{insulin} + 0.00481 \times \text{glutest}\)</span></p></li>
 </ul>
 <p><strong>How well does LDA do on training data?</strong></p>
-<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb222-1" title="1">ghat &lt;-<span class="st"> </span><span class="kw">predict</span>(diabetes_lda)<span class="op">$</span>class</a>
-<a class="sourceLine" id="cb222-2" title="2"><span class="kw">table</span>(<span class="dt">prediced =</span> ghat, <span class="dt">observed =</span> diabetes<span class="op">$</span>group)</a>
-<a class="sourceLine" id="cb222-3" title="3"><span class="co">##         observed</span></a>
-<a class="sourceLine" id="cb222-4" title="4"><span class="co">## prediced  1  2  3</span></a>
-<a class="sourceLine" id="cb222-5" title="5"><span class="co">##        1 25  0  0</span></a>
-<a class="sourceLine" id="cb222-6" title="6"><span class="co">##        2  6 24  6</span></a>
-<a class="sourceLine" id="cb222-7" title="7"><span class="co">##        3  1 12 70</span></a></code></pre></div>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="linear-discriminant-analysis-lda.html#cb222-1"></a>ghat &lt;-<span class="st"> </span><span class="kw">predict</span>(diabetes_lda)<span class="op">$</span>class</span>
+<span id="cb222-2"><a href="linear-discriminant-analysis-lda.html#cb222-2"></a><span class="kw">table</span>(<span class="dt">prediced =</span> ghat, <span class="dt">observed =</span> diabetes<span class="op">$</span>group)</span>
+<span id="cb222-3"><a href="linear-discriminant-analysis-lda.html#cb222-3"></a><span class="co">##         observed</span></span>
+<span id="cb222-4"><a href="linear-discriminant-analysis-lda.html#cb222-4"></a><span class="co">## prediced  1  2  3</span></span>
+<span id="cb222-5"><a href="linear-discriminant-analysis-lda.html#cb222-5"></a><span class="co">##        1 25  0  0</span></span>
+<span id="cb222-6"><a href="linear-discriminant-analysis-lda.html#cb222-6"></a><span class="co">##        2  6 24  6</span></span>
+<span id="cb222-7"><a href="linear-discriminant-analysis-lda.html#cb222-7"></a><span class="co">##        3  1 12 70</span></span></code></pre></div>
 <p>The missclassification rate is therefore</p>
-<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb223-1" title="1"><span class="kw">mean</span>(ghat <span class="op">!=</span><span class="st"> </span>diabetes<span class="op">$</span>group)</a>
-<a class="sourceLine" id="cb223-2" title="2"><span class="co">## [1] 0.1736111</span></a></code></pre></div>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="linear-discriminant-analysis-lda.html#cb223-1"></a><span class="kw">mean</span>(ghat <span class="op">!=</span><span class="st"> </span>diabetes<span class="op">$</span>group)</span>
+<span id="cb223-2"><a href="linear-discriminant-analysis-lda.html#cb223-2"></a><span class="co">## [1] 0.1736111</span></span></code></pre></div>
 </div>
 </div>
 <div id="prediction" class="section level3 hasAnchor">
 <h3>Prediction<a href="linear-discriminant-analysis-lda.html#prediction" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb224-1" title="1">diabetes.pred &lt;-<span class="st"> </span><span class="kw">predict</span>(diabetes_lda)</a>
-<a class="sourceLine" id="cb224-2" title="2"><span class="kw">str</span>(diabetes.pred)</a>
-<a class="sourceLine" id="cb224-3" title="3"><span class="co">## List of 3</span></a>
-<a class="sourceLine" id="cb224-4" title="4"><span class="co">##  $ class    : Factor w/ 3 levels &quot;1&quot;,&quot;2&quot;,&quot;3&quot;: 3 3 3 3 3 3 3 3 3 3 ...</span></a>
-<a class="sourceLine" id="cb224-5" title="5"><span class="co">##  $ posterior: num [1:144, 1:3] 0.00000104 0.00000106 0.00000247 0.00000326 0.00000477 ...</span></a>
-<a class="sourceLine" id="cb224-6" title="6"><span class="co">##   ..- attr(*, &quot;dimnames&quot;)=List of 2</span></a>
-<a class="sourceLine" id="cb224-7" title="7"><span class="co">##   .. ..$ : chr [1:144] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...</span></a>
-<a class="sourceLine" id="cb224-8" title="8"><span class="co">##   .. ..$ : chr [1:3] &quot;1&quot; &quot;2&quot; &quot;3&quot;</span></a>
-<a class="sourceLine" id="cb224-9" title="9"><span class="co">##  $ x        : num [1:144, 1:2] 1.62 1.61 1.42 1.37 1.29 ...</span></a>
-<a class="sourceLine" id="cb224-10" title="10"><span class="co">##   ..- attr(*, &quot;dimnames&quot;)=List of 2</span></a>
-<a class="sourceLine" id="cb224-11" title="11"><span class="co">##   .. ..$ : chr [1:144] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...</span></a>
-<a class="sourceLine" id="cb224-12" title="12"><span class="co">##   .. ..$ : chr [1:2] &quot;LD1&quot; &quot;LD2&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="linear-discriminant-analysis-lda.html#cb224-1"></a>diabetes.pred &lt;-<span class="st"> </span><span class="kw">predict</span>(diabetes_lda)</span>
+<span id="cb224-2"><a href="linear-discriminant-analysis-lda.html#cb224-2"></a><span class="kw">str</span>(diabetes.pred)</span>
+<span id="cb224-3"><a href="linear-discriminant-analysis-lda.html#cb224-3"></a><span class="co">## List of 3</span></span>
+<span id="cb224-4"><a href="linear-discriminant-analysis-lda.html#cb224-4"></a><span class="co">##  $ class    : Factor w/ 3 levels &quot;1&quot;,&quot;2&quot;,&quot;3&quot;: 3 3 3 3 3 3 3 3 3 3 ...</span></span>
+<span id="cb224-5"><a href="linear-discriminant-analysis-lda.html#cb224-5"></a><span class="co">##  $ posterior: num [1:144, 1:3] 0.00000104 0.00000106 0.00000247 0.00000326 0.00000477 ...</span></span>
+<span id="cb224-6"><a href="linear-discriminant-analysis-lda.html#cb224-6"></a><span class="co">##   ..- attr(*, &quot;dimnames&quot;)=List of 2</span></span>
+<span id="cb224-7"><a href="linear-discriminant-analysis-lda.html#cb224-7"></a><span class="co">##   .. ..$ : chr [1:144] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...</span></span>
+<span id="cb224-8"><a href="linear-discriminant-analysis-lda.html#cb224-8"></a><span class="co">##   .. ..$ : chr [1:3] &quot;1&quot; &quot;2&quot; &quot;3&quot;</span></span>
+<span id="cb224-9"><a href="linear-discriminant-analysis-lda.html#cb224-9"></a><span class="co">##  $ x        : num [1:144, 1:2] 1.62 1.61 1.42 1.37 1.29 ...</span></span>
+<span id="cb224-10"><a href="linear-discriminant-analysis-lda.html#cb224-10"></a><span class="co">##   ..- attr(*, &quot;dimnames&quot;)=List of 2</span></span>
+<span id="cb224-11"><a href="linear-discriminant-analysis-lda.html#cb224-11"></a><span class="co">##   .. ..$ : chr [1:144] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...</span></span>
+<span id="cb224-12"><a href="linear-discriminant-analysis-lda.html#cb224-12"></a><span class="co">##   .. ..$ : chr [1:2] &quot;LD1&quot; &quot;LD2&quot;</span></span></code></pre></div>
 <ul>
 <li><code>$class</code>: predicted group for each observation</li>
 <li><code>$posterior</code>: probability of falling into each group</li>
@@ -454,24 +489,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="_main_files/figure-html/unnamed-chunk-260-1.png" width="672" /></p>
 <p>The three ellipses represent the class centres and the covariance matrix of the LDA model. Note there is only <strong>one</strong> covariance matrix, which is the same for all three classes. This results in</p>
 <ul>
-<li>the sizes and orientations of the ellipses being the same for the three classes (only their centres differ)
-<ul>
+<li>the sizes and orientations of the ellipses being the same for the three classes (only their centres differ)</li>
 <li>the ellipses represent contours of equal class membership probability.</li>
-</ul></li>
 </ul>
 <p>A key assumption of LDA is that the correlations between variables are the same in each group (i.e., common covariance matrix).</p>
 <p>Recall that, by default, the prior probabilities are the initial proportions. <strong>What if we set equal prior probabilities?</strong></p>
 <p>The confusion matrix/missclassification rate:</p>
-<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb225-1" title="1">equal.ghat &lt;-<span class="st"> </span><span class="kw">predict</span>(diabetes_lda, <span class="dt">prior =</span> <span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">3</span>)<span class="op">/</span><span class="dv">3</span>)<span class="op">$</span>class</a>
-<a class="sourceLine" id="cb225-2" title="2"><span class="kw">table</span>(<span class="dt">predicted =</span> equal.ghat,<span class="dt">observed =</span> diabetes<span class="op">$</span>group)</a>
-<a class="sourceLine" id="cb225-3" title="3"><span class="co">##          observed</span></a>
-<a class="sourceLine" id="cb225-4" title="4"><span class="co">## predicted  1  2  3</span></a>
-<a class="sourceLine" id="cb225-5" title="5"><span class="co">##         1 25  0  0</span></a>
-<a class="sourceLine" id="cb225-6" title="6"><span class="co">##         2  7 28  9</span></a>
-<a class="sourceLine" id="cb225-7" title="7"><span class="co">##         3  0  8 67</span></a>
-<a class="sourceLine" id="cb225-8" title="8"><span class="co">## missclassification rate</span></a>
-<a class="sourceLine" id="cb225-9" title="9"><span class="kw">mean</span>(equal.ghat <span class="op">!=</span><span class="st"> </span>diabetes<span class="op">$</span>group)</a>
-<a class="sourceLine" id="cb225-10" title="10"><span class="co">## [1] 0.1666667</span></a></code></pre></div>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="linear-discriminant-analysis-lda.html#cb225-1"></a>equal.ghat &lt;-<span class="st"> </span><span class="kw">predict</span>(diabetes_lda, <span class="dt">prior =</span> <span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">3</span>)<span class="op">/</span><span class="dv">3</span>)<span class="op">$</span>class</span>
+<span id="cb225-2"><a href="linear-discriminant-analysis-lda.html#cb225-2"></a><span class="kw">table</span>(<span class="dt">predicted =</span> equal.ghat,<span class="dt">observed =</span> diabetes<span class="op">$</span>group)</span>
+<span id="cb225-3"><a href="linear-discriminant-analysis-lda.html#cb225-3"></a><span class="co">##          observed</span></span>
+<span id="cb225-4"><a href="linear-discriminant-analysis-lda.html#cb225-4"></a><span class="co">## predicted  1  2  3</span></span>
+<span id="cb225-5"><a href="linear-discriminant-analysis-lda.html#cb225-5"></a><span class="co">##         1 25  0  0</span></span>
+<span id="cb225-6"><a href="linear-discriminant-analysis-lda.html#cb225-6"></a><span class="co">##         2  7 28  9</span></span>
+<span id="cb225-7"><a href="linear-discriminant-analysis-lda.html#cb225-7"></a><span class="co">##         3  0  8 67</span></span>
+<span id="cb225-8"><a href="linear-discriminant-analysis-lda.html#cb225-8"></a><span class="co">## missclassification rate</span></span>
+<span id="cb225-9"><a href="linear-discriminant-analysis-lda.html#cb225-9"></a><span class="kw">mean</span>(equal.ghat <span class="op">!=</span><span class="st"> </span>diabetes<span class="op">$</span>group)</span>
+<span id="cb225-10"><a href="linear-discriminant-analysis-lda.html#cb225-10"></a><span class="co">## [1] 0.1666667</span></span></code></pre></div>
 <p>There are now 8 cases classified as Group 3 with prior weights classified as Group 2 with equal weights <span class="math inline">\(\rightarrow\)</span> bias towards group with larger initial size.</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-262-1.png" width="672" /></p>
 

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Parametric hypothesis testing | Advanced Biological Data Analysis</title>
   <meta name="description" content="Parametric hypothesis testing | Advanced Biological Data Analysis" />
-  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Parametric hypothesis testing | Advanced Biological Data Analysis" />
   <meta property="og:type" content="book" />
@@ -20,7 +20,6 @@
   
   
 
-<meta name="author" content="" />
 
 
 
@@ -48,6 +47,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
@@ -56,25 +56,26 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -83,9 +84,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -139,54 +140,67 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Nau mai, haere mai. Welcome to BIOSCI 738</a></li>
-<li class="chapter" data-level="" data-path="key-information.html"><a href="key-information.html"><i class="fa fa-check"></i>Key Information</a><ul>
+<li class="chapter" data-level="" data-path="key-information.html"><a href="key-information.html"><i class="fa fa-check"></i>Key Information</a>
+<ul>
 <li class="chapter" data-level="" data-path="key-information.html"><a href="key-information.html#overview"><i class="fa fa-check"></i>Overview</a></li>
 <li class="chapter" data-level="" data-path="key-information.html"><a href="key-information.html#prerequisites"><i class="fa fa-check"></i>Prerequisites</a></li>
 <li class="chapter" data-level="" data-path="key-information.html"><a href="key-information.html#lectures"><i class="fa fa-check"></i>Lectures</a></li>
 <li class="chapter" data-level="" data-path="key-information.html"><a href="key-information.html#assessment"><i class="fa fa-check"></i>Assessment</a></li>
 <li class="chapter" data-level="" data-path="key-information.html"><a href="key-information.html#course-policies"><i class="fa fa-check"></i>Course policies</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-1.html"><a href="module-1.html"><i class="fa fa-check"></i>Module 1</a><ul>
-<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html"><i class="fa fa-check"></i><code>R</code> and <code>RStudio</code></a><ul>
+<li class="chapter" data-level="" data-path="module-1.html"><a href="module-1.html"><i class="fa fa-check"></i>Module 1</a>
+<ul>
+<li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html"><i class="fa fa-check"></i><code>R</code> and <code>RStudio</code></a>
+<ul>
 <li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#recap-r-terminology"><i class="fa fa-check"></i>Recap: <code>R</code> terminology</a></li>
 <li class="chapter" data-level="" data-path="r-and-rstudio.html"><a href="r-and-rstudio.html#which-r-syntax"><i class="fa fa-check"></i>Which <code>R</code> syntax?</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="error-handling-and-debugging.html"><a href="error-handling-and-debugging.html"><i class="fa fa-check"></i>Error handling and debugging</a></li>
-<li class="chapter" data-level="" data-path="accuracy-and-honesty.html"><a href="accuracy-and-honesty.html"><i class="fa fa-check"></i>Accuracy and Honesty</a><ul>
+<li class="chapter" data-level="" data-path="accuracy-and-honesty.html"><a href="accuracy-and-honesty.html"><i class="fa fa-check"></i>Accuracy and Honesty</a>
+<ul>
 <li class="chapter" data-level="" data-path="accuracy-and-honesty.html"><a href="accuracy-and-honesty.html#reproducible-research"><i class="fa fa-check"></i>Reproducible research</a></li>
 <li class="chapter" data-level="" data-path="accuracy-and-honesty.html"><a href="accuracy-and-honesty.html#good-coding-practice"><i class="fa fa-check"></i>Good coding practice</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html"><i class="fa fa-check"></i>Version control with <code>git</code> and GitHub</a><ul>
+<li class="chapter" data-level="" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html"><i class="fa fa-check"></i>Version control with <code>git</code> and GitHub</a>
+<ul>
 <li class="chapter" data-level="" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#setting-up"><i class="fa fa-check"></i>Setting up</a></li>
 <li class="chapter" data-level="" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#cloning-a-repository-from-github-using-rstudio"><i class="fa fa-check"></i>Cloning a repository from <code>GitHub</code> using <code>RStudio</code></a></li>
 <li class="chapter" data-level="" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#commiting-and-pushing-changes"><i class="fa fa-check"></i>Commiting and pushing changes</a></li>
 <li class="chapter" data-level="" data-path="version-control-with-git-and-github.html"><a href="version-control-with-git-and-github.html#system-specific-hurdles"><i class="fa fa-check"></i>System specific hurdles</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="respectful-handling-of-data.html"><a href="respectful-handling-of-data.html"><i class="fa fa-check"></i>Respectful Handling of Data</a><ul>
+<li class="chapter" data-level="" data-path="respectful-handling-of-data.html"><a href="respectful-handling-of-data.html"><i class="fa fa-check"></i>Respectful Handling of Data</a>
+<ul>
 <li class="chapter" data-level="" data-path="respectful-handling-of-data.html"><a href="respectful-handling-of-data.html#data-sovereignty"><i class="fa fa-check"></i>Data sovereignty</a></li>
 <li class="chapter" data-level="" data-path="respectful-handling-of-data.html"><a href="respectful-handling-of-data.html#māori-data-sovereignty-principles"><i class="fa fa-check"></i>Māori Data Sovereignty principles</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="awareness-of-consequences.html"><a href="awareness-of-consequences.html"><i class="fa fa-check"></i>Awareness of Consequences</a><ul>
+<li class="chapter" data-level="" data-path="awareness-of-consequences.html"><a href="awareness-of-consequences.html"><i class="fa fa-check"></i>Awareness of Consequences</a>
+<ul>
 <li class="chapter" data-level="" data-path="awareness-of-consequences.html"><a href="awareness-of-consequences.html#case-study"><i class="fa fa-check"></i>Case study</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i>Data Visualization</a><ul>
+<li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i>Data Visualization</a>
+<ul>
 <li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#exploratory-plots-for-your-own-purposes"><i class="fa fa-check"></i>Exploratory plots (for your own purposes)</a></li>
 <li class="chapter" data-level="" data-path="data-visualization.html"><a href="data-visualization.html#explanatory-plots"><i class="fa fa-check"></i>Explanatory plots</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-2.html"><a href="module-2.html"><i class="fa fa-check"></i>Module 2</a><ul>
-<li class="chapter" data-level="" data-path="permutation-and-randomisation-tests.html"><a href="permutation-and-randomisation-tests.html"><i class="fa fa-check"></i>Permutation and randomisation tests</a><ul>
+<li class="chapter" data-level="" data-path="module-2.html"><a href="module-2.html"><i class="fa fa-check"></i>Module 2</a>
+<ul>
+<li class="chapter" data-level="" data-path="permutation-and-randomisation-tests.html"><a href="permutation-and-randomisation-tests.html"><i class="fa fa-check"></i>Permutation and randomisation tests</a>
+<ul>
 <li class="chapter" data-level="" data-path="permutation-and-randomisation-tests.html"><a href="permutation-and-randomisation-tests.html#a-permutation-test-jackal-mandible-lengths"><i class="fa fa-check"></i>A permutation test: Jackal mandible lengths</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="bootstrap-resampling.html"><a href="bootstrap-resampling.html"><i class="fa fa-check"></i>Bootstrap resampling</a><ul>
+<li class="chapter" data-level="" data-path="bootstrap-resampling.html"><a href="bootstrap-resampling.html"><i class="fa fa-check"></i>Bootstrap resampling</a>
+<ul>
 <li class="chapter" data-level="" data-path="bootstrap-resampling.html"><a href="bootstrap-resampling.html#example-constructing-bootstrap-confidence-intervals"><i class="fa fa-check"></i>Example: constructing bootstrap confidence intervals</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="parametric-hypothesis-testing.html"><a href="parametric-hypothesis-testing.html"><i class="fa fa-check"></i>Parametric hypothesis testing</a><ul>
+<li class="chapter" data-level="" data-path="parametric-hypothesis-testing.html"><a href="parametric-hypothesis-testing.html"><i class="fa fa-check"></i>Parametric hypothesis testing</a>
+<ul>
 <li class="chapter" data-level="" data-path="parametric-hypothesis-testing.html"><a href="parametric-hypothesis-testing.html#the-vocabulary-of-hypothesis-testing"><i class="fa fa-check"></i>The vocabulary of hypothesis testing</a></li>
 <li class="chapter" data-level="" data-path="parametric-hypothesis-testing.html"><a href="parametric-hypothesis-testing.html#example"><i class="fa fa-check"></i>Example</a></li>
 <li class="chapter" data-level="" data-path="parametric-hypothesis-testing.html"><a href="parametric-hypothesis-testing.html#differences-between-two-means"><i class="fa fa-check"></i>Differences between two means</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i>Linear regression</a><ul>
+<li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i>Linear regression</a>
+<ul>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#model-formula-syntax-in-r"><i class="fa fa-check"></i>Model formula syntax in <code>R</code></a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#some-mathematical-notation"><i class="fa fa-check"></i>Some mathematical notation</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#a-null-model"><i class="fa fa-check"></i>A Null model</a></li>
@@ -195,92 +209,114 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#one-factor-and-a-continuous-variable"><i class="fa fa-check"></i>One factor and a continuous variable</a></li>
 <li class="chapter" data-level="" data-path="linear-regression.html"><a href="linear-regression.html#interactions"><i class="fa fa-check"></i>Interactions</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html"><i class="fa fa-check"></i>Model diagnostics for a linear model</a><ul>
+<li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html"><i class="fa fa-check"></i>Model diagnostics for a linear model</a>
+<ul>
 <li class="chapter" data-level="" data-path="model-diagnostics-for-a-linear-model.html"><a href="model-diagnostics-for-a-linear-model.html#model-selection"><i class="fa fa-check"></i>Model selection</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="inference-for-a-linear-model.html"><a href="inference-for-a-linear-model.html"><i class="fa fa-check"></i>Inference for a linear model</a><ul>
+<li class="chapter" data-level="" data-path="inference-for-a-linear-model.html"><a href="inference-for-a-linear-model.html"><i class="fa fa-check"></i>Inference for a linear model</a>
+<ul>
 <li class="chapter" data-level="" data-path="inference-for-a-linear-model.html"><a href="inference-for-a-linear-model.html#point-prediction"><i class="fa fa-check"></i>Point prediction</a></li>
 <li class="chapter" data-level="" data-path="inference-for-a-linear-model.html"><a href="inference-for-a-linear-model.html#confidence-intervals-for-parameters"><i class="fa fa-check"></i>Confidence intervals for parameters</a></li>
 <li class="chapter" data-level="" data-path="inference-for-a-linear-model.html"><a href="inference-for-a-linear-model.html#marginal-predictions"><i class="fa fa-check"></i>Marginal predictions</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-3.html"><a href="module-3.html"><i class="fa fa-check"></i>Module 3</a><ul>
-<li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html"><i class="fa fa-check"></i>Introduction to the design and analysis of experiments</a><ul>
+<li class="chapter" data-level="" data-path="module-3.html"><a href="module-3.html"><i class="fa fa-check"></i>Module 3</a>
+<ul>
+<li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html"><i class="fa fa-check"></i>Introduction to the design and analysis of experiments</a>
+<ul>
 <li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#key-phrases"><i class="fa fa-check"></i>Key phrases</a></li>
 <li class="chapter" data-level="" data-path="introduction-to-the-design-and-analysis-of-experiments.html"><a href="introduction-to-the-design-and-analysis-of-experiments.html#setting-up-an-experiment"><i class="fa fa-check"></i>Setting up an experiment</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="the-three-main-principles-of-experimental-design.html"><a href="the-three-main-principles-of-experimental-design.html"><i class="fa fa-check"></i>The three (main) principles of experimental design</a></li>
-<li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html"><i class="fa fa-check"></i>Some basic experimental designs</a><ul>
+<li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html"><i class="fa fa-check"></i>Some basic experimental designs</a>
+<ul>
 <li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html#completely-randomised-design-crd"><i class="fa fa-check"></i>Completely randomised design (CRD)</a></li>
 <li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html#randomised-complete-block-design-rcbd"><i class="fa fa-check"></i>Randomised complete block design (RCBD)</a></li>
 <li class="chapter" data-level="" data-path="some-basic-experimental-designs.html"><a href="some-basic-experimental-designs.html#factorial-design"><i class="fa fa-check"></i>Factorial design</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html"><i class="fa fa-check"></i>Modelling experimental data</a><ul>
+<li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html"><i class="fa fa-check"></i>Modelling experimental data</a>
+<ul>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-completely-randomised-design-crd-as-a-linear-model"><i class="fa fa-check"></i>A completely randomised design (CRD) as a linear model</a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#analysis-of-a-crd-in-r"><i class="fa fa-check"></i>Analysis of a CRD in <code>R</code></a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#a-factorial-experiment-as-a-crd"><i class="fa fa-check"></i>A Factorial experiment (as a CRD)</a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#unqual-replications-unbalanced-design"><i class="fa fa-check"></i>Unqual replications (unbalanced design)</a></li>
 <li class="chapter" data-level="" data-path="modelling-experimental-data.html"><a href="modelling-experimental-data.html#sums-of-squares-ss"><i class="fa fa-check"></i>Sums of squares (<span class="math inline">\(SS\)</span>)</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html"><i class="fa fa-check"></i>Multiple comparisons</a><ul>
+<li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html"><i class="fa fa-check"></i>Multiple comparisons</a>
+<ul>
 <li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html#adjustments-for-multiple-testing"><i class="fa fa-check"></i>Adjustments for multiple testing</a></li>
 <li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html#classification-of-multiple-hypothesis-tests"><i class="fa fa-check"></i>Classification of multiple hypothesis tests</a></li>
 <li class="chapter" data-level="" data-path="multiple-comparisons.html"><a href="multiple-comparisons.html#multiple-comparison-procedures"><i class="fa fa-check"></i>Multiple comparison procedures</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html"><i class="fa fa-check"></i>Linear mixed-effect models (LMMs)</a><ul>
+<li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html"><i class="fa fa-check"></i>Linear mixed-effect models (LMMs)</a>
+<ul>
 <li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html#a-randomised-controlled-block-design-rcbd"><i class="fa fa-check"></i>A Randomised Controlled Block Design (RCBD)</a></li>
 <li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html#a-split-plot-design"><i class="fa fa-check"></i>A Split-plot design</a></li>
 <li class="chapter" data-level="" data-path="linear-mixed-effect-models-lmms.html"><a href="linear-mixed-effect-models-lmms.html#a-repeated-measures-design"><i class="fa fa-check"></i>A repeated measures design</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-4.html"><a href="module-4.html"><i class="fa fa-check"></i>Module 4</a><ul>
+<li class="chapter" data-level="" data-path="module-4.html"><a href="module-4.html"><i class="fa fa-check"></i>Module 4</a>
+<ul>
 <li class="chapter" data-level="" data-path="introduction-to-generalised-linear-models-glms.html"><a href="introduction-to-generalised-linear-models-glms.html"><i class="fa fa-check"></i>Introduction to generalised linear models (GLMs)</a></li>
-<li class="chapter" data-level="" data-path="poisson-regression.html"><a href="poisson-regression.html"><i class="fa fa-check"></i>Poisson regression</a><ul>
+<li class="chapter" data-level="" data-path="poisson-regression.html"><a href="poisson-regression.html"><i class="fa fa-check"></i>Poisson regression</a>
+<ul>
 <li class="chapter" data-level="" data-path="poisson-regression.html"><a href="poisson-regression.html#an-example-bird-abundance"><i class="fa fa-check"></i>An example: bird abundance</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i>Logistic regression</a><ul>
+<li class="chapter" data-level="" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i>Logistic regression</a>
+<ul>
 <li class="chapter" data-level="" data-path="logistic-regression.html"><a href="logistic-regression.html#an-example-lobsters"><i class="fa fa-check"></i>An example: lobsters</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="model-diagnostics.html"><a href="model-diagnostics.html"><i class="fa fa-check"></i>Model diagnostics</a><ul>
+<li class="chapter" data-level="" data-path="model-diagnostics.html"><a href="model-diagnostics.html"><i class="fa fa-check"></i>Model diagnostics</a>
+<ul>
 <li class="chapter" data-level="" data-path="model-diagnostics.html"><a href="model-diagnostics.html#residuals"><i class="fa fa-check"></i>Residuals</a></li>
 <li class="chapter" data-level="" data-path="model-diagnostics.html"><a href="model-diagnostics.html#the-quantile-residual-q-q-plot"><i class="fa fa-check"></i>The quantile residual Q-Q plot</a></li>
 <li class="chapter" data-level="" data-path="model-diagnostics.html"><a href="model-diagnostics.html#deviance-using-the-chi-squared-approach"><i class="fa fa-check"></i>Deviance (using the chi-squared approach)</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="a-summary-of-glms.html"><a href="a-summary-of-glms.html"><i class="fa fa-check"></i>A summary of GLMs</a><ul>
+<li class="chapter" data-level="" data-path="a-summary-of-glms.html"><a href="a-summary-of-glms.html"><i class="fa fa-check"></i>A summary of GLMs</a>
+<ul>
 <li class="chapter" data-level="" data-path="a-summary-of-glms.html"><a href="a-summary-of-glms.html#other-distributions"><i class="fa fa-check"></i>Other distributions</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="generalised-linear-mixed-effects-models-glmmms.html"><a href="generalised-linear-mixed-effects-models-glmmms.html"><i class="fa fa-check"></i>Generalised linear mixed-effects models (GLMMMs)</a><ul>
+<li class="chapter" data-level="" data-path="generalised-linear-mixed-effects-models-glmmms.html"><a href="generalised-linear-mixed-effects-models-glmmms.html"><i class="fa fa-check"></i>Generalised linear mixed-effects models (GLMMMs)</a>
+<ul>
 <li class="chapter" data-level="" data-path="generalised-linear-mixed-effects-models-glmmms.html"><a href="generalised-linear-mixed-effects-models-glmmms.html#fitting-a-glmm"><i class="fa fa-check"></i>Fitting a GLMM</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-5.html"><a href="module-5.html"><i class="fa fa-check"></i>Module 5</a><ul>
-<li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i>Clustering</a><ul>
+<li class="chapter" data-level="" data-path="module-5.html"><a href="module-5.html"><i class="fa fa-check"></i>Module 5</a>
+<ul>
+<li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i>Clustering</a>
+<ul>
 <li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#divisive-partitioning-methods."><i class="fa fa-check"></i>Divisive (partitioning) methods.</a></li>
 <li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#k-means-an-example-using-the-palmerpenguins-data"><i class="fa fa-check"></i>K-means: an example using the <code>palmerpenguins</code> data</a></li>
 <li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#hierarchical-agglomerative-clustering."><i class="fa fa-check"></i>Hierarchical agglomerative clustering.</a></li>
 <li class="chapter" data-level="" data-path="clustering.html"><a href="clustering.html#hierarchical-clustering-an-example"><i class="fa fa-check"></i>Hierarchical clustering: an example</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="principal-component-analysis-pca.html"><a href="principal-component-analysis-pca.html"><i class="fa fa-check"></i>Principal Component Analysis (PCA)</a><ul>
+<li class="chapter" data-level="" data-path="principal-component-analysis-pca.html"><a href="principal-component-analysis-pca.html"><i class="fa fa-check"></i>Principal Component Analysis (PCA)</a>
+<ul>
 <li class="chapter" data-level="" data-path="principal-component-analysis-pca.html"><a href="principal-component-analysis-pca.html#examples-in-r"><i class="fa fa-check"></i>Examples in <code>R</code></a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html"><i class="fa fa-check"></i>Multidimensional Scaling (MDS)</a><ul>
+<li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html"><i class="fa fa-check"></i>Multidimensional Scaling (MDS)</a>
+<ul>
 <li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html#metric-scaling"><i class="fa fa-check"></i>Metric Scaling</a></li>
 <li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html#correspondence-analysis-ca"><i class="fa fa-check"></i>Correspondence Analysis (CA)</a></li>
 <li class="chapter" data-level="" data-path="multidimensional-scaling-mds.html"><a href="multidimensional-scaling-mds.html#non-metric-multidimensional-scaling"><i class="fa fa-check"></i>Non-metric Multidimensional Scaling</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html"><i class="fa fa-check"></i>Linear Discriminant Analysis (LDA)</a><ul>
+<li class="chapter" data-level="" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html"><i class="fa fa-check"></i>Linear Discriminant Analysis (LDA)</a>
+<ul>
 <li class="chapter" data-level="" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html#example-in-r"><i class="fa fa-check"></i>Example in <code>R</code></a></li>
 <li class="chapter" data-level="" data-path="linear-discriminant-analysis-lda.html"><a href="linear-discriminant-analysis-lda.html#prediction"><i class="fa fa-check"></i>Prediction</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="module-6.html"><a href="module-6.html"><i class="fa fa-check"></i>Module 6</a><ul>
-<li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html"><i class="fa fa-check"></i>Least Squares Estimation</a><ul>
+<li class="chapter" data-level="" data-path="module-6.html"><a href="module-6.html"><i class="fa fa-check"></i>Module 6</a>
+<ul>
+<li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html"><i class="fa fa-check"></i>Least Squares Estimation</a>
+<ul>
 <li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html#some-basic-matrix-algebra"><i class="fa fa-check"></i>Some basic matrix algebra</a></li>
 <li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html#linear-least-squares"><i class="fa fa-check"></i>Linear least squares</a></li>
 <li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html#matrix-representation-of-a-crd"><i class="fa fa-check"></i>Matrix representation of a CRD</a></li>
 <li class="chapter" data-level="" data-path="least-squares-estimation.html"><a href="least-squares-estimation.html#a-numeric-example"><i class="fa fa-check"></i>A numeric example</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html"><i class="fa fa-check"></i>Maximum likelihood estimation</a><ul>
+<li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html"><i class="fa fa-check"></i>Maximum likelihood estimation</a>
+<ul>
 <li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#differeniation-rules"><i class="fa fa-check"></i>Differeniation rules</a></li>
 <li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#logarithm-rules"><i class="fa fa-check"></i>Logarithm rules</a></li>
 <li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#maximum-likelihood-estimation-for-a-binomial-distribution"><i class="fa fa-check"></i>Maximum likelihood estimation for a Binomial distribution</a></li>
@@ -289,7 +325,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#maximum-likelihood-estimation-for-a-poisson-distribution"><i class="fa fa-check"></i>Maximum likelihood estimation for a Poisson distribution</a></li>
 <li class="chapter" data-level="" data-path="maximum-likelihood-estimation.html"><a href="maximum-likelihood-estimation.html#maximum-likelihood-estimation-for-a-continuous-random-variable"><i class="fa fa-check"></i>Maximum likelihood estimation for a continuous random variable</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html"><i class="fa fa-check"></i>Introduction to Bayesian statistics</a><ul>
+<li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html"><i class="fa fa-check"></i>Introduction to Bayesian statistics</a>
+<ul>
 <li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html#conditional-probability"><i class="fa fa-check"></i>Conditional probability</a></li>
 <li class="chapter" data-level="" data-path="introduction-to-bayesian-statistics.html"><a href="introduction-to-bayesian-statistics.html#bayes-rule"><i class="fa fa-check"></i>Bayes’ rule</a></li>
 </ul></li>
@@ -331,12 +368,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Each</strong> time we carry out a hypothesis test the probability we get a false positive result (type I error) is given by <span class="math inline">\(\alpha\)</span> (the <em>level of significance</em> we choose). The <strong>significance level</strong> is the probability of a Type I error (i.e., the probability of finding an effect that is not there, a false positive). The <strong>power</strong> of a test is the probability that the test correctly rejects the null hypothesis when the alternative hypothesis is true. The probability of finding an effect that is there = 1 - probability of a <strong>Type II</strong> error (false negative).</p>
 <p>Reducing the chance of a <strong>Type I</strong> error increases the chance of a <strong>Type II</strong> error. They are inversely related. <strong>Type II</strong> error rate is determined by a combination of the following.</p>
 <ul>
-<li><strong>Effect size</strong> (size of difference, of biological significance) between the true population parameters
-<ul>
+<li><strong>Effect size</strong> (size of difference, of biological significance) between the true population parameters</li>
 <li>Experimental error variance</li>
 <li><strong>Sample size</strong></li>
 <li>Choice of <strong>Type I</strong> error rate (<span class="math inline">\(\alpha\)</span>)</li>
-</ul></li>
 </ul>
 <p>When we have <strong>multiple comparisons</strong> to make we should then control the <strong>Type I</strong> error rate across the entire <em>family</em> of tests under consideration, i.e., control the <strong>Family-Wise Error Rate (FWER)</strong>; this ensures that the risk of making at least one <strong>Type I</strong> error among the family of comparisons in the experiment is <span class="math inline">\(\alpha\)</span>. More on this in later chapters.</p>
 <table>
@@ -416,11 +451,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="a-one-sample-t-test" class="section level4 hasAnchor">
 <h4>A one-sample t-test<a href="parametric-hypothesis-testing.html#a-one-sample-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Using a violin plot we can look at the distribution of shell <code>Length</code>. We can calculate the average <code>Length</code> of all shells in our sample</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1">paua <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">average_length =</span> <span class="kw">mean</span>(Length))</a>
-<a class="sourceLine" id="cb27-2" title="2"><span class="co">## # A tibble: 1 × 1</span></a>
-<a class="sourceLine" id="cb27-3" title="3"><span class="co">##   average_length</span></a>
-<a class="sourceLine" id="cb27-4" title="4"><span class="co">##            &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb27-5" title="5"><span class="co">## 1           5.19</span></a></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="parametric-hypothesis-testing.html#cb27-1"></a>paua <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">average_length =</span> <span class="kw">mean</span>(Length))</span>
+<span id="cb27-2"><a href="parametric-hypothesis-testing.html#cb27-2"></a><span class="co">## # A tibble: 1 × 1</span></span>
+<span id="cb27-3"><a href="parametric-hypothesis-testing.html#cb27-3"></a><span class="co">##   average_length</span></span>
+<span id="cb27-4"><a href="parametric-hypothesis-testing.html#cb27-4"></a><span class="co">##            &lt;dbl&gt;</span></span>
+<span id="cb27-5"><a href="parametric-hypothesis-testing.html#cb27-5"></a><span class="co">## 1           5.19</span></span></code></pre></div>
 <p><img src="_main_files/figure-html/vio1-1.png" width="672" /></p>
 <p>What about drawing inference? Do we believe that the average length of P<span class="math inline">\(\overline{\text{a}}\)</span>ua shells is, say, 5cm? We know our sample average, but can we make any claims based on this one number?</p>
 <p>How do we reflect our uncertainty about the population mean? <strong>Remember, it’s the population we want to make inference on based on our sample!</strong></p>
@@ -431,40 +466,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <img src="https://raw.githubusercontent.com/cmjt/statbiscuits/master/figs_n_gifs/var.gif" />
 </p>
 <p>So using the example values in the GIF</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1"><span class="co">## our sample of values</span></a>
-<a class="sourceLine" id="cb28-2" title="2">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">9</span>)</a>
-<a class="sourceLine" id="cb28-3" title="3"><span class="co">## sample mean</span></a>
-<a class="sourceLine" id="cb28-4" title="4">sample_mean &lt;-<span class="st"> </span><span class="kw">mean</span>(x)</a>
-<a class="sourceLine" id="cb28-5" title="5">sample_mean</a>
-<a class="sourceLine" id="cb28-6" title="6"><span class="co">## [1] 4.333333</span></a>
-<a class="sourceLine" id="cb28-7" title="7"><span class="co">## distance from mean for each value</span></a>
-<a class="sourceLine" id="cb28-8" title="8">distance_from_mean &lt;-<span class="st"> </span>x <span class="op">-</span><span class="st"> </span>sample_mean</a>
-<a class="sourceLine" id="cb28-9" title="9">distance_from_mean</a>
-<a class="sourceLine" id="cb28-10" title="10"><span class="co">## [1] -3.3333333 -2.3333333 -1.3333333  0.6666667  1.6666667  4.6666667</span></a>
-<a class="sourceLine" id="cb28-11" title="11"><span class="co">## squared distance from mean for each value</span></a>
-<a class="sourceLine" id="cb28-12" title="12">squared_distance_from_mean &lt;-<span class="st"> </span>distance_from_mean<span class="op">^</span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb28-13" title="13">squared_distance_from_mean</a>
-<a class="sourceLine" id="cb28-14" title="14"><span class="co">## [1] 11.1111111  5.4444444  1.7777778  0.4444444  2.7777778 21.7777778</span></a>
-<a class="sourceLine" id="cb28-15" title="15"><span class="co">## sum of the squared distances</span></a>
-<a class="sourceLine" id="cb28-16" title="16"><span class="kw">sum</span>(squared_distance_from_mean)</a>
-<a class="sourceLine" id="cb28-17" title="17"><span class="co">## [1] 43.33333</span></a></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="parametric-hypothesis-testing.html#cb28-1"></a><span class="co">## our sample of values</span></span>
+<span id="cb28-2"><a href="parametric-hypothesis-testing.html#cb28-2"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">9</span>)</span>
+<span id="cb28-3"><a href="parametric-hypothesis-testing.html#cb28-3"></a><span class="co">## sample mean</span></span>
+<span id="cb28-4"><a href="parametric-hypothesis-testing.html#cb28-4"></a>sample_mean &lt;-<span class="st"> </span><span class="kw">mean</span>(x)</span>
+<span id="cb28-5"><a href="parametric-hypothesis-testing.html#cb28-5"></a>sample_mean</span>
+<span id="cb28-6"><a href="parametric-hypothesis-testing.html#cb28-6"></a><span class="co">## [1] 4.333333</span></span>
+<span id="cb28-7"><a href="parametric-hypothesis-testing.html#cb28-7"></a><span class="co">## distance from mean for each value</span></span>
+<span id="cb28-8"><a href="parametric-hypothesis-testing.html#cb28-8"></a>distance_from_mean &lt;-<span class="st"> </span>x <span class="op">-</span><span class="st"> </span>sample_mean</span>
+<span id="cb28-9"><a href="parametric-hypothesis-testing.html#cb28-9"></a>distance_from_mean</span>
+<span id="cb28-10"><a href="parametric-hypothesis-testing.html#cb28-10"></a><span class="co">## [1] -3.3333333 -2.3333333 -1.3333333  0.6666667  1.6666667  4.6666667</span></span>
+<span id="cb28-11"><a href="parametric-hypothesis-testing.html#cb28-11"></a><span class="co">## squared distance from mean for each value</span></span>
+<span id="cb28-12"><a href="parametric-hypothesis-testing.html#cb28-12"></a>squared_distance_from_mean &lt;-<span class="st"> </span>distance_from_mean<span class="op">^</span><span class="dv">2</span></span>
+<span id="cb28-13"><a href="parametric-hypothesis-testing.html#cb28-13"></a>squared_distance_from_mean</span>
+<span id="cb28-14"><a href="parametric-hypothesis-testing.html#cb28-14"></a><span class="co">## [1] 11.1111111  5.4444444  1.7777778  0.4444444  2.7777778 21.7777778</span></span>
+<span id="cb28-15"><a href="parametric-hypothesis-testing.html#cb28-15"></a><span class="co">## sum of the squared distances</span></span>
+<span id="cb28-16"><a href="parametric-hypothesis-testing.html#cb28-16"></a><span class="kw">sum</span>(squared_distance_from_mean)</span>
+<span id="cb28-17"><a href="parametric-hypothesis-testing.html#cb28-17"></a><span class="co">## [1] 43.33333</span></span></code></pre></div>
 <p><strong>Calculating SD and SEM</strong></p>
 <p>Now what about the <strong>SD</strong>? Remember it’s the <span class="math inline">\(\sqrt{\frac{\Sigma_{i = 1}^n(x_i - \bar{x})^2}{n-1}}\)</span> so = <span class="math inline">\(\sqrt{\frac{43.3333333}{n-1}}\)</span> = <span class="math inline">\(\sqrt{\frac{43.3333333}{6-1}}\)</span> = <span class="math inline">\(\sqrt{\frac{43.3333333}{5}}\)</span> = 2.9439203.</p>
 <p>Or we could just use <code>R</code>’s <code>sd()</code> function</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1"><span class="kw">sd</span>(x)</a>
-<a class="sourceLine" id="cb29-2" title="2"><span class="co">## [1] 2.94392</span></a></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="parametric-hypothesis-testing.html#cb29-1"></a><span class="kw">sd</span>(x)</span>
+<span id="cb29-2"><a href="parametric-hypothesis-testing.html#cb29-2"></a><span class="co">## [1] 2.94392</span></span></code></pre></div>
 <p>So the <strong>SEM</strong> is <span class="math inline">\(\frac{\text{SD}}{\sqrt{n}}\)</span> = <span class="math inline">\(\frac{2.9439203}{\sqrt{6}}\)</span></p>
 <p>In <code>R</code></p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1"><span class="kw">sd</span>(x)<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">length</span>(x))</a>
-<a class="sourceLine" id="cb30-2" title="2"><span class="co">## [1] 1.20185</span></a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="parametric-hypothesis-testing.html#cb30-1"></a><span class="kw">sd</span>(x)<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">length</span>(x))</span>
+<span id="cb30-2"><a href="parametric-hypothesis-testing.html#cb30-2"></a><span class="co">## [1] 1.20185</span></span></code></pre></div>
 <p>For the <code>paua</code> data we can simply use the in-built functions in <code>R</code> to calculate the SEM</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1">sem &lt;-<span class="st"> </span>paua <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(Length),</a>
-<a class="sourceLine" id="cb31-2" title="2">                   <span class="dt">sem =</span> <span class="kw">sd</span>(Length)<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">length</span>(Length)))</a>
-<a class="sourceLine" id="cb31-3" title="3">sem</a>
-<a class="sourceLine" id="cb31-4" title="4"><span class="co">## # A tibble: 1 × 2</span></a>
-<a class="sourceLine" id="cb31-5" title="5"><span class="co">##    mean   sem</span></a>
-<a class="sourceLine" id="cb31-6" title="6"><span class="co">##   &lt;dbl&gt; &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb31-7" title="7"><span class="co">## 1  5.19 0.155</span></a></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="parametric-hypothesis-testing.html#cb31-1"></a>sem &lt;-<span class="st"> </span>paua <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(Length),</span>
+<span id="cb31-2"><a href="parametric-hypothesis-testing.html#cb31-2"></a>                   <span class="dt">sem =</span> <span class="kw">sd</span>(Length)<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">length</span>(Length)))</span>
+<span id="cb31-3"><a href="parametric-hypothesis-testing.html#cb31-3"></a>sem</span>
+<span id="cb31-4"><a href="parametric-hypothesis-testing.html#cb31-4"></a><span class="co">## # A tibble: 1 × 2</span></span>
+<span id="cb31-5"><a href="parametric-hypothesis-testing.html#cb31-5"></a><span class="co">##    mean   sem</span></span>
+<span id="cb31-6"><a href="parametric-hypothesis-testing.html#cb31-6"></a><span class="co">##   &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span id="cb31-7"><a href="parametric-hypothesis-testing.html#cb31-7"></a><span class="co">## 1  5.19 0.155</span></span></code></pre></div>
 <p><strong>Visualising the uncertainty</strong></p>
 <p>Recall that the SEM is a measure of uncertainty about the mean. So we can use it to express our uncertainty visually. Typically <span class="math inline">\(\pm\)</span> twice the SEM is the interval used:</p>
 <p><img src="_main_files/figure-html/vizun-1.png" width="672" /></p>
@@ -472,10 +507,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>This is approximately the 95% confidence interval for the population mean (<em>see lecture</em>)</p>
 <p>The exact 95% CI is given by <span class="math inline">\(\bar{x}\)</span> (mean) <span class="math inline">\(\pm\)</span> <span class="math inline">\(t_{df,1 - \alpha/2}\)</span> <span class="math inline">\(\times\)</span> SEM</p>
 <ul>
-<li>df = degrees of freedom (<em>in this situation</em> df = n - 1)
-<ul>
+<li>df = degrees of freedom (<em>in this situation</em> df = n - 1)</li>
 <li><span class="math inline">\(\alpha\)</span> = level of significance</li>
-</ul></li>
 </ul>
 <p>Each mean has its own confidence interval whose width depends on the SEM for that mean</p>
 <p>When the df (<em>more on these later</em>) are large (e.g. 30 or greater) and <span class="math inline">\(\alpha\)</span> = 0.05 <span class="math inline">\(t_{df,1 - \alpha/2}\)</span> = <span class="math inline">\(t_{large,0.975}\)</span> <span class="math inline">\(\approx\)</span> 2. Hence, the 95% confidence interval for the population mean is approximately <span class="math inline">\(\bar{x}\)</span> (mean) <span class="math inline">\(\pm\)</span> 2 <span class="math inline">\(\times\)</span> SEM</p>
@@ -490,10 +523,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Calculating a statistic</strong> (<em>we use a t-statistic</em>)</p>
 <p>t-statistic <span class="math inline">\(= \frac{\bar{x}- \mu}{\text{SEM}}\)</span> = <span class="math inline">\(\frac{5.1925 - 5}{0.155351}\)</span> = 1.239</p>
 <ul>
-<li><p><span class="math inline">\(\bar{x}\)</span> is the sample mean</p>
-<ul>
-<li><span class="math inline">\(\mu\)</span> is the theoretical value (<em>proposed mean</em>)</li>
-</ul></li>
+<li><p><span class="math inline">\(\bar{x}\)</span> is the sample mean</p></li>
+<li><p><span class="math inline">\(\mu\)</span> is the theoretical value (<em>proposed mean</em>)</p></li>
 </ul>
 <p><strong>The corresponding p-value</strong></p>
 <p>Recall that a p-value is the probability under a specified statistical model that a statistical summary of the data would be equal to or more extreme than its observed value</p>
@@ -501,21 +532,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Under our null hypothesis the distribution of the t-statistic is as below. The one calculated from our hypothesis test was 1.2391. Now, remember that our alternative hypotheses was <span class="math inline">\(H_1: \mu \neq 5\)</span> so we have to consider both sides of the inequality; hence, anything as least as extreme is either <span class="math inline">\(&gt; 1.2391\)</span> or <span class="math inline">\(&lt; -1.2391\)</span> to our observed statistic (vertical lines). Anything as least as extreme is therefore given by the grey shaded areas.</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
 <p>We can calculate the p-value using the <code>pt()</code> function (where <code>q</code> is our calculated t-statistic, and <code>df</code> are the degrees of freedom from above):</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1"><span class="dv">2</span><span class="op">*</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pt</span>(<span class="dt">q  =</span> <span class="fl">1.2391</span>,<span class="dt">df =</span> <span class="dv">59</span>))</a>
-<a class="sourceLine" id="cb32-2" title="2"><span class="co">## [1] 0.2202152</span></a></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="parametric-hypothesis-testing.html#cb32-1"></a><span class="dv">2</span><span class="op">*</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pt</span>(<span class="dt">q  =</span> <span class="fl">1.2391</span>,<span class="dt">df =</span> <span class="dv">59</span>))</span>
+<span id="cb32-2"><a href="parametric-hypothesis-testing.html#cb32-2"></a><span class="co">## [1] 0.2202152</span></span></code></pre></div>
 <p>Or we could do all of the above in one step using <code>R</code></p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1"><span class="kw">t.test</span>(paua<span class="op">$</span>Length, <span class="dt">mu =</span> <span class="dv">5</span> )</a>
-<a class="sourceLine" id="cb33-2" title="2"><span class="co">## </span></a>
-<a class="sourceLine" id="cb33-3" title="3"><span class="co">##  One Sample t-test</span></a>
-<a class="sourceLine" id="cb33-4" title="4"><span class="co">## </span></a>
-<a class="sourceLine" id="cb33-5" title="5"><span class="co">## data:  paua$Length</span></a>
-<a class="sourceLine" id="cb33-6" title="6"><span class="co">## t = 1.2391, df = 59, p-value = 0.2202</span></a>
-<a class="sourceLine" id="cb33-7" title="7"><span class="co">## alternative hypothesis: true mean is not equal to 5</span></a>
-<a class="sourceLine" id="cb33-8" title="8"><span class="co">## 95 percent confidence interval:</span></a>
-<a class="sourceLine" id="cb33-9" title="9"><span class="co">##  4.881643 5.503357</span></a>
-<a class="sourceLine" id="cb33-10" title="10"><span class="co">## sample estimates:</span></a>
-<a class="sourceLine" id="cb33-11" title="11"><span class="co">## mean of x </span></a>
-<a class="sourceLine" id="cb33-12" title="12"><span class="co">##    5.1925</span></a></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="parametric-hypothesis-testing.html#cb33-1"></a><span class="kw">t.test</span>(paua<span class="op">$</span>Length, <span class="dt">mu =</span> <span class="dv">5</span> )</span>
+<span id="cb33-2"><a href="parametric-hypothesis-testing.html#cb33-2"></a><span class="co">## </span></span>
+<span id="cb33-3"><a href="parametric-hypothesis-testing.html#cb33-3"></a><span class="co">##  One Sample t-test</span></span>
+<span id="cb33-4"><a href="parametric-hypothesis-testing.html#cb33-4"></a><span class="co">## </span></span>
+<span id="cb33-5"><a href="parametric-hypothesis-testing.html#cb33-5"></a><span class="co">## data:  paua$Length</span></span>
+<span id="cb33-6"><a href="parametric-hypothesis-testing.html#cb33-6"></a><span class="co">## t = 1.2391, df = 59, p-value = 0.2202</span></span>
+<span id="cb33-7"><a href="parametric-hypothesis-testing.html#cb33-7"></a><span class="co">## alternative hypothesis: true mean is not equal to 5</span></span>
+<span id="cb33-8"><a href="parametric-hypothesis-testing.html#cb33-8"></a><span class="co">## 95 percent confidence interval:</span></span>
+<span id="cb33-9"><a href="parametric-hypothesis-testing.html#cb33-9"></a><span class="co">##  4.881643 5.503357</span></span>
+<span id="cb33-10"><a href="parametric-hypothesis-testing.html#cb33-10"></a><span class="co">## sample estimates:</span></span>
+<span id="cb33-11"><a href="parametric-hypothesis-testing.html#cb33-11"></a><span class="co">## mean of x </span></span>
+<span id="cb33-12"><a href="parametric-hypothesis-testing.html#cb33-12"></a><span class="co">##    5.1925</span></span></code></pre></div>
 <p>Recall, that the p-value gives the probability that under our null hypothesis we observe anything as least as extreme as what we did (hence the <span class="math inline">\(\times 2\)</span>, think of the grey shaded area in the graph). This probability is <span class="math inline">\(\sim\)</span> 22%. Do you think what we’ve observed is likely under the null hypothesis?</p>
 <p>Does this plot help? The proposed mean is shown by the blue horizontal line; the dashed line shows the sample mean and the dotted lines <span class="math inline">\(\pm\)</span> the SEM.</p>
 <p><img src="_main_files/figure-html/vizunmu-1.png" width="672" /></p>
@@ -532,47 +563,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Question:</strong> Do we believe that on average the length of P<span class="math inline">\(\overline{\text{a}}\)</span>ua shells are equal between species?</p>
 <p><strong>Formalizing into a hypothesis test:</strong></p>
 <ul>
-<li><strong>Null hypothesis</strong>: On average the species’ shells are the same length
-<ul>
+<li><strong>Null hypothesis</strong>: On average the species’ shells are the same length</li>
 <li><strong>Alternative hypothesis</strong>: they aren’t!</li>
 <li><strong>Notationally</strong>: <span class="math inline">\(H_0: \mu_{\text{Haliotis iris}} - \mu_{\text{Haliotis australis}} = 0\)</span> vs <span class="math inline">\(H_1: \mu_{\text{Haliotis iris}} \neq \mu_{\text{Haliotis australis}},\)</span> where <span class="math inline">\(\mu_{j}\)</span> is the average length for species, <span class="math inline">\(j =\)</span> (<em>Haliotis iris</em>, <em>Haliotis australis</em>).</li>
-</ul></li>
 </ul>
 <p>Let us now <strong>calculate the test statistic:</strong> t-statistic = <span class="math inline">\(\frac{\bar{x}_{\text{difference}} - \mu}{\text{SED}}\)</span> = <span class="math inline">\(\frac{\bar{x}_{\text{difference}} - 0}{\text{SED}}n\)</span> where <span class="math inline">\(\bar{x}_{\text{difference}}\)</span> is the differences between the species` averages.</p>
 <p>Calculations area a little bit more tricky here so let’s use <code>R</code>:</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1">test &lt;-<span class="st"> </span><span class="kw">t.test</span>(Length <span class="op">~</span><span class="st"> </span>Species, <span class="dt">data =</span> paua)</a>
-<a class="sourceLine" id="cb34-2" title="2"><span class="co">## printing out the result</span></a>
-<a class="sourceLine" id="cb34-3" title="3">test</a>
-<a class="sourceLine" id="cb34-4" title="4"><span class="co">## </span></a>
-<a class="sourceLine" id="cb34-5" title="5"><span class="co">##  Welch Two Sample t-test</span></a>
-<a class="sourceLine" id="cb34-6" title="6"><span class="co">## </span></a>
-<a class="sourceLine" id="cb34-7" title="7"><span class="co">## data:  Length by Species</span></a>
-<a class="sourceLine" id="cb34-8" title="8"><span class="co">## t = 3.5404, df = 57.955, p-value = 0.0007957</span></a>
-<a class="sourceLine" id="cb34-9" title="9"><span class="co">## alternative hypothesis: true difference in means between group Haliotis australis and group Haliotis iris is not equal to 0</span></a>
-<a class="sourceLine" id="cb34-10" title="10"><span class="co">## 95 percent confidence interval:</span></a>
-<a class="sourceLine" id="cb34-11" title="11"><span class="co">##  0.4158802 1.4980086</span></a>
-<a class="sourceLine" id="cb34-12" title="12"><span class="co">## sample estimates:</span></a>
-<a class="sourceLine" id="cb34-13" title="13"><span class="co">## mean in group Haliotis australis      mean in group Haliotis iris </span></a>
-<a class="sourceLine" id="cb34-14" title="14"><span class="co">##                         5.766667                         4.809722</span></a>
-<a class="sourceLine" id="cb34-15" title="15">test<span class="op">$</span>p.value</a>
-<a class="sourceLine" id="cb34-16" title="16"><span class="co">## [1] 0.0007956853</span></a></code></pre></div>
-<p>Listed are the t-statistic, <code>t</code> = 3.5403636 and the p-value, <code>p-value</code> = 7.9610^{-4} for the hypothesis test outlined above. What would you conclude?</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="parametric-hypothesis-testing.html#cb34-1"></a>test &lt;-<span class="st"> </span><span class="kw">t.test</span>(Length <span class="op">~</span><span class="st"> </span>Species, <span class="dt">data =</span> paua)</span>
+<span id="cb34-2"><a href="parametric-hypothesis-testing.html#cb34-2"></a><span class="co">## printing out the result</span></span>
+<span id="cb34-3"><a href="parametric-hypothesis-testing.html#cb34-3"></a>test</span>
+<span id="cb34-4"><a href="parametric-hypothesis-testing.html#cb34-4"></a><span class="co">## </span></span>
+<span id="cb34-5"><a href="parametric-hypothesis-testing.html#cb34-5"></a><span class="co">##  Welch Two Sample t-test</span></span>
+<span id="cb34-6"><a href="parametric-hypothesis-testing.html#cb34-6"></a><span class="co">## </span></span>
+<span id="cb34-7"><a href="parametric-hypothesis-testing.html#cb34-7"></a><span class="co">## data:  Length by Species</span></span>
+<span id="cb34-8"><a href="parametric-hypothesis-testing.html#cb34-8"></a><span class="co">## t = 3.5404, df = 57.955, p-value = 0.0007957</span></span>
+<span id="cb34-9"><a href="parametric-hypothesis-testing.html#cb34-9"></a><span class="co">## alternative hypothesis: true difference in means between group Haliotis australis and group Haliotis iris is not equal to 0</span></span>
+<span id="cb34-10"><a href="parametric-hypothesis-testing.html#cb34-10"></a><span class="co">## 95 percent confidence interval:</span></span>
+<span id="cb34-11"><a href="parametric-hypothesis-testing.html#cb34-11"></a><span class="co">##  0.4158802 1.4980086</span></span>
+<span id="cb34-12"><a href="parametric-hypothesis-testing.html#cb34-12"></a><span class="co">## sample estimates:</span></span>
+<span id="cb34-13"><a href="parametric-hypothesis-testing.html#cb34-13"></a><span class="co">## mean in group Haliotis australis      mean in group Haliotis iris </span></span>
+<span id="cb34-14"><a href="parametric-hypothesis-testing.html#cb34-14"></a><span class="co">##                         5.766667                         4.809722</span></span>
+<span id="cb34-15"><a href="parametric-hypothesis-testing.html#cb34-15"></a>test<span class="op">$</span>p.value</span>
+<span id="cb34-16"><a href="parametric-hypothesis-testing.html#cb34-16"></a><span class="co">## [1] 0.0007956853</span></span></code></pre></div>
+<p>Listed are the t-statistic, <code>t</code> = 3.5403636 and the p-value, <code>p-value</code> = 7.96^{-4} for the hypothesis test outlined above. What would you conclude?</p>
 <div class="alert alert-warning">
 <p><strong>TASK</strong> Are you a fan of NFL or Taylor Swift, or maybe both. Download the following data and answer, if you can, <a href="https://www.sportingnews.com/us/nfl/news/travis-kelce-stats-taylor-swift-chiefs-games/ebc0a5f22eed44a5107d31f5">How much better is Chiefs star with his girlfriend in attendance?</a></p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1">base_url &lt;-<span class="st"> &quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/&quot;</span></a>
-<a class="sourceLine" id="cb35-2" title="2">data &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="kw">paste</span>(base_url, <span class="st">&quot;swift_kelce.csv&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="parametric-hypothesis-testing.html#cb35-1"></a>base_url &lt;-<span class="st"> &quot;https://raw.githubusercontent.com/STATS-UOA/databunker/master/data/&quot;</span></span>
+<span id="cb35-2"><a href="parametric-hypothesis-testing.html#cb35-2"></a>data &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="kw">paste</span>(base_url, <span class="st">&quot;swift_kelce.csv&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>))</span></code></pre></div>
 </div>
 </div>
 <div id="one-way-analysis-of-variance-anova" class="section level4 hasAnchor">
 <h4>One-Way Analysis of Variance (ANOVA)<a href="parametric-hypothesis-testing.html#one-way-analysis-of-variance-anova" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>What if we had more than two groups?</p>
 <p>In this section we consider the <code>rats</code> data, which contains calculated logAUC for 12 rats subjected to three different treatments (<code>Surgery</code>), <code>C</code>, <code>P</code>, and <code>S</code>.</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1"><span class="kw">glimpse</span>(rats)</a>
-<a class="sourceLine" id="cb36-2" title="2"><span class="co">## Rows: 12</span></a>
-<a class="sourceLine" id="cb36-3" title="3"><span class="co">## Columns: 3</span></a>
-<a class="sourceLine" id="cb36-4" title="4"><span class="co">## $ Surgery &lt;fct&gt; C, C, C, C, P, P, P, P, S, S, S, S</span></a>
-<a class="sourceLine" id="cb36-5" title="5"><span class="co">## $ Rat     &lt;dbl&gt; 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4</span></a>
-<a class="sourceLine" id="cb36-6" title="6"><span class="co">## $ logAUC  &lt;dbl&gt; 8.49, 8.20, 9.08, 8.07, 10.24, 7.72, 9.34, 8.50, 11.31, 12.69,…</span></a></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="parametric-hypothesis-testing.html#cb36-1"></a><span class="kw">glimpse</span>(rats)</span>
+<span id="cb36-2"><a href="parametric-hypothesis-testing.html#cb36-2"></a><span class="co">## Rows: 12</span></span>
+<span id="cb36-3"><a href="parametric-hypothesis-testing.html#cb36-3"></a><span class="co">## Columns: 3</span></span>
+<span id="cb36-4"><a href="parametric-hypothesis-testing.html#cb36-4"></a><span class="co">## $ Surgery &lt;fct&gt; C, C, C, C, P, P, P, P, S, S, S, S</span></span>
+<span id="cb36-5"><a href="parametric-hypothesis-testing.html#cb36-5"></a><span class="co">## $ Rat     &lt;dbl&gt; 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4</span></span>
+<span id="cb36-6"><a href="parametric-hypothesis-testing.html#cb36-6"></a><span class="co">## $ logAUC  &lt;dbl&gt; 8.49, 8.20, 9.08, 8.07, 10.24, 7.72, 9.34, 8.50, 11.31, 12.69,…</span></span></code></pre></div>
 <div id="between-group-ss-ssb" class="section level5 hasAnchor">
 <h5>Between group SS (SSB)<a href="parametric-hypothesis-testing.html#between-group-ss-ssb" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p><strong>The idea</strong>: Assess <strong>distances</strong> between treatment (<em>surgical condition</em>) means relative to our uncertainty about the actual (<em>true</em>) treatment means.</p>
@@ -621,17 +650,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h5>Inference<a href="parametric-hypothesis-testing.html#inference" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>Hypothesis: We test the Null hypothesis, <span class="math inline">\(H_0\)</span>, population (<code>Surgery</code>) means are the same on average verses the alternative hypothesis, <span class="math inline">\(H_1\)</span>, that <strong>at least one</strong> differs from the others!</p>
 <p>Under our null hypothesis the distribution of the F-statistic is as below. The value calculated from our hypothesis test was 16.359. This observed test statistic is shown by the vertical line. To calculate the relevant p-value we can use</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1">(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pf</span>(<span class="dt">q  =</span> <span class="fl">16.351</span>,<span class="dt">df1 =</span> <span class="dv">2</span>, <span class="dt">df2 =</span> <span class="dv">9</span>))</a>
-<a class="sourceLine" id="cb37-2" title="2"><span class="co">## [1] 0.001007825</span></a></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="parametric-hypothesis-testing.html#cb37-1"></a>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pf</span>(<span class="dt">q  =</span> <span class="fl">16.351</span>,<span class="dt">df1 =</span> <span class="dv">2</span>, <span class="dt">df2 =</span> <span class="dv">9</span>))</span>
+<span id="cb37-2"><a href="parametric-hypothesis-testing.html#cb37-2"></a><span class="co">## [1] 0.001007825</span></span></code></pre></div>
 <p>Thus, the probability of getting an <strong>F-statistic</strong> at least as extreme as the one we observe (think of the area under the tails of the curve below) <strong>p-value</strong> Pr(&gt;F)= 0.001 tells us we have sufficient evidence to reject <span class="math inline">\(H_0\)</span> at the 1% level of significance.</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
 <p>Alternatively, we could do this in one step <strong>using <code>aov()</code>:</strong></p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1"><span class="kw">summary</span>(<span class="kw">aov</span>(logAUC <span class="op">~</span><span class="st"> </span>Surgery, <span class="dt">data =</span> rats))</a>
-<a class="sourceLine" id="cb38-2" title="2"><span class="co">##             Df Sum Sq Mean Sq F value  Pr(&gt;F)   </span></a>
-<a class="sourceLine" id="cb38-3" title="3"><span class="co">## Surgery      2 22.026  11.013   16.36 0.00101 **</span></a>
-<a class="sourceLine" id="cb38-4" title="4"><span class="co">## Residuals    9  6.059   0.673                   </span></a>
-<a class="sourceLine" id="cb38-5" title="5"><span class="co">## ---</span></a>
-<a class="sourceLine" id="cb38-6" title="6"><span class="co">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="parametric-hypothesis-testing.html#cb38-1"></a><span class="kw">summary</span>(<span class="kw">aov</span>(logAUC <span class="op">~</span><span class="st"> </span>Surgery, <span class="dt">data =</span> rats))</span>
+<span id="cb38-2"><a href="parametric-hypothesis-testing.html#cb38-2"></a><span class="co">##             Df Sum Sq Mean Sq F value  Pr(&gt;F)   </span></span>
+<span id="cb38-3"><a href="parametric-hypothesis-testing.html#cb38-3"></a><span class="co">## Surgery      2 22.026  11.013   16.36 0.00101 **</span></span>
+<span id="cb38-4"><a href="parametric-hypothesis-testing.html#cb38-4"></a><span class="co">## Residuals    9  6.059   0.673                   </span></span>
+<span id="cb38-5"><a href="parametric-hypothesis-testing.html#cb38-5"></a><span class="co">## ---</span></span>
+<span id="cb38-6"><a href="parametric-hypothesis-testing.html#cb38-6"></a><span class="co">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span></code></pre></div>
 
 </div>
 </div>
