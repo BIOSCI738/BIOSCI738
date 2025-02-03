@@ -90,7 +90,7 @@ No single assessment in this course is worth more than 15% of your final grade. 
 
 ### FAQs {-}
 
-**What are some recommended resources to help me on my `R` learning journey?** *Some to start out with: 1) [RStudio Education](https://education.rstudio.com/learn/beginner/), 2) [`R` for Data Science](https://r4ds.had.co.nz/), and 2) [Modern Statistics for Modern Biology](https://web.stanford.edu/class/bios221/book/).*
+**What are some recommended resources to help me on my `R` learning journey?** *Some to start out with: 1) [RStudio Education](https://education.rstudio.com/learn/beginner/), 2) [`R` for Data Science](https://r4ds.had.co.nz/), and 3) [Modern Statistics for Modern Biology](https://web.stanford.edu/class/bios221/book/).*
 
 **How do I receive communications and updates on assignments for this course?** *All course communication will be via Canvas Announcement, I expect you to keep up to date with these!*
 
@@ -98,7 +98,7 @@ No single assessment in this course is worth more than 15% of your final grade. 
 
 **Are the classes recorded?** *No, all lectures are in-person and will not be recorded.*
 
-**What if I miss a class?** *The expectation is that you catch up on the materials and content yourself before the next session.*
+**What if I miss a lecture?** *The expectation is that you catch up on the materials and content yourself before the next session.*
 
 **Do I need to being a laptop to class?** *Yes, please bring along your own device (BYOD) with the appropriate software installed as each lecture will likely involve practical tasks that focus on building computational and inference skills.* 
 
@@ -112,10 +112,23 @@ No single assessment in this course is worth more than 15% of your final grade. 
 
 **What if I have a query about my assignment grade?** *Firstly, please read your feedback carefully and take some time to reattempt the tasks in line with the solutions. If you still have concerns, please  email me @ [c.jonestodd@auckland.ac.nz](c.jonestodd@auckland.ac.nz) with a clear explanation as to what specific part of the grade or feedback you are querying.*
 
-**How can I get help if I'm struggling?** *Reach out! You can ask questions in class, attend my [Office hours], or email me @ [c.jonestodd@auckland.ac.nz](c.jonestodd@auckland.ac.nz).*
+**How can I get help if I'm struggling with the content?** *Reach out! Ask me questions in class, attend my [Office hours], or email me @ [c.jonestodd@auckland.ac.nz](c.jonestodd@auckland.ac.nz). You are also welcome to drop by my office unnanounced and check if I'm free, but please note I may be in a meeting or working from home some days.*
 
 **Any other queries or concerns?** Please contact me @ [c.jonestodd@auckland.ac.nz](c.jonestodd@auckland.ac.nz)
 
+#### Support {-}
+
+<div style="background-color:	#FFB6C1">
+
+The [Te Papa Manaaki | Campus Care](https://www.auckland.ac.nz/en/students/student-support/personal-support/te-papa-manaaki-campus-care.html) team provides a safe, confidential and free service that supports the health, well-being and safety of everyone at the University.
+
+Several [crisis helplines](https://www.auckland.ac.nz/en/students/student-support/personal-support/student-health-counselling/emergency-information.html) are available if you are worried about your safety or the safety of someone else, including the Mental Health Crisis Service (Phone: 0800 800 717). Rather text? Need to talk @ 1737 
+
+There are many personal, academic and learning, financial (including emergency funds), and tech support services available to all students—[learn more here](https://www.auckland.ac.nz/en/students/student-support/personal-support/be-well/getting-support.html). 
+
+[Whai Ora Be Well](https://www.auckland.ac.nz/en/students/student-support/personal-support/be-well.html) offers a range of tools and information to help you care for your physical, emotional and spiritual wellbeing, so you can thrive. 
+
+</div>
 
 ```{r, echo = FALSE, eval = TRUE, warning=FALSE, message=FALSE}
 ## install packages used in book if not already
