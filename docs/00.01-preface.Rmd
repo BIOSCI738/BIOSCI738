@@ -35,8 +35,8 @@ You are expected to attend **all** lectures and to bring along your own device (
 
 I hold weekly consultation hours during the semester:
 
- + **Mondays & Tuesdays 12—1pm**, &
- + **Fridays 1—2pm**.
+ + **Mondays & Tuesdays 1—2pm**, &
+ + **Fridays 1—2pm** (from week 4 onward).
  
 These are held in my office in **building 303, room 318**. If you are unable to make these times just email me @ [c.jonestodd@auckland.ac.nz](c.jonestodd@auckland.ac.nz) and we can sort something else out.
 
@@ -64,7 +64,7 @@ If there is any portion of the course that is not accessible to you due to chall
 
 #### Academic honesty {-}
 
-<span><strong>TLDR: Don’t cheat!</span></strong>
+<span><strong>TLDR: Don’t cheat! As a student, it is your responsibility to ensure you’re being academically honest.</span></strong>
 
 <div class="alert alert-danger" role="alert">
 <span><strong>TLDR: Don’t cheat!</span></strong>
@@ -84,7 +84,7 @@ You are expected to abide by the following as you work on assignments in this co
 
 #### Extensions {-}
 
-Note that extensions will only be granted in **exceptional circumstances** (e.g., illness with a doctor’s note). Last-minute requests due to poor time management, workload from other courses, or minor inconveniences will not be considered sufficient to grant an extension. The goal is to keep everyone on track together;due dates for assignments are there to help you keep up with the course material and to ensure the I can provide feedback within a timely manner. 
+Note that extensions will only be granted in **exceptional circumstances** (e.g., illness with a doctor’s note). Last-minute requests due to poor time management, workload from other courses, or minor inconveniences will not be considered sufficient to grant an extension. The goal is to keep everyone on track together; due dates for assignments are there to help you keep up with the course material and to ensure the I can provide feedback within a timely manner. 
 
 No single assessment in this course is worth more than 15% of your final grade. This is by design so that 1) no one assignment should feel overwhelming, and 2) you have multiple opportunities to demonstrate your learning in a variety of ways (see [Assessment summary] for a breakdown of assessment design). Because of this, deadlines for other courses or a busy schedule are not valid reasons for extensions. You’re given plenty of time to complete each assignment, so I encourage you to start early and plan ahead! If you’re facing a genuine issue that will prevent you from submitting your work it is imperative that you get in contact with me **as soon as possible** so that we might make alternative arrangements and figure out the best way to support you.
 
@@ -104,21 +104,25 @@ No single assessment in this course is worth more than 15% of your final grade. 
 
 **I don't have my own laptop.** *No worries, please let me know and I can organise a loan laptop for you.*
 
-**Can I use AI tools in this class?** *It depends! We will discuss this in more detail when lectures start. Please refer to the [Academic honesty] section with regards to submitted work.*
+**Can I use Gen AI tools in this class?** *It depends! We will discuss this in more detail when lectures start. Please refer to the [Academic honesty] section with regards to submitted work and [this webpage on academic integrity at UoA](https://www.auckland.ac.nz/en/students/forms-policies-and-guidelines/student-policies-and-guidelines/academic-integrity-copyright/about-academic-integrity.html).*
 
-**I need an extension for an assignment, how do I do that?** *Please read the [Extensions] section.*
+**I need an extension for an assignment, how do I do that?** *Please see the [Extensions] section for the course's extension policy.*
 
 **When will I get my assignment grades?** *Feedback and solutions will be provided as soon as possible and uploaded via CANVAS. Be sure to review your feedback carefully and take some time to reattempt the tasks in line with the solutions as often there are multiple ways of doing the same thing!*
 
 **What if I have a query about my assignment grade?** *Firstly, please read your feedback carefully and take some time to reattempt the tasks in line with the solutions. If you still have concerns, please  email me @ [c.jonestodd@auckland.ac.nz](c.jonestodd@auckland.ac.nz) with a clear explanation as to what specific part of the grade or feedback you are querying.*
 
-**How can I get help if I'm struggling with the content?** *Reach out! Ask me questions in class, attend my [Office hours], or email me @ [c.jonestodd@auckland.ac.nz](c.jonestodd@auckland.ac.nz). You are also welcome to drop by my office unnanounced and check if I'm free, but please note I may be in a meeting or working from home some days.*
+**How can I get help if I'm struggling with the content?** *Reach out! Ask me questions in class, attend my [Office hours], or email me @ [c.jonestodd@auckland.ac.nz](c.jonestodd@auckland.ac.nz). You are also welcome to drop by my office unannounced and check if I'm free, but please note I may be in a meeting or working from home some days.*
+
+**I am a NEFU student and need some extra English language support** *Alex Trevarton offers weekly drop in sessions, please see his advert below*
+
+> The MAC3/106-114 room is open to Aulin NEFU students at SBS ever Monday 1pm - 2pm.  Come along with your NEFU classmates to discuss your coursework, or ask any questions you have about the University. I can help you if you are struggling with English, and if you need, we can discuss it using Chinese. 每个星期一下午一点钟，待你的NEFU朋友们来MAC3/106-114房间，寻求建议，聊天。虽然练习英语算最好的，不过要是自信不够的话，我会说一点简单的汉语。Kind regards, Alex (Research Fellow at SBS)
 
 **Any other queries or concerns?** Please contact me @ [c.jonestodd@auckland.ac.nz](c.jonestodd@auckland.ac.nz)
 
 #### Support {-}
 
-<div style="background-color:	#FFB6C1">
+<div class="alert alert-success" role="alert">
 
 The [Te Papa Manaaki | Campus Care](https://www.auckland.ac.nz/en/students/student-support/personal-support/te-papa-manaaki-campus-care.html) team provides a safe, confidential and free service that supports the health, well-being and safety of everyone at the University.
 
