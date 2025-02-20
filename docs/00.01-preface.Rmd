@@ -62,12 +62,27 @@ If there is any portion of the course that is not accessible to you due to chall
 
 </div>
 
+#### Participation {-}
+
+**Discussions** with your classmates are an important element of this course, as this allows me to observe how you **engage** with the material and how you **communicate** your understanding with your peers. A big part of the **learning experience** in BIOSCI738 comes from **asking questions** and brainstorming strategies for achieving increased understanding and insights.
+
+**BIOSCI738 is NOT a class where...**
+ 
+ + You can simply show up and watch/listen without contributing to the discussion.
+ + You can do no work for several weeks, and then pull an all-nighter before a big deadline.
+ + You can *sit in the back* and be invisible.
+
+**BIOSCI738 IS a class where...**
+
+ + You will take an active role in the class discussions (my role is to facilitate, not to lecture).
+ + You will come prepared to engage with the set activities!
+
+
 #### Academic honesty {-}
 
-<span><strong>TLDR: Don’t cheat! As a student, it is your responsibility to ensure you’re being academically honest.</span></strong>
 
 <div class="alert alert-danger" role="alert">
-<span><strong>TLDR: Don’t cheat!</span></strong>
+<span><strong>TLDR: Don’t cheat! As a student, it is your responsibility to ensure you’re being academically honest.</span></strong> 
 
 **If you need help, ask!** Use office hours or class discussions etc. rather than resorting to dishonest means.
 
@@ -80,7 +95,7 @@ You are expected to abide by the following as you work on assignments in this co
  + You may **discuss** assignments with other students; however, you may not directly share (or copy) code or write up with other students. Unauthorized sharing (or copying) of the code or write up will be considered a violation for all students involved.
  + Unless explicitly stated otherwise you **may make use of online resources** (e.g., StackOverflow or Copilot etc.) for coding examples on assignments. If you directly use code from an outside source (or use it as inspiration), you must explicitly cite where you obtained the code. Any recycled code that is discovered and is not explicitly cited will be treated as plagiarism.
  
-
+In summary, as a student of University of Auckland student, you are responsible for understanding and abiding by the requirements of the [Student Charter](https://www.auckland.ac.nz/en/students/forms-policies-and-guidelines/student-policies-and-guidelines/student-charter.html). 
 
 #### Extensions {-}
 
