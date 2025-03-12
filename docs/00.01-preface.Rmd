@@ -1,7 +1,7 @@
 # Key Information {-}
 
 <div class="alert alert-danger" role="alert">
-<span><strong>**Please read this page carefully as it contains important information about the course structure, delivery, and assessment.**</span></strong>
+<span><strong>**Please read this page carefully as it contains important information about the course structure, delivery and assessment.**</span></strong>
 </div>
 
 ### Overview {-}
@@ -36,7 +36,7 @@ You are expected to attend **all** lectures and to bring along your own device (
 I hold weekly consultation hours during the semester:
 
  + **Mondays & Tuesdays 1—2pm**, &
- + **Fridays 1—2pm** (from week 4 onward).
+ + **Fridays 1—2pm** (from week 3 onward).
  
 These are held in my office in **building 303, room 318**. If you are unable to make these times just email me @ [c.jonestodd@auckland.ac.nz](c.jonestodd@auckland.ac.nz) and we can sort something else out.
 
@@ -77,6 +77,32 @@ If there is any portion of the course that is not accessible to you due to chall
  + You will take an active role in the class discussions (my role is to facilitate, not to lecture).
  + You will come prepared to engage with the set activities!
 
+#### Class developed Code of Conduct {-}
+
+Below is the class-developed group working Code of Conduct that you are expected to adhere to during each activity in BIOSCI738. This was developed by you as a class during the first lecture.
+
+<div class="alert alert-success" role="alert">
+
+**BIOSCI738 group-working Code of Conduct**
+
+In your own words (*with some style amendments by Charlotte*):
+
+ + Introduce yourself at the beginning of the session. 
+ + Listen to each other and respect others opinions.
+ + Contribute *equally* to tasks. (Note: No one expects a perfectly equal distribution of contributions, but it is expected that everyone does their best to fulfill their responsibilities.)
+ + **Communicate**:
+    + Allow time for everyone to speak during group discussions
+    + Ensure that you aren't "taking over" a task. This can be frustrating for all parties. 
+    + Make sure to keep your team members up-to-date with the status of your task.
+    + Ask each other for input.
+    + Understand that language barriers exist and be patient and understanding of everyone in the group and make sure to check up on the members to make sure everyone has a voice!
+ + **Ask about** and **use** the group's collective knowledge before turning to the internet!
+ + Be open to learning new ways of coding from your peers.
+ + Be **transparent** with your team members about the use of gen AI tools (and equivalent). 
+    + Before you set to a task discuss the groups' opinion on their use and decide as a group if you will use them and how.
+    + If as a group you decide to use gen AI and it offers an alternative method for coding (say) make sure to critique the generated response as a group and use it as a learning opportunity.
+
+</div>
 
 #### Academic honesty {-}
 
@@ -119,7 +145,7 @@ No single assessment in this course is worth more than 15% of your final grade. 
 
 **I don't have my own laptop.** *No worries, please let me know and I can organise a loan laptop for you.*
 
-**Can I use Gen AI tools in this class?** *It depends! We will discuss this in more detail when lectures start. Please refer to the [Academic honesty] section with regards to submitted work and [this webpage on academic integrity at UoA](https://www.auckland.ac.nz/en/students/forms-policies-and-guidelines/student-policies-and-guidelines/academic-integrity-copyright/about-academic-integrity.html).*
+**Can I use Gen AI tools in this class?** *It depends! Please refer to the [Academic honesty] section with regards to submitted work. You are also expected to abide by [UoAs academic integrity policy](https://www.auckland.ac.nz/en/students/forms-policies-and-guidelines/student-policies-and-guidelines/academic-integrity-copyright/about-academic-integrity.html) and I strongly recommend that you  follow this [advice for students on using Generative Artificial Intelligence in coursework](https://www.auckland.ac.nz/en/students/forms-policies-and-guidelines/student-policies-and-guidelines/academic-integrity-copyright/advice-for-student-on-using-generative-ai.html). Please refer to the [Class developed Code of Conduct] section in regards to use of these tools in class room activities.*
 
 **I need an extension for an assignment, how do I do that?** *Please see the [Extensions] section for the course's extension policy.*
 
