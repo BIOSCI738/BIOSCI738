@@ -196,12 +196,12 @@ birds %>%
   theme(legend.position = "none") + geom_hline(yintercept = exp(coefs[1]), size = 2, col = "#66C2A5") +
   geom_hline(yintercept = exp(coefs[2] + coefs[1]), size = 2, col = "#FC8D62") +
   annotate(geom = "text", x = 1, y = 110, 
-           label = bquote(hat(mu)["Phylloscopus collybita"] ==  ~hat(alpha) == ~.(exp(coefs[1]))), 
-           col = "#66C2A5") + scale_fill_brewer(type = "div", palette = "Set2") +
-  theme(legend.position = "none") +
-  annotate(geom = "text", x = 1, y = 125, 
-           label = bquote(hat(mu)["Turdus_merula"] ==  ~hat(alpha) + hat(beta[1])== ~.(exp(coefs[1] + coefs[2]))), 
-           col = "#FC8D62")
+            label = as.expression(bquote(hat(mu)["Phylloscopus collybita"] ==  ~hat(alpha) == ~.(exp(coefs[1])))), 
+            col = "#66C2A5", parse = TRUE) + scale_fill_brewer(type = "div", palette = "Set2") +
+   theme(legend.position = "none") +
+   annotate(geom = "text", x = 1, y = 125, 
+            label = as.expression(bquote(hat(mu)["Turdus_merula"] ==  ~hat(alpha) + hat(beta[1])== ~.(exp(coefs[1] + coefs[2])))), 
+            col = "#FC8D62", parse = TRUE)
 ```
 
 ## Logistic regression
