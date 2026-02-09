@@ -12,33 +12,26 @@ This is a postgraduate course geared towards students of biology, ecology, and e
 
 BIOSCI738 is a postgraduate course and so is pitched at a level where some fundamentals of `R` and stats are already assumed (e.g., topics covered in [BIOSCI220](https://biosci220.github.io/BIOSCI220/)). Topics (e.g., linear regression, hypothesis testing etc.) are recapped in the material, but the pace is quite a bit quicker than for a UG course (as we do then delve further into them). It is expected that you will do quite a bit of further reading/working through problems in your own time. How much extra time this takes up will depend on what baseline knowledge you come into the course with. We will use the programming language `R` throughout the course (through RStudio) and you are expected to be familiar with data import, manipulation, and visualization. If you are unfamiliar with `R` it is expected that you will prepare accordingly before the semester begins. If you find yourself struggling a lot with basic `R` tasks then you’ll likely have to spend a lot more time tacking the questions etc. The provided materials will definitely help you here, but you’d likely find that you’d need to recap & cover them in more detail than we might cover in the lectures/labs. 
 
-<div class="alert alert-danger" role="alert">
-
-<span><strong>Before the course begins you are required to complete the [pre-course tasks](https://canvas.auckland.ac.nz/courses/120054/modules#module_360872).</span></strong>
-
-
-</div>
-
-These tasks are designed for you to self-assess your `R` and statistics knowledge. If you fail to complete the coding task and score less than 70% on the quiz you will likely struggle with the pace and content of the course. This does not preclude you from taking the course, however, you should expect to invest time on top of what is expected for a postgraduate course into ensuring that you understand the material. If you feel the need to brush up on your `R` skills here are two resources I'd recommend giving a whorl 1) [RStudio Education](https://education.rstudio.com/learn/beginner/) and 2) [`R` for Data Science](https://r4ds.had.co.nz/). There are plenty of others out there so if these don't suit you then I'd strongly encourage you to try some others until you find something that suits your learning style.
+If you feel the need to brush up on your `R` skills here are two resources I'd recommend giving a whorl 1) [RStudio Education](https://education.rstudio.com/learn/beginner/) and 2) [`R` for Data Science](https://r4ds.had.co.nz/). There are plenty of others out there so if these don't suit you then I'd strongly encourage you to try some others until you find something that suits your learning style.
 
 #### Lectures {-}
 
-<span><strong>Lectures are weekly</span></strong> (weeks 2–12)
+<span><strong>Lectures are weekly</span></strong> 
  <ul>
-  <li>**Mondays**: 9–11 am (Sci Maths & Physics, Room B05), and </li>
-  <li>**Fridays**: 2–4 pm (B201, Room 3429). </li>
+  <li>**Mondays**: 4–6 pm (Building 303, Room 153), and </li>
+  <li>**Wednesdays**: 2–4 pm (Building 303, Room G14). </li>
 </ul>
 
 You are expected to attend **all** lectures and to bring along your own device (BYOD) with the appropriate software installed. Each 2-hour lecture will involve a mixture of group work and practical tasks that focus on building computational and inference skills. 
 
 #### Office hours {-}
 
-I hold weekly consultation hours during the semester:
+I hold weekly consultation hours during the semester (teaching weeks), which will follow each lecture:
 
- + **Mondays & Tuesdays 1—2pm**, &
- + **Fridays 1—2pm** (from week 3 onward).
+ + **Mondays 6—7pm**, &
+ + **Wednesdays 4—5pm**.
  
-These are held in my office in **building 303, room 318**. If you are unable to make these times just email me @ [c.jonestodd@auckland.ac.nz](c.jonestodd@auckland.ac.nz) and we can sort something else out.
+These are held in my office in **building 303, room 318**, where I'll be heading directly after the lecture!. If you are unable to make these times just email me @ [c.jonestodd@auckland.ac.nz](c.jonestodd@auckland.ac.nz) and we can sort something else out.
 
 #### Assessment summary {-}
 
@@ -47,9 +40,6 @@ These are held in my office in **building 303, room 318**. If you are unable to 
 <span><strong>There is no test or exam for this course</span></strong> 
 
 </div>
-
-
-![](img/assessment_overview.png)
 
 ![Overview of assessment timeline](img/gnatt.png)
  
@@ -79,28 +69,13 @@ If there is any portion of the course that is not accessible to you due to chall
 
 #### Class developed Code of Conduct {-}
 
-Below is the class-developed group working Code of Conduct that you are expected to adhere to during each activity in BIOSCI738. This was developed by you as a class during the first lecture.
+Below *will be* the class-developed group working Code of Conduct that you are expected to adhere to during each activity in BIOSCI738.
 
 <div class="alert alert-success" role="alert">
 
 **BIOSCI738 group-working Code of Conduct**
 
-In your own words (*with some style amendments by Charlotte*):
-
- + Introduce yourself at the beginning of the session. 
- + Listen to each other and respect others opinions.
- + Contribute *equally* to tasks. (Note: No one expects a perfectly equal distribution of contributions, but it is expected that everyone does their best to fulfill their responsibilities.)
- + **Communicate**:
-    + Allow time for everyone to speak during group discussions
-    + Ensure that you aren't "taking over" a task. This can be frustrating for all parties. 
-    + Make sure to keep your team members up-to-date with the status of your task.
-    + Ask each other for input.
-    + Understand that language barriers exist and be patient and understanding of everyone in the group and make sure to check up on the members to make sure everyone has a voice!
- + **Ask about** and **use** the group's collective knowledge before turning to the internet!
- + Be open to learning new ways of coding from your peers.
- + Be **transparent** with your team members about the use of gen AI tools (and equivalent). 
-    + Before you set to a task discuss the groups' opinion on their use and decide as a group if you will use them and how.
-    + If as a group you decide to use gen AI and it offers an alternative method for coding (say) make sure to critique the generated response as a group and use it as a learning opportunity.
+To be devised
 
 </div>
 
@@ -127,7 +102,7 @@ In summary, as a student of University of Auckland student, you are responsible 
 
 Note that extensions will only be granted in **exceptional circumstances** (e.g., illness with a doctor’s note). Last-minute requests due to poor time management, workload from other courses, or minor inconveniences will not be considered sufficient to grant an extension. The goal is to keep everyone on track together; due dates for assignments are there to help you keep up with the course material and to ensure the I can provide feedback within a timely manner. 
 
-No single assessment in this course is worth more than 15% of your final grade. This is by design so that 1) no one assignment should feel overwhelming, and 2) you have multiple opportunities to demonstrate your learning in a variety of ways (see [Assessment summary] for a breakdown of assessment design). Because of this, deadlines for other courses or a busy schedule are not valid reasons for extensions. You’re given plenty of time to complete each assignment, so I encourage you to start early and plan ahead! If you’re facing a genuine issue that will prevent you from submitting your work it is imperative that you get in contact with me **as soon as possible** so that we might make alternative arrangements and figure out the best way to support you.
+Assignments are designed so that 1) no one assignment should feel overwhelming, and 2) you have multiple opportunities to demonstrate your learning in a variety of ways (see [Assessment summary] for a breakdown of assessment design). Because of this, deadlines for other courses or a busy schedule are not valid reasons for extensions. You’re given plenty of time to complete each assignment, so I encourage you to start early and plan ahead! If you’re facing a genuine issue that will prevent you from submitting your work it is imperative that you get in contact with me **as soon as possible** so that we might make alternative arrangements and figure out the best way to support you.
 
 ### FAQs {-}
 
