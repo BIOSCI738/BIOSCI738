@@ -37,11 +37,11 @@ These are held in my office in **building 303, room 318**, where I'll be heading
 
 <div class="alert alert-danger" role="alert">
 
-<span><strong>There is no test or exam for this course</span></strong> 
+<span><strong>There is no test or exam for this course</span></strong> However, note that Interactive Oral Assessment - Assignment Discussion is a compulsory must-pass assessment. Students who do not obtain a passing grade in this assessment (i.e., 50% or over) will not pass the course, regardless of their overall course mark.
 
 </div>
 
-![Overview of assessment timeline](img/gnatt.png)
+![Overview of assessment timeline. *This (Interactive Oral Assessment - Assignment Discussion) is a compulsory must-pass assessment. Students who do not obtain a passing grade in this assessment (i.e., 50% or over) will not pass the course, regardless of their overall course mark](img/gnatt.png)
  
 
 ### Course policies {-}
@@ -108,9 +108,9 @@ Assignments are designed so that 1) no one assignment should feel overwhelming, 
 
 **What are some recommended resources to help me on my `R` learning journey?** *Some to start out with: 1) [RStudio Education](https://education.rstudio.com/learn/beginner/), 2) [`R` for Data Science](https://r4ds.had.co.nz/), and 3) [Modern Statistics for Modern Biology](https://web.stanford.edu/class/bios221/book/).*
 
-**How do I receive communications and updates on assignments for this course?** *All course communication will be via Canvas Announcement, I expect you to keep up to date with these!*
+**How do I receive communications and updates on assignments for this course?** *All course communication will be via CANVAS Announcement, I expect you to keep up to date with these!*
 
-**Do I need to attend all lectures?** *Yes. I expect students to attend all lectures. You should only miss class in cases of emergencies or serious illness. Otherwise, I expect you to be there, just as you’d expect me to be!*
+**Do I need to attend all lectures?** *Yes. You should only miss class in cases of emergencies or serious illness. Otherwise, I expect you to be there, just as you’d expect me to be!*
 
 **Are the classes recorded?** *No, all lectures are in-person and will not be recorded.*
 
@@ -121,6 +121,8 @@ Assignments are designed so that 1) no one assignment should feel overwhelming, 
 **I don't have my own laptop.** *No worries, please let me know and I can organise a loan laptop for you.*
 
 **Can I use Gen AI tools in this class?** *It depends! Please refer to the [Academic honesty] section with regards to submitted work. You are also expected to abide by [UoAs academic integrity policy](https://www.auckland.ac.nz/en/students/forms-policies-and-guidelines/student-policies-and-guidelines/academic-integrity-copyright/about-academic-integrity.html) and I strongly recommend that you  follow this [advice for students on using Generative Artificial Intelligence in coursework](https://www.auckland.ac.nz/en/students/forms-policies-and-guidelines/student-policies-and-guidelines/academic-integrity-copyright/advice-for-student-on-using-generative-ai.html). Please refer to the [Class developed Code of Conduct] section in regards to use of these tools in class room activities.*
+
+**What are the assignments for this course?** *Please refer to the [Assessment summary] section and the [Assignments tab on CANVAS](https://canvas.auckland.ac.nz/courses/141056/assignments).*
 
 **I need an extension for an assignment, how do I do that?** *Please see the [Extensions] section for the course's extension policy.*
 
