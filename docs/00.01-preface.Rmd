@@ -69,13 +69,25 @@ If there is any portion of the course that is not accessible to you due to chall
 
 #### Class developed Code of Conduct {-}
 
-Below *will be* the class-developed group working Code of Conduct that you are expected to adhere to during each activity in BIOSCI738.
+Below is the class-developed group working Code of Conduct that you are expected to adhere to during each activity in BIOSCI738.
 
 <div class="alert alert-success" role="alert">
 
 **BIOSCI738 group-working Code of Conduct**
 
-To be devised
+At the beginning of each lecture you should **sort yourselves into groups** following [these instructoins](https://biosci738.github.io/biosci738_runsheets/#sec-groups).
+
+As a student of University of Auckland student, you are responsible for understanding and abiding by the requirements of the [Student Charter](https://www.auckland.ac.nz/en/students/forms-policies-and-guidelines/student-policies-and-guidelines/student-charter.html).
+
+
+In addition, the key points you, as a class, emphasised and expect each other to abide by include
+
+ + Being friendly, kind, patient, and respectful.
+ + Ensuring open, respectful communication with active listening.
+ + Valuing all ideas, aka *no stupid questions* especially when everyone is learning together!
+ + Discussing and sharing code/ideas clearly and openly so that all group members understand before moving on.
+ + Taking responsibility for completing personal tasks on time.
+ + Talking as a group about how you’d like to use AI, and if you choose to use it, making sure everyone engages with and understands the AI‑generated code or explanations.
 
 </div>
 
